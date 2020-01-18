@@ -125,7 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Helpers\OptionObject\packages.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
