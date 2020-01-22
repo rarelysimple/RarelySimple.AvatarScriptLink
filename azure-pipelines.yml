@@ -44,11 +44,11 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(build.sourcesdirectory)'
-    Contents: '**\bin\$(BuildConfiguration)\**\*.nupkg'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)\beta'
+#- task: CopyFiles@2
+#  inputs:
+#    SourceFolder: '$(build.sourcesdirectory)'
+#    Contents: '**\bin\$(BuildConfiguration)\**\*.nupkg'
+#    TargetFolder: '$(Build.ArtifactStagingDirectory)\beta'
 
 - task: PublishBuildArtifacts@1
   inputs:
