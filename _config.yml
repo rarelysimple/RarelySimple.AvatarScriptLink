@@ -1,3 +1,3 @@
 theme: jekyll-theme-minimal
 title: AvatarScriptLink.NET
-description: AvatarScriptLink.NET--on NuGet as RarelySimple.AvatarScriptLink--is a .NET Standard library designed to help accelerate the safe and stable adoption of ScriptLink extensions for the Netsmart myAvatar electronic medical record. This library assists developers in the management and manipulation of the OptionObject, especially with common tasks such as reading/setting field values and returning a compliant OptionObject back to myAvatar.
+description: AvatarScriptLink.NET is a .NET Standard library designed to help accelerate the safe and stable adoption of ScriptLink extensions for the Netsmart myAvatar electronic medical record.

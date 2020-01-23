@@ -3,13 +3,13 @@ layout: default
 title: RarelySimple.AvatarScriptLink
 ---
 
-# AvatarScriptLink.NET
+# What is AvatarScriptLink.NET?
 
-Essentially, AvatarScriptLink.NET is a framework for managing and manipulating myAvatar ScriptLink OptionObjects. What it does is accelerate the development of clean and stable myAvatar ScriptLink-compatible APIs. [More about AvatarScriptLink.NET](./about.md)
+Essentially, AvatarScriptLink.NET is a framework for managing and manipulating [myAvatar](https://www.ntst.com/Solutions-and-Services/Offerings/myAvatar) ScriptLink OptionObjects. What it does is accelerate the development of clean and stable myAvatar ScriptLink-compatible APIs. [More about AvatarScriptLink.NET](./about.md)
 
 ## Example
 
-Most ScriptLink-compatible APIs are built with a local NTST.ScriptLinkService.Objects library. Here's what a "Hello, World!" response might look like in this scenario.
+Most ScriptLink-compatible APIs are built with a local version of the NTST.ScriptLinkService.Objects library. Here's what a "Hello, World!" response might look like in this scenario.
 
 ```c#
 [WebMethod]
@@ -42,7 +42,7 @@ public OptionObject RunScript(OptionObject optionObject, string parameter)
 }
 ```
 
-Likewise, to bring this same API up to the latest OptionObject version doesn't require accounting for the new properties. Just update the OptionObject version and import the new WSDL.
+Likewise, to bring this same API up to the latest OptionObject version doesn't require accounting for the new properties. Just update the OptionObject version and import the new/updated WSDL into myAvatar.
 
 ```c#
 [WebMethod]

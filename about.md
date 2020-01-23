@@ -1,6 +1,6 @@
 ---
 layout: default
-title: RarelySimple.AvatarScriptLink
+title: About AvatarScriptLink.NET
 ---
 
 # About

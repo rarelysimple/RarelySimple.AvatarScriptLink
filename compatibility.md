@@ -1,6 +1,7 @@
 ---
 layout: default
-title: RarelySimple.AvatarScriptLink
+title: AvatarScriptLink.NET Compatibility
+description: AvatarScriptLink.NET is compatible with ScriptLink API solutions built on .NET Framework 4.6.1 and higher.
 ---
 
 # Compatibility
