@@ -17,7 +17,7 @@
     <CodeAnalysisRuleSet>RarelySimple.AvatarScriptLink.ruleset</CodeAnalysisRuleSet>
     <PackageId>RarelySimple.AvatarScriptLink</PackageId>
     <IsPackable>true</IsPackable>
-    <Version>1.0.0.0</Version>
+    <Version>0.0.1</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
   </PropertyGroup>
