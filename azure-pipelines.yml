@@ -26,16 +26,14 @@ steps:
   inputs:
     solution: '$(solution)'
     #msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    #msbuildArgs: '/t:restore;build;pack /p:PackageVersion=$(Build.BuildNumber)-beta /p:PackageOutputPath=$(build.artifactstagingdirectory)\beta /p:AssemblyFileVersion=$($)Build.BuildNumber)'
-    msbuildArgs: '/t:restore;build /p:PackageVersion=$(Build.BuildNumber)-beta /p:PackageOutputPath=$(build.artifactstagingdirectory)\beta /p:AssemblyFileVersion=$($)Build.BuildNumber)'
+    msbuildArgs: '/t:restore;build /p:PackageVersion=$(Build.BuildNumber)-beta /p:PackageOutputPath=$(Build.ArtifactStagingDirectory)/beta /p:AssemblyFileVersion=$($)Build.BuildNumber)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
-#    msbuildArgs: '/t:restore;build;pack /p:PackageVersion=$(Build.BuildNumber) /p:PackageOutputPath=$(build.artifactstagingdirectory)\public /p:AssemblyFileVersion=$($)Build.BuildNumber)'
-    msbuildArgs: '/t:restore;build /p:PackageVersion=$(Build.BuildNumber) /p:PackageOutputPath=$(build.artifactstagingdirectory)\public /p:AssemblyFileVersion=$($)Build.BuildNumber)'
+    msbuildArgs: '/t:restore;build /p:PackageVersion=$(Build.BuildNumber) /p:PackageOutputPath=$(Build.ArtifactStagingDirectory)/public /p:AssemblyFileVersion=$($)Build.BuildNumber)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
@@ -44,14 +42,14 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-#- task: CopyFiles@2
-#  inputs:
-#    SourceFolder: '$(build.sourcesdirectory)'
-#    Contents: '**\bin\$(BuildConfiguration)\**\*.nupkg'
-#    TargetFolder: '$(Build.ArtifactStagingDirectory)\beta'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/beta'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)\beta'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/public'
     ArtifactName: 'drop'
     publishLocation: 'Container'
