@@ -122,7 +122,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// <param name="errorCode"></param>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public new OptionObject2 ToReturnOptionObject(int errorCode, string errorMessage) => (OptionObject2)OptionObjectHelpers.GetReturnOptionObject((IOptionObject2)this, errorCode, errorMessage);
+        public new OptionObject2 ToReturnOptionObject(double errorCode, string errorMessage) => (OptionObject2)OptionObjectHelpers.GetReturnOptionObject((IOptionObject2)this, errorCode, errorMessage);
 
         /// <summary>
         /// Returns a <see cref="string"/> with all of the contents of the <see cref="OptionObject"/> formatted as XML.

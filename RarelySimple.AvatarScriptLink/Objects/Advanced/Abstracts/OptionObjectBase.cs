@@ -569,7 +569,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// <param name="errorCode"></param>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public virtual OptionObjectBase ToReturnOptionObject(int errorCode, string errorMessage)
+        public virtual OptionObjectBase ToReturnOptionObject(double errorCode, string errorMessage)
         {
             throw new NotImplementedException(ScriptLinkHelpers.GetLocalizedString("methodCannotBeInherited", CultureInfo.CurrentCulture));
         }
