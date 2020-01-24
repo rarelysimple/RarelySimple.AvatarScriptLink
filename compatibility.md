@@ -28,7 +28,7 @@ Check out the Microsoft Docs for more information on [.NET Standard compatibilit
 
 ## Windows Server
 
-Windows Server support is based on the .NET Framework version you choose to use in your ASP.NET Web Application.
+Windows Server support is based on the .NET Framework version you choose to use in your ASP.NET Web Application. These are the Windows Servers that can support .NET Framework 4.6.1 or higher.
 
 | Version | Compatible |
 |:--------|:-----------|

@@ -13,7 +13,10 @@ Before you begin the migration to AvatarScriptLink.NET, we need to confirm the v
 
 1. Right-click on the Web Application project and select Properties.
 2. Select the Application tab and make note of the Target framework.
-3. If your Target Framework is .NET Framework 4.6.1 or higher then you are ready to go. Otherwise, take a look at the following considerations.
+
+### .NET Framework 4.6.1 or higher
+
+If your Target Framework is .NET Framework 4.6.1 or higher then you are ready to go.
 
 ### .NET Framework 4.5 to 4.6
 
@@ -34,6 +37,12 @@ If your target framework is .NET Framework 3.5 or lower:
 * Migrate your code.
 
 ## Step 1: Install the AvatarScriptLink.NET NuGet Package
+
+1. Right-click on the solution and select Manage NuGet Packages for Solution...
+2. Select the Browse tab and search for RarelySimple. If trying this before the release version is out, check Include prerelease.
+3. Select the RarelySimple.AvatarScriptLink package.
+4. Check the boxes next to the Web Application and Unit Testing projects and select Install.
+5. Once installed, close the NuGet - Solution tab.
 
 ## Step 2: Replace Usings
 
