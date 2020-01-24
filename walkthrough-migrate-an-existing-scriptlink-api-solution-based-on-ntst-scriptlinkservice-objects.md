@@ -75,9 +75,34 @@ var fields = new List<FieldObject>();
 var field = new FieldObject();
 ```
 
-At this point, your solution should be able to compile and all unit tests should pass. Congratulations! Your migration is complete.
+If you have any code that uses these to construct the return OptionObject, you may need to modify how it is created slightly. For example:
 
-## Step 4: Additional Recommended Changes (Optional)
+```c#
+//forms[0] = formObject;
+//returnOptionObject.Forms = forms;
+returnOptionObject.Forms.Add(formObject);   // With this change, the `var forms = new List<FormObject>();` declaration earlier is not necessary
+```
+
+You will also need to add the following `using` if it is not already present in each file.
+
+```c#
+using System.Collections.Generic;
+```
+
+At this point, your solution should be able to compile and all unit tests should pass.
+
+## Step 4: Remove the NTST.ScriptLinkService Reference
+
+To avoid confusion with future work, it is recommended to remove the NTST.ScriptLinkService.Object project reference from your Web Application and Unit Test projects.
+
+1. Right-click on the References node under the Web Application project and select Add Reference...
+2. Uncheck NTST.ScriptLinkService.Objects and select OK.
+3. Run Unit Tests to verify all references (usings) were successfully replaced.
+4. Repeat for the Unit Test project and any other projects in this solution that reference the NTST library.
+
+Congratulations! Your migration is complete.
+
+## Step 5: Additional Recommended Changes (Optional)
 
 One of the benefits of leveraging the AvatarScriptLink.NET library is the ability to simplify your code.
 
@@ -244,7 +269,7 @@ public OptionObject2 RunScript(OptionObject2 optionObject2, string parameter)
         case "SetValueBasedOnAnotherValueAndThrowError":
             return SetValueBasedOnAnotherValueAndThrowError(optionObject2);
         default:
-            return optionObject2.ToReturnOptionObject(ErrorCode.Info,"No script was found with this name.");
+            return optionObject2.ToReturnOptionObject(ErrorCode.Informational,"No script was found with this name.");
     }
 }
 
@@ -253,9 +278,9 @@ private OptionObject2 SetValueBasedOnAnotherValueAndThrowError(OptionObject2 opt
     if (optionObject2.GetFieldValue("15") != "6")
     {
         optionObject2.SetFieldValue("15", "6");
-        return optionObject2.ToReturnOptionObject(ErrorCode.Info, "The FieldValue must be 6.");
+        return optionObject2.ToReturnOptionObject(ErrorCode.Informational, "The FieldValue must be 6.");
     }
-    return optionObject2.ToReturnOptionObject(ErrorCode.Info, "You have chosen wisely.");
+    return optionObject2.ToReturnOptionObject(ErrorCode.Informational, "You have chosen wisely.");
 }
 ```
 

@@ -71,7 +71,7 @@ public string GetVersion()
 [WebMethod]
 public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameter)
 {
-    return optionObject.ToReturnOptionObject(ErrorCode.Info, "Hello, World!");
+    return optionObject.ToReturnOptionObject(ErrorCode.Informational, "Hello, World!");
 }
 ```
 ## Step 4: Run the Web Application
