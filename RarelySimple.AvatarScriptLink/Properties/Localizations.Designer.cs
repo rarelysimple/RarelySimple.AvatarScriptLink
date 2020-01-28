@@ -59,5 +59,266 @@ namespace RarelySimple.AvatarScriptLink.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot add another RowObject to this FormObject because either it is not a Multiple Iteration form or it already has the maximun number of rows..
+        /// </summary>
+        internal static string cannotAddAnotherRowObject {
+            get {
+                return ResourceManager.GetString("cannotAddAnotherRowObject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not determine next available RowId in this FormObject..
+        /// </summary>
+        internal static string couldNotDetermineNextRowId {
+            get {
+                return ResourceManager.GetString("couldNotDetermineNextRowId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error Code is not valid..
+        /// </summary>
+        internal static string errorCodeIsNotValid {
+            get {
+                return ResourceManager.GetString("errorCodeIsNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error Message is not a valid OpenForm string..
+        /// </summary>
+        internal static string errorMessageIsNotValidOpenForm {
+            get {
+                return ResourceManager.GetString("errorMessageIsNotValidOpenForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error Message is not a valid URL string..
+        /// </summary>
+        internal static string errorMessageIsNotValidUrl {
+            get {
+                return ResourceManager.GetString("errorMessageIsNotValidUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The RowObject already contains a FieldObject with this FieldNumber..
+        /// </summary>
+        internal static string fieldNumberAlreadyExists {
+            get {
+                return ResourceManager.GetString("fieldNumberAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The RowObject already contains this FieldObject..
+        /// </summary>
+        internal static string fieldObjectAlreadyExists {
+            get {
+                return ResourceManager.GetString("fieldObjectAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The first FormObject cannot be a Multiple Iteration form..
+        /// </summary>
+        internal static string firstFormCannotBeMultipleIteration {
+            get {
+                return ResourceManager.GetString("firstFormCannotBeMultipleIteration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A FormObject with this FormId already exists..
+        /// </summary>
+        internal static string formIdAlreadyExists {
+            get {
+                return ResourceManager.GetString("formIdAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The FormObject does not contain a CurrentRow..
+        /// </summary>
+        internal static string formObjectMissingCurrentRow {
+            get {
+                return ResourceManager.GetString("formObjectMissingCurrentRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The FormObject does not contain any rows..
+        /// </summary>
+        internal static string formObjectMissingRows {
+            get {
+                return ResourceManager.GetString("formObjectMissingRows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JSON string could not be deserialized to desired object..
+        /// </summary>
+        internal static string jsonCouldNotBeDeserialized {
+            get {
+                return ResourceManager.GetString("jsonCouldNotBeDeserialized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This method cannot be inherited. Please create new implementation in the derived class..
+        /// </summary>
+        internal static string methodCannotBeInherited {
+            get {
+                return ResourceManager.GetString("methodCannotBeInherited", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None of the identified FieldsObjects were found in this OptionObject..
+        /// </summary>
+        internal static string noFieldObjectsFound {
+            get {
+                return ResourceManager.GetString("noFieldObjectsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No FieldObjects were found matching provided FieldNumber: .
+        /// </summary>
+        internal static string noFieldObjectsFoundByFieldNumber {
+            get {
+                return ResourceManager.GetString("noFieldObjectsFoundByFieldNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None of the identified FieldsObjects were able to be set..
+        /// </summary>
+        internal static string noFieldObjectsWereSet {
+            get {
+                return ResourceManager.GetString("noFieldObjectsWereSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No FormObjects were found matching provided FormId..
+        /// </summary>
+        internal static string noFormObjectsFoundByFormId {
+            get {
+                return ResourceManager.GetString("noFormObjectsFoundByFormId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No RowObjects were found matching provided RowId..
+        /// </summary>
+        internal static string noRowObjectsFoundByRowId {
+            get {
+                return ResourceManager.GetString("noRowObjectsFoundByRowId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Object could not be serialized as JSON..
+        /// </summary>
+        internal static string objectCannotBeSerializedJson {
+            get {
+                return ResourceManager.GetString("objectCannotBeSerializedJson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Object could not be serialized as XML..
+        /// </summary>
+        internal static string objectCannotBeSerializedXml {
+            get {
+                return ResourceManager.GetString("objectCannotBeSerializedXml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Object could not be serialized as XML or JSON..
+        /// </summary>
+        internal static string objectCannotBeSerializedXmlOrJson {
+            get {
+                return ResourceManager.GetString("objectCannotBeSerializedXmlOrJson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The OptionObject does not contain any forms..
+        /// </summary>
+        internal static string optionObjectMissingForms {
+            get {
+                return ResourceManager.GetString("optionObjectMissingForms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parameter cannot be null..
+        /// </summary>
+        internal static string parameterCannotBeNull {
+            get {
+                return ResourceManager.GetString("parameterCannotBeNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parameter is not valid..
+        /// </summary>
+        internal static string parameterIsNotValid {
+            get {
+                return ResourceManager.GetString("parameterIsNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A RowObject with this RowId already exists in this FormObject..
+        /// </summary>
+        internal static string rowIdAlreadyExists {
+            get {
+                return ResourceManager.GetString("rowIdAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The RowObject does not contain any fields..
+        /// </summary>
+        internal static string rowObjectMissingFields {
+            get {
+                return ResourceManager.GetString("rowObjectMissingFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serialized string is not in a compatible format.
+        /// </summary>
+        internal static string serializedStringIncompatibleFormat {
+            get {
+                return ResourceManager.GetString("serializedStringIncompatibleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to determine which FieldObject to update. Please specify the FormId and RowId associated with the intended FieldObject..
+        /// </summary>
+        internal static string unableToIdentifyFieldObject {
+            get {
+                return ResourceManager.GetString("unableToIdentifyFieldObject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XML string could not be deserialized to desired object..
+        /// </summary>
+        internal static string xmlCouldNotBeDeserialized {
+            get {
+                return ResourceManager.GetString("xmlCouldNotBeDeserialized", resourceCulture);
+            }
+        }
     }
 }

@@ -63,7 +63,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 if (field.FieldNumber == fieldNumber)
                     return IsFieldRequired(field);
             }
-            throw new System.ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), nameof(fieldNumber));
+            throw new System.ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
         }
         /// <summary>
         /// Returns whether the <see cref="IFieldObject"/> is required.

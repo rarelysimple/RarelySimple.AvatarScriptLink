@@ -34,7 +34,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                     return SetFieldValue(optionObject, formId, rowId, fieldNumber, fieldValue);
                 }
             }
-            throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), nameof(fieldNumber));
+            throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
         }
         /// <summary>
         /// Sets the FieldValue of a <see cref="FieldObject"/> in a <see cref="IOptionObject"/> by FormId, RowID, and FieldNumber.
@@ -117,7 +117,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                     }
                 }
             }
-            throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), nameof(formObject));
+            throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(formObject));
         }
         /// <summary>
         /// Sets the FieldValue of a <see cref="FieldObject"/> in a <see cref="IRowObject"/> by FieldNumber.

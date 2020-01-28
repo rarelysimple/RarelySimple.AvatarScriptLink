@@ -24,7 +24,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 if (form.IsFieldPresent(fieldNumber))
                     return GetFieldValue(form, fieldNumber);
             }
-            throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), nameof(fieldNumber));
+            throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
         }
         /// <summary>
         /// Returns the FieldValue of a specified <see cref="IFieldObject"/> in an <see cref="IOptionObject2015"/> by FormId, RowId, and FieldNumber.
@@ -49,7 +49,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 if (form.FormId == formId)
                     return GetFieldValue(form, rowId, fieldNumber);
             }
-            throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), nameof(fieldNumber));
+            throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
         }
         /// <summary>
         /// Returns the FieldValue of a <see cref="IFieldObject"/> in a <see cref="IFormObject"/> by FieldNumber.
@@ -85,7 +85,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 if (rowObject.RowId == rowId)
                     return GetFieldValue(rowObject, fieldNumber);
             }
-            throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), nameof(fieldNumber));
+            throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
         }
         /// <summary>
         /// Returns the FieldValue of a <see cref="IFieldObject"/> in a <see cref="IRowObject"/> by FieldNumber.
@@ -104,7 +104,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 if (field.FieldNumber == fieldNumber)
                     return GetFieldValue(field);
             }
-            throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), nameof(fieldNumber));
+            throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
         }
         /// <summary>
         /// Returns the FieldValue of a <see cref="IFieldObject"/>.
