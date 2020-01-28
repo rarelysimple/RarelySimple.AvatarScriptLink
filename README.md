@@ -7,4 +7,4 @@ Check out [the documentation](https://rarelysimple.github.io/RarelySimple.Avatar
 
 ## Licensing
 
-AvatarScriptLink.NET is open source under the [MIT License](./LICENSE.md) and free for commercial use.
+AvatarScriptLink.NET is open source under the [MIT License](./LICENSE) and free for commercial use.
