@@ -34,6 +34,11 @@
         public const double Warning = 2;
         /// <summary>
         /// Returns provided message with an Ok button.
+        /// <para>This is the equivalent of <see cref="Alert"/> and <see cref="Informational"/>.</para>
+        /// </summary>
+        public const double Info = 3;
+        /// <summary>
+        /// Returns provided message with an Ok button.
         /// <para>This is the equivalent of <see cref="Alert"/>.</para>
         /// </summary>
         public const double Informational = 3;
