@@ -52,6 +52,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\ScriptLink\SafeGetDateTimeTests.cs" />
+    <Compile Include="Helpers\ScriptLink\SafeGetBoolTests.cs" />
     <Compile Include="Objects\ErrorCodeTests.cs" />
     <Compile Include="Objects\FieldActionTests.cs" />
     <Compile Include="Objects\FieldObjectTests.cs" />
