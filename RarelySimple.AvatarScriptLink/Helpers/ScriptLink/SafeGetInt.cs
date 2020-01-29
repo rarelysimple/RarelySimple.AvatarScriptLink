@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace RarelySimple.AvatarScriptLink.Helpers
+﻿namespace RarelySimple.AvatarScriptLink.Helpers
 {
     public static partial class ScriptLinkHelpers
     {
@@ -11,10 +9,9 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns>Returns the converted string as an int. Otherwise, returns 0 if string is not a valid integer.</returns>
         public static int SafeGetInt(string fieldValue)
         {
-            int tempValue = 0;
-            if (int.TryParse(fieldValue, out _))
-                tempValue = int.Parse(fieldValue, CultureInfo.InvariantCulture);
-            return tempValue;
+            if (int.TryParse(fieldValue, out int fieldInt))
+                return fieldInt;
+            return 0;
         }
     }
 }
