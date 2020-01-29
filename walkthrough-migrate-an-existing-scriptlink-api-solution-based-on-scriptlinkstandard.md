@@ -26,6 +26,7 @@ Here are some additional, but unlikely, changes that may need to be made as well
 * Convert your int ErrorCode variables to double. (Unlikely)
 * Implement your own [IScriptLink interface](https://github.com/rcskids/ScriptLinkStandard/blob/master/ScriptLinkStandard/Interfaces/IScriptLink.cs). (Unlikely)
 * Change your uses of the ScriptLinkHelpers class to OptionObjectHelpers when related to OptionObjects. (Unlikely)
+* Replace `ScriptLinkHelpers.Clone(object);` with `object.Clone();`.
 
 ## Step 1: Install the AvatarScriptLink.NET NuGet Package
 
@@ -111,6 +112,7 @@ The Helpers are also very different when compared to ScriptLinkStandard. Here ar
 
 * All OptionObject-related helpers are in the OptionObjectHelpers class. For example, `OptionObjectHelpers.GetNextAvailableRowId(formObject);`
 * All other common helpers are in the ScriptLinkHelpers class. For example, `ScriptLinkHelpers.IsValidUrl(url);`
+* Clone is not an available Helper method.
 
 Here are the helper methods that are new to AvatarScriptLink.NET.
 
@@ -118,6 +120,7 @@ Here are the helper methods that are new to AvatarScriptLink.NET.
 * SafeGetBool and SafeGetDateTime are available to help safely get these type of values from ODBC and other sources that may return a string.
 
 TASK: Change OptionObject related helpers to use the OptionObjectHelpers class instead of ScriptLinkHelpers.
+TASK: Replace `ScriptLinkHelpers.Clone(object);` with `object.Clone();`
 
 ## Troubleshooting
 
