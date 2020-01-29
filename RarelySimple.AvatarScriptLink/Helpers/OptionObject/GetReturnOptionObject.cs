@@ -27,7 +27,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (optionObject == null)
                 throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            IOptionObject returnOptionObject = Clone(optionObject);
+            IOptionObject returnOptionObject = ((OptionObjectBase)optionObject).Clone();
             returnOptionObject = RemoveUneditedRows(returnOptionObject);
             returnOptionObject = SetErrorCodeAndMessage(returnOptionObject, errorCode, errorMessage);
             return returnOptionObject;
@@ -53,7 +53,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (optionObject == null)
                 throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            IOptionObject2 returnOptionObject = Clone(optionObject);
+            IOptionObject2 returnOptionObject = ((OptionObjectBase)optionObject).Clone();
             RemoveUneditedRows(returnOptionObject);
             SetErrorCodeAndMessage(returnOptionObject, errorCode, errorMessage);
             return returnOptionObject;
@@ -80,7 +80,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (optionObject == null)
                 throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            IOptionObject2015 returnOptionObject = Clone(optionObject);
+            IOptionObject2015 returnOptionObject = ((OptionObjectBase)optionObject).Clone();
             RemoveUneditedRows(returnOptionObject);
             SetErrorCodeAndMessage(returnOptionObject, errorCode, errorMessage);
             return returnOptionObject;

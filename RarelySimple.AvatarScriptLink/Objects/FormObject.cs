@@ -58,7 +58,17 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// Returns a deep copy of the <see cref="FormObject"/>.
         /// </summary>
         /// <returns></returns>
-        public new FormObject Clone() => (FormObject)OptionObjectHelpers.Clone(this);
+        public new FormObject Clone()
+        {
+            var formObject = (FormObject)MemberwiseClone();
+            formObject.CurrentRow = CurrentRow.Clone();
+            formObject.OtherRows = new List<RowObject>();
+            foreach (var row in OtherRows)
+            {
+                formObject.OtherRows.Add(row.Clone());
+            }
+            return formObject;
+        }
 
         /// <summary>
         /// Returns a <see cref="string"/> with all of the contents of the <see cref="FormObject"/> formatted as XML.

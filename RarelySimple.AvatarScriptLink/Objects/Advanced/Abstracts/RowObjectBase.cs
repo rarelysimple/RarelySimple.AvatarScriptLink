@@ -282,12 +282,18 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void AddFieldObject(string fieldNumber, string fieldValue, bool enabled, bool locked, bool required) => this.Fields = OptionObjectHelpers.AddFieldObject(this, fieldNumber, fieldValue, enabled, locked, required).Fields;
 
         /// <summary>
-        /// Returns a deep copy of the <see cref="RowObjectBase"/>.
+        /// Returns a deep copy of the <see cref="object"/>.
         /// </summary>
         /// <returns></returns>
-        public virtual RowObjectBase Clone()
+        public virtual object Clone()
         {
-            throw new NotImplementedException(ScriptLinkHelpers.GetLocalizedString("methodCannotBeInherited", CultureInfo.CurrentCulture));
+            var rowObject = (RowObjectBase)MemberwiseClone();
+            rowObject.Fields = new List<FieldObject>();
+            foreach (var field in Fields)
+            {
+                rowObject.Fields.Add(field.Clone());
+            }
+            return rowObject;
         }
 
         /// <summary>

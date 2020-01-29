@@ -72,7 +72,16 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// Returns a deep copy of the <see cref="RowObject"/>.
         /// </summary>
         /// <returns></returns>
-        public new RowObject Clone() => (RowObject)OptionObjectHelpers.Clone(this);
+        public new RowObject Clone()
+        {
+            var rowObject = (RowObject)MemberwiseClone();
+            rowObject.Fields = new List<FieldObject>();
+            foreach (var field in Fields)
+            {
+                rowObject.Fields.Add(field.Clone());
+            }
+            return rowObject;
+        }
 
         /// <summary>
         /// Returns a <see cref="string"/> with all of the contents of the <see cref="RowObject"/> formatted as XML.

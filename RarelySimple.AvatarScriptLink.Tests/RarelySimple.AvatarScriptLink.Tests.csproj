@@ -61,7 +61,6 @@
     <Compile Include="Helpers\OptionObject\AddFieldObjectTests.cs" />
     <Compile Include="Helpers\OptionObject\AddFormObjectTests.cs" />
     <Compile Include="Helpers\OptionObject\AddRowObjectTests.cs" />
-    <Compile Include="Helpers\OptionObject\CloneTests.cs" />
     <Compile Include="Helpers\OptionObject\DeleteRowObjectTests.cs" />
     <Compile Include="Helpers\ScriptLink\DeserializeObjectFromJsonStringTests.cs" />
     <Compile Include="Helpers\ScriptLink\DeserializeObjectFromXmlStringTests.cs" />

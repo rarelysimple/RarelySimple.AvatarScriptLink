@@ -139,7 +139,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             // Arrange
             FieldObject objectToSerialize = new FieldObject();
-            string expected = "{\"Enabled\":\"0\",\"FieldNumber\":\"\",\"FieldValue\":\"\",\"Lock\":\"0\",\"Required\":\"0\",\"Modified\":false}";
+            //string expected = "{\"Enabled\":\"0\",\"FieldNumber\":\"\",\"FieldValue\":\"\",\"Lock\":\"0\",\"Required\":\"0\",\"Modified\":false}";
+            string expected = "{\"Enabled\":\"0\",\"FieldNumber\":\"\",\"FieldValue\":\"\",\"Lock\":\"0\",\"Required\":\"0\"}";
 
             // Act
             var actual = ScriptLinkHelpers.SerializeObjectToJsonString(objectToSerialize);

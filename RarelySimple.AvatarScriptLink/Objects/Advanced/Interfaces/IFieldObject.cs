@@ -8,7 +8,7 @@
         string Lock { get; set; }
         string Required { get; set; }
 
-        // Custom Properties (Must be decorated [XmlIgnore] when implemented
+        // Custom Properties (Must be decorated with [JsonIgnore] and [XmlIgnore] when implemented
         bool Modified { get; set; }
     }
 }

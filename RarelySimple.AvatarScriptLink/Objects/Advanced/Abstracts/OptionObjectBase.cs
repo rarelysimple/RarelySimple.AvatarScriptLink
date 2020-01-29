@@ -310,7 +310,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// <returns></returns>
         public virtual OptionObjectBase Clone()
         {
-            throw new NotImplementedException(ScriptLinkHelpers.GetLocalizedString("methodCannotBeInherited", CultureInfo.CurrentCulture));
+            var optionObject = (OptionObjectBase)MemberwiseClone();
+            optionObject.Forms = new List<FormObject>();
+            foreach (var form in Forms)
+            {
+                optionObject.Forms.Add(form.Clone());
+            }
+            return optionObject;
         }
 
         /// <summary>

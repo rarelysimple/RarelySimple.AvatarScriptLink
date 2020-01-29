@@ -690,7 +690,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         {
             List<FieldObject> fieldObjects = new List<FieldObject>
             {
-                new FieldObject("123", "Test")
+                new FieldObject("123", "Test"),
+                new FieldObject("124", "Test 2")
             };
             RowObject rowObject = new RowObject("1||1", fieldObjects);
 
@@ -707,7 +708,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         {
             List<FieldObject> fieldObjects = new List<FieldObject>
             {
-                new FieldObject("123", "Test")
+                new FieldObject("123", "Test"),
+                new FieldObject("124", "Test 2")
             };
             RowObject rowObject = new RowObject("1||1", fieldObjects);
 

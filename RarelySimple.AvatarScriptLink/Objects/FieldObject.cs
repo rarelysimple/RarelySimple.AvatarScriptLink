@@ -47,7 +47,10 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// Returns a copy of the <see cref="FieldObject"/>.
         /// </summary>
         /// <returns></returns>
-        public new FieldObject Clone() => (FieldObject)OptionObjectHelpers.Clone(this);
+        public new FieldObject Clone()
+        {
+            return (FieldObject)MemberwiseClone();
+        }
 
         /// <summary>
         /// Returns a <see cref="string"/> with all of the contents of the <see cref="FieldObject"/> formatted as XML.

@@ -92,7 +92,16 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// Clones the <see cref="OptionObject"/>.
         /// </summary>
         /// <returns></returns>
-        public new OptionObject Clone() => (OptionObject)OptionObjectHelpers.Clone((IOptionObject)this);
+        public new OptionObject Clone()
+        {
+            var optionObject = (OptionObject)MemberwiseClone();
+            optionObject.Forms = new List<FormObject>();
+            foreach (var form in Forms)
+            {
+                optionObject.Forms.Add(form.Clone());
+            }
+            return optionObject;
+        }
 
         /// <summary>
         /// Returns a <see cref="string"/> with all of the contents of the <see cref="OptionObject"/> formatted in HTML.
@@ -111,7 +120,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// Transforms the <see cref="OptionObject"/>  to an <see cref="OptionObject"/>.
         /// </summary>
         /// <returns></returns>
-        public override OptionObject ToOptionObject() => (OptionObject)OptionObjectHelpers.Clone((IOptionObject)this);
+        public override OptionObject ToOptionObject() => Clone();
 
         /// <summary>
         /// Transforms the <see cref="OptionObject"/>  to an <see cref="OptionObject2"/>.

@@ -231,9 +231,16 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// Returns a deep copy of the <see cref="FormObjectBase"/>.
         /// </summary>
         /// <returns></returns>
-        public virtual FormObjectBase Clone()
+        public virtual object Clone()
         {
-            throw new NotImplementedException(ScriptLinkHelpers.GetLocalizedString("methodCannotBeInherited", CultureInfo.CurrentCulture));
+            var formObject = (FormObjectBase)MemberwiseClone();
+            formObject.CurrentRow = CurrentRow.Clone();
+            formObject.OtherRows = new List<RowObject>();
+            foreach (var row in OtherRows)
+            {
+                formObject.OtherRows.Add(row.Clone());
+            }
+            return formObject;
         }
 
         /// <summary>

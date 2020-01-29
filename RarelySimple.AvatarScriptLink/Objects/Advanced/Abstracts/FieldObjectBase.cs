@@ -1,4 +1,5 @@
-﻿using RarelySimple.AvatarScriptLink.Helpers;
+﻿using Newtonsoft.Json;
+using RarelySimple.AvatarScriptLink.Helpers;
 using System;
 using System.Globalization;
 using System.Xml.Serialization;
@@ -153,7 +154,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// <summary>
         /// Gets or sets the Modified property of a <see cref="FieldObject"/>.
         /// </summary>
-        //[JsonIgnore] // Commented out to allowing json transforms and cloning to retain modification status.
+        [JsonIgnore]
         [XmlIgnore]
         public bool Modified 
         { 
@@ -238,12 +239,12 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         #region Methods
 
         /// <summary>
-        /// Returns a copy of the <see cref="FieldObject"/>.
+        /// Returns a copy of the <see cref="object"/>.
         /// </summary>
         /// <returns></returns>
-        public virtual FieldObjectBase Clone()
+        public virtual object Clone()
         {
-            throw new NotImplementedException(ScriptLinkHelpers.GetLocalizedString("methodCannotBeInherited", CultureInfo.CurrentCulture));
+            return MemberwiseClone();
         }
 
         /// <summary>

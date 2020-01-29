@@ -90,7 +90,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void FieldObjectTransformToJsonIsString()
         {
-            string expected = "{\"Enabled\":\"0\",\"FieldNumber\":\"\",\"FieldValue\":\"\",\"Lock\":\"0\",\"Required\":\"0\",\"Modified\":false}";
+            //string expected = "{\"Enabled\":\"0\",\"FieldNumber\":\"\",\"FieldValue\":\"\",\"Lock\":\"0\",\"Required\":\"0\",\"Modified\":false}";
+            string expected = "{\"Enabled\":\"0\",\"FieldNumber\":\"\",\"FieldValue\":\"\",\"Lock\":\"0\",\"Required\":\"0\"}";
             Assert.AreEqual(expected, new FieldObject().ToJson());
             Assert.AreEqual(expected.GetType(), new FieldObject().ToJson().GetType());
         }
@@ -98,7 +99,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void FieldObjectHelperTransformToJsonIsString()
         {
-            string expected = "{\"Enabled\":\"0\",\"FieldNumber\":\"\",\"FieldValue\":\"\",\"Lock\":\"0\",\"Required\":\"0\",\"Modified\":false}";
+            //string expected = "{\"Enabled\":\"0\",\"FieldNumber\":\"\",\"FieldValue\":\"\",\"Lock\":\"0\",\"Required\":\"0\",\"Modified\":false}";
+            string expected = "{\"Enabled\":\"0\",\"FieldNumber\":\"\",\"FieldValue\":\"\",\"Lock\":\"0\",\"Required\":\"0\"}";
             Assert.AreEqual(expected, OptionObjectHelpers.TransformToJson(new FieldObject()));
             Assert.AreEqual(expected.GetType(), OptionObjectHelpers.TransformToJson(new FieldObject()).GetType());
         }
