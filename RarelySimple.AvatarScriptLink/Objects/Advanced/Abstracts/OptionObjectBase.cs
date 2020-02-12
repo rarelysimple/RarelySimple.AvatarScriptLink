@@ -399,6 +399,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public bool IsFieldLocked(string fieldNumber) => OptionObjectHelpers.IsFieldLocked(this, fieldNumber);
 
         /// <summary>
+        /// Returns whether the specified field is modified.
+        /// </summary>
+        /// <param name="fieldNumber"></param>
+        /// <returns></returns>
+        public bool IsFieldModified(string fieldNumber) => OptionObjectHelpers.IsFieldModified(this, fieldNumber);
+
+        /// <summary>
         /// Returns whether the specified field is present.
         /// </summary>
         /// <param name="fieldNumber"></param>

@@ -52,6 +52,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\OptionObject\RemoveUneditedRowsTests.cs" />
+    <Compile Include="Helpers\OptionObject\IsFieldModifiedTests.cs" />
     <Compile Include="Helpers\ScriptLink\SafeGetDateTimeTests.cs" />
     <Compile Include="Helpers\ScriptLink\SafeGetBoolTests.cs" />
     <Compile Include="Objects\ErrorCodeTests.cs" />

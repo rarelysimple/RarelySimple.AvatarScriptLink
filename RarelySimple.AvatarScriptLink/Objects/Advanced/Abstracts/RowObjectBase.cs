@@ -316,6 +316,12 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public bool IsFieldLocked(string fieldNumber) => OptionObjectHelpers.IsFieldLocked(this, fieldNumber);
 
         /// <summary>
+        /// Determines whether a <see cref="FieldObject"/> is modified in the <see cref="RowObject"/>.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsFieldModified(string fieldNumber) => OptionObjectHelpers.IsFieldModified(this, fieldNumber);
+
+        /// <summary>
         /// Determines whether a <see cref="FieldObject"/> is present in <see cref="RowObject"/> by FieldNumber.
         /// </summary>
         /// <param name="fieldNumber"></param>

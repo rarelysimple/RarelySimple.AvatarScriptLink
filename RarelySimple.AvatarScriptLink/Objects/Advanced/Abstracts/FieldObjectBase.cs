@@ -251,13 +251,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// Determines whether <see cref="FieldObject"/> is enabled.
         /// </summary>
         /// <returns></returns>
-        public bool IsEnabled() => this.Enabled == "1" ? true : false;
+        public bool IsEnabled() => Enabled == "1" ? true : false;
 
         /// <summary>
         /// Determines whether <see cref="FieldObject"/> is enabled.
         /// </summary>
         /// <returns></returns>
-        public bool IsLocked() => this.Lock == "1" ? true : false;
+        public bool IsLocked() => Lock == "1" ? true : false;
 
         /// <summary>
         /// Returns whether the <see cref="FieldObject"/> has been modified.
@@ -269,7 +269,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// Determines whether <see cref="FieldObject"/> is enabled.
         /// </summary>
         /// <returns></returns>
-        public bool IsRequired() => this.Required == "1" ? true : false;
+        public bool IsRequired() => Required == "1" ? true : false;
 
         /// <summary>
         /// Sets the <see cref="FieldObject"/> as disabled and marks the <see cref="FieldObject"/> as modified.
@@ -277,8 +277,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetAsDisabled()
         {
             _modified = true;
-            this.Enabled = "0";
-            this.Required = "0";
+            Enabled = "0";
+            Required = "0";
         }
 
         /// <summary>
@@ -287,7 +287,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetAsEnabled()
         {
             _modified = true;
-            this.Enabled = "1";
+            Enabled = "1";
         }
 
         /// <summary>
@@ -296,7 +296,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetAsLocked()
         {
             _modified = true;
-            this.Lock = "1";
+            Lock = "1";
         }
 
         /// <summary>
@@ -310,8 +310,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetAsOptional()
         {
             _modified = true;
-            this.Enabled = "1";
-            this.Required = "0";
+            Enabled = "1";
+            Required = "0";
         }
 
         /// <summary>
@@ -320,8 +320,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetAsRequired()
         {
             _modified = true;
-            this.Enabled = "1";
-            this.Required = "1";
+            Enabled = "1";
+            Required = "1";
         }
 
         /// <summary>
@@ -330,7 +330,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetAsUnlocked()
         {
             _modified = true;
-            this.Lock = "0";
+            Lock = "0";
         }
 
         /// <summary>
@@ -341,7 +341,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetFieldValue(string fieldValue)
         {
             _modified = true;
-            this.FieldValue = fieldValue;
+            FieldValue = fieldValue;
         }
 
         /// <summary>

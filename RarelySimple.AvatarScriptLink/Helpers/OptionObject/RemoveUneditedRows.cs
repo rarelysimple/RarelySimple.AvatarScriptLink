@@ -45,16 +45,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
             }
             else if (formObject.CurrentRow != null && formObject.CurrentRow.RowAction == RowAction.Edit)
             {
-                List<FieldObject> fieldsToRemove = new List<FieldObject>();
-                foreach (FieldObject fieldObject in formObject.CurrentRow.Fields)
-                {
-                    if (!fieldObject.IsModified())
-                        fieldsToRemove.Add(fieldObject);
-                }
-                foreach (var fieldObject in fieldsToRemove)
-                {
-                    formObject.CurrentRow.Fields.Remove(fieldObject);
-                }
+                formObject.CurrentRow.Fields.RemoveAll(p => p.Modified == false);
             }
 
             // OtherRows
@@ -69,16 +60,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 }
                 else if (rowObject.RowAction == RowAction.Edit)
                 {
-                    List<FieldObject> fieldsToRemove = new List<FieldObject>();
-                    foreach (FieldObject fieldObject in rowObject.Fields)
-                    {
-                        if (!fieldObject.IsModified())
-                            fieldsToRemove.Add(fieldObject);
-                    }
-                    foreach (var fieldObject in fieldsToRemove)
-                    {
-                        rowObject.Fields.Remove(fieldObject);
-                    }
+                    rowObject.Fields.RemoveAll(p => p.Modified == false);
                 }
             }
             foreach (var rowObject in rowsToRemove)
