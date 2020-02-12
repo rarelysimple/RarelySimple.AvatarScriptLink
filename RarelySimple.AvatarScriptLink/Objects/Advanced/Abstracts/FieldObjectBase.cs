@@ -15,11 +15,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// </summary>
         protected FieldObjectBase()
         {
-            _enabled = "0";
+            _enabled = "";
             FieldNumber = "";
             _fieldValue = "";
-            _locked = "0";
-            _required = "0";
+            _locked = "";
+            _required = "";
         }
         /// <summary>
         /// Creates a <see cref="FieldObject"/> with the specified <see cref="FieldNumber"/>.
