@@ -244,7 +244,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_FieldObject_FromJson()
         {
             // Arrange
-            string objectToSerialize = "{\"Enabled\":\"0\",\"FieldNumber\":\"\",\"FieldValue\":\"\",\"Lock\":\"0\",\"Required\":\"0\",\"Modified\":false}";
+            //string objectToSerialize = "{\"Enabled\":\"0\",\"FieldNumber\":\"\",\"FieldValue\":\"\",\"Lock\":\"0\",\"Required\":\"0\",\"Modified\":false}";
+            string objectToSerialize = "{\"Enabled\":\"\",\"FieldNumber\":\"\",\"FieldValue\":\"\",\"Lock\":\"\",\"Required\":\"\",\"Modified\":false}";
             FieldObject expected = new FieldObject();
 
             // Act

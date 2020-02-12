@@ -381,13 +381,21 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_FieldObject_FromXml()
         {
             // Arrange
-            string objectToSerialize = "<?xml version=\"1.0\" encoding=\"utf-16\"?>" + Environment.NewLine +
+            /*string objectToSerialize = "<?xml version=\"1.0\" encoding=\"utf-16\"?>" + Environment.NewLine +
                 "<FieldObject xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">" + Environment.NewLine +
                 "  <Enabled>0</Enabled>" + Environment.NewLine +
                 "  <FieldNumber />" + Environment.NewLine +
                 "  <FieldValue />" + Environment.NewLine +
                 "  <Lock>0</Lock>" + Environment.NewLine +
                 "  <Required>0</Required>" + Environment.NewLine +
+                "</FieldObject>";*/
+            string objectToSerialize = "<?xml version=\"1.0\" encoding=\"utf-16\"?>" + Environment.NewLine +
+                "<FieldObject xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">" + Environment.NewLine +
+                "  <Enabled />" + Environment.NewLine +
+                "  <FieldNumber />" + Environment.NewLine +
+                "  <FieldValue />" + Environment.NewLine +
+                "  <Lock />" + Environment.NewLine +
+                "  <Required />" + Environment.NewLine +
                 "</FieldObject>";
             FieldObject expected = new FieldObject();
 
@@ -402,7 +410,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_FieldObject_FromJson()
         {
             // Arrange
-            string objectToSerialize = "{\"Enabled\":\"0\",\"FieldNumber\":\"\",\"FieldValue\":\"\",\"Lock\":\"0\",\"Required\":\"0\",\"Modified\":false}";
+            //string objectToSerialize = "{\"Enabled\":\"0\",\"FieldNumber\":\"\",\"FieldValue\":\"\",\"Lock\":\"0\",\"Required\":\"0\",\"Modified\":false}";
+            string objectToSerialize = "{\"Enabled\":\"\",\"FieldNumber\":\"\",\"FieldValue\":\"\",\"Lock\":\"\",\"Required\":\"\",\"Modified\":false}";
             FieldObject expected = new FieldObject();
 
             // Act

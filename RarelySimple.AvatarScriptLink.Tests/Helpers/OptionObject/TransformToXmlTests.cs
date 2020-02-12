@@ -135,13 +135,21 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void FieldObjectTransformToXmlIsString()
         {
-            string expected = "<?xml version=\"1.0\" encoding=\"utf-16\"?>" + Environment.NewLine
+            /*string expected = "<?xml version=\"1.0\" encoding=\"utf-16\"?>" + Environment.NewLine
                             + "<FieldObject xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">" + Environment.NewLine
                             + "  <Enabled>0</Enabled>" + Environment.NewLine
                             + "  <FieldNumber />" + Environment.NewLine
                             + "  <FieldValue />" + Environment.NewLine
                             + "  <Lock>0</Lock>" + Environment.NewLine
                             + "  <Required>0</Required>" + Environment.NewLine
+                            + "</FieldObject>";*/
+            string expected = "<?xml version=\"1.0\" encoding=\"utf-16\"?>" + Environment.NewLine
+                            + "<FieldObject xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">" + Environment.NewLine
+                            + "  <Enabled />" + Environment.NewLine
+                            + "  <FieldNumber />" + Environment.NewLine
+                            + "  <FieldValue />" + Environment.NewLine
+                            + "  <Lock />" + Environment.NewLine
+                            + "  <Required />" + Environment.NewLine
                             + "</FieldObject>";
             Assert.AreEqual(expected, new FieldObject().ToXml());
             Assert.AreEqual(expected.GetType(), new FieldObject().ToXml().GetType());
@@ -150,13 +158,21 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void FieldObjectHelperTransformToXmlIsString()
         {
-            string expected = "<?xml version=\"1.0\" encoding=\"utf-16\"?>" + Environment.NewLine
+            /*string expected = "<?xml version=\"1.0\" encoding=\"utf-16\"?>" + Environment.NewLine
                             + "<FieldObject xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">" + Environment.NewLine
                             + "  <Enabled>0</Enabled>" + Environment.NewLine
                             + "  <FieldNumber />" + Environment.NewLine
                             + "  <FieldValue />" + Environment.NewLine
                             + "  <Lock>0</Lock>" + Environment.NewLine
                             + "  <Required>0</Required>" + Environment.NewLine
+                            + "</FieldObject>";*/
+            string expected = "<?xml version=\"1.0\" encoding=\"utf-16\"?>" + Environment.NewLine
+                            + "<FieldObject xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">" + Environment.NewLine
+                            + "  <Enabled />" + Environment.NewLine
+                            + "  <FieldNumber />" + Environment.NewLine
+                            + "  <FieldValue />" + Environment.NewLine
+                            + "  <Lock />" + Environment.NewLine
+                            + "  <Required />" + Environment.NewLine
                             + "</FieldObject>";
             Assert.AreEqual(expected, OptionObjectHelpers.TransformToXml(new FieldObject()));
             Assert.AreEqual(expected.GetType(), OptionObjectHelpers.TransformToXml(new FieldObject()).GetType());

@@ -22,7 +22,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestCategory("FieldObject")]
         public void FieldObjectFromJson_Success()
         {
-            string json = "{\"Enabled\":\"0\",\"FieldNumber\":\"1\",\"FieldValue\":\"\",\"Lock\":\"0\",\"Required\":\"0\"}";
+            //string json = "{\"Enabled\":\"0\",\"FieldNumber\":\"1\",\"FieldValue\":\"\",\"Lock\":\"0\",\"Required\":\"0\"}";
+            string json = "{\"Enabled\":\"\",\"FieldNumber\":\"1\",\"FieldValue\":\"\",\"Lock\":\"\",\"Required\":\"\"}";
             FieldObject expected = new FieldObject
             {
                 FieldNumber = "1"
@@ -52,13 +53,21 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestCategory("FieldObject")]
         public void FieldObjectFromXml_Success()
         {
-            string xml = "<?xml version=\"1.0\" encoding=\"utf-16\"?>" + Environment.NewLine
+            /*string xml = "<?xml version=\"1.0\" encoding=\"utf-16\"?>" + Environment.NewLine
                        + "<FieldObject xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">" + Environment.NewLine
                        + "  <Enabled>0</Enabled>" + Environment.NewLine
                        + "  <FieldNumber>1</FieldNumber>" + Environment.NewLine
                        + "  <FieldValue />" + Environment.NewLine
                        + "  <Lock>0</Lock>" + Environment.NewLine
                        + "  <Required>0</Required>" + Environment.NewLine
+                       + "</FieldObject>";*/
+            string xml = "<?xml version=\"1.0\" encoding=\"utf-16\"?>" + Environment.NewLine
+                       + "<FieldObject xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">" + Environment.NewLine
+                       + "  <Enabled />" + Environment.NewLine
+                       + "  <FieldNumber>1</FieldNumber>" + Environment.NewLine
+                       + "  <FieldValue />" + Environment.NewLine
+                       + "  <Lock />" + Environment.NewLine
+                       + "  <Required />" + Environment.NewLine
                        + "</FieldObject>";
             FieldObject expected = new FieldObject
             {
