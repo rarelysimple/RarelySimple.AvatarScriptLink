@@ -77,14 +77,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 throw new System.ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(fieldNumber))
                 throw new System.ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = enabled ? "1" : "0",
-                FieldNumber = fieldNumber,
-                FieldValue = fieldValue,
-                Lock = locked ? "1" : "0",
-                Required = required ? "1" : "0"
-            };
+            FieldObject fieldObject = new FieldObject(fieldNumber, fieldValue, enabled, locked, required);
             return AddFieldObject(rowObject, fieldObject);
         }
     }

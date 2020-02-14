@@ -136,7 +136,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
             {
                 if (rowObject.Fields[i].FieldNumber == fieldNumber)
                 {
-                    rowObject.Fields[i] = (FieldObject)SetFieldValue(rowObject.Fields[i], fieldValue);
+                    rowObject.Fields[i].FieldValue = fieldValue;
                     rowObject.RowAction = RowAction.Edit;
                     break;
                 }

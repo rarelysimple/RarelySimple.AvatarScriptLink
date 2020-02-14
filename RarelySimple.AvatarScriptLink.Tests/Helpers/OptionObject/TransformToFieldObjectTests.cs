@@ -23,14 +23,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void FieldObjectFromJson_Success()
         {
             string json = "{\"Enabled\":\"\",\"FieldNumber\":\"1\",\"FieldValue\":\"\",\"Lock\":\"\",\"Required\":\"\"}";
-            FieldObject expected = new FieldObject
+            FieldObject expected = new FieldObject()
             {
                 FieldNumber = "1"
             };
             FieldObject actual = (FieldObject)OptionObjectHelpers.TransformToFieldObject(json);
             Assert.IsNotNull(actual.FieldNumber);
             Assert.AreEqual(expected.FieldNumber, actual.FieldNumber);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected.ToXml(), actual.ToXml());
         }
 
         [TestMethod]

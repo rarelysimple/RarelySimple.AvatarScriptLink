@@ -16,7 +16,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         protected FieldObjectBase()
         {
             _enabled = "";
-            FieldNumber = "";
+            _fieldNumber = "";
             _fieldValue = "";
             _locked = "";
             _required = "";
@@ -29,11 +29,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         {
             if (string.IsNullOrEmpty(fieldNumber))
                 throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            _enabled = "0";
+            Enabled = "0";
             FieldNumber = fieldNumber;
-            _fieldValue = "";
-            _locked = "0";
-            _required = "0";
+            FieldValue = "";
+            Lock = "0";
+            Required = "0";
         }
         /// <summary>
         /// Creates a <see cref="FieldObject"/> with the specified <see cref="FieldNumber"/> and <see cref="FieldValue"/>.
@@ -44,11 +44,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         {
             if (string.IsNullOrEmpty(fieldNumber))
                 throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            _enabled = "0";
+            Enabled = "0";
             FieldNumber = fieldNumber;
-            _fieldValue = fieldValue;
-            _locked = "0";
-            _required = "0";
+            FieldValue = fieldValue;
+            Lock = "0";
+            Required = "0";
         }
         /// <summary>
         /// Creates a <see cref="FieldObject"/> with the specified <see cref="FieldNumber"/> and <see cref="FieldValue"/>.
@@ -62,17 +62,24 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         {
             if (string.IsNullOrEmpty(fieldNumber))
                 throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            _enabled = enabled ? "1" : "0";
+            Enabled = enabled ? "1" : "0";
             FieldNumber = fieldNumber;
-            _fieldValue = fieldValue;
-            _locked = locked ? "1" : "0";
-            _required = required ? "1" : "0";
+            FieldValue = fieldValue;
+            Lock = locked ? "1" : "0";
+            Required = required ? "1" : "0";
         }
         #endregion
 
         #region Private Properties
 
+        private string OriginalEnabled { get; set; }
+        private string OriginalFieldNumber { get; set; }
+        private string OriginalFieldValue { get; set; }
+        private string OriginalLocked { get; set; }
+        private string OriginalRequired { get; set; }
+
         private string _enabled { get; set; }
+        private string _fieldNumber { get; set; }
         private string _fieldValue { get; set; }
         private string _locked { get; set; }
         private string _required { get; set; }
@@ -94,15 +101,32 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
             }
             set
             {
+                if (OriginalEnabled == null)
+                    OriginalEnabled = value;
+                else
+                    _modified = true;
                 _enabled = value;
-                _modified = true;
             }
         }
         /// <summary>
         /// Gets or sets the FieldNumber property of a <see cref="FieldObject"/>.
         /// </summary>
         /// <value>The value is a <see cref="string"/> representing the field number. This is typically a value like 12345.6 or 12345.67.</value>
-        public string FieldNumber { get; set; }     // Do we want to prevent modifying? Can only be set when constructed?
+        public string FieldNumber
+        { 
+            get
+            {
+                return _fieldNumber;
+            }
+            set
+            {
+                if (OriginalFieldNumber == null)
+                    OriginalFieldNumber = value;
+                else
+                    value = OriginalFieldNumber;
+                _fieldNumber = value;
+            }
+        }
         /// <summary>
         /// Gets or sets the FieldValue property of a <see cref="FieldObject"/>.
         /// </summary>
@@ -115,8 +139,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
             }
             set
             {
+                if (OriginalFieldValue == null)
+                    OriginalFieldValue = value;
+                else
+                    _modified = true;
                 _fieldValue = value;
-                _modified = true;
             }
         }
         /// <summary>
@@ -131,8 +158,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
             }
             set
             {
+                if (OriginalLocked == null)
+                    OriginalLocked = value;
+                else
+                    _modified = true;
                 _locked = value;
-                _modified = true;
             }
         }
         /// <summary>
@@ -147,8 +177,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
             }
             set
             {
+                if (OriginalRequired == null)
+                    OriginalRequired = value;
+                else
+                    _modified = true;
                 _required = value;
-                _modified = true;
             }
         }
         /// <summary>
@@ -161,10 +194,6 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
             get
             {
                 return _modified;
-            }
-            set
-            {
-                _modified = value;
             }
         }
 
@@ -276,7 +305,6 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// </summary>
         public void SetAsDisabled()
         {
-            _modified = true;
             Enabled = "0";
             Required = "0";
         }
@@ -286,7 +314,6 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// </summary>
         public void SetAsEnabled()
         {
-            _modified = true;
             Enabled = "1";
         }
 
@@ -295,7 +322,6 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// </summary>
         public void SetAsLocked()
         {
-            _modified = true;
             Lock = "1";
         }
 
@@ -309,7 +335,6 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// </summary>
         public void SetAsOptional()
         {
-            _modified = true;
             Enabled = "1";
             Required = "0";
         }
@@ -319,7 +344,6 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// </summary>
         public void SetAsRequired()
         {
-            _modified = true;
             Enabled = "1";
             Required = "1";
         }
@@ -329,7 +353,6 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// </summary>
         public void SetAsUnlocked()
         {
-            _modified = true;
             Lock = "0";
         }
 
@@ -340,7 +363,6 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// <returns></returns>
         public void SetFieldValue(string fieldValue)
         {
-            _modified = true;
             FieldValue = fieldValue;
         }
 

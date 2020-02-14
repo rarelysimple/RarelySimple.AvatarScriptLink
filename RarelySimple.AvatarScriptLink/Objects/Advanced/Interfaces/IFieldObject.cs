@@ -9,6 +9,6 @@
         string Required { get; set; }
 
         // Custom Properties (Must be decorated with [JsonIgnore] and [XmlIgnore] when implemented
-        bool Modified { get; set; }
+        bool Modified { get; }
     }
 }
