@@ -87,6 +87,18 @@
     <Compile Include="v4\GetErrorCode6Tests.cs" />
     <Compile Include="v4\GetFieldValueTests.cs" />
     <Compile Include="v4\SetFieldValueTests.cs" />
+    <Compile Include="v5\DefaultScriptTests.cs" />
+    <Compile Include="v5\GetErrorCode0Tests.cs" />
+    <Compile Include="v5\GetErrorCode1Tests.cs" />
+    <Compile Include="v5\GetErrorCode2Tests.cs" />
+    <Compile Include="v5\GetErrorCode3Tests.cs" />
+    <Compile Include="v5\GetErrorCode4Tests.cs" />
+    <Compile Include="v5\GetErrorCode5Tests.cs" />
+    <Compile Include="v5\GetErrorCode6Tests.cs" />
+    <Compile Include="v5\GetFieldValueTests.cs" />
+    <Compile Include="v5\SetFieldValueTests.cs" />
+    <Compile Include="v5\CommandFactoryTests.cs" />
+    <Compile Include="v5\GetVersionCommandTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

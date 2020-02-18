@@ -278,6 +278,10 @@
     <Content Include="Soap\v4\OptionObject2015Service.asmx" />
     <Content Include="Soap\v4\OptionObject2Service.asmx" />
     <Content Include="Soap\v4\OptionObjectService.asmx" />
+    <Content Include="Soap\v5\Default.aspx" />
+    <Content Include="Soap\v5\OptionObject2015Service.asmx" />
+    <Content Include="Soap\v5\OptionObject2Service.asmx" />
+    <Content Include="Soap\v5\OptionObjectService.asmx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -450,6 +454,39 @@
     <Compile Include="Soap\v4\Shared\GetErrorCode6.cs" />
     <Compile Include="Soap\v4\Shared\GetFieldValue.cs" />
     <Compile Include="Soap\v4\Shared\SetFieldValue.cs" />
+    <Compile Include="Soap\v5\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Soap\v5\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Soap\v5\OptionObject2015Service.asmx.cs">
+      <DependentUpon>OptionObject2015Service.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Soap\v5\OptionObject2Service.asmx.cs">
+      <DependentUpon>OptionObject2Service.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Soap\v5\OptionObjectService.asmx.cs">
+      <DependentUpon>OptionObjectService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Soap\v5\Shared\CommandFactory.cs" />
+    <Compile Include="Soap\v5\Shared\DefaultScriptCommand.cs" />
+    <Compile Include="Soap\v5\Shared\GetErrorCode0Command.cs" />
+    <Compile Include="Soap\v5\Shared\GetErrorCode1Command.cs" />
+    <Compile Include="Soap\v5\Shared\GetErrorCode2Command.cs" />
+    <Compile Include="Soap\v5\Shared\GetErrorCode3Command.cs" />
+    <Compile Include="Soap\v5\Shared\GetErrorCode4Command.cs" />
+    <Compile Include="Soap\v5\Shared\GetErrorCode5Command.cs" />
+    <Compile Include="Soap\v5\Shared\GetErrorCode6Command.cs" />
+    <Compile Include="Soap\v5\Shared\GetFieldValueCommand.cs" />
+    <Compile Include="Soap\v5\Shared\GetVersionCommand.cs" />
+    <Compile Include="Soap\v5\Shared\IGetVersionCommand.cs" />
+    <Compile Include="Soap\v5\Shared\IRunScriptCommand.cs" />
+    <Compile Include="Soap\v5\Shared\SetFieldValueCommand.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -462,7 +499,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
-    <Folder Include="Soap\v5\" />
     <Folder Include="Soap\v6\" />
   </ItemGroup>
   <ItemGroup>
