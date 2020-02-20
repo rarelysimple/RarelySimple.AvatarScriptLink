@@ -25,7 +25,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
         {
             get
             {
-                return _parameter != null ? _parameter.Split(_delimiter)[0] : "";
+                return _parameter?.Split(_delimiter)[0];
             }
         }
 
@@ -36,12 +36,12 @@ namespace RarelySimple.AvatarScriptLink.Objects
 
         public string[] ParameterArray()
         {
-            return _parameter != null ? _parameter.Split(_delimiter) : new string[1];
+            return _parameter?.Split(_delimiter);
         }
 
         public List<string> ParameterList()
         {
-            return _parameter != null ? _parameter.Split(_delimiter).ToList() : new List<string>();
+            return _parameter?.Split(_delimiter).ToList();
         }
 
         public override string ToString()
