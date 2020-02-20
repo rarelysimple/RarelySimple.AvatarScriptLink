@@ -16,7 +16,7 @@ namespace RarelySimple.AvatarScriptLink.Examples.Soap.v6.Shared
 
         public IOptionObject2015 Execute()
         {
-            string fieldNumber = _parameter.Count() >= 2 ? _parameter.ParameterList()[1] : "";
+            string fieldNumber = _parameter.Count() >= 2 ? _parameter.ToList()[1] : "";
             if (_optionObject.IsFieldPresent(fieldNumber))
             {
                 string fieldValue = _optionObject.GetFieldValue(fieldNumber);

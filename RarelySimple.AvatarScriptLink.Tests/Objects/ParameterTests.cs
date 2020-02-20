@@ -32,7 +32,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         {
             string expected = "three";
             IParameter parameter = new Parameter("one,two,three,four,five");
-            string actual = parameter.ParameterArray()[2];
+            string actual = parameter.ToArray()[2];
 
             Assert.AreEqual(expected, actual);
         }
@@ -42,7 +42,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         {
             string expected = "";
             IParameter parameter = new Parameter("");
-            string actual = parameter.ParameterArray()[0];
+            string actual = parameter.ToArray()[0];
 
             Assert.AreEqual(expected, actual);
         }
@@ -52,7 +52,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         {
             string expected = "three";
             IParameter parameter = new Parameter("one:two:three:four:five", ':');
-            string actual = parameter.ParameterArray()[2];
+            string actual = parameter.ToArray()[2];
 
             Assert.AreEqual(expected, actual);
         }
@@ -62,7 +62,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         {
             string expected = "three";
             IParameter parameter = new Parameter("one,two,three,four,five", ',');
-            string actual = parameter.ParameterArray()[2];
+            string actual = parameter.ToArray()[2];
 
             Assert.AreEqual(expected, actual);
         }
@@ -72,7 +72,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         {
             string expected = "three";
             IParameter parameter = new Parameter("one.two.three.four.five", '.');
-            string actual = parameter.ParameterArray()[2];
+            string actual = parameter.ToArray()[2];
 
             Assert.AreEqual(expected, actual);
         }
@@ -82,7 +82,67 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         {
             string expected = "three";
             IParameter parameter = new Parameter("one|two|three|four|five", '|');
-            string actual = parameter.ParameterArray()[2];
+            string actual = parameter.ToArray()[2];
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Parameter_GetString_0_AreEqual()
+        {
+            string expected = "one";
+            IParameter parameter = new Parameter("one,two,,,five");
+            string actual = parameter.GetString(0);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Parameter_GetString_1_AreEqual()
+        {
+            string expected = "two";
+            IParameter parameter = new Parameter("one,two,,,five");
+            string actual = parameter.GetString(1);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Parameter_GetString_2_AreEqual()
+        {
+            string expected = "";
+            IParameter parameter = new Parameter("one,two,,,five");
+            string actual = parameter.GetString(2);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Parameter_GetString_3_AreEqual()
+        {
+            string expected = "";
+            IParameter parameter = new Parameter("one,two,,,five");
+            string actual = parameter.GetString(3);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Parameter_GetString_4_AreEqual()
+        {
+            string expected = "five";
+            IParameter parameter = new Parameter("one,two,,,five");
+            string actual = parameter.GetString(4);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Parameter_GetString_5_AreEqual()
+        {
+            string expected = "";
+            IParameter parameter = new Parameter("one,two,,,five");
+            string actual = parameter.GetString(5);
 
             Assert.AreEqual(expected, actual);
         }

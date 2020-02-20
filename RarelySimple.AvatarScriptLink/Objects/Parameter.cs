@@ -1,4 +1,5 @@
 ﻿using RarelySimple.AvatarScriptLink.Objects.Advanced;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,23 +26,35 @@ namespace RarelySimple.AvatarScriptLink.Objects
         {
             get
             {
-                return _parameter?.Split(_delimiter)[0];
+                return GetString(0);
             }
         }
 
         public int Count()
         {
-            return ParameterList().Count;
+            return ToList().Count;
         }
 
-        public string[] ParameterArray()
+        public string GetString(int i)
+        {
+            try
+            {
+                return ToArray()[i];
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return "";
+            }
+        }
+
+        public string[] ToArray()
         {
             return _parameter?.Split(_delimiter);
         }
 
-        public List<string> ParameterList()
+        public List<string> ToList()
         {
-            return _parameter?.Split(_delimiter).ToList();
+            return ToArray().ToList();
         }
 
         public override string ToString()

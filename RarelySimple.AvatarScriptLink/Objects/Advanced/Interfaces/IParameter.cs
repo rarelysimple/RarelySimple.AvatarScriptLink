@@ -7,8 +7,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         string ScriptName { get; }
 
         int Count();
-        string[] ParameterArray();
-        List<string> ParameterList();
+        string GetString(int i);
+        string[] ToArray();
+        List<string> ToList();
         string ToString();
     }
 }
