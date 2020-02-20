@@ -1,6 +1,7 @@
 ﻿using NLog;
 using RarelySimple.AvatarScriptLink.Examples.Soap.v6.Shared;
 using RarelySimple.AvatarScriptLink.Objects;
+using RarelySimple.AvatarScriptLink.Objects.Advanced;
 using System.Web.Services;
 
 namespace RarelySimple.AvatarScriptLink.Examples.Soap.v6
@@ -28,8 +29,9 @@ namespace RarelySimple.AvatarScriptLink.Examples.Soap.v6
         }
 
         [WebMethod]
-        public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameter)
+        public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameterString)
         {
+            IParameter parameter = new Parameter(parameterString);
             IRunScriptCommand command = CommandFactory.GetCommand(optionObject, parameter);
             if (command == null)
             {

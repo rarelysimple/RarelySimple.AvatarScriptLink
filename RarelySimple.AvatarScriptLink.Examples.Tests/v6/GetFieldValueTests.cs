@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RarelySimple.AvatarScriptLink.Examples.Soap.v6.Shared;
 using RarelySimple.AvatarScriptLink.Objects;
+using RarelySimple.AvatarScriptLink.Objects.Advanced;
 using System.Collections.Generic;
 
 namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
@@ -38,8 +39,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
                 }
             };
 
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
-            string parameter = "GetFieldValue,123";
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetFieldValue,123");
             var command = new GetFieldValueCommand(optionObjectDecorator, parameter);
 
             // Act
@@ -79,8 +80,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
                 }
             };
 
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
-            string parameter = "GetFieldValue,123";
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetFieldValue,123");
             var command = new GetFieldValueCommand(optionObjectDecorator, parameter);
 
             // Act
@@ -119,8 +120,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
                     formObject
                 }
             };
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
-            string parameter = "GetFieldValue,123";
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetFieldValue,123");
             var command = new GetFieldValueCommand(optionObjectDecorator, parameter);
 
             // Act
@@ -159,8 +160,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
                     formObject
                 }
             };
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
-            string parameter = "GetFieldValue,123";
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetFieldValue,123");
             var command = new GetFieldValueCommand(optionObjectDecorator, parameter);
 
             // Act
@@ -199,8 +200,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
                     formObject
                 }
             };
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
-            string parameter = "GetFieldValue,123";
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetFieldValue,123");
             var command = new GetFieldValueCommand(optionObjectDecorator, parameter);
 
             // Act
@@ -239,8 +240,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
                     formObject
                 }
             };
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
-            string parameter = "GetFieldValue,123";
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetFieldValue,123");
             var command = new GetFieldValueCommand(optionObjectDecorator, parameter);
 
             // Act

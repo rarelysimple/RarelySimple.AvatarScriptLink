@@ -6,9 +6,9 @@ namespace RarelySimple.AvatarScriptLink.Examples.Soap.v6.Shared
     public class GetFieldValueCommand : IRunScriptCommand
     {
         private readonly IOptionObjectDecorator _optionObject;
-        private readonly string _parameter;
+        private readonly IParameter _parameter;
 
-        public GetFieldValueCommand(IOptionObjectDecorator optionObjectDecorator, string parameter)
+        public GetFieldValueCommand(IOptionObjectDecorator optionObjectDecorator, IParameter parameter)
         {
             _optionObject = optionObjectDecorator;
             _parameter = parameter;
@@ -16,8 +16,7 @@ namespace RarelySimple.AvatarScriptLink.Examples.Soap.v6.Shared
 
         public IOptionObject2015 Execute()
         {
-            string[] parameters = _parameter.Split(',');
-            string fieldNumber = parameters.Length >= 2 ? parameters[1] : "";
+            string fieldNumber = _parameter.Count() >= 2 ? _parameter.ParameterArray()[1] : "";
             string returnMessage = "The FieldValue is ";
 
             if (_optionObject.IsFieldPresent(fieldNumber))

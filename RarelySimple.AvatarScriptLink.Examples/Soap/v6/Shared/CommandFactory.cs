@@ -14,7 +14,7 @@ namespace RarelySimple.AvatarScriptLink.Examples.Soap.v6.Shared
         /// <param name="optionObject"></param>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public static IRunScriptCommand GetCommand(IOptionObject2015 optionObject, string parameter)
+        public static IRunScriptCommand GetCommand(IOptionObject2015 optionObject, IParameter parameter)
         {
             if (optionObject == null)
             {
@@ -25,14 +25,11 @@ namespace RarelySimple.AvatarScriptLink.Examples.Soap.v6.Shared
             // Setup Decorator
             IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
 
-            // Determine ScriptName
-            string scriptName = parameter != null ? parameter.Split(',')[0] : "";
-            logger.Debug("Script '" + scriptName + "' requested.");
-
             // Get Dependencies, such as repositories and services
 
             // Select Command
-            switch (scriptName)
+            logger.Debug("Script '" + parameter.ScriptName + "' requested.");
+            switch (parameter.ScriptName)
             {
                 case "GetErrorCode0":
                     logger.Debug(nameof(GetErrorCode0Command) + " selected.");
@@ -63,7 +60,7 @@ namespace RarelySimple.AvatarScriptLink.Examples.Soap.v6.Shared
                     return new SetFieldValueCommand(optionObjectDecorator, parameter);
                 default:
                     logger.Debug(nameof(DefaultScriptCommand) + " selected.");
-                    return new DefaultScriptCommand(optionObjectDecorator, scriptName);
+                    return new DefaultScriptCommand(optionObjectDecorator, parameter);
             }
         }
     }

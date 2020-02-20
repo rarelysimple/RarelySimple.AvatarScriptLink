@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RarelySimple.AvatarScriptLink.Examples.Soap.v6.Shared;
 using RarelySimple.AvatarScriptLink.Objects;
+using RarelySimple.AvatarScriptLink.Objects.Advanced;
 
 namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
 {
@@ -12,8 +13,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject optionObject = new OptionObject();
-            string parameter = "";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             DefaultScriptCommand expected = new DefaultScriptCommand(optionObjectDecorator, parameter);
 
             // Act
@@ -28,8 +29,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2 optionObject = new OptionObject2();
-            string parameter = "";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             DefaultScriptCommand expected = new DefaultScriptCommand(optionObjectDecorator, parameter);
 
             // Act
@@ -44,8 +45,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2015 optionObject = new OptionObject2015();
-            string parameter = "";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             DefaultScriptCommand expected = new DefaultScriptCommand(optionObjectDecorator, parameter);
 
             // Act
@@ -60,8 +61,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject optionObject = new OptionObject();
-            string parameter = "GetErrorCode0";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode0");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode0Command expected = new GetErrorCode0Command(optionObjectDecorator);
 
             // Act
@@ -76,8 +77,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2 optionObject = new OptionObject2();
-            string parameter = "GetErrorCode0";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode0");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode0Command expected = new GetErrorCode0Command(optionObjectDecorator);
 
             // Act
@@ -92,8 +93,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2015 optionObject = new OptionObject2015();
-            string parameter = "GetErrorCode0";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode0");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode0Command expected = new GetErrorCode0Command(optionObjectDecorator);
 
             // Act
@@ -108,8 +109,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject optionObject = new OptionObject();
-            string parameter = "GetErrorCode1";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode1");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode1Command expected = new GetErrorCode1Command(optionObjectDecorator);
 
             // Act
@@ -124,8 +125,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2 optionObject = new OptionObject2();
-            string parameter = "GetErrorCode1";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode1");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode1Command expected = new GetErrorCode1Command(optionObjectDecorator);
 
             // Act
@@ -140,8 +141,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2015 optionObject = new OptionObject2015();
-            string parameter = "GetErrorCode1";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode1");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode1Command expected = new GetErrorCode1Command(optionObjectDecorator);
 
             // Act
@@ -156,8 +157,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject optionObject = new OptionObject();
-            string parameter = "GetErrorCode2";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode2");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode2Command expected = new GetErrorCode2Command(optionObjectDecorator);
 
             // Act
@@ -172,8 +173,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2 optionObject = new OptionObject2();
-            string parameter = "GetErrorCode2";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode2");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode2Command expected = new GetErrorCode2Command(optionObjectDecorator);
 
             // Act
@@ -188,8 +189,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2015 optionObject = new OptionObject2015();
-            string parameter = "GetErrorCode2";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode2");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode2Command expected = new GetErrorCode2Command(optionObjectDecorator);
 
             // Act
@@ -204,8 +205,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject optionObject = new OptionObject();
-            string parameter = "GetErrorCode3";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode3");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode3Command expected = new GetErrorCode3Command(optionObjectDecorator);
 
             // Act
@@ -220,8 +221,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2 optionObject = new OptionObject2();
-            string parameter = "GetErrorCode3";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode3");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode3Command expected = new GetErrorCode3Command(optionObjectDecorator);
 
             // Act
@@ -236,8 +237,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2015 optionObject = new OptionObject2015();
-            string parameter = "GetErrorCode3";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode3");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode3Command expected = new GetErrorCode3Command(optionObjectDecorator);
 
             // Act
@@ -252,8 +253,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject optionObject = new OptionObject();
-            string parameter = "GetErrorCode4";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode4");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode4Command expected = new GetErrorCode4Command(optionObjectDecorator);
 
             // Act
@@ -268,8 +269,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2 optionObject = new OptionObject2();
-            string parameter = "GetErrorCode4";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode4");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode4Command expected = new GetErrorCode4Command(optionObjectDecorator);
 
             // Act
@@ -284,8 +285,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2015 optionObject = new OptionObject2015();
-            string parameter = "GetErrorCode4";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode4");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode4Command expected = new GetErrorCode4Command(optionObjectDecorator);
 
             // Act
@@ -300,8 +301,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject optionObject = new OptionObject();
-            string parameter = "GetErrorCode5";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode5");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode5Command expected = new GetErrorCode5Command(optionObjectDecorator);
 
             // Act
@@ -316,8 +317,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2 optionObject = new OptionObject2();
-            string parameter = "GetErrorCode5";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode5");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode5Command expected = new GetErrorCode5Command(optionObjectDecorator);
 
             // Act
@@ -332,8 +333,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2015 optionObject = new OptionObject2015();
-            string parameter = "GetErrorCode5";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode5");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode5Command expected = new GetErrorCode5Command(optionObjectDecorator);
 
             // Act
@@ -348,8 +349,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject optionObject = new OptionObject();
-            string parameter = "GetErrorCode6";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode6");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode6Command expected = new GetErrorCode6Command(optionObjectDecorator);
 
             // Act
@@ -364,8 +365,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2 optionObject = new OptionObject2();
-            string parameter = "GetErrorCode6";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode6");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode6Command expected = new GetErrorCode6Command(optionObjectDecorator);
 
             // Act
@@ -380,8 +381,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2015 optionObject = new OptionObject2015();
-            string parameter = "GetErrorCode6";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetErrorCode6");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetErrorCode6Command expected = new GetErrorCode6Command(optionObjectDecorator);
 
             // Act
@@ -396,8 +397,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject optionObject = new OptionObject();
-            string parameter = "GetFieldValue,123";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetFieldValue,123");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetFieldValueCommand expected = new GetFieldValueCommand(optionObjectDecorator, parameter);
 
             // Act
@@ -412,8 +413,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2 optionObject = new OptionObject2();
-            string parameter = "GetFieldValue,123";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetFieldValue,123");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetFieldValueCommand expected = new GetFieldValueCommand(optionObjectDecorator, parameter);
 
             // Act
@@ -428,8 +429,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2015 optionObject = new OptionObject2015();
-            string parameter = "GetFieldValue,123";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("GetFieldValue,123");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             GetFieldValueCommand expected = new GetFieldValueCommand(optionObjectDecorator, parameter);
 
             // Act
@@ -444,8 +445,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject optionObject = new OptionObject();
-            string parameter = "SetFieldValue,123";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("SetFieldValue,123");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             SetFieldValueCommand expected = new SetFieldValueCommand(optionObjectDecorator, parameter);
 
             // Act
@@ -460,8 +461,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2 optionObject = new OptionObject2();
-            string parameter = "SetFieldValue,123";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("SetFieldValue,123");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             SetFieldValueCommand expected = new SetFieldValueCommand(optionObjectDecorator, parameter);
 
             // Act
@@ -476,8 +477,8 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2015 optionObject = new OptionObject2015();
-            string parameter = "SetFieldValue,123";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("SetFieldValue,123");
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
             SetFieldValueCommand expected = new SetFieldValueCommand(optionObjectDecorator, parameter);
 
             // Act

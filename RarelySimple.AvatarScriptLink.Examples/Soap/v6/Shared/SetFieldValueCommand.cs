@@ -6,9 +6,9 @@ namespace RarelySimple.AvatarScriptLink.Examples.Soap.v6.Shared
     public class SetFieldValueCommand : IRunScriptCommand
     {
         private readonly IOptionObjectDecorator _optionObject;
-        private readonly string _parameter;
+        private readonly IParameter _parameter;
 
-        public SetFieldValueCommand(IOptionObjectDecorator optionObjectDecorator, string parameter)
+        public SetFieldValueCommand(IOptionObjectDecorator optionObjectDecorator, IParameter parameter)
         {
             _optionObject = optionObjectDecorator;
             _parameter = parameter;
@@ -16,16 +16,17 @@ namespace RarelySimple.AvatarScriptLink.Examples.Soap.v6.Shared
 
         public IOptionObject2015 Execute()
         {
-            if (_optionObject.IsFieldPresent("123"))
+            string fieldNumber = _parameter.Count() >= 2 ? _parameter.ParameterList()[1] : "";
+            if (_optionObject.IsFieldPresent(fieldNumber))
             {
-                string fieldValue = _optionObject.GetFieldValue("123");
+                string fieldValue = _optionObject.GetFieldValue(fieldNumber);
                 if (string.IsNullOrEmpty(fieldValue))
                     fieldValue = "I have set the FieldValue.";
                 else
                     fieldValue += " (I have appended the FieldValue.)";
-                _optionObject.SetFieldValue("123", fieldValue);
+                _optionObject.SetFieldValue(fieldNumber, fieldValue);
             }
-            return _optionObject.ToReturnOptionObject(ErrorCode.Success, "If FieldNumber 123 is found in OptionObject, then it should be the only FieldObject returned. Otherwise, no Forms should be returned.");
+            return _optionObject.ToReturnOptionObject(ErrorCode.Success, "If FieldNumber '" + fieldNumber + "' is found in OptionObject, then it should be the only FieldObject returned. Otherwise, no Forms should be returned.");
         }
     }
 }

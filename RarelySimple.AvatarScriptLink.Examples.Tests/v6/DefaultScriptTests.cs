@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RarelySimple.AvatarScriptLink.Examples.Soap.v6.Shared;
 using RarelySimple.AvatarScriptLink.Objects;
+using RarelySimple.AvatarScriptLink.Objects.Advanced;
 
 namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
 {
@@ -12,9 +13,9 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject optionObject = new OptionObject();
-            string scriptName = "?";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
-            var command = new DefaultScriptCommand(optionObjectDecorator, scriptName);
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("?");
+            var command = new DefaultScriptCommand(optionObjectDecorator, parameter);
 
             // Act
             OptionObject returnOptionObject = (OptionObject)command.Execute();
@@ -28,9 +29,9 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2 optionObject = new OptionObject2();
-            string scriptName = "?";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
-            var command = new DefaultScriptCommand(optionObjectDecorator, scriptName);
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("?");
+            var command = new DefaultScriptCommand(optionObjectDecorator, parameter);
 
             // Act
             OptionObject2 returnOptionObject = (OptionObject2)command.Execute();
@@ -44,9 +45,9 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2015 optionObject = new OptionObject2015();
-            string scriptName = "?";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
-            var command = new DefaultScriptCommand(optionObjectDecorator, scriptName);
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("?");
+            var command = new DefaultScriptCommand(optionObjectDecorator, parameter);
 
             // Act
             OptionObject2015 returnOptionObject = (OptionObject2015)command.Execute();
@@ -60,9 +61,9 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject optionObject = new OptionObject();
-            string scriptName = "?";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
-            var command = new DefaultScriptCommand(optionObjectDecorator, scriptName);
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("?");
+            var command = new DefaultScriptCommand(optionObjectDecorator, parameter);
 
             // Act
             OptionObject returnOptionObject = (OptionObject)command.Execute();
@@ -76,9 +77,9 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2 optionObject = new OptionObject2();
-            string scriptName = "?";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
-            var command = new DefaultScriptCommand(optionObjectDecorator, scriptName);
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("?");
+            var command = new DefaultScriptCommand(optionObjectDecorator, parameter);
 
             // Act
             OptionObject2 returnOptionObject = (OptionObject2)command.Execute();
@@ -92,9 +93,9 @@ namespace RarelySimple.AvatarScriptLink.Examples.Tests.v6
         {
             // Arrange
             OptionObject2015 optionObject = new OptionObject2015();
-            string scriptName = "?";
-            OptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
-            var command = new DefaultScriptCommand(optionObjectDecorator, scriptName);
+            IOptionObjectDecorator optionObjectDecorator = new OptionObjectDecorator(optionObject);
+            IParameter parameter = new Parameter("?");
+            var command = new DefaultScriptCommand(optionObjectDecorator, parameter);
 
             // Act
             OptionObject2015 returnOptionObject = (OptionObject2015)command.Execute();

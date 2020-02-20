@@ -6,17 +6,17 @@ namespace RarelySimple.AvatarScriptLink.Examples.Soap.v6.Shared
     public class DefaultScriptCommand : IRunScriptCommand
     {
         private readonly IOptionObjectDecorator _optionObject;
-        private readonly string _scriptName;
+        private readonly IParameter _parameter;
 
-        public DefaultScriptCommand(IOptionObjectDecorator optionObjectDecorator, string scriptName)
+        public DefaultScriptCommand(IOptionObjectDecorator optionObjectDecorator, IParameter parameter)
         {
             _optionObject = optionObjectDecorator;
-            _scriptName = scriptName;
+            _parameter = parameter;
         }
 
         public IOptionObject2015 Execute()
         {
-            return _optionObject.ToReturnOptionObject(ErrorCode.Alert, "No script was found with the name '" + _scriptName + "'.");
+            return _optionObject.ToReturnOptionObject(ErrorCode.Alert, "No script was found with the name '" + _parameter.ScriptName + "'.");
         }
     }
 }
