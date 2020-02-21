@@ -23,10 +23,11 @@ Here are the tasks you may need to complete to migrate to AvatarScriptLink.NET d
 
 Here are some additional, but unlikely, changes that may need to be made as well.
 
+* The OptionObject interfaces do not include any library methods. You can use the new IOptionObjectDecorator interface instead.
 * Convert your int ErrorCode variables to double. (Unlikely)
 * Implement your own [IScriptLink interface](https://github.com/rcskids/ScriptLinkStandard/blob/master/ScriptLinkStandard/Interfaces/IScriptLink.cs). (Unlikely)
 * Change your uses of the ScriptLinkHelpers class to OptionObjectHelpers when related to OptionObjects. (Unlikely)
-* Replace `ScriptLinkHelpers.Clone(object);` with `object.Clone();`.
+* Replace `ScriptLinkHelpers.Clone(object);` with `object.Clone();`. (Unlikely)
 
 ## Step 1: Install the AvatarScriptLink.NET NuGet Package
 
@@ -104,7 +105,40 @@ It is with the interfaces that we see the fundamental differences between the tw
 * Interfaces inherit previous versions. This is to show the relationship of these contracts to one another.
 * The IScriptLink interface does not exist. There are a number of techniques for creating ScriptLink scripts/commands that support Unit Testing. This felt out of scope for this library.
 
-TASK: If you wish to continue to inherit from this interface, you can add you own to the solution. Here is the [source code for the IScriptLink interface](https://github.com/rcskids/ScriptLinkStandard/blob/master/ScriptLinkStandard/Interfaces/IScriptLink.cs).
+TASK: If you wish to continue to inherit from a IScriptLink interface, you can add you own to the solution. Here is the [source code for the IScriptLink interface](https://github.com/rcskids/ScriptLinkStandard/blob/master/ScriptLinkStandard/Interfaces/IScriptLink.cs).
+
+TASK: If you were injecting an IOptionObject, IOptionObject2, or IOptionObject into your class or method, you can replace it with IOptionObjectDecorator or the concrete class.
+
+Here are the examples:
+
+###### IOptionObjectDecorator
+```c#
+[WebMethod]
+public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameterString)
+{
+    var optionObjectDecorator = new OptionObjectDecorator(optionObject);
+    return (OptionObject2015)HelloWorld(optionObjectDecorator);
+}
+// This method can accept an OptionObject, OptionObject2, or OptionObject2015
+public IOptionObject2015 HelloWorld(IOptionObjectDecorator optionObject)
+{
+    return optionObject.ToReturnOptionObject(ErrorCode.Informational, "Hello, World!");
+}
+```
+
+###### Concrete Class
+```c#
+[WebMethod]
+public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameterString)
+{
+    return (OptionObject2015)HelloWorld(optionObject);
+}
+// This method can only accept an Optionobject2015
+public IOptionObject2015 HelloWorld(OptionObject2015 optionObject)
+{
+    return optionObject.ToReturnOptionObject(ErrorCode.Informational, "Hello, World!");
+}
+```
 
 ### Helpers
 
