@@ -254,6 +254,80 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
 
         [TestMethod]
         [TestCategory("ScriptLinkHelpers")]
+        public void DisableAllFieldObjects_OptionObject2015_MissingProperties_IsDisabled()
+        {
+            FieldObject fieldObject1 = new FieldObject() { FieldNumber = "1", FieldValue = "1" };
+            FieldObject fieldObject2 = new FieldObject() { FieldNumber = "2", FieldValue = "2" };
+            FieldObject fieldObject3 = new FieldObject() { FieldNumber = "3", FieldValue = "3" };
+            FieldObject fieldObject4 = new FieldObject() { FieldNumber = "4", FieldValue = "4" };
+            FieldObject fieldObject5 = new FieldObject() { FieldNumber = "5", FieldValue = "5" };
+            List<FieldObject> fieldObjects = new List<FieldObject>
+            {
+                fieldObject1,
+                fieldObject2,
+                fieldObject3,
+                fieldObject4,
+                fieldObject5
+            };
+            RowObject rowObject = new RowObject("1||1", fieldObjects);
+            FormObject formObject = new FormObject("1", rowObject);
+            List<FormObject> formObjects = new List<FormObject>
+            {
+                formObject
+            };
+            OptionObject2015 optionObject2015 = new OptionObject2015()
+            {
+                Forms = formObjects
+            };
+
+            OptionObject2015 returnOptionObject = (OptionObject2015)OptionObjectHelpers.DisableAllFieldObjects(optionObject2015);
+
+            Assert.IsFalse(returnOptionObject.IsFieldEnabled("1"));
+            Assert.IsFalse(returnOptionObject.IsFieldEnabled("2"));
+            Assert.IsFalse(returnOptionObject.IsFieldEnabled("3"));
+            Assert.IsFalse(returnOptionObject.IsFieldEnabled("4"));
+            Assert.IsFalse(returnOptionObject.IsFieldEnabled("5"));
+        }
+
+        [TestMethod]
+        [TestCategory("ScriptLinkHelpers")]
+        public void DisableAllFieldObjects_OptionObject2015_IsModified()
+        {
+            FieldObject fieldObject1 = new FieldObject() { FieldNumber = "1", FieldValue = "1" };
+            FieldObject fieldObject2 = new FieldObject() { FieldNumber = "2", FieldValue = "2" };
+            FieldObject fieldObject3 = new FieldObject() { FieldNumber = "3", FieldValue = "3" };
+            FieldObject fieldObject4 = new FieldObject() { FieldNumber = "4", FieldValue = "4" };
+            FieldObject fieldObject5 = new FieldObject() { FieldNumber = "5", FieldValue = "5" };
+            List<FieldObject> fieldObjects = new List<FieldObject>
+            {
+                fieldObject1,
+                fieldObject2,
+                fieldObject3,
+                fieldObject4,
+                fieldObject5
+            };
+            RowObject rowObject = new RowObject("1||1", fieldObjects);
+            FormObject formObject = new FormObject("1", rowObject);
+            List<FormObject> formObjects = new List<FormObject>
+            {
+                formObject
+            };
+            OptionObject2015 optionObject2015 = new OptionObject2015()
+            {
+                Forms = formObjects
+            };
+
+            OptionObject2015 returnOptionObject = (OptionObject2015)OptionObjectHelpers.DisableAllFieldObjects(optionObject2015);
+
+            Assert.IsTrue(returnOptionObject.IsFieldModified("1"));
+            Assert.IsTrue(returnOptionObject.IsFieldModified("2"));
+            Assert.IsTrue(returnOptionObject.IsFieldModified("3"));
+            Assert.IsTrue(returnOptionObject.IsFieldModified("4"));
+            Assert.IsTrue(returnOptionObject.IsFieldModified("5"));
+        }
+
+        [TestMethod]
+        [TestCategory("ScriptLinkHelpers")]
         public void DisableAllFieldObjects_OptionObject2015_ExcludesFields()
         {
             FieldObject fieldObject1 = new FieldObject("1", "1", true, false, false);
