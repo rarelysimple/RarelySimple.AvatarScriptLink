@@ -254,5 +254,196 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
 
             Assert.IsTrue(actual.IsFieldPresent("51003"));
         }
+
+        [TestMethod]
+        [TestCategory("ScriptLinkHelpers")]
+        public void GetReturnOptionObject_NoCurrentRowReturnsWithoutException()
+        {
+            OptionObject2015 expected = new OptionObject2015("USER37", "unittestuser", "", "1", "", 0, "UAT", "AVPM", "AVPM", "SERVER", "TOKEN");
+
+            FieldObject fieldObject01 = new FieldObject("214.74", "2");
+            FieldObject fieldObject02 = new FieldObject("214.98", "12/07/2020");
+            RowObject rowObject01 = new RowObject("33||1");
+            rowObject01.AddFieldObject(fieldObject01);
+            rowObject01.AddFieldObject(fieldObject02);
+            FormObject form33 = new FormObject("33", rowObject01, false);
+            expected.AddFormObject(form33);
+
+            FieldObject fieldObject03 = new FieldObject("214.75", "");
+            FieldObject fieldObject04 = new FieldObject("214.76", "");
+            FieldObject fieldObject05 = new FieldObject("214.77", "");
+            FieldObject fieldObject06 = new FieldObject("214.78", "");
+            FieldObject fieldObject07 = new FieldObject("214.79", "");
+            FieldObject fieldObject08 = new FieldObject("214.8", "");
+            FieldObject fieldObject09 = new FieldObject("214.81", "");
+            FieldObject fieldObject10 = new FieldObject("214.82", "");
+            FieldObject fieldObject11 = new FieldObject("214.83", "");
+            FieldObject fieldObject12 = new FieldObject("214.85", "");
+            FieldObject fieldObject13 = new FieldObject("214.86", "30");
+            FieldObject fieldObject14 = new FieldObject("214.91", "");
+            FieldObject fieldObject15 = new FieldObject("214.93", "");
+            FieldObject fieldObject16 = new FieldObject("214.94", "");
+            FieldObject fieldObject17 = new FieldObject("214.96", "12/3/2020");
+            FieldObject fieldObject18 = new FieldObject("214.97", "12/4/2020");
+            RowObject rowObject02 = new RowObject("34||1", "33||1");
+            rowObject02.AddFieldObject(fieldObject03);
+            rowObject02.AddFieldObject(fieldObject04);
+            rowObject02.AddFieldObject(fieldObject05);
+            rowObject02.AddFieldObject(fieldObject06);
+            rowObject02.AddFieldObject(fieldObject07);
+            rowObject02.AddFieldObject(fieldObject08);
+            rowObject02.AddFieldObject(fieldObject09);
+            rowObject02.AddFieldObject(fieldObject10);
+            rowObject02.AddFieldObject(fieldObject11);
+            rowObject02.AddFieldObject(fieldObject12);
+            rowObject02.AddFieldObject(fieldObject13);
+            rowObject02.AddFieldObject(fieldObject14);
+            rowObject02.AddFieldObject(fieldObject15);
+            rowObject02.AddFieldObject(fieldObject16);
+            rowObject02.AddFieldObject(fieldObject17);
+            rowObject02.AddFieldObject(fieldObject18);
+
+            FieldObject fieldObject19 = new FieldObject("214.75", "");
+            FieldObject fieldObject20 = new FieldObject("214.76", "");
+            FieldObject fieldObject21 = new FieldObject("214.77", "");
+            FieldObject fieldObject22 = new FieldObject("214.78", "");
+            FieldObject fieldObject23 = new FieldObject("214.79", "");
+            FieldObject fieldObject24 = new FieldObject("214.8", "");
+            FieldObject fieldObject25 = new FieldObject("214.81", "");
+            FieldObject fieldObject26 = new FieldObject("214.82", "");
+            FieldObject fieldObject27 = new FieldObject("214.83", "");
+            FieldObject fieldObject28 = new FieldObject("214.85", "");
+            FieldObject fieldObject29 = new FieldObject("214.86", "110");
+            FieldObject fieldObject30 = new FieldObject("214.91", "");
+            FieldObject fieldObject31 = new FieldObject("214.93", "");
+            FieldObject fieldObject32 = new FieldObject("214.94", "");
+            FieldObject fieldObject33 = new FieldObject("214.96", "12/4/2020");
+            FieldObject fieldObject34 = new FieldObject("214.97", "");
+            RowObject rowObject03 = new RowObject("34||2", "33||1");
+            rowObject03.AddFieldObject(fieldObject19);
+            rowObject03.AddFieldObject(fieldObject20);
+            rowObject03.AddFieldObject(fieldObject21);
+            rowObject03.AddFieldObject(fieldObject22);
+            rowObject03.AddFieldObject(fieldObject23);
+            rowObject03.AddFieldObject(fieldObject24);
+            rowObject03.AddFieldObject(fieldObject25);
+            rowObject03.AddFieldObject(fieldObject26);
+            rowObject03.AddFieldObject(fieldObject27);
+            rowObject03.AddFieldObject(fieldObject28);
+            rowObject03.AddFieldObject(fieldObject29);
+            rowObject03.AddFieldObject(fieldObject30);
+            rowObject03.AddFieldObject(fieldObject31);
+            rowObject03.AddFieldObject(fieldObject32);
+            rowObject03.AddFieldObject(fieldObject33);
+            rowObject03.AddFieldObject(fieldObject34);
+
+
+            FormObject form34 = new FormObject("34");
+            form34.MultipleIteration = true;
+            form34.OtherRows.Add(rowObject02);
+            form34.OtherRows.Add(rowObject03);
+            expected.AddFormObject(form34);
+
+            OptionObject2015 actual = (OptionObject2015)expected.ToReturnOptionObject();
+
+            Assert.AreEqual(expected.OptionId, actual.OptionId);
+        }
+
+        [TestMethod]
+        [TestCategory("ScriptLinkHelpers")]
+        public void GetReturnOptionObject_NoCurrentRowModifiedReturnsWithoutException()
+        {
+            OptionObject2015 expected = new OptionObject2015("USER37", "unittestuser", "", "1", "", 0, "UAT", "AVPM", "AVPM", "SERVER", "TOKEN");
+
+            FieldObject fieldObject01 = new FieldObject("214.74", "2");
+            FieldObject fieldObject02 = new FieldObject("214.98", "12/07/2020");
+            RowObject rowObject01 = new RowObject("33||1");
+            rowObject01.AddFieldObject(fieldObject01);
+            rowObject01.AddFieldObject(fieldObject02);
+            FormObject form33 = new FormObject("33", rowObject01, false);
+            expected.AddFormObject(form33);
+
+            FieldObject fieldObject03 = new FieldObject("214.75", "");
+            FieldObject fieldObject04 = new FieldObject("214.76", "");
+            FieldObject fieldObject05 = new FieldObject("214.77", "");
+            FieldObject fieldObject06 = new FieldObject("214.78", "");
+            FieldObject fieldObject07 = new FieldObject("214.79", "");
+            FieldObject fieldObject08 = new FieldObject("214.8", "");
+            FieldObject fieldObject09 = new FieldObject("214.81", "");
+            FieldObject fieldObject10 = new FieldObject("214.82", "");
+            FieldObject fieldObject11 = new FieldObject("214.83", "");
+            FieldObject fieldObject12 = new FieldObject("214.85", "");
+            FieldObject fieldObject13 = new FieldObject("214.86", "30");
+            FieldObject fieldObject14 = new FieldObject("214.91", "");
+            FieldObject fieldObject15 = new FieldObject("214.93", "");
+            FieldObject fieldObject16 = new FieldObject("214.94", "");
+            FieldObject fieldObject17 = new FieldObject("214.96", "12/3/2020");
+            FieldObject fieldObject18 = new FieldObject("214.97", "12/4/2020");
+            RowObject rowObject02 = new RowObject("34||1", "33||1");
+            rowObject02.AddFieldObject(fieldObject03);
+            rowObject02.AddFieldObject(fieldObject04);
+            rowObject02.AddFieldObject(fieldObject05);
+            rowObject02.AddFieldObject(fieldObject06);
+            rowObject02.AddFieldObject(fieldObject07);
+            rowObject02.AddFieldObject(fieldObject08);
+            rowObject02.AddFieldObject(fieldObject09);
+            rowObject02.AddFieldObject(fieldObject10);
+            rowObject02.AddFieldObject(fieldObject11);
+            rowObject02.AddFieldObject(fieldObject12);
+            rowObject02.AddFieldObject(fieldObject13);
+            rowObject02.AddFieldObject(fieldObject14);
+            rowObject02.AddFieldObject(fieldObject15);
+            rowObject02.AddFieldObject(fieldObject16);
+            rowObject02.AddFieldObject(fieldObject17);
+            rowObject02.AddFieldObject(fieldObject18);
+
+            FieldObject fieldObject19 = new FieldObject("214.75", "");
+            FieldObject fieldObject20 = new FieldObject("214.76", "");
+            FieldObject fieldObject21 = new FieldObject("214.77", "");
+            FieldObject fieldObject22 = new FieldObject("214.78", "");
+            FieldObject fieldObject23 = new FieldObject("214.79", "");
+            FieldObject fieldObject24 = new FieldObject("214.8", "");
+            FieldObject fieldObject25 = new FieldObject("214.81", "");
+            FieldObject fieldObject26 = new FieldObject("214.82", "");
+            FieldObject fieldObject27 = new FieldObject("214.83", "");
+            FieldObject fieldObject28 = new FieldObject("214.85", "");
+            FieldObject fieldObject29 = new FieldObject("214.86", "110");
+            FieldObject fieldObject30 = new FieldObject("214.91", "");
+            FieldObject fieldObject31 = new FieldObject("214.93", "");
+            FieldObject fieldObject32 = new FieldObject("214.94", "");
+            FieldObject fieldObject33 = new FieldObject("214.96", "12/4/2020");
+            FieldObject fieldObject34 = new FieldObject("214.97", "");
+            RowObject rowObject03 = new RowObject("34||2", "33||1");
+            rowObject03.AddFieldObject(fieldObject19);
+            rowObject03.AddFieldObject(fieldObject20);
+            rowObject03.AddFieldObject(fieldObject21);
+            rowObject03.AddFieldObject(fieldObject22);
+            rowObject03.AddFieldObject(fieldObject23);
+            rowObject03.AddFieldObject(fieldObject24);
+            rowObject03.AddFieldObject(fieldObject25);
+            rowObject03.AddFieldObject(fieldObject26);
+            rowObject03.AddFieldObject(fieldObject27);
+            rowObject03.AddFieldObject(fieldObject28);
+            rowObject03.AddFieldObject(fieldObject29);
+            rowObject03.AddFieldObject(fieldObject30);
+            rowObject03.AddFieldObject(fieldObject31);
+            rowObject03.AddFieldObject(fieldObject32);
+            rowObject03.AddFieldObject(fieldObject33);
+            rowObject03.AddFieldObject(fieldObject34);
+
+            rowObject03.SetFieldValue("214.96", "12/5/2020");
+
+            FormObject form34 = new FormObject("34")
+            {
+                MultipleIteration = true
+            };
+            form34.OtherRows.Add(rowObject02);
+            form34.OtherRows.Add(rowObject03);
+            expected.AddFormObject(form34);
+
+            OptionObject2015 actual = (OptionObject2015)expected.ToReturnOptionObject();
+
+            Assert.AreEqual(expected.OptionId, actual.OptionId);
+        }
     }
 }
