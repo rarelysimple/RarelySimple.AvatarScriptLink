@@ -9,7 +9,7 @@
     <RepositoryUrl>https://github.com/rarelysimple/RarelySimple.AvatarScriptLink</RepositoryUrl>
     <PackageProjectUrl>https://rarelysimple.github.io/RarelySimple.AvatarScriptLink</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
-    <Copyright>Copyright © 2020 Scott Olson Jr</Copyright>
+    <Copyright>Copyright © 2021 Scott Olson Jr</Copyright>
     <Description>AvatarScriptLink.NET is a library for accelerating Netsmart myAvatar ScriptLink API development.</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
     <SignAssembly>true</SignAssembly>
@@ -17,7 +17,7 @@
     <CodeAnalysisRuleSet>RarelySimple.AvatarScriptLink.ruleset</CodeAnalysisRuleSet>
     <PackageId>RarelySimple.AvatarScriptLink</PackageId>
     <IsPackable>true</IsPackable>
-    <Version>0.0.1</Version>
+    <Version>1.0.8</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
   </PropertyGroup>
