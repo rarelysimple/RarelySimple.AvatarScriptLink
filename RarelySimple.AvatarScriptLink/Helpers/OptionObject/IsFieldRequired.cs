@@ -74,7 +74,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (fieldObject == null)
                 throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            return fieldObject.Required == "1" ? true : false;
+            return fieldObject.Required == "1";
         }
     }
 }

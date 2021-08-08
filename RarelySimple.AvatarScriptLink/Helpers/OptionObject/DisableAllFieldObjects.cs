@@ -33,28 +33,34 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 throw new NullReferenceException(ScriptLinkHelpers.GetLocalizedString("optionObjectMissingForms", CultureInfo.CurrentCulture));
             if (excludedFields == null)
                 throw new ArgumentNullException(nameof(excludedFields), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+            return DisableAllFieldObjectsByOptionObject(optionObject, excludedFields);
+        }
+
+        private static IOptionObject DisableAllFieldObjectsByOptionObject(IOptionObject optionObject, List<string> excludedFields)
+        {
             for (int i = 0; i < optionObject.Forms.Count; i++)
             {
                 if (optionObject.Forms[i].CurrentRow != null)
                 {
-                    for (int j = 0; j < optionObject.Forms[i].CurrentRow.Fields.Count; j++)
-                    {
-                        if (!excludedFields.Contains(optionObject.Forms[i].CurrentRow.Fields[j].FieldNumber))
-                            optionObject.Forms[i].CurrentRow.Fields[j].SetAsDisabled();
-                    }
-                    optionObject.Forms[i].CurrentRow.RowAction = RowAction.Edit;
+                    optionObject.Forms[i].CurrentRow = DisableAllFieldObjectsByRowObject(optionObject.Forms[i].CurrentRow, excludedFields);
                 }
                 for (int k = 0; k < optionObject.Forms[i].OtherRows.Count; k++)
                 {
-                    for (int l = 0; l < optionObject.Forms[i].OtherRows[k].Fields.Count; l++)
-                    {
-                        if (!excludedFields.Contains(optionObject.Forms[i].OtherRows[k].Fields[l].FieldNumber))
-                            optionObject.Forms[i].OtherRows[k].Fields[l].SetAsDisabled();
-                    }
-                    optionObject.Forms[i].OtherRows[k].RowAction = RowAction.Edit;
+                    optionObject.Forms[i].OtherRows[k] = DisableAllFieldObjectsByRowObject(optionObject.Forms[i].OtherRows[k], excludedFields);
                 }
             }
             return optionObject;
+        }
+
+        private static RowObject DisableAllFieldObjectsByRowObject(IRowObject rowObject, List<string> excludedFields)
+        {
+            for (int i = 0; i < rowObject.Fields.Count; i++)
+            {
+                if (!excludedFields.Contains(rowObject.Fields[i].FieldNumber))
+                    rowObject.Fields[i].SetAsDisabled();
+            }
+            rowObject.RowAction = RowAction.Edit;
+            return (RowObject) rowObject;
         }
     }
 }

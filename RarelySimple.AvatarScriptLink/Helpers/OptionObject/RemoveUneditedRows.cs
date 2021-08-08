@@ -45,7 +45,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
             }
             else if (formObject.CurrentRow != null && formObject.CurrentRow.RowAction == RowAction.Edit)
             {
-                formObject.CurrentRow.Fields.RemoveAll(p => p.Modified == false);
+                formObject.CurrentRow.Fields.RemoveAll(p => !p.Modified);
             }
 
             // OtherRows
@@ -60,7 +60,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 }
                 else if (rowObject.RowAction == RowAction.Edit)
                 {
-                    rowObject.Fields.RemoveAll(p => p.Modified == false);
+                    rowObject.Fields.RemoveAll(p => !p.Modified);
                 }
             }
             foreach (var rowObject in rowsToRemove)
