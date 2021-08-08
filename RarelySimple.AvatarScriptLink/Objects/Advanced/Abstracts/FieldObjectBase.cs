@@ -2,6 +2,7 @@
 using RarelySimple.AvatarScriptLink.Helpers;
 using System;
 using System.Globalization;
+using System.Text;
 using System.Xml.Serialization;
 
 namespace RarelySimple.AvatarScriptLink.Objects.Advanced
@@ -240,18 +241,19 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public override int GetHashCode()
         {
             string delimiter = "||";
-            string hash = this.FieldNumber
+            StringBuilder sb = new StringBuilder();
+            sb.Append(this.FieldNumber
                 + delimiter + this.FieldValue
                 + delimiter + this.Enabled
                 + delimiter + this.Lock
-                + delimiter + this.Required;
-            return hash.GetHashCode();
+                + delimiter + this.Required);
+            return sb.GetHashCode();
         }
 
         public static bool operator ==(FieldObjectBase fieldObject1, FieldObjectBase fieldObject2)
         {
             if (((object)fieldObject1) == null || ((object)fieldObject2) == null)
-                return Object.Equals(fieldObject1, fieldObject2);
+                return Equals(fieldObject1, fieldObject2);
 
             return fieldObject1.Equals(fieldObject2);
         }
@@ -259,7 +261,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public static bool operator !=(FieldObjectBase fieldObject1, FieldObjectBase fieldObject2)
         {
             if (((object)fieldObject1) == null || ((object)fieldObject2) == null)
-                return !Object.Equals(fieldObject1, fieldObject2);
+                return !Equals(fieldObject1, fieldObject2);
 
             return !(fieldObject1.Equals(fieldObject2));
         }
@@ -281,13 +283,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// Determines whether <see cref="FieldObject"/> is enabled.
         /// </summary>
         /// <returns></returns>
-        public bool IsEnabled() => Enabled == "1" ? true : false;
+        public bool IsEnabled() => Enabled == "1";
 
         /// <summary>
         /// Determines whether <see cref="FieldObject"/> is enabled.
         /// </summary>
         /// <returns></returns>
-        public bool IsLocked() => Lock == "1" ? true : false;
+        public bool IsLocked() => Lock == "1";
 
         /// <summary>
         /// Returns whether the <see cref="FieldObject"/> has been modified.
@@ -299,7 +301,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// Determines whether <see cref="FieldObject"/> is enabled.
         /// </summary>
         /// <returns></returns>
-        public bool IsRequired() => Required == "1" ? true : false;
+        public bool IsRequired() => Required == "1";
 
         /// <summary>
         /// Sets the <see cref="FieldObject"/> as disabled and marks the <see cref="FieldObject"/> as modified.

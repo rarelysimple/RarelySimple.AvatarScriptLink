@@ -4,6 +4,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 
 namespace RarelySimple.AvatarScriptLink.Helpers
 {
@@ -30,41 +31,12 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (optionObject == null)
                 throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            string html = "";
-            html += includeHtmlHeaders ? GetHtmlHeader() : "";
-            html += GetPageHeader(optionObject.GetType().ToString());
-            html += "<h2>Forms</h2>";
-            foreach (FormObject formObject in optionObject.Forms)
-            {
-                html += "<h3>Form<h3>";
-                html += GetHtmlForObject(formObject, HtmlOutputType.Table);
-                html += "<h4>CurrentRow</h4>";
-                html += GetHtmlForObject(formObject.CurrentRow, HtmlOutputType.Table);
-                html += "<h5>Fields</h5>";
-                html += "<table>";
-                html += GetHtmlForObject(formObject.CurrentRow.Fields.First(), HtmlOutputType.TableHeaders);
-                foreach (FieldObject fieldObject in formObject.CurrentRow.Fields)
-                {
-                    html += GetHtmlForObject(fieldObject, HtmlOutputType.TableRow);
-                }
-                html += "</table>";
-                html += "<h4>OtherRows</h4>";
-                foreach (RowObject rowObject in formObject.OtherRows)
-                {
-                    html += "<h5>Row</h5>";
-                    html += GetHtmlForObject(rowObject, HtmlOutputType.Table);
-                    html += "<h6>Fields</h6>";
-                    html += "<table>";
-                    html += GetHtmlForObject(formObject.CurrentRow.Fields.FirstOrDefault(), HtmlOutputType.TableHeaders);
-                    foreach (FieldObject fieldObject in formObject.CurrentRow.Fields)
-                    {
-                        html += GetHtmlForObject(fieldObject, HtmlOutputType.TableRow);
-                    }
-                    html += "</table>";
-                }
-            }
-            html += includeHtmlHeaders ? GetHtmlFooter() : "";
-            return html;
+            StringBuilder sb = new StringBuilder();
+            sb.Append(GetHeader(optionObject.GetType().ToString(), includeHtmlHeaders));
+            sb.Append(GetHtmlForObject(optionObject, HtmlOutputType.Table));
+            sb.Append(AddFormTables(optionObject, 2));
+            sb.Append(GetFooter(includeHtmlHeaders));
+            return sb.ToString();
         }
         /// <summary>
         /// Returns <see cref="IOptionObject2"/> as an HTML string without HTML headers.
@@ -87,41 +59,12 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (optionObject == null)
                 throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            string html = "";
-            html += includeHtmlHeaders ? GetHtmlHeader() : "";
-            html += GetPageHeader(optionObject.GetType().ToString());
-            html += "<h2>Forms</h2>";
-            foreach (FormObject formObject in optionObject.Forms)
-            {
-                html += "<h3>Form<h3>";
-                html += GetHtmlForObject(formObject, HtmlOutputType.Table);
-                html += "<h4>CurrentRow</h4>";
-                html += GetHtmlForObject(formObject.CurrentRow, HtmlOutputType.Table);
-                html += "<h5>Fields</h5>";
-                html += "<table>";
-                html += GetHtmlForObject(formObject.CurrentRow.Fields.FirstOrDefault(), HtmlOutputType.TableHeaders);
-                foreach (FieldObject fieldObject in formObject.CurrentRow.Fields)
-                {
-                    html += GetHtmlForObject(fieldObject, HtmlOutputType.TableRow);
-                }
-                html += "</table>";
-                html += "<h4>OtherRows</h4>";
-                foreach (RowObject rowObject in formObject.OtherRows)
-                {
-                    html += "<h5>Row</h5>";
-                    html += GetHtmlForObject(rowObject, HtmlOutputType.Table);
-                    html += "<h6>Fields</h6>";
-                    html += "<table>";
-                    html += GetHtmlForObject(formObject.CurrentRow.Fields.First(), HtmlOutputType.TableHeaders);
-                    foreach (FieldObject fieldObject in formObject.CurrentRow.Fields)
-                    {
-                        html += GetHtmlForObject(fieldObject, HtmlOutputType.TableRow);
-                    }
-                    html += "</table>";
-                }
-            }
-            html += includeHtmlHeaders ? GetHtmlFooter() : "";
-            return html;
+            StringBuilder sb = new StringBuilder();
+            sb.Append(GetHeader(optionObject.GetType().ToString(), includeHtmlHeaders));
+            sb.Append(GetHtmlForObject(optionObject, HtmlOutputType.Table));
+            sb.Append(AddFormTables(optionObject, 2));
+            sb.Append(GetFooter(includeHtmlHeaders));
+            return sb.ToString();
         }
         /// <summary>
         /// Returns <see cref="IOptionObject2015"/> as an HTML string without HTML headers.
@@ -144,41 +87,12 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (optionObject == null)
                 throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            string html = "";
-            html += includeHtmlHeaders ? GetHtmlHeader() : "";
-            html += GetPageHeader(optionObject.GetType().ToString());
-            html += "<h2>Forms</h2>";
-            foreach (FormObject formObject in optionObject.Forms)
-            {
-                html += "<h3>Form<h3>";
-                html += GetHtmlForObject(formObject, HtmlOutputType.Table);
-                html += "<h4>CurrentRow</h4>";
-                html += GetHtmlForObject(formObject.CurrentRow, HtmlOutputType.Table);
-                html += "<h5>Fields</h5>";
-                html += "<table>";
-                html += GetHtmlForObject(formObject.CurrentRow.Fields.FirstOrDefault(), HtmlOutputType.TableHeaders);
-                foreach (FieldObject fieldObject in formObject.CurrentRow.Fields)
-                {
-                    html += GetHtmlForObject(fieldObject, HtmlOutputType.TableRow);
-                }
-                html += "</table>";
-                html += "<h4>OtherRows</h4>";
-                foreach (RowObject rowObject in formObject.OtherRows)
-                {
-                    html += "<h5>Row</h5>";
-                    html += GetHtmlForObject(rowObject, HtmlOutputType.Table);
-                    html += "<h6>Fields</h6>";
-                    html += "<table>";
-                    html += GetHtmlForObject(formObject.CurrentRow.Fields.First(), HtmlOutputType.TableHeaders);
-                    foreach (FieldObject fieldObject in formObject.CurrentRow.Fields)
-                    {
-                        html += GetHtmlForObject(fieldObject, HtmlOutputType.TableRow);
-                    }
-                    html += "</table>";
-                }
-            }
-            html += includeHtmlHeaders ? GetHtmlFooter() : "";
-            return html;
+            StringBuilder sb = new StringBuilder();
+            sb.Append(GetHeader(optionObject.GetType().ToString(), includeHtmlHeaders));
+            sb.Append(GetHtmlForObject(optionObject, HtmlOutputType.Table));
+            sb.Append(AddFormTables(optionObject, 2));
+            sb.Append(GetFooter(includeHtmlHeaders));
+            return sb.ToString();
         }
         /// <summary>
         /// Returns <see cref="IFormObject"/> as an HTML string without HTML headers.
@@ -201,39 +115,12 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (formObject == null)
                 throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            string html = "";
-            html += includeHtmlHeaders ? GetHtmlHeader() : "";
-            html += GetPageHeader(formObject.GetType().ToString());
-            html += GetHtmlForObject(formObject, HtmlOutputType.Table);
-            html += "<h2>CurrentRow</h2>";
-            html += GetHtmlForObject(formObject.CurrentRow, HtmlOutputType.Table);
-            if (formObject.CurrentRow != null && formObject.CurrentRow.Fields != null)
-            {
-                html += "<h3>Fields</h3>";
-                html += "<table>";
-                html += GetHtmlForObject(formObject.CurrentRow.Fields.FirstOrDefault(), HtmlOutputType.TableHeaders);
-                foreach (FieldObject fieldObject in formObject.CurrentRow.Fields)
-                {
-                    html += GetHtmlForObject(fieldObject, HtmlOutputType.TableRow);
-                }
-                html += "</table>";
-            }
-            html += "<h2>OtherRows</h2>";
-            foreach (RowObject rowObject in formObject.OtherRows)
-            {
-                html += "<h3>Row</h3>";
-                html += GetHtmlForObject(rowObject, HtmlOutputType.Table);
-                html += "<h4>Fields</h4>";
-                html += "<table>";
-                html += GetHtmlForObject(formObject.CurrentRow.Fields.FirstOrDefault(), HtmlOutputType.TableHeaders);
-                foreach (FieldObject fieldObject in formObject.CurrentRow.Fields)
-                {
-                    html += GetHtmlForObject(fieldObject, HtmlOutputType.TableRow);
-                }
-                html += "</table>";
-            }
-            html += includeHtmlHeaders ? GetHtmlFooter() : "";
-            return html;
+            StringBuilder sb = new StringBuilder();
+            sb.Append(GetHeader(formObject.GetType().ToString(), includeHtmlHeaders));
+            sb.Append(GetHtmlForObject(formObject, HtmlOutputType.Table));
+            sb.Append(AddRowTables(formObject, 2));
+            sb.Append(GetFooter(includeHtmlHeaders));
+            return sb.ToString();
         }
         /// <summary>
         /// Returns <see cref="IRowObject"/> as an HTML string without HTML headers.
@@ -256,23 +143,12 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (rowObject == null)
                 throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            string html = "";
-            html += includeHtmlHeaders ? GetHtmlHeader() : "";
-            html += GetPageHeader(rowObject.GetType().ToString());
-            html += GetHtmlForObject(rowObject, HtmlOutputType.Table);
-            if (rowObject.Fields != null)
-            {
-                html += "<h2>Fields</h2>";
-                html += "<table>";
-                html += GetHtmlForObject(rowObject.Fields.FirstOrDefault(), HtmlOutputType.TableHeaders);
-                foreach (FieldObject fieldObject in rowObject.Fields)
-                {
-                    html += GetHtmlForObject(fieldObject, HtmlOutputType.TableRow);
-                }
-                html += "</table>";
-            }
-            html += includeHtmlHeaders ? GetHtmlFooter() : "";
-            return html;
+            StringBuilder sb = new StringBuilder();
+            sb.Append(GetHeader(rowObject.GetType().ToString(), includeHtmlHeaders));
+            sb.Append(GetHtmlForObject(rowObject, HtmlOutputType.Table));
+            sb.Append(AddFieldsTable(rowObject, 2));
+            sb.Append(GetFooter(includeHtmlHeaders));
+            return sb.ToString();
         }
         /// <summary>
         /// Returns <see cref="IFieldObject"/> as an HTML string without HTML headers.
@@ -295,117 +171,192 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (fieldObject == null)
                 throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            string html = "";
-            html += includeHtmlHeaders ? GetHtmlHeader() : "";
-            html += GetPageHeader(fieldObject.GetType().ToString());
-            html += GetHtmlForObject(fieldObject, HtmlOutputType.Table);
-            html += includeHtmlHeaders ? GetHtmlFooter() : "";
-            return html;
+            StringBuilder sb = new StringBuilder();
+            sb.Append(GetHeader(fieldObject.GetType().ToString(), includeHtmlHeaders));
+            sb.Append(GetHtmlForObject(fieldObject, HtmlOutputType.Table));
+            sb.Append(GetFooter(includeHtmlHeaders));
+            return sb.ToString();
         }
 
         #region HelperMethods
+
+        private static string AddFormTables(IOptionObject optionObject, int headingLevel)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (optionObject != null)
+            {
+                sb.Append("<h{}>Forms</h{}>").Replace("{}", headingLevel.ToString());
+                foreach (FormObject formObject in optionObject.Forms)
+                {
+                    sb.Append("<h{}>Form</h{}>").Replace("{}", (headingLevel - 1).ToString());
+                    sb.Append(GetHtmlForObject(formObject, HtmlOutputType.Table));
+                    sb.Append(AddRowTables(formObject, headingLevel - 2));
+                }
+            }
+            return sb.ToString();
+        }
+
+        private static string AddRowTables(IFormObject formObject, int headingLevel)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (formObject != null)
+            {
+                sb.Append("<h{}>CurrentRow</h{}>").Replace("{}", headingLevel.ToString());
+                sb.Append(GetHtmlForObject(formObject.CurrentRow, HtmlOutputType.Table));
+                if (formObject.CurrentRow != null && formObject.CurrentRow.Fields != null)
+                {
+                    sb.Append(AddFieldsTable(formObject.CurrentRow, headingLevel - 1));
+                }
+                sb.Append("<h{}>OtherRows</h{}>").Replace("{}", headingLevel.ToString());
+                foreach (RowObject rowObject in formObject.OtherRows)
+                {
+                    sb.Append("<h{}>Row</h{}>").Replace("{}", (headingLevel - 1).ToString());
+                    sb.Append(GetHtmlForObject(rowObject, HtmlOutputType.Table));
+                    sb.Append(AddFieldsTable(rowObject, headingLevel - 2));
+                }
+            }
+            return sb.ToString();
+        }
+
+        private static string AddFieldsTable(IRowObject rowObject, int headingLevel)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (rowObject != null && rowObject.Fields != null)
+            {
+                sb.Append("<h{}>Fields</h{}>").Replace("{}", headingLevel.ToString());
+                sb.Append("<table>");
+                sb.Append(GetHtmlForObject(rowObject.Fields.FirstOrDefault(), HtmlOutputType.TableHeaders));
+                foreach (FieldObject fieldObject in rowObject.Fields)
+                {
+                    sb.Append(GetHtmlForObject(fieldObject, HtmlOutputType.TableRow));
+                }
+                sb.Append("</table>");
+            }
+            return sb.ToString();
+        }
+
         private static string GetHtmlForObject(object rawObject, HtmlOutputType htmlOutputType)
         {
             if (rawObject == null) { return ""; }
-            string html = "";
+            StringBuilder sb = new StringBuilder();
             Type type = rawObject.GetType();
             PropertyInfo[] properties = GetPropertyInfo(type);
-
-            switch (htmlOutputType)
-            {
-                case HtmlOutputType.TableHeaders:
-                    html += "<thead><tr>";
-                    break;
-                case HtmlOutputType.TableRow:
-                    html += "<tr>";
-                    break;
-                case HtmlOutputType.Table:
-                    html += "<table>" +
-                            "<thead>" +
-                            "<tr><th>Property</th><th>Value</th></tr>" +
-                            "</thead>" +
-                            "<tbody>";
-                    break;
-                case HtmlOutputType.OrderedList:
-                    html += "<ol>";
-                    break;
-                case HtmlOutputType.UnorderedList:
-                    html += "<ul>";
-                    break;
-                default:
-                    break;
-            }
+            sb.Append(GetHtmlHeaders(htmlOutputType));
 
             foreach (PropertyInfo property in properties)
             {
-                switch (htmlOutputType)
-                {
-                    case HtmlOutputType.TableHeaders:
-                        html += "<th>" + property.Name + "</th>";
-                        break;
-                    case HtmlOutputType.TableRow:
-                        html += "<td>" + property.GetValue(rawObject).ToString() + "</td>";
-                        break;
-                    case HtmlOutputType.Table:
-                        html += "<td>" + property.Name + "</td><td>" + property.GetValue(rawObject) + "</td>";
-                        break;
-                    case HtmlOutputType.OrderedList:
-                    case HtmlOutputType.UnorderedList:
-                        html += "<li>" + property.Name + "</td><td>" + property.GetValue(rawObject) + "</li>";
-                        break;
-                    default:
-                        break;
+                if (property.GetValue(rawObject, null) != null) {
+                    switch (htmlOutputType)
+                    {
+                        case HtmlOutputType.TableHeaders:
+                            sb.Append("<th>").Append(property.Name).Append("</th>");
+                            break;
+                        case HtmlOutputType.TableRow:
+                            sb.Append("<td>").Append(property.GetValue(rawObject, null).ToString()).Append("</td>");
+                            break;
+                        case HtmlOutputType.Table:
+                            sb.Append("<tr><td>").Append(property.Name).Append("</td><td>").Append(property.GetValue(rawObject, null).ToString()).Append("</td></tr>");
+                            break;
+                        case HtmlOutputType.OrderedList:
+                        case HtmlOutputType.UnorderedList:
+                            sb.Append("<li>").Append(property.Name).Append(": ").Append(property.GetValue(rawObject, null).ToString()).Append("</li>");
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
 
+            sb.Append(GetHtmlFooters(htmlOutputType));
+            return sb.ToString();
+        }
+
+        private static string GetHtmlHeaders(HtmlOutputType htmlOutputType)
+        {
+            StringBuilder sb = new StringBuilder();
             switch (htmlOutputType)
             {
                 case HtmlOutputType.TableHeaders:
-                    html += "</tr></thead>";
+                    sb.Append("<thead><tr>");
                     break;
                 case HtmlOutputType.TableRow:
-                    html += "</tr>";
+                    sb.Append("<tr>");
                     break;
                 case HtmlOutputType.Table:
-                    html += "</tbody>" +
-                            "</table>";
+                    sb.Append("<table><thead><tr><th>Property</th><th>Value</th></tr></thead><tbody>");
                     break;
                 case HtmlOutputType.OrderedList:
-                    html += "</ol>";
+                    sb.Append("<ol>");
                     break;
                 case HtmlOutputType.UnorderedList:
-                    html += "</ul>";
+                    sb.Append("<ul>");
                     break;
                 default:
                     break;
             }
+            return sb.ToString();
+        }
 
-            return html;
+        private static string GetHtmlFooters(HtmlOutputType htmlOutputType)
+        {
+            StringBuilder sb = new StringBuilder();
+            switch (htmlOutputType)
+            {
+                case HtmlOutputType.TableHeaders:
+                    sb.Append("</tr></thead>");
+                    break;
+                case HtmlOutputType.TableRow:
+                    sb.Append("</tr>");
+                    break;
+                case HtmlOutputType.Table:
+                    sb.Append("</tbody></table>");
+                    break;
+                case HtmlOutputType.OrderedList:
+                    sb.Append("</ol>");
+                    break;
+                case HtmlOutputType.UnorderedList:
+                    sb.Append("</ul>");
+                    break;
+                default:
+                    break;
+            }
+            return sb.ToString();
         }
 
         private static PropertyInfo[] GetPropertyInfo(Type type)
         {
-            return type.GetProperties(BindingFlags.Public);
+            return type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+        }
+
+        private static string GetHeader(string type, bool includeHtmlHeaders)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(includeHtmlHeaders ? GetHtmlHeader() : "");
+            sb.Append(GetPageHeader(type));
+            return sb.ToString();
         }
 
         private static string GetHtmlHeader()
         {
-            string html = "<html>" +
-                          "<head>" +
-                          "</head>" +
-                          "<body>";
-            return html;
+            return "<html><head></head><body>";
         }
+
         private static string GetPageHeader(string pageTitle)
         {
             string html = "<h1>" + pageTitle + "</h1>";
             return html;
         }
+
+        private static string GetFooter(bool includeHtmlHeaders)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(includeHtmlHeaders ? GetHtmlFooter() : "");
+            return sb.ToString();
+        }
+
         private static string GetHtmlFooter()
         {
-            string html = "</body>" +
-                          "</html>";
-            return html;
+            return "</body></html>";
         }
 
         private enum HtmlOutputType

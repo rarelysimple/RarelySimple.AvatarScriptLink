@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 
 namespace RarelySimple.AvatarScriptLink.Objects.Advanced
 {
@@ -118,25 +119,6 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
                    this.CurrentRow.Equals(other.CurrentRow)) &&
                    AreRowsEqual(this.OtherRows, other.OtherRows);
         }
-        private bool AreRowsEqual(List<RowObject> list1, List<RowObject> list2)
-        {
-            if (!AreBothNull(list1, list2) && AreBothEmpty(list1, list2))
-                return true;
-            if (list1.Count != list2.Count)
-                return false;
-            for (int i = 0; i < list1.Count; i++)
-            {
-                if (!list1[i].Equals(list2[i]))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private static bool AreBothEmpty(List<RowObject> list1, List<RowObject> list2) => (!list1.Any() && !list2.Any());
-
-        private static bool AreBothNull(List<RowObject> list1, List<RowObject> list2) => (list1 == null && list2 == null);
 
         /// <summary>
         /// Used to compare <see cref="FormObject"/> to an <see cref="object"/> to determine if they are equal. Returns <see cref="bool"/>.
@@ -158,18 +140,38 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public override int GetHashCode()
         {
             string delimiter = "||";
-            string hash = this.FormId
-                + delimiter + this.MultipleIteration.ToString(CultureInfo.InvariantCulture);
-            hash += this.CurrentRow != null ? delimiter + this.CurrentRow.GetHashCode().ToString(CultureInfo.InvariantCulture) : "";
+            StringBuilder sb = new StringBuilder();
+            sb.Append(this.FormId + delimiter + this.MultipleIteration.ToString(CultureInfo.InvariantCulture));
+            sb.Append(this.CurrentRow != null ? delimiter + this.CurrentRow.GetHashCode().ToString(CultureInfo.InvariantCulture) : "");
             if (this.OtherRows != null)
             {
                 foreach (RowObject rowObject in this.OtherRows)
                 {
-                    hash += delimiter + rowObject.GetHashCode();
+                    sb.Append(delimiter + rowObject.GetHashCode());
                 }
             }
-            return hash.GetHashCode();
+            return sb.GetHashCode();
         }
+
+        private static bool AreRowsEqual(List<RowObject> list1, List<RowObject> list2)
+        {
+            if (!AreBothNull(list1, list2) && AreBothEmpty(list1, list2))
+                return true;
+            if (list1.Count != list2.Count)
+                return false;
+            for (int i = 0; i < list1.Count; i++)
+            {
+                if (!list1[i].Equals(list2[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private static bool AreBothEmpty(List<RowObject> list1, List<RowObject> list2) => (!list1.Any() && !list2.Any());
+
+        private static bool AreBothNull(List<RowObject> list1, List<RowObject> list2) => (list1 == null && list2 == null);
 
         public static bool operator ==(FormObjectBase formObject1, FormObjectBase formObject2)
         {
@@ -523,6 +525,6 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// Returns a <see cref="string"/> with all of the contents of the <see cref="FormObject"/> formatted as XML.
         /// </summary>
         /// <returns><see cref="string"/> of all of the contents of the <see cref="FormObject"/> formatted as XML.</returns>
-        public abstract string ToXml();// => ScriptLinkHelpers.TransformToXml(this);
+        public abstract string ToXml();
     }
 }

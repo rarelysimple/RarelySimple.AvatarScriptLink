@@ -45,17 +45,15 @@ namespace RarelySimple.AvatarScriptLink.Helpers
             if (string.IsNullOrEmpty(fieldNumber))
                 throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotbeNull", CultureInfo.CurrentCulture));
             List<string> values = new List<string>();
-            if (formObject.MultipleIteration == false && IsFieldPresent(formObject, fieldNumber))
+            if (IsFieldPresent(formObject, fieldNumber))
             {
                 values.Add(GetFieldValue(formObject.CurrentRow, fieldNumber));
-                return values;
-            }
-            else if(formObject.MultipleIteration == true && IsFieldPresent(formObject, fieldNumber))
-            {
-                values.Add(GetFieldValue(formObject.CurrentRow, fieldNumber));
-                foreach (var row in formObject.OtherRows)
+                if (formObject.MultipleIteration)
                 {
-                    values.Add(GetFieldValue(row, fieldNumber));
+                    foreach (var row in formObject.OtherRows)
+                    {
+                        values.Add(GetFieldValue(row, fieldNumber));
+                    }
                 }
                 return values;
             }

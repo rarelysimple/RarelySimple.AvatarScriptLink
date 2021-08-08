@@ -56,9 +56,9 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 throw new System.ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(fieldNumber))
                 throw new System.ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            bool enabled = enabledValue == "1" ? true : false;
-            bool locked = lockedValue == "1" ? true : false;
-            bool required = requiredValue == "1" ? true : false;
+            bool enabled = enabledValue == "1";
+            bool locked = lockedValue == "1";
+            bool required = requiredValue == "1";
             return AddFieldObject(rowObject, fieldNumber, fieldValue, enabled, locked, required);
         }
         /// <summary>

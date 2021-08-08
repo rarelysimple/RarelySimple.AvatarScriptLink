@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RarelySimple.AvatarScriptLink.Helpers;
 using RarelySimple.AvatarScriptLink.Objects;
@@ -17,7 +18,19 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 EntityID = "1",
                 SystemCode = "UAT"
             };
-            string expected = "<h1>RarelySimple.AvatarScriptLink.Objects.OptionObject</h1><h2>Forms</h2>";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.OptionObject</h1>");
+            sb.Append("<table><thead>");
+            sb.Append("<tr><th>Property</th><th>Value</th></tr>");
+            sb.Append("</thead><tbody>");
+            sb.Append("<tr><td>EntityID</td><td>1</td></tr>");
+            sb.Append("<tr><td>EpisodeNumber</td><td>0</td></tr>");
+            sb.Append("<tr><td>ErrorCode</td><td>0</td></tr>");
+            sb.Append("<tr><td>Forms</td><td>System.Collections.Generic.List`1[RarelySimple.AvatarScriptLink.Objects.FormObject]</td></tr>");
+            sb.Append("<tr><td>SystemCode</td><td>UAT</td></tr>");
+            sb.Append("</tbody></table>");
+            sb.Append("<h2>Forms</h2>");
+            string expected = sb.ToString();
 
             string actual = optionObject.ToHtmlString();
 
@@ -89,7 +102,19 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 EntityID = "1",
                 SystemCode = "UAT"
             };
-            string expected = "<h1>RarelySimple.AvatarScriptLink.Objects.OptionObject</h1><h2>Forms</h2>";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.OptionObject</h1>");
+            sb.Append("<table><thead>");
+            sb.Append("<tr><th>Property</th><th>Value</th></tr>");
+            sb.Append("</thead><tbody>");
+            sb.Append("<tr><td>EntityID</td><td>1</td></tr>");
+            sb.Append("<tr><td>EpisodeNumber</td><td>0</td></tr>");
+            sb.Append("<tr><td>ErrorCode</td><td>0</td></tr>");
+            sb.Append("<tr><td>Forms</td><td>System.Collections.Generic.List`1[RarelySimple.AvatarScriptLink.Objects.FormObject]</td></tr>");
+            sb.Append("<tr><td>SystemCode</td><td>UAT</td></tr>");
+            sb.Append("</tbody></table>");
+            sb.Append("<h2>Forms</h2>");
+            string expected = sb.ToString();
 
             string actual = OptionObjectHelpers.TransformToHtmlString((IOptionObject)optionObject);
 
@@ -162,7 +187,19 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 EntityID = "1",
                 SystemCode = "UAT"
             };
-            string expected = "<h1>RarelySimple.AvatarScriptLink.Objects.OptionObject2</h1><h2>Forms</h2>";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.OptionObject2</h1>");
+            sb.Append("<table><thead>");
+            sb.Append("<tr><th>Property</th><th>Value</th></tr>");
+            sb.Append("</thead><tbody>");
+            sb.Append("<tr><td>EntityID</td><td>1</td></tr>");
+            sb.Append("<tr><td>EpisodeNumber</td><td>0</td></tr>");
+            sb.Append("<tr><td>ErrorCode</td><td>0</td></tr>");
+            sb.Append("<tr><td>Forms</td><td>System.Collections.Generic.List`1[RarelySimple.AvatarScriptLink.Objects.FormObject]</td></tr>");
+            sb.Append("<tr><td>SystemCode</td><td>UAT</td></tr>");
+            sb.Append("</tbody></table>");
+            sb.Append("<h2>Forms</h2>");
+            string expected = sb.ToString();
 
             string actual = optionObject.ToHtmlString();
 
@@ -234,7 +271,19 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 EntityID = "1",
                 SystemCode = "UAT"
             };
-            string expected = "<h1>RarelySimple.AvatarScriptLink.Objects.OptionObject2</h1><h2>Forms</h2>";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.OptionObject2</h1>");
+            sb.Append("<table><thead>");
+            sb.Append("<tr><th>Property</th><th>Value</th></tr>");
+            sb.Append("</thead><tbody>");
+            sb.Append("<tr><td>EntityID</td><td>1</td></tr>");
+            sb.Append("<tr><td>EpisodeNumber</td><td>0</td></tr>");
+            sb.Append("<tr><td>ErrorCode</td><td>0</td></tr>");
+            sb.Append("<tr><td>Forms</td><td>System.Collections.Generic.List`1[RarelySimple.AvatarScriptLink.Objects.FormObject]</td></tr>");
+            sb.Append("<tr><td>SystemCode</td><td>UAT</td></tr>");
+            sb.Append("</tbody></table>");
+            sb.Append("<h2>Forms</h2>");
+            string expected = sb.ToString();
 
             string actual = OptionObjectHelpers.TransformToHtmlString((IOptionObject2)optionObject);
 
@@ -308,7 +357,19 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 EntityID = "1",
                 SystemCode = "UAT"
             };
-            string expected = "<h1>RarelySimple.AvatarScriptLink.Objects.OptionObject2015</h1><h2>Forms</h2>";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.OptionObject2015</h1>");
+            sb.Append("<table><thead>");
+            sb.Append("<tr><th>Property</th><th>Value</th></tr>");
+            sb.Append("</thead><tbody>");
+            sb.Append("<tr><td>EntityID</td><td>1</td></tr>");
+            sb.Append("<tr><td>EpisodeNumber</td><td>0</td></tr>");
+            sb.Append("<tr><td>ErrorCode</td><td>0</td></tr>");
+            sb.Append("<tr><td>Forms</td><td>System.Collections.Generic.List`1[RarelySimple.AvatarScriptLink.Objects.FormObject]</td></tr>");
+            sb.Append("<tr><td>SystemCode</td><td>UAT</td></tr>");
+            sb.Append("</tbody></table>");
+            sb.Append("<h2>Forms</h2>");
+            string expected = sb.ToString();
 
             string actual = optionObject.ToHtmlString();
 
@@ -380,7 +441,19 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 EntityID = "1",
                 SystemCode = "UAT"
             };
-            string expected = "<h1>RarelySimple.AvatarScriptLink.Objects.OptionObject2015</h1><h2>Forms</h2>";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.OptionObject2015</h1>");
+            sb.Append("<table><thead>");
+            sb.Append("<tr><th>Property</th><th>Value</th></tr>");
+            sb.Append("</thead><tbody>");
+            sb.Append("<tr><td>EntityID</td><td>1</td></tr>");
+            sb.Append("<tr><td>EpisodeNumber</td><td>0</td></tr>");
+            sb.Append("<tr><td>ErrorCode</td><td>0</td></tr>");
+            sb.Append("<tr><td>Forms</td><td>System.Collections.Generic.List`1[RarelySimple.AvatarScriptLink.Objects.FormObject]</td></tr>");
+            sb.Append("<tr><td>SystemCode</td><td>UAT</td></tr>");
+            sb.Append("</tbody></table>");
+            sb.Append("<h2>Forms</h2>");
+            string expected = sb.ToString();
 
             string actual = OptionObjectHelpers.TransformToHtmlString((IOptionObject2015)optionObject);
 
@@ -454,7 +527,18 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 FormId = "1",
                 MultipleIteration = false
             };
-            string expected = "<h1>RarelySimple.AvatarScriptLink.Objects.FormObject</h1><table><thead><tr><th>Property</th><th>Value</th></tr></thead><tbody></tbody></table><h2>CurrentRow</h2><h2>OtherRows</h2>";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.FormObject</h1>");
+            sb.Append("<table><thead>");
+            sb.Append("<tr><th>Property</th><th>Value</th></tr>");
+            sb.Append("</thead><tbody>");
+            sb.Append("<tr><td>FormId</td><td>1</td></tr>");
+            sb.Append("<tr><td>MultipleIteration</td><td>False</td></tr>");
+            sb.Append("<tr><td>OtherRows</td><td>System.Collections.Generic.List`1[RarelySimple.AvatarScriptLink.Objects.RowObject]</td></tr>");
+            sb.Append("</tbody></table>");
+            sb.Append("<h2>CurrentRow</h2>");
+            sb.Append("<h2>OtherRows</h2>");
+            string expected = sb.ToString();
 
             string actual = formObject.ToHtmlString();
 
@@ -512,7 +596,18 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 FormId = "1",
                 MultipleIteration = false
             };
-            string expected = "<h1>RarelySimple.AvatarScriptLink.Objects.FormObject</h1><table><thead><tr><th>Property</th><th>Value</th></tr></thead><tbody></tbody></table><h2>CurrentRow</h2><h2>OtherRows</h2>";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.FormObject</h1>");
+            sb.Append("<table><thead>");
+            sb.Append("<tr><th>Property</th><th>Value</th></tr>");
+            sb.Append("</thead><tbody>");
+            sb.Append("<tr><td>FormId</td><td>1</td></tr>");
+            sb.Append("<tr><td>MultipleIteration</td><td>False</td></tr>");
+            sb.Append("<tr><td>OtherRows</td><td>System.Collections.Generic.List`1[RarelySimple.AvatarScriptLink.Objects.RowObject]</td></tr>");
+            sb.Append("</tbody></table>");
+            sb.Append("<h2>CurrentRow</h2>");
+            sb.Append("<h2>OtherRows</h2>");
+            string expected = sb.ToString();
 
             string actual = OptionObjectHelpers.TransformToHtmlString(formObject);
 
@@ -585,7 +680,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             {
                 RowId = "1"
             };
-            string expected = "<h1>RarelySimple.AvatarScriptLink.Objects.RowObject</h1><table><thead><tr><th>Property</th><th>Value</th></tr></thead><tbody></tbody></table><h2>Fields</h2><table></table>";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.RowObject</h1>");
+            sb.Append("<table><thead>");
+            sb.Append("<tr><th>Property</th><th>Value</th></tr>");
+            sb.Append("</thead><tbody>");
+            sb.Append("<tr><td>Fields</td><td>System.Collections.Generic.List`1[RarelySimple.AvatarScriptLink.Objects.FieldObject]</td></tr>");
+            sb.Append("<tr><td>RowId</td><td>1</td></tr>");
+            sb.Append("</tbody></table>");
+            sb.Append("<h2>Fields</h2>");
+            sb.Append("<table></table>");
+            string expected = sb.ToString();
 
             string actual = rowObject.ToHtmlString();
 
@@ -652,7 +757,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             {
                 RowId = "1"
             };
-            string expected = "<h1>RarelySimple.AvatarScriptLink.Objects.RowObject</h1><table><thead><tr><th>Property</th><th>Value</th></tr></thead><tbody></tbody></table><h2>Fields</h2><table></table>";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.RowObject</h1>");
+            sb.Append("<table><thead>");
+            sb.Append("<tr><th>Property</th><th>Value</th></tr>");
+            sb.Append("</thead><tbody>");
+            sb.Append("<tr><td>Fields</td><td>System.Collections.Generic.List`1[RarelySimple.AvatarScriptLink.Objects.FieldObject]</td></tr>");
+            sb.Append("<tr><td>RowId</td><td>1</td></tr>");
+            sb.Append("</tbody></table>");
+            sb.Append("<h2>Fields</h2>");
+            sb.Append("<table></table>");
+            string expected = sb.ToString();
 
             string actual = OptionObjectHelpers.TransformToHtmlString(rowObject);
 
@@ -722,7 +837,19 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 FieldNumber = "1",
                 FieldValue = "TEST"
             };
-            string expected = "<h1>RarelySimple.AvatarScriptLink.Objects.FieldObject</h1><table><thead><tr><th>Property</th><th>Value</th></tr></thead><tbody></tbody></table>";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.FieldObject</h1>");
+            sb.Append("<table><thead>");
+            sb.Append("<tr><th>Property</th><th>Value</th></tr>");
+            sb.Append("</thead><tbody>");
+            sb.Append("<tr><td>Enabled</td><td></td></tr>");
+            sb.Append("<tr><td>FieldNumber</td><td>1</td></tr>");
+            sb.Append("<tr><td>FieldValue</td><td>TEST</td></tr>");
+            sb.Append("<tr><td>Lock</td><td></td></tr>");
+            sb.Append("<tr><td>Required</td><td></td></tr>");
+            sb.Append("<tr><td>Modified</td><td>False</td></tr>");
+            sb.Append("</tbody></table>");
+            string expected = sb.ToString();
 
             string actual = fieldObject.ToHtmlString();
 
@@ -794,7 +921,19 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 FieldNumber = "1",
                 FieldValue = "TEST"
             };
-            string expected = "<h1>RarelySimple.AvatarScriptLink.Objects.FieldObject</h1><table><thead><tr><th>Property</th><th>Value</th></tr></thead><tbody></tbody></table>";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.FieldObject</h1>");
+            sb.Append("<table><thead>");
+            sb.Append("<tr><th>Property</th><th>Value</th></tr>");
+            sb.Append("</thead><tbody>");
+            sb.Append("<tr><td>Enabled</td><td></td></tr>");
+            sb.Append("<tr><td>FieldNumber</td><td>1</td></tr>");
+            sb.Append("<tr><td>FieldValue</td><td>TEST</td></tr>");
+            sb.Append("<tr><td>Lock</td><td></td></tr>");
+            sb.Append("<tr><td>Required</td><td></td></tr>");
+            sb.Append("<tr><td>Modified</td><td>False</td></tr>");
+            sb.Append("</tbody></table>");
+            string expected = sb.ToString();
 
             string actual = OptionObjectHelpers.TransformToHtmlString(fieldObject);
 
