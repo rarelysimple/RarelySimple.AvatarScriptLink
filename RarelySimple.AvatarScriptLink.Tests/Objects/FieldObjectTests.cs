@@ -326,9 +326,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
                 Required = "1"
             };
             fieldObject1.SetAsOptional();
-            Assert.AreEqual("1", fieldObject1.Enabled);
+            Assert.AreEqual("0", fieldObject1.Enabled);
             Assert.AreEqual("0", fieldObject1.Required);
-            Assert.IsTrue(fieldObject1.IsEnabled());
+            Assert.IsFalse(fieldObject1.IsEnabled());
             Assert.IsFalse(fieldObject1.IsRequired());
             Assert.IsTrue(fieldObject1.IsModified());
         }
