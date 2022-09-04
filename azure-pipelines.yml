@@ -30,6 +30,11 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- task: VisualStudioTestPlatformInstaller@1
+  inputs:
+    versionSelector: 'SpecificVersion'
+    testPlatformVersion: '17.2.0'
+
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
@@ -41,7 +46,9 @@ steps:
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
     codeCoverageEnabled: true
-    failOnMinTestsNotRun: false
+    vsTestVersion: 'toolsInstaller'
+    failOnMinTestsNotRun: true
+    minimumExpectedTests: '1'
 
 - task: PublishBuildArtifacts@1
   inputs:

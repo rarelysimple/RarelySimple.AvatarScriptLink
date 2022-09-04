@@ -21,7 +21,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject optionObject = new OptionObject();
             optionObject.AddFormObject(formObject);
             optionObject.SetOptionalField(fieldNumber);
-            Assert.IsTrue(optionObject.IsFieldEnabled(fieldNumber));
             Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
         }
 
@@ -65,7 +64,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject optionObject = new OptionObject();
             optionObject.AddFormObject(formObject);
             OptionObjectHelpers.SetOptionalField(optionObject, fieldNumber);
-            Assert.IsTrue(optionObject.IsFieldEnabled(fieldNumber));
             Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
         }
 
@@ -109,7 +107,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject2 optionObject = new OptionObject2();
             optionObject.AddFormObject(formObject);
             optionObject.SetOptionalField(fieldNumber);
-            Assert.IsTrue(optionObject.IsFieldEnabled(fieldNumber));
             Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
         }
 
@@ -153,7 +150,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject2 optionObject = new OptionObject2();
             optionObject.AddFormObject(formObject);
             OptionObjectHelpers.SetOptionalField(optionObject, fieldNumber);
-            Assert.IsTrue(optionObject.IsFieldEnabled(fieldNumber));
             Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
         }
 
@@ -197,7 +193,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject2015 optionObject = new OptionObject2015();
             optionObject.AddFormObject(formObject);
             optionObject.SetOptionalField(fieldNumber);
-            Assert.IsTrue(optionObject.IsFieldEnabled(fieldNumber));
             Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
         }
 
@@ -241,7 +236,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject2015 optionObject = new OptionObject2015();
             optionObject.AddFormObject(formObject);
             OptionObjectHelpers.SetOptionalField(optionObject, fieldNumber);
-            Assert.IsTrue(optionObject.IsFieldEnabled(fieldNumber));
             Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
         }
 
@@ -283,7 +277,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             FormObject formObject = new FormObject("1");
             formObject.AddRowObject(rowObject);
             formObject.SetOptionalField(fieldNumber);
-            Assert.IsTrue(formObject.IsFieldEnabled(fieldNumber));
             Assert.IsFalse(formObject.IsFieldRequired(fieldNumber));
         }
 
@@ -323,7 +316,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             FormObject formObject = new FormObject("1");
             formObject.AddRowObject(rowObject);
             OptionObjectHelpers.SetOptionalField(formObject, fieldNumber);
-            Assert.IsTrue(formObject.IsFieldEnabled(fieldNumber));
             Assert.IsFalse(formObject.IsFieldRequired(fieldNumber));
         }
 
@@ -361,7 +353,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             RowObject rowObject = new RowObject();
             rowObject.AddFieldObject(fieldObject);
             rowObject.SetOptionalField(fieldNumber);
-            Assert.IsTrue(rowObject.IsFieldEnabled(fieldNumber));
             Assert.IsFalse(rowObject.IsFieldRequired(fieldNumber));
         }
 
@@ -397,7 +388,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             RowObject rowObject = new RowObject();
             rowObject.AddFieldObject(fieldObject);
             OptionObjectHelpers.SetOptionalField(rowObject, fieldNumber);
-            Assert.IsTrue(rowObject.IsFieldEnabled(fieldNumber));
             Assert.IsFalse(rowObject.IsFieldRequired(fieldNumber));
         }
 

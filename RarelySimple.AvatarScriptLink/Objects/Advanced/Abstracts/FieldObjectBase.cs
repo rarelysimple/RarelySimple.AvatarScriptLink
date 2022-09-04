@@ -309,9 +309,6 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetAsDisabled()
         {
             Enabled = "0";
-            Required = "0";
-            if (string.IsNullOrEmpty(Lock))
-                Lock = "0";
         }
 
         /// <summary>
@@ -340,10 +337,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// </summary>
         public void SetAsOptional()
         {
-            Enabled = "1";
             Required = "0";
-            if (string.IsNullOrEmpty(Lock))
-                Lock = "0";
         }
 
         /// <summary>
@@ -351,10 +345,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// </summary>
         public void SetAsRequired()
         {
-            Enabled = "1";
             Required = "1";
-            if (string.IsNullOrEmpty(Lock))
-                Lock = "0";
         }
 
         /// <summary>
