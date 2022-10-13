@@ -13,7 +13,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (string.IsNullOrEmpty(openFormString))
                 return false;
-            Regex regex = new Regex(@"^((\s*)\[(PM|CWS|MSO)\][A-Z]+[0-9]+)((\s*)&(\s*)\[(PM|CWS|MSO)\][A-Z]+[0-9]+)*((\s*)\|(\s*)([^\|\t\n\r])*)?((\s*)\|(\s*)\d+)?((\s*)\|(\s*)([1-9][0-9]*)+|(\s*)\|(\s*))?$");
+            Regex regex = new Regex(@"^((\s*)(\[(PM|CWS|MSO)\])?[A-Z]+[0-9]+)((\s*)&(\s*)(\[(PM|CWS|MSO)\])?[A-Z]+[0-9]+)*((\s*)\|(\s*)([^\|\t\n\r])*)?((\s*)\|(\s*)\d+)?((\s*)\|(\s*)([1-9][0-9]*)+|(\s*)\|(\s*))?$");
             return regex.IsMatch(openFormString);
         }
     }
