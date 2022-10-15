@@ -96,8 +96,6 @@
     <Compile Include="Helpers\OptionObject\RemoveFieldObjectTests.cs" />
     <Compile Include="Helpers\ScriptLink\SafeGetIntTests.cs" />
     <Compile Include="Helpers\ScriptLink\SerializeObjectTests.cs" />
-    <Compile Include="Helpers\ScriptLink\SerializeObjectToJsonStringTests.cs" />
-    <Compile Include="Helpers\ScriptLink\SerializeObjectToXmlStringTests.cs" />
     <Compile Include="Helpers\OptionObject\SetDisabledFieldsTests.cs" />
     <Compile Include="Helpers\OptionObject\SetDisabledFieldTests.cs" />
     <Compile Include="Helpers\OptionObject\SetEnabledFieldsTests.cs" />

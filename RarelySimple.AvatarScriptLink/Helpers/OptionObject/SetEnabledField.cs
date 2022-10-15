@@ -1,32 +1,47 @@
-﻿using RarelySimple.AvatarScriptLink.Objects.Advanced;
+﻿using RarelySimple.AvatarScriptLink.Objects;
+using RarelySimple.AvatarScriptLink.Objects.Advanced;
+using System;
+using System.Globalization;
 
 namespace RarelySimple.AvatarScriptLink.Helpers
 {
     public static partial class OptionObjectHelpers
     {
         /// <summary>
-        /// Sets the <see cref="IFieldObject"/> in a <see cref="IOptionObject"/> as enabled and not required by FieldNumber.
-        /// <para>This is the equivalent of <see cref="SetOptionalField(IOptionObject, string)"/>.</para>
+        /// Sets the <see cref="IFieldObject"/> in a <see cref="IOptionObject"/> as enabled by FieldNumber.
         /// </summary>
         /// <param name="optionObject"></param>
         /// <param name="fieldNumber"></param>
         /// <returns></returns>
-        public static IOptionObject SetEnabledField(IOptionObject optionObject, string fieldNumber) => SetOptionalField(optionObject, fieldNumber);
+        public static IOptionObject SetEnabledField(IOptionObject optionObject, string fieldNumber)
+        {
+            if (optionObject == null)
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+            return SetFieldObject(optionObject, FieldAction.Enable, fieldNumber);
+        }
         /// <summary>
-        /// Sets the <see cref="IFieldObject"/> in a <see cref="IFormObject"/> as enabled and not required by FieldNumber.
-        /// <para>This is the equivalent of <see cref="SetOptionalField(IFormObject, string)"/>.</para>
+        /// Sets the <see cref="IFieldObject"/> in a <see cref="IFormObject"/> as enabled by FieldNumber.
         /// </summary>
         /// <param name="formObject"></param>
         /// <param name="fieldNumber"></param>
         /// <returns></returns>
-        public static IFormObject SetEnabledField(IFormObject formObject, string fieldNumber) => SetOptionalField(formObject, fieldNumber);
+        public static IFormObject SetEnabledField(IFormObject formObject, string fieldNumber)
+        {
+            if (formObject == null)
+                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+            return SetFieldObject(formObject, FieldAction.Enable, fieldNumber);
+        }
         /// <summary>
-        /// Sets the <see cref="IFieldObject"/> in a <see cref="IRowObject"/> as enabled and not required by FieldNumber.
-        /// <para>This is the equivalent of <see cref="SetOptionalField(IRowObject, string)"/>.</para>
+        /// Sets the <see cref="IFieldObject"/> in a <see cref="IRowObject"/> as enabled by FieldNumber.
         /// </summary>
         /// <param name="rowObject"></param>
         /// <param name="fieldNumber"></param>
         /// <returns></returns>
-        public static IRowObject SetEnabledField(IRowObject rowObject, string fieldNumber) => SetOptionalField(rowObject, fieldNumber);
+        public static IRowObject SetEnabledField(IRowObject rowObject, string fieldNumber)
+        {
+            if (rowObject == null)
+                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+            return SetFieldObject(rowObject, FieldAction.Enable, fieldNumber);
+        }
     }
 }

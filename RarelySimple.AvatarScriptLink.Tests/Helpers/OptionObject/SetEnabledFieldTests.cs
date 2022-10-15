@@ -22,7 +22,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             optionObject.AddFormObject(formObject);
             optionObject.SetEnabledField(fieldNumber);
             Assert.IsTrue(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
         }
 
         [TestMethod]
@@ -66,7 +65,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             optionObject.AddFormObject(formObject);
             OptionObjectHelpers.SetEnabledField(optionObject, fieldNumber);
             Assert.IsTrue(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
         }
 
         [TestMethod]
@@ -110,7 +108,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             optionObject.AddFormObject(formObject);
             optionObject.SetEnabledField(fieldNumber);
             Assert.IsTrue(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
         }
 
         [TestMethod]
@@ -154,7 +151,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             optionObject.AddFormObject(formObject);
             OptionObjectHelpers.SetEnabledField(optionObject, fieldNumber);
             Assert.IsTrue(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
         }
 
         [TestMethod]
@@ -198,7 +194,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             optionObject.AddFormObject(formObject);
             optionObject.SetEnabledField(fieldNumber);
             Assert.IsTrue(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
         }
 
         [TestMethod]
@@ -242,7 +237,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             optionObject.AddFormObject(formObject);
             OptionObjectHelpers.SetEnabledField(optionObject, fieldNumber);
             Assert.IsTrue(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
         }
 
         [TestMethod]
@@ -284,7 +278,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             formObject.AddRowObject(rowObject);
             formObject.SetEnabledField(fieldNumber);
             Assert.IsTrue(formObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(formObject.IsFieldRequired(fieldNumber));
         }
 
         [TestMethod]
@@ -324,7 +317,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             formObject.AddRowObject(rowObject);
             OptionObjectHelpers.SetEnabledField(formObject, fieldNumber);
             Assert.IsTrue(formObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(formObject.IsFieldRequired(fieldNumber));
         }
 
         [TestMethod]
@@ -362,7 +354,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             rowObject.AddFieldObject(fieldObject);
             rowObject.SetEnabledField(fieldNumber);
             Assert.IsTrue(rowObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(rowObject.IsFieldRequired(fieldNumber));
         }
 
         [TestMethod]
@@ -398,7 +389,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             rowObject.AddFieldObject(fieldObject);
             OptionObjectHelpers.SetEnabledField(rowObject, fieldNumber);
             Assert.IsTrue(rowObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(rowObject.IsFieldRequired(fieldNumber));
         }
 
         [TestMethod]
