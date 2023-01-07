@@ -43,7 +43,7 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"rarelysimple_RarelySimple.AvatarScriptLink" /o:"rarelysimple" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vstest.reportsPaths="TestResults/*.trx" /d:sonar.cs.opencover.reportsPaths="TestResults/*/coverage.opencover.xml"
-          Copy-Item -Path ".\dotnet" -Destination ".\" -Recurse
+          Copy-Item -Path ".\dotnet\" -Destination ".\" -Recurse
           dotnet restore
           dotnet build --no-restore --configuration release
           dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory TestResults/ --configuration release -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover --logger "trx;LogFileName=unittests.trx"
