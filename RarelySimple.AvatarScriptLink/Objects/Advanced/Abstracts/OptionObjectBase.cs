@@ -178,7 +178,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         //
 
         //
-        // IEquatable<FormObject> Methods
+        // IEquatable<OptionObjectBase> Methods
         //
 
         /// <summary>
@@ -328,7 +328,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void DeleteRowObject(RowObject rowObject) => this.Forms = OptionObjectHelpers.DeleteRowObject(this, rowObject).Forms;
 
         /// <summary>
-        /// Marks a <see cref="RowObject"/> for deletion.
+        /// Marks a <see cref="RowObject"/> for deletion by specified RowId.
         /// </summary>
         /// <param name="rowId"></param>
         public void DeleteRowObject(string rowId) => this.Forms = OptionObjectHelpers.DeleteRowObject(this, rowId).Forms;
@@ -359,7 +359,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public string GetFieldValue(string fieldNumber) => OptionObjectHelpers.GetFieldValue(this, fieldNumber);
 
         /// <summary>
-        /// Returns the value of the <see cref="FieldObject"/> matching the Field Number.
+        /// Returns the value of the <see cref="FieldObject"/> matching the Field Number on the specified <see cref="FormObject"/> and <see cref="RowObject"/>.
         /// </summary>
         /// <param name="fieldNumber"></param>
         /// <returns></returns>
@@ -443,27 +443,25 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public bool IsRowPresent(string rowId) => OptionObjectHelpers.IsRowPresent(this, rowId);
 
         /// <summary>
-        /// Sets the specified field as disabled and unrequires if required.
+        /// Sets the specified field as disabled.
         /// </summary>
         /// <param name="fieldNumber"></param>
         public void SetDisabledField(string fieldNumber) => this.Forms = OptionObjectHelpers.SetDisabledField(this, fieldNumber).Forms;
 
         /// <summary>
-        /// Sets the specified fields as disabled and unrequires if required.
+        /// Sets the specified fields as disabled.
         /// </summary>
         /// <param name="fieldNumbers"></param>
         public void SetDisabledFields(List<string> fieldNumbers) => this.Forms = OptionObjectHelpers.SetDisabledFields(this, fieldNumbers).Forms;
 
         /// <summary>
-        /// Set the specified field as enabled and not required.
-        /// <para>This is the equivalent of <see cref="SetOptionalField(string)"/>.</para>
+        /// Set the specified field as enabled.
         /// </summary>
         /// <param name="fieldNumber"></param>
         public void SetEnabledField(string fieldNumber) => this.Forms = OptionObjectHelpers.SetEnabledField(this, fieldNumber).Forms;
 
         /// <summary>
-        /// Set the specified fields as enabled and not required.
-        /// <para>This is the equivalent of <see cref="SetOptionalFields(List{string})"/>.</para>
+        /// Set the specified fields as enabled.
         /// </summary>
         /// <param name="fieldNumbers"></param>
         public void SetEnabledFields(List<string> fieldNumbers) => this.Forms = OptionObjectHelpers.SetEnabledFields(this, fieldNumbers).Forms;
@@ -509,13 +507,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetOptionalFields(List<string> fieldNumbers) => this.Forms = OptionObjectHelpers.SetOptionalFields(this, fieldNumbers).Forms;
 
         /// <summary>
-        /// Sets the specified field as required and enables if disabled.
+        /// Sets the specified field as required.
         /// </summary>
         /// <param name="fieldNumber"></param>
         public void SetRequiredField(string fieldNumber) => this.Forms = OptionObjectHelpers.SetRequiredField(this, fieldNumber).Forms;
 
         /// <summary>
-        /// Sets the specified fields as required and enables if disabled.
+        /// Sets the specified fields as required.
         /// </summary>
         /// <param name="fieldNumbers"></param>
         public void SetRequiredFields(List<string> fieldNumbers) => this.Forms = OptionObjectHelpers.SetRequiredFields(this, fieldNumbers).Forms;
