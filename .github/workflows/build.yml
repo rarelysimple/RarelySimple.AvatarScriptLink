@@ -47,4 +47,5 @@ jobs:
           dotnet restore
           dotnet build --no-restore --configuration release
           dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory dotnet/TestResults/ --configuration release -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover --logger "trx;LogFileName=unittests.trx"
+          cd ..
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
