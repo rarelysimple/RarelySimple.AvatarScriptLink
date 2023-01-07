@@ -104,19 +104,19 @@ namespace RarelySimple.AvatarScriptLink.Objects
         public override OptionObject2 ToOptionObject2() => (OptionObject2)OptionObjectHelpers.TransformToOptionObject2((IOptionObject2015)this);
 
         /// <summary>
-        /// Transforms the <see cref="OptionObject2015"/>  to an <see cref="OptionObject2"/>.
+        /// Creates a clone of the <see cref="OptionObject2015"/>.
         /// </summary>
         /// <returns></returns>
         public override OptionObject2015 ToOptionObject2015() => Clone();
 
         /// <summary>
-        /// Creates an <see cref="OptionObject2015"/> with the minimal information required to return.
+        /// Creates an <see cref="OptionObject2015"/> with the minimum information required to return.
         /// </summary>
         /// <returns></returns>
         public new OptionObject2015 ToReturnOptionObject() => (OptionObject2015)OptionObjectHelpers.GetReturnOptionObject(this);
 
         /// <summary>
-        /// Creates an <see cref="OptionObject2015"/> with the minimal information required to return plus the provide Error Code and Message.
+        /// Creates an <see cref="OptionObject2015"/> with the minimum information required to return plus the provided Error Code and Message.
         /// </summary>
         /// <param name="errorCode"></param>
         /// <param name="errorMessage"></param>
