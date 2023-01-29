@@ -16,11 +16,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: yarn
 
       - name: Change to documentation directory
         run: cd docs
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm install
       - name: Test build website
-        run: yarn build
+        run: npm run build
