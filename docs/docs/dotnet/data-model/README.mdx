@@ -13,37 +13,119 @@ Additionally, the AvatarScriptLink.NET library expands on the data model to assi
 
 The request and response payloads consist of an OptionObject2015 as defined in your APIs WSDL.
 
-### Non-Multiple Iteration
+### Standard
 
-![ScriptLink Model for Non-Multiple Iteration Tables](/img/placeholder/1920x1080.svg)
+A standard form in myAvatar will include only a single RowObject containing all fields on that form.
+
+```mermaid
+classDiagram
+direction LR
+class OptionObject2015 {
+    +string EntityID
+    +double EpisodeNumber
+    +double ErrorCode
+    +string ErrorMesg
+    +string Facility
+    +List~FormObject~ Forms
+    +string NamespaceName
+    +string OptionId
+    +string OptionStaffId
+    +string OptionUserId
+    +string ParentNamespace
+    +string ServerName
+    +string SystemCode
+    +string SessionToken
+}
+
+class FormObject {
+    +RowObject CurrentRow
+    +string FormID
+    +bool MultipleIteration
+    +List~RowObject~ OtherRows
+}
+
+class RowObject {
+    +List~FieldObject~ Fields
+    +string ParentRowId
+    +string RowAction
+    +string RowId
+}
+
+class FieldObject {
+    +string Enabled
+    +string FieldNumber
+    +string FieldValue
+    +string Lock
+    +string Required
+}
+
+OptionObject2015 "1" --o "*" FormObject : Forms
+FormObject "1" --o "1" RowObject : CurrentRow
+RowObject "1" --o "*" FieldObject : Fields
+
+click OptionObject2015 href "./optionobject2015" "Learn more about the OptionObject2015"
+click FormObject href "./formobject" "Learn more about the FormObject"
+click RowObject href "./rowobject" "Learn more about the RowObject"
+click FieldObject href "./fieldobject" "Learn more about the FieldObject"
+```
 
 ### Multiple Iteration
 
-![ScriptLink Model for Multiple Iteration Tables](/img/placeholder/1920x1080.svg)
+When a myAvatar form (OptionObject2015) includes a multiple iteration table in one or more of the sections (FormObject), the selected RowObject will be in the CurrentRow and any other rows in OtherRows.
+Multiple Iteration Tables can never be ther first section (FormObject) on a myAvatar form.
 
-### OptionObject2015
+```mermaid
+classDiagram
+direction LR
+class OptionObject2015 {
+    +string EntityID
+    +double EpisodeNumber
+    +double ErrorCode
+    +string ErrorMesg
+    +string Facility
+    +List~FormObject~ Forms
+    +string NamespaceName
+    +string OptionId
+    +string OptionStaffId
+    +string OptionUserId
+    +string ParentNamespace
+    +string ServerName
+    +string SystemCode
+    +string SessionToken
+}
 
-The OptionObject2015 holds all of the content of and metadata describing the calling myAvatar form.
+class FormObject {
+    +RowObject CurrentRow
+    +string FormID
+    +bool MultipleIteration
+    +List~RowObject~ OtherRows
+}
 
-[Learn more](./optionobject2015)
+class RowObject {
+    +List~FieldObject~ Fields
+    +string ParentRowId
+    +string RowAction
+    +string RowId
+}
 
-### FormObject
+class FieldObject {
+    +string Enabled
+    +string FieldNumber
+    +string FieldValue
+    +string Lock
+    +string Required
+}
 
-The FormObject represents a section of a myAvatar Form.
+OptionObject2015 "1" --o "*" FormObject : Forms
+FormObject "1" --o "1" RowObject : CurrentRow
+FormObject "1" --o "*" RowObject : OtherRows
+RowObject "1" --o "*" FieldObject : Fields
 
-[Learn more](./formobject)
-
-### RowObject
-
-The RowObject represents the contents of a myAvatar form section. I.e., the collection of FieldObjects that make up the section.
-
-[Learn more](./rowobject)
-
-### FieldObject
-
-The FieldObject represents a field on a myAvatar form.
-
-[Learn more](./fieldobject)
+click OptionObject2015 href "./optionobject2015" "Learn more about the OptionObject2015"
+click FormObject href "./formobject" "Learn more about the FormObject"
+click RowObject href "./rowobject" "Learn more about the RowObject"
+click FieldObject href "./fieldobject" "Learn more about the FieldObject"
+```
 
 ## AvatarScriptLink.NET
 
@@ -77,8 +159,6 @@ The FieldAction class is used within the AvatarScriptLink.NET to indicate which 
 Avatar ScriptLink allows parameters to be defined when configuring myAvatar to call your ScriptLink API.
 Typically, implementers will delimit this parameter to allow the passing of multiple values to the API to modify the behavior.
 The Parameter class helps to parse the delimited parameter string.
-
-<ParameterExample />
 
 ### RowAction
 
