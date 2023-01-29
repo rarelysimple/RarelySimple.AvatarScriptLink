@@ -12,8 +12,8 @@ The OptionObject2015 holds all of the content of and metadata describing the cal
 
 Earlier versions of this object are still supported and available for use in your projects.
 
-* [OptionObject2](./optionobject2)
-* [OptionObject](./optionobject)
+* [OptionObject2](../optionobject2)
+* [OptionObject](../optionobject)
 
 ## Properties
 
@@ -24,7 +24,7 @@ Earlier versions of this object are still supported and available for use in you
 | ErrorCode       | Informs myAvatar of the outcome of the ScriptLink API call.                 |
 | ErrorMesg       | Message to display to user with certain error codes.                        |
 | Facility        | The Facility Id the user is currently working in.                           |
-| Forms           | List of myAvatar form sections including rows and fields. See [FormObject](./formobject). |
+| Forms           | List of myAvatar form sections including rows and fields. See [FormObject](../formobject). |
 | NamespaceName   | The Namespace the user is currently working in.                             |
 | OptionId        | The unique Id of the form that sent this request.                           |
 | OptionStaffId   | The Staff Id assigned to the logged on user. May be null/empty if not associated with a Practitioner. |
@@ -40,19 +40,19 @@ The following methods are available on the OptionObject2015 to assist with commo
 
 | Method                                        | Description |
 |:----------------------------------------------|:------------|
-| AddFormObject([FormObject](./formobject))     | Adds a [FormObject](./formobject) to the OptionObject2015.            |
-| AddFormObject(string, bool)                   | Creates a [FormObject](./formobject) with specified FormId and adds to the OptionObject2015. The second parameter specifies whether the [FormObject](./formobject) should be flagged as a Multiple Iteration form. |
-| AddRowObject(string, [RowObject](./rowobject))| Adds a [RowObject](./rowobject) to the [FormObject](./formobject) with the specified FormId. |
+| AddFormObject([FormObject](../formobject))     | Adds a [FormObject](../formobject) to the OptionObject2015.            |
+| AddFormObject(string, bool)                   | Creates a [FormObject](../formobject) with specified FormId and adds to the OptionObject2015. The second parameter specifies whether the [FormObject](../formobject) should be flagged as a Multiple Iteration form. |
+| AddRowObject(string, [RowObject](../rowobject))| Adds a [RowObject](../rowobject) to the [FormObject](../formobject) with the specified FormId. |
 | Clone                                         | Clones the OptionObject2015.            |
-| DeleteRowObject([RowObject](./rowobject))     | Marks a <see cref="RowObject"/> for deletion.            |
+| DeleteRowObject([RowObject](../rowobject))     | Marks a <see cref="RowObject"/> for deletion.            |
 | DeleteRowObject(string)                       | Marks a <see cref="RowObject"/> for deletion by specified RowId.            |
-| DisableAllFieldObjects()                      | Sets all [FieldObjects](./fieldobject) as disabled.            |
-| DisableAllFieldObjects(List of string)          | Sets all [FieldObjects](./fieldobject) as disabled except for any listed to be excluded.            |
+| DisableAllFieldObjects()                      | Sets all [FieldObjects](../fieldobject) as disabled.            |
+| DisableAllFieldObjects(List of string)          | Sets all [FieldObjects](../fieldobject) as disabled except for any listed to be excluded.            |
 | Equals(OptionObjectBase)                      | Used to compare two OptionObject2015 to determine if they are equal. Returns bool.            |
 | Equals(object)                                | Used to compare OptionObject2015 to an object to determine if they are equal. Returns bool.            |
 | GetCurrentRowId(string)                       | Returns the CurrentRow RowId of the form matching the FormId.            |
 | GetFieldValue(string)                         | Returns the first value of the field matching the Field Number.            |
-| GetFieldValue(string, string, string)         | Returns the value of the <see cref="FieldObject"/> matching the Field Number on the specified [FormObject](./formobject) and [RowObject](./rowobject).            |
+| GetFieldValue(string, string, string)         | Returns the value of the <see cref="FieldObject"/> matching the Field Number on the specified [FormObject](../formobject) and [RowObject](../rowobject).            |
 | GetFieldValues(string)                        | Returns the values of the field matching the Field Number.            |
 | GetHashCode()                                 | Overrides the GetHashCode method for a OptionObjectBase.            |
 | GetMultipleIterationStatus(string)            | Returns the Multiple Iteration Status of the form matching the FormId.            |
@@ -63,14 +63,14 @@ The following methods are available on the OptionObject2015 to assist with commo
 | IsFieldPresent(string)                        | Returns whether the specified field is present.            |
 | IsFieldRequired(string)                       | Returns whether the specified field is required.            |
 | IsFormPresent(string)                         | Returns whether the specified form is present.            |
-| IsRowMarkedForDeletion(string)                | Returns whether the specified [RowObject](./rowobject) is marked for deletion.            |
+| IsRowMarkedForDeletion(string)                | Returns whether the specified [RowObject](../rowobject) is marked for deletion.            |
 | IsRowPresent(string)                          | Returns whether the specified row is present            |
 | SetDisabledField(string)                      | Sets the specified field as disabled.            |
 | SetDisabledFields(List of string)               | Sets the specified fields as disabled.            |
 | SetEnabledField(string)                       | Sets the specified field as enabled.            |
 | SetEnabledFields(List of string)                | Sets the specified fields as enabled.            |
-| SetFieldValue(string, string)                 | Sets the FieldValue of a [FieldObject](./fieldobject) in the OptionObject2015 on the first form's CurrentRow.            |
-| SetFieldValue(string, string, string, string) | Sets the FieldValue of a [FieldObject](./fieldobject) in the OptionObject2015.            |
+| SetFieldValue(string, string)                 | Sets the FieldValue of a [FieldObject](../fieldobject) in the OptionObject2015 on the first form's CurrentRow.            |
+| SetFieldValue(string, string, string, string) | Sets the FieldValue of a [FieldObject](../fieldobject) in the OptionObject2015.            |
 | SetLockedField(string)                        | Sets the specified field as locked.            |
 | SetLockedFields(List of string)                 | Sets the specified fields as disabled.            |
 | SetOptionalField(string)                      | Set the specified field as not required and enables if disabled.            |
