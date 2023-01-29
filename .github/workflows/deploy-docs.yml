@@ -17,12 +17,10 @@ jobs:
         with:
           node-version: 18
 
-      - name: Change to documentation directory
-        run: cd docs
       - name: Install dependencies
-        run: npm install
+        run: npm --prefix ./docs install
       - name: Build website
-        run: npm run build
+        run: npm --prefix ./docs run build
 
       # Popular action to deploy to GitHub Pages:
       # Docs: https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-docusaurus
