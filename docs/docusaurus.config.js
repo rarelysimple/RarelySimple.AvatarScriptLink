@@ -17,6 +17,7 @@ const config = {
   organizationName: 'rarelysimple',
   projectName: 'RarelySimple.AvatarScriptLink',
 
+  trailingSlash: true,
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
