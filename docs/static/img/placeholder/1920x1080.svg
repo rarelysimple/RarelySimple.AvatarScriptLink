@@ -1,0 +1,7 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+    <title>Placeholder Image</title>
+    <desc>This is a placeholder image with the dimensions: 1920x1080.</desc>
+    <rect x="0" y="0" width="1920" height="1080" fill="#222222" stroke="#333333" stroke-width="20" stroke-alignment="inner" />
+    <line x1="0" y1="0" x2="1920" y2="1080" stroke="#333333" stroke-width="10" stroke-alignment="center" />
+    <line x1="0" y1="1080" x2="1920" y2="0" stroke="#333333" stroke-width="10" stroke-alignment="center" />
+</svg>

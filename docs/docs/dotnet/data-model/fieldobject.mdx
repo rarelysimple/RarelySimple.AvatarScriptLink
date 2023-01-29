@@ -1,0 +1,43 @@
+---
+title: FieldObject
+sidebar_position: 6
+---
+
+# FieldObject
+
+The FieldObject represents a field on a myAvatar form.
+
+## Properties
+
+| Property        | Description |
+|:----------------|:------------|
+| Enabled         | Gets or sets the Enabled value. The supported case-sensitive values are `N` and `Y`. |
+| FieldNumber     | Gets or Sets the FieldNumber value. |
+| FieldValue      | Gets or sets the FieldValue value. |
+| Lock            | Gets or sets the Lock value. The supported case-sensitive values are `N` and `Y`. |
+| Required        | Gets or sets the Required value. The supported case-sensitive values are `N` and `Y`. |
+
+## Methods
+
+| Method        | Description |
+|:----------------|:------------|
+| Clone() | Creates a copy of the FieldObject. |
+| GetFieldValue() | Returns the FieldValue of a FieldObject. |
+| IsEnabled() | Returns whether the FieldObject is enabled. |
+| IsLocked() | Returns whether the FieldObject is locked. |
+| IsModified() | Returns whether the FieldObject has been modified. |
+| IsRequired() | Returns whether the FieldObject is required. | 
+| SetAsDisabled() | Sets FieldObject as disabled and marks the FieldObject as modified. |
+| SetAsEnabled() | Sets FieldObject as enabled and marks the FieldObject as modified. |
+| SetAsLocked() | Sets FieldObject as locked and marks the FieldObject as modified. |
+| SetAsModified() | Sets FieldObject as modified. |
+| SetAsRequired() | Sets FieldObject as required and marks the FieldObject as modified. |
+| SetAsUnlocked() | Sets FieldObject as unlocked and marks the FieldObject as modified. |
+| SetFieldValue(string) | Sets the FieldValue of a FieldObject and marks the FieldObject as modified. |
+| ToHtmlString(bool) | Returns the FieldObject as an HTML string. The `<html>`, `<head>`, and `<body>` tags can be included if desired. |
+| ToJson() | Returns the FieldObject as a JSON string. |
+| ToXml() | Returns the FieldObject as an XML string. |
+
+## Examples
+
+Most implementations would not require working with the FieldObject directly, however here is an example that uses the FieldObject to create an [OptionObject2015](./optionobject2015) for Unit Testing.
