@@ -256,97 +256,100 @@ class OptionObject2015 {
     +ToXml() string
 }
 
-class OptionObjectBase
+class OptionObjectBase {
+    +string EntityID
+    +double EpisodeNumber
+    +double ErrorCode
+    +string ErrorMesg
+    +string Facility
+    +List~FormObject~ Forms
+    +string NamespaceName
+    +string OptionId
+    +string OptionStaffId
+    +string OptionUserId
+    +string ParentNamespace
+    +string ServerName
+    +string SystemCode
+    +string SessionToken
+    +AddFormObject(FormObject)
+    +AddFormObject(string, bool)
+    +AddRowObject(string, RowObject)
+    +Clone() OptionObjectBase
+    +DeleteRowObject(RowObject)
+    +DeleteRowObject(string)
+    +DisableAllFieldObjects()
+    +DisableAllFieldObjects(List~string~)
+    +Equals(OptionObjectBase) bool
+    +Equals(object) bool
+    +GetCurrentRowId(string) strings
+    +GetFieldValue(string) string
+    +GetFieldValue(string, string, string) string
+    +GetFieldValues(string) List~string~
+    +GetHashCode() int
+    +GetMultipleIterationStatus(string) bool
+    +GetParentRowId(string) string
+    +IsFieldEnabled(string) bool
+    +IsFieldLocked(string) bool
+    +IsFieldModified(string) bool
+    +IsFieldPresent(string) bool
+    +IsFieldRequired(string) bool
+    +IsFormPresent(string) bool
+    +IsRowMarkedForDeletion(string) bool
+    +IsRowPresent(string) bool
+    +SetDisabledField(string)
+    +SetDisabledFields(List~string~)
+    +SetEnabledField(string)
+    +SetEnabledFields(List~string~)
+    +SetFieldValue(string, string)
+    +SetFieldValue(string, string, string, string)
+    +SetLockedField(string)
+    +SetLockedFields(List~string~)
+    +SetOptionalField(string)
+    +SetOptionalFields(List~string~)
+    +SetRequiredField(string)
+    +SetRequiredFields(List~string~)
+    +SetUnlockedField(string)
+    +SetUnlockedFields(List~string~)
+    +ToHtmlString() string
+    +ToHtmlString(bool) string
+    +ToJson() string
+    +ToOptionObject()* OptionObject
+    +ToOptionObject2()* OptionObject2
+    +ToOptionObject2015()* OptionObject2015
+    +ToReturnOptionObject() OptionObjectBase
+    +ToReturnOptionObject(double, string) OptionObjectBase
+    +ToXml() string
+    -AreBothEmpty(List~FormObject~, List~FormObject~)$ bool
+    -AreBothNull(List~FormObject~, List~FormObject~)$ bool
+    -AreFormsEqual(List~FormObject~, List~FormObject~)$ bool
+}
 <<abstract>> OptionObjectBase
-OptionObjectBase : +string EntityID
-OptionObjectBase : +double EpisodeNumber
-OptionObjectBase : +double ErrorCode
-OptionObjectBase : +string ErrorMesg
-OptionObjectBase : +string Facility
-OptionObjectBase : +List~FormObject~ Forms
-OptionObjectBase : +string NamespaceName
-OptionObjectBase : +string OptionId
-OptionObjectBase : +string OptionStaffId
-OptionObjectBase : +string OptionUserId
-OptionObjectBase : +string ParentNamespace
-OptionObjectBase : +string ServerName
-OptionObjectBase : +string SystemCode
-OptionObjectBase : +string SessionToken
-OptionObjectBase : +AddFormObject(FormObject)
-OptionObjectBase : +AddFormObject(string, bool)
-OptionObjectBase : +AddRowObject(string, RowObject)
-OptionObjectBase : +Clone() OptionObjectBase
-OptionObjectBase : +DeleteRowObject(RowObject)
-OptionObjectBase : +DeleteRowObject(string)
-OptionObjectBase : +DisableAllFieldObjects()
-OptionObjectBase : +DisableAllFieldObjects(List~string~)
-OptionObjectBase : +Equals(OptionObjectBase) bool
-OptionObjectBase : +Equals(object) bool
-OptionObjectBase : +GetCurrentRowId(string) strings
-OptionObjectBase : +GetFieldValue(string) string
-OptionObjectBase : +GetFieldValue(string, string, string) string
-OptionObjectBase : +GetFieldValues(string) List~string~
-OptionObjectBase : +GetHashCode() int
-OptionObjectBase : +GetMultipleIterationStatus(string) bool
-OptionObjectBase : +GetParentRowId(string) string
-OptionObjectBase : +IsFieldEnabled(string) bool
-OptionObjectBase : +IsFieldLocked(string) bool
-OptionObjectBase : +IsFieldModified(string) bool
-OptionObjectBase : +IsFieldPresent(string) bool
-OptionObjectBase : +IsFieldRequired(string) bool
-OptionObjectBase : +IsFormPresent(string) bool
-OptionObjectBase : +IsRowMarkedForDeletion(string) bool
-OptionObjectBase : +IsRowPresent(string) bool
-OptionObjectBase : +SetDisabledField(string)
-OptionObjectBase : +SetDisabledFields(List~string~)
-OptionObjectBase : +SetEnabledField(string)
-OptionObjectBase : +SetEnabledFields(List~string~)
-OptionObjectBase : +SetFieldValue(string, string)
-OptionObjectBase : +SetFieldValue(string, string, string, string)
-OptionObjectBase : +SetLockedField(string)
-OptionObjectBase : +SetLockedFields(List~string~)
-OptionObjectBase : +SetOptionalField(string)
-OptionObjectBase : +SetOptionalFields(List~string~)
-OptionObjectBase : +SetRequiredField(string)
-OptionObjectBase : +SetRequiredFields(List~string~)
-OptionObjectBase : +SetUnlockedField(string)
-OptionObjectBase : +SetUnlockedFields(List~string~)
-OptionObjectBase : +ToHtmlString() string
-OptionObjectBase : +ToHtmlString(bool) string
-OptionObjectBase : +ToJson() string
-OptionObjectBase : +ToOptionObject()* OptionObject
-OptionObjectBase : +ToOptionObject2()* OptionObject2
-OptionObjectBase : +ToOptionObject2015()* OptionObject2015
-OptionObjectBase : +ToReturnOptionObject() OptionObjectBase
-OptionObjectBase : +ToReturnOptionObject(double, string) OptionObjectBase
-OptionObjectBase : +ToXml() string
-OptionObjectBase : -AreBothEmpty(List~FormObject~, List~FormObject~)$ bool
-OptionObjectBase : -AreBothNull(List~FormObject~, List~FormObject~)$ bool
-OptionObjectBase : -AreFormsEqual(List~FormObject~, List~FormObject~)$ bool
 
-class IOptionObject2015
+class IOptionObject2015 {
+    string SessionToken
+}
 <<interface>> IOptionObject2015
-IOptionObject2015 : string SessionToken
 
-class IOptionObject2
+class IOptionObject2 {
+    string NamespaceName
+    string ParentNamespace
+    string ServerName
+}
 <<interface>> IOptionObject2
-IOptionObject2 : string NamespaceName
-IOptionObject2 : string ParentNamespace
-IOptionObject2 : string ServerName
 
-
-class IOptionObject
+class IOptionObject {
+    string EntityID
+    double EpisodeNumber
+    double ErrorCode
+    string ErrorMesg
+    string Facility
+    List~FormObject~ Forms
+    string OptionId
+    string OptionStaffId
+    string OptionUserId
+    string SystemCode
+}
 <<interface>> IOptionObject
-IOptionObject : string EntityID
-IOptionObject : double EpisodeNumber
-IOptionObject : double ErrorCode
-IOptionObject : string ErrorMesg
-IOptionObject : string Facility
-IOptionObject : List~FormObject~ Forms
-IOptionObject : string OptionId
-IOptionObject : string OptionStaffId
-IOptionObject : string OptionUserId
-IOptionObject : string SystemCode
 
 class FormObject{
     +RowObject CurrentRow
@@ -354,6 +357,9 @@ class FormObject{
     +bool MultipleIteration
     +List~RowObject~ OtherRows
 }
+
+class IEquatable~OptionObjectBase~
+<<interface>> IEquatable~OptionObjectBase~
 
 OptionObject2015 "1" --o "*" FormObject : Forms
 
