@@ -3,9 +3,44 @@ title: FieldObject
 sidebar_position: 6
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # FieldObject
 
 The FieldObject represents a field on a myAvatar form.
+AvatarScriptLink.NET adds several utility methods to assist with handlings these objects.
+
+```mermaid
+classDiagram
+class FieldObject {
+    +string Enabled
+    +string FieldNumber
+    +string FieldValue
+    +string Lock
+    +string Required
+    +Clone() FieldObject
+    +Equals(FieldObjectBase) bool
+    +Equals(object) bool
+    +GetHashCode() int
+    +IsEnabled() bool
+    +IsLocked() bool
+    +IsModified() bool
+    +IsRequired() bool
+    +SetAsDisabled()
+    +SetAsEnabled()
+    +SetAsLocked()
+    +SetAsModified()
+    +SetAsOptional()
+    +SetAsRequired()
+    +SetAsUnlocked()
+    +SetFieldValue(string)
+    +ToHtmlString() string
+    +ToHtmlString(bool) string
+    +ToJson() string
+    +ToXml() string
+}
+```
 
 ## Properties
 
@@ -40,4 +75,106 @@ The FieldObject represents a field on a myAvatar form.
 
 ## Examples
 
-Most implementations would not require working with the FieldObject directly, however here is an example that uses the FieldObject to create an [OptionObject2015](../optionobject2015) for Unit Testing.
+Most implementations would not require working with the FieldObject directly, however here is an example that uses the FieldObject to create an [FieldObject](../fieldobject) for Unit Testing.
+
+<Tabs>
+<TabItem value="cs" label="C#">
+
+```cs
+[TestMethod]
+public void TestMethod1()
+{
+    var expected = "value";
+    FieldObject fieldObject = new FieldObject
+    {
+        FieldNumber = "123.45",
+        FieldValue = expected
+    };
+    Assert.AreEqual(expected, fieldObject.FieldValue);
+}
+```
+
+</TabItem>
+<TabItem value="vb" label="Visual Basic">
+
+```vb
+<TestMethod()> Public Sub TestMethod1()
+    Dim expected As String = "value"
+    Dim fieldObject As New FieldObject With {
+        .FieldNumber = "123.45",
+        .FieldValue = expected
+    }
+    Assert.AreEqual(expected, fieldObject.FieldValue)
+End Sub
+```
+
+</TabItem>
+</Tabs>
+
+## Detailed Class Diagram
+
+```mermaid
+classDiagram
+class FieldObject {
+    +Clone() FieldObject
+    +ToXml() string
+}
+
+class FieldObjectBase {
+    +string Enabled
+    +string FieldNumber
+    +string FieldValue
+    +string Lock
+    +string Required
+    +bool Modified
+    -string _enabled
+    -string _fieldNumber
+    -string _fieldValue
+    -string _locked
+    -bool _modified
+    -string _required
+    -string OriginalEnabled
+    -string OriginalFieldNumber
+    -string OriginalLocked
+    -string OriginalLocked
+    -string OriginalRequired
+    +Clone() FieldObjectBase
+    +Equals(FieldObjectBase) bool
+    +Equals(object) bool
+    +GetHashCode() int
+    +IsEnabled() bool
+    +IsLocked() bool
+    +IsModified() bool
+    +IsRequired() bool
+    +SetAsDisabled()
+    +SetAsEnabled()
+    +SetAsLocked()
+    +SetAsModified()
+    +SetAsOptional()
+    +SetAsRequired()
+    +SetAsUnlocked()
+    +SetFieldValue(string)
+    +ToHtmlString() string
+    +ToHtmlString(bool) string
+    +ToJson() string
+    +ToXml() string
+}
+<<abstract>> FieldObjectBase
+
+class IFieldObject {
+    string Enabled
+    string FieldName
+    string FieldValue
+    string Lock
+    bool Modified
+    string Required
+}
+<<interface>> IFieldObject
+
+class IEquatable~FieldObjectBase~
+<<interface>> IEquatable~FieldObjectBase~
+
+FieldObject --|> FieldObjectBase : inherits
+FieldObjectBase --|> IEquatable~FieldObjectBase~ : inherits
+FieldObjectBase --|> IFieldObject : inherits
+```
