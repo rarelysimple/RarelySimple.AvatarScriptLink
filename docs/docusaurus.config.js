@@ -12,7 +12,7 @@ const config = {
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/asl-logo.svg',
 
   organizationName: 'rarelysimple',
   projectName: 'RarelySimple.AvatarScriptLink',
@@ -59,8 +59,8 @@ const config = {
       navbar: {
         title: 'RarelySimple.AvatarScriptLink',
         logo: {
-          alt: 'My Site Logo Placeholder',
-          src: 'img/logo.svg',
+          alt: 'RarelySimple.AvatarScriptLink Logo Concept',
+          src: 'img/asl-logo.svg',
         },
         items: [
           {
