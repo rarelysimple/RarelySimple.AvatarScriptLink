@@ -6,7 +6,7 @@ AvatarScriptLink.NET is a library for accelerating Netsmart myAvatar ScriptLink 
 
 ## Documentation ##
 
-Check out [the documentation](https://rarelysimple.github.io/RarelySimple.AvatarScriptLink/) to learn more.
+Check out [the documentation](https://scriptlink.rarelysimple.com/) to learn more.
 
 ## Licensing ##
 
