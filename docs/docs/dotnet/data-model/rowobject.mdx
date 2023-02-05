@@ -3,9 +3,70 @@ title: RowObject
 sidebar_position: 5
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # RowObject
 
 The RowObject represents the contents of a myAvatar form section. I.e., the collection of FieldObjects that make up the section.
+AvatarScriptLink.NET adds several utility methods to assist with handlings these objects.
+
+```mermaid
+classDiagram
+direction LR
+class RowObject {
+    +List~FieldObject~ Fields
+    +string ParentRowId
+    +string RowAction
+    +string RowId
+    +AddFieldObject(FieldObject)
+    +AddFieldObject(string, string)
+    +AddFieldObject(string, string, string, string, string)
+    +AddFieldObject(string, string, bool, bool, bool)
+    +Clone() RowObject
+    +Equals(RowObjectBase)
+    +Equals(object)
+    +GetFieldValue(string) string
+    +GetHashCode()
+    +IsFieldEnabled(string) bool
+    +IsFieldLocked(string) bool
+    +IsFieldModified(string) bool
+    +IsFieldPresent(string) bool
+    +IsFieldRequired(string) bool
+    +RemoveFieldObject(FieldObject)
+    +RemoveFieldObject(string)
+    +RemoveUnmodifiedFieldObjects()
+    +SetDisabledField(string)
+    +SetDisabledFields(List~string~)
+    +SetEnabledField(string)
+    +SetEnabledFields(List~string~)
+    +SetFieldValue(string, string)
+    +SetLockedField(string)
+    +SetLockedFields(List~string~)
+    +SetOptionalField(string)
+    +SetOptionalFields(List~string~)
+    +SetRequiredField(string)
+    +SetRequiredFields(List~string~)
+    +SetUnlockedField(string)
+    +SetUnlockedFields(List~string~)
+    +ToHtmlString() string
+    +ToHtmlString(bool) string
+    +ToJson() string
+    +ToXml() string
+}
+
+class FieldObject {
+    +string Enabled
+    +string FieldNumber
+    +string FieldValue
+    +string Lock
+    +string Required
+}
+
+RowObject "1" --o "*" FieldObject : Fields
+
+click FieldObject href "./fieldobject" "Learn more about the FieldObject"
+```
 
 ## Properties
 
@@ -51,3 +112,118 @@ The RowObject represents the contents of a myAvatar form section. I.e., the coll
 ## Examples
 
 Most implementations would not require working with the RowObject directly, however here is an example that uses the RowObject to create an [OptionObject2015](../optionobject2015) for Unit Testing.
+
+<Tabs>
+<TabItem value="cs" label="C#">
+
+```cs
+[TestMethod]
+public void TestMethod1()
+{
+    var expected = "value";
+    RowObject rowObject = new RowObject
+    {
+        RowId = "123||45"
+    };
+    Assert.AreEqual(expected, rowObject.RowId);
+}
+```
+
+</TabItem>
+<TabItem value="vb" label="Visual Basic">
+
+```vb
+<TestMethod()> Public Sub TestMethod1()
+    Dim expected As String = "value"
+    Dim rowObject As New RowObject With {
+        .RowId = "123||45"
+    }
+    Assert.AreEqual(expected, rowObject.RowId)
+End Sub
+```
+
+</TabItem>
+</Tabs>
+
+## Detailed Class Diagram
+
+```mermaid
+classDiagram
+direction LR
+class RowObject {
+    +Clone() RowObject
+    +ToXml() string
+}
+
+class RowObjectBase {
+    +List~FieldObject~ Fields
+    +string ParentRowId
+    +string RowAction
+    +string RowId
+    +AddFieldObject(FieldObject)
+    +AddFieldObject(string, string)
+    +AddFieldObject(string, string, string, string, string)
+    +AddFieldObject(string, string, bool, bool, bool)
+    +Clone() RowObjectBase
+    +Equals(RowObjectBase)
+    +Equals(object)
+    +GetFieldValue(string) string
+    +GetHashCode()
+    +IsFieldEnabled(string) bool
+    +IsFieldLocked(string) bool
+    +IsFieldModified(string) bool
+    +IsFieldPresent(string) bool
+    +IsFieldRequired(string) bool
+    +RemoveFieldObject(FieldObject)
+    +RemoveFieldObject(string)
+    +RemoveUnmodifiedFieldObjects()
+    +SetDisabledField(string)
+    +SetDisabledFields(List~string~)
+    +SetEnabledField(string)
+    +SetEnabledFields(List~string~)
+    +SetFieldValue(string, string)
+    +SetLockedField(string)
+    +SetLockedFields(List~string~)
+    +SetOptionalField(string)
+    +SetOptionalFields(List~string~)
+    +SetRequiredField(string)
+    +SetRequiredFields(List~string~)
+    +SetUnlockedField(string)
+    +SetUnlockedFields(List~string~)
+    +ToHtmlString() string
+    +ToHtmlString(bool) string
+    +ToJson() string
+    +ToXml() string
+    -AreBothEmpty(List~FieldObject~, List~FieldObject~)
+    -AreBothNull(List~FieldObject~, List~FieldObject~)
+    -AreFieldsEqual(List~FieldObject~, List~FieldObject~)
+}
+<<abstract>> RowObjectBase
+
+class IRowObject {
+    List~FieldObject~ Fields
+    string ParentRowId
+    string RowAction
+    string RowId
+}
+<<interface>> IRowObject
+
+class FieldObject {
+    +string Enabled
+    +string FieldNumber
+    +string FieldValue
+    +string Lock
+    +string Required
+}
+
+class IEquatable~RowObjectBase~
+<<interface>> IEquatable~RowObjectBase~
+
+RowObject "1" --o "*" FieldObject : Fields
+
+RowObject --|> RowObjectBase : inherits
+RowObjectBase --|> IEquatable~RowObjectBase~ : inherits
+RowObjectBase --|> IRowObject : inherits
+
+click FieldObject href "./fieldobject" "Learn more about the FieldObject"
+```
