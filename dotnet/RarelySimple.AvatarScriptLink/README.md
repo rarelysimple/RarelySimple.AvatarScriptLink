@@ -49,7 +49,7 @@ public OptionObject2015 RunScript(OptionObject2015 optionObject, string paramete
 }
 ```
 
-Check out [the documentation](https://rarelysimple.github.io/RarelySimple.AvatarScriptLink/) to learn more.
+Check out [the documentation](https://scriptlink.rarelysimple.com/) to learn more.
 
 ## Licensing ##
 
