@@ -6,9 +6,14 @@ title: AvatarScriptLink.NET Changelog
 
 [![NuGet Latest](https://badgen.net/nuget/v/rarelysimple.avatarscriptlink/latest)](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/)
 
+## 2.0.0 (Future)
+
+* Drop support for .NET Framework 4.6.1
+
 ## 1.2.0 (T.B.D.)
 
-To be determined.
+* Introduce Builder methods for each object to assist with object creation.
+* Allow for error code and message to be set prior to creation of return OptionObject. Issue [#52](https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/52)
 
 ## 1.1.10 (2022-10-15)
 
