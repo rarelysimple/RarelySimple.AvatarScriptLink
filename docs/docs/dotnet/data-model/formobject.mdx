@@ -3,18 +3,85 @@ title: FormObject
 sidebar_position: 4
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # FormObject
 
 The FormObject represents a section of a myAvatar Form.
+AvatarScriptLink.NET adds several utility methods to assist with handlings these objects.
+
+```mermaid
+classDiagram
+direction LR
+class FormObject {
+    +RowObject CurrentRow
+    +string FormId
+    +bool MultipleIteration
+    +List~RowObject~ OtherRows
+    +AddRowObject(RowObject)
+    +AddRowObject(string, string)
+    +AddRowObject(string, string, string)
+    +Clone() FormObject
+    +DeleteRowObject(RowObject)
+    +DeleteRowObject(string)
+    +Equals(FormObjectBase) bool
+    +Equals(object) bool
+    +GetCurrentRowId() string
+    +GetFieldValue(string) string
+    +GetFieldValue(string, string) string
+    +GetFieldValues(string) List~string~
+    +GetHashCode() int
+    +GetNextAvailableRowId() string
+    +GetParentRowId() string
+    +IsFieldEnabled(string) bool
+    +IsFieldLocked(string) bool
+    +IsFieldModified(string) bool
+    +IsFieldPresent(string) bool
+    +IsFieldRequired(string) bool
+    +IsRowMarkedForDeletion(string) bool
+    +IsRowPresent(string) bool
+    +SetDisabledField(string)
+    +SetDisabledFields(string)
+    +SetEnabledField(string)
+    +SetEnabledFields(string)
+    +SetFieldValue(string, string)
+    +SetFieldValue(string, string, string)
+    +SetLockedField(string)
+    +SetLockedFields(string)
+    +SetOptionalField(string)
+    +SetOptionalFields(string)
+    +SetRequiredField(string)
+    +SetRequiredFields(string)
+    +SetUnlockedField(string)
+    +SetUnlockedFields(string)
+    +ToHtmlString() string
+    +ToHtmlString(bool) string
+    +ToJson() string
+    +ToXml() string
+}
+
+class RowObject {
+    +List~FieldObject~ Fields
+    +string ParentRowId
+    +string RowAction
+    +string RowId
+}
+
+FormObject "1" --o "1" RowObject : CurrentRow
+FormObject "1" --o "*" RowObject : OtherRows
+
+click RowObject href "./rowobject" "Learn more about the RowObject"
+```
 
 ## Properties
 
-| Property        | Description |
-|:----------------|:------------|
-| CurrentRow      | The contents of this myAvatar Form section. The selected row on multiple iteration tables. |
-| FormId          | The unique Id assigned to this section (FormObject). |
+| Property          | Description |
+|:------------------|:------------|
+| CurrentRow        | The contents of this myAvatar Form section. The selected row on multiple iteration tables. |
+| FormId            | The unique Id assigned to this section (FormObject). |
 | MultipleIteration | Indicates whether this section uses a multiple iteration table. Note: this is not the same as TDE objects. |
-| OtherRows       | Contains the contents of unselected rows in the multiple iteration table. |
+| OtherRows         | Contains the contents of unselected rows in the multiple iteration table. |
 
 ## Methods
 
@@ -70,3 +137,120 @@ The FormObject represents a section of a myAvatar Form.
 ## Examples
 
 Most implementations would not require working with the FormObject directly, however here is an example that uses the FormObject to create an [OptionObject2015](../optionobject2015) for Unit Testing.
+
+<Tabs>
+<TabItem value="cs" label="C#">
+
+```cs
+[TestMethod]
+public void TestMethod1()
+{
+    var expected = "value";
+    FormObject formObject = new FormObject
+    {
+        FormId = "123"
+    };
+    Assert.AreEqual(expected, formObject.FormId);
+}
+```
+
+</TabItem>
+<TabItem value="vb" label="Visual Basic">
+
+```vb
+<TestMethod()> Public Sub TestMethod1()
+    Dim expected As String = "value"
+    Dim formObject As New FormObject With {
+        .FormId = "123"
+    }
+    Assert.AreEqual(expected, formObject.FormId)
+End Sub
+```
+
+</TabItem>
+</Tabs>
+
+## Detailed Class Diagram
+
+```mermaid
+classDiagram
+direction LR
+class FormObject {
+    +Clone() FormObject
+    +ToXml() string
+}
+
+class FormObjectBase {
+    +RowObject CurrentRow
+    +string FormId
+    +bool MultipleIteration
+    +List~RowObject~ OtherRows
+    +AddRowObject(RowObject)
+    +AddRowObject(string, string)
+    +AddRowObject(string, string, string)
+    +Clone() FormObjectBase
+    +DeleteRowObject(RowObject)
+    +DeleteRowObject(string)
+    +Equals(FormObjectBase) bool
+    +Equals(object) bool
+    +GetCurrentRowId() string
+    +GetFieldValue(string) string
+    +GetFieldValue(string, string) string
+    +GetFieldValues(string) List~string~
+    +GetHashCode() int
+    +GetNextAvailableRowId() string
+    +GetParentRowId() string
+    +IsFieldEnabled(string) bool
+    +IsFieldLocked(string) bool
+    +IsFieldModified(string) bool
+    +IsFieldPresent(string) bool
+    +IsFieldRequired(string) bool
+    +IsRowMarkedForDeletion(string) bool
+    +IsRowPresent(string) bool
+    +SetDisabledField(string)
+    +SetDisabledFields(string)
+    +SetEnabledField(string)
+    +SetEnabledFields(string)
+    +SetFieldValue(string, string)
+    +SetFieldValue(string, string, string)
+    +SetLockedField(string)
+    +SetLockedFields(string)
+    +SetOptionalField(string)
+    +SetOptionalFields(string)
+    +SetRequiredField(string)
+    +SetRequiredFields(string)
+    +SetUnlockedField(string)
+    +SetUnlockedFields(string)
+    +ToHtmlString() string
+    +ToHtmlString(bool) string
+    +ToJson() string
+}
+<<abstract>> FormObjectBase
+
+class IFormObject {
+    RowObject CurrentRow
+    string FormId
+    bool MultipleIteration
+    List~RowObject~ OtherRows
+}
+<<interface>> IFormObject
+
+class RowObject {
+    +List~FieldObject~ Fields
+    +string ParentRowId
+    +string RowAction
+    +string RowId
+}
+
+class IEquatable~FormObjectBase~
+<<interface>> IEquatable~FormObjectBase~
+
+FormObjectBase "1" --o "1" RowObject : CurrentRow
+FormObjectBase "1" --o "*" RowObject : OtherRows
+
+FormObject --|> FormObjectBase : inherits
+FormObjectBase --|> IEquatable~FormObjectBase~ : inherits
+FormObjectBase --|> IFormObject : inherits
+
+click RowObject href "./rowobject" "Learn more about the RowObject"
+```
