@@ -36,7 +36,7 @@ export default function Home() {
     //   title={`${siteConfig.title}`}
       description="RarelySimple.AvatarScriptLink helps accelerate ScriptLink development for Netsmart myAvatar.">
       <Head>
-        <meta property="og:image" content="img/AvatarScriptLink.NET.png" />
+        <meta property="og:image" content="/img/AvatarScriptLink.NET.png" />
       </Head>
       <HomepageHeader />
       <main>
