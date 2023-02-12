@@ -1,8 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.css';
-import Before from './helloworld.cs.before.md';
-import After from './helloworld.cs.after.md';
+import CodeBlock from '@theme/CodeBlock';
 
 export default function HomepageHelloWorld() {
     return (
@@ -20,7 +19,27 @@ export default function HomepageHelloWorld() {
                         <p>Before AvatarScriptLink.NET you would have to construct your return OptionObject manually.</p>
                     </div>
                     <div className='col col--9'>
-                        <Before />
+                        <CodeBlock
+                            language='csharp'>
+                            {`[WebMethod]
+public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameters)
+{
+    OptionObject returnOptionObject = new OptionObject();
+
+    returnOptionObject.ErrorCode = 3;
+    returnOptionObject.ErrorMesg = "Hello, World!";
+
+    returnOptionObject.EntityID = optionObject.EntityID;
+    returnOptionObject.EpisodeNumber = optionObject.EpisodeNumber;
+    returnOptionObject.Facility = optionObject.Facility;
+    returnOptionObject.OptionId = optionObject.OptionId;
+    returnOptionObject.OptionStaffId = optionObject.OptionStaffId;
+    returnOptionObject.OptionUserId = optionObject.OptionUserId;
+    returnOptionObject.SystemCode = optionObject.SystemCode;
+
+    return returnOptionObject;
+}`}
+                        </CodeBlock>
                     </div>
                 </div>
                 <div className='row'>
@@ -29,7 +48,14 @@ export default function HomepageHelloWorld() {
                         <p>Afterwards, you can construct your return OptionObject directly from the object received.</p>
                     </div>
                     <div className='col col--9'>
-                        <After />
+                        <CodeBlock
+                            language='csharp'>
+                            {`[WebMethod]
+public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameters)
+{
+    return optionObject.ToReturnOptionObject(ErrorCode.Alert, "Hello, World!");
+}`}
+                        </CodeBlock>
                     </div>
                 </div>
             </div>

@@ -1,18 +1,12 @@
 ---
 title: AvatarScriptLink.NET
+image: /img/AvatarScriptLink.NET.png
 sidebar_position: 1
 ---
 
 # AvatarScriptLink.NET
 
-[![NuGet Latest](https://badgen.net/nuget/v/rarelysimple.avatarscriptlink/latest)](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/)
-[![NuGet Downloads](https://img.shields.io/nuget/dt/RarelySimple.AvatarScriptLink)](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/)
-
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=rarelysimple_RarelySimple.AvatarScriptLink&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=rarelysimple_RarelySimple.AvatarScriptLink)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=rarelysimple_RarelySimple.AvatarScriptLink&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=rarelysimple_RarelySimple.AvatarScriptLink)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=rarelysimple_RarelySimple.AvatarScriptLink&metric=security_rating)](https://sonarcloud.io/dashboard?id=rarelysimple_RarelySimple.AvatarScriptLink)
-
-Essentially, AvatarScriptLink.NET is a framework for managing and manipulating [myAvatar](https://www.ntst.com/Solutions-and-Services/Offerings/myAvatar) ScriptLink OptionObjects. What it does is accelerate the development of clean and stable myAvatar ScriptLink-compatible APIs.
+AvatarScriptLink.NET is a framework for managing and manipulating [Netsmart myAvatar](https://www.ntst.com/Solutions-and-Services/Offerings/myAvatar) ScriptLink OptionObjects. What it does is accelerate the development of clean and stable myAvatar ScriptLink-compatible APIs.
 
 Most ScriptLink-compatible APIs are built with a local version of the NTST.ScriptLinkService.Objects library. Here's what a "Hello, World!" response might look like in this scenario.
 

@@ -131,6 +131,7 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} Scott Olson Jr. Built with Docusaurus.`,
       },
       prism: {
+        additionalLanguages: ['csharp', 'visual-basic'],
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },

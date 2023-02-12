@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import HomepageHelloWorld from '@site/src/components/HomepageHelloWorld';
 import HomepageTestimonial from '@site/src/components/HomepageTestimonial';
@@ -32,8 +33,11 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`${siteConfig.title}`}
+    //   title={`${siteConfig.title}`}
       description="RarelySimple.AvatarScriptLink helps accelerate ScriptLink development for Netsmart myAvatar.">
+      <Head>
+        <meta property="og:image" content="img/AvatarScriptLink.NET.png" />
+      </Head>
       <HomepageHeader />
       <main>
         <HomepageHelloWorld />
