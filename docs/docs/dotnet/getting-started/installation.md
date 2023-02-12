@@ -1,5 +1,6 @@
 ---
 title: Installation
+image: ./Installation.png
 sidebar_position: 1
 ---
 

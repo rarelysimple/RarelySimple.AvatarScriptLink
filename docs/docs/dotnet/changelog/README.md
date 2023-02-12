@@ -1,5 +1,6 @@
 ---
 title: AvatarScriptLink.NET Changelog
+image: ./Changelog.png
 ---
 
 # Changelog

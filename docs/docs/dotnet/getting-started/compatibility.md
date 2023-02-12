@@ -1,5 +1,6 @@
 ---
 title: Compatibility
+image: ./Compatibility.png
 sidebar_position: 2
 ---
 
