@@ -1,6 +1,6 @@
 ---
 title: AvatarScriptLink.NET
-image: /img/AvatarScriptLink.NET.png
+image: ./AvatarScriptLink.NET.png
 sidebar_position: 1
 ---
 
