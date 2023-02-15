@@ -68,14 +68,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FieldObject")]
         public void FieldObject_AreEqual()
         {
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
+            FieldObject fieldObject1 = FieldObject.Builder()
+                .FieldNumber("123").FieldValue("TEST")
+                .Enabled()
+                .Build();
             FieldObject fieldObject2 = new FieldObject
             {
                 Enabled = "1",
@@ -94,14 +90,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FieldObject")]
         public void FieldObject_AreNotEqual()
         {
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
+            FieldObject fieldObject1 = FieldObject.Builder()
+                .FieldNumber("123").FieldValue("TEST")
+                .Enabled()
+                .Build();
             FieldObject fieldObject2 = new FieldObject
             {
                 Enabled = "1",
@@ -120,14 +112,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FieldObject")]
         public void FieldObject_IsEnabled_IsFalse()
         {
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "0",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
+            FieldObject fieldObject1 = FieldObject.Builder()
+                .FieldNumber("123").FieldValue("TEST")
+                .Build();
             Assert.IsFalse(fieldObject1.IsEnabled());
         }
 
@@ -135,14 +122,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FieldObject")]
         public void FieldObject_IsEnabled_IsTrue()
         {
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
+            FieldObject fieldObject1 = FieldObject.Builder()
+                .FieldNumber("123").FieldValue("TEST")
+                .Enabled()
+                .Build();
             Assert.IsTrue(fieldObject1.IsEnabled());
         }
 
@@ -150,14 +133,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FieldObject")]
         public void FieldObject_IsLocked_IsFalse()
         {
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
+            FieldObject fieldObject1 = FieldObject.Builder()
+                .FieldNumber("123").FieldValue("TEST")
+                .Enabled()
+                .Build();
             Assert.IsFalse(fieldObject1.IsLocked());
         }
 
@@ -165,14 +144,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FieldObject")]
         public void FieldObject_IsLocked_IsTrue()
         {
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "1",
-                Required = "0"
-            };
+            FieldObject fieldObject1 = FieldObject.Builder()
+                .FieldNumber("123").FieldValue("TEST")
+                .Enabled().Locked()
+                .Build();
             Assert.IsTrue(fieldObject1.IsLocked());
         }
 
@@ -180,14 +155,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FieldObject")]
         public void FieldObject_IsModifiedDirectly_IsTrue()
         {
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
+            FieldObject fieldObject1 = FieldObject.Builder()
+                .FieldNumber("123").FieldValue("TEST")
+                .Enabled()
+                .Build();
             fieldObject1.FieldValue = "TEST MODIFIED";
             Assert.IsTrue(fieldObject1.IsModified());
         }
@@ -196,14 +167,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FieldObject")]
         public void FieldObject_IsModifiedIndirectly_IsTrue()
         {
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
+            FieldObject fieldObject1 = FieldObject.Builder()
+                .FieldNumber("123").FieldValue("TEST")
+                .Enabled()
+                .Build();
             fieldObject1.SetFieldValue("TEST MODIFIED");
             Assert.IsTrue(fieldObject1.IsModified());
         }
@@ -212,14 +179,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FieldObject")]
         public void FieldObject_IsRequired_IsFalse()
         {
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
+            FieldObject fieldObject1 = FieldObject.Builder()
+                .FieldNumber("123").FieldValue("TEST")
+                .Enabled()
+                .Build();
             Assert.IsFalse(fieldObject1.IsRequired());
         }
 
@@ -227,14 +190,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FieldObject")]
         public void FieldObject_IsRequired_IsTrue()
         {
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "1"
-            };
+            FieldObject fieldObject1 = FieldObject.Builder()
+                .FieldNumber("123").FieldValue("TEST")
+                .Enabled().Required()
+                .Build();
             Assert.IsTrue(fieldObject1.IsRequired());
         }
 
@@ -242,14 +201,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FieldObject")]
         public void FieldObject_SetAsDisabled_AreEqual()
         {
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
+            FieldObject fieldObject1 = FieldObject.Builder()
+                .FieldNumber("123").FieldValue("TEST")
+                .Enabled()
+                .Build();
             fieldObject1.SetAsDisabled();
             Assert.AreEqual("0", fieldObject1.Enabled);
             Assert.AreEqual("0", fieldObject1.Required);
@@ -263,14 +218,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void FieldObject_SetAsEnabled_AreEqual()
         {
             string expected = "1";
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "0",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
+            FieldObject fieldObject1 = FieldObject.Builder()
+                .FieldNumber("123").FieldValue("TEST")
+                .Build();
             fieldObject1.SetAsEnabled();
             Assert.AreEqual(expected, fieldObject1.Enabled);
             Assert.IsTrue(fieldObject1.IsEnabled());
@@ -283,14 +233,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void FieldObject_SetAsLocked_AreEqual()
         {
             string expected = "1";
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
+            FieldObject fieldObject1 = FieldObject.Builder()
+                .FieldNumber("123").FieldValue("TEST")
+                .Enabled()
+                .Build();
             fieldObject1.SetAsLocked();
             Assert.AreEqual(expected, fieldObject1.Lock);
             Assert.IsTrue(fieldObject1.IsLocked());
@@ -301,14 +247,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FieldObject")]
         public void FieldObject_SetAsModified_AreEqual()
         {
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
+            FieldObject fieldObject1 = FieldObject.Builder()
+                .FieldNumber("123").FieldValue("TEST")
+                .Enabled()
+                .Build();
             fieldObject1.SetAsModified();
             Assert.IsTrue(fieldObject1.IsModified());
         }
@@ -317,14 +259,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FieldObject")]
         public void FieldObject_SetAsOptional_AreEqual()
         {
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "0",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "1"
-            };
+            FieldObject fieldObject1 = FieldObject.Builder()
+                .FieldNumber("123").FieldValue("TEST")
+                .Required()
+                .Build();
             fieldObject1.SetAsOptional();
             Assert.AreEqual("0", fieldObject1.Enabled);
             Assert.AreEqual("0", fieldObject1.Required);
@@ -337,14 +275,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FieldObject")]
         public void FieldObject_SetAsRequired_AreEqual()
         {
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
+            FieldObject fieldObject1 = FieldObject.Builder()
+                .FieldNumber("123").FieldValue("TEST")
+                .Enabled()
+                .Build();
             fieldObject1.SetAsRequired();
             Assert.AreEqual("1", fieldObject1.Enabled);
             Assert.AreEqual("1", fieldObject1.Required);
@@ -358,14 +292,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void FieldObject_SetAsUnlocked_AreEqual()
         {
             string expected = "0";
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
+            FieldObject fieldObject1 = FieldObject.Builder()
+                .FieldNumber("123").FieldValue("TEST")
+                .Enabled()
+                .Build();
             fieldObject1.SetAsUnlocked();
             Assert.AreEqual(expected, fieldObject1.Lock);
             Assert.IsFalse(fieldObject1.IsLocked());
