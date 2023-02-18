@@ -82,8 +82,19 @@ Most implementations would not require working with the FieldObject directly, ho
 <TabItem value="cs" label="C#">
 
 ```cs
+// Available in v.1.2 or later
 [TestMethod]
-public void TestMethod1()
+public void TestMethod1WithFluentBuilder()
+{
+    var expected = "value";
+    FieldObject fieldObject = FieldObject.Builder()
+        .FieldNumber("123.45").FieldValue(expected)
+        .Build();
+    Assert.AreEqual(expected, fieldObject.FieldValue);
+}
+
+[TestMethod]
+public void TestMethod1WithSimplifiedConstructor()
 {
     var expected = "value";
     FieldObject fieldObject = new FieldObject
@@ -99,7 +110,16 @@ public void TestMethod1()
 <TabItem value="vb" label="Visual Basic">
 
 ```vb
-<TestMethod()> Public Sub TestMethod1()
+' Available in v.1.2 or later
+<TestMethod()> Public Sub TestMethod1WithFluentBuilder()
+    Dim expected As String = "value"
+    Dim fieldObject As FieldObject.Builder()
+        .FieldNumber("123.45").FieldValue(expected)
+        .Build()
+    Assert.AreEqual(expected, fieldObject.FieldValue)
+End Sub
+
+<TestMethod()> Public Sub TestMethod1WithSimplifiedConstructor()
     Dim expected As String = "value"
     Dim fieldObject As New FieldObject With {
         .FieldNumber = "123.45",
