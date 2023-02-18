@@ -144,6 +144,16 @@ namespace RarelySimple.AvatarScriptLink.Objects
                 return this;
             }
             /// <summary>
+            /// Sets the <see cref="FieldObject"/> to build as modified.
+            /// <para>Allow the FieldObject to be returned in a return OptionObject.</para>
+            /// </summary>
+            /// <returns>A <see cref="FieldObjectBuilderFinal"/> to resume build.</returns>
+            public FieldObjectBuilderFinal Modified()
+            {
+                _fieldObject._modified = true;
+                return this;
+            }
+            /// <summary>
             /// Sets the <see cref="FieldObject"/> to build as required.
             /// </summary>
             /// <returns>A <see cref="FieldObjectBuilderFinal"/> to resume build.</returns>
