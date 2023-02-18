@@ -9,7 +9,14 @@ image: ./Changelog.png
 
 ## 2.0.0 (Future)
 
+:::info Subject to Change
+The items listed below are under consideration for AvatarScriptLink.NET v.2.
+This list is subject to change with some items being descoped or deferred to a later release.
+:::
+
 * Drop support for .NET Framework 4.6.1
+* Enable cross-platform development and build of AvatarScriptLink.NET
+* Include added Field and Row objects by default in returned OptionObjects.
 
 ## 1.2.0 (T.B.D.)
 
