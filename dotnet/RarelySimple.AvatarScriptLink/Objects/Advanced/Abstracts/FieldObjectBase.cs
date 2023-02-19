@@ -83,12 +83,16 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         private string OriginalLocked { get; set; }
         private string OriginalRequired { get; set; }
 
-        private string _enabled { get; set; }
-        private string _fieldNumber { get; set; }
-        private string _fieldValue { get; set; }
-        private string _locked { get; set; }
-        private string _required { get; set; }
-        private bool _modified { get; set; }
+        #endregion
+
+        #region Protected Properties
+
+        protected string _enabled { get; set; }
+        protected string _fieldNumber { get; set; }
+        protected string _fieldValue { get; set; }
+        protected string _locked { get; set; }
+        protected string _required { get; set; }
+        protected bool _modified { get; set; }
 
         #endregion
 

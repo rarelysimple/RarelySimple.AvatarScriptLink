@@ -9,11 +9,22 @@ image: ./Changelog.png
 
 ## 2.0.0 (Future)
 
+:::info Subject to Change
+The items listed below are under consideration for AvatarScriptLink.NET v.2.
+This list is subject to change with some items being descoped or deferred to a later release.
+:::
+
 * Drop support for .NET Framework 4.6.1
+* Enable cross-platform development and build of AvatarScriptLink.NET
+* Include added Field and Row objects by default in returned OptionObjects.
 
 ## 1.2.0 (T.B.D.)
 
 * Introduce Builder methods for each object to assist with object creation.
+  * OptionObject2015 (incl. OptionObject2, OptionObject). Issue [#40](https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/40)
+  * FormObject. Issue [#39](https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/39)
+  * RowObject. Issue [#38](https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/38)
+  * FieldObject. Issue [#37](https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/37)
 * Allow for error code and message to be set prior to creation of return OptionObject. Issue [#52](https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/52)
 
 ## 1.1.10 (2022-10-15)

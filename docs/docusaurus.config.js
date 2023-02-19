@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'AvatarScriptLink by RarelySimple',
-  tagline: 'Accelating ScriptLink Development for Netsmart myAvatar',
+  tagline: 'Accelerating ScriptLink Development for Netsmart myAvatar',
   url: 'https://scriptlink.rarelysimple.com/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
