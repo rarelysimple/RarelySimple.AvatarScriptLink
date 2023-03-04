@@ -17,9 +17,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
 
         [TestMethod]
         [TestCategory("RowObject")]
-        public void RowObject_FieldsObjectIsNotEmpty()
+        public void RowObject_FieldsObjectIsEmpty()
         {
-            RowObject rowObject = new RowObject();
+            RowObject rowObject = RowObject.Initialize();
             List<FieldObject> expected = new List<FieldObject>();
             var actual = rowObject.Fields;
             Assert.AreNotEqual(expected, actual);
@@ -29,12 +29,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("RowObject")]
         public void RowObjects_AreEqual()
         {
-            RowObject rowObject1 = new RowObject
-            {
-                ParentRowId = "1",
-                RowAction = "",
-                RowId = "1"
-            };
+            RowObject rowObject1 = RowObject.Builder()
+                .RowId("1")
+                .ParentRowId("1")
+                .Build();
             RowObject rowObject2 = new RowObject
             {
                 ParentRowId = "1",
@@ -50,12 +48,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("RowObject")]
         public void RowObjects_AreNotEqual()
         {
-            RowObject rowObject1 = new RowObject
-            {
-                ParentRowId = "1",
-                RowAction = "",
-                RowId = "1"
-            };
+            RowObject rowObject1 = RowObject.Builder()
+                .RowId("1")
+                .ParentRowId("1")
+                .Build();
             RowObject rowObject2 = new RowObject
             {
                 ParentRowId = "1",
@@ -72,18 +68,11 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void RowObjects_GetFieldValue_AreEqual()
         {
             string expected = "TEST";
-            FieldObject fieldObject = new FieldObject
-            {
-                FieldNumber = "123",
-                FieldValue = ""
-            };
-            RowObject rowObject1 = new RowObject
-            {
-                ParentRowId = "1",
-                RowAction = "",
-                RowId = "1"
-            };
-            rowObject1.Fields.Add(fieldObject);
+            RowObject rowObject1 = RowObject.Builder()
+                .RowId("1")
+                .ParentRowId("1")
+                .Field().FieldNumber("123").Add()
+                .Build();
 
             rowObject1.SetFieldValue("123", expected);
             string actual = rowObject1.GetFieldValue("123");
@@ -95,21 +84,19 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("RowObject")]
         public void RowObjects_GetFieldValue_AreNotEqual()
         {
+            string fieldNumber = "123";
             string expected = "TEST";
-            FieldObject fieldObject = new FieldObject
-            {
-                FieldNumber = "123",
-                FieldValue = ""
-            };
-            RowObject rowObject1 = new RowObject
-            {
-                ParentRowId = "1",
-                RowAction = "",
-                RowId = "1"
-            };
-            rowObject1.Fields.Add(fieldObject);
+            FieldObject fieldObject = FieldObject.Builder()
+                .FieldNumber(fieldNumber)
+                .FieldValue("")
+                .Build();
+            RowObject rowObject1 = RowObject.Builder()
+                .RowId("1")
+                .ParentRowId("1")
+                .Field(fieldObject)
+                .Build();
 
-            string actual = rowObject1.GetFieldValue("123");
+            string actual = rowObject1.GetFieldValue(fieldNumber);
 
             Assert.AreNotEqual(expected, actual);
         }
@@ -120,21 +107,18 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         {
             string fieldNumber = "123";
             string expected = "TEST";
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = fieldNumber,
-                FieldValue = expected,
-                Lock = "0",
-                Required = "0"
-            };
-            RowObject rowObject = new RowObject
-            {
-                ParentRowId = "",
-                RowAction = "",
-                RowId = "1||1"
-            };
+            FieldObject fieldObject = FieldObject.Builder()
+                .FieldNumber(fieldNumber)
+                .FieldValue(expected)
+                .Enabled()
+                .Build();
+            RowObject rowObject = RowObject.Builder()
+                .RowId("1||1")
+                .Field(fieldObject)
+                .Build();
+
             rowObject.AddFieldObject(fieldObject);
+
             Assert.AreEqual(expected, rowObject.GetFieldValue(fieldNumber));
         }
 
@@ -144,12 +128,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         {
             string fieldNumber = "123";
             string expected = "TEST";
-            RowObject rowObject = new RowObject
-            {
-                ParentRowId = "",
-                RowAction = "",
-                RowId = "1||1"
-            };
+            RowObject rowObject = RowObject.Builder().RowId("1||1").Build();
             rowObject.AddFieldObject(fieldNumber, expected, "1", "0", "0");
             Assert.AreEqual(expected, rowObject.GetFieldValue(fieldNumber));
         }
@@ -160,12 +139,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         {
             string fieldNumber = "123";
             string expected = "TEST";
-            RowObject rowObject = new RowObject
-            {
-                ParentRowId = "",
-                RowAction = "",
-                RowId = "1||1"
-            };
+            RowObject rowObject = RowObject.Builder().RowId("1||1").Build();
             rowObject.AddFieldObject(fieldNumber, expected, true, false, false);
             Assert.AreEqual(expected, rowObject.GetFieldValue(fieldNumber));
         }
@@ -177,12 +151,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         {
             string fieldNumber = "123";
             int expected = 1;
-            RowObject rowObject = new RowObject
-            {
-                ParentRowId = "",
-                RowAction = "",
-                RowId = "1||1"
-            };
+            RowObject rowObject = RowObject.Builder().RowId("1||1").Build();
             rowObject.AddFieldObject(fieldNumber, "TEST", "1", "0", "0");
             Assert.AreEqual("TEST", rowObject.GetFieldValue(fieldNumber));
 
@@ -195,113 +164,68 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("RowObject")]
         public void RowObject_IsFieldEnabled_IsFalse()
         {
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "0",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
-            RowObject rowObject1 = new RowObject
-            {
-                ParentRowId = "1",
-                RowAction = "",
-                RowId = "1"
-            };
-            rowObject1.Fields.Add(fieldObject);
+            string fieldNumber = "123";
+            RowObject rowObject1 = RowObject.Builder()
+                .RowId("1")
+                .ParentRowId("1")
+                .Field().FieldNumber(fieldNumber).FieldValue("TEST").Add()
+                .Build();
 
-            Assert.IsFalse(rowObject1.IsFieldEnabled("123"));
+            Assert.IsFalse(rowObject1.IsFieldEnabled(fieldNumber));
         }
 
         [TestMethod]
         [TestCategory("RowObject")]
         public void RowObject_IsFieldEnabled_IsTrue()
         {
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
-            RowObject rowObject1 = new RowObject
-            {
-                ParentRowId = "1",
-                RowAction = "",
-                RowId = "1"
-            };
-            rowObject1.Fields.Add(fieldObject);
+            string fieldNumber = "123";
+            RowObject rowObject1 = RowObject.Builder()
+                .RowId("1")
+                .ParentRowId("1")
+                .Field().FieldNumber(fieldNumber).FieldValue("TEST").Enabled().Add()
+                .Build();
 
-            Assert.IsTrue(rowObject1.IsFieldEnabled("123"));
+            Assert.IsTrue(rowObject1.IsFieldEnabled(fieldNumber));
         }
 
         [TestMethod]
         [TestCategory("RowObject")]
         public void RowObject_IsFieldLocked_IsFalse()
         {
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "0",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
-            RowObject rowObject1 = new RowObject
-            {
-                ParentRowId = "1",
-                RowAction = "",
-                RowId = "1"
-            };
-            rowObject1.Fields.Add(fieldObject);
+            string fieldNumber = "123";
+            RowObject rowObject1 = RowObject.Builder()
+                .RowId("1")
+                .ParentRowId("1")
+                .Field().FieldNumber(fieldNumber).FieldValue("TEST").Add()
+                .Build();
 
-            Assert.IsFalse(rowObject1.IsFieldLocked("123"));
+            Assert.IsFalse(rowObject1.IsFieldLocked(fieldNumber));
         }
 
         [TestMethod]
         [TestCategory("RowObject")]
         public void RowObject_IsFieldLocked_IsTrue()
         {
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "1",
-                Required = "0"
-            };
-            RowObject rowObject1 = new RowObject
-            {
-                ParentRowId = "1",
-                RowAction = "",
-                RowId = "1"
-            };
-            rowObject1.Fields.Add(fieldObject);
+            string fieldNumber = "123";
+            RowObject rowObject1 = RowObject.Builder()
+                .RowId("1")
+                .ParentRowId("1")
+                .Field().FieldNumber(fieldNumber).FieldValue("TEST").Locked().Add()
+                .Build();
 
-            Assert.IsTrue(rowObject1.IsFieldLocked("123"));
+            Assert.IsTrue(rowObject1.IsFieldLocked(fieldNumber));
         }
 
         [TestMethod]
         [TestCategory("RowObject")]
         public void RowObject_IsFieldPresent_IsFalse()
         {
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "0",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
-            RowObject rowObject1 = new RowObject
-            {
-                ParentRowId = "1",
-                RowAction = "",
-                RowId = "1"
-            };
-            rowObject1.Fields.Add(fieldObject);
+            string fieldNumber = "123";
+            RowObject rowObject1 = RowObject.Builder()
+                .RowId("1")
+                .ParentRowId("1")
+                .Field().FieldNumber(fieldNumber).FieldValue("TEST").Add()
+                .Build();
 
             Assert.IsFalse(rowObject1.IsFieldPresent("234"));
         }
@@ -310,108 +234,59 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("RowObject")]
         public void RowObject_IsFieldPresent_IsTrue()
         {
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
-            RowObject rowObject1 = new RowObject
-            {
-                ParentRowId = "1",
-                RowAction = "",
-                RowId = "1"
-            };
-            rowObject1.Fields.Add(fieldObject);
+            string fieldNumber = "123";
+            RowObject rowObject1 = RowObject.Builder()
+                .RowId("1")
+                .ParentRowId("1")
+                .Field().FieldNumber(fieldNumber).FieldValue("TEST").Add()
+                .Build();
 
-            Assert.IsTrue(rowObject1.IsFieldPresent("123"));
+            Assert.IsTrue(rowObject1.IsFieldPresent(fieldNumber));
         }
 
         [TestMethod]
         [TestCategory("RowObject")]
         public void RowObject_IsFieldRequired_IsFalse()
         {
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "0",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
-            RowObject rowObject1 = new RowObject
-            {
-                ParentRowId = "1",
-                RowAction = "",
-                RowId = "1"
-            };
-            rowObject1.Fields.Add(fieldObject);
+            string fieldNumber = "123";
+            RowObject rowObject1 = RowObject.Builder()
+                .RowId("1")
+                .ParentRowId("1")
+                .Field().FieldNumber(fieldNumber).FieldValue("TEST").Add()
+                .Build();
 
-            Assert.IsFalse(rowObject1.IsFieldRequired("123"));
+            Assert.IsFalse(rowObject1.IsFieldRequired(fieldNumber));
         }
 
         [TestMethod]
         [TestCategory("RowObject")]
         public void RowObject_IsFieldRequired_IsTrue()
         {
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "1"
-            };
-            RowObject rowObject1 = new RowObject
-            {
-                ParentRowId = "1",
-                RowAction = "",
-                RowId = "1"
-            };
-            rowObject1.Fields.Add(fieldObject);
+            string fieldNumber = "123";
+            RowObject rowObject1 = RowObject.Builder()
+                .RowId("1")
+                .ParentRowId("1")
+                .Field().FieldNumber(fieldNumber).FieldValue("TEST").Required().Add()
+                .Build();
 
-            Assert.IsTrue(rowObject1.IsFieldRequired("123"));
+            Assert.IsTrue(rowObject1.IsFieldRequired(fieldNumber));
         }
 
         [TestMethod]
         [TestCategory("RowObject")]
         public void RowObject_RemoveFieldObject_ByObject()
         {
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "1"
-            };
-            FieldObject fieldObject2 = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "124",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "1"
-            };
-            FieldObject fieldObject3 = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "125",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "1"
-            };
-            RowObject rowObject1 = new RowObject
-            {
-                ParentRowId = "1",
-                RowAction = "",
-                RowId = "1"
-            };
-            rowObject1.Fields.Add(fieldObject1);
-            rowObject1.Fields.Add(fieldObject2);
-            rowObject1.Fields.Add(fieldObject3);
+            FieldObject fieldObject2 = FieldObject.Builder()
+                .FieldNumber("124").FieldValue("TEST")
+                .Enabled().Required()
+                .Build();
+            RowObject rowObject1 = RowObject.Builder()
+                .RowId("1")
+                .ParentRowId("1")
+                .Field().FieldNumber("123").FieldValue("TEST").Enabled().Required().Add()
+                .Field(fieldObject2)
+                .Field().FieldNumber("125").FieldValue("TEST").Enabled().Required().Add()
+                .Build();
             
             rowObject1.RemoveFieldObject(fieldObject2);
 
@@ -423,39 +298,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("RowObject")]
         public void RowObject_RemoveFieldObject_ByFieldNumber()
         {
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "1"
-            };
-            FieldObject fieldObject2 = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "124",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "1"
-            };
-            FieldObject fieldObject3 = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "125",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "1"
-            };
-            RowObject rowObject1 = new RowObject
-            {
-                ParentRowId = "1",
-                RowAction = "",
-                RowId = "1"
-            };
-            rowObject1.Fields.Add(fieldObject1);
-            rowObject1.Fields.Add(fieldObject2);
-            rowObject1.Fields.Add(fieldObject3);
+            FieldObject fieldObject2 = FieldObject.Builder()
+                .FieldNumber("124").FieldValue("TEST")
+                .Enabled().Required()
+                .Build();
+            RowObject rowObject1 = RowObject.Builder()
+                .RowId("1")
+                .ParentRowId("1")
+                .Field().FieldNumber("123").FieldValue("TEST").Enabled().Required().Add()
+                .Field(fieldObject2)
+                .Field().FieldNumber("125").FieldValue("TEST").Enabled().Required().Add()
+                .Build();
 
             rowObject1.RemoveFieldObject(fieldObject2.FieldNumber);
 
@@ -688,12 +541,11 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestMethod]
         public void RowObject_Clone_AreEqual()
         {
-            List<FieldObject> fieldObjects = new List<FieldObject>
-            {
-                new FieldObject("123", "Test"),
-                new FieldObject("124", "Test 2")
-            };
-            RowObject rowObject = new RowObject("1||1", fieldObjects);
+            RowObject rowObject = RowObject.Builder()
+                .RowId("1||1")
+                .Field().FieldNumber("123").FieldValue("Test").Add()
+                .Field().FieldNumber("124").FieldValue("Test 2").Add()
+                .Build();
 
             RowObject cloneObject = rowObject.Clone();
 
@@ -706,12 +558,11 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestMethod]
         public void RowObject_Clone_AreNotEqual()
         {
-            List<FieldObject> fieldObjects = new List<FieldObject>
-            {
-                new FieldObject("123", "Test"),
-                new FieldObject("124", "Test 2")
-            };
-            RowObject rowObject = new RowObject("1||1", fieldObjects);
+            RowObject rowObject = RowObject.Builder()
+                .RowId("1||1")
+                .Field().FieldNumber("123").FieldValue("Test").Add()
+                .Field().FieldNumber("124").FieldValue("Test 2").Add()
+                .Build();
 
             RowObject cloneObject = rowObject.Clone();
             rowObject.RemoveFieldObject("123");
@@ -720,6 +571,45 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             Assert.AreNotEqual(rowObject, cloneObject);
             Assert.IsFalse(rowObject.IsFieldPresent("123"));
             Assert.IsTrue(cloneObject.IsFieldPresent("123"));
+        }
+
+        [TestMethod]
+        public void RowObject_Builder_ActionIsAdd()
+        {
+            RowObject rowObject = RowObject.Builder()
+                .RowId("1||1")
+                .Add()
+                .Build();
+            Assert.AreEqual(RowAction.Add, rowObject.RowAction);
+        }
+
+        [TestMethod]
+        public void RowObject_Builder_ActionIsDelete()
+        {
+            RowObject rowObject = RowObject.Builder()
+                .RowId("1||1")
+                .Delete()
+                .Build();
+            Assert.AreEqual(RowAction.Delete, rowObject.RowAction);
+        }
+
+        [TestMethod]
+        public void RowObject_Builder_ActionIsEdit()
+        {
+            RowObject rowObject = RowObject.Builder()
+                .RowId("1||1")
+                .Edit()
+                .Build();
+            Assert.AreEqual(RowAction.Edit, rowObject.RowAction);
+        }
+
+        [TestMethod]
+        public void RowObject_Builder_ActionIsNone()
+        {
+            RowObject rowObject = RowObject.Builder()
+                .RowId("1||1")
+                .Build();
+            Assert.AreEqual(RowAction.None, rowObject.RowAction);
         }
     }
 }

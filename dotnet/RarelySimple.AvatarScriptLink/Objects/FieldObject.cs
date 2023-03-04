@@ -1,7 +1,7 @@
-﻿using RarelySimple.AvatarScriptLink.Objects.Advanced;
-using RarelySimple.AvatarScriptLink.Helpers;
-using System.Globalization;
+﻿using RarelySimple.AvatarScriptLink.Helpers;
+using RarelySimple.AvatarScriptLink.Objects.Advanced;
 using System;
+using System.Globalization;
 
 namespace RarelySimple.AvatarScriptLink.Objects
 {
@@ -44,10 +44,24 @@ namespace RarelySimple.AvatarScriptLink.Objects
         { }
 
         /// <summary>
+        /// Initializes a FieldObject.
+        /// </summary>
+        /// <returns>A <see cref="FieldObject"/></returns>
+        public static FieldObject Initialize() {
+            return new FieldObject();
+        }
+
+        /// <summary>
         /// Initializes a <see cref="FieldObjectBuilder"/> to help construct a <see cref="FieldObject"/>.
         /// The implementation must set the FieldNumber before build may be completed.
         /// <code>
-        /// FieldObject fieldObject = FieldObject.Builder().FieldNumber("123").Build();
+        /// // Sample usage
+        /// FieldObject fieldObject = FieldObject.Builder()
+        ///                                      .FieldNumber("123")
+        ///                                      .FieldValue("Sample")
+        ///                                      .Enabled()
+        ///                                      .Required()
+        ///                                      .Build();
         /// </code>
         /// </summary>
         /// <returns>A <see cref="FieldObjectBuilder"/>.</returns>
@@ -88,13 +102,8 @@ namespace RarelySimple.AvatarScriptLink.Objects
                 };
             }
             /// <summary>
-            /// Constructs a FieldObjectBuilder to resume work on an existing <see cref="FieldObject"/>.
-            /// </summary>
-            /// <param name="fieldObject"></param>
-            protected FieldObjectBuilder(FieldObject fieldObject) => _fieldObject = fieldObject;
-            /// <summary>
             /// Sets the FieldNumber for the FieldObject to build.
-            /// This is required before any other attributes may be set or the <see cref="FieldObject"/> built.
+            /// This is required before any other attributes may be set on the <see cref="FieldObject"/> built.
             /// </summary>
             /// <param name="fieldNumber">Required. The FieldNumber assigned to the <see cref="FieldObject"/></param>
             /// <returns>A <see cref="FieldObjectBuilderFinal"/> allowing for the setting of other attributes and building of the <see cref="FieldObject"/></returns>
@@ -109,12 +118,18 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// <summary>
         /// Fluent Builder class for the completion of a <see cref="FieldObject"/> build.
         /// </summary>
-        public class FieldObjectBuilderFinal : FieldObjectBuilder {
+        public class FieldObjectBuilderFinal
+        {
+            protected readonly FieldObject _fieldObject;
+
             /// <summary>
             /// Constructs a <see cref="FieldObjectBuilderFinal"/> to resume building of a <see cref="FieldObject"/>.
             /// </summary>
             /// <param name="fieldObject"></param>
-            public FieldObjectBuilderFinal(FieldObject fieldObject) : base(fieldObject) { }
+            public FieldObjectBuilderFinal(FieldObject fieldObject)
+            {
+                _fieldObject = fieldObject ?? throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture)); ;
+            }
             /// <summary>
             /// Sets the <see cref="FieldObject"/> to build as enabled.
             /// </summary>
@@ -167,6 +182,120 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// </summary>
             /// <returns>A <see cref="FieldObject"/>.</returns>
             public FieldObject Build() => _fieldObject;
+        }
+
+        /// <summary>
+        /// Fluent Builder class for constructing FieldObjects.
+        /// </summary>
+        public class RowObjectFieldObjectBuilder
+        {
+            protected readonly FieldObject _fieldObject;
+            protected readonly RowObject _rowObject;
+
+            /// <summary>
+            /// Constructs a FieldObjectBuilder with Enabled, Locked, and Required set to false by default.
+            /// </summary>
+            public RowObjectFieldObjectBuilder(RowObject rowObject)
+            {
+                _rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                _fieldObject = new FieldObject();
+            }
+            /// <summary>
+            /// Constructs a FieldObjectBuilder to resume work on an existing <see cref="FieldObject"/>.
+            /// </summary>
+            /// <param name="fieldObject"></param>
+            protected RowObjectFieldObjectBuilder(FieldObject fieldObject, RowObject rowObject)
+            {
+                _fieldObject = fieldObject ?? throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                _rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+            }
+            /// <summary>
+            /// Sets the FieldNumber for the FieldObject to build.
+            /// This is required before any other attributes may be set or the <see cref="FieldObject"/> built.
+            /// </summary>
+            /// <param name="fieldNumber">Required. The FieldNumber assigned to the <see cref="FieldObject"/></param>
+            /// <returns>A <see cref="FieldObjectBuilderFinal"/> allowing for the setting of other attributes and building of the <see cref="FieldObject"/></returns>
+            public RowObjectFieldObjectBuilderFinal FieldNumber(string fieldNumber)
+            {
+                if (string.IsNullOrEmpty(fieldNumber))
+                    throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                _fieldObject.FieldNumber = fieldNumber;
+                return new RowObjectFieldObjectBuilderFinal(_fieldObject, _rowObject);
+            }
+        }
+        /// <summary>
+        /// Fluent Builder class for the completion of a <see cref="FieldObject"/> build.
+        /// </summary>
+        public class RowObjectFieldObjectBuilderFinal
+        {
+            protected readonly FieldObject _fieldObject;
+            protected readonly RowObject _rowObject;
+
+            /// <summary>
+            /// Constructs a <see cref="FieldObjectBuilderFinal"/> to resume building of a <see cref="FieldObject"/>.
+            /// </summary>
+            /// <param name="fieldObject"></param>
+            public RowObjectFieldObjectBuilderFinal(FieldObject fieldObject, RowObject rowObject) {
+                _fieldObject = fieldObject ?? throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                _rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+            }
+
+            /// <summary>
+            /// Sets the <see cref="FieldObject"/> to build as enabled.
+            /// </summary>
+            /// <returns>A <see cref="FieldObjectBuilderFinal"/> to resume build.</returns>
+            public RowObjectFieldObjectBuilderFinal Enabled()
+            {
+                _fieldObject._enabled = "1";
+                return this;
+            }
+            /// <summary>
+            /// Sets the FieldValue of the <see cref="FieldObject"/> to build.
+            /// </summary>
+            /// <param name="fieldValue">The value this <see cref="FieldObject"/> is to be set to.</param>
+            /// <returns>A <see cref="FieldObjectBuilderFinal"/> to resume build.</returns>
+            public RowObjectFieldObjectBuilderFinal FieldValue(string fieldValue)
+            {
+                _fieldObject.FieldValue = fieldValue;
+                return this;
+            }
+            /// <summary>
+            /// Sets the <see cref="FieldObject"/> to build as locked.
+            /// </summary>
+            /// <returns>A <see cref="FieldObjectBuilderFinal"/> to resume build.</returns>
+            public RowObjectFieldObjectBuilderFinal Locked()
+            {
+                _fieldObject._locked = "1";
+                return this;
+            }
+            /// <summary>
+            /// Sets the <see cref="FieldObject"/> to build as modified.
+            /// <para>Allow the FieldObject to be returned in a return OptionObject.</para>
+            /// </summary>
+            /// <returns>A <see cref="FieldObjectBuilderFinal"/> to resume build.</returns>
+            public RowObjectFieldObjectBuilderFinal Modified()
+            {
+                _fieldObject._modified = true;
+                return this;
+            }
+            /// <summary>
+            /// Sets the <see cref="FieldObject"/> to build as required.
+            /// </summary>
+            /// <returns>A <see cref="FieldObjectBuilderFinal"/> to resume build.</returns>
+            public RowObjectFieldObjectBuilderFinal Required()
+            {
+                _fieldObject._required = "1";
+                return this;
+            }
+            /// <summary>
+            /// Builds the <see cref="FieldObject"/> based on the supplied build parameters.
+            /// </summary>
+            /// <returns>A <see cref="FieldObject"/>.</returns>
+            public RowObject.RowObjectBuilderFinal Add()
+            {
+                _rowObject.Fields.Add(_fieldObject);
+                return new RowObject.RowObjectBuilderFinal(_rowObject);
+            }
         }
     }
 }
