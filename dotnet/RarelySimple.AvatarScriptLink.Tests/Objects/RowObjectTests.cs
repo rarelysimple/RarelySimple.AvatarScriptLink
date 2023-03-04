@@ -114,7 +114,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
                 .Build();
             RowObject rowObject = RowObject.Builder()
                 .RowId("1||1")
-                .Field(fieldObject)
                 .Build();
 
             rowObject.AddFieldObject(fieldObject);
