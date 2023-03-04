@@ -10,7 +10,7 @@ AvatarScriptLink.NET is a framework for managing and manipulating [Netsmart myAv
 
 Most ScriptLink-compatible APIs are built with a local version of the NTST.ScriptLinkService.Objects library. Here's what a "Hello, World!" response might look like in this scenario.
 
-```cs
+```cs title="Without AvatarScriptLink.NET"
 [WebMethod]
 public OptionObject RunScript(OptionObject optionObject, string parameter)
 {
@@ -33,7 +33,7 @@ public OptionObject RunScript(OptionObject optionObject, string parameter)
 
 With AvatarScriptLink.NET, this same code can be simplified to:
 
-```cs
+```cs title="With AvatarScriptLink.NET"
 [WebMethod]
 public OptionObject RunScript(OptionObject optionObject, string parameter)
 {
@@ -43,7 +43,7 @@ public OptionObject RunScript(OptionObject optionObject, string parameter)
 
 Likewise, to bring this same API up to the latest OptionObject version doesn't require accounting for the new properties. Just update the OptionObject version and import the new/updated WSDL into myAvatar.
 
-```cs
+```cs title="Upgrading from OptionObject to OptionObject2015"
 [WebMethod]
 public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameter)
 {
