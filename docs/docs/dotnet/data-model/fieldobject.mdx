@@ -20,10 +20,12 @@ class FieldObject {
     +string FieldValue
     +string Lock
     +string Required
+    +Builder() FieldObjectBuilder
     +Clone() FieldObject
     +Equals(FieldObjectBase) bool
     +Equals(object) bool
     +GetHashCode() int
+    +Initialize() FieldObject
     +IsEnabled() bool
     +IsLocked() bool
     +IsModified() bool
@@ -47,18 +49,20 @@ class FieldObject {
 
 | Property        | Description |
 |:----------------|:------------|
-| Enabled         | Gets or sets the Enabled value. The supported case-sensitive values are `N` and `Y`. |
+| Enabled         | Gets or sets the Enabled value. The supported values are `0` (False) and `1` (True). |
 | FieldNumber     | Gets or Sets the FieldNumber value. |
 | FieldValue      | Gets or sets the FieldValue value. |
-| Lock            | Gets or sets the Lock value. The supported case-sensitive values are `N` and `Y`. |
-| Required        | Gets or sets the Required value. The supported case-sensitive values are `N` and `Y`. |
+| Lock            | Gets or sets the Lock value. The supported values are `0` (False) and `1` (True). |
+| Required        | Gets or sets the Required value. The supported values are `0` (False) and `1` (True). |
 
 ## Methods
 
 | Method        | Description |
 |:----------------|:------------|
+| Builder() | Initializes a builder for constructing a FieldObject. |
 | Clone() | Creates a copy of the FieldObject. |
 | GetFieldValue() | Returns the FieldValue of a FieldObject. |
+| Initialize() | Initializes an empty FieldObject. This FieldObject will be disabled, unlocked, and not required upon initialization. |
 | IsEnabled() | Returns whether the FieldObject is enabled. |
 | IsLocked() | Returns whether the FieldObject is locked. |
 | IsModified() | Returns whether the FieldObject has been modified. |
@@ -89,6 +93,7 @@ public void TestMethod1WithFluentBuilder()
     var expected = "value";
     FieldObject fieldObject = FieldObject.Builder()
         .FieldNumber("123.45").FieldValue(expected)
+        .Enabled()
         .Build();
     Assert.AreEqual(expected, fieldObject.FieldValue);
 }
@@ -100,7 +105,8 @@ public void TestMethod1WithSimplifiedConstructor()
     FieldObject fieldObject = new FieldObject
     {
         FieldNumber = "123.45",
-        FieldValue = expected
+        FieldValue = expected,
+        Enabled = "1"
     };
     Assert.AreEqual(expected, fieldObject.FieldValue);
 }
@@ -115,6 +121,7 @@ public void TestMethod1WithSimplifiedConstructor()
     Dim expected As String = "value"
     Dim fieldObject As FieldObject.Builder()
         .FieldNumber("123.45").FieldValue(expected)
+        .Enabled()
         .Build()
     Assert.AreEqual(expected, fieldObject.FieldValue)
 End Sub
@@ -123,7 +130,8 @@ End Sub
     Dim expected As String = "value"
     Dim fieldObject As New FieldObject With {
         .FieldNumber = "123.45",
-        .FieldValue = expected
+        .FieldValue = expected,
+        .Enabled = "1"
     }
     Assert.AreEqual(expected, fieldObject.FieldValue)
 End Sub
@@ -137,7 +145,9 @@ End Sub
 ```mermaid
 classDiagram
 class FieldObject {
+    +Builder() FieldObjectBuilder
     +Clone() FieldObject
+    +Initialize() FieldObject
     +ToXml() string
 }
 

@@ -24,11 +24,13 @@ class RowObject {
     +AddFieldObject(string, string)
     +AddFieldObject(string, string, string, string, string)
     +AddFieldObject(string, string, bool, bool, bool)
+    +Builder() RowObjectBuilder
     +Clone() RowObject
     +Equals(RowObjectBase)
     +Equals(object)
     +GetFieldValue(string) string
     +GetHashCode()
+    +Initialize() RowObject
     +IsFieldEnabled(string) bool
     +IsFieldLocked(string) bool
     +IsFieldModified(string) bool
@@ -86,8 +88,10 @@ click FieldObject href "./fieldobject" "Learn more about the FieldObject"
 | AddFieldObject(string, string) | Adds a [FieldObject](../fieldobject) to a RowObject using supplied FieldNumber and FieldValue. |
 | AddFieldObject(string, string, string, string, string) | Adds a [FieldObject](../fieldobject) to a RowObject using supplied FieldNumber and FieldValue and setting the Enabled, Locked, and Required values (e.g., `Y` or `N`). |
 | AddFieldObject(string, string, bool, bool, bool) | Adds a [FieldObject](../fieldobject) to a RowObject using supplied FieldNumber and FieldValue and setting the Enabled, Locked, and Required values. |
+| Builder() | Initializes a builder for constructing a RowObject. |
 | Clone() | Creates a copy of the RowObject. |
 | GetFieldValue(string) | Returns the FieldValue of a [FieldObject](../fieldobject) in a RowObject by FieldNumber. |
+| Initialize() | Initializes an empty RowObject. This RowAction will be set to None upon initialization. |
 | IsFieldEnabled(string) | Returns whether a [FieldObject](../fieldobject) in a RowObject is enabled by FieldNumber. |
 | IsFieldLocked(string) | Returns whether a [FieldObject](../fieldobject) in a RowObject is locked by FieldNumber. |
 | IsFieldPresent(string) | Returns whether a [FieldObject](../fieldobject) in a RowObject is present by FieldNumber. |
@@ -118,14 +122,35 @@ Most implementations would not require working with the RowObject directly, howe
 <TabItem value="cs" label="C#">
 
 ```cs
+// Available in v1.2 or later
 [TestMethod]
-public void TestMethod1()
+public void TestMethod1WithFluentBuilder()
 {
     var expected = "value";
+    RowObject rowObject = RowObject.Builder()
+        .RowId("123||45")
+        .Field().FieldNumber("246.80").FieldValue("Sample").Enabled().Add()
+        .Edit()
+        .Build();
+    Assert.AreEqual(expected, rowObject.RowId);
+}
+
+[TestMethod]
+public void TestMethod1WithSimplifiedConstructor()
+{
+    var expected = "value";
+    FieldObject fieldObject = new FieldObject
+    {
+        FieldNumber = "246.80",
+        FieldValue = "Sample",
+        Enabled = "1"
+    };
     RowObject rowObject = new RowObject
     {
-        RowId = "123||45"
+        RowId = "123||45",
+        RowAction = "EDIT"
     };
+    rowObject.AddFieldObject(fieldObject);
     Assert.AreEqual(expected, rowObject.RowId);
 }
 ```
@@ -134,10 +159,27 @@ public void TestMethod1()
 <TabItem value="vb" label="Visual Basic">
 
 ```vb
-<TestMethod()> Public Sub TestMethod1()
+// Available in v1.2 or later
+<TestMethod()> Public Sub TestMethod1WithFluentBuilder()
     Dim expected As String = "value"
+    Dim rowObject As RowObject.Builder()
+        .RowId("123||45")
+        .Field().FieldNumber("246.80").FieldValue("Sample").Enabled().Add()
+        .Edit()
+        .Build();
+    Assert.AreEqual(expected, rowObject.RowId)
+End Sub
+
+<TestMethod()> Public Sub TestMethod1WithSimplifiedConstructor()
+    Dim expected As String = "value"
+    Dim fieldObject As New FieldObject With {
+        .FieldNumber = "246.80",
+        .FieldValue = "Sample",
+        .Enabled = "1"
+    }
     Dim rowObject As New RowObject With {
-        .RowId = "123||45"
+        .RowId = "123||45",
+        .RowAction = "EDIT"
     }
     Assert.AreEqual(expected, rowObject.RowId)
 End Sub
@@ -152,7 +194,9 @@ End Sub
 classDiagram
 direction LR
 class RowObject {
+    +Builder() RowObjectBuilder
     +Clone() RowObject
+    +Initialize() RowObject
     +ToXml() string
 }
 
