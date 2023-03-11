@@ -12,7 +12,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FormObject")]
         public void FormObject_HasOtherRowsObject()
         {
-            FormObject formObject = new FormObject();
+            FormObject formObject = FormObject.Initialize();
             Assert.IsNotNull(formObject.OtherRows);
         }
 
@@ -20,7 +20,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FormObject")]
         public void FormObject_OtherRowsObject_IsNotEmpty()
         {
-            FormObject formObject = new FormObject();
+            FormObject formObject = FormObject.Initialize();
             List<RowObject> expected = new List<RowObject>();
             var actual = formObject.OtherRows;
             Assert.AreNotEqual(expected, actual);
@@ -30,7 +30,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FormObject")]
         public void FormObject_Default_MultipleIteration_IsFalse()
         {
-            FormObject formObject = new FormObject();
+            FormObject formObject = FormObject.Initialize();
             Assert.IsFalse(formObject.MultipleIteration);
         }
 
@@ -38,10 +38,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FormObject")]
         public void FormObject_CanSetMultipleIteration()
         {
-            var formObject = new FormObject
-            {
-                MultipleIteration = true
-            };
+            var formObject = FormObject.Builder()
+                .FormId("1")
+                .MultipleIteration()
+                .Build();
             Assert.IsTrue(formObject.MultipleIteration);
             formObject.MultipleIteration = false;
             Assert.IsFalse(formObject.MultipleIteration);
@@ -51,18 +51,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FormObject")]
         public void FormObject_AddRowObject_NoMI_RowObject()
         {
-            RowObject rowObject1 = new RowObject
-            {
-                RowId = "1||1"
-            };
-            RowObject rowObject2 = new RowObject
-            {
-                RowId = "1||2"
-            };
-            FormObject formObject = new FormObject
-            {
-                MultipleIteration = false
-            };
+            RowObject rowObject1 = RowObject.Builder()
+                .RowId("1||1")
+                .Build();
+            FormObject formObject = FormObject.Initialize();
 
             formObject.AddRowObject(rowObject1);
             Assert.AreEqual(rowObject1, formObject.CurrentRow);
@@ -74,18 +66,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [ExpectedException(typeof(ArgumentException))]
         public void FormObject_AddRowObject_NoMI_RowObject_Exception()
         {
-            RowObject rowObject1 = new RowObject
-            {
-                RowId = "1||1"
-            };
-            RowObject rowObject2 = new RowObject
-            {
-                RowId = "1||2"
-            };
-            FormObject formObject = new FormObject
-            {
-                MultipleIteration = false
-            };
+            RowObject rowObject1 = RowObject.Builder()
+                .RowId("1||1")
+                .Build();
+            RowObject rowObject2 = RowObject.Builder()
+                .RowId("1||2")
+                .Build();
+            FormObject formObject = FormObject.Initialize();
 
             formObject.AddRowObject(rowObject1);
             formObject.AddRowObject(rowObject2);
@@ -97,18 +84,16 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FormObject")]
         public void FormObject_AddRowObject_MI_RowObject()
         {
-            RowObject rowObject1 = new RowObject
-            {
-                RowId = "1||1"
-            };
-            RowObject rowObject2 = new RowObject
-            {
-                RowId = "1||2"
-            };
-            FormObject formObject = new FormObject
-            {
-                MultipleIteration = true
-            };
+            RowObject rowObject1 = RowObject.Builder()
+                .RowId("1||1")
+                .Build();
+            RowObject rowObject2 = RowObject.Builder()
+                .RowId("1||2")
+                .Build();
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .MultipleIteration()
+                .Build();
 
             formObject.AddRowObject(rowObject1);
             Assert.AreEqual(rowObject1, formObject.CurrentRow);
@@ -123,11 +108,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FormObject")]
         public void FormObject_AddRowObject_Properties_NoRowAction()
         {
-            FormObject formObject = new FormObject
-            {
-                FormId = "1",
-                MultipleIteration = false
-            };
+            FormObject formObject = FormObject.Builder().FormId("1").Build();
 
             formObject.AddRowObject("1||1", "");
             Assert.AreEqual("1||1", formObject.CurrentRow.RowId);
@@ -139,11 +120,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FormObject")]
         public void FormObject_AddRowObject_Properties_with_RowAction()
         {
-            FormObject formObject = new FormObject
-            {
-                FormId = "1",
-                MultipleIteration = false
-            };
+            FormObject formObject = FormObject.Builder().FormId("1").Build();
 
             formObject.AddRowObject("1||1", "", "");
             Assert.AreEqual("1||1", formObject.CurrentRow.RowId);
@@ -155,7 +132,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FormObject")]
         public void FormObject_CanGetHtmlString_WithoutHtmlHeaders()
         {
-            FormObject formObject = new FormObject();
+            FormObject formObject = FormObject.Initialize();
             var actual = formObject.ToHtmlString(false);
             Assert.IsNotNull(actual);
         }
@@ -164,7 +141,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FormObject")]
         public void FormObject_CanGetHtmlString_WithHtmlHeaders()
         {
-            FormObject formObject = new FormObject();
+            FormObject formObject = FormObject.Initialize();
             var actual = formObject.ToHtmlString(false);
             Assert.IsNotNull(actual);
         }
@@ -174,7 +151,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [ExpectedException(typeof(NullReferenceException))]
         public void FormObject_GetCurrentRowId_IsError()
         {
-            FormObject formObject = new FormObject();
+            FormObject formObject = FormObject.Initialize();
             var actual = formObject.GetCurrentRowId();
             Assert.AreEqual(null, actual);
         }
@@ -184,11 +161,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void FormObject_GetCurrentRowId_AreEqual()
         {
             string expected = "1||1";
-            FormObject formObject = new FormObject
-            {
-                CurrentRow = new RowObject()
-            };
-            formObject.CurrentRow.RowId = expected;
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .CurrentRow()
+                    .RowId(expected)
+                    .AddRow()
+                .Build();
             var actual = formObject.GetCurrentRowId();
             Assert.AreEqual(expected, actual);
         }
@@ -198,7 +176,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [ExpectedException(typeof(NullReferenceException))]
         public void FormObject_GetParentRowId_IsError()
         {
-            FormObject formObject = new FormObject();
+            FormObject formObject = FormObject.Initialize();
             var actual = formObject.GetParentRowId();
             Assert.AreEqual(null, actual);
         }
@@ -208,11 +186,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void FormObject_GetParentRowId_AreEqual()
         {
             string expected = "1||1";
-            FormObject formObject = new FormObject
-            {
-                CurrentRow = new RowObject()
-            };
-            formObject.CurrentRow.ParentRowId = expected;
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .CurrentRow()
+                    .RowId("1||2")
+                    .ParentRowId(expected)
+                    .AddRow()
+                .Build();
             var actual = formObject.GetParentRowId();
             Assert.AreEqual(expected, actual);
         }
@@ -221,20 +201,18 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FormObject")]
         public void FormObject_IsFieldEnabled_IsTrue()
         {
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
-            RowObject rowObject = new RowObject();
-            rowObject.Fields.Add(fieldObject);
-            FormObject formObject = new FormObject
-            {
-                CurrentRow = rowObject
-            };
+            FieldObject fieldObject = FieldObject.Builder()
+                .FieldNumber("123")
+                .FieldValue("TEST")
+                .Enabled()
+                .Build();
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .CurrentRow()
+                    .RowId("1||1")
+                    .Field(fieldObject)
+                    .AddRow()
+                .Build();
 
             Assert.IsTrue(formObject.IsFieldEnabled("123"));
         }
@@ -243,20 +221,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FormObject")]
         public void FormObject_IsFieldEnabled_IsFalse()
         {
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "0",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
-            RowObject rowObject = new RowObject();
-            rowObject.Fields.Add(fieldObject);
-            FormObject formObject = new FormObject
-            {
-                CurrentRow = rowObject
-            };
+            FieldObject fieldObject = FieldObject.Builder()
+                .FieldNumber("123")
+                .FieldValue("TEST")
+                .Build();
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .CurrentRow()
+                    .RowId("1||1")
+                    .Field(fieldObject)
+                    .AddRow()
+                .Build();
 
             Assert.IsFalse(formObject.IsFieldEnabled("123"));
         }
@@ -266,20 +241,18 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [ExpectedException(typeof(System.ArgumentException))]
         public void FormObject_IsFieldEnabled_NotPresent_Error()
         {
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
-            RowObject rowObject = new RowObject();
-            rowObject.Fields.Add(fieldObject);
-            FormObject formObject = new FormObject
-            {
-                CurrentRow = rowObject
-            };
+            FieldObject fieldObject = FieldObject.Builder()
+                .FieldNumber("123")
+                .FieldValue("TEST")
+                .Enabled()
+                .Build();
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .CurrentRow()
+                    .RowId("1||1")
+                    .Field(fieldObject)
+                    .AddRow()
+                .Build();
 
             Assert.IsFalse(formObject.IsFieldEnabled("124"));
         }
@@ -288,20 +261,18 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FormObject")]
         public void FormObject_IsFieldLocked_IsTrue()
         {
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "0",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "1",
-                Required = "0"
-            };
-            RowObject rowObject = new RowObject();
-            rowObject.Fields.Add(fieldObject);
-            FormObject formObject = new FormObject
-            {
-                CurrentRow = rowObject
-            };
+            FieldObject fieldObject = FieldObject.Builder()
+                .FieldNumber("123")
+                .FieldValue("TEST")
+                .Locked()
+                .Build();
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .CurrentRow()
+                    .RowId("1||1")
+                    .Field(fieldObject)
+                    .AddRow()
+                .Build();
 
             Assert.IsTrue(formObject.IsFieldLocked("123"));
         }
@@ -310,20 +281,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FormObject")]
         public void FormObject_IsFieldLocked_IsFalse()
         {
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "0",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
-            RowObject rowObject = new RowObject();
-            rowObject.Fields.Add(fieldObject);
-            FormObject formObject = new FormObject
-            {
-                CurrentRow = rowObject
-            };
+            FieldObject fieldObject = FieldObject.Builder()
+                .FieldNumber("123")
+                .FieldValue("TEST")
+                .Build();
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .CurrentRow()
+                    .RowId("1||1")
+                    .Field(fieldObject)
+                    .AddRow()
+                .Build();
 
             Assert.IsFalse(formObject.IsFieldLocked("123"));
         }
@@ -333,20 +301,18 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [ExpectedException(typeof(System.ArgumentException))]
         public void FormObject_IsFieldLocked_NotPresent_Error()
         {
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "0",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "1",
-                Required = "0"
-            };
-            RowObject rowObject = new RowObject();
-            rowObject.Fields.Add(fieldObject);
-            FormObject formObject = new FormObject
-            {
-                CurrentRow = rowObject
-            };
+            FieldObject fieldObject = FieldObject.Builder()
+                .FieldNumber("123")
+                .FieldValue("TEST")
+                .Locked()
+                .Build();
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .CurrentRow()
+                    .RowId("1||1")
+                    .Field(fieldObject)
+                    .AddRow()
+                .Build();
 
             Assert.IsFalse(formObject.IsFieldLocked("124"));
         }
@@ -355,20 +321,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FormObject")]
         public void FormObject_IsFieldPresent_IsTrue()
         {
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "0",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
-            RowObject rowObject = new RowObject();
-            rowObject.Fields.Add(fieldObject);
-            FormObject formObject = new FormObject
-            {
-                CurrentRow = rowObject
-            };
+            FieldObject fieldObject = FieldObject.Builder()
+                .FieldNumber("123")
+                .FieldValue("TEST")
+                .Build();
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .CurrentRow()
+                    .RowId("1||1")
+                    .Field(fieldObject)
+                    .AddRow()
+                .Build();
 
             Assert.IsTrue(formObject.IsFieldPresent("123"));
         }
@@ -377,20 +340,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FormObject")]
         public void FormObject_IsFieldPresent_IsFalse()
         {
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "0",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
-            RowObject rowObject = new RowObject();
-            rowObject.Fields.Add(fieldObject);
-            FormObject formObject = new FormObject
-            {
-                CurrentRow = rowObject
-            };
+            FieldObject fieldObject = FieldObject.Builder()
+                .FieldNumber("123")
+                .FieldValue("TEST")
+                .Build();
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .CurrentRow()
+                    .RowId("1||1")
+                    .Field(fieldObject)
+                    .AddRow()
+                .Build();
 
             Assert.IsFalse(formObject.IsFieldPresent("124"));
         }
@@ -399,20 +359,18 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FormObject")]
         public void FormObject_IsFieldRequired_IsTrue()
         {
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "0",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "1"
-            };
-            RowObject rowObject = new RowObject();
-            rowObject.Fields.Add(fieldObject);
-            FormObject formObject = new FormObject
-            {
-                CurrentRow = rowObject
-            };
+            FieldObject fieldObject = FieldObject.Builder()
+                .FieldNumber("123")
+                .FieldValue("TEST")
+                .Required()
+                .Build();
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .CurrentRow()
+                    .RowId("1||1")
+                    .Field(fieldObject)
+                    .AddRow()
+                .Build();
 
             Assert.IsTrue(formObject.IsFieldRequired("123"));
         }
@@ -421,20 +379,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FormObject")]
         public void FormObject_IsFieldRequired_IsFalse()
         {
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "0",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
-            RowObject rowObject = new RowObject();
-            rowObject.Fields.Add(fieldObject);
-            FormObject formObject = new FormObject
-            {
-                CurrentRow = rowObject
-            };
+            FieldObject fieldObject = FieldObject.Builder()
+                .FieldNumber("123")
+                .FieldValue("TEST")
+                .Build();
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .CurrentRow()
+                    .RowId("1||1")
+                    .Field(fieldObject)
+                    .AddRow()
+                .Build();
 
             Assert.IsFalse(formObject.IsFieldRequired("123"));
         }
@@ -444,20 +399,18 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [ExpectedException(typeof(ArgumentException))]
         public void FormObject_IsFieldRequired_NotPresent_IsFalse()
         {
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "0",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "1"
-            };
-            RowObject rowObject = new RowObject();
-            rowObject.Fields.Add(fieldObject);
-            FormObject formObject = new FormObject
-            {
-                CurrentRow = rowObject
-            };
+            FieldObject fieldObject = FieldObject.Builder()
+                .FieldNumber("123")
+                .FieldValue("TEST")
+                .Required()
+                .Build();
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .CurrentRow()
+                    .RowId("1||1")
+                    .Field(fieldObject)
+                    .AddRow()
+                .Build();
 
             Assert.IsFalse(formObject.IsFieldRequired("124"));
         }
@@ -466,24 +419,18 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FormObject")]
         public void FormObject_SetFieldValue_NoMI_AreEqual()
         {
-            FieldObject fieldObject = new FieldObject
-            {
-                Enabled = "1",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
-            RowObject rowObject = new RowObject
-            {
-                RowId = "1||1"
-            };
-            rowObject.Fields.Add(fieldObject);
-            FormObject formObject = new FormObject
-            {
-                CurrentRow = rowObject,
-                MultipleIteration = false
-            };
+            FieldObject fieldObject = FieldObject.Builder()
+                .FieldNumber("123")
+                .FieldValue("TEST")
+                .Enabled()
+                .Build();
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .CurrentRow()
+                    .RowId("1||1")
+                    .Field(fieldObject)
+                    .AddRow()
+                .Build();
 
             formObject.SetFieldValue("123", "MODIFIED");
             Assert.AreEqual("MODIFIED", formObject.GetFieldValue("123"));
@@ -495,38 +442,20 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("FormObject")]
         public void FormObject_SetFieldValue_MI_AreEqual()
         {
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "0",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
-            RowObject rowObject1 = new RowObject
-            {
-                RowId = "1||1"
-            };
-            rowObject1.Fields.Add(fieldObject1);
-            FieldObject fieldObject2 = new FieldObject
-            {
-                Enabled = "0",
-                FieldNumber = "123",
-                FieldValue = "TEST2",
-                Lock = "0",
-                Required = "0"
-            };
-            RowObject rowObject2 = new RowObject
-            {
-                RowId = "1||2"
-            };
-            rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject
-            {
-                CurrentRow = rowObject1,
-                MultipleIteration = true
-            };
-            formObject.OtherRows.Add(rowObject2);
+            FieldObject fieldObject1 = FieldObject.Builder()
+                .FieldNumber("123")
+                .FieldValue("TEST")
+                .Build();
+            FieldObject fieldObject2 = FieldObject.Builder()
+                .FieldNumber("123")
+                .FieldValue("TEST2")
+                .Build();
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .CurrentRow().RowId("1||1").Field(fieldObject1).AddRow()
+                .MultipleIteration()
+                .OtherRow().RowId("1||2").Field(fieldObject2).AddRow()
+                .Build();
 
             formObject.SetFieldValue("1||2", "123", "MODIFIED");
             Assert.AreNotEqual("MODIFIED", formObject.GetFieldValue("123"));
@@ -539,38 +468,20 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [ExpectedException(typeof(ArgumentException))]
         public void FormObject_SetFieldValue_MI_Error()
         {
-            FieldObject fieldObject1 = new FieldObject
-            {
-                Enabled = "0",
-                FieldNumber = "123",
-                FieldValue = "TEST",
-                Lock = "0",
-                Required = "0"
-            };
-            RowObject rowObject1 = new RowObject
-            {
-                RowId = "1||1"
-            };
-            rowObject1.Fields.Add(fieldObject1);
-            FieldObject fieldObject2 = new FieldObject
-            {
-                Enabled = "0",
-                FieldNumber = "123",
-                FieldValue = "TEST2",
-                Lock = "0",
-                Required = "0"
-            };
-            RowObject rowObject2 = new RowObject
-            {
-                RowId = "1||2"
-            };
-            rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject
-            {
-                CurrentRow = rowObject1,
-                MultipleIteration = true
-            };
-            formObject.OtherRows.Add(rowObject2);
+            FieldObject fieldObject1 = FieldObject.Builder()
+                .FieldNumber("123")
+                .FieldValue("TEST")
+                .Build();
+            FieldObject fieldObject2 = FieldObject.Builder()
+                .FieldNumber("123")
+                .FieldValue("TEST2")
+                .Build();
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .CurrentRow().RowId("1||1").Field(fieldObject1).AddRow()
+                .MultipleIteration()
+                .OtherRow().RowId("1||2").Field(fieldObject2).AddRow()
+                .Build();
 
             formObject.SetFieldValue("123", "MODIFIED");
             Assert.AreNotEqual("MODIFIED", formObject.GetFieldValue("123"));
@@ -699,12 +610,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestMethod]
         public void FormObject_Clone_AreEqual()
         {
-            List<FieldObject> fieldObjects = new List<FieldObject>
-            {
-                new FieldObject("123", "Test")
-            };
-            RowObject rowObject = new RowObject("1||1", fieldObjects);
-            FormObject formObject = new FormObject("1", rowObject);
+            FieldObject fieldObject = FieldObject.Builder()
+                .FieldNumber("123")
+                .FieldValue("Test")
+                .Build();
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .CurrentRow().RowId("1||1").Field(fieldObject).AddRow()
+                .Build();
 
             FormObject cloneObject = formObject.Clone();
 
@@ -716,12 +629,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestMethod]
         public void FormObject_Clone_AreNotEqual()
         {
-            List<FieldObject> fieldObjects = new List<FieldObject>
-            {
-                new FieldObject("123", "Test")
-            };
-            RowObject rowObject = new RowObject("1||1", fieldObjects);
-            FormObject formObject = new FormObject("1", rowObject);
+            RowObject rowObject = RowObject.Builder()
+                .RowId("1||1")
+                .Field().FieldNumber("123").FieldValue("Test").AddField()
+                .Build();
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .CurrentRow(rowObject)
+                .Build();
 
             FormObject cloneObject = formObject.Clone();
             formObject.DeleteRowObject(rowObject);

@@ -87,14 +87,14 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// </summary>
         public class FieldObjectBuilder
         {
-            protected readonly FieldObject _fieldObject;
+            protected readonly FieldObject fieldObject;
 
             /// <summary>
             /// Constructs a FieldObjectBuilder with Enabled, Locked, and Required set to false by default.
             /// </summary>
             public FieldObjectBuilder()
             {
-                _fieldObject = new FieldObject
+                fieldObject = new FieldObject
                 {
                     _enabled = "0",
                     _locked = "0",
@@ -111,8 +111,8 @@ namespace RarelySimple.AvatarScriptLink.Objects
             {
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-                _fieldObject.FieldNumber = fieldNumber;
-                return new FieldObjectBuilderFinal(_fieldObject);
+                fieldObject.FieldNumber = fieldNumber;
+                return new FieldObjectBuilderFinal(fieldObject);
             }
         }
         /// <summary>
@@ -120,7 +120,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// </summary>
         public class FieldObjectBuilderFinal
         {
-            protected readonly FieldObject _fieldObject;
+            protected readonly FieldObject fieldObject;
 
             /// <summary>
             /// Constructs a <see cref="FieldObjectBuilderFinal"/> to resume building of a <see cref="FieldObject"/>.
@@ -128,7 +128,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <param name="fieldObject"></param>
             public FieldObjectBuilderFinal(FieldObject fieldObject)
             {
-                _fieldObject = fieldObject ?? throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture)); ;
+                this.fieldObject = fieldObject ?? throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture)); ;
             }
             /// <summary>
             /// Sets the <see cref="FieldObject"/> to build as enabled.
@@ -136,7 +136,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <returns>A <see cref="FieldObjectBuilderFinal"/> to resume build.</returns>
             public FieldObjectBuilderFinal Enabled()
             {
-                _fieldObject._enabled = "1";
+                fieldObject._enabled = "1";
                 return this;
             }
             /// <summary>
@@ -146,7 +146,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <returns>A <see cref="FieldObjectBuilderFinal"/> to resume build.</returns>
             public FieldObjectBuilderFinal FieldValue(string fieldValue)
             {
-                _fieldObject.FieldValue = fieldValue;
+                fieldObject.FieldValue = fieldValue;
                 return this;
             }
             /// <summary>
@@ -155,7 +155,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <returns>A <see cref="FieldObjectBuilderFinal"/> to resume build.</returns>
             public FieldObjectBuilderFinal Locked()
             {
-                _fieldObject._locked = "1";
+                fieldObject._locked = "1";
                 return this;
             }
             /// <summary>
@@ -165,7 +165,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <returns>A <see cref="FieldObjectBuilderFinal"/> to resume build.</returns>
             public FieldObjectBuilderFinal Modified()
             {
-                _fieldObject._modified = true;
+                fieldObject._modified = true;
                 return this;
             }
             /// <summary>
@@ -174,14 +174,14 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <returns>A <see cref="FieldObjectBuilderFinal"/> to resume build.</returns>
             public FieldObjectBuilderFinal Required()
             {
-                _fieldObject._required = "1";
+                fieldObject._required = "1";
                 return this;
             }
             /// <summary>
             /// Builds the <see cref="FieldObject"/> based on the supplied build parameters.
             /// </summary>
             /// <returns>A <see cref="FieldObject"/>.</returns>
-            public FieldObject Build() => _fieldObject;
+            public FieldObject Build() => fieldObject;
         }
 
         /// <summary>
@@ -189,16 +189,16 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// </summary>
         public class RowObjectFieldObjectBuilder
         {
-            protected readonly FieldObject _fieldObject;
-            protected readonly RowObject _rowObject;
+            protected readonly FieldObject fieldObject;
+            protected readonly RowObject rowObject;
 
             /// <summary>
             /// Constructs a FieldObjectBuilder with Enabled, Locked, and Required set to false by default.
             /// </summary>
             public RowObjectFieldObjectBuilder(RowObject rowObject)
             {
-                _rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-                _fieldObject = new FieldObject();
+                this.rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                fieldObject = new FieldObject();
             }
             /// <summary>
             /// Constructs a FieldObjectBuilder to resume work on an existing <see cref="FieldObject"/>.
@@ -206,8 +206,8 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <param name="fieldObject"></param>
             protected RowObjectFieldObjectBuilder(FieldObject fieldObject, RowObject rowObject)
             {
-                _fieldObject = fieldObject ?? throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-                _rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                this.fieldObject = fieldObject ?? throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                this.rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
             }
             /// <summary>
             /// Sets the FieldNumber for the FieldObject to build.
@@ -219,8 +219,8 @@ namespace RarelySimple.AvatarScriptLink.Objects
             {
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-                _fieldObject.FieldNumber = fieldNumber;
-                return new RowObjectFieldObjectBuilderFinal(_fieldObject, _rowObject);
+                fieldObject.FieldNumber = fieldNumber;
+                return new RowObjectFieldObjectBuilderFinal(fieldObject, rowObject);
             }
         }
         /// <summary>
@@ -228,16 +228,16 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// </summary>
         public class RowObjectFieldObjectBuilderFinal
         {
-            protected readonly FieldObject _fieldObject;
-            protected readonly RowObject _rowObject;
+            protected readonly FieldObject fieldObject;
+            protected readonly RowObject rowObject;
 
             /// <summary>
             /// Constructs a <see cref="FieldObjectBuilderFinal"/> to resume building of a <see cref="FieldObject"/>.
             /// </summary>
             /// <param name="fieldObject"></param>
             public RowObjectFieldObjectBuilderFinal(FieldObject fieldObject, RowObject rowObject) {
-                _fieldObject = fieldObject ?? throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-                _rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                this.fieldObject = fieldObject ?? throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                this.rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
             }
 
             /// <summary>
@@ -246,7 +246,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <returns>A <see cref="FieldObjectBuilderFinal"/> to resume build.</returns>
             public RowObjectFieldObjectBuilderFinal Enabled()
             {
-                _fieldObject._enabled = "1";
+                fieldObject._enabled = "1";
                 return this;
             }
             /// <summary>
@@ -256,7 +256,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <returns>A <see cref="FieldObjectBuilderFinal"/> to resume build.</returns>
             public RowObjectFieldObjectBuilderFinal FieldValue(string fieldValue)
             {
-                _fieldObject.FieldValue = fieldValue;
+                fieldObject.FieldValue = fieldValue;
                 return this;
             }
             /// <summary>
@@ -265,7 +265,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <returns>A <see cref="FieldObjectBuilderFinal"/> to resume build.</returns>
             public RowObjectFieldObjectBuilderFinal Locked()
             {
-                _fieldObject._locked = "1";
+                fieldObject._locked = "1";
                 return this;
             }
             /// <summary>
@@ -275,7 +275,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <returns>A <see cref="FieldObjectBuilderFinal"/> to resume build.</returns>
             public RowObjectFieldObjectBuilderFinal Modified()
             {
-                _fieldObject._modified = true;
+                fieldObject._modified = true;
                 return this;
             }
             /// <summary>
@@ -284,17 +284,17 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <returns>A <see cref="FieldObjectBuilderFinal"/> to resume build.</returns>
             public RowObjectFieldObjectBuilderFinal Required()
             {
-                _fieldObject._required = "1";
+                fieldObject._required = "1";
                 return this;
             }
             /// <summary>
             /// Builds the <see cref="FieldObject"/> based on the supplied build parameters.
             /// </summary>
             /// <returns>A <see cref="FieldObject"/>.</returns>
-            public RowObject.RowObjectBuilderFinal Add()
+            public RowObject.RowObjectBuilderFinal AddField()
             {
-                _rowObject.Fields.Add(_fieldObject);
-                return new RowObject.RowObjectBuilderFinal(_rowObject);
+                rowObject.Fields.Add(fieldObject);
+                return new RowObject.RowObjectBuilderFinal(rowObject);
             }
         }
     }

@@ -71,7 +71,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             RowObject rowObject1 = RowObject.Builder()
                 .RowId("1")
                 .ParentRowId("1")
-                .Field().FieldNumber("123").Add()
+                .Field().FieldNumber("123").AddField()
                 .Build();
 
             rowObject1.SetFieldValue("123", expected);
@@ -167,7 +167,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             RowObject rowObject1 = RowObject.Builder()
                 .RowId("1")
                 .ParentRowId("1")
-                .Field().FieldNumber(fieldNumber).FieldValue("TEST").Add()
+                .Field().FieldNumber(fieldNumber).FieldValue("TEST").AddField()
                 .Build();
 
             Assert.IsFalse(rowObject1.IsFieldEnabled(fieldNumber));
@@ -181,7 +181,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             RowObject rowObject1 = RowObject.Builder()
                 .RowId("1")
                 .ParentRowId("1")
-                .Field().FieldNumber(fieldNumber).FieldValue("TEST").Enabled().Add()
+                .Field().FieldNumber(fieldNumber).FieldValue("TEST").Enabled().AddField()
                 .Build();
 
             Assert.IsTrue(rowObject1.IsFieldEnabled(fieldNumber));
@@ -195,7 +195,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             RowObject rowObject1 = RowObject.Builder()
                 .RowId("1")
                 .ParentRowId("1")
-                .Field().FieldNumber(fieldNumber).FieldValue("TEST").Add()
+                .Field().FieldNumber(fieldNumber).FieldValue("TEST").AddField()
                 .Build();
 
             Assert.IsFalse(rowObject1.IsFieldLocked(fieldNumber));
@@ -209,7 +209,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             RowObject rowObject1 = RowObject.Builder()
                 .RowId("1")
                 .ParentRowId("1")
-                .Field().FieldNumber(fieldNumber).FieldValue("TEST").Locked().Add()
+                .Field().FieldNumber(fieldNumber).FieldValue("TEST").Locked().AddField()
                 .Build();
 
             Assert.IsTrue(rowObject1.IsFieldLocked(fieldNumber));
@@ -223,7 +223,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             RowObject rowObject1 = RowObject.Builder()
                 .RowId("1")
                 .ParentRowId("1")
-                .Field().FieldNumber(fieldNumber).FieldValue("TEST").Add()
+                .Field().FieldNumber(fieldNumber).FieldValue("TEST").AddField()
                 .Build();
 
             Assert.IsFalse(rowObject1.IsFieldPresent("234"));
@@ -237,7 +237,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             RowObject rowObject1 = RowObject.Builder()
                 .RowId("1")
                 .ParentRowId("1")
-                .Field().FieldNumber(fieldNumber).FieldValue("TEST").Add()
+                .Field().FieldNumber(fieldNumber).FieldValue("TEST").AddField()
                 .Build();
 
             Assert.IsTrue(rowObject1.IsFieldPresent(fieldNumber));
@@ -251,7 +251,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             RowObject rowObject1 = RowObject.Builder()
                 .RowId("1")
                 .ParentRowId("1")
-                .Field().FieldNumber(fieldNumber).FieldValue("TEST").Add()
+                .Field().FieldNumber(fieldNumber).FieldValue("TEST").AddField()
                 .Build();
 
             Assert.IsFalse(rowObject1.IsFieldRequired(fieldNumber));
@@ -265,7 +265,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             RowObject rowObject1 = RowObject.Builder()
                 .RowId("1")
                 .ParentRowId("1")
-                .Field().FieldNumber(fieldNumber).FieldValue("TEST").Required().Add()
+                .Field().FieldNumber(fieldNumber).FieldValue("TEST").Required().AddField()
                 .Build();
 
             Assert.IsTrue(rowObject1.IsFieldRequired(fieldNumber));
@@ -282,9 +282,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             RowObject rowObject1 = RowObject.Builder()
                 .RowId("1")
                 .ParentRowId("1")
-                .Field().FieldNumber("123").FieldValue("TEST").Enabled().Required().Add()
+                .Field().FieldNumber("123").FieldValue("TEST").Enabled().Required().AddField()
                 .Field(fieldObject2)
-                .Field().FieldNumber("125").FieldValue("TEST").Enabled().Required().Add()
+                .Field().FieldNumber("125").FieldValue("TEST").Enabled().Required().AddField()
                 .Build();
             
             rowObject1.RemoveFieldObject(fieldObject2);
@@ -304,9 +304,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             RowObject rowObject1 = RowObject.Builder()
                 .RowId("1")
                 .ParentRowId("1")
-                .Field().FieldNumber("123").FieldValue("TEST").Enabled().Required().Add()
+                .Field().FieldNumber("123").FieldValue("TEST").Enabled().Required().AddField()
                 .Field(fieldObject2)
-                .Field().FieldNumber("125").FieldValue("TEST").Enabled().Required().Add()
+                .Field().FieldNumber("125").FieldValue("TEST").Enabled().Required().AddField()
                 .Build();
 
             rowObject1.RemoveFieldObject(fieldObject2.FieldNumber);
@@ -542,8 +542,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         {
             RowObject rowObject = RowObject.Builder()
                 .RowId("1||1")
-                .Field().FieldNumber("123").FieldValue("Test").Add()
-                .Field().FieldNumber("124").FieldValue("Test 2").Add()
+                .Field().FieldNumber("123").FieldValue("Test").AddField()
+                .Field().FieldNumber("124").FieldValue("Test 2").AddField()
                 .Build();
 
             RowObject cloneObject = rowObject.Clone();
@@ -559,8 +559,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         {
             RowObject rowObject = RowObject.Builder()
                 .RowId("1||1")
-                .Field().FieldNumber("123").FieldValue("Test").Add()
-                .Field().FieldNumber("124").FieldValue("Test 2").Add()
+                .Field().FieldNumber("123").FieldValue("Test").AddField()
+                .Field().FieldNumber("124").FieldValue("Test 2").AddField()
                 .Build();
 
             RowObject cloneObject = rowObject.Clone();
