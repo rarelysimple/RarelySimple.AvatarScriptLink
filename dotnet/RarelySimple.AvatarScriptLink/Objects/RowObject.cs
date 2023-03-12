@@ -72,11 +72,8 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// <summary>
         /// Initializes a <see cref="RowObject"/>
         /// </summary>
-        /// <returns>A <see cref="FieldObject"/></returns>
-        public static RowObject Initialize()
-        {
-            return new RowObject();
-        }
+        /// <returns>A <see cref="RowObject"/></returns>
+        public static RowObject Initialize() { return new RowObject(); }
 
         /// <summary>
         /// Initializes a <see cref="RowObjectBuilder"/> to help construct a <see cref="RowObject"/>.
@@ -87,16 +84,13 @@ namespace RarelySimple.AvatarScriptLink.Objects
         ///                                .RowId("1||2")
         ///                                .ParentRowId("1||1")
         ///                                .Field(fieldObject)
-        ///                                .Field().FieldNumber("123.45").FieldValue("Sample").Enabled().Add()
+        ///                                .Field().FieldNumber("123.45").FieldValue("Sample").Enabled().AddField()
         ///                                .Add()  // Sets RowAction to "ADD"
         ///                                .Build();
         /// </code>
         /// </summary>
-        /// <returns></returns>
-        public static RowObjectBuilder Builder()
-        {
-            return new RowObjectBuilder();
-        }
+        /// <returns>A <see cref="RowObject"/></returns>
+        public static RowObjectBuilder Builder() { return new RowObjectBuilder(); }
 
         /// <summary>
         /// Returns a deep copy of the <see cref="RowObject"/>.
@@ -161,8 +155,8 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <summary>
             /// Constructs a RowObjectBuilderFinal used to complete build of a <see cref="RowObject"/>.
             /// </summary>
-            /// <param name="rowObject"></param>
-            /// <exception cref="ArgumentNullException"></exception>
+            /// <param name="rowObject">The <see cref="RowObject"/> to continue building.</param>
+            /// <exception cref="ArgumentNullException">Thrown if no <see cref="RowObject"/> is provided for continuation of build.</exception>
             public RowObjectBuilderFinal(RowObject rowObject)
             {
                 _rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
@@ -233,6 +227,230 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public RowObject Build()
             {
                 return _rowObject;
+            }
+        }
+        /// <summary>
+        /// A Fluent Builder for constructing a FormObject CurrentRow.
+        /// </summary>
+        public class CurrentRowObjectBuilder
+        {
+            protected readonly FormObject formObject;
+            protected readonly RowObject rowObject;
+            /// <summary>
+            /// Constructs a CurrentRowObjectBuilder with the RowAction set to None by default.
+            /// </summary>
+            public CurrentRowObjectBuilder(FormObject formObject)
+            {
+                this.formObject = formObject ?? throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                rowObject = new RowObject()
+                {
+                    RowAction = ""
+                };
+            }
+            /// <summary>
+            /// Sets the RowId of the <see cref="RowObject"/> to build.
+            /// This is required before any other attributes may be set on the <see cref="RowObject"/> built.
+            /// </summary>
+            /// <param name="rowId">Required. The RowId assigned to the <see cref="RowObject"/></param>
+            /// <returns>A <see cref="CurrentRowObjectBuilderFinal"/> allowing for the setting of other attributes and building of the <see cref="RowObject"/></returns>
+            /// <exception cref="ArgumentNullException"></exception>
+            public CurrentRowObjectBuilderFinal RowId(string rowId)
+            {
+                if (string.IsNullOrEmpty(rowId))
+                    throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                rowObject.RowId = rowId;
+                return new CurrentRowObjectBuilderFinal(rowObject, formObject);
+            }
+        }
+        /// <summary>
+        /// A Faceted Fluent Builder for the completion of a <see cref="RowObject"/> build.
+        /// </summary>
+        public class CurrentRowObjectBuilderFinal
+        {
+            protected readonly FormObject formObject;
+            protected readonly RowObject rowObject;
+
+            /// <summary>
+            /// Constructs a FormObjectRowObjectBuilderFinal used to complete build of a <see cref="RowObject"/>.
+            /// </summary>
+            /// <param name="rowObject"></param>
+            /// <exception cref="ArgumentNullException"></exception>
+            public CurrentRowObjectBuilderFinal(RowObject rowObject, FormObject formObject)
+            {
+                this.rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                this.formObject = formObject ?? throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+            }
+            /// <summary>
+            /// Sets the RowAction to Add for this <see cref="RowObject"/>
+            /// </summary>
+            /// <returns>A <see cref="OtherRowObjectBuilderFinal"/> to resume build.</returns>
+            public CurrentRowObjectBuilderFinal Add()
+            {
+                rowObject.RowAction = Objects.RowAction.Add;
+                return this;
+            }
+            /// <summary>
+            /// Sets the RowAction to Delete for this <see cref="RowObject"/>
+            /// </summary>
+            /// <returns>A <see cref="OtherRowObjectBuilderFinal"/> to resume build.</returns>
+            public CurrentRowObjectBuilderFinal Delete()
+            {
+                rowObject.RowAction = Objects.RowAction.Delete;
+                return this;
+            }
+            /// <summary>
+            /// Sets the RowAction to Edit for this <see cref="RowObject"/>
+            /// </summary>
+            /// <returns>A <see cref="OtherRowObjectBuilderFinal"/> to resume build.</returns>
+            public CurrentRowObjectBuilderFinal Edit()
+            {
+                rowObject.RowAction = Objects.RowAction.Edit;
+                return this;
+            }
+            /// <summary>
+            /// Sets the ParentRowId for this <see cref="RowObject"/>
+            /// </summary>
+            /// <param name="parentRowId">The RowId of the parent RowObject</param>
+            /// <returns>A <see cref="OtherRowObjectBuilderFinal"/> to resume build.</returns>
+            public CurrentRowObjectBuilderFinal ParentRowId(string parentRowId)
+            {
+                rowObject.ParentRowId = parentRowId;
+                return this;
+            }
+            /// <summary>
+            /// Adds a <see cref="FieldObject"/> to the <see cref="RowObject"/>
+            /// </summary>
+            /// <param name="fieldObject">The <see cref="FieldObject"/> to add</param>
+            /// <returns>A <see cref="OtherRowObjectBuilderFinal"/> to resume build.</returns>
+            public CurrentRowObjectBuilderFinal Field(FieldObject fieldObject)
+            {
+                if (rowObject.Fields == null)
+                {
+                    rowObject.Fields = new List<FieldObject>();
+                }
+                rowObject.Fields.Add(fieldObject);
+                return this;
+            }
+            /// <summary>
+            /// Builds the <see cref="RowObject"/> based on the supplied build parameters.
+            /// </summary>
+            /// <returns>A <see cref="RowObject"/></returns>
+            public FormObject.FormObjectBuilderFinal AddRow()
+            {
+                formObject.CurrentRow = rowObject;
+                return new FormObject.FormObjectBuilderFinal(formObject);
+            }
+        }
+        /// <summary>
+        /// A Fluent Builder for adding OtherRows to a <see cref="FormObject"/>
+        /// </summary>
+        public class OtherRowObjectBuilder
+        {
+            protected readonly FormObject formObject;
+            protected readonly RowObject rowObject;
+            /// <summary>
+            /// Constructs a FormObjectRowObjectBuilder with the RowAction set to None by default.
+            /// </summary>
+            public OtherRowObjectBuilder(FormObject formObject)
+            {
+                this.formObject = formObject ?? throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                rowObject = new RowObject()
+                {
+                    RowAction = ""
+                };
+            }
+            /// <summary>
+            /// Sets the RowId of the <see cref="RowObject"/> to build.
+            /// This is required before any other attributes may be set on the <see cref="RowObject"/> built.
+            /// </summary>
+            /// <param name="rowId">Required. The RowId assigned to the <see cref="RowObject"/></param>
+            /// <returns>A <see cref="OtherRowObjectBuilderFinal"/> allowing for the setting of other attributes and building of the <see cref="RowObject"/></returns>
+            /// <exception cref="ArgumentNullException"></exception>
+            public OtherRowObjectBuilderFinal RowId(string rowId)
+            {
+                if (string.IsNullOrEmpty(rowId))
+                    throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                rowObject.RowId = rowId;
+                return new OtherRowObjectBuilderFinal(rowObject, formObject);
+            }
+        }
+        /// <summary>
+        /// A Faceted Fluent Builder for the completion of a <see cref="RowObject"/> build.
+        /// </summary>
+        public class OtherRowObjectBuilderFinal
+        {
+            protected readonly FormObject formObject;
+            protected readonly RowObject rowObject;
+
+            /// <summary>
+            /// Constructs a FormObjectRowObjectBuilderFinal used to complete build of a <see cref="RowObject"/>.
+            /// </summary>
+            /// <param name="rowObject"></param>
+            /// <exception cref="ArgumentNullException"></exception>
+            public OtherRowObjectBuilderFinal(RowObject rowObject, FormObject formObject)
+            {
+                this.rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                this.formObject = formObject ?? throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+            }
+            /// <summary>
+            /// Sets the RowAction to Add for this <see cref="RowObject"/>
+            /// </summary>
+            /// <returns>A <see cref="OtherRowObjectBuilderFinal"/> to resume build.</returns>
+            public OtherRowObjectBuilderFinal Add()
+            {
+                rowObject.RowAction = Objects.RowAction.Add;
+                return this;
+            }
+            /// <summary>
+            /// Sets the RowAction to Delete for this <see cref="RowObject"/>
+            /// </summary>
+            /// <returns>A <see cref="OtherRowObjectBuilderFinal"/> to resume build.</returns>
+            public OtherRowObjectBuilderFinal Delete()
+            {
+                rowObject.RowAction = Objects.RowAction.Delete;
+                return this;
+            }
+            /// <summary>
+            /// Sets the RowAction to Edit for this <see cref="RowObject"/>
+            /// </summary>
+            /// <returns>A <see cref="OtherRowObjectBuilderFinal"/> to resume build.</returns>
+            public OtherRowObjectBuilderFinal Edit()
+            {
+                rowObject.RowAction = Objects.RowAction.Edit;
+                return this;
+            }
+            /// <summary>
+            /// Sets the ParentRowId for this <see cref="RowObject"/>
+            /// </summary>
+            /// <param name="parentRowId">The RowId of the parent RowObject</param>
+            /// <returns>A <see cref="OtherRowObjectBuilderFinal"/> to resume build.</returns>
+            public OtherRowObjectBuilderFinal ParentRowId(string parentRowId)
+            {
+                rowObject.ParentRowId = parentRowId;
+                return this;
+            }
+            /// <summary>
+            /// Adds a <see cref="FieldObject"/> to the <see cref="RowObject"/>
+            /// </summary>
+            /// <param name="fieldObject">The <see cref="FieldObject"/> to add</param>
+            /// <returns>A <see cref="OtherRowObjectBuilderFinal"/> to resume build.</returns>
+            public OtherRowObjectBuilderFinal Field(FieldObject fieldObject)
+            {
+                if (rowObject.Fields == null)
+                {
+                    rowObject.Fields = new List<FieldObject>();
+                }
+                rowObject.Fields.Add(fieldObject);
+                return this;
+            }
+            /// <summary>
+            /// Builds the <see cref="RowObject"/> based on the supplied build parameters.
+            /// </summary>
+            /// <returns>A <see cref="RowObject"/></returns>
+            public FormObject.FormObjectBuilderMIFinal AddRow()
+            {
+                formObject.OtherRows.Add(rowObject);
+                return new FormObject.FormObjectBuilderMIFinal(formObject);
             }
         }
     }
