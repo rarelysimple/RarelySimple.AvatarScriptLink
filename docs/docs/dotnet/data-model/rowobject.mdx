@@ -126,10 +126,10 @@ Most implementations would not require working with the RowObject directly, howe
 [TestMethod]
 public void TestMethod1WithFluentBuilder()
 {
-    var expected = "value";
+    var expected = "123||1";
     RowObject rowObject = RowObject.Builder()
-        .RowId("123||45")
-        .Field().FieldNumber("246.80").FieldValue("Sample").Enabled().Add()
+        .RowId(expected)
+        .Field().FieldNumber("246.80").FieldValue("Sample").Enabled().AddField()
         .Edit()
         .Build();
     Assert.AreEqual(expected, rowObject.RowId);
@@ -138,7 +138,7 @@ public void TestMethod1WithFluentBuilder()
 [TestMethod]
 public void TestMethod1WithSimplifiedConstructor()
 {
-    var expected = "value";
+    var expected = "123||1";
     FieldObject fieldObject = new FieldObject
     {
         FieldNumber = "246.80",
@@ -147,7 +147,7 @@ public void TestMethod1WithSimplifiedConstructor()
     };
     RowObject rowObject = new RowObject
     {
-        RowId = "123||45",
+        RowId = expected,
         RowAction = "EDIT"
     };
     rowObject.AddFieldObject(fieldObject);
@@ -159,28 +159,29 @@ public void TestMethod1WithSimplifiedConstructor()
 <TabItem value="vb" label="Visual Basic">
 
 ```vb
-// Available in v1.2 or later
+' Available in v1.2 or later
 <TestMethod()> Public Sub TestMethod1WithFluentBuilder()
-    Dim expected As String = "value"
+    Dim expected As String = "123||1"
     Dim rowObject As RowObject.Builder()
-        .RowId("123||45")
-        .Field().FieldNumber("246.80").FieldValue("Sample").Enabled().Add()
+        .RowId(expected)
+        .Field().FieldNumber("246.80").FieldValue("Sample").Enabled().AddField()
         .Edit()
         .Build();
     Assert.AreEqual(expected, rowObject.RowId)
 End Sub
 
 <TestMethod()> Public Sub TestMethod1WithSimplifiedConstructor()
-    Dim expected As String = "value"
+    Dim expected As String = "123||1"
     Dim fieldObject As New FieldObject With {
         .FieldNumber = "246.80",
         .FieldValue = "Sample",
         .Enabled = "1"
     }
     Dim rowObject As New RowObject With {
-        .RowId = "123||45",
+        .RowId = expected,
         .RowAction = "EDIT"
     }
+    rowObject.AddFieldObject(fieldObject)
     Assert.AreEqual(expected, rowObject.RowId)
 End Sub
 ```

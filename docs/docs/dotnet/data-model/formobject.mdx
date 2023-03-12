@@ -23,11 +23,13 @@ class FormObject {
     +AddRowObject(RowObject)
     +AddRowObject(string, string)
     +AddRowObject(string, string, string)
+    +Builder() FormObjectBuilder
     +Clone() FormObject
     +DeleteRowObject(RowObject)
     +DeleteRowObject(string)
     +Equals(FormObjectBase) bool
     +Equals(object) bool
+    +Initialize() FormObject
     +GetCurrentRowId() string
     +GetFieldValue(string) string
     +GetFieldValue(string, string) string
@@ -91,6 +93,7 @@ click RowObject href "./rowobject" "Learn more about the RowObject"
 | AddRowObject([RowObject](../rowobject)) | Adds a [RowObject](../rowobject) to a the FormObject. |
 | AddRowObject(string, string) | Adds a [RowObject](../rowobject) to a FormObject using supplied RowId and ParentRowId. |
 | AddRowObject(string, string, string) | Adds a [RowObject](../rowobject) to a FormObject using supplied RowId and ParentRowId and setting the RowAction. |
+| Builder() | Initializes a builder for constructing a FormObject. |
 | Clone() | Creates a copy of the FormObject. |
 | DeleteRowObject([RowObject](../rowobject)) | Removes a [RowObject](../rowobject) from a FormObject. |
 | DeleteRowObject(string) | Removes a [RowObject](../rowobject) from a FormObject by RowId. |
@@ -103,6 +106,7 @@ click RowObject href "./rowobject" "Learn more about the RowObject"
 | GetFieldValues(string) | Returns a List&lt;string&gt; of FieldValues in a FormObject by FieldNumber. |
 | GetNextAvailableRowId() | Returns the next available RowId for the FormObject. |
 | GetParentRowId() | Returns the ParentRowId of the FormObject.CurrentRow. |
+| Initialize() | Initializes an empty FormObject. |
 | IsFieldEnabled(string) | Returns whether a [FieldObject](../fieldobject) in a FormObject is enabled by FieldNumber. |
 | IsFieldLocked(string) | Returns whether a [FieldObject](../fieldobject) in a FormObject is locked by FieldNumber. |
 | IsFieldModified(string) | Returns whether a [FieldObject](../fieldobject) in a FormObject is modified by FieldNumber. |
@@ -143,13 +147,37 @@ Most implementations would not require working with the FormObject directly, how
 <TabItem value="cs" label="C#">
 
 ```cs
+// Available in v1.2 or later
 [TestMethod]
-public void TestMethod1()
+public void TestMethod1WithFluentBuilder()
 {
-    var expected = "value";
-    FormObject formObject = new FormObject
+    var expected = "123";
+    // FieldObject and RowObject definitions here 
+    FormObject formObject = FormObject.Builder()
+        .FormId(expected)
+        .CurrentRow()
+            .RowId("123||1")
+            .Field(fieldObject1)
+            .Field(fieldObject2)
+            .AddRow()
+        .MultipleIteration()
+        .OtherRow()
+            .RowId("123||2")
+            .Field(fieldObject3)
+            .Field(fieldObject4)
+            .AddRow()
+        .OtherRow(rowObject)
+        .Build();
+    Assert.AreEqual(expected, formObject.FormId);
+}
+
+[TestMethod]
+public void TestMethod1WithSimplifiedConstructor()
+{
+    var expected = "123";
+    FormObject formObject = new FormObject()
     {
-        FormId = "123"
+        FormId = expected
     };
     Assert.AreEqual(expected, formObject.FormId);
 }
@@ -159,10 +187,33 @@ public void TestMethod1()
 <TabItem value="vb" label="Visual Basic">
 
 ```vb
-<TestMethod()> Public Sub TestMethod1()
-    Dim expected As String = "value"
+' Available in v1.2 or later
+<TestMethod()> Public Sub TestMethod1WithFluentBuilder()
+    Dim expected As String = "123"
+    ' FieldObject and RowObject definitions here 
+    Dim formObject As FormObject.Builder()
+        .FormId(expected)
+        .CurrentRow()
+            .RowId("123||1")
+            .Field(fieldObject1)
+            .Field(fieldObject2)
+            .AddRow()
+        .MultipleIteration()
+        .OtherRow()
+            .RowId("123||2")
+            .Field(fieldObject3)
+            .Field(fieldObject4)
+            .AddRow()
+        .OtherRow(rowObject)
+        .Build()
+    Assert.AreEqual(expected, formObject.FormId)
+End Sub
+
+
+<TestMethod()> Public Sub TestMethod1WithSimplifiedConstructor()
+    Dim expected As String = "123"
     Dim formObject As New FormObject With {
-        .FormId = "123"
+        .FormId = expected
     }
     Assert.AreEqual(expected, formObject.FormId)
 End Sub
@@ -177,7 +228,9 @@ End Sub
 classDiagram
 direction LR
 class FormObject {
+    +Builder() FormObjectBuilder
     +Clone() FormObject
+    +Initialize() FormObject
     +ToXml() string
 }
 
