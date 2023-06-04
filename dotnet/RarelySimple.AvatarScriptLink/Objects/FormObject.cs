@@ -216,5 +216,43 @@ namespace RarelySimple.AvatarScriptLink.Objects
                 return this;
             }
         }
+
+        public class OptionObjectFormObjectBuilder
+        {
+            protected readonly OptionObject2015 optionObject;
+            protected readonly FormObject formObject;
+
+            public OptionObjectFormObjectBuilder(OptionObject2015 optionObject)
+            {
+                this.optionObject = optionObject;
+                formObject = new FormObject();
+            }
+
+            public OptionObjectFormObjectBuilderFinal FormId(string formId)
+            {
+                if (string.IsNullOrEmpty(formId))
+                    throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                formObject.FormId = formId;
+                return new OptionObjectFormObjectBuilderFinal(optionObject, formObject);
+            }
+        }
+
+        public class OptionObjectFormObjectBuilderFinal
+        {
+            protected readonly OptionObject2015 optionObject;
+            protected readonly FormObject formObject;
+
+            public OptionObjectFormObjectBuilderFinal(OptionObject2015 optionObject, FormObject formObject)
+            {
+                this.optionObject = optionObject;
+                this.formObject = formObject;
+            }
+
+            public OptionObject2015.OptionObject2015BuilderFinal AddForm()
+            {
+                optionObject.AddFormObject(formObject);
+                return new OptionObject2015.OptionObject2015BuilderFinal(optionObject);
+            }
+        }
     }
 }
