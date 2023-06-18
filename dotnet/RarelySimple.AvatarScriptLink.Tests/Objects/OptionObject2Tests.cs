@@ -13,63 +13,59 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestInitialize]
         public void TestInitialize()
         {
-            this.configuredOptionObject2 = new OptionObject2();
+            configuredOptionObject2 = OptionObject2.Initialize();
+            // First Form
+            FieldObject fieldObject = FieldObject.Builder()
+                                                 .FieldNumber("123")
+                                                 .FieldValue("Value")
+                                                 .Enabled()
+                                                 .Locked()
+                                                 .Required()
+                                                 .Build();
 
-            FieldObject addField = new FieldObject
-            {
-                FieldNumber = "123",
-                FieldValue = "Value",
-                Enabled = "1",
-                Lock = "1",
-                Required = "1"
-            };
-            RowObject addRow = new RowObject
-            {
-                RowId = "1||1"
-            };
-            addRow.Fields.Add(addField);
-            FormObject addForm = new FormObject
-            {
-                FormId = "1",
-                CurrentRow = addRow
-            };
-            configuredOptionObject2.Forms.Add(addForm);
+            FormObject formObject = FormObject.Builder()
+                                              .FormId("1")
+                                              .CurrentRow()
+                                                    .RowId("1||1")
+                                                    .Field(fieldObject)
+                                                    .AddRow()
+                                              .Build();
+            // Second Form
+            RowObject rowObject01 = RowObject.Builder()
+                                             .RowId("2||1")
+                                             .Field()
+                                                 .FieldNumber("234")
+                                                 .FieldValue("MI Value")
+                                                 .AddField()
+                                             .Build();
 
-            FieldObject addMiField01 = new FieldObject
-            {
-                FieldNumber = "234",
-                FieldValue = "MI Value"
-            };
-            FieldObject addMiField02 = new FieldObject
-            {
-                FieldNumber = "234",
-                FieldValue = "MI Value 2"
-            };
-            RowObject addMiRow01 = new RowObject
-            {
-                RowId = "2||1"
-            };
-            addMiRow01.Fields.Add(addMiField01);
-            RowObject addMiRow02 = new RowObject
-            {
-                RowId = "2||2"
-            };
-            addMiRow02.Fields.Add(addMiField01);
-            FormObject addMiForm = new FormObject
-            {
-                FormId = "2",
-                CurrentRow = addMiRow01,
-                MultipleIteration = true
-            };
-            addMiForm.OtherRows.Add(addMiRow02);
-            configuredOptionObject2.Forms.Add(addMiForm);
+            RowObject rowObject02 = RowObject.Builder()
+                                             .RowId("2||2")
+                                             .Field()
+                                                 .FieldNumber("234")
+                                                 .FieldValue("MI Value 2")
+                                                 .AddField()
+                                             .Build();
+
+            FormObject miFormObject = FormObject.Builder()
+                                                .FormId("2")
+                                                .CurrentRow(rowObject01)
+                                                .MultipleIteration()
+                                                .OtherRow(rowObject02)
+                                                .Build();
+
+            configuredOptionObject2 = OptionObject2.Builder()
+                                                   .OptionId("OPT1234")
+                                                   .Form(formObject)
+                                                   .Form(miFormObject)
+                                                   .Build();
         }
 
         [TestMethod]
         [TestCategory("OptionObject2")]
         public void OptionObject2_HasFormObject()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = OptionObject2.Initialize();
             Assert.IsNotNull(optionObject.Forms);
         }
 
@@ -77,7 +73,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("OptionObject2")]
         public void OptionObject2_Forms_IsNotEmpty()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = OptionObject2.Initialize();
             var expected = new List<FormObject>();
             var actual = optionObject.Forms;
             Assert.AreNotEqual(expected, actual);
@@ -87,7 +83,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("OptionObject2")]
         public void OptionObject2_CanGetHtmlString_WithoutHtmlHeaders()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = OptionObject2.Initialize();
             var actual = optionObject.ToHtmlString(false);
             Assert.IsNotNull(actual);
         }
@@ -96,7 +92,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("OptionObject2")]
         public void OptionObject2_CanGetHtmlString_WithHtmlHeaders()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = OptionObject2.Initialize();
             var actual = optionObject.ToHtmlString(false);
             Assert.IsNotNull(actual);
         }
@@ -105,17 +101,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("OptionObject2")]
         public void OptionObject2_AddFormObject_FormObject()
         {
-            FormObject formObject1 = new FormObject
-            {
-                FormId = "1",
-                MultipleIteration = false
-            };
-            FormObject formObject2 = new FormObject
-            {
-                FormId = "2",
-                MultipleIteration = true
-            };
-            OptionObject2 optionObject = new OptionObject2();
+            FormObject formObject1 = FormObject.Builder()
+                                               .FormId("1")
+                                               .Build();
+            FormObject formObject2 = FormObject.Builder()
+                                               .FormId("2")
+                                               .MultipleIteration()
+                                               .Build();
+            OptionObject2 optionObject = OptionObject2.Initialize();
             optionObject.AddFormObject(formObject1);
             Assert.AreEqual(1, optionObject.Forms.Count);
             optionObject.AddFormObject(formObject2);
@@ -127,17 +120,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [ExpectedException(typeof(System.ArgumentException))]
         public void OptionObject2_AddFormObject_FormObject_Exception()
         {
-            FormObject formObject1 = new FormObject
-            {
-                FormId = "1",
-                MultipleIteration = false
-            };
-            FormObject formObject2 = new FormObject
-            {
-                FormId = "2",
-                MultipleIteration = true
-            };
-            OptionObject2 optionObject = new OptionObject2();
+            FormObject formObject1 = FormObject.Builder().FormId("1").Build();
+            OptionObject2 optionObject = OptionObject2.Initialize();
             optionObject.AddFormObject(formObject1);
             Assert.AreEqual(1, optionObject.Forms.Count);
             optionObject.AddFormObject(formObject1);
@@ -148,7 +132,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("OptionObject2")]
         public void OptionObject2_AddFormObject_Properties()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = OptionObject2.Initialize();
             optionObject.AddFormObject("1", false);
             Assert.AreEqual(1, optionObject.Forms.Count);
             optionObject.AddFormObject("2", true);
@@ -160,7 +144,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [ExpectedException(typeof(System.ArgumentException))]
         public void OptionObject2_AddFormObject_Properties_Exception()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = OptionObject2.Initialize();
             optionObject.AddFormObject("1", false);
             Assert.AreEqual(1, optionObject.Forms.Count);
             optionObject.AddFormObject("1", false);
@@ -172,7 +156,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [ExpectedException(typeof(System.ArgumentException))]
         public void OptionObject2_GetCurrentRowId_Error()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = OptionObject2.Initialize();
             var actual = optionObject.GetCurrentRowId("1");
             Assert.AreEqual(null, actual);
         }
@@ -181,17 +165,16 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("OptionObject2")]
         public void OptionObject2_GetCurrentRowId_AreEqual()
         {
-            RowObject rowObject = new RowObject
-            {
-                RowId = "1||1"
-            };
-            FormObject formObject = new FormObject
-            {
-                FormId = "1",
-                CurrentRow = rowObject
-            };
-            OptionObject2 optionObject = new OptionObject2();
-            optionObject.Forms.Add(formObject);
+            FormObject formObject = FormObject.Builder()
+                                              .FormId("1")
+                                              .CurrentRow()
+                                                    .RowId("1||1")
+                                                    .AddRow()
+                                              .Build();
+            OptionObject2 optionObject = OptionObject2.Builder()
+                                                      .OptionId("OPT1234")
+                                                      .Form(formObject)
+                                                      .Build();
             var actual = optionObject.GetCurrentRowId("1");
             Assert.AreEqual("1||1", actual);
         }
@@ -210,7 +193,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [ExpectedException(typeof(System.ArgumentException))]
         public void OptionObject2_GetFieldValue_AreNotEqual()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = OptionObject2.Initialize();
             var expected = "Value";
             var actual = optionObject.GetFieldValue("123");
             Assert.AreNotEqual(expected, actual);
@@ -269,13 +252,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("OptionObject2")]
         public void OptionObject2_GetMultipleIterationStatus_IsFalse()
         {
-            OptionObject2 optionObject = new OptionObject2();
-            FormObject formObject = new FormObject
-            {
-                FormId = "1",
-                MultipleIteration = false
-            };
-            optionObject.Forms.Add(formObject);
+            string formId = "1";
+            OptionObject2 optionObject = OptionObject2.Builder()
+                                                      .OptionId("OPT1234")
+                                                      .Form()
+                                                          .FormId(formId)
+                                                          .AddForm()
+                                                      .Build();
             var actual = optionObject.GetMultipleIterationStatus("1");
             Assert.IsFalse(actual);
         }
@@ -285,7 +268,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [ExpectedException(typeof(System.ArgumentException))]
         public void OptionObject2_GetMultipleIterationStatus_IsNotFound()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = OptionObject2.Initialize();
             var actual = optionObject.GetMultipleIterationStatus("1");
             Assert.IsFalse(actual);
         }
@@ -303,7 +286,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [ExpectedException(typeof(System.ArgumentException))]
         public void OptionObject2_GetParentRowId_Error()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = OptionObject2.Initialize();
             var actual = optionObject.GetParentRowId("1");
             Assert.AreEqual(null, actual);
         }
@@ -312,17 +295,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("OptionObject2")]
         public void OptionObject2_GetParentRowId_AreEqual()
         {
-            RowObject rowObject = new RowObject
-            {
-                ParentRowId = "1||1"
-            };
-            FormObject formObject = new FormObject
-            {
-                FormId = "1",
-                CurrentRow = rowObject
-            };
-            OptionObject2 optionObject = new OptionObject2();
-            optionObject.Forms.Add(formObject);
+            RowObject rowObject = RowObject.Builder().RowId("1||2").ParentRowId("1||1").Build();
+            OptionObject2 optionObject = OptionObject2.Builder()
+                                                      .OptionId("USER00")
+                                                      .Form()
+                                                          .FormId("1")
+                                                          .CurrentRow(rowObject)
+                                                          .AddForm()
+                                                      .Build();
             var actual = optionObject.GetParentRowId("1");
             Assert.AreEqual(rowObject.ParentRowId, actual);
         }
