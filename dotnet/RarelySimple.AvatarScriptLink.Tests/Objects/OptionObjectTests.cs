@@ -542,5 +542,29 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             Assert.IsTrue(optionObject.IsFieldPresent("123"));
             Assert.IsFalse(returnOptionObject.IsFieldPresent("123"));
         }
+
+        [TestMethod]
+        [TestCategory("OptionObject")]
+        public void OptionObject_ReturnOptionObject_ErrorCodeNotOverwritten()
+        {
+            double expected = 3;
+            OptionObject optionObject = OptionObject.Builder().OptionId("USER123").Build();
+            optionObject.ErrorCode = expected;
+            OptionObject returnOptionObject = optionObject.ToReturnOptionObject();
+
+            Assert.AreEqual(expected, returnOptionObject.ErrorCode);
+        }
+
+        [TestMethod]
+        [TestCategory("OptionObject")]
+        public void OptionObject_ReturnOptionObject_ErrorMesgNotOverwritten()
+        {
+            string expected = "Preset error message";
+            OptionObject optionObject = OptionObject.Builder().OptionId("USER123").Build();
+            optionObject.ErrorMesg = expected;
+            OptionObject returnOptionObject = optionObject.ToReturnOptionObject();
+
+            Assert.AreEqual(expected, returnOptionObject.ErrorMesg);
+        }
     }
 }

@@ -137,7 +137,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// Transforms the <see cref="OptionObject2"/>  to an <see cref="OptionObject"/>.
         /// </summary>
         /// <returns></returns>
-        public override OptionObject ToOptionObject() => (OptionObject)OptionObjectHelpers.TransformToOptionObject((IOptionObject2)this);
+        public override OptionObject ToOptionObject() => OptionObjectHelpers.TransformToOptionObject((IOptionObject2)this);
 
         /// <summary>
         /// Transforms the <see cref="OptionObject2"/>  to an <see cref="OptionObject2"/>.
@@ -149,7 +149,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// Transforms the <see cref="OptionObject2"/>  to an <see cref="OptionObject2015"/>.
         /// </summary>
         /// <returns></returns>
-        public override OptionObject2015 ToOptionObject2015() => (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015((IOptionObject2)this);
+        public override OptionObject2015 ToOptionObject2015() => (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(this);
 
         /// <summary>
         /// Creates an <see cref="OptionObject2"/> with the minimal information required to return.
