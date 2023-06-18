@@ -216,18 +216,29 @@ namespace RarelySimple.AvatarScriptLink.Objects
                 return this;
             }
         }
-
+        /// <summary>
+        /// A Faceted Fluent Builder for adding FormObjects to OptionObjects
+        /// </summary>
         public class OptionObjectFormObjectBuilder
         {
-            protected readonly OptionObject2015 optionObject;
+            protected readonly OptionObject optionObject;
             protected readonly FormObject formObject;
-
-            public OptionObjectFormObjectBuilder(OptionObject2015 optionObject)
+            /// <summary>
+            /// Constructs a OptionObjectFormObjectBuilder
+            /// </summary>
+            /// <param name="optionObject"></param>
+            public OptionObjectFormObjectBuilder(OptionObject optionObject)
             {
                 this.optionObject = optionObject;
                 formObject = new FormObject();
             }
-
+            /// <summary>
+            /// Sets the FormId of the <see cref="FormObject"/>.
+            /// This is required before any other attributes may be set on the <see cref="FormObject"/> built.
+            /// </summary>
+            /// <param name="formId">Required. The FormId to assign to the <see cref="FormObject"/></param>
+            /// <returns>A <see cref="OptionObject2015FormObjectBuilderFinal"/></returns>
+            /// <exception cref="ArgumentNullException"></exception>
             public OptionObjectFormObjectBuilderFinal FormId(string formId)
             {
                 if (string.IsNullOrEmpty(formId))
@@ -236,22 +247,270 @@ namespace RarelySimple.AvatarScriptLink.Objects
                 return new OptionObjectFormObjectBuilderFinal(optionObject, formObject);
             }
         }
-
+        /// <summary>
+        /// A Faceted Fluent Builder for the completion of a <see cref="FormObject"/> build.
+        /// </summary>
         public class OptionObjectFormObjectBuilderFinal
         {
-            protected readonly OptionObject2015 optionObject;
+            protected readonly OptionObject optionObject;
             protected readonly FormObject formObject;
-
-            public OptionObjectFormObjectBuilderFinal(OptionObject2015 optionObject, FormObject formObject)
+            /// <summary>
+            /// Constructs a OptionObjectFormObjectBuilderFinal used to add a FormObject to a OptionObject
+            /// </summary>
+            /// <param name="optionObject">The <see cref="OptionObject"/> to add <see cref="FormObject"/>.</param>
+            /// <param name="formObject">The <see cref="FormObject"/> to complete.</param>
+            public OptionObjectFormObjectBuilderFinal(OptionObject optionObject, FormObject formObject)
             {
                 this.optionObject = optionObject;
                 this.formObject = formObject;
             }
-
+            /// <summary>
+            /// Sets the CurrentRow of the <see cref="FormObject"/>.
+            /// </summary>
+            /// <param name="rowObject">The <see cref="RowObject"/> to set as the CurrentRow.</param>
+            /// <returns>A <see cref=" OptionObject2015FormObjectBuilderFinal"/></returns>
+            /// <exception cref="ArgumentNullException">Thrown if no <see cref="RowObject"/> provided.</exception>
+            public OptionObjectFormObjectBuilderFinal CurrentRow(RowObject rowObject)
+            {
+                formObject.CurrentRow = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                return this;
+            }
+            /// <summary>
+            /// Indicate the <see cref="FormObject"/> uses a Multiple-Iteration Table.
+            /// <para>Must be set to enable the adding of OtherRows to the <see cref="FormObject"/></para>
+            /// </summary>
+            /// <returns>A <see cref="OptionObjectFormObjectBuilderMIFinal"/></returns>
+            public OptionObjectFormObjectBuilderMIFinal MultipleIteration()
+            {
+                formObject.MultipleIteration = true;
+                return new OptionObjectFormObjectBuilderMIFinal(optionObject, formObject);
+            }
+            /// <summary>
+            /// Adds FormObject to the <see cref="OptionObject"/>.
+            /// </summary>
+            /// <returns>A <see cref="OptionObjectBuilderFinal"/></returns>
+            public OptionObject.OptionObjectBuilderFinal AddForm()
+            {
+                optionObject.AddFormObject(formObject);
+                return new OptionObject.OptionObjectBuilderFinal(optionObject);
+            }
+        }
+        /// <summary>
+        /// A Faceted Fluent Builder for the completion of a multiple iteration <see cref="FormObject"/> build.
+        /// </summary>
+        public class OptionObjectFormObjectBuilderMIFinal : OptionObjectFormObjectBuilderFinal
+        {
+            public OptionObjectFormObjectBuilderMIFinal(OptionObject optionObject, FormObject formObject) : base(optionObject, formObject) { }
+            /// <summary>
+            /// Adds another RowObject to the <see cref="FormObject"/>.
+            /// </summary>
+            /// <param name="rowObject">The <see cref="RowObject"/> to add.</param>
+            /// <returns>A <see cref="OptionObjectFormObjectBuilderMIFinal"/></returns>
+            /// <exception cref="ArgumentNullException">Thrown if no <see cref="RowObject"/> provided.</exception>
+            public OptionObjectFormObjectBuilderMIFinal OtherRow(RowObject rowObject)
+            {
+                if (rowObject == null)
+                    throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                formObject.OtherRows.Add(rowObject);
+                return this;
+            }
+        }
+        /// <summary>
+        /// A Faceted Fluent Builder for adding FormObjects to OptionObject2s
+        /// </summary>
+        public class OptionObject2FormObjectBuilder
+        {
+            protected readonly OptionObject2 optionObject;
+            protected readonly FormObject formObject;
+            /// <summary>
+            /// Constructs a OptionObject2FormObjectBuilder
+            /// </summary>
+            /// <param name="optionObject"></param>
+            public OptionObject2FormObjectBuilder(OptionObject2 optionObject)
+            {
+                this.optionObject = optionObject;
+                formObject = new FormObject();
+            }
+            /// <summary>
+            /// Sets the FormId of the <see cref="FormObject"/>.
+            /// This is required before any other attributes may be set on the <see cref="FormObject"/> built.
+            /// </summary>
+            /// <param name="formId">Required. The FormId to assign to the <see cref="FormObject"/></param>
+            /// <returns>A <see cref="OptionObject2015FormObjectBuilderFinal"/></returns>
+            /// <exception cref="ArgumentNullException"></exception>
+            public OptionObject2FormObjectBuilderFinal FormId(string formId)
+            {
+                if (string.IsNullOrEmpty(formId))
+                    throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                formObject.FormId = formId;
+                return new OptionObject2FormObjectBuilderFinal(optionObject, formObject);
+            }
+        }
+        /// <summary>
+        /// A Faceted Fluent Builder for the completion of a <see cref="FormObject"/> build.
+        /// </summary>
+        public class OptionObject2FormObjectBuilderFinal
+        {
+            protected readonly OptionObject2 optionObject;
+            protected readonly FormObject formObject;
+            /// <summary>
+            /// Constructs a OptionObject2FormObjectBuilderFinal used to add a FormObject to a OptionObject2
+            /// </summary>
+            /// <param name="optionObject">The <see cref="OptionObject2"/> to add <see cref="FormObject"/>.</param>
+            /// <param name="formObject">The <see cref="FormObject"/> to complete.</param>
+            public OptionObject2FormObjectBuilderFinal(OptionObject2 optionObject, FormObject formObject)
+            {
+                this.optionObject = optionObject;
+                this.formObject = formObject;
+            }
+            /// <summary>
+            /// Sets the CurrentRow of the <see cref="FormObject"/>.
+            /// </summary>
+            /// <param name="rowObject">The <see cref="RowObject"/> to set as the CurrentRow.</param>
+            /// <returns>A <see cref=" OptionObject2FormObjectBuilderFinal"/></returns>
+            /// <exception cref="ArgumentNullException">Thrown if no <see cref="RowObject"/> provided.</exception>
+            public OptionObject2FormObjectBuilderFinal CurrentRow(RowObject rowObject)
+            {
+                formObject.CurrentRow = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                return this;
+            }
+            /// <summary>
+            /// Indicate the <see cref="FormObject"/> uses a Multiple-Iteration Table.
+            /// <para>Must be set to enable the adding of OtherRows to the <see cref="FormObject"/></para>
+            /// </summary>
+            /// <returns>A <see cref="OptionObject2FormObjectBuilderMIFinal"/></returns>
+            public OptionObject2FormObjectBuilderMIFinal MultipleIteration()
+            {
+                formObject.MultipleIteration = true;
+                return new OptionObject2FormObjectBuilderMIFinal(optionObject, formObject);
+            }
+            /// <summary>
+            /// Adds FormObject to the <see cref="OptionObject2"/>.
+            /// </summary>
+            /// <returns>A <see cref="OptionObject2BuilderFinal"/></returns>
+            public OptionObject2.OptionObject2BuilderFinal AddForm()
+            {
+                optionObject.AddFormObject(formObject);
+                return new OptionObject2.OptionObject2BuilderFinal(optionObject);
+            }
+        }
+        /// <summary>
+        /// A Faceted Fluent Builder for the completion of a multiple iteration <see cref="FormObject"/> build.
+        /// </summary>
+        public class OptionObject2FormObjectBuilderMIFinal : OptionObject2FormObjectBuilderFinal
+        {
+            public OptionObject2FormObjectBuilderMIFinal(OptionObject2 optionObject, FormObject formObject) : base(optionObject, formObject) { }
+            /// <summary>
+            /// Adds another RowObject to the <see cref="FormObject"/>.
+            /// </summary>
+            /// <param name="rowObject">The <see cref="RowObject"/> to add.</param>
+            /// <returns>A <see cref="OptionObject2FormObjectBuilderMIFinal"/></returns>
+            /// <exception cref="ArgumentNullException">Thrown if no <see cref="RowObject"/> provided.</exception>
+            public OptionObject2FormObjectBuilderMIFinal OtherRow(RowObject rowObject)
+            {
+                if (rowObject == null)
+                    throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                formObject.OtherRows.Add(rowObject);
+                return this;
+            }
+        }
+        /// <summary>
+        /// A Faceted Fluent Builder for adding FormObjects to OptionObject2015s
+        /// </summary>
+        public class OptionObject2015FormObjectBuilder
+        {
+            protected readonly OptionObject2015 optionObject;
+            protected readonly FormObject formObject;
+            /// <summary>
+            /// Constructs a OptionObjectFormObjectBuilder
+            /// </summary>
+            /// <param name="optionObject"></param>
+            public OptionObject2015FormObjectBuilder(OptionObject2015 optionObject)
+            {
+                this.optionObject = optionObject;
+                formObject = new FormObject();
+            }
+            /// <summary>
+            /// Sets the FormId of the <see cref="FormObject"/>.
+            /// This is required before any other attributes may be set on the <see cref="FormObject"/> built.
+            /// </summary>
+            /// <param name="formId">Required. The FormId to assign to the <see cref="FormObject"/></param>
+            /// <returns>A <see cref="OptionObject2015FormObjectBuilderFinal"/></returns>
+            /// <exception cref="ArgumentNullException"></exception>
+            public OptionObject2015FormObjectBuilderFinal FormId(string formId)
+            {
+                if (string.IsNullOrEmpty(formId))
+                    throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                formObject.FormId = formId;
+                return new OptionObject2015FormObjectBuilderFinal(optionObject, formObject);
+            }
+        }
+        /// <summary>
+        /// A Faceted Fluent Builder for the completion of a <see cref="FormObject"/> build.
+        /// </summary>
+        public class OptionObject2015FormObjectBuilderFinal
+        {
+            protected readonly OptionObject2015 optionObject;
+            protected readonly FormObject formObject;
+            /// <summary>
+            /// Constructs a OptionObject2015FormObjectBuilderFinal used to add a FormObject to a OptionObject2015
+            /// </summary>
+            /// <param name="optionObject">The <see cref="OptionObject2015"/> to add <see cref="FormObject"/>.</param>
+            /// <param name="formObject">The <see cref="FormObject"/> to complete.</param>
+            public OptionObject2015FormObjectBuilderFinal(OptionObject2015 optionObject, FormObject formObject)
+            {
+                this.optionObject = optionObject;
+                this.formObject = formObject;
+            }
+            /// <summary>
+            /// Sets the CurrentRow of the <see cref="FormObject"/>.
+            /// </summary>
+            /// <param name="rowObject">The <see cref="RowObject"/> to set as the CurrentRow.</param>
+            /// <returns>A <see cref=" OptionObject2015FormObjectBuilderFinal"/></returns>
+            /// <exception cref="ArgumentNullException">Thrown if no <see cref="RowObject"/> provided.</exception>
+            public OptionObject2015FormObjectBuilderFinal CurrentRow(RowObject rowObject)
+            {
+                formObject.CurrentRow = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                return this;
+            }
+            /// <summary>
+            /// Indicate the <see cref="FormObject"/> uses a Multiple-Iteration Table.
+            /// <para>Must be set to enable the adding of OtherRows to the <see cref="FormObject"/></para>
+            /// </summary>
+            /// <returns>A <see cref="OptionObject2015FormObjectBuilderMIFinal"/></returns>
+            public OptionObject2015FormObjectBuilderMIFinal MultipleIteration()
+            {
+                formObject.MultipleIteration = true;
+                return new OptionObject2015FormObjectBuilderMIFinal(optionObject, formObject);
+            }
+            /// <summary>
+            /// Adds FormObject to the <see cref="OptionObject2015"/>.
+            /// </summary>
+            /// <returns>A <see cref="OptionObject2015BuilderFinal"/></returns>
             public OptionObject2015.OptionObject2015BuilderFinal AddForm()
             {
                 optionObject.AddFormObject(formObject);
                 return new OptionObject2015.OptionObject2015BuilderFinal(optionObject);
+            }
+        }
+        /// <summary>
+        /// A Faceted Fluent Builder for the completion of a multiple iteration <see cref="FormObject"/> build.
+        /// </summary>
+        public class OptionObject2015FormObjectBuilderMIFinal : OptionObject2015FormObjectBuilderFinal
+        {
+            public OptionObject2015FormObjectBuilderMIFinal(OptionObject2015 optionObject, FormObject formObject) : base(optionObject, formObject) { }
+            /// <summary>
+            /// Adds another RowObject to the <see cref="FormObject"/>.
+            /// </summary>
+            /// <param name="rowObject">The <see cref="RowObject"/> to add.</param>
+            /// <returns>A <see cref="OptionObject2015FormObjectBuilderMIFinal"/></returns>
+            /// <exception cref="ArgumentNullException">Thrown if no <see cref="RowObject"/> provided.</exception>
+            public OptionObject2015FormObjectBuilderMIFinal OtherRow(RowObject rowObject)
+            {
+                if (rowObject == null)
+                    throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                formObject.OtherRows.Add(rowObject);
+                return this;
             }
         }
     }

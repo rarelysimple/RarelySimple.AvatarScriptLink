@@ -13,7 +13,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestInitialize]
         public void TestInitialize()
         {
-            configuredOptionObject2015 = new OptionObject2015();
+            configuredOptionObject2015 = OptionObject2015.Initialize();
             // First Form
             FieldObject fieldObject = FieldObject.Builder()
                                                  .FieldNumber("123")
@@ -32,20 +32,20 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
                                               .Build();
             // Second Form
             RowObject rowObject01 = RowObject.Builder()
-                                           .RowId("2||1")
-                                           .Field()
-                                                .FieldNumber("234")
-                                                .FieldValue("MI Value")
-                                                .AddField()
-                                           .Build();
+                                             .RowId("2||1")
+                                             .Field()
+                                                 .FieldNumber("234")
+                                                 .FieldValue("MI Value")
+                                                 .AddField()
+                                             .Build();
 
             RowObject rowObject02 = RowObject.Builder()
-                                           .RowId("2||2")
-                                           .Field()
-                                                .FieldNumber("234")
-                                                .FieldValue("MI Value 2")
-                                                .AddField()
-                                           .Build();
+                                             .RowId("2||2")
+                                             .Field()
+                                                 .FieldNumber("234")
+                                                 .FieldValue("MI Value 2")
+                                                 .AddField()
+                                             .Build();
 
             FormObject miFormObject = FormObject.Builder()
                                                 .FormId("2")
@@ -295,17 +295,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("OptionObject2015")]
         public void OptionObject2015_GetParentRowId_AreEqual()
         {
-            RowObject rowObject = new RowObject
-            {
-                ParentRowId = "1||1"
-            };
-            FormObject formObject = new FormObject
-            {
-                FormId = "1",
-                CurrentRow = rowObject
-            };
-            OptionObject2015 optionObject = new OptionObject2015();
-            optionObject.Forms.Add(formObject);
+            RowObject rowObject = RowObject.Builder().RowId("1||2").ParentRowId("1||1").Build();
+            OptionObject2015 optionObject = OptionObject2015.Builder()
+                                                            .OptionId("USER00")
+                                                            .Form()
+                                                                .FormId("1")
+                                                                .CurrentRow(rowObject)
+                                                                .AddForm()
+                                                            .Build();
             var actual = optionObject.GetParentRowId("1");
             Assert.AreEqual(rowObject.ParentRowId, actual);
         }

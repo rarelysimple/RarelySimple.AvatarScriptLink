@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
 using RarelySimple.AvatarScriptLink.Helpers;
 using RarelySimple.AvatarScriptLink.Objects.Advanced;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Xml.Serialization;
 
 namespace RarelySimple.AvatarScriptLink.Objects
@@ -53,6 +55,34 @@ namespace RarelySimple.AvatarScriptLink.Objects
             , facility, entityId, episodeNumber
             , systemCode, "", "", "", "", forms)
         { }
+        /// <summary>
+        /// Initializes a <see cref="OptionObject"/>
+        /// </summary>
+        /// <returns>An <see cref="OptionObject"/></returns>
+        public static OptionObject Initialize() { return new OptionObject(); }
+        /// <summary>
+        /// Initializes an <see cref="OptionObjectBuilder"/> to help construct an <see cref="OptionObject"/>
+        /// <code>
+        /// // Sample usage
+        /// OptionObject optionObject = OptionObject.Builder()
+        ///                                         .OptionId("123")
+        ///                                         .OptionUserId("FLAST")
+        ///                                         .OptionStaffId("4567")
+        ///                                         .Facility("1")
+        ///                                         .EntityId("23")
+        ///                                         .EpisodeNumber(1)
+        ///                                         .SystemCode("SBOX")
+        ///                                         .Form("1")
+        ///                                             .CurrentRow()
+        ///                                         .Form("2")
+        ///                                             .CurrentRow()
+        ///                                             .MultipleIteration()
+        ///                                             .OtherRow()
+        ///                                         .Build();
+        /// </code>
+        /// </summary>
+        /// <returns></returns>
+        public static OptionObjectBuilder Builder() { return new OptionObjectBuilder(); }
 
 
         [JsonIgnore]
@@ -153,5 +183,148 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// </summary>
         /// <returns><see cref="string"/> of all of the contents of the <see cref="OptionObject"/> formatted as XML.</returns>
         public override string ToXml() => OptionObjectHelpers.TransformToXml(this);
+
+        public class OptionObjectBuilder
+        {
+            protected readonly OptionObject optionObject;
+            /// <summary>
+            /// Constructs a OptionObjectBuilder
+            /// </summary>
+            public OptionObjectBuilder()
+            {
+                optionObject = new OptionObject();
+            }
+            /// <summary>
+            /// Sets the OptionId of the <see cref="OptionObject"/>.
+            /// </summary>
+            /// <param name="optionId"></param>
+            /// <returns>An <see cref="OptionObjectBuilder"/></returns>
+            /// <exception cref="ArgumentNullException"></exception>
+            public OptionObjectBuilderFinal OptionId(string optionId)
+            {
+                if (string.IsNullOrEmpty(optionId))
+                    throw new ArgumentNullException(nameof(optionId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                optionObject.OptionId = optionId;
+                return new OptionObjectBuilderFinal(optionObject);
+            }
+        }
+        public class OptionObjectBuilderFinal
+        {
+            protected readonly OptionObject optionObject;
+            /// <summary>
+            /// Constructs a OptionObjectBuilder
+            /// </summary>
+            public OptionObjectBuilderFinal(OptionObject optionObject)
+            {
+                this.optionObject = optionObject ?? throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+            }
+            /// <summary>
+            /// Sets the EntityId of the <see cref="OptionObject"/>.
+            /// </summary>
+            /// <param name="entityId"></param>
+            /// <returns>An <see cref="OptionObjectBuilderFinal"/></returns>
+            /// <exception cref="ArgumentNullException"></exception>
+            public OptionObjectBuilderFinal EntityId(string entityId)
+            {
+                if (string.IsNullOrEmpty(entityId))
+                    throw new ArgumentNullException(nameof(entityId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                optionObject.EntityID = entityId;
+                return this;
+            }
+            /// <summary>
+            /// Sets the EpisodeNumber of the <see cref="OptionObject"/>.
+            /// </summary>
+            /// <param name="episodeNumber"></param>
+            /// <returns>An <see cref="OptionObjectBuilderFinal"/></returns>
+            /// <exception cref="ArgumentNullException"></exception>
+            public OptionObjectBuilderFinal EpisodeNumber(double episodeNumber)
+            {
+                optionObject.EpisodeNumber = episodeNumber;
+                return this;
+            }
+            /// <summary>
+            /// Sets the Facility of the <see cref="OptionObject"/>.
+            /// </summary>
+            /// <param name="facility"></param>
+            /// <returns>An <see cref="OptionObjectBuilderFinal"/></returns>
+            /// <exception cref="ArgumentNullException"></exception>
+            public OptionObjectBuilderFinal Facility(string facility)
+            {
+                if (string.IsNullOrEmpty(facility))
+                    throw new ArgumentNullException(nameof(facility), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                optionObject.Facility = facility;
+                return this;
+            }
+            /// <summary>
+            /// Sets the OptionStaffId of the <see cref="OptionObject2015"/>.
+            /// </summary>
+            /// <param name="optionStaffId"></param>
+            /// <returns>An <see cref="OptionObject2015BuilderFinal"/></returns>
+            /// <exception cref="ArgumentNullException"></exception>
+            public OptionObjectBuilderFinal OptionStaffId(string optionStaffId)
+            {
+                if (string.IsNullOrEmpty(optionStaffId))
+                    throw new ArgumentNullException(nameof(optionStaffId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                optionObject.OptionStaffId = optionStaffId;
+                return this;
+            }
+            /// <summary>
+            /// Sets the OptionUserId of the <see cref="OptionObject"/>.
+            /// </summary>
+            /// <param name="optionUserId"></param>
+            /// <returns>An <see cref="OptionObjectBuilderFinal"/></returns>
+            /// <exception cref="ArgumentNullException"></exception>
+            public OptionObjectBuilderFinal OptionUserId(string optionUserId)
+            {
+                if (string.IsNullOrEmpty(optionUserId))
+                    throw new ArgumentNullException(nameof(optionUserId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                optionObject.OptionUserId = optionUserId;
+                return this;
+            }
+            /// <summary>
+            /// Sets the SystemCode of the <see cref="OptionObject"/>.
+            /// </summary>
+            /// <param name="systemCode"></param>
+            /// <returns>An <see cref="OptionObjectBuilderFinal"/></returns>
+            /// <exception cref="ArgumentNullException"></exception>
+            public OptionObjectBuilderFinal SystemCode(string systemCode)
+            {
+                if (string.IsNullOrEmpty(systemCode))
+                    throw new ArgumentNullException(nameof(systemCode), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                optionObject.SystemCode = systemCode;
+                return this;
+            }
+            /// <summary>
+            /// Initializes a builder to construct a FormObject within the OptionObject builder.
+            /// </summary>
+            /// <returns>A <see cref="OptionObjectFormObjectBuilder"/> to start<see cref="FormObject"/> build.</returns>
+            public FormObject.OptionObjectFormObjectBuilder Form()
+            {
+                return new FormObject.OptionObjectFormObjectBuilder(optionObject);
+            }
+            /// <summary>
+            /// Adds a <see cref="FormObject"/> of the <see cref="OptionObject2015"/>.
+            /// </summary>
+            /// <param name="formObject"></param>
+            /// <returns>An <see cref="OptionObjectBuilderFinal"/></returns>
+            /// <exception cref="ArgumentNullException"></exception>
+            public OptionObjectBuilderFinal Form(FormObject formObject)
+            {
+                if (optionObject.Forms == null)
+                {
+                    optionObject.Forms = new List<FormObject>();
+                }
+                optionObject.Forms.Add(formObject);
+                return this;
+            }
+            /// <summary>
+            /// Builds the <see cref="OptionObject"/> based on the supplied build parameters.
+            /// </summary>
+            /// <returns>A <see cref="OptionObject"/></returns>
+            public OptionObject Build()
+            {
+                return optionObject;
+            }
+        }
     }
 }

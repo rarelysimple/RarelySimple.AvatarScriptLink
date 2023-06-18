@@ -327,10 +327,10 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <summary>
             /// Initializes a builder to construct a FormObject within the OptionObject2015 builder.
             /// </summary>
-            /// <returns>A <see cref="OptionObjectFormObjectBuilder"/> to start<see cref="FormObject"/> build.</returns>
-            public FormObject.OptionObjectFormObjectBuilder Form()
+            /// <returns>A <see cref="OptionObject2015FormObjectBuilder"/> to start<see cref="FormObject"/> build.</returns>
+            public FormObject.OptionObject2015FormObjectBuilder Form()
             {
-                return new FormObject.OptionObjectFormObjectBuilder(optionObject);
+                return new FormObject.OptionObject2015FormObjectBuilder(optionObject);
             }
             /// <summary>
             /// Adds a <see cref="FormObject"/> of the <see cref="OptionObject2015"/>.
