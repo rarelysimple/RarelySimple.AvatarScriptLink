@@ -14,15 +14,16 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestInitialize]
         public void TestInitialize()
         {
-            this.optionObject = new OptionObject();
-
-            optionObject.EntityID = "123456";
-            optionObject.EpisodeNumber = 1;
-            optionObject.Facility = "1";
-            optionObject.OptionId = "USER00";
-            optionObject.OptionStaffId = "1234";
-            optionObject.OptionUserId = "username";
-            optionObject.SystemCode = "UAT";
+            optionObject = new OptionObject
+            {
+                EntityID = "123456",
+                EpisodeNumber = 1,
+                Facility = "1",
+                OptionId = "USER00",
+                OptionStaffId = "1234",
+                OptionUserId = "username",
+                SystemCode = "UAT"
+            };
         }
 
         [TestMethod]
@@ -88,6 +89,28 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             string expected = "Hello World!";
             OptionObject returnOptionObject = (OptionObject)OptionObjectHelpers.GetReturnOptionObject((IOptionObject)optionObject, 1, expected);
             Assert.AreEqual(expected, returnOptionObject.ErrorMesg);
+        }
+
+        [TestMethod]
+        [TestCategory("ScriptLinkHelpers")]
+        public void GetReturnOptionObject_ErrorMessage_PresetPreserved()
+        {
+            string expected = "Hello World!";
+            OptionObject presetOptionObject = OptionObject.Initialize();
+            presetOptionObject.ErrorMesg = expected;
+            OptionObject returnOptionObject = (OptionObject)OptionObjectHelpers.GetReturnOptionObject(presetOptionObject);
+            Assert.AreEqual(expected, returnOptionObject.ErrorMesg);
+        }
+
+        [TestMethod]
+        [TestCategory("ScriptLinkHelpers")]
+        public void GetReturnOptionObject_ErrorCode_PresetPreserved()
+        {
+            double expected = 3;
+            OptionObject presetOptionObject = OptionObject.Initialize();
+            presetOptionObject.ErrorCode = expected;
+            OptionObject returnOptionObject = (OptionObject)OptionObjectHelpers.GetReturnOptionObject(presetOptionObject);
+            Assert.AreEqual(expected, returnOptionObject.ErrorCode);
         }
 
         [TestMethod]

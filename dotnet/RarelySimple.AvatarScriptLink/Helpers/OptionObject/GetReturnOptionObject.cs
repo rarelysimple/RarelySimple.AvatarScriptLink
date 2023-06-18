@@ -14,7 +14,9 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (optionObject == null)
                 throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            return GetReturnOptionObject(optionObject, 0, "");
+            IOptionObject returnOptionObject = ((OptionObjectBase)optionObject).Clone();
+            RemoveUneditedRows(returnOptionObject);
+            return returnOptionObject;
         }
         /// <summary>
         /// Used to create the <see cref="IOptionObject"/> for return to myAvatar using provide Error Code and Error Message.
@@ -40,7 +42,9 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (optionObject == null)
                 throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            return GetReturnOptionObject(optionObject, 0, "");
+            IOptionObject2 returnOptionObject = ((OptionObjectBase)optionObject).Clone();
+            RemoveUneditedRows(returnOptionObject);
+            return returnOptionObject;
         }
         /// <summary>
         /// Used to create the <see cref="IOptionObject2"/> for return to myAvatar using provide Error Code and Error Message.
@@ -67,10 +71,12 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (optionObject == null)
                 throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            return GetReturnOptionObject(optionObject, 0, "");
+            IOptionObject2015 returnOptionObject = ((OptionObjectBase)optionObject).Clone();
+            RemoveUneditedRows(returnOptionObject);
+            return returnOptionObject;
         }
         /// <summary>
-        /// Used to create the <see cref="IOptionObject2015"/> for return to myAvatar using provide Error Code and Error Message.
+        /// Used to create the <see cref="IOptionObject2015"/> for return to myAvatar using provided Error Code and Error Message.
         /// </summary>
         /// <param name="optionObject"></param>
         /// <param name="errorCode"></param>
