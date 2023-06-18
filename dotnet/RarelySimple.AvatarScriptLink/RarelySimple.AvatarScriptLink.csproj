@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Scott Olson Jr</Authors>
     <Company>Rarely Simple</Company>
@@ -9,7 +9,7 @@
     <RepositoryUrl>https://github.com/rarelysimple/RarelySimple.AvatarScriptLink</RepositoryUrl>
     <PackageProjectUrl>https://scriptlink.rarelysimple.com/</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
-    <Copyright>Copyright © 2022 Scott Olson Jr</Copyright>
+    <Copyright>Copyright © 2023 Scott Olson Jr</Copyright>
     <Description>AvatarScriptLink.NET is a library for accelerating Netsmart myAvatar ScriptLink API development.</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
     <SignAssembly>true</SignAssembly>
@@ -18,7 +18,7 @@
     <PackageId>RarelySimple.AvatarScriptLink</PackageId>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <IsPackable>true</IsPackable>
-    <Version>1.1.10</Version>
+    <Version>1.2.0</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
   </PropertyGroup>

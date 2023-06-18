@@ -117,7 +117,8 @@ The following methods are available on the OptionObject to assist with common ta
 | AddFormObject([FormObject](../formobject))     | Adds a [FormObject](../formobject) to the OptionObject.            |
 | AddFormObject(string, bool)                   | Creates a [FormObject](../formobject) with specified FormId and adds to the OptionObject2015. The second parameter specifies whether the [FormObject](../formobject) should be flagged as a Multiple Iteration form. |
 | AddRowObject(string, [RowObject](../rowobject))| Adds a [RowObject](../rowobject) to the [FormObject](../formobject) with the specified FormId. |
-| Clone                                         | Clones the OptionObject.            |
+| Builder() | Initializes a builder for constructing a OptionObject. |
+| Clone()                                        | Clones the OptionObject.            |
 | DeleteRowObject([RowObject](../rowobject))     | Marks a <see cref="RowObject"/> for deletion.            |
 | DeleteRowObject(string)                       | Marks a <see cref="RowObject"/> for deletion by specified RowId.            |
 | DisableAllFieldObjects()                      | Sets all [FieldObjects](../fieldobject) as disabled.            |
@@ -131,6 +132,7 @@ The following methods are available on the OptionObject to assist with common ta
 | GetHashCode()                                 | Overrides the GetHashCode method for a OptionObjectBase.            |
 | GetMultipleIterationStatus(string)            | Returns the Multiple Iteration Status of the form matching the FormId.            |
 | GetParentRowId(string)                        | Returns the CurrentRow ParentRowId of the form matching the FormId.            |
+| Initialize() | Initializes an empty OptionObject. |
 | IsFieldEnabled(string)                        | Returns whether the specified field is enabled.            |
 | IsFieldLocked(string)                         | Returns whether the specified field is locked.            |
 | IsFieldModified(string)                       | Returns whether the specified field is modified.            |
