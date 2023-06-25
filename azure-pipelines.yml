@@ -26,7 +26,7 @@ steps:
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
-    msbuildArgs: '/t:restore;build /p:PackageVersion=$(Build.BuildNumber) /p:PackageOutputPath=$(Build.ArtifactStagingDirectory) /p:AssemblyFileVersion=$($)Build.BuildNumber)'
+    msbuildArgs: '/t:restore;build /p:PackageOutputPath=$(Build.ArtifactStagingDirectory)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
