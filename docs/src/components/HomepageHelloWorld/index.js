@@ -21,14 +21,15 @@ export default function HomepageHelloWorld() {
                         <CodeBlock
                             language='csharp'>
                             {`[WebMethod]
-public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameters)
+public OptionObject2023 RunScript(OptionObject2023 optionObject, string parameters)
 {
-    OptionObject returnOptionObject = new OptionObject();
+    OptionObject2023 returnOptionObject = new OptionObject();
 
     returnOptionObject.EntityID = optionObject.EntityID;
     returnOptionObject.EpisodeNumber = optionObject.EpisodeNumber;
     returnOptionObject.Facility = optionObject.Facility;
     returnOptionObject.Forms = optionObject.Forms;
+    returnOptionObject.HistoricUID = optionObject.HistoricUID;
     returnOptionObject.NamespaceName = optionObject.NamespaceName;
     returnOptionObject.OptionId = optionObject.OptionId;
     returnOptionObject.OptionStaffId = optionObject.OptionStaffId;
@@ -58,9 +59,9 @@ public OptionObject2015 RunScript(OptionObject2015 optionObject, string paramete
                         <CodeBlock
                             language='csharp'>
                             {`[WebMethod]
-public OptionObject2015 RunScript(OptionObject2015 incomingOptionObject, string parameters)
+public OptionObject2023 RunScript(OptionObject2023 incomingOptionObject, string parameters)
 {
-    OptionObject2015 optionObject = incomingOptionObject.Clone();
+    OptionObject2023 optionObject = incomingOptionObject.Clone();
     // Do work here on the clone of incoming OptionObject to retain original request for later comparison or restore
     return optionObject.ToReturnOptionObject(ErrorCode.Informational, "Informational message...");
 }`}

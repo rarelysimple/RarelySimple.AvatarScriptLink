@@ -12,7 +12,7 @@ Additionally, the AvatarScriptLink.NET library expands on the data model to assi
 
 ## Avatar ScriptLink
 
-The request and response payloads consist of an OptionObject2015 as defined in your APIs WSDL.
+The request and response payloads consist of an OptionObject2023 as defined in your APIs WSDL.
 
 ### Standard
 
@@ -21,13 +21,14 @@ A standard form in myAvatar will include only a single RowObject containing all 
 ```mermaid
 classDiagram
 direction LR
-class OptionObject2015 {
+class OptionObject2023 {
     +string EntityID
     +double EpisodeNumber
     +double ErrorCode
     +string ErrorMesg
     +string Facility
     +List~FormObject~ Forms
+    +string HistoricUID
     +string NamespaceName
     +string OptionId
     +string OptionStaffId
@@ -47,6 +48,7 @@ class FormObject {
 
 class RowObject {
     +List~FieldObject~ Fields
+    +string HistoricUID
     +string ParentRowId
     +string RowAction
     +string RowId
@@ -60,11 +62,11 @@ class FieldObject {
     +string Required
 }
 
-OptionObject2015 "1" --o "*" FormObject : Forms
+OptionObject2023 "1" --o "*" FormObject : Forms
 FormObject "1" --o "1" RowObject : CurrentRow
 RowObject "1" --o "*" FieldObject : Fields
 
-click OptionObject2015 href "./optionobject2015" "Learn more about the OptionObject2015"
+click OptionObject2023 href "./optionobject2023" "Learn more about the OptionObject2023"
 click FormObject href "./formobject" "Learn more about the FormObject"
 click RowObject href "./rowobject" "Learn more about the RowObject"
 click FieldObject href "./fieldobject" "Learn more about the FieldObject"
@@ -72,19 +74,20 @@ click FieldObject href "./fieldobject" "Learn more about the FieldObject"
 
 ### Multiple Iteration
 
-When a myAvatar form (OptionObject2015) includes a multiple iteration table in one or more of the sections (FormObject), the selected RowObject will be in the CurrentRow and any other rows in OtherRows.
+When a myAvatar form (OptionObject2023) includes a multiple iteration table in one or more of the sections (FormObject), the selected RowObject will be in the CurrentRow and any other rows in OtherRows.
 Multiple Iteration Tables can never be ther first section (FormObject) on a myAvatar form.
 
 ```mermaid
 classDiagram
 direction LR
-class OptionObject2015 {
+class OptionObject2023 {
     +string EntityID
     +double EpisodeNumber
     +double ErrorCode
     +string ErrorMesg
     +string Facility
     +List~FormObject~ Forms
+    +string HistoricUID
     +string NamespaceName
     +string OptionId
     +string OptionStaffId
@@ -104,6 +107,7 @@ class FormObject {
 
 class RowObject {
     +List~FieldObject~ Fields
+    +string HistoricUID
     +string ParentRowId
     +string RowAction
     +string RowId
@@ -117,12 +121,12 @@ class FieldObject {
     +string Required
 }
 
-OptionObject2015 "1" --o "*" FormObject : Forms
+OptionObject2023 "1" --o "*" FormObject : Forms
 FormObject "1" --o "1" RowObject : CurrentRow
 FormObject "1" --o "*" RowObject : OtherRows
 RowObject "1" --o "*" FieldObject : Fields
 
-click OptionObject2015 href "./optionobject2015" "Learn more about the OptionObject2015"
+click OptionObject2023 href "./optionobject2023" "Learn more about the OptionObject2023"
 click FormObject href "./formobject" "Learn more about the FormObject"
 click RowObject href "./rowobject" "Learn more about the RowObject"
 click FieldObject href "./fieldobject" "Learn more about the FieldObject"

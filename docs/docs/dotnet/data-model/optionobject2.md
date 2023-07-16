@@ -9,7 +9,7 @@ displayed_sidebar: dotnetSidebar
 
 :::tip Legacy Object
 
-A newer version of this object is now available ([OptionObject2015](../optionobject2015)) and is recommended for new projects.
+A newer version of this object is now available ([OptionObject2023](../optionobject2023)) and is recommended for new projects.
 
 :::
 
@@ -78,6 +78,7 @@ class OptionObject2 {
     +ToOptionObject() OptionObject
     +ToOptionObject2() OptionObject2
     +ToOptionObject2015() OptionObject2015
+    +ToOptionObject2023() OptionObject2023
     +ToReturnOptionObject() OptionObject2
     +ToReturnOptionObject(bool, string) OptionObject2
     +ToXml() string
@@ -123,7 +124,7 @@ The following methods are available on the OptionObject2 to assist with common t
 | AddFormObject(string, bool)                   | Creates a [FormObject](../formobject) with specified FormId and adds to the OptionObject2015. The second parameter specifies whether the [FormObject](../formobject) should be flagged as a Multiple Iteration form. |
 | AddRowObject(string, [RowObject](../rowobject))| Adds a [RowObject](../rowobject) to the [FormObject](../formobject) with the specified FormId. |
 | Builder() | Initializes a builder for constructing a OptionObject2. |
-| Clone90                                        | Clones the OptionObject2.            |
+| Clone()                                        | Clones the OptionObject2.            |
 | DeleteRowObject([RowObject](../rowobject))     | Marks a [RowObject"](../rowobject) for deletion.            |
 | DeleteRowObject(string)                       | Marks a [RowObject"](../rowobject) for deletion by specified RowId.            |
 | DisableAllFieldObjects()                      | Sets all [FieldObjects](../fieldobject) as disabled.            |
@@ -166,6 +167,7 @@ The following methods are available on the OptionObject2 to assist with common t
 | ToOptionObject()                              | Transforms the OptionObject2 to an OptionObject.            |
 | ToOptionObject2()                             | Creates a clone of the OptionObject2.            |
 | ToOptionObject2015()                          | Transforms the OptionObject2 as an OptionObject2015.           |
+| ToOptionObject2023()                          | Transforms the OptionObject2 as an OptionObject2023.           |
 | ToReturnOptionObject()                        | Creates an OptionObject2 with the minimum information required to return.            |
 | ToReturnOptionObject(int, string)             | Creates an OptionObject2 with the minimum information required to return plus the provided Error Code and Message.            |
 | ToXml()                                       | Returns a string with all of the contents of the OptionObject2 formatted as XML.           |
@@ -185,6 +187,7 @@ class OptionObject2{
     +ToOptionObject() OptionObject
     +ToOptionObject2() OptionObject2
     +ToOptionObject2015() OptionObject2015
+    +ToOptionObject2023() OptionObject2023
     +ToReturnOptionObject() OptionObject2015
     +ToReturnOptionObject(bool, string) OptionObject2015
     +ToXml() string
@@ -247,9 +250,10 @@ class OptionObjectBase {
     +ToHtmlString() string
     +ToHtmlString(bool) string
     +ToJson() string
-    +ToOptionObject()* OptionObject
-    +ToOptionObject2()* OptionObject2
-    +ToOptionObject2015()* OptionObject2015
+    +ToOptionObject() OptionObject
+    +ToOptionObject2() OptionObject2
+    +ToOptionObject2015() OptionObject2015
+    +ToOptionObject2023() OptionObject2023
     +ToReturnOptionObject() OptionObjectBase
     +ToReturnOptionObject(double, string) OptionObjectBase
     +ToXml() string
@@ -258,6 +262,11 @@ class OptionObjectBase {
     -AreFormsEqual(List~FormObject~, List~FormObject~)$ bool
 }
 <<abstract>> OptionObjectBase
+
+class IOptionObject2023 {
+    string HistoricUID
+}
+<<interface>> IOptionObject2023
 
 class IOptionObject2015 {
     string SessionToken
@@ -297,6 +306,7 @@ OptionObjectBase "1" --o "*" FormObject : Forms
 OptionObject2 --|> OptionObjectBase : inherits
 OptionObjectBase --|> IEquatable~OptionObjectBase~ : inherits
 OptionObjectBase --|> IOptionObject2015 : inherits
+IOptionObject2023 --|> IOptionObject2015 : inherits
 IOptionObject2015 --|> IOptionObject2 : inherits
 IOptionObject2 --|> IOptionObject : inherits
 

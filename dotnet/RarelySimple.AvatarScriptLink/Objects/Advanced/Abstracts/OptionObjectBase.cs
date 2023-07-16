@@ -7,7 +7,7 @@ using System.Text;
 
 namespace RarelySimple.AvatarScriptLink.Objects.Advanced
 {
-    public abstract class OptionObjectBase : IEquatable<OptionObjectBase>, IOptionObject2015
+    public abstract class OptionObjectBase : IEquatable<OptionObjectBase>, IOptionObject2023
     {
         #region Constructors
 
@@ -32,14 +32,16 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// <param name="parentNamespace"></param>
         /// <param name="serverName"></param>
         /// <param name="sessionToken"></param>
+        /// <param name="historicUID"></param>
         protected OptionObjectBase(string optionId, string optionUserId, string optionStaffId
             , string facility, string entityId, double episodeNumber
             , string systemCode, string namespaceName, string parentNamespace, string serverName
-            , string sessionToken)
+            , string sessionToken, string historicUID)
         {
             EntityID = entityId;
             EpisodeNumber = episodeNumber;
             Facility = facility;
+            HistoricUID = historicUID;
             NamespaceName = namespaceName;
             OptionId = optionId;
             OptionStaffId = optionStaffId;
@@ -65,16 +67,18 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// <param name="parentNamespace"></param>
         /// <param name="serverName"></param>
         /// <param name="sessionToken"></param>
+        /// <param name="historicUID"></param>
         /// <param name="forms"></param>
         protected OptionObjectBase(string optionId, string optionUserId, string optionStaffId
             , string facility, string entityId, double episodeNumber
             , string systemCode, string namespaceName, string parentNamespace, string serverName
-            , string sessionToken
+            , string sessionToken, string historicUID
             , List<FormObject> forms)
         {
             EntityID = entityId;
             EpisodeNumber = episodeNumber;
             Facility = facility;
+            HistoricUID = historicUID;
             NamespaceName = namespaceName;
             OptionId = optionId;
             OptionStaffId = optionStaffId;
@@ -117,6 +121,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// </summary>
         /// <value>The value is a <see cref="string"/>. For most organizations, this value is 1, however more complex security configurations will utilize additional values.</value>
         public virtual string Facility { get; set; }
+        /// <summary>
+        /// Gets or sets the HistoricUID property of the <see cref="OptionObject2023"/>.
+        /// </summary>
+        /// <value>The value is a <see cref="string"/> representing this object's historic unique identifier.</value>
+        public virtual string HistoricUID { get; set; }
         /// <summary>
         /// Gets or sets the Forms property of the <see cref="OptionObject2015"/>.
         /// </summary>
@@ -229,6 +238,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
                 + delimiter + this.ErrorCode.ToString(CultureInfo.InvariantCulture)
                 + delimiter + this.ErrorMesg
                 + delimiter + this.Facility
+                + delimiter + this.HistoricUID
                 + delimiter + this.NamespaceName
                 + delimiter + this.OptionId
                 + delimiter + this.OptionStaffId
@@ -269,7 +279,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public static bool operator ==(OptionObjectBase optionObject1, OptionObjectBase optionObject2)
         {
             if (((object)optionObject1) == null || ((object)optionObject2) == null)
-                return Object.Equals(optionObject1, optionObject2);
+                return Equals(optionObject1, optionObject2);
 
             return optionObject1.Equals(optionObject2);
         }
@@ -277,7 +287,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public static bool operator !=(OptionObjectBase optionObject1, OptionObjectBase optionObject2)
         {
             if (((object)optionObject1) == null || ((object)optionObject2) == null)
-                return !Object.Equals(optionObject1, optionObject2);
+                return !Equals(optionObject1, optionObject2);
 
             return !(optionObject1.Equals(optionObject2));
         }
@@ -566,6 +576,12 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// </summary>
         /// <returns></returns>
         public abstract OptionObject2015 ToOptionObject2015();
+
+        /// <summary>
+        /// Transforms the <see cref="OptionObjectBase"/>  to an <see cref="OptionObject2023"/>.
+        /// </summary>
+        /// <returns></returns>
+        public abstract OptionObject2023 ToOptionObject2023();
 
         /// <summary>
         /// Creates an <see cref="OptionObjectBase"/> with the minimal information required to return.

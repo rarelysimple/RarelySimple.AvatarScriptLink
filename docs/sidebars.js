@@ -37,7 +37,7 @@ const sidebars = {
             id: 'dotnet/data-model/README'
         },
         items: [
-            'dotnet/data-model/optionobject2015',
+            'dotnet/data-model/optionobject2023',
             'dotnet/data-model/formobject',
             'dotnet/data-model/rowobject',
             'dotnet/data-model/fieldobject',

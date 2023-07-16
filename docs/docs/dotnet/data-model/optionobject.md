@@ -9,7 +9,7 @@ displayed_sidebar: dotnetSidebar
 
 :::tip Legacy Object
 
-A newer version of this object is now available ([OptionObject2015](../optionobject2015)) and is recommended for new projects.
+A newer version of this object is now available ([OptionObject2023](../optionobject2023)) and is recommended for new projects.
 
 :::
 
@@ -75,6 +75,7 @@ class OptionObject {
     +ToOptionObject() OptionObject
     +ToOptionObject2() OptionObject2
     +ToOptionObject2015() OptionObject2015
+    +ToOptionObject2023() OptionObject2023
     +ToReturnOptionObject() OptionObject
     +ToReturnOptionObject(bool, string) OptionObject
     +ToXml() string
@@ -161,6 +162,7 @@ The following methods are available on the OptionObject to assist with common ta
 | ToOptionObject()                              | Creates a clone of the OptionObject.            |
 | ToOptionObject2()                             | Transforms the OptionObject2 to an OptionObject2.            |
 | ToOptionObject2015()                          | Transforms the OptionObject2 as an OptionObject2015.           |
+| ToOptionObject2023()                          | Transforms the OptionObject2 as an OptionObject2023.           |
 | ToReturnOptionObject()                        | Creates an OptionObject with the minimum information required to return.            |
 | ToReturnOptionObject(int, string)             | Creates an OptionObject with the minimum information required to return plus the provided Error Code and Message.            |
 | ToXml()                                       | Returns a string with all of the contents of the OptionObject formatted as XML.           |
@@ -180,6 +182,7 @@ class OptionObject {
     +ToOptionObject() OptionObject
     +ToOptionObject2() OptionObject2
     +ToOptionObject2015() OptionObject2015
+    +ToOptionObject2023() OptionObject2023
     +ToReturnOptionObject() OptionObject
     +ToReturnOptionObject(bool, string) OptionObject
     +ToXml() string
@@ -242,9 +245,10 @@ class OptionObjectBase {
     +ToHtmlString() string
     +ToHtmlString(bool) string
     +ToJson() string
-    +ToOptionObject()* OptionObject
-    +ToOptionObject2()* OptionObject2
-    +ToOptionObject2015()* OptionObject2015
+    +ToOptionObject() OptionObject
+    +ToOptionObject2() OptionObject2
+    +ToOptionObject2015() OptionObject2015
+    +ToOptionObject2023() OptionObject2023
     +ToReturnOptionObject() OptionObjectBase
     +ToReturnOptionObject(double, string) OptionObjectBase
     +ToXml() string
@@ -253,6 +257,11 @@ class OptionObjectBase {
     -AreFormsEqual(List~FormObject~, List~FormObject~)$ bool
 }
 <<abstract>> OptionObjectBase
+
+class IOptionObject2023 {
+    string HistoricUID
+}
+<<interface>> IOptionObject2023
 
 class IOptionObject2015 {
     string SessionToken
@@ -292,6 +301,7 @@ OptionObjectBase "1" --o "*" FormObject : Forms
 OptionObject --|> OptionObjectBase : inherits
 OptionObjectBase --|> IEquatable~OptionObjectBase~ : inherits
 OptionObjectBase --|> IOptionObject2015 : inherits
+IOptionObject2023 --|> IOptionObject2015 : inherits
 IOptionObject2015 --|> IOptionObject2 : inherits
 IOptionObject2 --|> IOptionObject : inherits
 
