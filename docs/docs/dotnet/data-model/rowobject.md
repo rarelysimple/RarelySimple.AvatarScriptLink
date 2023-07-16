@@ -17,6 +17,7 @@ classDiagram
 direction LR
 class RowObject {
     +List~FieldObject~ Fields
+    +string HistoricUID
     +string ParentRowId
     +string RowAction
     +string RowId
@@ -73,12 +74,13 @@ click FieldObject href "./fieldobject" "Learn more about the FieldObject"
 
 ## Properties
 
-| Property        | Description |
-|:----------------|:------------|
-| Fields          | Gets or sets the Fields value. |
-| ParentRowId     | Gets or Sets the ParentRowId value. |
+| Property        | Description                                                                                                   |
+|:----------------|:--------------------------------------------------------------------------------------------------------------|
+| Fields          | Gets or sets the Fields value.                                                                                |
+| HistoricUID     | Gets or Sets the HistoricUID value.                                                                           |
+| ParentRowId     | Gets or Sets the ParentRowId value.                                                                           |
 | RowAction       | Gets or sets the RowAction value. The supported case-sensitive values are blank, `ADD`, `EDIT`, and `DELETE`. |
-| RowId           | Gets or set the RowId value. |
+| RowId           | Gets or set the RowId value.                                                                                  |
 
 ## Methods
 
@@ -116,7 +118,7 @@ click FieldObject href "./fieldobject" "Learn more about the FieldObject"
 
 ## Examples
 
-Most implementations would not require working with the RowObject directly, however here is an example that uses the RowObject to create an [OptionObject2015](../optionobject2015) for Unit Testing.
+Most implementations would not require working with the RowObject directly, however here is an example that creates a RowObject for Unit Testing.
 
 <Tabs>
 <TabItem value="cs" label="C#">
@@ -203,6 +205,7 @@ class RowObject {
 
 class RowObjectBase {
     +List~FieldObject~ Fields
+    +string HistoricUID
     +string ParentRowId
     +string RowAction
     +string RowId
@@ -248,6 +251,7 @@ class RowObjectBase {
 
 class IRowObject {
     List~FieldObject~ Fields
+    string HistoricUID
     string ParentRowId
     string RowAction
     string RowId

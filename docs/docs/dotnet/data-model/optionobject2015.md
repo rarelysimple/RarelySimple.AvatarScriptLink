@@ -12,12 +12,9 @@ import TabItem from '@theme/TabItem';
 The OptionObject2015 holds all of the content of and metadata describing the calling myAvatar form.
 AvatarScriptLink.NET adds several utility methods to assist with handlings these objects.
 
-:::note Legacy Support
+:::tip Legacy Object
 
-Earlier versions of this object are still supported and available for use in your projects.
-
-* [OptionObject2](../optionobject2)
-* [OptionObject](../optionobject)
+A newer version of this object is now available ([OptionObject2023](../optionobject2023)) and is recommended for new projects.
 
 :::
 
@@ -84,6 +81,7 @@ class OptionObject2015 {
     +ToOptionObject() OptionObject
     +ToOptionObject2() OptionObject2
     +ToOptionObject2015() OptionObject2015
+    +ToOptionObject2023() OptionObject2023
     +ToReturnOptionObject() OptionObject2015
     +ToReturnOptionObject(bool, string) OptionObject2015
     +ToXml() string
@@ -173,6 +171,7 @@ The following methods are available on the OptionObject2015 to assist with commo
 | ToOptionObject()                              | Transforms the OptionObject2015 to an OptionObject.            |
 | ToOptionObject2()                             | Transforms the OptionObject2015 as an OptionObject2.            |
 | ToOptionObject2015()                          | Creates a clone of the OptionObject2015.            |
+| ToOptionObject2023()                          | Transforms the OptionObject2015 as an OptionObject2023.            |
 | ToReturnOptionObject()                        | Creates an OptionObject2015 with the minimum information required to return.            |
 | ToReturnOptionObject(int, string)             | Creates an OptionObject2015 with the minimum information required to return plus the provided Error Code and Message.            |
 | ToXml()                                       | Returns a string with all of the contents of the OptionObject2015 formatted as XML.           |
@@ -254,6 +253,7 @@ class OptionObject2015 {
     +ToOptionObject() OptionObject
     +ToOptionObject2() OptionObject2
     +ToOptionObject2015() OptionObject2015
+    +ToOptionObject2023() OptionObject2023
     +ToReturnOptionObject() OptionObject2015
     +ToReturnOptionObject(bool, string) OptionObject2015
     +ToXml() string
@@ -266,6 +266,7 @@ class OptionObjectBase {
     +string ErrorMesg
     +string Facility
     +List~FormObject~ Forms
+    +string HistoricUID
     +string NamespaceName
     +string OptionId
     +string OptionStaffId
@@ -316,9 +317,10 @@ class OptionObjectBase {
     +ToHtmlString() string
     +ToHtmlString(bool) string
     +ToJson() string
-    +ToOptionObject()* OptionObject
-    +ToOptionObject2()* OptionObject2
-    +ToOptionObject2015()* OptionObject2015
+    +ToOptionObject() OptionObject
+    +ToOptionObject2() OptionObject2
+    +ToOptionObject2015() OptionObject2015
+    +ToOptionObject2023() OptionObject2023
     +ToReturnOptionObject() OptionObjectBase
     +ToReturnOptionObject(double, string) OptionObjectBase
     +ToXml() string
@@ -327,6 +329,11 @@ class OptionObjectBase {
     -AreFormsEqual(List~FormObject~, List~FormObject~)$ bool
 }
 <<abstract>> OptionObjectBase
+
+class IOptionObject2023 {
+    string HistoricUID
+}
+<<interface>> IOptionObject2023
 
 class IOptionObject2015 {
     string SessionToken
@@ -369,6 +376,7 @@ OptionObjectBase "1" --o "*" FormObject : Forms
 OptionObject2015 --|> OptionObjectBase : inherits
 OptionObjectBase --|> IEquatable~OptionObjectBase~ : inherits
 OptionObjectBase --|> IOptionObject2015 : inherits
+IOptionObject2023 --|> IOptionObject2015 : inherits
 IOptionObject2015 --|> IOptionObject2 : inherits
 IOptionObject2 --|> IOptionObject : inherits
 

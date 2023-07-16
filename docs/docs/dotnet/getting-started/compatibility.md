@@ -31,16 +31,16 @@ Check out the Microsoft Docs for more information on [.NET Standard compatibilit
 
 Windows Server support is based on the .NET Framework version you choose to use in your ASP.NET Web Application. These are the Windows Servers that can support .NET Framework 4.6.1 or higher.
 
-| Version                | Compatible |
-|:-----------------------|:-----------|
-| Windows Server 2022    | Yes        |
-| Windows Server 2019    | Yes        |
-| Windows Server 2016    | Yes        |
-| Windows Server 2012 R2 | Yes        |
-| Windows Server 2012    | Yes        |
-| Windows Server 2008 R2 | Yes, with SP1 |
-| Windows Server 2008 SP2 | Maybe, requires .NET Framework 4.6.2 |
-| Windows Server 2008 or earlier | No |
+| Version                        | Compatible                           |
+|:-------------------------------|:-------------------------------------|
+| Windows Server 2022            | Yes                                  |
+| Windows Server 2019            | Yes                                  |
+| Windows Server 2016            | Yes                                  |
+| Windows Server 2012 R2         | Yes                                  |
+| Windows Server 2012            | Yes                                  |
+| Windows Server 2008 R2         | Yes, with SP1                        |
+| Windows Server 2008 SP2        | Maybe, requires .NET Framework 4.6.2 |
+| Windows Server 2008 or earlier | No                                   |
 
 More information can be found on [Microsoft Docs](https://learn.microsoft.com/en-us/dotnet/framework/get-started/system-requirements#supported-server-operating-systems).
 

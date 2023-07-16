@@ -9,9 +9,11 @@ sidebar_position: 1
 AvatarScriptLink.NET can be installed via command line or the Visual Studio Nuget Package Manager.
 
 ## Command Line Interface
+
 ```
-dotnet add package RarelySimple.AvatarScriptLink --version 1.2.0
+dotnet add package RarelySimple.AvatarScriptLink --version 1.3.0
 ```
+
 *.NET CLI installation command*
 
 Review [other CLI options](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink)

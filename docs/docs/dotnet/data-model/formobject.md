@@ -66,6 +66,7 @@ class FormObject {
 
 class RowObject {
     +List~FieldObject~ Fields
+    +string HistoricUID
     +string ParentRowId
     +string RowAction
     +string RowId
@@ -141,7 +142,7 @@ click RowObject href "./rowobject" "Learn more about the RowObject"
 
 ## Examples
 
-Most implementations would not require working with the FormObject directly, however here is an example that uses the FormObject to create an [OptionObject2015](../optionobject2015) for Unit Testing.
+Most implementations would not require working with the FormObject directly, however here is an example that creates a FormObject for Unit Testing.
 
 <Tabs>
 <TabItem value="cs" label="C#">
@@ -291,6 +292,7 @@ class IFormObject {
 
 class RowObject {
     +List~FieldObject~ Fields
+    +string HistoricUID
     +string ParentRowId
     +string RowAction
     +string RowId

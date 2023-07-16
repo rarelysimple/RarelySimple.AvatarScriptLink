@@ -43,7 +43,7 @@ Likewise, to bring this same API up to the latest OptionObject version doesn't r
 
 ```c#
 [WebMethod]
-public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameter)
+public OptionObject2023 RunScript(OptionObject2023 optionObject, string parameter)
 {
     return optionObject.ToReturnOptionObject(ErrorCode.Informational, "Hello, World!");
 }

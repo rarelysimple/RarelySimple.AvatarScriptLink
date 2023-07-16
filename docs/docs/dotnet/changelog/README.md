@@ -18,6 +18,10 @@ This list is subject to change with some items being descoped or deferred to a l
 * Enable cross-platform development and build of AvatarScriptLink.NET
 * Include added Field and Row objects by default in returned OptionObjects.
 
+## 1.3.0 (T.B.D.)
+
+* Adds support for the new OptionObject2023 object.
+
 ## 1.2.0 (2023-06-25)
 
 * Introduce Builder methods for each object to assist with object creation.

@@ -43,9 +43,9 @@ public OptionObject RunScript(OptionObject optionObject, string parameter)
 
 Likewise, to bring this same API up to the latest OptionObject version doesn't require accounting for the new properties. Just update the OptionObject version and import the new/updated WSDL into myAvatar.
 
-```cs title="Upgrading from OptionObject to OptionObject2015"
+```cs title="Upgrading from OptionObject to OptionObject2023"
 [WebMethod]
-public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameter)
+public OptionObject2023 RunScript(OptionObject2023 optionObject, string parameter)
 {
     return optionObject.ToReturnOptionObject(ErrorCode.Informational, "Hello, World!");
 }
