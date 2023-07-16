@@ -88,6 +88,7 @@
     <Compile Include="Helpers\OptionObject\IsValidOpenFormStringTests.cs" />
     <Compile Include="Helpers\OptionObject\IsValidRowActionTests.cs" />
     <Compile Include="Helpers\ScriptLink\IsValidUrlTests.cs" />
+    <Compile Include="Objects\OptionObject2023Tests.cs" />
     <Compile Include="Objects\OptionObject2015Tests.cs" />
     <Compile Include="Objects\OptionObject2Tests.cs" />
     <Compile Include="Objects\OptionObjectTests.cs" />

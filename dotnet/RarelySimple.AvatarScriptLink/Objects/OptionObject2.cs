@@ -38,7 +38,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             , string systemCode, string namespaceName, string parentNamespace, string serverName) : base(optionId, optionUserId, optionStaffId
             , facility, entityId, episodeNumber
             , systemCode, namespaceName, parentNamespace, serverName
-            , "")
+            , "", "")
         { }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             , List<FormObject> forms) : base(optionId, optionUserId, optionStaffId
             , facility, entityId, episodeNumber
             , systemCode, namespaceName, parentNamespace, serverName
-            , "", forms)
+            , "", "", forms)
         { }
         /// <summary>
         /// Initializes a <see cref="OptionObject2"/>
@@ -103,6 +103,14 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// </summary>
         /// <value>The value is a <see cref="string"/> representing the SessionToken.</value>
         public override string SessionToken { get; set; }
+
+        [JsonIgnore]
+        [XmlIgnore]
+        /// <summary>
+        /// Gets or sets the HistoricUID object of the <see cref="OptionObject"/>. This is not serialized in an <see cref="OptionObject"/>
+        /// </summary>
+        /// <value>The value is a <see cref="string"/> representing the HistoricUID.</value>
+        public override string HistoricUID { get; set; }
 
 
         /// <summary>
@@ -150,6 +158,12 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// </summary>
         /// <returns></returns>
         public override OptionObject2015 ToOptionObject2015() => (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(this);
+
+        /// <summary>
+        /// Transforms the <see cref="OptionObject2"/>  to an <see cref="OptionObject2023"/>.
+        /// </summary>
+        /// <returns></returns>
+        public override OptionObject2023 ToOptionObject2023() => (OptionObject2023)OptionObjectHelpers.TransformToOptionObject2023(this);
 
         /// <summary>
         /// Creates an <see cref="OptionObject2"/> with the minimal information required to return.
