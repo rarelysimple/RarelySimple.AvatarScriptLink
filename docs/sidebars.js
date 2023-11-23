@@ -46,6 +46,17 @@ const sidebars = {
         ]
     },
     {
+        type: 'category',
+        label: 'Advanced',
+        // link: {
+        //     type: 'doc',
+        //     id: 'dotnet/data-model/README'
+        // },
+        items: [
+            'dotnet/advanced/adding-rows-to-multiple-iteration-tables'
+        ]
+    },
+    {
         type: 'doc',
         id: 'dotnet/changelog/README',
         label: 'Changelog'
