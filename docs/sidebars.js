@@ -53,7 +53,7 @@ const sidebars = {
         //     id: 'dotnet/data-model/README'
         // },
         items: [
-            'dotnet/advanced/adding-rows-to-multiple-iteration-tables'
+            'dotnet/advanced/multiple-iteration-tables'
         ]
     },
     {
