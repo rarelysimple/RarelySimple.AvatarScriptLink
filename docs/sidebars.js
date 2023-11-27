@@ -47,10 +47,21 @@ const sidebars = {
     },
     {
         type: 'category',
-        label: 'Advanced',
+        label: 'Guides',
         // link: {
         //     type: 'doc',
-        //     id: 'dotnet/data-model/README'
+        //     id: 'dotnet/guides/README'
+        // },
+        items: [
+            'dotnet/guides/working-with-fieldobjects'
+        ]
+    },
+    {
+        type: 'category',
+        label: 'Advanced Guides',
+        // link: {
+        //     type: 'doc',
+        //     id: 'dotnet/advanced/README'
         // },
         items: [
             'dotnet/advanced/multiple-iteration-tables'
