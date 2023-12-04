@@ -1,5 +1,5 @@
 ---
-slug: creating-your-first-scriptlink-api-using-c-sharp
+slug: creating-your-first-myavatar-scriptlink-api-using-c-sharp
 title: Creating Your First myAvatar ScriptLink API Using C#
 authors: [scottolsonjr]
 tags: [scriptlink, myavatar, dotnet, c#, visual studio]
@@ -9,17 +9,28 @@ tags: [scriptlink, myavatar, dotnet, c#, visual studio]
 This post was originally published on the RarelySimple Blog. It has been republished here to be with other ScriptLink-related content.
 :::
 
-Most of my IT career has involved the implementation, maintenance, and configuration of electronic health record (EHR) solutions in the behavioral health space. Much of this work has been the usual suspects of security, report writing, end user support, and process design. However, it has also involved a health dose of extending the EHR to add additional features and capabilities. The Netsmart myAvatar EHR solution includes a variety of options for extending the solution.
+Most of my IT career has involved the implementation, maintenance, and configuration of electronic health record (EHR) solutions in the behavioral health space.
+Much of this work has been the usual suspects of security, report writing, end user support, and process design.
+However, it has also involved a healthy dose of extending the EHR to add additional features and capabilities.
+The Netsmart myAvatar EHR solution includes a variety of options for extending the solution.
 
-In this series of articles, we will be looking at the myAvatar ScriptLink feature. ScriptLink is a feature that enables a form in myAvatar to connect to a separate web application (consume a SOAP API) to interact with the form or trigger additional processes, such as sending an email. A common example of how to use ScriptLink is to score a clinical outcomes tool and provide a prompt.
+In this series of articles, we will be looking at the myAvatar ScriptLink feature.
+ScriptLink is a feature that enables a form in myAvatar to connect to a separate web application (consume a SOAP API) to interact with the form or trigger additional processes, such as sending an email.
+A common example of how to use ScriptLink is to score a clinical outcomes tool and provide a prompt.
 
 {/* truncate */}
 
-For example, a clinician completes a general Assessment and upon filing, ScriptLink calls the API which evaluates the responses and determines based on the results that the client may be at risk of death by suicide so a Suicide Risk Assessment is recommended and give the option to open that form at that moment. ScriptLink could then extend the functionality of the Suicide Risk Assessment to trigger notifications or create a Chart Alert based on the responses.
+For example, a clinician completes a general Assessment and upon filing, ScriptLink calls the API which evaluates the responses and determines based on the results that the client may be at risk of death by suicide so a Suicide Risk Assessment is recommended and give the option to open that form at that moment.
+ScriptLink could then extend the functionality of the Suicide Risk Assessment to trigger notifications or create a Chart Alert based on the responses.
 
-To leverage the ScriptLink feature in your environment you will need access to a developer or development team that can create the web application and API. You will also need to host the solution in your server room, data center, or in Netsmart’s cloud hosting.
+To leverage the ScriptLink feature in your environment you will need access to a developer or development team that can create the web application and API.
+You will also need to host the solution in your server room, data center, or in Netsmart’s cloud hosting.
 
-This series is written for the developer who may new to ScriptLink or even development. The goal is to help your get started. Much of the series will look at development in .NET using C# and hosting using Windows Server and IIS. However, this will not be exclusively so. I intend to explore some other frameworks, languages, and hosting solutions in this series and the future as well.
+This series is written for the developer who may new to ScriptLink or even development.
+The goal is to help you get started.
+Much of the series will look at development in .NET using C# and hosting using Windows Server and IIS.
+However, this will not be exclusively so.
+I intend to explore some other frameworks, languages, and hosting solutions in this series and the future as well.
 
 ## What You Will Need
 
@@ -33,7 +44,9 @@ Before we begin you will need the following.
 You can skip a number of these steps by using the AvatarScriptLink.NET library instead. It is available for free on NuGet and simplifies ScriptLink API development. [Learn more](/docs/dotnet).
 :::
 
-The first thing we will do is create a .NET Standard Class Library to define the OptionObject that we will receive from myAvatar. We will simplify and enhance this by using a NuGet package in the future. However, this will help to familiarize you with the OptionObject definition.
+The first thing we will do is create a .NET Standard Class Library to define the OptionObject that we will receive from myAvatar.
+We will simplify and enhance this by using a NuGet package in the future.
+However, this will help to familiarize you with the OptionObject definition.
 
 1. Launch **Visual Studio 2019** and select **Create a new project**.
 
