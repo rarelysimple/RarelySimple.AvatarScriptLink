@@ -68,6 +68,18 @@ const sidebars = {
         ]
     },
     {
+        type: 'category',
+        label: 'Tutorials',
+        // link: {
+        //     type: 'doc',
+        //     id: 'dotnet/guides/README'
+        // },
+        items: [
+            'dotnet/tutorials/hello-world-dotnet',
+            'dotnet/tutorials/hello-world-dotnet-framework',
+        ]
+    },
+    {
         type: 'doc',
         id: 'dotnet/changelog/README',
         label: 'Changelog'
