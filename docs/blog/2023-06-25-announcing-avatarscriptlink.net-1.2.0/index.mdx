@@ -1,0 +1,48 @@
+---
+slug: announcing-avatarscriptlink.net-1.2.0
+title: Announcing AvatarScriptLink.NET 1.2.0
+authors: [scottolsonjr]
+tags: [scriptlink, myavatar, dotnet, c#, vb, visual basic, visual studio, nuget]
+---
+
+AvatarScriptLink.NET version 1.2.0 is [now available on NuGet](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.2.0).
+This release includes the introduction of Builder methods to assist with the creation of the various objects as well as allowing for the [error code and error message to be set prior to calling `ToReturnOptionObject()`](https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/52).
+This is especially helpful when arranging unit tests.
+
+{/* truncate */}
+
+## New Builders
+
+Builder methods have been added to each of the ScriptLink objects.
+
+* [OptionObject2015 (incl. OptionObject2, OptionObject)](https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/40)
+* [FormObject](https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/39)
+* [RowObject](https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/38)
+* [FieldObject](https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/37)
+
+```cs
+[TestMethod]
+public void TestMethod1WithFluentBuilder()
+{
+    var expected = "value";
+    FieldObject fieldObject = FieldObject.Builder()
+        .FieldNumber("123.45").FieldValue(expected)
+        .Enabled()
+        .Build();
+    Assert.AreEqual(expected, fieldObject.FieldValue);
+}
+```
+
+## Preset ErrorCode and ErrorMesg
+
+TThere may be use cases in which you do not want to wait until the returning of the response to set the ErrorCode and ErrorMesg.
+With this release you can set these values prior to calling `ToReturnOptionObject()`.
+
+```cs
+if (condition)
+{
+    optionObject.ErrorCode = ErrorCode.Alert;
+    optionObject.ErrorMesg = "An alert message!";
+}
+return optionObject.ToReturnOptionObject();
+```
