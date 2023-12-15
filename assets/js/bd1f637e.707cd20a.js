@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[4986],{2845:e=>{e.exports=JSON.parse('{"label":"nuget","permalink":"/blog/tags/nuget","allTagsPath":"/blog/tags","count":8,"unlisted":false}')}}]);

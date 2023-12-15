@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>AvatarScriptLink by RarelySimple Blog</title>
+        <link>https://scriptlink.rarelysimple.com/blog</link>
+        <description>AvatarScriptLink by RarelySimple Blog</description>
+        <lastBuildDate>Sun, 25 Jun 2023 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <copyright>Copyright © 2023 Scott Olson Jr</copyright>
+        <item>
+            <title><![CDATA[Announcing AvatarScriptLink.NET 1.2.0]]></title>
+            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.2.0</link>
+            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.2.0</guid>
+            <pubDate>Sun, 25 Jun 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[AvatarScriptLink.NET version 1.2.0 is now available on NuGet.]]></description>
+            <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.2.0 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.2.0" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
+This release includes the introduction of Builder methods to assist with the creation of the various objects as well as allowing for the <a href="https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/52" target="_blank" rel="noopener noreferrer">error code and error message to be set prior to calling <code>ToReturnOptionObject()</code></a>.
+This is especially helpful when arranging unit tests.</p>
+<!-- -->
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="new-builders">New Builders<a href="https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.2.0#new-builders" class="hash-link" aria-label="Direct link to New Builders" title="Direct link to New Builders">​</a></h2>
+<p>Builder methods have been added to each of the ScriptLink objects.</p>
+<ul>
+<li><a href="https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/40" target="_blank" rel="noopener noreferrer">OptionObject2015 (incl. OptionObject2, OptionObject)</a></li>
+<li><a href="https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/39" target="_blank" rel="noopener noreferrer">FormObject</a></li>
+<li><a href="https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/38" target="_blank" rel="noopener noreferrer">RowObject</a></li>
+<li><a href="https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/37" target="_blank" rel="noopener noreferrer">FieldObject</a></li>
+</ul>
+<div class="language-cs codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-cs codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">[</span><span class="token attribute class-name">TestMethod</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">public</span><span class="token plain"> </span><span class="token return-type class-name keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">TestMethod1WithFluentBuilder</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token class-name keyword" style="color:#00009f">var</span><span class="token plain"> expected </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"value"</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token class-name">FieldObject</span><span class="token plain"> fieldObject </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> FieldObject</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">Builder</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">FieldNumber</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">"123.45"</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">FieldValue</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">expected</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">Enabled</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">Build</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    Assert</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">AreEqual</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">expected</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> fieldObject</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">FieldValue</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="preset-errorcode-and-errormesg">Preset ErrorCode and ErrorMesg<a href="https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.2.0#preset-errorcode-and-errormesg" class="hash-link" aria-label="Direct link to Preset ErrorCode and ErrorMesg" title="Direct link to Preset ErrorCode and ErrorMesg">​</a></h2>
+<p>TThere may be use cases in which you do not want to wait until the returning of the response to set the ErrorCode and ErrorMesg.
+With this release you can set these values prior to calling <code>ToReturnOptionObject()</code>.</p>
+<div class="language-cs codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-cs codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">condition</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    optionObject</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">ErrorCode </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> ErrorCode</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">Alert</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    optionObject</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">ErrorMesg </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"An alert message!"</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">return</span><span class="token plain"> optionObject</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">ToReturnOptionObject</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>]]></content:encoded>
+            <category>scriptlink</category>
+            <category>myavatar</category>
+            <category>dotnet</category>
+            <category>c#</category>
+            <category>vb</category>
+            <category>visual basic</category>
+            <category>visual studio</category>
+            <category>nuget</category>
+        </item>
+        <item>
+            <title><![CDATA[Announcing AvatarScriptLink.NET 1.1.10]]></title>
+            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.1.10</link>
+            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.1.10</guid>
+            <pubDate>Sat, 15 Oct 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[AvatarScriptLink.NET version 1.1.10 is now available on NuGet.]]></description>
+            <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.1.10 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.1.10" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
+This release corrects <a href="https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/22" target="_blank" rel="noopener noreferrer">a reported issue causing some using the OpenForm Error Code (6) to fail</a>.</p>]]></content:encoded>
+            <category>scriptlink</category>
+            <category>myavatar</category>
+            <category>dotnet</category>
+            <category>c#</category>
+            <category>vb</category>
+            <category>visual basic</category>
+            <category>visual studio</category>
+            <category>nuget</category>
+        </item>
+        <item>
+            <title><![CDATA[Announcing AvatarScriptLink.NET 1.1.6]]></title>
+            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.1.6</link>
+            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.1.6</guid>
+            <pubDate>Sun, 04 Sep 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[AvatarScriptLink.NET version 1.1.6 is now available on NuGet.]]></description>
+            <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.1.6 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.1.6" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
+This release refines <a href="https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/20" target="_blank" rel="noopener noreferrer">the behavior of setting a FieldObject as required or optional</a>.</p>
+<p>With the release:</p>
+<ul>
+<li><code>SetRequiredField()</code> will no longer set the FieldObject as Enabled as well. Use <code>SetEnabledField()</code> as well if this is the desired result.</li>
+<li><code>SetDisabledField()</code> will no longer set the FieldObject as Optional as well. Use <code>SetOptionalField()</code> well if this is the desired result.</li>
+</ul>
+<!-- -->
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="migrating-from-10x-to-11x">Migrating from 1.0.x to 1.1.x<a href="https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.1.6#migrating-from-10x-to-11x" class="hash-link" aria-label="Direct link to Migrating from 1.0.x to 1.1.x" title="Direct link to Migrating from 1.0.x to 1.1.x">​</a></h2>
+<p>Due to the change of behavior there could be unintended changes to the behavior of implemented ScriptLink APIs.
+If your implementation relies on the assumptions that "all required fields are enabled" or "all disabled fields are optional" then you may need to apply the following updates to your project.</p>
+<p>For <code>SetRequiredField()</code>, add another line to <code>SetEnabledField()</code> to ensure the FieldObject is enabled as expected.</p>
+<div class="language-cs codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-cs codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic">// In version 1.0 SetRequiredField would also enable the FieldObject</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">optionObject</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">SetRequiredField</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">fieldNumber</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic">// In version 1.1 and later this must must explicitly requested.</span><span class="token plain"></span><br></span><span class="token-line theme-code-block-highlighted-line" style="color:#393A34"><span class="token plain">optionObject</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">SetEnabledField</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">fieldNumber</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>For <code>SetDisabledField()</code>, add another line to <code>SetOptionalField()</code> to ensure the FieldObject is set to optional as expected.</p>
+<div class="language-cs codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-cs codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic">// In version 1.0 SetDisabledField would also set the FieldObject as optional (not required)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">optionObject</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">SetDisabledField</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">fieldNumber</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic">// In version 1.1 and later this must must explicitly requested.</span><span class="token plain"></span><br></span><span class="token-line theme-code-block-highlighted-line" style="color:#393A34"><span class="token plain">optionObject</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">SetOptionalField</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">fieldNumber</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>]]></content:encoded>
+            <category>scriptlink</category>
+            <category>myavatar</category>
+            <category>dotnet</category>
+            <category>c#</category>
+            <category>vb</category>
+            <category>visual basic</category>
+            <category>visual studio</category>
+            <category>nuget</category>
+        </item>
+        <item>
+            <title><![CDATA[Announcing AvatarScriptLink.NET 1.0.28]]></title>
+            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.28</link>
+            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.28</guid>
+            <pubDate>Mon, 25 Jul 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[AvatarScriptLink.NET version 1.0.28 is now available on NuGet.]]></description>
+            <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.0.28 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.0.28" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
+This release addresses security vulnerabilities identified in Newtonsoft.Json and includes miscellaneous updates to other project dependencies.</p>
+<p>Security vulnerabilities addressed include:</p>
+<ul>
+<li><a href="https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/8" target="_blank" rel="noopener noreferrer">CVE-2020-11022</a></li>
+<li><a href="https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/9" target="_blank" rel="noopener noreferrer">CVE-2020-11023</a></li>
+</ul>]]></content:encoded>
+            <category>scriptlink</category>
+            <category>myavatar</category>
+            <category>dotnet</category>
+            <category>c#</category>
+            <category>vb</category>
+            <category>visual basic</category>
+            <category>visual studio</category>
+            <category>nuget</category>
+        </item>
+        <item>
+            <title><![CDATA[Announcing AvatarScriptLink.NET 1.0.25]]></title>
+            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.25</link>
+            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.25</guid>
+            <pubDate>Fri, 20 May 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[AvatarScriptLink.NET version 1.0.25 is now available on NuGet.]]></description>
+            <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.0.25 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.0.25" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
+This is a maintenance release which includes updates to miscellaneous project dependencies.</p>
+<p>With this update, <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink" target="_blank" rel="noopener noreferrer">Nuget now displays a README tab in its package directory</a> for <code>RarelySimple.AvatarScriptLink</code>.</p>]]></content:encoded>
+            <category>scriptlink</category>
+            <category>myavatar</category>
+            <category>dotnet</category>
+            <category>c#</category>
+            <category>vb</category>
+            <category>visual basic</category>
+            <category>visual studio</category>
+            <category>nuget</category>
+        </item>
+        <item>
+            <title><![CDATA[Announcing AvatarScriptLink.NET 1.0.22]]></title>
+            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.22</link>
+            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.22</guid>
+            <pubDate>Sun, 08 Aug 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[AvatarScriptLink.NET version 1.0.22 is now available on NuGet.]]></description>
+            <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.0.22 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.0.22" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
+This is a maintenance release which includes the following updates:</p>
+<ul>
+<li>Addresses security vulnerabilities from various project dependencies.</li>
+<li>Converting OptionObject content to HTML has been improved.</li>
+<li>Miscellaneous code quality improvements.</li>
+</ul>]]></content:encoded>
+            <category>scriptlink</category>
+            <category>myavatar</category>
+            <category>dotnet</category>
+            <category>c#</category>
+            <category>vb</category>
+            <category>visual basic</category>
+            <category>visual studio</category>
+            <category>nuget</category>
+        </item>
+        <item>
+            <title><![CDATA[Announcing AvatarScriptLink.NET 1.0.7]]></title>
+            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.7</link>
+            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.7</guid>
+            <pubDate>Sat, 12 Dec 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[AvatarScriptLink.NET version 1.0.7 is now available on NuGet.]]></description>
+            <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.0.7 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.0.7" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
+This release corrects an issue that may occur when the myAvatar Registry Setting <code>Include FormObject for sections without a current row selected</code> is set to <code>Y</code>.</p>]]></content:encoded>
+            <category>scriptlink</category>
+            <category>myavatar</category>
+            <category>dotnet</category>
+            <category>c#</category>
+            <category>vb</category>
+            <category>visual basic</category>
+            <category>visual studio</category>
+            <category>nuget</category>
+        </item>
+        <item>
+            <title><![CDATA[Announcing AvatarScriptLink.NET 1.0.6]]></title>
+            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.6</link>
+            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.6</guid>
+            <pubDate>Tue, 09 Jun 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[AvatarScriptLink.NET version 1.0.6 is now available on NuGet.]]></description>
+            <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.0.6 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.0.6" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
+This is a maintenance release with a number of minor fixes and enhancements.</p>]]></content:encoded>
+            <category>scriptlink</category>
+            <category>myavatar</category>
+            <category>dotnet</category>
+            <category>c#</category>
+            <category>vb</category>
+            <category>visual basic</category>
+            <category>visual studio</category>
+            <category>nuget</category>
+        </item>
+        <item>
+            <title><![CDATA[Announcing AvatarScriptLink.NET General Availability]]></title>
+            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-general-availability</link>
+            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-general-availability</guid>
+            <pubDate>Fri, 21 Feb 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[Placeholder for general availability announcement.]]></description>
+            <content:encoded><![CDATA[<p>Placeholder for general availability announcement.</p>]]></content:encoded>
+            <category>scriptlink</category>
+            <category>myavatar</category>
+            <category>dotnet</category>
+            <category>c#</category>
+            <category>vb</category>
+            <category>visual basic</category>
+            <category>visual studio</category>
+        </item>
+        <item>
+            <title><![CDATA[Testing Your ScriptLink API with SoapUI]]></title>
+            <link>https://scriptlink.rarelysimple.com/blog/testing-your-scriptlink-api-with-soapui</link>
+            <guid>https://scriptlink.rarelysimple.com/blog/testing-your-scriptlink-api-with-soapui</guid>
+            <pubDate>Tue, 18 Feb 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[Welcome back to my series on getting started with myAvatar ScriptLink.]]></description>
+            <content:encoded><![CDATA[<p>Welcome back to my series on getting started with myAvatar ScriptLink.
+Today, we are looking at testing.
+As tempting as it may be, we should not wait to test our ScriptLink APIs until they are available in production.
+We want to test our code before it impacts the users.
+In our first test, we will set up SoapUI to send a request to our development environment and verify the response.</p>
+<p>When we left off, we had <a href="https://scriptlink.rarelysimple.com/blog/creating-your-first-myavatar-scriptlink-api-using-c-sharp/">created our first Hello World ScriptLink API in .NET using C#</a> and Visual Basic.
+If we created them correctly, the we should be able to call the RunScript method with the HelloWorld parameter and receive an Error Code 3 with the ErrorMsg "Hello, World!'.
+Let’s test that.</p>
+<!-- -->
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="what-you-will-need">What You Will Need<a href="https://scriptlink.rarelysimple.com/blog/testing-your-scriptlink-api-with-soapui#what-you-will-need" class="hash-link" aria-label="Direct link to What You Will Need" title="Direct link to What You Will Need">​</a></h2>
+<p>To complete this walkthrough, you will need the following:</p>
+<ol>
+<li><a href="https://visualstudio.microsoft.com/" target="_blank" rel="noopener noreferrer">Visual Studio Community 2019</a></li>
+<li>The Hello World solution we set up previously.<br>I will be using the C# solution for my examples, but the process is the same for the Visual Basic solution.</li>
+<li><a href="https://www.soapui.org/" target="_blank" rel="noopener noreferrer">SoapUI</a></li>
+</ol>
+<p>Visual Studio Community 2019 and SoapUI are free to download and use. Paid versions will add additional features that we will not use in this walkthrough.</p>
+<p>If you don’t have your Hello World API setup yet, go back to my <a href="https://scriptlink.rarelysimple.com/blog/creating-your-first-myavatar-scriptlink-api-using-c-sharp/">previous article</a> to set it up.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="start-your-web-application">Start Your Web Application<a href="https://scriptlink.rarelysimple.com/blog/testing-your-scriptlink-api-with-soapui#start-your-web-application" class="hash-link" aria-label="Direct link to Start Your Web Application" title="Direct link to Start Your Web Application">​</a></h2>
+<p>Our first step is to open our solution in Visual Studio and run it.</p>
+<ol>
+<li>Launch <strong>Visual Studio 2019</strong>.</li>
+<li><strong>Open our ScriptLink demo solution</strong>. For me, it is RS.ScriptLinkDemo.</li>
+<li>Press <strong>F5</strong> to begin debugging the solution.</li>
+<li>You may receive a security alert like this. This means that the browser does not trust the SSL certificate provided by Visual Studio. Go ahead and proceed.</li>
+</ol>
+<p><img loading="lazy" alt="Untrusted Visual Studio SSL Certificate Shown in Mozilla Firefox 70" src="https://scriptlink.rarelysimple.com/assets/images/visual-studio-2019-untrusted-ssl-certificate-a0f68b130411293056026ee6e0a2ce2e.webp" width="1023" height="725" class="img_ev3q"></p>
+<ol start="5">
+<li>If you see the default homepage of our web application like this, then you will need to enter the path to the ScriptLinkController.</li>
+</ol>
+<p><img loading="lazy" alt="Web Application Homepage Forbidden" src="https://scriptlink.rarelysimple.com/assets/images/visual-studio-2019-site-homepage-forbidden-64895df0a67271682150e9bc5816968b.webp" width="1023" height="725" class="img_ev3q"></p>
+<ol start="6">
+<li>Once you are at your ScriptLinkController API you should see a screen like this.</li>
+</ol>
+<p><img loading="lazy" alt="ScriptLinkController Debugging in Mozilla Firefox 70" src="https://scriptlink.rarelysimple.com/assets/images/visual-studio-2019-soap-api-01fae9c855789d74152779c64910484f.webp" width="1023" height="725" class="img_ev3q"></p>
+<ol start="7">
+<li>Confirm and copy the URL of your WSDL. Mine is: <a href="http://localhost/####/api/v3/ScriptLinkController.asmx?WSDL" target="_blank" rel="noopener noreferrer">http://localhost:####/api/v3/ScriptLinkController.asmx?WSDL</a></li>
+</ol>
+<p><img loading="lazy" alt="The content of the ScriptLink WSDL displayed in Mozilla Firefox 70" src="https://scriptlink.rarelysimple.com/assets/images/visual-studio-2019-soap-api-wsdl-b18c15a3d91c5c6edff0e181afedd33c.webp" width="1023" height="725" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="import-wsdl-into-soapui">Import WSDL into SoapUI<a href="https://scriptlink.rarelysimple.com/blog/testing-your-scriptlink-api-with-soapui#import-wsdl-into-soapui" class="hash-link" aria-label="Direct link to Import WSDL into SoapUI" title="Direct link to Import WSDL into SoapUI">​</a></h2>
+<p>Next, we will launch SoapUI and import our WSDL into a new test project.</p>
+<ol>
+<li>Launch <strong>SoapUI</strong>.</li>
+<li>Select <strong>SOAP</strong> in the Task bar to create a new SOAP Project.</li>
+<li><strong>Paste the WSDL URL</strong> into the <em>Initial WSDL</em> field.</li>
+<li>Optional: Customize the Project name.</li>
+<li>Select <strong>OK</strong>.</li>
+</ol>
+<p><img loading="lazy" alt="Creating a new SOAP Project in SoapUI" src="https://scriptlink.rarelysimple.com/assets/images/soapui-new-soap-project-580a95d709941fa521062d79dd8f2b94.png" width="560" height="266" class="img_ev3q"></p>
+<p>You should now have a SOAP project that looks something like this.</p>
+<p><img loading="lazy" alt="SoapUI showing new ScriptLink SOAP Project" src="https://scriptlink.rarelysimple.com/assets/images/soapui-scriptlink-soap-project-901406876da26cbf09e889c4ed277a24.webp" width="1023" height="669" class="img_ev3q"></p>
+<p>Ok. Let’s run some tests.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="testing-the-api">Testing the API<a href="https://scriptlink.rarelysimple.com/blog/testing-your-scriptlink-api-with-soapui#testing-the-api" class="hash-link" aria-label="Direct link to Testing the API" title="Direct link to Testing the API">​</a></h2>
+<p>For our first test, we are going to see what happens when we submit the default test.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="test-1-getversion">Test #1: GetVersion<a href="https://scriptlink.rarelysimple.com/blog/testing-your-scriptlink-api-with-soapui#test-1-getversion" class="hash-link" aria-label="Direct link to Test #1: GetVersion" title="Direct link to Test #1: GetVersion">​</a></h3>
+<p>Our first test will be relatively straightforward. We want to get our GetVersion string back. When we created the SOAP project, SoapUI created default requests for us.</p>
+<ol>
+<li><strong>Expand GetVersion.</strong><br>You can use either interface. However, I will be using the one that does not end in "12".</li>
+<li><strong>Double-click on Request 1</strong> to open it.</li>
+<li>You should now see the default XML request displayed and ready for submission.</li>
+</ol>
+<p><img loading="lazy" alt="ScriptLink GetVersion Request in SoapUI" src="https://scriptlink.rarelysimple.com/assets/images/soapui-scriptlink-soap-getversion-request-d58c9acdda1eba5d375488faffb9c3da.webp" width="1023" height="669" class="img_ev3q"></p>
+<ol start="4">
+<li>Select the <strong>Play</strong> icon (Alt+Enter) to submit request.</li>
+<li>You should have received and XML response.</li>
+</ol>
+<p><img loading="lazy" alt="ScriptLink GetVersion Response in SoapUI" src="https://scriptlink.rarelysimple.com/assets/images/soapui-scriptlink-soap-getversion-response-24a39de77a1f92b44897e57f41b971b8.webp" width="1023" height="669" class="img_ev3q"></p>
+<p>If the test was successful, then you should see the version number you set previously displayed in the GetVersionResult tag. If not, make sure your web application is still running.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="test-2-submitting-default-optionobject">Test #2: Submitting Default OptionObject<a href="https://scriptlink.rarelysimple.com/blog/testing-your-scriptlink-api-with-soapui#test-2-submitting-default-optionobject" class="hash-link" aria-label="Direct link to Test #2: Submitting Default OptionObject" title="Direct link to Test #2: Submitting Default OptionObject">​</a></h2>
+<p>Ok. Now for the real test.</p>
+<ol>
+<li><strong>Expand the RunScript node</strong>.</li>
+<li><strong>Right-click on Request 1</strong> and select <strong>Rename</strong>.</li>
+<li>Name the request <em>Default Request</em> and select <strong>OK</strong>.</li>
+</ol>
+<p><img loading="lazy" alt="Renamed Request in SoapUI" src="https://scriptlink.rarelysimple.com/assets/images/soapui-scriptlink-soap-runscript-default-request-60992ef09adf6d246f5db96670971868.webp" width="1023" height="669" class="img_ev3q"></p>
+<ol start="4">
+<li>Double-click on the Default Request to open it.</li>
+<li>You should now have a default OptionObject2015 on the left and an empty result view on the right.</li>
+</ol>
+<p><img loading="lazy" alt="ScriptLink RunScript Request shown in SoapUI" src="https://scriptlink.rarelysimple.com/assets/images/soapui-scriptlink-soap-runscript-request-389221e983fdb02706da7dc6f02a3437.webp" width="1023" height="669" class="img_ev3q"></p>
+<ol start="6">
+<li>Select the <strong>Play</strong> icon (Alt+Enter) to submit the request.</li>
+<li>You should get a result like this.</li>
+</ol>
+<p><img loading="lazy" alt="ScriptLink RunScript Error Response shown in SoapUI" src="https://scriptlink.rarelysimple.com/assets/images/soapui-scriptlink-soap-runscript-response-error-c2d44b772603178c6566cf30778f5e7c.webp" width="1023" height="669" class="img_ev3q"></p>
+<p>So what happened? Three things happened. The submitted OptionObject2015 included the following invalid values:</p>
+<ul>
+<li>A <code>?</code> in EpisodeNumber.</li>
+<li>A <code>?</code> in ErrorCode.</li>
+<li>A <code>?</code> in MultipleIteration value.</li>
+</ul>
+<p>To fix this:</p>
+<ol>
+<li>Set the EpisodeNumber to 0.</li>
+<li>Remove the ErrorCode and ErrorMesg tags. These are not relevant on submission anyway.</li>
+<li>Set the MultipleIteration value to 0.</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="test-3-the-modified-default-optionobject">Test #3: The Modified Default OptionObject<a href="https://scriptlink.rarelysimple.com/blog/testing-your-scriptlink-api-with-soapui#test-3-the-modified-default-optionobject" class="hash-link" aria-label="Direct link to Test #3: The Modified Default OptionObject" title="Direct link to Test #3: The Modified Default OptionObject">​</a></h2>
+<p>With the modifications in place your OptionObject request should look something like this.</p>
+<p><img loading="lazy" alt="Corrected ScriptLink Default RunScript Request in SoapUI" src="https://scriptlink.rarelysimple.com/assets/images/soapui-scriptlink-soap-runscript-request-fixed-1c36e9993dbaac9303b716a8e0136993.webp" width="1023" height="669" class="img_ev3q"></p>
+<p>Now when we run the test we should get an OptionObject2015 back. Did you?</p>
+<p><img loading="lazy" alt="ScriptLink RunScript Hello World Response in SoapUI" src="https://scriptlink.rarelysimple.com/assets/images/soapui-scriptlink-soap-runscript-response-fixed-c46b1cac290082d18fb1add87be69aaa.png" width="1196" height="782" class="img_ev3q"></p>
+<p>If successful, you should see the ErrorCode "3" and ErrorMesg "Hello, World!" in the response XML.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="save-your-soapui-test-project">Save Your SoapUI Test Project<a href="https://scriptlink.rarelysimple.com/blog/testing-your-scriptlink-api-with-soapui#save-your-soapui-test-project" class="hash-link" aria-label="Direct link to Save Your SoapUI Test Project" title="Direct link to Save Your SoapUI Test Project">​</a></h2>
+<p>To help with future testing, let’s save our SoapUI test project. This should eliminate the need to import the WSDL again, unless we change ports.</p>
+<ol>
+<li>Select <strong>File-&gt;Save All Projects</strong>.</li>
+<li>You should receive a prompt indicating that the project has not been saved.</li>
+<li>Select <strong>Yes</strong> to save the project.</li>
+<li>Select a location for the project file and select <strong>Save</strong>.</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="happy-testing">Happy Testing<a href="https://scriptlink.rarelysimple.com/blog/testing-your-scriptlink-api-with-soapui#happy-testing" class="hash-link" aria-label="Direct link to Happy Testing" title="Direct link to Happy Testing">​</a></h2>
+<p>There you go. You are all set to set testing your ScriptLink APIs with SoapUI. Enjoy!</p>]]></content:encoded>
+            <category>scriptlink</category>
+            <category>myavatar</category>
+            <category>dotnet</category>
+            <category>c#</category>
+            <category>vb</category>
+            <category>visual basic</category>
+            <category>visual studio</category>
+        </item>
+    </channel>
+</rss>
