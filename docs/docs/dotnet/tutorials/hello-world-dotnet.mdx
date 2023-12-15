@@ -1,5 +1,6 @@
 ---
 title: Hello World API
+image: ./HelloWorldDotnet.png
 sidebar_position: 1
 ---
 
@@ -89,6 +90,29 @@ We will add two NuGet packages to our project.
     </TabItem>
 </Tabs>
 
+## Create the Service Contract
+
+1. Add a new class to your project named *IScriptLinkService2015*.
+2. Implement the *GetVersion* and *RunScript* operation contracts as shown below.
+
+```cs title="/IScriptLinkService2015.cs"
+using RarelySimple.AvatarScriptLink.Objects;
+using System.ServiceModel;
+
+namespace ScriptLinkHelloWorldDemo
+{
+    [ServiceContract]
+    public interface IScriptLinkService
+    {
+        [OperationContract]
+        string GetVersion();
+
+        [OperationContract]
+        OptionObject RunScript(OptionObject optionObject, string parameter);
+    }
+}
+```
+
 ## Create ScriptLink Service
 
 1. Add a new class to your project named *ScriptLinkService*.
@@ -96,7 +120,7 @@ We will add two NuGet packages to our project.
 3. Implement the *GetVersion* and *RunScript* methods as shown below.
 
 ```cs title="/ScriptLinkService.cs"
-using RarelySimple.AvatarScriptLink.Services;
+using RarelySimple.AvatarScriptLink.Objects;
 
 namespace ScriptLinkHelloWorldDemo
 {
