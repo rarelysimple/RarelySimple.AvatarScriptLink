@@ -75,8 +75,8 @@ const sidebars = {
         //     id: 'dotnet/guides/README'
         // },
         items: [
-            'dotnet/tutorials/hello-world-dotnet',
-            'dotnet/tutorials/hello-world-dotnet-framework',
+            'dotnet/tutorials/hello-world-dotnet/index',
+            'dotnet/tutorials/hello-world-dotnet-framework/index',
         ]
     },
     {

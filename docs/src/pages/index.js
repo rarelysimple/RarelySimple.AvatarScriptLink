@@ -7,6 +7,7 @@ import Head from '@docusaurus/Head';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import HomepageHelloWorld from '@site/src/components/HomepageHelloWorld';
 import HomepageTestimonial from '@site/src/components/HomepageTestimonial';
+import HomepageGetStarted from '../components/HomepageGetStarted';
 
 import styles from './index.module.css';
 
@@ -16,12 +17,17 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">Accelerate your myAvatar ScriptLink development.</h1>
-        <p className="hero__subtitle">Get started today with your .NET language of choice.</p>
+        <p className="hero__subtitle">Get started today with .NET or .NET Framework.</p>
         <div className={styles.buttons}>
           <Link
-            className="button button--secondary button--lg"
-            to="/docs/dotnet/intro">
-            Learn more
+            className="button button--secondary button--lg heroButton"
+            to="/docs/dotnet/tutorials/hello-world-dotnet">
+            .NET
+          </Link>
+          <Link
+            className="button button--secondary button--lg heroButton"
+            to="/docs/dotnet/tutorials/hello-world-dotnet-framework">
+            .NET Framework
           </Link>
         </div>
       </div>
