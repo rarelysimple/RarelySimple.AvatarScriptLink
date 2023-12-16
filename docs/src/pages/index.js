@@ -7,7 +7,6 @@ import Head from '@docusaurus/Head';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import HomepageHelloWorld from '@site/src/components/HomepageHelloWorld';
 import HomepageTestimonial from '@site/src/components/HomepageTestimonial';
-import HomepageGetStarted from '../components/HomepageGetStarted';
 
 import styles from './index.module.css';
 
