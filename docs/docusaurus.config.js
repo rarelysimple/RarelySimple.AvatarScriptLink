@@ -39,13 +39,25 @@ const config = {
           editUrl:
             'https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/tree/main/docs/',
         },
-        blog: false,
-        // blog: {
-        //   showReadingTime: true,
-        //   // Remove this to remove the "edit this page" links.
-        //   editUrl:
-        //     'https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/tree/main/docs/',
-        // },
+        // blog: false,
+        blog: {
+          showReadingTime: true,
+          feedOptions: {
+            type: 'all',
+            copyright: `Copyright © ${new Date().getFullYear()} Scott Olson Jr`,
+            createFeedItems: async (params) => {
+              const {blogPosts, defaultCreateFeedItems, ...rest} = params;
+              return defaultCreateFeedItems({
+                // keep only the 10 most recent blog posts in the feed
+                blogPosts: blogPosts.filter((item, index) => index < 10),
+                ...rest,
+              });
+            },
+          },
+          // Remove this to remove the "edit this page" links.
+          // editUrl:
+          //   'https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/tree/main/docs/',
+        },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },

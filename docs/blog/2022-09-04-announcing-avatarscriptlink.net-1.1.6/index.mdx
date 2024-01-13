@@ -1,0 +1,42 @@
+---
+slug: announcing-avatarscriptlink.net-1.1.6
+title: Announcing AvatarScriptLink.NET 1.1.6
+authors: [scottolsonjr]
+tags: [scriptlink, myavatar, dotnet, c#, vb, visual basic, visual studio, nuget]
+---
+
+AvatarScriptLink.NET version 1.1.6 is [now available on NuGet](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.1.6).
+This release refines [the behavior of setting a FieldObject as required or optional](https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/20).
+
+With the release:
+
+* `SetRequiredField()` will no longer set the FieldObject as Enabled as well. Use `SetEnabledField()` as well if this is the desired result.
+* `SetDisabledField()` will no longer set the FieldObject as Optional as well. Use `SetOptionalField()` well if this is the desired result.
+
+{/* truncate */}
+
+## Migrating from 1.0.x to 1.1.x
+
+Due to the change of behavior there could be unintended changes to the behavior of implemented ScriptLink APIs.
+If your implementation relies on the assumptions that "all required fields are enabled" or "all disabled fields are optional" then you may need to apply the following updates to your project.
+
+For `SetRequiredField()`, add another line to `SetEnabledField()` to ensure the FieldObject is enabled as expected.
+
+```cs
+// In version 1.0 SetRequiredField would also enable the FieldObject
+optionObject.SetRequiredField(fieldNumber);
+// In version 1.1 and later this must must explicitly requested.
+// highlight-next-line
+optionObject.SetEnabledField(fieldNumber);
+```
+
+For `SetDisabledField()`, add another line to `SetOptionalField()` to ensure the FieldObject is set to optional as expected.
+
+```cs
+// In version 1.0 SetDisabledField would also set the FieldObject as optional (not required)
+optionObject.SetDisabledField(fieldNumber);
+// In version 1.1 and later this must must explicitly requested.
+// highlight-next-line
+optionObject.SetOptionalField(fieldNumber);
+```
+

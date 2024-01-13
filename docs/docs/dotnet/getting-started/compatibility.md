@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Compatibility
 
-AvatarScriptLink.NET is built on .NET Standard 2.0. to support the widest range of .NET Framework and Windows Server versions and features.
+AvatarScriptLink.NET is built on .NET Standard 2.0. to support the widest range of .NET Framework, .NET, and Windows Server versions and features.
 
 ## .NET Framework
 
@@ -27,25 +27,36 @@ For .NET Framework v.4.6.1 projects, the recommendation is to upgrade to version
 
 Check out the Microsoft Docs for more information on [.NET Standard compatibility](https://docs.microsoft.com/en-us/dotnet/standard/net-standard).
 
+## .NET and .NET Core
+
+AvatarScriptLink.NET is compatible with .NET and .NET Core.
+
+| .NET        | Compatible |
+|:------------|:-----------|
+| 8.0         | Yes        |
+| 7.0         | Yes        |
+| 6.0         | Yes        |
+| 5.0         | Yes        |
+| 3.1  (Core) | Yes        |
+| 3.0  (Core) | Yes        |
+| 2.1  (Core) | Yes        |
+| 2.0  (Core) | Yes        |
+| 1.0  (Core) | Yes        |
+
+
 ## Windows Server
 
 Windows Server support is based on the .NET Framework version you choose to use in your ASP.NET Web Application. These are the Windows Servers that can support .NET Framework 4.6.1 or higher.
 
-| Version                | Compatible |
-|:-----------------------|:-----------|
-| Windows Server 2022    | Yes        |
-| Windows Server 2019    | Yes        |
-| Windows Server 2016    | Yes        |
-| Windows Server 2012 R2 | Yes        |
-| Windows Server 2012    | Yes        |
-| Windows Server 2008 R2 | Yes, with SP1 |
-| Windows Server 2008 SP2 | Maybe, requires .NET Framework 4.6.2 |
-| Windows Server 2008 or earlier | No |
+| Version                        | Compatible                           |
+|:-------------------------------|:-------------------------------------|
+| Windows Server 2022            | Yes                                  |
+| Windows Server 2019            | Yes                                  |
+| Windows Server 2016            | Yes                                  |
+| Windows Server 2012 R2         | Yes                                  |
+| Windows Server 2012            | Yes                                  |
+| Windows Server 2008 R2         | Yes, with SP1                        |
+| Windows Server 2008 SP2        | Maybe, requires .NET Framework 4.6.2 |
+| Windows Server 2008 or earlier | No                                   |
 
 More information can be found on [Microsoft Docs](https://learn.microsoft.com/en-us/dotnet/framework/get-started/system-requirements#supported-server-operating-systems).
-
-## .NET 5 and later?
-
-AvatarScriptLink.NET is technically compatible with .NET 5 and later.
-However, the System.Web.Services namespace that we typically leverage is not available.
-If anyone has an example project, please let me know and I can update these docs accordingly.
