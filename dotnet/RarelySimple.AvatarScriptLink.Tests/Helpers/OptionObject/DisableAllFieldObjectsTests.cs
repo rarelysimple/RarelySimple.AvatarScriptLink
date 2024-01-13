@@ -1,9 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RarelySimple.AvatarScriptLink.Helpers;
+﻿using RarelySimple.AvatarScriptLink.Helpers;
 using RarelySimple.AvatarScriptLink.Objects;
 using RarelySimple.AvatarScriptLink.Objects.Advanced;
-using System;
-using System.Collections.Generic;
 
 namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
 {

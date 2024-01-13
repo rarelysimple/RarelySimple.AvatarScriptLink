@@ -1,148 +1,23 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\MSTest.TestAdapter.2.2.10\build\net46\MSTest.TestAdapter.props" Condition="Exists('..\packages\MSTest.TestAdapter.2.2.10\build\net46\MSTest.TestAdapter.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A1E65374-EC66-482B-96B6-14AA35D7A444}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RarelySimple.AvatarScriptLink.Tests</RootNamespace>
-    <AssemblyName>RarelySimple.AvatarScriptLink.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
-    <IsCodedUITest>False</IsCodedUITest>
-    <TestProjectType>UnitTest</TestProjectType>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\MSTest.TestFramework.2.2.10\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\MSTest.TestFramework.2.2.10\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.0.4" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.0.4" />
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="Helpers\OptionObject\RemoveUneditedRowsTests.cs" />
-    <Compile Include="Helpers\OptionObject\IsFieldModifiedTests.cs" />
-    <Compile Include="Helpers\ScriptLink\SafeGetDateTimeTests.cs" />
-    <Compile Include="Helpers\ScriptLink\SafeGetBoolTests.cs" />
-    <Compile Include="Objects\ErrorCodeTests.cs" />
-    <Compile Include="Objects\FieldActionTests.cs" />
-    <Compile Include="Objects\FieldObjectTests.cs" />
-    <Compile Include="Objects\FormObjectTests.cs" />
-    <Compile Include="Helpers\OptionObject\AddFieldObjectTests.cs" />
-    <Compile Include="Helpers\OptionObject\AddFormObjectTests.cs" />
-    <Compile Include="Helpers\OptionObject\AddRowObjectTests.cs" />
-    <Compile Include="Helpers\OptionObject\DeleteRowObjectTests.cs" />
-    <Compile Include="Helpers\ScriptLink\DeserializeObjectFromJsonStringTests.cs" />
-    <Compile Include="Helpers\ScriptLink\DeserializeObjectFromXmlStringTests.cs" />
-    <Compile Include="Helpers\ScriptLink\DeserializeObjectTests.cs" />
-    <Compile Include="Helpers\OptionObject\DisableAllFieldObjectsTests.cs" />
-    <Compile Include="Helpers\OptionObject\GetCurrentRowIdTests.cs" />
-    <Compile Include="Helpers\OptionObject\GetFieldValuesTests.cs" />
-    <Compile Include="Helpers\OptionObject\GetFieldValueTests.cs" />
-    <Compile Include="Helpers\ScriptLink\GetLocalizedStringTests.cs" />
-    <Compile Include="Helpers\OptionObject\GetMultipleIterationStatusTests.cs" />
-    <Compile Include="Helpers\OptionObject\GetNextAvailableRowIdTests.cs" />
-    <Compile Include="Helpers\OptionObject\GetOptionObjectHeadersTests.cs" />
-    <Compile Include="Helpers\OptionObject\GetParentRowIdTests.cs" />
-    <Compile Include="Helpers\OptionObject\GetReturnOptionObjectTests.cs" />
-    <Compile Include="Helpers\OptionObject\IsFieldEnabledTests.cs" />
-    <Compile Include="Helpers\OptionObject\IsFieldLockedTests.cs" />
-    <Compile Include="Helpers\OptionObject\IsFieldPresentTests.cs" />
-    <Compile Include="Helpers\OptionObject\IsFieldRequiredTests.cs" />
-    <Compile Include="Helpers\OptionObject\IsFormPresentTests.cs" />
-    <Compile Include="Helpers\OptionObject\IsRowMarkedForDeletionTests.cs" />
-    <Compile Include="Helpers\OptionObject\IsRowPresentTests.cs" />
-    <Compile Include="Helpers\OptionObject\IsValidErrorCodeTests.cs" />
-    <Compile Include="Helpers\OptionObject\IsValidOpenFormStringTests.cs" />
-    <Compile Include="Helpers\OptionObject\IsValidRowActionTests.cs" />
-    <Compile Include="Helpers\ScriptLink\IsValidUrlTests.cs" />
-    <Compile Include="Objects\OptionObject2015Tests.cs" />
-    <Compile Include="Objects\OptionObject2Tests.cs" />
-    <Compile Include="Objects\OptionObjectTests.cs" />
-    <Compile Include="Objects\ParameterTests.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Helpers\OptionObject\RemoveFieldObjectTests.cs" />
-    <Compile Include="Helpers\ScriptLink\SafeGetIntTests.cs" />
-    <Compile Include="Helpers\ScriptLink\SerializeObjectTests.cs" />
-    <Compile Include="Helpers\OptionObject\SetDisabledFieldsTests.cs" />
-    <Compile Include="Helpers\OptionObject\SetDisabledFieldTests.cs" />
-    <Compile Include="Helpers\OptionObject\SetEnabledFieldsTests.cs" />
-    <Compile Include="Helpers\OptionObject\SetEnabledFieldTests.cs" />
-    <Compile Include="Helpers\OptionObject\SetErrorCodeAndMessageTests.cs" />
-    <Compile Include="Helpers\OptionObject\SetFieldObjectsTests.cs" />
-    <Compile Include="Helpers\OptionObject\SetFieldObjectTests.cs" />
-    <Compile Include="Helpers\OptionObject\SetFieldValueTests.cs" />
-    <Compile Include="Helpers\OptionObject\SetLockedFieldsTests.cs" />
-    <Compile Include="Helpers\OptionObject\SetLockedFieldTests.cs" />
-    <Compile Include="Helpers\OptionObject\SetOptionalFieldsTests.cs" />
-    <Compile Include="Helpers\OptionObject\SetOptionalFieldTests.cs" />
-    <Compile Include="Helpers\OptionObject\SetRequiredFieldsTests.cs" />
-    <Compile Include="Helpers\OptionObject\SetRequiredFieldTests.cs" />
-    <Compile Include="Helpers\OptionObject\SetUnlockedFieldsTests.cs" />
-    <Compile Include="Helpers\OptionObject\SetUnlockedFieldTests.cs" />
-    <Compile Include="Helpers\OptionObject\TransformToFieldObjectTests.cs" />
-    <Compile Include="Helpers\OptionObject\TransformToFormObjectTests.cs" />
-    <Compile Include="Helpers\OptionObject\TransformToHtmlStringTests.cs" />
-    <Compile Include="Helpers\OptionObject\TransformToJsonTests.cs" />
-    <Compile Include="Helpers\OptionObject\TransformToOptionObject2015Tests.cs" />
-    <Compile Include="Helpers\OptionObject\TransformToOptionObject2Tests.cs" />
-    <Compile Include="Helpers\OptionObject\TransformToOptionObjectTests.cs" />
-    <Compile Include="Helpers\OptionObject\TransformToRowObjectTests.cs" />
-    <Compile Include="Helpers\OptionObject\TransformToXmlTests.cs" />
-    <Compile Include="Objects\RowActionTests.cs" />
-    <Compile Include="Objects\RowObjectTests.cs" />
+    <ProjectReference Include="..\RarelySimple.AvatarScriptLink\RarelySimple.AvatarScriptLink.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Helpers\OptionObject\packages.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\RarelySimple.AvatarScriptLink\RarelySimple.AvatarScriptLink.csproj">
-      <Project>{37e977e5-4be2-404a-b0c1-acc935b4633c}</Project>
-      <Name>RarelySimple.AvatarScriptLink</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\MSTest.TestAdapter.2.2.10\build\net46\MSTest.TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSTest.TestAdapter.2.2.10\build\net46\MSTest.TestAdapter.props'))" />
-    <Error Condition="!Exists('..\packages\MSTest.TestAdapter.2.2.10\build\net46\MSTest.TestAdapter.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSTest.TestAdapter.2.2.10\build\net46\MSTest.TestAdapter.targets'))" />
-  </Target>
-  <Import Project="..\packages\MSTest.TestAdapter.2.2.10\build\net46\MSTest.TestAdapter.targets" Condition="Exists('..\packages\MSTest.TestAdapter.2.2.10\build\net46\MSTest.TestAdapter.targets')" />
+
 </Project>
