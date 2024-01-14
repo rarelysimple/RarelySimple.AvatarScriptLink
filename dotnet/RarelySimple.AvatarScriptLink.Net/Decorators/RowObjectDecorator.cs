@@ -8,16 +8,12 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         private readonly RowObject _rowObject;
 
         public List<FieldObjectDecorator> Fields { get; set; }
-        public string ParentRowId { get; }
         public string RowAction { get; set; }
-        public string RowId { get; }
 
         public RowObjectDecorator(RowObject rowObject)
         {
             _rowObject = rowObject;
-            ParentRowId = rowObject.ParentRowId;
             RowAction = rowObject.RowAction;
-            RowId = rowObject.RowId;
 
             Fields = new List<FieldObjectDecorator>();
             foreach (var fieldObject in rowObject.Fields)
@@ -25,6 +21,9 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 Fields.Add(new FieldObjectDecorator(fieldObject));
             }
         }
+
+        public string ParentRowId => _rowObject.ParentRowId;
+        public string RowId => _rowObject.RowId;
 
         public RowObjectDecoratorReturnBuilder Return()
         {
@@ -35,7 +34,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         /// Adds a <see cref="FieldObject"/> to a <see cref="RowObject"/>.
         /// </summary>
         /// <param name="fieldObject"></param>
-        public void AddFieldObject(FieldObject fieldObject) => this.Fields = RowObjectDecoratorHelper.AddFieldObject(this, fieldObject).Fields;
+        public void AddFieldObject(FieldObject fieldObject) => Fields = Helper.AddFieldObject(this, fieldObject).Fields;
 
         /// <summary>
         /// Sets the value of a <see cref="FieldObject"/> in the <see cref="RowObject"/>.
@@ -43,6 +42,6 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         /// <param name="fieldNumber"></param>
         /// <param name="fieldValue"></param>
         /// <returns></returns>
-        public void SetFieldValue(string fieldNumber, string fieldValue) => this.Fields = RowObjectDecoratorHelper.SetFieldValue(this, fieldNumber, fieldValue).Fields;
+        public void SetFieldValue(string fieldNumber, string fieldValue) => Fields = Helper.SetFieldValue(this, fieldNumber, fieldValue).Fields;
     }
 }

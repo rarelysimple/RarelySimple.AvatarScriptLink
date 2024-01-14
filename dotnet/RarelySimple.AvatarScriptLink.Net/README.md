@@ -21,6 +21,7 @@ public OptionObject2015 RunScript(OptionObject2015 optionObject, string paramete
     // Set Error Code and Message
     returnOptionObject.ErrorCode = 3;
     returnOptionObject.ErrorMesg = "Hello, World!";
+    
     // Copy required OptionObject attributes
     returnOptionObject.EntityID = optionObject.EntityID;
     returnOptionObject.EpisodeNumber = optionObject.EpisodeNumber;
@@ -46,7 +47,7 @@ With AvatarScriptLink.NET, this same code can be simplified to:
 public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameter)
 {
     
-    var decorator = new OptionObjectDecorator(optionObject);
+    var decorator = new OptionObject2015Decorator(optionObject);
 
     // Do work
 

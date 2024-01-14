@@ -4,7 +4,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
 {
     public sealed partial class RowObjectDecorator
     {
-        private class RowObjectDecoratorHelper
+        public class Helper : DecoratorHelper
         {
             /// <summary>
             /// Adds a <see cref="FieldObject"/> to a <see cref="RowObjectDecorator"/>.
@@ -43,11 +43,15 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             /// <returns></returns>
             public static RowObjectDecorator SetFieldValue(RowObjectDecorator decorator, string fieldNumber, string fieldValue)
             {
-                for (int i = 0; i < decorator.Fields.Count; i++)
+                // if (decorator == null)
+                //     throw new ArgumentNullException(nameof(decorator), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                // if (string.IsNullOrEmpty(fieldNumber))
+                //     throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                foreach (var fieldObject in decorator.Fields)
                 {
-                    if (decorator.Fields[i].FieldNumber == fieldNumber)
+                    if (fieldObject.FieldNumber == fieldNumber)
                     {
-                        decorator.Fields[i].FieldValue = fieldValue;
+                        fieldObject.FieldValue = fieldValue;
                         if (decorator.RowAction == RowActions.None)
                             decorator.RowAction = RowActions.Edit;
                         break;

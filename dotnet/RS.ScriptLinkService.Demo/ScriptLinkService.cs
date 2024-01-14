@@ -1,4 +1,6 @@
-﻿using RarelySimple.AvatarScriptLink.Objects;
+﻿using RarelySimple.AvatarScriptLink.Net;
+using RarelySimple.AvatarScriptLink.Net.Decorators;
+using RarelySimple.AvatarScriptLink.Objects;
 using RarelySimple.AvatarScriptLink.Services;
 
 namespace RS.ScriptLinkService.Demo
@@ -12,7 +14,12 @@ namespace RS.ScriptLinkService.Demo
 
         public OptionObject RunScript(OptionObject optionObject, string parameter)
         {
-            return optionObject;
+            var decorator = new OptionObjectDecorator(optionObject);
+            // Do work
+            return decorator.Return()
+                .WithErrorCode(ErrorCode.Alert)
+                .WithErrorMesg("Hello World!")
+                .AsOptionObject();
         }
     }
 }

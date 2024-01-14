@@ -14,7 +14,7 @@ namespace RS.ScriptLinkService.Demo
 
         public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameter)
         {
-            var decorator = new OptionObjectDecorator(optionObject);
+            var decorator = new OptionObject2015Decorator(optionObject);
             // Do work
             return decorator.Return()
                 .WithErrorCode(ErrorCode.Alert)
