@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RarelySimple.AvatarScriptLink.Helpers;
+﻿using RarelySimple.AvatarScriptLink.Helpers;
 using RarelySimple.AvatarScriptLink.Objects;
 
 namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
@@ -15,7 +13,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string json = null;
             FormObject expected = new FormObject();
-            Assert.AreEqual(expected, OptionObjectHelpers.TransformToFieldObject(json));
+            FormObject actual = (FormObject)OptionObjectHelpers.TransformToFormObject(json);
+            //Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]

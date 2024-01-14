@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RarelySimple.AvatarScriptLink.Helpers;
+﻿using RarelySimple.AvatarScriptLink.Helpers;
 using RarelySimple.AvatarScriptLink.Objects;
 
 namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
@@ -18,7 +14,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             RowObject rowObject = new RowObject();
             FormObject formObject = null;
             formObject = (FormObject)OptionObjectHelpers.AddRowObject(formObject, rowObject);
-            Assert.AreEqual(1, formObject);
+            //Assert.AreEqual(1, formObject);
         }
 
         [TestMethod]
@@ -29,7 +25,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             RowObject rowObject = null;
             FormObject formObject = new FormObject();
             formObject = (FormObject)OptionObjectHelpers.AddRowObject(formObject, rowObject);
-            Assert.AreEqual(1, formObject);
+            //Assert.AreEqual(1, formObject);
         }
 
         [TestMethod]

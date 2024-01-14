@@ -13,8 +13,8 @@
     <Description>AvatarScriptLink.NET is a library for accelerating Netsmart myAvatar ScriptLink API development.</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>RarelySimple.AvatarScriptLink.snk</AssemblyOriginatorKeyFile>
-    <CodeAnalysisRuleSet>RarelySimple.AvatarScriptLink.ruleset</CodeAnalysisRuleSet>
+    <AssemblyOriginatorKeyFile>../RarelySimple.AvatarScriptLink.snk</AssemblyOriginatorKeyFile>
+    <CodeAnalysisRuleSet>../RarelySimple.AvatarScriptLink.ruleset</CodeAnalysisRuleSet>
     <PackageId>RarelySimple.AvatarScriptLink</PackageId>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <IsPackable>true</IsPackable>
@@ -24,11 +24,11 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="7.0.1">
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   
   <ItemGroup>
