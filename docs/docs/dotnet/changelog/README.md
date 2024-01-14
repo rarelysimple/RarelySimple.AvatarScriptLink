@@ -14,9 +14,16 @@ The items listed below are under consideration for AvatarScriptLink.NET v.2.
 This list is subject to change with some items being descoped or deferred to a later release.
 :::
 
+* Enable cross-platform development (i.e., Linux, MacOS, and Windows) and build of AvatarScriptLink.NET.
+* Split library into multiple NuGet packages
+    * `RarelySimple.AvatarScriptLink.Objects`: Simple package that provides just the ScriptLink objects without all of the helpers and other utilities. Work with ScriptLink your way.
+    * `RarelySimple.AvatarScriptLink.Net`: Fully featured library with helpers and utilities to help accelerate ScriptLink API development in .NET and .NET Framework. Depends on `RarelySimple.AvatarScriptLink.Objects`.
+    * `RarelySimple.AvatarScriptLink.Services`: SOAP Service definitions for .NET 8 and later. Depends on `RarelySimple.AvatarScriptLink.Objects`.
+* Add support for Native AOT.
 * Drop support for .NET Framework 4.6.1
-* Enable cross-platform development and build of AvatarScriptLink.NET
+* Remove dependency on `Newtonsoft.Json`.
 * Include added Field and Row objects by default in returned OptionObjects.
+* Correct an issue in which attributes in a newer version of the OptionObject are accessible in older versions.
 
 ## 1.2.0 (2023-06-25)
 
