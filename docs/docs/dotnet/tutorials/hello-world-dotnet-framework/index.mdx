@@ -1,0 +1,93 @@
+---
+title: Hello World API (.NET Framework)
+image: ./HelloWorldDotnetFramework.png
+sidebar_position: 2
+---
+
+This tutorial will show how to create a myAvatar ScriptLink-compatible API with .NET Framework.
+
+## Before You Begin
+
+You will need the following to complete this tutorial:
+
+* [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/)
+* [.NET Framework](https://dotnet.microsoft.com/en-us/download/dotnet-framework)
+
+When using Visual Studio you will want the following workloads and components installed.
+
+* ASP.NET and web development workload.
+* .NET Framework 4.8.1 SDK (if not already included with the install of the above workload)
+* .NET Framework project and item templates (if not already included with the install of the above workload)
+
+## Create Project
+
+1. Launch **Visual Studio 2022**.
+2. **Create a new project**.
+3. Select *C#* and then search for **ASP.NET**.
+4. Select **ASP.NET Web Application (.NET Framework)** and then select **Next**.
+5. Configure your new project.
+    1. Set your project name.
+    2. Select the location to store your project.
+    3. Set your solution name.
+    4. Don't check *Place solution and project in the same folder*. we will be adding additional projects to this solution in other tutorials.
+6. Select **Next**.
+7. Set the **Framework** to *.NET Framework 4.8.1*.
+8. Select **Create**.
+9. Select the **Empty** project template and the following recommend settings:
+    1. **Configure for HTTPS**.
+    2. **Also create a project for unit tests**
+10. Select **Create**.
+
+## Add Dependencies
+
+We will add the RarelySimple.AvatarScriptLink package to our project.
+
+* [RarelySimple.AvatarScriptLink](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink)
+
+1. Right-click on the soution in Solution Explorer and select **Manage NuGet Packages for Solution...**.
+2. Select Browse and search for *AvatarScriptLink*. Select RarelySimple.AvatarScriptLink by Scott Olson Jr and install this in your project.
+3. Select the Install tab, clear the search text and confirm you now have the package installed in your project.
+
+## Create ScriptLink Service
+
+1. Right-click on your web application project and select **Add->New Folder**.
+2. Name the folder *api*.
+3. Add a new **Web Service (ASMX)** to this folder named *ScriptLinkService.asmx*. (Select Show All Templates if needed.)
+4. Implement the *GetVersion* and *RunScript* methods as shown below.
+
+```cs title="/api/ScriptLinkService.asmx"
+using RarelySimple.AvatarScriptLink.Objects;
+using System.Web.Services;
+
+namespace ScriptLinkHelloWorldDemo.api
+{
+    /// <summary>
+    /// Summary description for ScriptLinkService
+    /// </summary>
+    [WebService(Namespace = "http://tempuri.org/")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [System.ComponentModel.ToolboxItem(false)]
+    public class ScriptLinkService : System.Web.Services.WebService
+    {
+        [WebMethod]
+        public string GetVersion()
+        {
+            return "0.1.0";
+        }
+
+        [WebMethod]
+        public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameter)
+        {
+            return optionObject.ToReturnOptionObject(ErrorCode.Alert, "Hello World!");
+        }
+    }
+}
+```
+
+## Run Application
+
+1. Press F5 to run the service in your default browser.
+
+Congratulations! You should now see your API showing in the browser and are ready to make the API calls. 
+
+You can get the WSDL for import to myAvatar by appending the address with `?WSDL`. For example, `https://localhost:44376/api/ScriptLinkService.asmx?WSDL`.
