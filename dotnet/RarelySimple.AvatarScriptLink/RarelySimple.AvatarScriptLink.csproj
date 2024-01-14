@@ -13,8 +13,8 @@
     <Description>AvatarScriptLink.NET is a library for accelerating Netsmart myAvatar ScriptLink API development.</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>RarelySimple.AvatarScriptLink.snk</AssemblyOriginatorKeyFile>
-    <CodeAnalysisRuleSet>RarelySimple.AvatarScriptLink.ruleset</CodeAnalysisRuleSet>
+    <AssemblyOriginatorKeyFile>../RarelySimple.AvatarScriptLink.snk</AssemblyOriginatorKeyFile>
+    <CodeAnalysisRuleSet>../RarelySimple.AvatarScriptLink.ruleset</CodeAnalysisRuleSet>
     <PackageId>RarelySimple.AvatarScriptLink</PackageId>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <IsPackable>true</IsPackable>

@@ -4,6 +4,25 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Scott Olson Jr</Authors>
+    <Company>Rarely Simple</Company>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/rarelysimple/RarelySimple.AvatarScriptLink</RepositoryUrl>
+    <PackageProjectUrl>https://scriptlink.rarelysimple.com/</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>Copyright © 2024 Scott Olson Jr</Copyright>
+    <Description>RarelySimple.AvatarScriptLink.Services provides the ScriptLink service definitions to help create Netsmart myAvatar-compatible ScriptLink APIs in .NET.</Description>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../RarelySimple.AvatarScriptLink.snk</AssemblyOriginatorKeyFile>
+    <CodeAnalysisRuleSet>../RarelySimple.AvatarScriptLink.ruleset</CodeAnalysisRuleSet>
+    <PackageId>RarelySimple.AvatarScriptLink.Services</PackageId>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IsPackable>true</IsPackable>
+    <Version>2.0.0</Version>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+    <FileVersion>$(Version)</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +31,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RarelySimple.AvatarScriptLink.Objects\RarelySimple.AvatarScriptLink.Objects.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
