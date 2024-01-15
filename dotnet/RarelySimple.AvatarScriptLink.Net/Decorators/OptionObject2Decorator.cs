@@ -40,6 +40,13 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         }
 
         /// <summary>
+        /// Returns whether the specified field is present.
+        /// </summary>
+        /// <param name="fieldNumber"></param>
+        /// <returns></returns>
+        public bool IsFieldPresent(string fieldNumber) => Helper.IsFieldPresent(this, fieldNumber);
+
+        /// <summary>
         /// Sets the FieldValue of a <see cref="FieldObject"/> in the <see cref="OptionObject2Decorator"/> on the first form CurrentRow.
         /// </summary>
         /// <param name="fieldNumber"></param>

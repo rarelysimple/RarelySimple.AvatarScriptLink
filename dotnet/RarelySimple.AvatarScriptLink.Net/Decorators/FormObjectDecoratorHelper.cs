@@ -3,7 +3,23 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
     public sealed partial class FormObjectDecorator
     {
         public class Helper : DecoratorHelper
-        {   
+        {
+            /// <summary>
+            /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="FormObjectDecorator"/> is present by FieldNumber.
+            /// </summary>
+            /// <param name="decorator"></param>
+            /// <param name="fieldNumber"></param>
+            /// <returns></returns>
+            public static bool IsFieldPresent(FormObjectDecorator decorator, string fieldNumber)
+            {
+                // if (formObject == null)
+                //     throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                // if (string.IsNullOrEmpty(fieldNumber))
+                //     throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                if (decorator.CurrentRow == null)
+                    return false;
+                return RowObjectDecorator.Helper.IsFieldPresent(decorator.CurrentRow, fieldNumber);
+            }
             /// <summary>
             /// Sets the FieldValue of a <see cref="FieldObject"/> in a <see cref="IFormObject"/> by FieldNumber.
             /// </summary>

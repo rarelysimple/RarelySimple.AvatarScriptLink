@@ -7,6 +7,56 @@ namespace RarelySimple.AvatarScriptLink.Net.Tests.Decorators;
 public class FormObjectDecoratorTests
 {
     [TestMethod]
+    public void TestFormObjectDecorator_FieldIsPresent()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        Assert.IsTrue(decorator.IsFieldPresent("123.45"));
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_FieldIsNotPresent()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        Assert.IsFalse(decorator.IsFieldPresent("678.90"));
+    }
+
+    [TestMethod]
     public void TestFormObjectDecorator_ReturnsNoRows()
     {
         var fieldObject = new FieldObject()

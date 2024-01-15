@@ -7,6 +7,46 @@ namespace RarelySimple.AvatarScriptLink.Net.Tests.Decorators;
 public class RowObjectDecoratorTests
 {
     [TestMethod]
+    public void TestRowObjectDecorator_FieldIsPresent()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var decorator = new RowObjectDecorator(rowObject);
+        Assert.IsTrue(decorator.IsFieldPresent("123.45"));
+    }
+
+    [TestMethod]
+    public void TestRowObjectDecorator_FieldIsNotPresent()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var decorator = new RowObjectDecorator(rowObject);
+        Assert.IsFalse(decorator.IsFieldPresent("678.90"));
+    }
+    
+    [TestMethod]
     public void TestRowObjectDecorator_ReturnsNoFields()
     {
         var fieldObject = new FieldObject()

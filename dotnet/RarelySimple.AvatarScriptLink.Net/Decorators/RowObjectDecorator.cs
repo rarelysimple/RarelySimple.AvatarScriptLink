@@ -37,6 +37,13 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public void AddFieldObject(FieldObject fieldObject) => Fields = Helper.AddFieldObject(this, fieldObject).Fields;
 
         /// <summary>
+        /// Determines whether a <see cref="FieldObject"/> is present in <see cref="RowObject"/> by FieldNumber.
+        /// </summary>
+        /// <param name="fieldNumber"></param>
+        /// <returns></returns>
+        public bool IsFieldPresent(string fieldNumber) => Helper.IsFieldPresent(this, fieldNumber);
+
+        /// <summary>
         /// Sets the value of a <see cref="FieldObject"/> in the <see cref="RowObject"/>.
         /// </summary>
         /// <param name="fieldNumber"></param>

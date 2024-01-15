@@ -5,6 +5,27 @@
         public class Helper : DecoratorHelper
         {
             /// <summary>
+            /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="OptionObject2015Decorator"/> is present by FieldNumber.
+            /// </summary>
+            /// <param name="decorator"></param>
+            /// <param name="fieldNumber"></param>
+            /// <returns></returns>
+            public static bool IsFieldPresent(OptionObject2015Decorator decorator, string fieldNumber)
+            {
+                // if (decorator == null)
+                //     throw new System.ArgumentNullException(nameof(decorator), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                // if (decorator.Forms == null)
+                //     throw new System.NullReferenceException(ScriptLinkHelpers.GetLocalizedString("optionObjectMissingForms", CultureInfo.CurrentCulture));
+                // if (string.IsNullOrEmpty(fieldNumber))
+                //     throw new System.ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                foreach (var form in decorator.Forms)
+                {
+                    if (FormObjectDecorator.Helper.IsFieldPresent(form, fieldNumber))
+                        return true;
+                }
+                return false;
+            }
+            /// <summary>
             /// Sets the FieldValue of a <see cref="FieldObject"/> in an <see cref="OptionObject2015Decorator"/> by FieldNumber.
             /// </summary>
             /// <param name="decorator"></param>
@@ -21,12 +42,12 @@
                 //     throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 foreach (var form in decorator.Forms)
                 {
-                    // if (form.IsFieldPresent(fieldNumber))
-                    // {
+                    if (form.IsFieldPresent(fieldNumber))
+                    {
                         // if (formObject.MultipleIteration && formObject.OtherRows.Count > 0)
                         //     throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("unableToIdentifyFieldObject", CultureInfo.CurrentCulture), nameof(decorator));
                         return SetFieldValue(decorator, form.FormId, form.CurrentRow.RowId, fieldNumber, fieldValue);
-                    // }
+                    }
                 }
                 // throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
                 return null;

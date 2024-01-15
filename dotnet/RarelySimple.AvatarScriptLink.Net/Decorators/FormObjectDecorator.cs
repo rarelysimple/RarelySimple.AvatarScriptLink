@@ -28,6 +28,13 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         {
             return new FormObjectDecoratorReturnBuilder(this);
         }
+
+        /// <summary>
+        /// Determines whether the <see cref="FieldObject"/> is present in the <see cref="FormObject"/> by FieldNumber.
+        /// </summary>
+        /// <param name="fieldNumber"></param>
+        /// <returns></returns>
+        public bool IsFieldPresent(string fieldNumber) => Helper.IsFieldPresent(this, fieldNumber);
         
         /// <summary>
         /// Sets the value of a <see cref="FieldObject"/> in the <see cref="CurrentRow"/> of a <see cref="FormObject"/>.
