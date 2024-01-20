@@ -30,6 +30,21 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         }
 
         /// <summary>
+        /// Returns the value of the <see cref="FieldObject"/> in the CurrentRow of the <see cref="FormObject"/> by FieldNumber.
+        /// </summary>
+        /// <param name="fieldNumber"></param>
+        /// <returns></returns>
+        public string GetFieldValue(string fieldNumber) => Helper.GetFieldValue(this, fieldNumber);
+
+        /// <summary>
+        /// Returns the value of the <see cref="FieldObject"/> in the <see cref="RowObject"/> of the <see cref="FormObject"/> by RowId and FieldNumber.
+        /// </summary>
+        /// <param name="rowId"></param>
+        /// <param name="fieldNumber"></param>
+        /// <returns></returns>
+        public string GetFieldValue(string rowId, string fieldNumber) => Helper.GetFieldValue(this, rowId, fieldNumber);
+
+        /// <summary>
         /// Determines whether the <see cref="FieldObject"/> is present in the <see cref="FormObject"/> by FieldNumber.
         /// </summary>
         /// <param name="fieldNumber"></param>

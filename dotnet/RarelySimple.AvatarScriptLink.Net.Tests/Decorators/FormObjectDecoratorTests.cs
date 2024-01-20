@@ -7,6 +7,65 @@ namespace RarelySimple.AvatarScriptLink.Net.Tests.Decorators;
 public class FormObjectDecoratorTests
 {
     [TestMethod]
+    public void TestFormObjectDecorator_ReturnsNoRows()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        var actual = decorator.Return().AsFormObject();
+        Assert.IsNull(actual.CurrentRow);
+    }
+
+    #region GetFieldValue
+
+    [TestMethod]
+    public void TestFormObjectDecorator_GetFieldValue_Succeeds()
+    {
+        var fieldNumber = "123.45";
+        var expected = "initial value";
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = fieldNumber,
+            FieldValue = expected,
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        Assert.AreEqual(expected, decorator.GetFieldValue(fieldNumber));
+    }
+
+    #endregion
+
+    #region IsFieldPresent
+
+    [TestMethod]
     public void TestFormObjectDecorator_FieldIsPresent()
     {
         var fieldObject = new FieldObject()
@@ -56,13 +115,19 @@ public class FormObjectDecoratorTests
         Assert.IsFalse(decorator.IsFieldPresent("678.90"));
     }
 
+    #endregion
+
+    #region SetFieldValue
+
     [TestMethod]
-    public void TestFormObjectDecorator_ReturnsNoRows()
+    public void TestFormObjectDecorator_SetFieldValue_Succeeds()
     {
+        var fieldNumber = "123.45";
+        var expected = "modified value";
         var fieldObject = new FieldObject()
         {
             Enabled = "1",
-            FieldNumber = "123.45",
+            FieldNumber = fieldNumber,
             FieldValue = "initial value",
             Lock = "0",
             Required = "0"
@@ -78,8 +143,8 @@ public class FormObjectDecoratorTests
             FormId = "456"
         };
         var decorator = new FormObjectDecorator(formObject);
-        var actual = decorator.Return().AsFormObject();
-        Assert.IsNull(actual.CurrentRow);
+        decorator.SetFieldValue(fieldNumber, expected);
+        Assert.AreEqual(expected, decorator.GetFieldValue(fieldNumber));
     }
 
     [TestMethod]
@@ -110,4 +175,6 @@ public class FormObjectDecoratorTests
         Assert.AreEqual(RowActions.Edit, actual.CurrentRow.RowAction);
         Assert.AreEqual(1, actual.CurrentRow.Fields.Count);
     }
+
+    #endregion
 }
