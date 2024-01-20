@@ -40,6 +40,20 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         }
 
         /// <summary>
+        /// Returns the first value of the field matching the Field Number.
+        /// </summary>
+        /// <param name="fieldNumber"></param>
+        /// <returns></returns>
+        public string GetFieldValue(string fieldNumber) => Helper.GetFieldValue(this, fieldNumber);
+
+        /// <summary>
+        /// Returns the value of the <see cref="FieldObject"/> matching the Field Number on the specified <see cref="FormObject"/> and <see cref="RowObject"/>.
+        /// </summary>
+        /// <param name="fieldNumber"></param>
+        /// <returns></returns>
+        public string GetFieldValue(string formId, string rowId, string fieldNumber) => Helper.GetFieldValue(this, formId, rowId, fieldNumber);
+
+        /// <summary>
         /// Returns whether the specified field is present.
         /// </summary>
         /// <param name="fieldNumber"></param>

@@ -7,6 +7,52 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public class Helper : DecoratorHelper
         {
             /// <summary>
+            /// Returns the FieldValue of a specified <see cref="FieldObject"/> in an <see cref="OptionObject2Decorator"/> by FieldNumber.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <param name="fieldNumber"></param>
+            /// <returns></returns>
+            public static string GetFieldValue(OptionObject2Decorator optionObject, string fieldNumber)
+            {
+                // if (optionObject == null)
+                //     throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                // if (string.IsNullOrEmpty(fieldNumber))
+                //     throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                foreach (var form in optionObject.Forms)
+                {
+                    if (form.IsFieldPresent(fieldNumber))
+                        return FormObjectDecorator.Helper.GetFieldValue(form, fieldNumber);
+                }
+                // throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
+                return null;
+            }
+            /// <summary>
+            /// Returns the FieldValue of a specified <see cref="FieldObject"/> in an <see cref="OptionObject2Decorator"/> by FormId, RowId, and FieldNumber.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <param name="formId"></param>
+            /// <param name="rowId"></param>
+            /// <param name="fieldNumber"></param>
+            /// <returns></returns>
+            public static string GetFieldValue(OptionObject2Decorator optionObject, string formId, string rowId, string fieldNumber)
+            {
+                // if (optionObject == null)
+                //     throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                // if (string.IsNullOrEmpty(formId))
+                //     throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                // if (string.IsNullOrEmpty(rowId))
+                //     throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                // if (string.IsNullOrEmpty(fieldNumber))
+                //     throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                foreach (var form in optionObject.Forms)
+                {
+                    if (form.FormId == formId)
+                        return FormObjectDecorator.Helper.GetFieldValue(form, rowId, fieldNumber);
+                }
+                // throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
+                return null;
+            }
+            /// <summary>
             /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="OptionObject2Decorator"/> is present by FieldNumber.
             /// </summary>
             /// <param name="decorator"></param>
