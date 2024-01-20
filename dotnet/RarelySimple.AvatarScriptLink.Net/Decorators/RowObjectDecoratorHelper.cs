@@ -35,6 +35,26 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 return decorator;
             }
             /// <summary>
+            /// Returns the FieldValue of a <see cref="FieldObject"/> in a <see cref="RowObjectDecorator"/> by FieldNumber.
+            /// </summary>
+            /// <param name="rowObject"></param>
+            /// <param name="fieldNumber"></param>
+            /// <returns></returns>
+            public static string GetFieldValue(RowObjectDecorator rowObject, string fieldNumber)
+            {
+                // if (rowObject == null)
+                //     throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                // if (string.IsNullOrEmpty(fieldNumber))
+                //     throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                foreach (FieldObjectDecorator field in rowObject.Fields)
+                {
+                    if (field.FieldNumber == fieldNumber)
+                        return field.FieldValue;
+                }
+                // throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
+                return null;
+            }
+            /// <summary>
             /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="RowObjectDecorator"/> is present by FieldNumber.
             /// </summary>
             /// <param name="decorator"></param>
