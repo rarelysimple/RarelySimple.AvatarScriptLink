@@ -4,7 +4,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
 {
     public sealed partial class RowObjectDecorator
     {
-        private class RowObjectDecoratorHelper
+        public class Helper : DecoratorHelper
         {
             /// <summary>
             /// Adds a <see cref="FieldObject"/> to a <see cref="RowObjectDecorator"/>.
@@ -35,6 +35,47 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 return decorator;
             }
             /// <summary>
+            /// Returns the FieldValue of a <see cref="FieldObject"/> in a <see cref="RowObjectDecorator"/> by FieldNumber.
+            /// </summary>
+            /// <param name="rowObject"></param>
+            /// <param name="fieldNumber"></param>
+            /// <returns></returns>
+            public static string GetFieldValue(RowObjectDecorator rowObject, string fieldNumber)
+            {
+                // if (rowObject == null)
+                //     throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                // if (string.IsNullOrEmpty(fieldNumber))
+                //     throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                foreach (FieldObjectDecorator field in rowObject.Fields)
+                {
+                    if (field.FieldNumber == fieldNumber)
+                        return field.FieldValue;
+                }
+                // throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
+                return null;
+            }
+            /// <summary>
+            /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="RowObjectDecorator"/> is present by FieldNumber.
+            /// </summary>
+            /// <param name="decorator"></param>
+            /// <param name="fieldNumber"></param>
+            /// <returns></returns>
+            public static bool IsFieldPresent(RowObjectDecorator decorator, string fieldNumber)
+            {
+                // if (decorator == null)
+                //     throw new ArgumentNullException(nameof(decorator), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                // if (string.IsNullOrEmpty(fieldNumber))
+                //     throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                if (decorator.Fields == null)
+                    return false;
+                foreach (var field in decorator.Fields)
+                {
+                    if (field.FieldNumber == fieldNumber)
+                        return true;
+                }
+                return false;
+            }
+            /// <summary>
             /// Sets the FieldValue of a <see cref="FieldObject"/> in a <see cref="RowObjectDecorator"/> by FieldNumber.
             /// </summary>
             /// <param name="decorator"></param>
@@ -43,11 +84,15 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             /// <returns></returns>
             public static RowObjectDecorator SetFieldValue(RowObjectDecorator decorator, string fieldNumber, string fieldValue)
             {
-                for (int i = 0; i < decorator.Fields.Count; i++)
+                // if (decorator == null)
+                //     throw new ArgumentNullException(nameof(decorator), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                // if (string.IsNullOrEmpty(fieldNumber))
+                //     throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                foreach (var fieldObject in decorator.Fields)
                 {
-                    if (decorator.Fields[i].FieldNumber == fieldNumber)
+                    if (fieldObject.FieldNumber == fieldNumber)
                     {
-                        decorator.Fields[i].FieldValue = fieldValue;
+                        fieldObject.FieldValue = fieldValue;
                         if (decorator.RowAction == RowActions.None)
                             decorator.RowAction = RowActions.Edit;
                         break;
