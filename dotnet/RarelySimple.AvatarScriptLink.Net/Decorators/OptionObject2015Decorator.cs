@@ -76,5 +76,19 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         /// <param name="fieldNumber"></param>
         /// <param name="fieldValue"></param>
         public void SetFieldValue(string formId, string rowId, string fieldNumber, string fieldValue) => Forms = Helper.SetFieldValue(this, formId, rowId, fieldNumber, fieldValue).Forms;
+
+        /// <summary>
+        /// Creates an <see cref="OptionObject2015"/> with the minimal information required to return.
+        /// </summary>
+        /// <returns></returns>
+        public OptionObject2015 ToReturnOptionObject() => Return().AsOptionObject2015();
+
+        /// <summary>
+        /// Creates an <see cref="OptionObject"/> with the minimal information required to return plus the provide Error Code and Message.
+        /// </summary>
+        /// <param name="errorCode"></param>
+        /// <param name="errorMessage"></param>
+        /// <returns></returns>
+        public OptionObject2015 ToReturnOptionObject(double errorCode, string errorMessage) => Return().WithErrorCode(errorCode).WithErrorMesg(errorMessage).AsOptionObject2015();
     }
 }

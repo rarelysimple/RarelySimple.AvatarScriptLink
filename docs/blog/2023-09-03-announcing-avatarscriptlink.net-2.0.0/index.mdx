@@ -1,0 +1,76 @@
+---
+slug: announcing-avatarscriptlink.net-2.0.0
+title: Announcing AvatarScriptLink.NET 2.0.0
+authors: [scottolsonjr]
+tags: [scriptlink, myavatar, dotnet, c#, vb, visual basic, visual studio, nuget, v2]
+
+draft: true
+---
+
+AvatarScriptLink.NET version 2.0.0 is [now available on NuGet](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink.Net/2.0.0).
+This release brings a number of enhancements and capabilities to support more use cases and open up new possibilities on .NET.
+
+{/* truncate */}
+
+## New NuGet Packages
+
+The AvatarScriptLink.Net package has been split into multiple NuGet packages to better support multiple use cases across .NET and .NET Framework.
+
+| Package                                                                                                               | Description                                                                                                                   |
+| --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| [RarelySimple.AvatarScriptLink.Net](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink.Net/2.0.0)           | Provides all of the utilities and helpers to accelerate your ScriptLink development on .NET and .NET Framework.               |
+| [RarelySimple.AvatarScriptLink.Objects](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink.Objects/2.0.0)   | Provides definitions of the various ScriptLink objects for developers who don't want all of the helper methods and utilities. |
+| [RarelySimple.AvatarScriptLink.Services](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink.Services/2.0.0) | Provides the Service Contracts for implementing your ScriptLink API on .NET 8 and later.                                      |
+
+### In RarelySimple.AvatarScriptLink.Net
+
+#### New Decorator Classes
+
+With the creation of an Objects package the helper methods and utilities are no longer available directly on the ScriptLink objects.
+To accommodate this change we have introduced new wrapper classes (decorators) that enable you to keep working with the objects as you did in version 1.
+
+Consider a "Hello World!" example from version 1.
+
+```cs
+public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameter)
+{
+    return optionObject.ToReturnOptionObject(ErrorCode.Alert, "Hello World!");
+}
+```
+
+In version 2 it will be implemented like this.
+
+```cs
+public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameter)
+{
+    var decorator = new OptionObject2015Decorator(optionObject);
+    return decorator.ToReturnOptionObject(ErrorCode.Alert, "Hello World!");
+}
+```
+
+#### New Return Builder
+
+While the existing `ToReturnOptionObject()` methods are still available as methods on the decorators, we now have a new return builder you can use to prepare your return object.
+
+Let's consider the refactored "Hello World!" example from above. We can refactor the return line to use our new return builder.
+
+```cs
+public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameter)
+{
+    var decorator = new OptionObject2015Decorator(optionObject);
+    return decorator.Return()
+                    .WithErrorCode(ErrorCode.Alert)
+                    .WithErrorMesg("Hello World!")
+                    .AsOptionObject2015();
+}
+```
+
+## Support for Native AOT
+
+With version 2, AvatarScriptLink.NET will now support [Native AOT deployments](https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/?tabs=net8plus%2Cwindows) on .NET 8.
+
+## Cross-Platform Development
+
+The AvatarScriptLink.NET code base has been updated and refactored in version to support cross-platform development.
+Contributors may now work with AvatarScriptLink.NET code on Windows, MacOS, and Linux.
+This includes development with Visual Studio Code and Windows Subsystem for Linux (WSL).
