@@ -54,6 +54,13 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public string GetFieldValue(string formId, string rowId, string fieldNumber) => Helper.GetFieldValue(this, formId, rowId, fieldNumber);
 
         /// <summary>
+        /// Returns the Multiple Iteration Status of the form matching the FormId.
+        /// </summary>
+        /// <param name="formId"></param>
+        /// <returns></returns>
+        public bool GetMultipleIterationStatus(string formId) => Helper.GetMultipleIterationStatus(this, formId);
+
+        /// <summary>
         /// Returns whether the specified field is present.
         /// </summary>
         /// <param name="fieldNumber"></param>

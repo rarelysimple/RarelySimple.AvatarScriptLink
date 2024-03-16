@@ -1,0 +1,58 @@
+---
+slug: deployment-methods-for-your-dotnet-scriptlink-solution
+title: Deployment Methods for Your .NET ScriptLink Solution
+authors: [scottolsonjr]
+tags: [scriptlink, myavatar, dotnet, deployment, web deploy, asp.net, azure devops, azure pipelines]
+---
+
+Congratulations! You have created your “Hello, World!” ScriptLink web application, tested it with Unit Tests, tested it on your development web server, and submitted your code to a source control solution. Next, we will be looking at various methods for deploying our .NET ScriptLink applications. This will enable us to setup our Test server to use with UAT or other myAvatar Test environment and later the Production server to use with our LIVE or other production myAvatar environment.
+
+As a review, what I described above is a basic workflow for the testing of your changes to the ScriptLink solution. Testing should be as thorough as possible and in general you should not move to the next stage of testing until all tests have passed in the current.
+
+1. Test your code changes with Unit Tests.
+2. Test your code changes with your development web server. (e.g., Visual Studio debugger (F5))
+3. Test your code changes with your Test web server connected to your test myAvatar environment.
+4. Release to production according to your change management protocols.
+5. Deployment of our project to the web server is basically moving files. However, the more mature options include features to automate selection of the files, the moving of the files, restarting the web app, and other various tasks. Let’s take a look at these options.
+
+## Option #1: Create a Package
+This is the closest to more traditional deployments. In this method, you create a zip file with all of the required files to import into IIS. I have had to use this method when the web host didn’t allow the subsequent methods I will discuss or the host limits access to the web application except from the myAvatar server.
+
+## Option #2: Web Deploy
+This has been my go to solution for many years and [the Microsoft documentation on ASP.NET deployment](https://docs.microsoft.com/en-us/aspnet/web-forms/overview/deployment/visual-studio-web-deployment/) leverages this method. This is significantly better than the previous option, but not the best. It balances ease of use and complexity. It is also well established.
+
+Another benefit of this option is that the developer or the one who deploys does not require any administrative rights on the web server itself. This means that you can separate out those duties between your server admin and your application developer.
+
+Here's an overview of this workflow.
+
+1. Right-click on your web application project in Visual Studio and select Publish…
+2. Select the Test environment to deploy to.
+3. Select Publish.
+4. Once published, the web app will be launched.
+5. Once testing in UAT is complete, repeat for the Production environment.
+
+Here is a demonstration of Web Deploy from 2018 used with Azure.
+
+![](https://youtu.be/6VK370-Yk3A)
+
+I will walk through setting this up in more detail in a future article.
+
+## Option #3: Azure Pipelines
+
+This is an ideal option whether you are hosting your ScriptLink application on-premise or in the Netsmart cloud. However, this is a relatively new solution offering from Microsoft. It uses Continuous Integration and Continuous Deployment (CI/CD) processes to help you build a healthier release process. I especially like that you can deploy your Test or Production code to on-premises servers (yes plural) automatically and without opening your firewall. Any on premises IIS server can get the release as long as it has Internet access.
+
+Here’s an overview of the workflow.
+
+1. Make sure all changes have been committed and pushed to the remote repository.
+2. Create a release.
+3. Your code is built and tests run automatically.
+4. If your tests pass, the code is deployed to your test server(s).
+5. Once testing in UAT is complete, initiate deployment to production server(s).
+
+Azure DevOps published a great demonstration on this last year.
+
+![](https://youtu.be/_sUf0wqJYXo)
+
+## Let's Deploy
+
+Hopefully, these options peak your interest and you are interested in modernizing your deployment strategy. In Visual Studio 2019, right-click Publish can still be used to create a package to transfer and import, however I think you will really like Web Deploy or Azure Pipelines.

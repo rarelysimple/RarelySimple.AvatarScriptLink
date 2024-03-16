@@ -63,6 +63,45 @@ public class FormObjectDecoratorTests
 
     #endregion
 
+    #region GetMultipleIterationStatus
+
+    [TestMethod]
+    public void TestFormObjectDecorator_GetMultipleIerationStatus_ReturnsBool()
+    {
+        var expected = false;
+        var formObject = new FormObject()
+        {
+            FormId = "456"
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        Assert.AreEqual(expected.GetType(), decorator.GetMultipleIterationStatus().GetType());
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_GetMultipleIerationStatus_ReturnsFalse()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "456"
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        Assert.IsFalse(decorator.GetMultipleIterationStatus());
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_GetMultipleIerationStatus_ReturnsTrue()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "456",
+            MultipleIteration = true
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        Assert.IsTrue(decorator.GetMultipleIterationStatus());
+    }
+
+    #endregion
+
     #region IsFieldPresent
 
     [TestMethod]

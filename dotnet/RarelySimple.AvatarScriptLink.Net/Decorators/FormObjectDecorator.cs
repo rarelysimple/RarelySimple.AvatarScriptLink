@@ -13,7 +13,8 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public FormObjectDecorator(FormObject formObject)
         {
             _formObject = formObject;
-            CurrentRow = new RowObjectDecorator(formObject.CurrentRow);
+            if (formObject.CurrentRow != null)
+                CurrentRow = new RowObjectDecorator(formObject.CurrentRow);
             OtherRows = new List<RowObjectDecorator>();
             foreach (var rowObject in formObject.OtherRows)
             {
@@ -43,6 +44,12 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         /// <param name="fieldNumber"></param>
         /// <returns></returns>
         public string GetFieldValue(string rowId, string fieldNumber) => Helper.GetFieldValue(this, rowId, fieldNumber);
+
+        /// <summary>
+        /// Returns the Multiple Iteration Status of the <see cref="FormObject">.
+        /// </summary>
+        /// <returns></returns>
+        public bool GetMultipleIterationStatus() => Helper.GetMultipleIterationStatus(this);
 
         /// <summary>
         /// Determines whether the <see cref="FieldObject"/> is present in the <see cref="FormObject"/> by FieldNumber.

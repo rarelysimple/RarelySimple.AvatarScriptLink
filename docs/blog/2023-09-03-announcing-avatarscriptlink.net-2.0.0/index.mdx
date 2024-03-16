@@ -38,7 +38,7 @@ public OptionObject2015 RunScript(OptionObject2015 optionObject, string paramete
 }
 ```
 
-In version 2 it will be implemented like this.
+In version 2 it could be implemented like this.
 
 ```cs
 public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameter)
@@ -48,9 +48,18 @@ public OptionObject2015 RunScript(OptionObject2015 optionObject, string paramete
 }
 ```
 
+Or alternatively as this if no additional logic needs to be handled.
+
+```cs
+public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameter)
+{
+    return new OptionObject2015Decorator(optionObject).ToReturnOptionObject(ErrorCode.Alert, "Hello World!");
+}
+```
+
 #### New Return Builder
 
-While the existing `ToReturnOptionObject()` methods are still available as methods on the decorators, we now have a new return builder you can use to prepare your return object.
+While the existing `ToReturnOptionObject()` methods are still available as methods on the decorators, we now have a return builder you can use to prepare your return object.
 
 Let's consider the refactored "Hello World!" example from above. We can refactor the return line to use our new return builder.
 

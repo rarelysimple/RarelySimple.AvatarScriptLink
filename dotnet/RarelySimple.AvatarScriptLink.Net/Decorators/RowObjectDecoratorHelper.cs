@@ -1,4 +1,8 @@
-﻿using RarelySimple.AvatarScriptLink.Objects;
+﻿using System;
+using System.Globalization;
+using System.Reflection;
+using System.Resources;
+using RarelySimple.AvatarScriptLink.Objects;
 
 namespace RarelySimple.AvatarScriptLink.Net.Decorators
 {
@@ -6,6 +10,8 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
     {
         public class Helper : DecoratorHelper
         {
+            private static readonly ResourceManager resourceManager = new ResourceManager("RarelySimple.AvatarScriptLink.Net.Localizations", Assembly.GetExecutingAssembly());
+
             /// <summary>
             /// Adds a <see cref="FieldObject"/> to a <see cref="RowObjectDecorator"/>.
             /// </summary>
@@ -14,14 +20,14 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             /// <returns></returns>
             public static RowObjectDecorator AddFieldObject(RowObjectDecorator decorator, FieldObject fieldObject)
             {
-                //if (rowObject == null)
-                //    throw new System.ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-                //if (fieldObject == null)
-                //    throw new System.ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-                //if (rowObject.Fields.Contains((FieldObject)fieldObject))
-                //    throw new System.ArgumentException(ScriptLinkHelpers.GetLocalizedString("fieldObjectAlreadyExists", CultureInfo.CurrentCulture), nameof(fieldObject));
-                //if (rowObject.Fields.Exists(f => f.FieldNumber == fieldObject.FieldNumber))
-                //    throw new System.ArgumentException(ScriptLinkHelpers.GetLocalizedString("fieldNumberAlreadyExists", CultureInfo.CurrentCulture));
+                if (decorator == null)
+                   throw new ArgumentNullException(nameof(decorator), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                if (fieldObject == null)
+                   throw new ArgumentNullException(nameof(fieldObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                if (decorator.Fields.Contains(new FieldObjectDecorator(fieldObject)))
+                   throw new ArgumentException(resourceManager.GetString("fieldObjectAlreadyExists", CultureInfo.CurrentCulture), nameof(fieldObject));
+                if (decorator.Fields.Exists(f => f.FieldNumber == fieldObject.FieldNumber))
+                   throw new ArgumentException(resourceManager.GetString("fieldNumberAlreadyExists", CultureInfo.CurrentCulture));
                 decorator.Fields.Add(new FieldObjectDecorator(fieldObject.FieldNumber)
                 {
                     // Setting other attributes after to flag as modified
@@ -42,17 +48,16 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             /// <returns></returns>
             public static string GetFieldValue(RowObjectDecorator rowObject, string fieldNumber)
             {
-                // if (rowObject == null)
-                //     throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-                // if (string.IsNullOrEmpty(fieldNumber))
-                //     throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                if (rowObject == null)
+                    throw new ArgumentNullException(nameof(rowObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                if (string.IsNullOrEmpty(fieldNumber))
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 foreach (FieldObjectDecorator field in rowObject.Fields)
                 {
                     if (field.FieldNumber == fieldNumber)
                         return field.FieldValue;
                 }
-                // throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
-                return null;
+                throw new ArgumentException(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
             }
             /// <summary>
             /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="RowObjectDecorator"/> is present by FieldNumber.
@@ -62,10 +67,10 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             /// <returns></returns>
             public static bool IsFieldPresent(RowObjectDecorator decorator, string fieldNumber)
             {
-                // if (decorator == null)
-                //     throw new ArgumentNullException(nameof(decorator), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-                // if (string.IsNullOrEmpty(fieldNumber))
-                //     throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                if (decorator == null)
+                    throw new ArgumentNullException(nameof(decorator), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                if (string.IsNullOrEmpty(fieldNumber))
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 if (decorator.Fields == null)
                     return false;
                 foreach (var field in decorator.Fields)
@@ -84,10 +89,10 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             /// <returns></returns>
             public static RowObjectDecorator SetFieldValue(RowObjectDecorator decorator, string fieldNumber, string fieldValue)
             {
-                // if (decorator == null)
-                //     throw new ArgumentNullException(nameof(decorator), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-                // if (string.IsNullOrEmpty(fieldNumber))
-                //     throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                if (decorator == null)
+                    throw new ArgumentNullException(nameof(decorator), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                if (string.IsNullOrEmpty(fieldNumber))
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 foreach (var fieldObject in decorator.Fields)
                 {
                     if (fieldObject.FieldNumber == fieldNumber)

@@ -74,6 +74,126 @@ public class OptionObject2DecoratorTests
 
     #endregion
 
+    #region GetMultipleIterationStatus
+
+    [TestMethod]
+    public void TestOptionObject2Decorator_GetMultipleIterationStatus_ReturnsBool()
+    {
+        var formId = "456";
+        var expected = false;
+        var formObject = new FormObject()
+        {
+            FormId = formId
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.AreEqual(expected.GetType(), decorator.GetMultipleIterationStatus(formId).GetType());
+    }
+
+    [TestMethod]
+    public void TestOptionObject2Decorator_GetMultipleIterationStatus_ReturnsFalse()
+    {
+        var formId = "456";
+        var formObject = new FormObject()
+        {
+            FormId = formId
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.IsFalse(decorator.GetMultipleIterationStatus(formId));
+    }
+
+    [TestMethod]
+    public void TestOptionObject2Decorator_GetMultipleIterationStatus_ReturnsTrue()
+    {
+        var formId = "456";
+        var formObject = new FormObject()
+        {
+            FormId = formId,
+            MultipleIteration = true
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.IsTrue(decorator.GetMultipleIterationStatus(formId));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void TestOptionObject2Decorator_GetMultipleIterationStatus_ReturnsFormNotPresentException()
+    {
+        var formId = "456";
+        var expected = true;
+        var formObject = new FormObject()
+        {
+            FormId = "123",
+            MultipleIteration = true
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.AreEqual(expected, decorator.GetMultipleIterationStatus(formId));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void TestOptionObject2Decorator_GetMultipleIterationStatus_ReturnsFormsNotPresentException()
+    {
+        var formId = "456";
+        var expected = true;
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123"
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.AreEqual(expected, decorator.GetMultipleIterationStatus(formId));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(NullReferenceException))]
+    public void TestOptionObject2Decorator_GetMultipleIterationStatus_ReturnsNullReferenceException()
+    {
+        var formId = "456";
+        var expected = true;
+        var decorator = new OptionObject2Decorator(null);
+        Assert.AreEqual(expected, decorator.GetMultipleIterationStatus(formId));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TestOptionObject2Decorator_GetMultipleIterationStatus_ReturnsArgumentNullException()
+    {
+        var expected = true;
+        var formObject = new FormObject()
+        {
+            FormId = "123",
+            MultipleIteration = true
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.AreEqual(expected, decorator.GetMultipleIterationStatus(null));
+    }
+
+    #endregion
+
     #region IsFieldPresent
 
     [TestMethod]

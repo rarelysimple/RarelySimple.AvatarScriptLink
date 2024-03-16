@@ -33,7 +33,7 @@ If your use case only uses the objects and none of the helper methods, you may b
 ### Helper methods are no longer available on the native objects
 
 In version 1, helper methods like `GetFieldValue()` and `SetFieldValue()` were available on the ScriptLink objects directly.
-These have been removed in version 2 to provide a lean objects library for those who just need the basics and want trimmed down solution.
+These have been removed in version 2 to provide a lean objects library for those who just need the basics and desire a trimmed down solution.
 The helper methods are still available for use but the implementation is a little different.
 
 To use the helper methods in version consider this example v1 implementation:
