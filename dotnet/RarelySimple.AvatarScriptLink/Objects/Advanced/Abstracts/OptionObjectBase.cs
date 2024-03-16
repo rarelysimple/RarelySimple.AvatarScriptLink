@@ -190,16 +190,16 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         {
             if (other == null)
                 return false;
-            return this.EntityID == other.EntityID &&
-                this.EpisodeNumber == other.EpisodeNumber &&
-                this.ErrorCode == other.ErrorCode &&
-                this.ErrorMesg == other.ErrorMesg &&
-                this.Facility == other.Facility &&
-                this.OptionId == other.OptionId &&
-                this.OptionStaffId == other.OptionStaffId &&
-                this.OptionUserId == other.OptionUserId &&
-                this.SystemCode == other.SystemCode &&
-                AreFormsEqual(this.Forms, other.Forms);
+            return EntityID == other.EntityID &&
+                EpisodeNumber == other.EpisodeNumber &&
+                ErrorCode == other.ErrorCode &&
+                ErrorMesg == other.ErrorMesg &&
+                Facility == other.Facility &&
+                OptionId == other.OptionId &&
+                OptionStaffId == other.OptionStaffId &&
+                OptionUserId == other.OptionUserId &&
+                SystemCode == other.SystemCode &&
+                AreFormsEqual(Forms, other.Forms);
 
         }
 
@@ -213,7 +213,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
             OptionObjectBase optionObject = obj as OptionObjectBase;
             if (optionObject == null)
                 return false;
-            return this.Equals(optionObject);
+            return Equals(optionObject);
         }
 
         /// <summary>
@@ -224,20 +224,20 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         {
             string delimiter = "||";
             StringBuilder sb = new StringBuilder();
-            sb.Append(this.EntityID
-                + delimiter + this.EpisodeNumber.ToString(CultureInfo.InvariantCulture)
-                + delimiter + this.ErrorCode.ToString(CultureInfo.InvariantCulture)
-                + delimiter + this.ErrorMesg
-                + delimiter + this.Facility
-                + delimiter + this.NamespaceName
-                + delimiter + this.OptionId
-                + delimiter + this.OptionStaffId
-                + delimiter + this.OptionUserId
-                + delimiter + this.ParentNamespace
-                + delimiter + this.ServerName
-                + delimiter + this.SessionToken
-                + delimiter + this.SystemCode);
-            foreach (FormObject formObject in this.Forms)
+            sb.Append(EntityID
+                + delimiter + EpisodeNumber.ToString(CultureInfo.InvariantCulture)
+                + delimiter + ErrorCode.ToString(CultureInfo.InvariantCulture)
+                + delimiter + ErrorMesg
+                + delimiter + Facility
+                + delimiter + NamespaceName
+                + delimiter + OptionId
+                + delimiter + OptionStaffId
+                + delimiter + OptionUserId
+                + delimiter + ParentNamespace
+                + delimiter + ServerName
+                + delimiter + SessionToken
+                + delimiter + SystemCode);
+            foreach (FormObject formObject in Forms)
             {
                 sb.Append(delimiter + formObject.GetHashCode());
             }
@@ -269,7 +269,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public static bool operator ==(OptionObjectBase optionObject1, OptionObjectBase optionObject2)
         {
             if (((object)optionObject1) == null || ((object)optionObject2) == null)
-                return Object.Equals(optionObject1, optionObject2);
+                return Equals(optionObject1, optionObject2);
 
             return optionObject1.Equals(optionObject2);
         }
@@ -277,9 +277,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public static bool operator !=(OptionObjectBase optionObject1, OptionObjectBase optionObject2)
         {
             if (((object)optionObject1) == null || ((object)optionObject2) == null)
-                return !Object.Equals(optionObject1, optionObject2);
+                return !Equals(optionObject1, optionObject2);
 
-            return !(optionObject1.Equals(optionObject2));
+            return !optionObject1.Equals(optionObject2);
         }
 
         //
@@ -290,21 +290,21 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// Adds a <see cref="FormObject"/> to an <see cref="OptionObject2015"/>.
         /// </summary>
         /// <param name="formObject"></param>
-        public void AddFormObject(FormObject formObject) => this.Forms = OptionObjectHelpers.AddFormObject(this, formObject).Forms;
+        public void AddFormObject(FormObject formObject) => Forms = OptionObjectHelpers.AddFormObject(this, formObject).Forms;
 
         /// <summary>
         /// Adds a <see cref="FormObject"/> to an <see cref="OptionObject2015"/>.
         /// </summary>
         /// <param name="formId"></param>
         /// <param name="multipleIteration"></param>
-        public void AddFormObject(string formId, bool multipleIteration) => this.Forms = OptionObjectHelpers.AddFormObject(this, formId, multipleIteration).Forms;
+        public void AddFormObject(string formId, bool multipleIteration) => Forms = OptionObjectHelpers.AddFormObject(this, formId, multipleIteration).Forms;
 
         /// <summary>
         /// Adds a <see cref="RowObject"/> to a <see cref="FormObject"/> in this <see cref="OptionObject2015"/>.
         /// </summary>
         /// <param name="formId"></param>
         /// <param name="rowObject"></param>
-        public void AddRowObject(string formId, RowObject rowObject) => this.Forms = OptionObjectHelpers.AddRowObject(this, formId, rowObject).Forms;
+        public void AddRowObject(string formId, RowObject rowObject) => Forms = OptionObjectHelpers.AddRowObject(this, formId, rowObject).Forms;
 
         /// <summary>
         /// Clones the <see cref="OptionObjectBase"/>.
@@ -325,24 +325,24 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// Marks a <see cref="RowObject"/> for deletion.
         /// </summary>
         /// <param name="rowObject"></param>
-        public void DeleteRowObject(RowObject rowObject) => this.Forms = OptionObjectHelpers.DeleteRowObject(this, rowObject).Forms;
+        public void DeleteRowObject(RowObject rowObject) => Forms = OptionObjectHelpers.DeleteRowObject(this, rowObject).Forms;
 
         /// <summary>
         /// Marks a <see cref="RowObject"/> for deletion by specified RowId.
         /// </summary>
         /// <param name="rowId"></param>
-        public void DeleteRowObject(string rowId) => this.Forms = OptionObjectHelpers.DeleteRowObject(this, rowId).Forms;
+        public void DeleteRowObject(string rowId) => Forms = OptionObjectHelpers.DeleteRowObject(this, rowId).Forms;
 
         /// <summary>
         /// Sets all <see cref="FieldObject"/> as disabled.
         /// </summary>
-        public void DisableAllFieldObjects() => this.Forms = OptionObjectHelpers.DisableAllFieldObjects(this).Forms;
+        public void DisableAllFieldObjects() => Forms = OptionObjectHelpers.DisableAllFieldObjects(this).Forms;
 
         /// <summary>
         /// Sets all <see cref="FieldObject"/> as disabled except for any listed to be excluded.
         /// </summary>
         /// <param name="excludedFieldObjects"></param>
-        public void DisableAllFieldObjects(List<string> excludedFieldObjects) => this.Forms = OptionObjectHelpers.DisableAllFieldObjects(this, excludedFieldObjects).Forms;
+        public void DisableAllFieldObjects(List<string> excludedFieldObjects) => Forms = OptionObjectHelpers.DisableAllFieldObjects(this, excludedFieldObjects).Forms;
 
         /// <summary>
         /// Returns the CurrentRow RowId of the form matching the FormId.

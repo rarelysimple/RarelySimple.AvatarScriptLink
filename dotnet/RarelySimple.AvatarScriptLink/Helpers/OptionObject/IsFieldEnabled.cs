@@ -63,7 +63,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 if (field.FieldNumber == fieldNumber)
                     return IsFieldEnabled(field);
             }
-            throw new System.ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
+            throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
         }
         /// <summary>
         /// Returns whether the <see cref="IFieldObject"/> is enabled.

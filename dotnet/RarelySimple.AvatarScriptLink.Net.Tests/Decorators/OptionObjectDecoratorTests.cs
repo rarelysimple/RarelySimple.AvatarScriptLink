@@ -194,6 +194,177 @@ public class OptionObjectDecoratorTests
 
     #endregion
 
+    #region IsFieldEnabled
+
+    [TestMethod]
+    public void IsFieldEnabled_OptionObject_FirstForm_IsEnabled()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        Assert.IsTrue(decorator.IsFieldEnabled("123.45"));
+    }
+
+    [TestMethod]
+    public void IsFieldEnabled_OptionObject_SecondForm_IsEnabled()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "123"
+        };
+        var formObject2 = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject,formObject2]
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        Assert.IsTrue(decorator.IsFieldEnabled("123.45"));
+    }
+
+    [TestMethod]
+    public void IsFieldEnabled_OptionObject_FirstForm_IsNotEnabled()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "0",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        Assert.IsFalse(decorator.IsFieldEnabled("123.45"));
+    }
+
+    [TestMethod]
+    public void IsFieldEnabled_OptionObject_SecondForm_IsNotEnabled()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "0",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "123"
+        };
+        var formObject2 = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject,formObject2]
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        Assert.IsFalse(decorator.IsFieldEnabled("123.45"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void IsFieldEnabled_OptionObject_IsNotPresent()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        Assert.IsTrue(decorator.IsFieldEnabled("678.90"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(NullReferenceException))]
+    public void IsFieldEnabled_OptionObject_Null()
+    {
+        var decorator = new OptionObjectDecorator(null);
+        Assert.IsTrue(decorator.IsFieldEnabled("123.45"));
+    }
+
+    #endregion
+
     #region IsFieldPresent
 
     [TestMethod]
@@ -254,6 +425,14 @@ public class OptionObjectDecoratorTests
         };
         var decorator = new OptionObjectDecorator(optionObject);
         Assert.IsFalse(decorator.IsFieldPresent("678.90"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(NullReferenceException))]
+    public void IsFieldPresent_OptionObject_Null()
+    {
+        var decorator = new OptionObjectDecorator(null);
+        Assert.IsTrue(decorator.IsFieldPresent("123.45"));
     }
 
     #endregion

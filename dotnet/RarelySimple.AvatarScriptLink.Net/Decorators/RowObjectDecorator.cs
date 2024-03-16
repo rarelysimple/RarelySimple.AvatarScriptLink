@@ -44,6 +44,12 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public string GetFieldValue(string fieldNumber) => Helper.GetFieldValue(this, fieldNumber);
 
         /// <summary>
+        /// Determines whether a <see cref="FieldObject"/> is enabled in the <see cref="RowObject"/>.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsFieldEnabled(string fieldNumber) => Helper.IsFieldEnabled(this, fieldNumber);
+
+        /// <summary>
         /// Determines whether a <see cref="FieldObject"/> is present in <see cref="RowObject"/> by FieldNumber.
         /// </summary>
         /// <param name="fieldNumber"></param>

@@ -61,6 +61,13 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public bool GetMultipleIterationStatus(string formId) => Helper.GetMultipleIterationStatus(this, formId);
 
         /// <summary>
+        /// Returns whether the specified field is enabled.
+        /// </summary>
+        /// <param name="fieldNumber"></param>
+        /// <returns></returns>
+        public bool IsFieldEnabled(string fieldNumber) => Helper.IsFieldEnabled(this, fieldNumber);
+
+        /// <summary>
         /// Returns whether the specified field is present.
         /// </summary>
         /// <param name="fieldNumber"></param>
