@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SoapCore" Version="1.1.0.41" />
+    <PackageReference Include="SoapCore" Version="1.1.0.48" />
   </ItemGroup>
 
   <ItemGroup>
