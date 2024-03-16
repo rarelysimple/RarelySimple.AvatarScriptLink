@@ -244,7 +244,7 @@ This is a maintenance release with a number of minor fixes and enhancements.</p>
 <li>Once testing in UAT is complete, repeat for the Production environment.</li>
 </ol>
 <p>Here is a demonstration of Web Deploy from 2018 used with Azure.</p>
-<p><img loading="lazy" src="https://youtu.be/6VK370-Yk3A" alt="" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://youtu.be/6VK370-Yk3A" alt="" class="img_ev3q"></p>
 <p>I will walk through setting this up in more detail in a future article.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="option-3-azure-pipelines">Option #3: Azure Pipelines<a href="https://scriptlink.rarelysimple.com/blog/deployment-methods-for-your-dotnet-scriptlink-solution#option-3-azure-pipelines" class="hash-link" aria-label="Direct link to Option #3: Azure Pipelines" title="Direct link to Option #3: Azure Pipelines">​</a></h2>
 <p>This is an ideal option whether you are hosting your ScriptLink application on-premise or in the Netsmart cloud. However, this is a relatively new solution offering from Microsoft. It uses Continuous Integration and Continuous Deployment (CI/CD) processes to help you build a healthier release process. I especially like that you can deploy your Test or Production code to on-premises servers (yes plural) automatically and without opening your firewall. Any on premises IIS server can get the release as long as it has Internet access.</p>
@@ -257,7 +257,7 @@ This is a maintenance release with a number of minor fixes and enhancements.</p>
 <li>Once testing in UAT is complete, initiate deployment to production server(s).</li>
 </ol>
 <p>Azure DevOps published a great demonstration on this last year.</p>
-<p><img loading="lazy" src="https://youtu.be/_sUf0wqJYXo" alt="" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://youtu.be/_sUf0wqJYXo" alt="" class="img_ev3q"></p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="lets-deploy">Let's Deploy<a href="https://scriptlink.rarelysimple.com/blog/deployment-methods-for-your-dotnet-scriptlink-solution#lets-deploy" class="hash-link" aria-label="Direct link to Let's Deploy" title="Direct link to Let's Deploy">​</a></h2>
 <p>Hopefully, these options peak your interest and you are interested in modernizing your deployment strategy. In Visual Studio 2019, right-click Publish can still be used to create a package to transfer and import, however I think you will really like Web Deploy or Azure Pipelines.</p>]]></content>
         <author>

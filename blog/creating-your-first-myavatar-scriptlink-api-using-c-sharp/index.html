@@ -2,12 +2,12 @@
 <html lang="en" dir="ltr" class="blog-wrapper blog-post-page plugin-blog plugin-id-default" data-has-hydrated="false">
 <head>
 <meta charset="UTF-8">
-<meta name="generator" content="Docusaurus v3.1.0">
+<meta name="generator" content="Docusaurus v3.1.1">
 <title data-rh="true">Creating Your First myAvatar ScriptLink API Using C# | AvatarScriptLink by RarelySimple</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://scriptlink.rarelysimple.com/blog/creating-your-first-myavatar-scriptlink-api-using-c-sharp/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="Creating Your First myAvatar ScriptLink API Using C# | AvatarScriptLink by RarelySimple"><meta data-rh="true" name="description" content="This post was originally published on the RarelySimple Blog. It has been republished here to be with other ScriptLink-related content."><meta data-rh="true" property="og:description" content="This post was originally published on the RarelySimple Blog. It has been republished here to be with other ScriptLink-related content."><meta data-rh="true" property="og:type" content="article"><meta data-rh="true" property="article:published_time" content="2020-02-04T00:00:00.000Z"><meta data-rh="true" property="article:author" content="https://github.com/scottolsonjr"><meta data-rh="true" property="article:tag" content="scriptlink,myavatar,dotnet,c#,visual studio"><link data-rh="true" rel="icon" href="/img/asl-logo.svg"><link data-rh="true" rel="canonical" href="https://scriptlink.rarelysimple.com/blog/creating-your-first-myavatar-scriptlink-api-using-c-sharp/"><link data-rh="true" rel="alternate" href="https://scriptlink.rarelysimple.com/blog/creating-your-first-myavatar-scriptlink-api-using-c-sharp/" hreflang="en"><link data-rh="true" rel="alternate" href="https://scriptlink.rarelysimple.com/blog/creating-your-first-myavatar-scriptlink-api-using-c-sharp/" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="AvatarScriptLink by RarelySimple RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="AvatarScriptLink by RarelySimple Atom Feed">
 <link rel="alternate" type="application/json" href="/blog/feed.json" title="AvatarScriptLink by RarelySimple JSON Feed"><link rel="stylesheet" href="/assets/css/styles.ce05eaae.css">
-<script src="/assets/js/runtime~main.dc8ee71c.js" defer="defer"></script>
-<script src="/assets/js/main.0ebaae7a.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.91247e05.js" defer="defer"></script>
+<script src="/assets/js/main.ed7cc251.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/asl-logo.svg" alt="RarelySimple.AvatarScriptLink Logo Concept" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/asl-logo.svg" alt="RarelySimple.AvatarScriptLink Logo Concept" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">RarelySimple.AvatarScriptLink</b></a><a class="navbar__item navbar__link" href="/docs/dotnet/intro/">.NET</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/rarelysimple/RarelySimple.AvatarScriptLink" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="container margin-vert--lg"><div class="row"><aside class="col col--3"><nav class="sidebar_re4s thin-scrollbar" aria-label="Blog recent posts navigation"><div class="sidebarItemTitle_pO2u margin-bottom--md">Recent posts</div><ul class="sidebarItemList_Yudw clean-list"><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/announcing-avatarscriptlink.net-1.2.0/">Announcing AvatarScriptLink.NET 1.2.0</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/announcing-avatarscriptlink.net-1.1.10/">Announcing AvatarScriptLink.NET 1.1.10</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/announcing-avatarscriptlink.net-1.1.6/">Announcing AvatarScriptLink.NET 1.1.6</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/announcing-avatarscriptlink.net-1.0.28/">Announcing AvatarScriptLink.NET 1.0.28</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/announcing-avatarscriptlink.net-1.0.25/">Announcing AvatarScriptLink.NET 1.0.25</a></li></ul></nav></aside><main class="col col--7" itemscope="" itemtype="https://schema.org/Blog"><article itemprop="blogPost" itemscope="" itemtype="https://schema.org/BlogPosting"><meta itemprop="description" content="This post was originally published on the RarelySimple Blog. It has been republished here to be with other ScriptLink-related content."><header><h1 class="title_f1Hy" itemprop="headline">Creating Your First myAvatar ScriptLink API Using C#</h1><div class="container_mt6G margin-vert--md"><time datetime="2020-02-04T00:00:00.000Z" itemprop="datePublished">February 4, 2020</time> · <!-- -->12 min read</div><div class="margin-top--md margin-bottom--sm row"><div class="col col--6 authorCol_Hf19"><div class="avatar margin-bottom--sm"><a href="https://github.com/scottolsonjr" target="_blank" rel="noopener noreferrer" class="avatar__photo-link"><img class="avatar__photo" src="https://avatars.githubusercontent.com/u/984715?v=4" alt="Scott Olson Jr" itemprop="image"></a><div class="avatar__intro" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><div class="avatar__name"><a href="https://github.com/scottolsonjr" target="_blank" rel="noopener noreferrer" itemprop="url"><span itemprop="name">Scott Olson Jr</span></a></div><small class="avatar__subtitle" itemprop="description">RarelySimple.AvatarScriptLink Maintainer</small></div></div></div></div></header><div id="__blog-post-container" class="markdown" itemprop="articleBody"><div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</div><div class="admonitionContent_BuS1"><p>This post was originally published on the RarelySimple Blog. It has been republished here to be with other ScriptLink-related content.</p></div></div>
@@ -41,7 +41,7 @@ However, this will help to familiarize you with the OptionObject definition.</p>
 <ol>
 <li>Launch <strong>Visual Studio 2019</strong> and select <strong>Create a new project</strong>.</li>
 </ol>
-<p><img loading="lazy" alt="The Visual Studio 2019 Launcher" src="/assets/images/visual-studio-2019-start-screen-2f8c790dee1310cb30235d84405a8b07.png" width="1024" height="710" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="The Visual Studio 2019 Launcher" src="/assets/images/visual-studio-2019-start-screen-2f8c790dee1310cb30235d84405a8b07.png" width="1024" height="710" class="img_ev3q"></p>
 <ol start="2">
 <li>Set the Language filter to <strong>C#</strong>.</li>
 <li>Optional:<!-- -->
@@ -52,7 +52,7 @@ However, this will help to familiarize you with the OptionObject definition.</p>
 </li>
 <li>Select the <strong>Class Library (.NET Standard)</strong> Project and select <strong>Next</strong>.</li>
 </ol>
-<p><img loading="lazy" alt="Create a new project template selector in Visual Studio 2019" src="/assets/images/visual-studio-2019-create-csharp-library-b5980752b9b5eccc1d0469fdf72e5297.png" width="1024" height="710" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Create a new project template selector in Visual Studio 2019" src="/assets/images/visual-studio-2019-create-csharp-library-b5980752b9b5eccc1d0469fdf72e5297.png" width="1024" height="710" class="img_ev3q"></p>
 <ol start="5">
 <li><strong>Name the Project</strong>. I am going to use RS.ScriptLinkDemo.Objects.</li>
 <li>Optional: Change the Location.</li>
@@ -60,7 +60,7 @@ However, this will help to familiarize you with the OptionObject definition.</p>
 <li>Uncheck Place solution and project in the same directory.</li>
 <li>Select <strong>Create</strong>.</li>
 </ol>
-<p><img loading="lazy" alt="Configuring the new Class Library project in Visual Studio" src="/assets/images/visual-studio-2019-create-scriptlink-demo-library-fd43cb2143fabf16a0f373ad6cc409cb.png" width="1024" height="710" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Configuring the new Class Library project in Visual Studio" src="/assets/images/visual-studio-2019-create-scriptlink-demo-library-fd43cb2143fabf16a0f373ad6cc409cb.png" width="1024" height="710" class="img_ev3q"></p>
 <ol start="10">
 <li>Visual Studio will now scaffold your project. When complete, you should see your solution and project with a sample class (Class1) open for editing.</li>
 </ol>
@@ -118,7 +118,7 @@ However, this will help to familiarize you with the OptionObject definition.</p>
 <li>Optional: Right-click and select <strong>Remove and Sort Usings</strong>.</li>
 <li><strong>Save</strong> changes.</li>
 </ol>
-<p><img loading="lazy" alt="Solution with completed class library" src="/assets/images/visual-studio-2019-scriptlink-demo-library-63d3ba15910db1fae5ebfcd6b37c5bd0.webp" width="1023" height="556" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Solution with completed class library" src="/assets/images/visual-studio-2019-scriptlink-demo-library-63d3ba15910db1fae5ebfcd6b37c5bd0.webp" width="1023" height="556" class="img_ev3q"></p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="create-web-application-project">Create Web Application Project<a href="#create-web-application-project" class="hash-link" aria-label="Direct link to Create Web Application Project" title="Direct link to Create Web Application Project">​</a></h2>
 <p>The .NET SOAP Web Services we’re not ported to .NET Core, so we will create our web application with .NET Framework.</p>
 <ol>
@@ -126,13 +126,13 @@ However, this will help to familiarize you with the OptionObject definition.</p>
 <li>Set the Project Type filter to Web and search for <strong>Web Application</strong>.</li>
 <li>Select the <strong>ASP.NET Web Application (.NET Framework)</strong> and select <strong>Next</strong>.</li>
 </ol>
-<p><img loading="lazy" alt="Selecting the ASP.NET Web Application (.NET Framework) project template" src="/assets/images/visual-studio-2019-create-dotnet-framework-web-app-935c4b54f388555981b488a512a3ed14.png" width="1024" height="710" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Selecting the ASP.NET Web Application (.NET Framework) project template" src="/assets/images/visual-studio-2019-create-dotnet-framework-web-app-935c4b54f388555981b488a512a3ed14.png" width="1024" height="710" class="img_ev3q"></p>
 <ol start="4">
 <li><strong>Name the project</strong>. I will be using RS.ScriptLinkDemo.Soap.</li>
 <li>Set the <strong>Framework to the latest version available</strong>. I will be using 4.8, however this walkthrough should work with versions as early as 4.6.2.</li>
 <li>Select <strong>Create</strong>.</li>
 </ol>
-<p><img loading="lazy" alt="Configuring the ASP.NET Web Application" src="/assets/images/visual-studio-2019-configure-dotnet-framework-web-app-65cf900ecd669aade383e1d6810f5db6.png" width="1024" height="710" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Configuring the ASP.NET Web Application" src="/assets/images/visual-studio-2019-configure-dotnet-framework-web-app-65cf900ecd669aade383e1d6810f5db6.png" width="1024" height="710" class="img_ev3q"></p>
 <ol start="7">
 <li>Select the <strong>Empty</strong> project template and confirm the <strong>Configure for HTTPS</strong> is checked.</li>
 <li>Note: When you setup your project that you will use in production, I recommend the following:<!-- -->
@@ -144,7 +144,7 @@ However, this will help to familiarize you with the OptionObject definition.</p>
 </li>
 <li>Select <strong>Create</strong>.</li>
 </ol>
-<p><img loading="lazy" alt="ASP.NET Web Application feature selection" src="/assets/images/visual-studio-2019-create-empty-web-app-d41b762b11f37a3a1bf1c1901fd02589.png" width="1024" height="710" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="ASP.NET Web Application feature selection" src="/assets/images/visual-studio-2019-create-empty-web-app-d41b762b11f37a3a1bf1c1901fd02589.png" width="1024" height="710" class="img_ev3q"></p>
 <ol start="10">
 <li>Visual Studio will now scaffold your web application.</li>
 <li>When complete, you will see and Overview page and links for additional learning. Go ahead and close this page. You can get back to it in the future by right-clicking on your web application project and selecting Overview.</li>
@@ -155,7 +155,7 @@ However, this will help to familiarize you with the OptionObject definition.</p>
 <ol>
 <li>In the web application project, right-click on References and select <strong>Add Reference…</strong></li>
 </ol>
-<p><img loading="lazy" alt="The Reference Manager in Visual Studio" src="/assets/images/visual-studio-2019-add-reference-92ce714e5e8b1e993b94b80dac3fae85.png" width="786" height="543" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="The Reference Manager in Visual Studio" src="/assets/images/visual-studio-2019-add-reference-92ce714e5e8b1e993b94b80dac3fae85.png" width="786" height="543" class="img_ev3q"></p>
 <ol start="2">
 <li>Check the box next to your Class Library and select <strong>OK</strong>.</li>
 <li>If you see a yellow triangle appear on it in the references list, make sure you have the correct .NET versions selected for each project.</li>
@@ -170,11 +170,11 @@ However, this will help to familiarize you with the OptionObject definition.</p>
 <li>Right-click on the v3 folder and select <strong>Add-&gt;New Item…</strong></li>
 <li>Name the web service. I will be using <em>ScriptLinkController.asmx</em>.</li>
 </ol>
-<p><img loading="lazy" alt="Add new C# Web Service item in Visual Studio" src="/assets/images/visual-studio-2019-add-web-service-5758b5433f6a2f3c7aac5c59984db15d.png" width="941" height="653" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Add new C# Web Service item in Visual Studio" src="/assets/images/visual-studio-2019-add-web-service-5758b5433f6a2f3c7aac5c59984db15d.png" width="941" height="653" class="img_ev3q"></p>
 <ol start="7">
 <li>Select <strong>Add</strong>.</li>
 </ol>
-<p><img loading="lazy" alt="The new web service in Visual Studio" src="/assets/images/visual-studio-2019-scriptlink-api-added-8a46821e56633f0885056a951b84d7d1.webp" width="1023" height="556" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="The new web service in Visual Studio" src="/assets/images/visual-studio-2019-scriptlink-api-added-8a46821e56633f0885056a951b84d7d1.webp" width="1023" height="556" class="img_ev3q"></p>
 <ol start="8">
 <li>You should now have a ScriptLinkController class open and ready for editing.</li>
 </ol>
@@ -204,9 +204,9 @@ However, this will help to familiarize you with the OptionObject definition.</p>
 <li>Press F5 to begin debugging with your default browser.</li>
 <li>We should see our API launched in our default web browser.</li>
 </ol>
-<p><img loading="lazy" alt="The ScriptLinkController API debugging in Microsoft Edge v.44" src="/assets/images/visual-studio-2019-debug-soap-api-a440b310ee235e601deefe4e11546940.webp" width="1023" height="795" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="The ScriptLinkController API debugging in Microsoft Edge v.44" src="/assets/images/visual-studio-2019-debug-soap-api-a440b310ee235e601deefe4e11546940.webp" width="1023" height="795" class="img_ev3q"></p>
 <p>When you see this page, you can get the URL for your WSDL for testing by selecting <strong>Service Definition</strong>. I recommend using SoapUI and Postman to test your APIs. In an upcoming article I will walkthrough testing our API.</p>
-<p><img loading="lazy" alt="The content of the ScriptLink WSDL displayed in Microsoft Edge v.44" src="/assets/images/visual-studio-2019-debug-soap-api-wsdl-27c4d841cfc68e65b899dea3c9a656b5.webp" width="1023" height="795" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="The content of the ScriptLink WSDL displayed in Microsoft Edge v.44" src="/assets/images/visual-studio-2019-debug-soap-api-wsdl-27c4d841cfc68e65b899dea3c9a656b5.webp" width="1023" height="795" class="img_ev3q"></p>
 <div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</div><div class="admonitionContent_BuS1"><p>Please note that you shouldn’t import this WSDL into myAvatar as it is your local development and testing environment not your staging or production environments. I will cover deployment options in future articles.</p></div></div>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="youre-all-set">You&#x27;re All Set<a href="#youre-all-set" class="hash-link" aria-label="Direct link to You&#x27;re All Set" title="Direct link to You&#x27;re All Set">​</a></h2>
 <p>Congratulations! You just wrote your first ScriptLink API.</p>
