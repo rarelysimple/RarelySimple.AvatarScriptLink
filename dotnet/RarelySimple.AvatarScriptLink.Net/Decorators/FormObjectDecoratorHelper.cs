@@ -59,6 +59,22 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 return formObject.MultipleIteration;
             }
             /// <summary>
+            /// Returns whether the <see cref="IFieldObject"/> in the <see cref="IFormObject"/> is enabled by FieldNumber.
+            /// </summary>
+            /// <param name="formObject"></param>
+            /// <param name="fieldNumber"></param>
+            /// <returns></returns>
+            public static bool IsFieldEnabled(FormObjectDecorator formObject, string fieldNumber)
+            {
+                if (formObject == null)
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                if (formObject.CurrentRow == null)
+                    throw new NullReferenceException(resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
+                if (string.IsNullOrEmpty(fieldNumber))
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                return RowObjectDecorator.Helper.IsFieldEnabled(formObject.CurrentRow, fieldNumber);
+            }
+            /// <summary>
             /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="FormObjectDecorator"/> is present by FieldNumber.
             /// </summary>
             /// <param name="decorator"></param>
