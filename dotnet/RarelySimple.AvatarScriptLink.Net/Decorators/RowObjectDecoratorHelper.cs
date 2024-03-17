@@ -81,6 +81,27 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 throw new ArgumentException(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
             }
             /// <summary>
+            /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="RowObjectDecorator"/> is locked by FieldNumber.
+            /// </summary>
+            /// <param name="rowObject"></param>
+            /// <param name="fieldNumber"></param>
+            /// <returns></returns>
+            public static bool IsFieldLocked(RowObjectDecorator rowObject, string fieldNumber)
+            {
+                if (rowObject == null)
+                    throw new ArgumentNullException(nameof(rowObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                if (rowObject.Fields == null)
+                    throw new NullReferenceException(resourceManager.GetString("rowObjectMissingFields", CultureInfo.CurrentCulture));
+                if (string.IsNullOrEmpty(fieldNumber))
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                foreach (FieldObjectDecorator field in rowObject.Fields)
+                {
+                    if (field.FieldNumber == fieldNumber)
+                        return field.Locked;
+                }
+                throw new ArgumentException(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
+            }
+            /// <summary>
             /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="RowObjectDecorator"/> is present by FieldNumber.
             /// </summary>
             /// <param name="decorator"></param>
@@ -100,6 +121,27 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                         return true;
                 }
                 return false;
+            }
+            /// <summary>
+            /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="RowObjectDecorator"/> is required by FieldNumber.
+            /// </summary>
+            /// <param name="rowObject"></param>
+            /// <param name="fieldNumber"></param>
+            /// <returns></returns>
+            public static bool IsFieldRequired(RowObjectDecorator rowObject, string fieldNumber)
+            {
+                if (rowObject == null)
+                    throw new ArgumentNullException(nameof(rowObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                if (rowObject.Fields == null)
+                    throw new NullReferenceException(resourceManager.GetString("rowObjectMissingFields", CultureInfo.CurrentCulture));
+                if (string.IsNullOrEmpty(fieldNumber))
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                foreach (FieldObjectDecorator field in rowObject.Fields)
+                {
+                    if (field.FieldNumber == fieldNumber)
+                        return field.Required;
+                }
+                throw new ArgumentException(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
             }
             /// <summary>
             /// Sets the FieldValue of a <see cref="FieldObject"/> in a <see cref="RowObjectDecorator"/> by FieldNumber.

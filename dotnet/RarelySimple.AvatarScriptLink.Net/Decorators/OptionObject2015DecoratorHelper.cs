@@ -100,6 +100,27 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 throw new ArgumentException(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
             }
             /// <summary>
+            /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="OptionObject2015Decorator"/> is locked by FieldNumber.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <param name="fieldNumber"></param>
+            /// <returns></returns>
+            public static bool IsFieldLocked(OptionObject2015Decorator optionObject, string fieldNumber)
+            {
+                if (optionObject == null)
+                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                if (optionObject.Forms == null)
+                    throw new NullReferenceException(resourceManager.GetString("optionObjectMissingForms", CultureInfo.CurrentCulture));
+                if (string.IsNullOrEmpty(fieldNumber))
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                foreach (var form in optionObject.Forms)
+                {
+                    if (FormObjectDecorator.Helper.IsFieldPresent(form, fieldNumber))
+                        return FormObjectDecorator.Helper.IsFieldLocked(form, fieldNumber);
+                }
+                throw new ArgumentException(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
+            }
+            /// <summary>
             /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="OptionObject2015Decorator"/> is present by FieldNumber.
             /// </summary>
             /// <param name="decorator"></param>
@@ -119,6 +140,27 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                         return true;
                 }
                 return false;
+            }
+            /// <summary>
+            /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="OptionObject2015Decorator"/> is required by FieldNumber.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <param name="fieldNumber"></param>
+            /// <returns></returns>
+            public static bool IsFieldRequired(OptionObject2015Decorator optionObject, string fieldNumber)
+            {
+                if (optionObject == null)
+                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                if (optionObject.Forms == null)
+                    throw new NullReferenceException(resourceManager.GetString("optionObjectMissingForms", CultureInfo.CurrentCulture));
+                if (string.IsNullOrEmpty(fieldNumber))
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                foreach (var form in optionObject.Forms)
+                {
+                    if (FormObjectDecorator.Helper.IsFieldPresent(form, fieldNumber))
+                        return FormObjectDecorator.Helper.IsFieldRequired(form, fieldNumber);
+                }
+                throw new ArgumentException(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
             }
             /// <summary>
             /// Sets the FieldValue of a <see cref="FieldObject"/> in an <see cref="OptionObject2015Decorator"/> by FieldNumber.

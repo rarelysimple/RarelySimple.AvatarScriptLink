@@ -69,11 +69,25 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public bool IsFieldEnabled(string fieldNumber) => Helper.IsFieldEnabled(this, fieldNumber);
 
         /// <summary>
+        /// Returns whether the specified field is locked.
+        /// </summary>
+        /// <param name="fieldNumber"></param>
+        /// <returns></returns>
+        public bool IsFieldLocked(string fieldNumber) => Helper.IsFieldLocked(this, fieldNumber);
+
+        /// <summary>
         /// Returns whether the specified field is present.
         /// </summary>
         /// <param name="fieldNumber"></param>
         /// <returns></returns>
         public bool IsFieldPresent(string fieldNumber) => Helper.IsFieldPresent(this, fieldNumber);
+
+        /// <summary>
+        /// Returns whether the specified field is required.
+        /// </summary>
+        /// <param name="fieldNumber"></param>
+        /// <returns></returns>
+        public bool IsFieldRequired(string fieldNumber) => Helper.IsFieldRequired(this, fieldNumber);
 
         /// <summary>
         /// Sets the FieldValue of a <see cref="FieldObject"/> in the <see cref="OptionObject2015Decorator"/> on the first form CurrentRow.

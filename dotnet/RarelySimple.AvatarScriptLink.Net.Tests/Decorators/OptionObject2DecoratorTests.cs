@@ -365,6 +365,177 @@ public class OptionObject2DecoratorTests
 
     #endregion
 
+    #region IsFieldLocked
+
+    [TestMethod]
+    public void IsFieldLocked_OptionObject2_FirstForm_IsLocked()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "1",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.IsTrue(decorator.IsFieldLocked("123.45"));
+    }
+
+    [TestMethod]
+    public void IsFieldLocked_OptionObject2_SecondForm_IsLocked()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "1",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "123"
+        };
+        var formObject2 = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject,formObject2]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.IsTrue(decorator.IsFieldLocked("123.45"));
+    }
+
+    [TestMethod]
+    public void IsFieldLocked_OptionObject2_FirstForm_IsNotLocked()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "0",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.IsFalse(decorator.IsFieldLocked("123.45"));
+    }
+
+    [TestMethod]
+    public void IsFieldLocked_OptionObject2_SecondForm_IsNotLocked()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "0",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "123"
+        };
+        var formObject2 = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject,formObject2]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.IsFalse(decorator.IsFieldLocked("123.45"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void IsFieldLocked_OptionObject2_IsNotPresent()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.IsTrue(decorator.IsFieldLocked("678.90"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(NullReferenceException))]
+    public void IsFieldLocked_OptionObject2_Null()
+    {
+        var decorator = new OptionObject2Decorator(null);
+        Assert.IsTrue(decorator.IsFieldLocked("123.45"));
+    }
+
+    #endregion
+
     #region IsFieldPresent
 
     [TestMethod]
@@ -433,6 +604,177 @@ public class OptionObject2DecoratorTests
     {
         var decorator = new OptionObject2Decorator(null);
         Assert.IsTrue(decorator.IsFieldPresent("123.45"));
+    }
+
+    #endregion
+
+    #region IsFieldRequired
+
+    [TestMethod]
+    public void IsFieldRequired_OptionObject2_FirstForm_IsRequired()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "1"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.IsTrue(decorator.IsFieldRequired("123.45"));
+    }
+
+    [TestMethod]
+    public void IsFieldRequired_OptionObject2_SecondForm_IsRequired()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "1"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "123"
+        };
+        var formObject2 = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject,formObject2]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.IsTrue(decorator.IsFieldRequired("123.45"));
+    }
+
+    [TestMethod]
+    public void IsFieldRequired_OptionObject2_FirstForm_IsNotRequired()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "0",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.IsFalse(decorator.IsFieldRequired("123.45"));
+    }
+
+    [TestMethod]
+    public void IsFieldRequired_OptionObject2_SecondForm_IsNotRequired()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "0",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "123"
+        };
+        var formObject2 = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject,formObject2]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.IsFalse(decorator.IsFieldRequired("123.45"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void IsFieldRequired_OptionObject2_IsNotPresent()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.IsTrue(decorator.IsFieldRequired("678.90"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(NullReferenceException))]
+    public void IsFieldRequired_OptionObject2_Null()
+    {
+        var decorator = new OptionObject2Decorator(null);
+        Assert.IsTrue(decorator.IsFieldRequired("123.45"));
     }
 
     #endregion

@@ -75,6 +75,22 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 return RowObjectDecorator.Helper.IsFieldEnabled(formObject.CurrentRow, fieldNumber);
             }
             /// <summary>
+            /// Returns whether the <see cref="IFieldObject"/> in the <see cref="IFormObject"/> is locked by FieldNumber.
+            /// </summary>
+            /// <param name="formObject"></param>
+            /// <param name="fieldNumber"></param>
+            /// <returns></returns>
+            public static bool IsFieldLocked(FormObjectDecorator formObject, string fieldNumber)
+            {
+                if (formObject == null)
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                if (formObject.CurrentRow == null)
+                    throw new NullReferenceException(resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
+                if (string.IsNullOrEmpty(fieldNumber))
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                return RowObjectDecorator.Helper.IsFieldLocked(formObject.CurrentRow, fieldNumber);
+            }
+            /// <summary>
             /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="FormObjectDecorator"/> is present by FieldNumber.
             /// </summary>
             /// <param name="decorator"></param>
@@ -89,6 +105,22 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 if (decorator.CurrentRow == null)
                     return false;
                 return RowObjectDecorator.Helper.IsFieldPresent(decorator.CurrentRow, fieldNumber);
+            }
+            /// <summary>
+            /// Returns whether the <see cref="IFieldObject"/> in the <see cref="IFormObject"/> is required by FieldNumber.
+            /// </summary>
+            /// <param name="formObject"></param>
+            /// <param name="fieldNumber"></param>
+            /// <returns></returns>
+            public static bool IsFieldRequired(FormObjectDecorator formObject, string fieldNumber)
+            {
+                if (formObject == null)
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                if (formObject.CurrentRow == null)
+                    throw new NullReferenceException(resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
+                if (string.IsNullOrEmpty(fieldNumber))
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                return RowObjectDecorator.Helper.IsFieldRequired(formObject.CurrentRow, fieldNumber);
             }
             /// <summary>
             /// Sets the FieldValue of a <see cref="FieldObject"/> in a <see cref="IFormObject"/> by FieldNumber.
