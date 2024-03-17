@@ -190,6 +190,94 @@ public class FormObjectDecoratorTests
 
     #endregion
 
+    #region IsFieldLocked
+
+    [TestMethod]
+    public void IsFieldLocked_FormObject_IsLocked()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "1",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        Assert.IsTrue(decorator.IsFieldLocked("123.45"));
+    }
+
+    [TestMethod]
+    public void IsFieldLocked_FormObject_IsNotLocked()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "0",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        Assert.IsFalse(decorator.IsFieldLocked("123.45"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void IsFieldLocked_FormObject_IsNotPresent()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        Assert.IsFalse(decorator.IsFieldLocked("678.90"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(NullReferenceException))]
+    public void IsFieldLocked_FormObject_Null()
+    {
+        var decorator = new FormObjectDecorator(null);
+        Assert.IsFalse(decorator.IsFieldLocked("123.45"));
+    }
+
+    #endregion
+
     #region IsFieldPresent
 
     [TestMethod]
@@ -248,6 +336,94 @@ public class FormObjectDecoratorTests
     {
         var decorator = new FormObjectDecorator(null);
         Assert.IsFalse(decorator.IsFieldPresent("123.45"));
+    }
+
+    #endregion
+
+    #region IsFieldRequired
+
+    [TestMethod]
+    public void IsFieldRequired_FormObject_IsRequired()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "1"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        Assert.IsTrue(decorator.IsFieldRequired("123.45"));
+    }
+
+    [TestMethod]
+    public void IsFieldRequired_FormObject_IsNotRequired()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "0",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        Assert.IsFalse(decorator.IsFieldRequired("123.45"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void IsFieldrequired_FormObject_IsNotPresent()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        Assert.IsFalse(decorator.IsFieldRequired("678.90"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(NullReferenceException))]
+    public void IsFieldRequired_FormObject_Null()
+    {
+        var decorator = new FormObjectDecorator(null);
+        Assert.IsFalse(decorator.IsFieldRequired("123.45"));
     }
 
     #endregion
