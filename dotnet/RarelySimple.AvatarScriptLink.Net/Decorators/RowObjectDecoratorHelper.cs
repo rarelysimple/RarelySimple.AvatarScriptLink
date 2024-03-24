@@ -57,7 +57,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     if (field.FieldNumber == fieldNumber)
                         return field.FieldValue;
                 }
-                throw new ArgumentException(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
+                throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
             /// <summary>
             /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="RowObjectDecorator"/> is enabled by FieldNumber.
@@ -78,7 +78,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     if (field.FieldNumber == fieldNumber)
                         return field.Enabled;
                 }
-                throw new ArgumentException(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
+                throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
             /// <summary>
             /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="RowObjectDecorator"/> is locked by FieldNumber.
@@ -99,7 +99,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     if (field.FieldNumber == fieldNumber)
                         return field.Locked;
                 }
-                throw new ArgumentException(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
+                throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
             /// <summary>
             /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="RowObjectDecorator"/> is present by FieldNumber.
@@ -141,7 +141,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     if (field.FieldNumber == fieldNumber)
                         return field.Required;
                 }
-                throw new ArgumentException(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
+                throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
             /// <summary>
             /// Sets the FieldValue of a <see cref="FieldObject"/> in a <see cref="RowObjectDecorator"/> by FieldNumber.

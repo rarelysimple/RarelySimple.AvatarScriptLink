@@ -74,6 +74,34 @@ public OptionObject2015 RunScript(OptionObject2015 optionObject, string paramete
 }
 ```
 
+## New Exceptions
+
+Custom extensions have been defined to provide better context for exceptions that can be thrown when working with the new decorator classes and their methods.
+
+For example, when attempting to interact with a FieldObject that does not exist in the OptionObject you will now get a `FieldObjectNotFoundException` rather than a generic `ArgumentException`.
+
+```cs title="Try-Catch with FieldObjectNotFoundException"
+try {
+    string value = decorator.GetFieldValue("123.45"); // Not present in OptionObject
+    // Do work
+}
+catch (FieldObjectNotFoundException ex) {
+    logger.LogError("Could not find the requested FieldObject: {}", ex.FieldNumber);
+    // Handle exception
+}
+``
+
+In most cases this would not be the ideal implementation in production and would typically be refactored as to avoid the exception.
+
+```cs title="Avoiding FieldObjectNotFoundException"
+string fieldNumber = "123.45";
+if (decorator.IsFieldPresent(fieldNumber))
+{
+    string value = decorator.GetFieldValue("123.45"); // Not present in OptionObject
+    // Do work
+}
+```
+
 ## Support for Native AOT
 
 With version 2, AvatarScriptLink.NET will now support [Native AOT deployments](https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/?tabs=net8plus%2Cwindows) on .NET 8.

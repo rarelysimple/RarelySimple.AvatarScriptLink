@@ -177,7 +177,7 @@ public class RowObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
+    [ExpectedException(typeof(FieldObjectNotFoundException))]
     public void IsFieldEnabled_RowObject_IsNotPresent()
     {
         var fieldObject = new FieldObject()
@@ -250,7 +250,7 @@ public class RowObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
+    [ExpectedException(typeof(FieldObjectNotFoundException))]
     public void IsFieldLocked_RowObject_IsNotPresent()
     {
         var fieldObject = new FieldObject()
@@ -375,7 +375,7 @@ public class RowObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
+    [ExpectedException(typeof(FieldObjectNotFoundException))]
     public void IsFieldRequired_RowObject_IsNotPresent()
     {
         var fieldObject = new FieldObject()

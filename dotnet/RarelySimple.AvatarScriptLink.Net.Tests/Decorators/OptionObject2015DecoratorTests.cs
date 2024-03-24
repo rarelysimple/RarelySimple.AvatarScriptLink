@@ -72,6 +72,39 @@ public class OptionObject2015DecoratorTests
         Assert.AreEqual(expected, decorator.GetFieldValue(fieldNumber));
     }
 
+    [TestMethod]
+    [ExpectedException(typeof(FieldObjectNotFoundException))]
+    public void TestOptionObject2015Decorator_GetFieldValue_NotPresent()
+    {
+        var fieldNumber = "123.45";
+        var expected = "initial value";
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = fieldNumber,
+            FieldValue = expected,
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        Assert.AreEqual(expected, decorator.GetFieldValue("678.90"));
+    }
+
     #endregion
 
     #region GetMultipleIterationStatus
@@ -130,8 +163,8 @@ public class OptionObject2015DecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
-    public void TestOptionObject2015Decorator_GetMultipleIterationStatus_ReturnsFormNotPresentException()
+    [ExpectedException(typeof(FormObjectNotFoundException))]
+    public void TestOptionObject2015Decorator_GetMultipleIterationStatus_ReturnsFormObjectNotFoundException()
     {
         var formId = "456";
         var expected = true;
@@ -150,8 +183,8 @@ public class OptionObject2015DecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
-    public void TestOptionObject2015Decorator_GetMultipleIterationStatus_ReturnsFormsNotPresentException()
+    [ExpectedException(typeof(FormObjectNotFoundException))]
+    public void TestOptionObject2015Decorator_GetMultipleIterationStatus_NoForms_ReturnsFormObjectNotFoundException()
     {
         var formId = "456";
         var expected = true;
@@ -325,7 +358,7 @@ public class OptionObject2015DecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
+    [ExpectedException(typeof(FieldObjectNotFoundException))]
     public void IsFieldEnabled_OptionObject2015_IsNotPresent()
     {
         var fieldObject = new FieldObject()
@@ -496,7 +529,7 @@ public class OptionObject2015DecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
+    [ExpectedException(typeof(FieldObjectNotFoundException))]
     public void IsFieldLocked_OptionObject2015_IsNotPresent()
     {
         var fieldObject = new FieldObject()
@@ -739,7 +772,7 @@ public class OptionObject2015DecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
+    [ExpectedException(typeof(FieldObjectNotFoundException))]
     public void IsFieldRequired_OptionObject2015_IsNotPresent()
     {
         var fieldObject = new FieldObject()

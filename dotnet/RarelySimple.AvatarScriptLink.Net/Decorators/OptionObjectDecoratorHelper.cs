@@ -28,7 +28,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     if (form.IsFieldPresent(fieldNumber))
                         return FormObjectDecorator.Helper.GetFieldValue(form, fieldNumber);
                 }
-                throw new ArgumentException(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
+                throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
             /// <summary>
             /// Returns the FieldValue of a specified <see cref="FieldObject"/> in an <see cref="OptionObjectDecorator"/> by FormId, RowId, and FieldNumber.
@@ -53,7 +53,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     if (form.FormId == formId)
                         return FormObjectDecorator.Helper.GetFieldValue(form, rowId, fieldNumber);
                 }
-                throw new ArgumentException(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
+                throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
             /// <summary>
             /// Returns whether a <see cref="FormObject"/> in the <see cref="OptionObject"/> is Multiple Iteration by specified FormId.
@@ -72,11 +72,9 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 foreach (var formObject in optionObject.Forms)
                 {
                     if (formObject.FormId == formId)
-                    {
                         return FormObjectDecorator.Helper.GetMultipleIterationStatus(formObject);
-                    }
                 }
-                throw new ArgumentException("The FormObject with FormId " + formId + " does not exist in this OptionObject."); // TODO: Localize
+                throw new FormObjectNotFoundException(string.Format(resourceManager.GetString("noFormObjectsFoundByFormId", CultureInfo.CurrentCulture), formId), formId);
             }
             /// <summary>
             /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="OptionObjectDecorator"/> is enabled by FieldNumber.
@@ -97,7 +95,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     if (FormObjectDecorator.Helper.IsFieldPresent(form, fieldNumber))
                         return FormObjectDecorator.Helper.IsFieldEnabled(form, fieldNumber);
                 }
-                throw new ArgumentException(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
+                throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
             /// <summary>
             /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="OptionObjectDecorator"/> is locked by FieldNumber.
@@ -118,7 +116,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     if (FormObjectDecorator.Helper.IsFieldPresent(form, fieldNumber))
                         return FormObjectDecorator.Helper.IsFieldLocked(form, fieldNumber);
                 }
-                throw new ArgumentException(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
+                throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
             /// <summary>
             /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="OptionObjectDecorator"/> is present by FieldNumber.
@@ -160,7 +158,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     if (FormObjectDecorator.Helper.IsFieldPresent(form, fieldNumber))
                         return FormObjectDecorator.Helper.IsFieldRequired(form, fieldNumber);
                 }
-                throw new ArgumentException(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
+                throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
             /// <summary>
             /// Sets the FieldValue of a <see cref="FieldObject"/> in an <see cref="OptionObjectDecorator"/> by FieldNumber.
@@ -186,7 +184,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                         return SetFieldValue(decorator, form.FormId, form.CurrentRow.RowId, fieldNumber, fieldValue);
                     }
                 }
-                throw new ArgumentException(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
+                throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
             /// <summary>
             /// Sets the FieldValue of a <see cref="FieldObject"/> in an <see cref="OptionObjectDecorator"/> by FormId, RowID, and FieldNumber.
