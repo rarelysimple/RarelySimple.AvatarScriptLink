@@ -155,7 +155,7 @@ public class FormObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
+    [ExpectedException(typeof(FieldObjectNotFoundException))]
     public void IsFieldEnabled_FormObject_IsNotPresent()
     {
         var fieldObject = new FieldObject()
@@ -243,7 +243,7 @@ public class FormObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
+    [ExpectedException(typeof(FieldObjectNotFoundException))]
     public void IsFieldLocked_FormObject_IsNotPresent()
     {
         var fieldObject = new FieldObject()
@@ -393,8 +393,8 @@ public class FormObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
-    public void IsFieldrequired_FormObject_IsNotPresent()
+    [ExpectedException(typeof(FieldObjectNotFoundException))]
+    public void IsFieldRequired_FormObject_IsNotPresent()
     {
         var fieldObject = new FieldObject()
         {

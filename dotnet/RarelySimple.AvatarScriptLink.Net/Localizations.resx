@@ -160,16 +160,16 @@
     <value>None of the identified FieldsObjects were found in this OptionObject.</value>
   </data>
   <data name="noFieldObjectsFoundByFieldNumber" xml:space="preserve">
-    <value>No FieldObjects were found matching provided FieldNumber: </value>
+    <value>No FieldObjects were found matching provided FieldNumber: {0}</value>
   </data>
   <data name="noFieldObjectsWereSet" xml:space="preserve">
     <value>None of the identified FieldsObjects were able to be set.</value>
   </data>
   <data name="noFormObjectsFoundByFormId" xml:space="preserve">
-    <value>No FormObjects were found matching provided FormId.</value>
+    <value>No FormObjects were found matching provided FormId: {0}</value>
   </data>
   <data name="noRowObjectsFoundByRowId" xml:space="preserve">
-    <value>No RowObjects were found matching provided RowId.</value>
+    <value>No RowObjects were found matching provided RowId: {0}.</value>
   </data>
   <data name="objectCannotBeSerializedJson" xml:space="preserve">
     <value>Object could not be serialized as JSON.</value>

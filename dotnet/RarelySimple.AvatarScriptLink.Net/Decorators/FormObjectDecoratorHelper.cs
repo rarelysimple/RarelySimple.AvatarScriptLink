@@ -45,7 +45,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     if (rowObject.RowId == rowId)
                         return RowObjectDecorator.Helper.GetFieldValue(rowObject, fieldNumber);
                 }
-                throw new ArgumentException(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
+                throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
             /// <summary>
             /// Returns whether a <see cref="FormObject"/> is Multiple Iteration.
@@ -175,7 +175,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                         }
                     }
                 }
-                throw new ArgumentException(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(decorator));
+                throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
         }
     }
