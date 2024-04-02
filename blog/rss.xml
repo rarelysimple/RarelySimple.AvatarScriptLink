@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>AvatarScriptLink by RarelySimple Blog</title>
-        <link>https://scriptlink.rarelysimple.com/blog</link>
+        <link>https://scriptlink.rarelysimple.com/blog/</link>
         <description>AvatarScriptLink by RarelySimple Blog</description>
         <lastBuildDate>Sun, 25 Jun 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
@@ -11,15 +11,15 @@
         <copyright>Copyright © 2024 Scott Olson Jr</copyright>
         <item>
             <title><![CDATA[Announcing AvatarScriptLink.NET 1.2.0]]></title>
-            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.2.0</link>
-            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.2.0</guid>
+            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.2.0/</link>
+            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.2.0/</guid>
             <pubDate>Sun, 25 Jun 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[AvatarScriptLink.NET version 1.2.0 is now available on NuGet.]]></description>
             <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.2.0 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.2.0" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
 This release includes the introduction of Builder methods to assist with the creation of the various objects as well as allowing for the <a href="https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/52" target="_blank" rel="noopener noreferrer">error code and error message to be set prior to calling <code>ToReturnOptionObject()</code></a>.
 This is especially helpful when arranging unit tests.</p>
 <!-- -->
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="new-builders">New Builders<a href="https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.2.0#new-builders" class="hash-link" aria-label="Direct link to New Builders" title="Direct link to New Builders">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="new-builders">New Builders<a href="https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.2.0/#new-builders" class="hash-link" aria-label="Direct link to New Builders" title="Direct link to New Builders">​</a></h2>
 <p>Builder methods have been added to each of the ScriptLink objects.</p>
 <ul>
 <li><a href="https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/40" target="_blank" rel="noopener noreferrer">OptionObject2015 (incl. OptionObject2, OptionObject)</a></li>
@@ -28,7 +28,7 @@ This is especially helpful when arranging unit tests.</p>
 <li><a href="https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/37" target="_blank" rel="noopener noreferrer">FieldObject</a></li>
 </ul>
 <div class="language-cs codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-cs codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">[</span><span class="token attribute class-name">TestMethod</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">public</span><span class="token plain"> </span><span class="token return-type class-name keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">TestMethod1WithFluentBuilder</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token class-name keyword" style="color:#00009f">var</span><span class="token plain"> expected </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"value"</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token class-name">FieldObject</span><span class="token plain"> fieldObject </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> FieldObject</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">Builder</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">FieldNumber</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">"123.45"</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">FieldValue</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">expected</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">Enabled</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">Build</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    Assert</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">AreEqual</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">expected</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> fieldObject</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">FieldValue</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="preset-errorcode-and-errormesg">Preset ErrorCode and ErrorMesg<a href="https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.2.0#preset-errorcode-and-errormesg" class="hash-link" aria-label="Direct link to Preset ErrorCode and ErrorMesg" title="Direct link to Preset ErrorCode and ErrorMesg">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="preset-errorcode-and-errormesg">Preset ErrorCode and ErrorMesg<a href="https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.2.0/#preset-errorcode-and-errormesg" class="hash-link" aria-label="Direct link to Preset ErrorCode and ErrorMesg" title="Direct link to Preset ErrorCode and ErrorMesg">​</a></h2>
 <p>TThere may be use cases in which you do not want to wait until the returning of the response to set the ErrorCode and ErrorMesg.
 With this release you can set these values prior to calling <code>ToReturnOptionObject()</code>.</p>
 <div class="language-cs codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-cs codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">condition</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    optionObject</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">ErrorCode </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> ErrorCode</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">Alert</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    optionObject</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">ErrorMesg </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"An alert message!"</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">return</span><span class="token plain"> optionObject</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">ToReturnOptionObject</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>]]></content:encoded>
@@ -43,8 +43,8 @@ With this release you can set these values prior to calling <code>ToReturnOption
         </item>
         <item>
             <title><![CDATA[Announcing AvatarScriptLink.NET 1.1.10]]></title>
-            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.1.10</link>
-            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.1.10</guid>
+            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.1.10/</link>
+            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.1.10/</guid>
             <pubDate>Sat, 15 Oct 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[AvatarScriptLink.NET version 1.1.10 is now available on NuGet.]]></description>
             <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.1.10 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.1.10" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
@@ -60,8 +60,8 @@ This release corrects <a href="https://github.com/rarelysimple/RarelySimple.Avat
         </item>
         <item>
             <title><![CDATA[Announcing AvatarScriptLink.NET 1.1.6]]></title>
-            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.1.6</link>
-            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.1.6</guid>
+            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.1.6/</link>
+            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.1.6/</guid>
             <pubDate>Sun, 04 Sep 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[AvatarScriptLink.NET version 1.1.6 is now available on NuGet.]]></description>
             <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.1.6 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.1.6" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
@@ -72,7 +72,7 @@ This release refines <a href="https://github.com/rarelysimple/RarelySimple.Avata
 <li><code>SetDisabledField()</code> will no longer set the FieldObject as Optional as well. Use <code>SetOptionalField()</code> well if this is the desired result.</li>
 </ul>
 <!-- -->
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="migrating-from-10x-to-11x">Migrating from 1.0.x to 1.1.x<a href="https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.1.6#migrating-from-10x-to-11x" class="hash-link" aria-label="Direct link to Migrating from 1.0.x to 1.1.x" title="Direct link to Migrating from 1.0.x to 1.1.x">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="migrating-from-10x-to-11x">Migrating from 1.0.x to 1.1.x<a href="https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.1.6/#migrating-from-10x-to-11x" class="hash-link" aria-label="Direct link to Migrating from 1.0.x to 1.1.x" title="Direct link to Migrating from 1.0.x to 1.1.x">​</a></h2>
 <p>Due to the change of behavior there could be unintended changes to the behavior of implemented ScriptLink APIs.
 If your implementation relies on the assumptions that "all required fields are enabled" or "all disabled fields are optional" then you may need to apply the following updates to your project.</p>
 <p>For <code>SetRequiredField()</code>, add another line to <code>SetEnabledField()</code> to ensure the FieldObject is enabled as expected.</p>
@@ -90,8 +90,8 @@ If your implementation relies on the assumptions that "all required fields are e
         </item>
         <item>
             <title><![CDATA[Announcing AvatarScriptLink.NET 1.0.28]]></title>
-            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.28</link>
-            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.28</guid>
+            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.28/</link>
+            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.28/</guid>
             <pubDate>Mon, 25 Jul 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[AvatarScriptLink.NET version 1.0.28 is now available on NuGet.]]></description>
             <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.0.28 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.0.28" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
@@ -112,8 +112,8 @@ This release addresses security vulnerabilities identified in Newtonsoft.Json an
         </item>
         <item>
             <title><![CDATA[Announcing AvatarScriptLink.NET 1.0.25]]></title>
-            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.25</link>
-            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.25</guid>
+            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.25/</link>
+            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.25/</guid>
             <pubDate>Fri, 20 May 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[AvatarScriptLink.NET version 1.0.25 is now available on NuGet.]]></description>
             <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.0.25 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.0.25" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
@@ -130,8 +130,8 @@ This is a maintenance release which includes updates to miscellaneous project de
         </item>
         <item>
             <title><![CDATA[Announcing AvatarScriptLink.NET 1.0.22]]></title>
-            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.22</link>
-            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.22</guid>
+            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.22/</link>
+            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.22/</guid>
             <pubDate>Sun, 08 Aug 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[AvatarScriptLink.NET version 1.0.22 is now available on NuGet.]]></description>
             <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.0.22 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.0.22" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
@@ -152,8 +152,8 @@ This is a maintenance release which includes the following updates:</p>
         </item>
         <item>
             <title><![CDATA[Announcing AvatarScriptLink.NET 1.0.7]]></title>
-            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.7</link>
-            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.7</guid>
+            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.7/</link>
+            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.7/</guid>
             <pubDate>Sat, 12 Dec 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[AvatarScriptLink.NET version 1.0.7 is now available on NuGet.]]></description>
             <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.0.7 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.0.7" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
@@ -169,8 +169,8 @@ This release corrects an issue that may occur when the myAvatar Registry Setting
         </item>
         <item>
             <title><![CDATA[Announcing AvatarScriptLink.NET 1.0.6]]></title>
-            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.6</link>
-            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.6</guid>
+            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.6/</link>
+            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.6/</guid>
             <pubDate>Tue, 09 Jun 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[AvatarScriptLink.NET version 1.0.6 is now available on NuGet.]]></description>
             <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.0.6 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.0.6" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
@@ -186,8 +186,8 @@ This is a maintenance release with a number of minor fixes and enhancements.</p>
         </item>
         <item>
             <title><![CDATA[Deployment Methods for Your .NET ScriptLink Solution]]></title>
-            <link>https://scriptlink.rarelysimple.com/blog/deployment-methods-for-your-dotnet-scriptlink-solution</link>
-            <guid>https://scriptlink.rarelysimple.com/blog/deployment-methods-for-your-dotnet-scriptlink-solution</guid>
+            <link>https://scriptlink.rarelysimple.com/blog/deployment-methods-for-your-dotnet-scriptlink-solution/</link>
+            <guid>https://scriptlink.rarelysimple.com/blog/deployment-methods-for-your-dotnet-scriptlink-solution/</guid>
             <pubDate>Tue, 31 Mar 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[Congratulations! You have created your “Hello, World!” ScriptLink web application, tested it with Unit Tests, tested it on your development web server, and submitted your code to a source control solution. Next, we will be looking at various methods for deploying our .NET ScriptLink applications. This will enable us to setup our Test server to use with UAT or other myAvatar Test environment and later the Production server to use with our LIVE or other production myAvatar environment.]]></description>
             <content:encoded><![CDATA[<p>Congratulations! You have created your “Hello, World!” ScriptLink web application, tested it with Unit Tests, tested it on your development web server, and submitted your code to a source control solution. Next, we will be looking at various methods for deploying our .NET ScriptLink applications. This will enable us to setup our Test server to use with UAT or other myAvatar Test environment and later the Production server to use with our LIVE or other production myAvatar environment.</p>
@@ -199,9 +199,9 @@ This is a maintenance release with a number of minor fixes and enhancements.</p>
 <li>Release to production according to your change management protocols.</li>
 <li>Deployment of our project to the web server is basically moving files. However, the more mature options include features to automate selection of the files, the moving of the files, restarting the web app, and other various tasks. Let’s take a look at these options.</li>
 </ol>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="option-1-create-a-package">Option #1: Create a Package<a href="https://scriptlink.rarelysimple.com/blog/deployment-methods-for-your-dotnet-scriptlink-solution#option-1-create-a-package" class="hash-link" aria-label="Direct link to Option #1: Create a Package" title="Direct link to Option #1: Create a Package">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="option-1-create-a-package">Option #1: Create a Package<a href="https://scriptlink.rarelysimple.com/blog/deployment-methods-for-your-dotnet-scriptlink-solution/#option-1-create-a-package" class="hash-link" aria-label="Direct link to Option #1: Create a Package" title="Direct link to Option #1: Create a Package">​</a></h2>
 <p>This is the closest to more traditional deployments. In this method, you create a zip file with all of the required files to import into IIS. I have had to use this method when the web host didn’t allow the subsequent methods I will discuss or the host limits access to the web application except from the myAvatar server.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="option-2-web-deploy">Option #2: Web Deploy<a href="https://scriptlink.rarelysimple.com/blog/deployment-methods-for-your-dotnet-scriptlink-solution#option-2-web-deploy" class="hash-link" aria-label="Direct link to Option #2: Web Deploy" title="Direct link to Option #2: Web Deploy">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="option-2-web-deploy">Option #2: Web Deploy<a href="https://scriptlink.rarelysimple.com/blog/deployment-methods-for-your-dotnet-scriptlink-solution/#option-2-web-deploy" class="hash-link" aria-label="Direct link to Option #2: Web Deploy" title="Direct link to Option #2: Web Deploy">​</a></h2>
 <p>This has been my go to solution for many years and <a href="https://docs.microsoft.com/en-us/aspnet/web-forms/overview/deployment/visual-studio-web-deployment/" target="_blank" rel="noopener noreferrer">the Microsoft documentation on ASP.NET deployment</a> leverages this method. This is significantly better than the previous option, but not the best. It balances ease of use and complexity. It is also well established.</p>
 <p>Another benefit of this option is that the developer or the one who deploys does not require any administrative rights on the web server itself. This means that you can separate out those duties between your server admin and your application developer.</p>
 <p>Here's an overview of this workflow.</p>
@@ -215,7 +215,7 @@ This is a maintenance release with a number of minor fixes and enhancements.</p>
 <p>Here is a demonstration of Web Deploy from 2018 used with Azure.</p>
 <p><img decoding="async" loading="lazy" src="https://youtu.be/6VK370-Yk3A" alt="" class="img_ev3q"></p>
 <p>I will walk through setting this up in more detail in a future article.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="option-3-azure-pipelines">Option #3: Azure Pipelines<a href="https://scriptlink.rarelysimple.com/blog/deployment-methods-for-your-dotnet-scriptlink-solution#option-3-azure-pipelines" class="hash-link" aria-label="Direct link to Option #3: Azure Pipelines" title="Direct link to Option #3: Azure Pipelines">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="option-3-azure-pipelines">Option #3: Azure Pipelines<a href="https://scriptlink.rarelysimple.com/blog/deployment-methods-for-your-dotnet-scriptlink-solution/#option-3-azure-pipelines" class="hash-link" aria-label="Direct link to Option #3: Azure Pipelines" title="Direct link to Option #3: Azure Pipelines">​</a></h2>
 <p>This is an ideal option whether you are hosting your ScriptLink application on-premise or in the Netsmart cloud. However, this is a relatively new solution offering from Microsoft. It uses Continuous Integration and Continuous Deployment (CI/CD) processes to help you build a healthier release process. I especially like that you can deploy your Test or Production code to on-premises servers (yes plural) automatically and without opening your firewall. Any on premises IIS server can get the release as long as it has Internet access.</p>
 <p>Here’s an overview of the workflow.</p>
 <ol>
@@ -227,7 +227,7 @@ This is a maintenance release with a number of minor fixes and enhancements.</p>
 </ol>
 <p>Azure DevOps published a great demonstration on this last year.</p>
 <p><img decoding="async" loading="lazy" src="https://youtu.be/_sUf0wqJYXo" alt="" class="img_ev3q"></p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="lets-deploy">Let's Deploy<a href="https://scriptlink.rarelysimple.com/blog/deployment-methods-for-your-dotnet-scriptlink-solution#lets-deploy" class="hash-link" aria-label="Direct link to Let's Deploy" title="Direct link to Let's Deploy">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="lets-deploy">Let's Deploy<a href="https://scriptlink.rarelysimple.com/blog/deployment-methods-for-your-dotnet-scriptlink-solution/#lets-deploy" class="hash-link" aria-label="Direct link to Let's Deploy" title="Direct link to Let's Deploy">​</a></h2>
 <p>Hopefully, these options peak your interest and you are interested in modernizing your deployment strategy. In Visual Studio 2019, right-click Publish can still be used to create a package to transfer and import, however I think you will really like Web Deploy or Azure Pipelines.</p>]]></content:encoded>
             <category>scriptlink</category>
             <category>myavatar</category>
@@ -240,8 +240,8 @@ This is a maintenance release with a number of minor fixes and enhancements.</p>
         </item>
         <item>
             <title><![CDATA[Announcing AvatarScriptLink.NET General Availability]]></title>
-            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-general-availability</link>
-            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-general-availability</guid>
+            <link>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-general-availability/</link>
+            <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-general-availability/</guid>
             <pubDate>Fri, 21 Feb 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[Placeholder for general availability announcement.]]></description>
             <content:encoded><![CDATA[<p>Placeholder for general availability announcement.</p>]]></content:encoded>
