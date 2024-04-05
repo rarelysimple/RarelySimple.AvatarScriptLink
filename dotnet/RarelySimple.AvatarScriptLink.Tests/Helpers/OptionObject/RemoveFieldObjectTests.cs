@@ -45,7 +45,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void RemoveFieldObject_RowObject_ByFieldNumber_NotPresent()
         {
             string fieldNumber = "123";
@@ -145,7 +145,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void RemoveFieldObject_OptionObjectHelpers_ByFieldNumber_NotPresent()
         {
             string fieldNumber = "123";

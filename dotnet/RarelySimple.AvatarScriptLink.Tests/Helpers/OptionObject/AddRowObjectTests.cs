@@ -203,7 +203,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
 
         [TestMethod]
         [TestCategory("AddRowObject")]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void AddRowObject_ToOptionObject_FormIdNotPresent()
         {
             string formId = "2";
@@ -222,7 +222,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
 
         [TestMethod]
         [TestCategory("AddRowObject")]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void AddRowObject_ToOptionObject2_FormIdNotPresent()
         {
             string formId = "2";
@@ -241,7 +241,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
 
         [TestMethod]
         [TestCategory("AddRowObject")]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void AddRowObject_ToOptionObject2015_FormIdNotPresent()
         {
             string formId = "2";

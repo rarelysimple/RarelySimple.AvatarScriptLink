@@ -70,7 +70,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 if (rowObject == null)
                     throw new ArgumentNullException(nameof(rowObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 if (rowObject.Fields == null)
-                    throw new NullReferenceException(resourceManager.GetString("rowObjectMissingFields", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(rowObject), resourceManager.GetString("rowObjectMissingFields", CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 foreach (FieldObjectDecorator field in rowObject.Fields)
@@ -91,7 +91,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 if (rowObject == null)
                     throw new ArgumentNullException(nameof(rowObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 if (rowObject.Fields == null)
-                    throw new NullReferenceException(resourceManager.GetString("rowObjectMissingFields", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(rowObject), resourceManager.GetString("rowObjectMissingFields", CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 foreach (FieldObjectDecorator field in rowObject.Fields)
@@ -133,7 +133,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 if (rowObject == null)
                     throw new ArgumentNullException(nameof(rowObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 if (rowObject.Fields == null)
-                    throw new NullReferenceException(resourceManager.GetString("rowObjectMissingFields", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(rowObject), resourceManager.GetString("rowObjectMissingFields", CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 foreach (FieldObjectDecorator field in rowObject.Fields)

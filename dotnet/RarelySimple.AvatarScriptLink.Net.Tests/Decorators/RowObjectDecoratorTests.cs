@@ -122,7 +122,7 @@ public class RowObjectDecoratorTests
     // }
 
     // [TestMethod]
-    // [ExpectedException(typeof(NullReferenceException))]
+    // [ExpectedException(typeof(ArgumentNullException))]
     // public void GetFieldValueRowObjectNullReturnsError()
     // {
     //     RowObject rowObject = null;
@@ -198,7 +198,7 @@ public class RowObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
+    [ExpectedException(typeof(ArgumentNullException))]
     public void IsFieldEnabled_RowObject_Null()
     {
         var decorator = new RowObjectDecorator(null);
@@ -271,7 +271,7 @@ public class RowObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
+    [ExpectedException(typeof(ArgumentNullException))]
     public void IsFieldLocked_RowObject_Null()
     {
         var decorator = new RowObjectDecorator(null);
@@ -323,7 +323,7 @@ public class RowObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
+    [ExpectedException(typeof(ArgumentNullException))]
     public void IsFieldPresent_RowObject_Null()
     {
         var decorator = new RowObjectDecorator(null);
@@ -396,7 +396,7 @@ public class RowObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
+    [ExpectedException(typeof(ArgumentNullException))]
     public void IsFieldRequired_RowObject_Null()
     {
         var decorator = new RowObjectDecorator(null);

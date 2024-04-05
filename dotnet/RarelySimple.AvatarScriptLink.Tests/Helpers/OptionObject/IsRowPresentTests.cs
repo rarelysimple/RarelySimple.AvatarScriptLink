@@ -47,7 +47,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void IsRowPresent_OptionObject_FormsNull_Error()
         {
             // Arrange
@@ -147,7 +147,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void IsRowPresent_OptionObject2_FormsNull_Error()
         {
             // Arrange
@@ -247,7 +247,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void IsRowPresent_OptionObject2015_FormsNull_Error()
         {
             // Arrange
@@ -437,7 +437,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void IsRowPresent_OptionObjectHelpers_OptionObject_FormsNull_Error()
         {
             // Arrange
@@ -537,7 +537,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void IsRowPresent_OptionObjectHelpers_OptionObject2_FormsNull_Error()
         {
             // Arrange
@@ -637,7 +637,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void IsRowPresent_OptionObjectHelpers_OptionObject2015_FormsNull_Error()
         {
             // Arrange

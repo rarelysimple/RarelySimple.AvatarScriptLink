@@ -161,7 +161,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void GetParentRowIdHelperOptionObjectNoCurrentRowReturnsError()
         {
             FormObject formObject = new FormObject()
@@ -346,7 +346,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void GetParentRowIdHelperOptionObject2NoCurrentRowReturnsError()
         {
             FormObject formObject = new FormObject()
@@ -532,7 +532,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void GetParentRowIdHelperOptionObject2015NoCurrentRowReturnsError()
         {
             FormObject formObject = new FormObject()
