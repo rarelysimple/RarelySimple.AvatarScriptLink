@@ -69,7 +69,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 if (formObject == null)
                     throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 if (formObject.CurrentRow == null)
-                    throw new ArgumentNullException(resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 return RowObjectDecorator.Helper.IsFieldEnabled(formObject.CurrentRow, fieldNumber);
@@ -85,7 +85,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 if (formObject == null)
                     throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 if (formObject.CurrentRow == null)
-                    throw new ArgumentNullException(resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 return RowObjectDecorator.Helper.IsFieldLocked(formObject.CurrentRow, fieldNumber);
@@ -117,7 +117,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 if (formObject == null)
                     throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 if (formObject.CurrentRow == null)
-                    throw new ArgumentNullException(resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 return RowObjectDecorator.Helper.IsFieldRequired(formObject.CurrentRow, fieldNumber);
@@ -134,7 +134,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 if (decorator == null)
                     throw new ArgumentNullException(nameof(decorator), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 if (decorator.CurrentRow == null)
-                    throw new ArgumentNullException(resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(decorator), resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 if (decorator.MultipleIteration && decorator.OtherRows.Count > 0)
@@ -154,7 +154,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 if (decorator == null)
                     throw new ArgumentNullException(nameof(decorator), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 if (decorator.CurrentRow == null)
-                    throw new ArgumentNullException(resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(decorator), resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(rowId))
                     throw new ArgumentNullException(nameof(rowId), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))

@@ -30,7 +30,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
             if (optionObject == null)
                 throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
             if (optionObject.Forms.Count == 0)
-                throw new ArgumentNullException(ScriptLinkHelpers.GetLocalizedString("optionObjectMissingForms", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("optionObjectMissingForms", CultureInfo.CurrentCulture));
             if (excludedFields == null)
                 throw new ArgumentNullException(nameof(excludedFields), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
             return DisableAllFieldObjectsByOptionObject(optionObject, excludedFields);
