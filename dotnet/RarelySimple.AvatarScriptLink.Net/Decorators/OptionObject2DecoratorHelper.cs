@@ -68,7 +68,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 if (string.IsNullOrEmpty(formId))
                     throw new ArgumentNullException(nameof(formId), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 if (optionObject.Forms == null)
-                    throw new NullReferenceException(resourceManager.GetString("optionObjectMissingForms", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(resourceManager.GetString("optionObjectMissingForms", CultureInfo.CurrentCulture));
                 foreach (var formObject in optionObject.Forms)
                 {
                     if (formObject.FormId == formId)
@@ -87,7 +87,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 if (optionObject == null)
                     throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 if (optionObject.Forms == null)
-                    throw new NullReferenceException(resourceManager.GetString("optionObjectMissingForms", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(resourceManager.GetString("optionObjectMissingForms", CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 foreach (var form in optionObject.Forms)
@@ -108,7 +108,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 if (optionObject == null)
                     throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 if (optionObject.Forms == null)
-                    throw new NullReferenceException(resourceManager.GetString("optionObjectMissingForms", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(resourceManager.GetString("optionObjectMissingForms", CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 foreach (var form in optionObject.Forms)
@@ -129,7 +129,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 if (decorator == null)
                     throw new ArgumentNullException(nameof(decorator), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 if (decorator.Forms == null)
-                    throw new NullReferenceException(resourceManager.GetString("optionObjectMissingForms", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(resourceManager.GetString("optionObjectMissingForms", CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 foreach (var form in decorator.Forms)
@@ -150,7 +150,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 if (optionObject == null)
                     throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 if (optionObject.Forms == null)
-                    throw new NullReferenceException(resourceManager.GetString("optionObjectMissingForms", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(resourceManager.GetString("optionObjectMissingForms", CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 foreach (var form in optionObject.Forms)
@@ -172,7 +172,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 if (decorator == null)
                     throw new ArgumentNullException(nameof(decorator), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 if (decorator.Forms == null)
-                    throw new NullReferenceException(resourceManager.GetString("optionObjectMissingForms", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(resourceManager.GetString("optionObjectMissingForms", CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 foreach (var form in decorator.Forms)
@@ -206,7 +206,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
                 if (decorator.Forms == null)
-                    throw new NullReferenceException(resourceManager.GetString("optionObjectMissingForms", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(resourceManager.GetString("optionObjectMissingForms", CultureInfo.CurrentCulture));
                 for (int i = 0; i < decorator.Forms.Count; i++)
                 {
                     if (decorator.Forms[i].FormId == formId)

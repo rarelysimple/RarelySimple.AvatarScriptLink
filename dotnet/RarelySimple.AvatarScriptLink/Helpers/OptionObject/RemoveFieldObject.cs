@@ -36,7 +36,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
             FieldObject fieldObject = rowObject.Fields.Find(f => f.FieldNumber == fieldNumber);
             if (fieldObject == null)
-                throw new NullReferenceException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber);
+                throw new ArgumentNullException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber);
             return RemoveFieldObject(rowObject, fieldObject);
         }
     }

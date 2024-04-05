@@ -351,7 +351,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// <summary>
         /// Removes any unmodified <see cref="FieldObject"/> from the <see cref="RowObject"/>.
         /// </summary>
-        public void RemoveUnmodifiedFieldObjects() => Fields.RemoveAll(f => f.IsModified() == false);
+        public void RemoveUnmodifiedFieldObjects() => Fields.RemoveAll(f => f.IsModified());
 
         /// <summary>
         /// Sets the specified field as disabled and unrequires if required.

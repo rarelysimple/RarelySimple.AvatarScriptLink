@@ -145,7 +145,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
 
         [TestMethod]
         [TestCategory("FormObject")]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void FormObject_GetCurrentRowId_IsError()
         {
             FormObject formObject = FormObject.Initialize();
@@ -170,7 +170,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
 
         [TestMethod]
         [TestCategory("FormObject")]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void FormObject_GetParentRowId_IsError()
         {
             FormObject formObject = FormObject.Initialize();

@@ -19,7 +19,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
 
         [TestMethod]
         [TestCategory("GetCurrentRowId")]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void GetCurrentRowId_FromFormObject_NoCurrentRow()
         {
             string expected = "1||1";

@@ -35,7 +35,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
             if (string.IsNullOrEmpty(rowId))
                 throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
             if (optionObject.Forms == null || optionObject.Forms.Count == 0)
-                throw new NullReferenceException(ScriptLinkHelpers.GetLocalizedString("optionObjectMissingForms", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(ScriptLinkHelpers.GetLocalizedString("optionObjectMissingForms", CultureInfo.CurrentCulture));
             for (int i = 0; i < optionObject.Forms.Count; i++)
             {
                 if (IsRowPresent(optionObject.Forms[i], rowId))
@@ -73,7 +73,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
             if (string.IsNullOrEmpty(rowId))
                 throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
             if (formObject.CurrentRow == null)
-                throw new NullReferenceException(ScriptLinkHelpers.GetLocalizedString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(ScriptLinkHelpers.GetLocalizedString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
             if (formObject.CurrentRow.RowId == rowId)
             {
                 formObject.CurrentRow.RowAction = RowAction.Delete;

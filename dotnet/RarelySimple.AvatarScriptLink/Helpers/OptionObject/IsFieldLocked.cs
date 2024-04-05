@@ -18,7 +18,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
             if (optionObject == null)
                 throw new System.ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
             if (optionObject.Forms == null)
-                throw new System.NullReferenceException(ScriptLinkHelpers.GetLocalizedString("optionObjectMissingForms", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(ScriptLinkHelpers.GetLocalizedString("optionObjectMissingForms", CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(fieldNumber))
                 throw new System.ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
             foreach (var form in optionObject.Forms)
@@ -39,7 +39,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
             if (formObject == null)
                 throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
             if (formObject.CurrentRow == null)
-                throw new NullReferenceException(ScriptLinkHelpers.GetLocalizedString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(ScriptLinkHelpers.GetLocalizedString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(fieldNumber))
                 throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
             return IsFieldLocked(formObject.CurrentRow, fieldNumber);
@@ -55,7 +55,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
             if (rowObject == null)
                 throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
             if (rowObject.Fields == null)
-                throw new NullReferenceException(ScriptLinkHelpers.GetLocalizedString("rowObjectMissingFields", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(ScriptLinkHelpers.GetLocalizedString("rowObjectMissingFields", CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(fieldNumber))
                 throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
             foreach (FieldObject field in rowObject.Fields)

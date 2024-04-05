@@ -181,7 +181,7 @@ public class FormObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
+    [ExpectedException(typeof(ArgumentNullException))]
     public void IsFieldEnabled_FormObject_Null()
     {
         var decorator = new FormObjectDecorator(null);
@@ -269,7 +269,7 @@ public class FormObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
+    [ExpectedException(typeof(ArgumentNullException))]
     public void IsFieldLocked_FormObject_Null()
     {
         var decorator = new FormObjectDecorator(null);
@@ -331,7 +331,7 @@ public class FormObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
+    [ExpectedException(typeof(ArgumentNullException))]
     public void IsFieldPresent_FormObject_Null()
     {
         var decorator = new FormObjectDecorator(null);
@@ -419,7 +419,7 @@ public class FormObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
+    [ExpectedException(typeof(ArgumentNullException))]
     public void IsFieldRequired_FormObject_Null()
     {
         var decorator = new FormObjectDecorator(null);

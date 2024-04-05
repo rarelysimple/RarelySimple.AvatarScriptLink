@@ -197,7 +197,7 @@ public class OptionObject2DecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
+    [ExpectedException(typeof(ArgumentNullException))]
     public void TestOptionObject2Decorator_GetMultipleIterationStatus_ReturnsNullReferenceException()
     {
         var formId = "456";
@@ -389,7 +389,7 @@ public class OptionObject2DecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
+    [ExpectedException(typeof(ArgumentNullException))]
     public void IsFieldEnabled_OptionObject2_Null()
     {
         var decorator = new OptionObject2Decorator(null);
@@ -560,7 +560,7 @@ public class OptionObject2DecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
+    [ExpectedException(typeof(ArgumentNullException))]
     public void IsFieldLocked_OptionObject2_Null()
     {
         var decorator = new OptionObject2Decorator(null);
@@ -632,7 +632,7 @@ public class OptionObject2DecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
+    [ExpectedException(typeof(ArgumentNullException))]
     public void IsFieldPresent_OptionObject2_Null()
     {
         var decorator = new OptionObject2Decorator(null);
@@ -803,7 +803,7 @@ public class OptionObject2DecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
+    [ExpectedException(typeof(ArgumentNullException))]
     public void IsFieldRequired_OptionObject2_Null()
     {
         var decorator = new OptionObject2Decorator(null);
