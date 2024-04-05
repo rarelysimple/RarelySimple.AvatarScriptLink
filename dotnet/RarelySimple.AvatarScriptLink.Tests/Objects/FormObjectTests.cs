@@ -492,7 +492,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             FormObject formObject = new FormObject(formId);
             Assert.AreEqual(formId, formObject.FormId);
             Assert.AreEqual(null, formObject.CurrentRow);
-            Assert.AreEqual(false, formObject.MultipleIteration);
+            Assert.IsFalse(formObject.MultipleIteration);
             Assert.AreEqual(0, formObject.OtherRows.Count);
         }
 
@@ -505,7 +505,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             FormObject formObject = new FormObject(formId);
             Assert.AreEqual(formId, formObject.FormId);
             Assert.AreEqual(null, formObject.CurrentRow);
-            Assert.AreEqual(false, formObject.MultipleIteration);
+            Assert.IsFalse(formObject.MultipleIteration);
             Assert.AreEqual(0, formObject.OtherRows.Count);
         }
 
@@ -518,7 +518,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             FormObject formObject = new FormObject(formId, currentRow);
             Assert.AreEqual(formId, formObject.FormId);
             Assert.AreEqual(currentRow, formObject.CurrentRow);
-            Assert.AreEqual(false, formObject.MultipleIteration);
+            Assert.IsFalse(formObject.MultipleIteration);
             Assert.AreEqual(0, formObject.OtherRows.Count);
         }
 
@@ -532,7 +532,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             FormObject formObject = new FormObject(formId, currentRow);
             Assert.AreEqual(formId, formObject.FormId);
             Assert.AreEqual(currentRow, formObject.CurrentRow);
-            Assert.AreEqual(false, formObject.MultipleIteration);
+            Assert.IsFalse(formObject.MultipleIteration);
             Assert.AreEqual(0, formObject.OtherRows.Count);
         }
 
