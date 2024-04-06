@@ -20,9 +20,9 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
             if (!IsValidErrorCode(errorCode))
                 throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("errorCodeIsNotValid", CultureInfo.CurrentCulture));
-            if (errorCode == ErrorCode.OpenUrl && !ScriptLinkHelpers.IsValidUrl(errorMessage))
+            if ((int)errorCode == (int)ErrorCode.OpenUrl && !ScriptLinkHelpers.IsValidUrl(errorMessage))
                 throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("errorMessageIsNotValidUrl", CultureInfo.CurrentCulture));
-            if (errorCode == ErrorCode.OpenForm && !IsValidOpenFormString(errorMessage))
+            if ((int)errorCode == (int)ErrorCode.OpenForm && !IsValidOpenFormString(errorMessage))
                 throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("errorMessageIsNotValidOpenForm", CultureInfo.CurrentCulture));
             optionObject.ErrorCode = errorCode;
             optionObject.ErrorMesg = errorMessage;

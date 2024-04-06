@@ -1,13 +1,9 @@
 ﻿using RarelySimple.AvatarScriptLink.Objects.Advanced.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
 
 namespace RarelySimple.AvatarScriptLink.Objects.Advanced.Abstracts
 {
-    public class OptionObject2Base : ObjectBase, IEquatable<OptionObject2Base>, IOptionObject2
+    public class OptionObject2Base : ObjectBase, IOptionObject2
     {
         /// <summary>
         /// Gets or sets the EntityID property of the <see cref="OptionObject2015"/>.
@@ -83,113 +79,6 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced.Abstracts
         protected OptionObject2Base()
         {
             Forms = new List<FormObject>();
-        }
-
-        #endregion
-
-        #region IEquatable Implementation
-
-        /// <summary>
-        /// Used to compare two <see cref="OptionObject2"/> and determine if they are equal. Returns <see cref="bool"/>.
-        /// </summary>
-        /// <param name="other">The <see cref="OptionObject2"/> to compare.</param>
-        /// <returns>Returns a <see cref="bool"/> indicating whether the two <see cref="OptionObject2015"/> are equal.</returns>
-        public bool Equals(OptionObject2Base other)
-        {
-            if (other == null)
-                return false;
-            return this.EntityID == other.EntityID &&
-                this.EpisodeNumber == other.EpisodeNumber &&
-                this.ErrorCode == other.ErrorCode &&
-                this.ErrorMesg == other.ErrorMesg &&
-                this.Facility == other.Facility &&
-                this.NamespaceName == other.NamespaceName &&
-                this.OptionId == other.OptionId &&
-                this.OptionStaffId == other.OptionStaffId &&
-                this.OptionUserId == other.OptionUserId &&
-                this.ParentNamespace == other.ParentNamespace &&
-                this.ServerName == other.ServerName &&
-                this.SystemCode == other.SystemCode &&
-                AreFormsEqual(this.Forms, other.Forms);
-
-        }
-
-        /// <summary>
-        /// Used to compare <see cref="OptionObject2"/> to an <see cref="object"/> to determine if they are equal. Returns <see cref="bool"/>.
-        /// </summary>
-        /// <param name="other">The <see cref="object"/> to compare.</param>
-        /// <returns>Returns a <see cref="bool"/> indicating whether <see cref="OptionObject"/> is equal to an <see cref="object"/>.</returns>
-        public override bool Equals(object obj)
-        {
-            OptionObject2Base optionObject = obj as OptionObject2Base;
-            if (optionObject == null)
-                return false;
-            return Equals(optionObject);
-        }
-
-        /// <summary>
-        /// Overrides the <see cref="GetHashCode"/> method for a <see cref="OptionObjectBase"/>.
-        /// </summary>
-        /// <returns>Returns an <see cref="int"/> representing the unique hash code for the <see cref="OptionObject2Base"/>.</returns>
-        public override int GetHashCode()
-        {
-            string delimiter = "||";
-            StringBuilder sb = new StringBuilder();
-            sb.Append(this.EntityID
-                + delimiter + this.EpisodeNumber.ToString(CultureInfo.InvariantCulture)
-                + delimiter + this.ErrorCode.ToString(CultureInfo.InvariantCulture)
-                + delimiter + this.ErrorMesg
-                + delimiter + this.Facility
-                + delimiter + this.NamespaceName
-                + delimiter + this.OptionId
-                + delimiter + this.OptionStaffId
-                + delimiter + this.OptionUserId
-                + delimiter + this.ParentNamespace
-                + delimiter + this.ServerName
-                + delimiter + this.SystemCode);
-            foreach (FormObject formObject in this.Forms)
-            {
-                sb.Append(delimiter + formObject.GetHashCode());
-            }
-            return sb.GetHashCode();
-        }
-
-        private static bool AreFormsEqual(List<FormObject> list1, List<FormObject> list2)
-        {
-            if (!AreBothNull(list1, list2) && AreBothEmpty(list1, list2))
-                return true;
-
-            if (list1.Count != list2.Count)
-                return false;
-
-            for (int i = 0; i < list1.Count; i++)
-            {
-                if (!list1[i].Equals(list2[i]))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private static bool AreBothEmpty(List<FormObject> list1, List<FormObject> list2) => (!list1.Any() && !list2.Any());
-
-        private static bool AreBothNull(List<FormObject> list1, List<FormObject> list2) => (list1 == null && list2 == null);
-
-        public static bool operator ==(OptionObject2Base optionObject1, OptionObject2Base optionObject2)
-        {
-            if (((object)optionObject1) == null || ((object)optionObject2) == null)
-                return Equals(optionObject1, optionObject2);
-
-            return optionObject1.Equals(optionObject2);
-        }
-
-        public static bool operator !=(OptionObject2Base optionObject1, OptionObject2Base optionObject2)
-        {
-            if (((object)optionObject1) == null || ((object)optionObject2) == null)
-                return !Equals(optionObject1, optionObject2);
-
-            return !(optionObject1.Equals(optionObject2));
         }
 
         #endregion

@@ -1,42 +1,46 @@
 namespace RarelySimple.AvatarScriptLink.Objects.Tests
 {
     [TestClass]
-    public class OptionObjectTests
+    public class OptionObject2015Tests
     {
         [TestMethod]
-        public void OptionObjectCloneAreEqual()
+        public void OptionObject2015CloneAreEqual()
         {
-            OptionObject optionObject1 = new()
+            OptionObject2015 optionObject1 = new()
             {
                 EntityID = "1"
             };
-            OptionObject optionObject2 = optionObject1.Clone();
+            OptionObject2015 optionObject2 = optionObject1.Clone();
             Assert.AreEqual(optionObject1, optionObject2);
         }
 
         [TestMethod]
-        public void OptionObjectEqualsMethodIsTrue()
+        public void OptionObject2015EqualsMethodIsTrue()
         {
-            OptionObject optionObject1 = new()
+            OptionObject2015 optionObject1 = new()
             {
                 EntityID = "1",
                 EpisodeNumber = 2,
                 ErrorCode = 3,
                 ErrorMesg = "Test response",
                 Facility = "4",
+                NamespaceName = "Namespace",
                 OptionId = "OPTION001",
                 OptionStaffId = "5",
                 OptionUserId = "USER",
+                ParentNamespace = "Parent",
+                ServerName = "Server",
+                SessionToken = "6",
                 SystemCode = "TEST"
             };
-            OptionObject optionObject2 = optionObject1.Clone();
+            OptionObject2015 optionObject2 = optionObject1.Clone();
             Assert.IsTrue(optionObject1.Equals(optionObject2));
         }
 
         [TestMethod]
-        public void OptionObjectEqualsMethodEmptyFormsIsTrue()
+        public void OptionObject2015EqualsMethodEmptyFormsIsTrue()
         {
-            OptionObject optionObject1 = new()
+            OptionObject2015 optionObject1 = new()
             {
                 EntityID = "1",
                 EpisodeNumber = 2,
@@ -44,19 +48,23 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
                 ErrorMesg = "Test response",
                 Facility = "4",
                 Forms = [],
+                NamespaceName = "Namespace",
                 OptionId = "OPTION001",
                 OptionStaffId = "5",
                 OptionUserId = "USER",
+                ParentNamespace = "Parent",
+                ServerName = "Server",
+                SessionToken = "6",
                 SystemCode = "TEST"
             };
-            OptionObject optionObject2 = optionObject1.Clone();
+            OptionObject2015 optionObject2 = optionObject1.Clone();
             Assert.IsTrue(optionObject1.Equals(optionObject2));
         }
 
         [TestMethod]
-        public void OptionObjectEqualsMethodFormsIsTrue()
+        public void OptionObject2015EqualsMethodFormsIsTrue()
         {
-            OptionObject optionObject1 = new()
+            OptionObject2015 optionObject1 = new()
             {
                 EntityID = "1",
                 EpisodeNumber = 2,
@@ -64,68 +72,84 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
                 ErrorMesg = "Test response",
                 Facility = "4",
                 Forms = [ new FormObject() ],
+                NamespaceName = "Namespace",
                 OptionId = "OPTION001",
                 OptionStaffId = "5",
                 OptionUserId = "USER",
+                ParentNamespace = "Parent",
+                ServerName = "Server",
+                SessionToken = "6",
                 SystemCode = "TEST"
             };
-            OptionObject optionObject2 = optionObject1.Clone();
+            OptionObject2015 optionObject2 = optionObject1.Clone();
             Assert.IsTrue(optionObject1.Equals(optionObject2));
         }
 
         [TestMethod]
-        public void OptionObjectEqualsMethodFormsIsFalse()
+        public void OptionObject2015EqualsMethodFormsIsFalse()
         {
-            OptionObject optionObject1 = new()
+            OptionObject2015 optionObject1 = new()
             {
                 EntityID = "1",
                 EpisodeNumber = 2,
                 ErrorCode = 3,
                 ErrorMesg = "Test response",
                 Facility = "4",
+                NamespaceName = "Namespace",
                 OptionId = "OPTION001",
                 OptionStaffId = "5",
                 OptionUserId = "USER",
+                ParentNamespace = "Parent",
+                ServerName = "Server",
+                SessionToken = "6",
                 SystemCode = "TEST"
             };
-            OptionObject optionObject2 = optionObject1.Clone();
+            OptionObject2015 optionObject2 = optionObject1.Clone();
             optionObject2.Forms.Add(new FormObject());
             Assert.IsFalse(optionObject1.Equals(optionObject2));
         }
 
         [TestMethod]
-        public void OptionObjectEqualsMethodIsFalse()
+        public void OptionObject2015EqualsMethodIsFalse()
         {
-            OptionObject optionObject1 = new()
+            OptionObject2015 optionObject1 = new()
             {
                 EntityID = "1",
                 EpisodeNumber = 2,
                 ErrorCode = 3,
                 ErrorMesg = "Test response",
                 Facility = "4",
+                NamespaceName = "Namespace",
                 OptionId = "OPTION001",
                 OptionStaffId = "5",
                 OptionUserId = "USER",
+                ParentNamespace = "Parent",
+                ServerName = "Server",
+                SessionToken = "6",
                 SystemCode = "TEST"
             };
-            OptionObject optionObject2 = optionObject1.Clone();
+            OptionObject2015 optionObject2 = optionObject1.Clone();
             optionObject2.ErrorMesg = "Modified";
             Assert.IsFalse(optionObject1.Equals(optionObject2));
         }
 
         [TestMethod]
-        public void OptionObjectEqualsObjectMethodIsFalse()
+        public void OptionObject2015EqualsObjectMethodIsFalse()
         {
-            OptionObject optionObject1 = new()
+            OptionObject2015 optionObject1 = new()
             {
                 EntityID = "1",
                 EpisodeNumber = 2,
                 ErrorCode = 3,
                 ErrorMesg = "Test response",
                 Facility = "4",
+                NamespaceName = "Namespace",
                 OptionId = "OPTION001",
                 OptionStaffId = "5",
                 OptionUserId = "USER",
+                ParentNamespace = "Parent",
+                ServerName = "Server",
+                SessionToken = "6",
                 SystemCode = "TEST"
             };
             OptionObject2 optionObject2 = new()
@@ -147,66 +171,82 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
         }
 
         [TestMethod]
-        public void OptionObjectEqualsOperatorIsTrue()
+        public void OptionObject2015EqualsOperatorIsTrue()
         {
-            OptionObject optionObject1 = new()
+            OptionObject2015 optionObject1 = new()
             {
                 EntityID = "1",
                 EpisodeNumber = 2,
                 ErrorCode = 3,
                 ErrorMesg = "Test response",
                 Facility = "4",
+                NamespaceName = "Namespace",
                 OptionId = "OPTION001",
                 OptionStaffId = "5",
                 OptionUserId = "USER",
+                ParentNamespace = "Parent",
+                ServerName = "Server",
+                SessionToken = "6",
                 SystemCode = "TEST"
             };
-            OptionObject optionObject2 = new()
+            OptionObject2015 optionObject2 = new()
             {
                 EntityID = "1",
                 EpisodeNumber = 2,
                 ErrorCode = 3,
                 ErrorMesg = "Test response",
                 Facility = "4",
+                NamespaceName = "Namespace",
                 OptionId = "OPTION001",
                 OptionStaffId = "5",
                 OptionUserId = "USER",
+                ParentNamespace = "Parent",
+                ServerName = "Server",
+                SessionToken = "6",
                 SystemCode = "TEST"
             };
             Assert.IsTrue(optionObject1 == optionObject2);
         }
 
         [TestMethod]
-        public void OptionObjectEqualsOperatorLeftNullIsFalse()
+        public void OptionObject2015EqualsOperatorLeftNullIsFalse()
         {
-            OptionObject optionObject1 = new()
+            OptionObject2015 optionObject1 = new()
             {
                 EntityID = "1",
                 EpisodeNumber = 2,
                 ErrorCode = 3,
                 ErrorMesg = "Test response",
                 Facility = "4",
+                NamespaceName = "Namespace",
                 OptionId = "OPTION001",
                 OptionStaffId = "5",
                 OptionUserId = "USER",
+                ParentNamespace = "Parent",
+                ServerName = "Server",
+                SessionToken = "6",
                 SystemCode = "TEST"
             };
             Assert.IsFalse(null == optionObject1);
         }
 
         [TestMethod]
-        public void OptionObjectEqualsOperatorRightNullIsFalse()
+        public void OptionObject2015EqualsOperatorRightNullIsFalse()
         {
-            OptionObject optionObject1 = new()
+            OptionObject2015 optionObject1 = new()
             {
                 EntityID = "1",
                 EpisodeNumber = 2,
                 ErrorCode = 3,
                 ErrorMesg = "Test response",
                 Facility = "4",
+                NamespaceName = "Namespace",
                 OptionId = "OPTION001",
                 OptionStaffId = "5",
                 OptionUserId = "USER",
+                ParentNamespace = "Parent",
+                ServerName = "Server",
+                SessionToken = "6",
                 SystemCode = "TEST"
             };
             Assert.IsFalse(optionObject1 == null);
