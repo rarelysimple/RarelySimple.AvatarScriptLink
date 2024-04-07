@@ -1,4 +1,5 @@
 ﻿using RarelySimple.AvatarScriptLink.Net.Decorators;
+using RarelySimple.AvatarScriptLink.Net.Exceptions;
 using RarelySimple.AvatarScriptLink.Objects;
 
 namespace RarelySimple.AvatarScriptLink.Net.Tests.Decorators;
@@ -198,7 +199,7 @@ public class RowObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
+    [ExpectedException(typeof(NullReferenceException))]
     public void IsFieldEnabled_RowObject_Null()
     {
         var decorator = new RowObjectDecorator(null);
@@ -271,7 +272,7 @@ public class RowObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
+    [ExpectedException(typeof(NullReferenceException))]
     public void IsFieldLocked_RowObject_Null()
     {
         var decorator = new RowObjectDecorator(null);
@@ -323,7 +324,7 @@ public class RowObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
+    [ExpectedException(typeof(NullReferenceException))]
     public void IsFieldPresent_RowObject_Null()
     {
         var decorator = new RowObjectDecorator(null);
@@ -396,7 +397,7 @@ public class RowObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
+    [ExpectedException(typeof(NullReferenceException))]
     public void IsFieldRequired_RowObject_Null()
     {
         var decorator = new RowObjectDecorator(null);

@@ -1,4 +1,5 @@
 ﻿using RarelySimple.AvatarScriptLink.Net.Decorators;
+using RarelySimple.AvatarScriptLink.Net.Exceptions;
 using RarelySimple.AvatarScriptLink.Objects;
 
 namespace RarelySimple.AvatarScriptLink.Net.Tests.Decorators;
@@ -197,7 +198,7 @@ public class OptionObject2DecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
+    [ExpectedException(typeof(NullReferenceException))]
     public void TestOptionObject2Decorator_GetMultipleIterationStatus_ReturnsNullReferenceException()
     {
         var formId = "456";
@@ -389,7 +390,7 @@ public class OptionObject2DecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
+    [ExpectedException(typeof(NullReferenceException))]
     public void IsFieldEnabled_OptionObject2_Null()
     {
         var decorator = new OptionObject2Decorator(null);
@@ -560,7 +561,7 @@ public class OptionObject2DecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
+    [ExpectedException(typeof(NullReferenceException))]
     public void IsFieldLocked_OptionObject2_Null()
     {
         var decorator = new OptionObject2Decorator(null);
@@ -632,7 +633,7 @@ public class OptionObject2DecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
+    [ExpectedException(typeof(NullReferenceException))]
     public void IsFieldPresent_OptionObject2_Null()
     {
         var decorator = new OptionObject2Decorator(null);
@@ -803,7 +804,7 @@ public class OptionObject2DecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
+    [ExpectedException(typeof(NullReferenceException))]
     public void IsFieldRequired_OptionObject2_Null()
     {
         var decorator = new OptionObject2Decorator(null);

@@ -1,10 +1,8 @@
 ﻿using RarelySimple.AvatarScriptLink.Objects.Advanced.Interfaces;
-using System;
-using System.Text;
 
 namespace RarelySimple.AvatarScriptLink.Objects.Advanced.Abstracts
 {
-    public class FieldObjectBase : ObjectBase, IEquatable<FieldObjectBase>, IFieldObject
+    public class FieldObjectBase : ObjectBase, IFieldObject
     {
         /// <summary>
         /// Gets or sets the Enabled property of a <see cref="FieldObject"/>.
@@ -44,73 +42,6 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced.Abstracts
             FieldValue = string.Empty;
             Lock = string.Empty;
             Required = string.Empty;
-        }
-
-        #endregion
-
-        #region IEquatable Implementation
-
-        /// <summary>
-        /// Used to compare two <see cref="FieldObject"/> and determine if they are equal. Returns <see cref="bool"/>.
-        /// </summary>
-        /// <param name="other">The <see cref="FieldObject"/> to compare.</param>
-        /// <returns>Returns a <see cref="bool"/> indicating whether two <see cref="FieldObject"/> are equal.</returns>
-        public bool Equals(FieldObjectBase other)
-        {
-            if (other == null)
-                return false;
-            return this.FieldValue == other.FieldValue &&
-                this.Required == other.Required &&
-                this.Enabled == other.Enabled &&
-                this.FieldNumber == other.FieldNumber &&
-                this.Lock == other.Lock;
-        }
-        /// <summary>
-        /// Used to compare <see cref="FieldObject"/> to an <see cref="object"/> to determine if they are equal. Returns <see cref="bool"/>.
-        /// </summary>
-        /// <param name="other">The <see cref="object"/> to compare.</param>
-        /// <returns>Returns a <see cref="bool"/> indicating whether <see cref="FieldObject"/> is equal to an <see cref="object"/>.</returns>
-        public override bool Equals(object obj)
-        {
-            if (obj == null)
-                return false;
-
-            FieldObjectBase fieldObject = obj as FieldObjectBase;
-            if (fieldObject == null)
-                return false;
-            return this.Equals(fieldObject);
-        }
-
-        /// <summary>
-        /// Overrides the <see cref="GetHashCode"/> method for a <see cref="FieldObjectBase"/>.
-        /// </summary>
-        /// <returns>Returns an <see cref="int"/> representing the unique hash code for the <see cref="FieldObjectBase"/>.</returns>
-        public override int GetHashCode()
-        {
-            string delimiter = "||";
-            StringBuilder sb = new StringBuilder();
-            sb.Append(this.FieldNumber
-                + delimiter + this.FieldValue
-                + delimiter + this.Enabled
-                + delimiter + this.Lock
-                + delimiter + this.Required);
-            return sb.GetHashCode();
-        }
-
-        public static bool operator ==(FieldObjectBase fieldObject1, FieldObjectBase fieldObject2)
-        {
-            if (((object)fieldObject1) == null || ((object)fieldObject2) == null)
-                return Equals(fieldObject1, fieldObject2);
-
-            return fieldObject1.Equals(fieldObject2);
-        }
-
-        public static bool operator !=(FieldObjectBase fieldObject1, FieldObjectBase fieldObject2)
-        {
-            if (((object)fieldObject1) == null || ((object)fieldObject2) == null)
-                return !Equals(fieldObject1, fieldObject2);
-
-            return !(fieldObject1.Equals(fieldObject2));
         }
 
         #endregion

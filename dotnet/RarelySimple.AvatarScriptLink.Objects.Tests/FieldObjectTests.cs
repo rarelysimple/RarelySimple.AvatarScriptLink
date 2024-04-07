@@ -123,5 +123,130 @@
             var actual = expected.Clone();
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void FieldObjectEqualsMethodIsTrue()
+        {
+            FieldObject FieldObject1 = new()
+            {
+                Enabled = "1",
+                FieldNumber = "12345.0",
+                FieldValue = "abcdef",
+                Lock = "0",
+                Required = "1"
+            };
+            FieldObject FieldObject2 = FieldObject1.Clone();
+            Assert.IsTrue(FieldObject1.Equals(FieldObject2));
+        }
+
+        [TestMethod]
+        public void FieldObjectEqualsMethodEmptyFieldsIsTrue()
+        {
+            FieldObject FieldObject1 = new()
+            {
+                Enabled = "1",
+                FieldNumber = "12345.0",
+                FieldValue = "abcdef",
+                Lock = "0",
+                Required = "1"
+            };
+            FieldObject FieldObject2 = FieldObject1.Clone();
+            Assert.IsTrue(FieldObject1.Equals(FieldObject2));
+        }
+
+        [TestMethod]
+        public void FieldObjectEqualsMethodIsFalse()
+        {
+            FieldObject FieldObject1 = new()
+            {
+                Enabled = "1",
+                FieldNumber = "12345.0",
+                FieldValue = "abcdef",
+                Lock = "0",
+                Required = "1"
+            };
+            FieldObject FieldObject2 = FieldObject1.Clone();
+            FieldObject2.FieldValue = "modified";
+            Assert.IsFalse(FieldObject1.Equals(FieldObject2));
+        }
+
+        [TestMethod]
+        public void FieldObjectEqualsObjectMethodIsFalse()
+        {
+            FieldObject FieldObject1 = new()
+            {
+                Enabled = "1",
+                FieldNumber = "12345.0",
+                FieldValue = "abcdef",
+                Lock = "0",
+                Required = "1"
+            };
+            OptionObject2 FieldObject2 = new()
+            {
+                EntityID = "1",
+                EpisodeNumber = 2,
+                ErrorCode = 3,
+                ErrorMesg = "Test response",
+                Facility = "4",
+                NamespaceName = "Namespace",
+                OptionId = "OPTION001",
+                OptionStaffId = "5",
+                OptionUserId = "USER",
+                ParentNamespace = "Parent",
+                ServerName = "Server",
+                SystemCode = "TEST"
+            };
+            Assert.IsFalse(FieldObject1.Equals(FieldObject2));
+        }
+
+        [TestMethod]
+        public void FieldObjectEqualsOperatorIsTrue()
+        {
+            FieldObject FieldObject1 = new()
+            {
+                Enabled = "1",
+                FieldNumber = "12345.0",
+                FieldValue = "abcdef",
+                Lock = "0",
+                Required = "1"
+            };
+            FieldObject FieldObject2 = new()
+            {
+                Enabled = "1",
+                FieldNumber = "12345.0",
+                FieldValue = "abcdef",
+                Lock = "0",
+                Required = "1"
+            };
+            Assert.IsTrue(FieldObject1 == FieldObject2);
+        }
+
+        [TestMethod]
+        public void FieldObjectEqualsOperatorLeftNullIsFalse()
+        {
+            FieldObject FieldObject1 = new()
+            {
+                Enabled = "1",
+                FieldNumber = "12345.0",
+                FieldValue = "abcdef",
+                Lock = "0",
+                Required = "1"
+            };
+            Assert.IsFalse(null == FieldObject1);
+        }
+
+        [TestMethod]
+        public void FieldObjectEqualsOperatorRightNullIsFalse()
+        {
+            FieldObject FieldObject1 = new()
+            {
+                Enabled = "1",
+                FieldNumber = "12345.0",
+                FieldValue = "abcdef",
+                Lock = "0",
+                Required = "1"
+            };
+            Assert.IsFalse(FieldObject1 == null);
+        }
     }
 }
