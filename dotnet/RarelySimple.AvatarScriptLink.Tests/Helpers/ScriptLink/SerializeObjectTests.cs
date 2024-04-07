@@ -36,7 +36,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void SerializeObject_DateTime_AsJson()
         {
-            DateTime expected = new DateTime(2020, 1, 1);
+            DateTime expected = new(2020, 1, 1);
             var serialized = ScriptLinkHelpers.SerializeObjectToJsonString(expected);
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<DateTime>(serialized);
             Assert.AreEqual(expected, actual);
@@ -45,7 +45,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void SerializeObject_OptionObject_AsJson()
         {
-            OptionObject expected = new OptionObject();
+            OptionObject expected = new();
             var serialized = ScriptLinkHelpers.SerializeObjectToJsonString(expected);
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<OptionObject>(serialized);
             Assert.AreEqual(expected, actual);
@@ -54,7 +54,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void SerializeObject_OptionObject2_AsJson()
         {
-            OptionObject2 expected = new OptionObject2();
+            OptionObject2 expected = new();
             var serialized = ScriptLinkHelpers.SerializeObjectToJsonString(expected);
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<OptionObject2>(serialized);
             Assert.AreEqual(expected, actual);
@@ -63,7 +63,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void SerializeObject_OptionObject2015_AsJson()
         {
-            OptionObject2015 expected = new OptionObject2015();
+            OptionObject2015 expected = new();
             var serialized = ScriptLinkHelpers.SerializeObjectToJsonString(expected);
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<OptionObject2015>(serialized);
             Assert.AreEqual(expected, actual);
@@ -72,7 +72,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void SerializeObject_FormObject_AsJson()
         {
-            FormObject expected = new FormObject();
+            FormObject expected = new();
             var serialized = ScriptLinkHelpers.SerializeObjectToJsonString(expected);
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<FormObject>(serialized);
             Assert.AreEqual(expected, actual);
@@ -81,7 +81,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void SerializeObject_RowObject_AsJson()
         {
-            RowObject expected = new RowObject();
+            RowObject expected = new();
             var serialized = ScriptLinkHelpers.SerializeObjectToJsonString(expected);
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<RowObject>(serialized);
             Assert.AreEqual(expected, actual);
@@ -90,7 +90,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void SerializeObject_FieldObject_AsJson()
         {
-            FieldObject expected = new FieldObject();
+            FieldObject expected = new();
             var serialized = ScriptLinkHelpers.SerializeObjectToJsonString(expected);
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<FieldObject>(serialized);
             Assert.AreEqual(expected, actual);
@@ -126,7 +126,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void SerializeObject_DateTime_AsXml()
         {
-            DateTime expected = new DateTime(2020, 1, 1);
+            DateTime expected = new(2020, 1, 1);
             var serialized = ScriptLinkHelpers.SerializeObjectToXmlString(expected);
             var actual = ScriptLinkHelpers.DeserializeObjectFromXmlString<DateTime>(serialized);
             Assert.AreEqual(expected, actual);
@@ -135,7 +135,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void SerializeObject_OptionObject_AsXml()
         {
-            OptionObject expected = new OptionObject();
+            OptionObject expected = new();
             var serialized = ScriptLinkHelpers.SerializeObjectToXmlString(expected);
             var actual = ScriptLinkHelpers.DeserializeObjectFromXmlString<OptionObject>(serialized);
             Assert.AreEqual(expected, actual);
@@ -144,7 +144,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void SerializeObject_OptionObject2_AsXml()
         {
-            OptionObject2 expected = new OptionObject2();
+            OptionObject2 expected = new();
             var serialized = ScriptLinkHelpers.SerializeObjectToXmlString(expected);
             var actual = ScriptLinkHelpers.DeserializeObjectFromXmlString<OptionObject2>(serialized);
             Assert.AreEqual(expected, actual);
@@ -153,7 +153,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void SerializeObject_OptionObject2015_AsXml()
         {
-            OptionObject2015 expected = new OptionObject2015();
+            OptionObject2015 expected = new();
             var serialized = ScriptLinkHelpers.SerializeObjectToXmlString(expected);
             var actual = ScriptLinkHelpers.DeserializeObjectFromXmlString<OptionObject2015>(serialized);
             Assert.AreEqual(expected, actual);
@@ -162,7 +162,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void SerializeObject_FormObject_AsXml()
         {
-            FormObject expected = new FormObject();
+            FormObject expected = new();
             var serialized = ScriptLinkHelpers.SerializeObjectToXmlString(expected);
             var actual = ScriptLinkHelpers.DeserializeObjectFromXmlString<FormObject>(serialized);
             Assert.AreEqual(expected, actual);
@@ -171,7 +171,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void SerializeObject_RowObject_AsXml()
         {
-            RowObject expected = new RowObject();
+            RowObject expected = new();
             var serialized = ScriptLinkHelpers.SerializeObjectToXmlString(expected);
             var actual = ScriptLinkHelpers.DeserializeObjectFromXmlString<RowObject>(serialized);
             Assert.AreEqual(expected, actual);
@@ -180,7 +180,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void SerializeObject_FieldObject_AsXml()
         {
-            FieldObject expected = new FieldObject();
+            FieldObject expected = new();
             var serialized = ScriptLinkHelpers.SerializeObjectToXmlString(expected);
             var actual = ScriptLinkHelpers.DeserializeObjectFromXmlString<FieldObject>(serialized);
             Assert.AreEqual(expected, actual);

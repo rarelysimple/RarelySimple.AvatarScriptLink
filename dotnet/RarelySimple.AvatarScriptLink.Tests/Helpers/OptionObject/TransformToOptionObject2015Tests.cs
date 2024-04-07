@@ -9,7 +9,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject_EntityIdMatch()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
@@ -19,7 +19,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject_EpisodeNumberMatch()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
@@ -29,7 +29,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject_ErrorCodeMatch()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
@@ -39,7 +39,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject_ErrorMesgMatch()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
@@ -49,7 +49,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject_FacilityMatch()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
@@ -59,7 +59,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject_OptionIdMatch()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
@@ -69,7 +69,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject_OptionStaffIdMatch()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
@@ -79,7 +79,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject_OptionUserIdMatch()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
@@ -89,7 +89,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject_SystemCodeMatch()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
@@ -99,7 +99,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject_FormCountMatch()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
@@ -109,8 +109,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject_ModifiedFormCountMatch()
         {
-            FormObject addForm = new FormObject();
-            OptionObject optionObject = new OptionObject();
+            FormObject addForm = new();
+            OptionObject optionObject = new();
             optionObject.Forms.Add(addForm);
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
@@ -121,7 +121,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject2_EntityIdMatch()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
@@ -131,7 +131,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject2_EpisodeNumberMatch()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
@@ -141,7 +141,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject2_ErrorCodeMatch()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
@@ -151,7 +151,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject2_ErrorMesgMatch()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
@@ -161,7 +161,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject2_FacilityMatch()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
@@ -171,7 +171,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject2_OptionIdMatch()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
@@ -181,7 +181,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject2_OptionStaffIdMatch()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
@@ -191,7 +191,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject2_OptionUserIdMatch()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
@@ -201,7 +201,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject2_SystemCodeMatch()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
@@ -211,7 +211,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject2_FormCountMatch()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
@@ -221,8 +221,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject2_ModifiedFormCountMatch()
         {
-            FormObject addForm = new FormObject();
-            OptionObject2 optionObject = new OptionObject2();
+            FormObject addForm = new();
+            OptionObject2 optionObject = new();
             optionObject.Forms.Add(addForm);
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
@@ -233,7 +233,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject_EntityIdMatch()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
@@ -243,7 +243,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject_EpisodeNumberMatch()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
@@ -253,7 +253,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject_ErrorCodeMatch()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
@@ -263,7 +263,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject_ErrorMesgMatch()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
@@ -273,7 +273,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject_FacilityMatch()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
@@ -283,7 +283,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject_OptionIdMatch()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
@@ -293,7 +293,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject_OptionStaffIdMatch()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
@@ -303,7 +303,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject_OptionUserIdMatch()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
@@ -313,7 +313,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject_SystemCodeMatch()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
@@ -323,7 +323,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject_FormCountMatch()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
@@ -333,8 +333,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject_ModifiedFormCountMatch()
         {
-            FormObject addForm = new FormObject();
-            OptionObject optionObject = new OptionObject();
+            FormObject addForm = new();
+            OptionObject optionObject = new();
             optionObject.Forms.Add(addForm);
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
@@ -345,7 +345,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject2_EntityIdMatch()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
@@ -355,7 +355,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject2_EpisodeNumberMatch()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
@@ -365,7 +365,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject2_ErrorCodeMatch()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
@@ -375,7 +375,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject2_ErrorMesgMatch()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
@@ -385,7 +385,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject2_FacilityMatch()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
@@ -395,7 +395,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject2_OptionIdMatch()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
@@ -405,7 +405,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject2_OptionStaffIdMatch()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
@@ -415,7 +415,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject2_OptionUserIdMatch()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
@@ -425,7 +425,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject2_SystemCodeMatch()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
@@ -435,7 +435,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject2_FormCountMatch()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
@@ -445,8 +445,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObjectHelpers_OptionObject2_ModifiedFormCountMatch()
         {
-            FormObject addForm = new FormObject();
-            OptionObject2 optionObject = new OptionObject2();
+            FormObject addForm = new();
+            OptionObject2 optionObject = new();
             optionObject.Forms.Add(addForm);
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
@@ -458,7 +458,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void TransformToOptionObject2015_Json_EntityIdSetAndMatch()
         {
             string json = "{\"EntityID\":1,\"EpisodeNumber\":0.0,\"ErrorCode\":0.0,\"ErrorMesg\":null,\"Facility\":null,\"Forms\":[],\"NamespaceName\":null,\"OptionId\":null,\"OptionStaffId\":null,\"OptionUserId\":null,\"ParentNamespace\":null,\"ServerName\":null,\"SystemCode\":null,\"SessionToken\":null}";
-            OptionObject2015 expected = new OptionObject2015
+            OptionObject2015 expected = new()
             {
                 EntityID = "1"
             };
@@ -474,7 +474,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void TransformToOptionObject2015_Json_EntityIdSetAndNoMatch()
         {
             string json = "{\"EntityID\":2,\"EpisodeNumber\":0.0,\"ErrorCode\":0.0,\"ErrorMesg\":null,\"Facility\":null,\"Forms\":[],\"NamespaceName\":null,\"OptionId\":null,\"OptionStaffId\":null,\"OptionUserId\":null,\"ParentNamespace\":null,\"ServerName\":null,\"SystemCode\":null,\"SessionToken\":null}";
-            OptionObject2015 expected = new OptionObject2015
+            OptionObject2015 expected = new()
             {
                 EntityID = "1"
             };
@@ -496,7 +496,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                             + "  <ErrorCode>0</ErrorCode>" + Environment.NewLine
                             + "  <Forms />" + Environment.NewLine
                             + "</OptionObject2015>";
-            OptionObject2015 expected = new OptionObject2015
+            OptionObject2015 expected = new()
             {
                 EntityID = "1"
             };
@@ -518,7 +518,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                             + "  <ErrorCode>0</ErrorCode>" + Environment.NewLine
                             + "  <Forms />" + Environment.NewLine
                             + "</OptionObject2015>";
-            OptionObject2015 expected = new OptionObject2015
+            OptionObject2015 expected = new()
             {
                 EntityID = "1"
             };

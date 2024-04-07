@@ -9,7 +9,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void OptionObjectTransformToXmlIsString()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
             var expected = ScriptLinkHelpers.SerializeObjectToXmlString(optionObject);
             var actual = optionObject.ToXml();
             Assert.AreEqual(expected, actual);
@@ -19,7 +19,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void OptionObjectHelperTransformToXmlIsString()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
             var expected = ScriptLinkHelpers.SerializeObjectToXmlString(optionObject);
             var actual = OptionObjectHelpers.TransformToXml(optionObject);
             Assert.AreEqual(expected, actual);
@@ -29,7 +29,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void OptionObject2TransformToXmlIsString()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
             var expected = ScriptLinkHelpers.SerializeObjectToXmlString(optionObject);
             var actual = optionObject.ToXml();
             Assert.AreEqual(expected, actual);
@@ -39,7 +39,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void OptionObject2HelperTransformToXmlIsString()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
             var expected = ScriptLinkHelpers.SerializeObjectToXmlString(optionObject);
             var actual = OptionObjectHelpers.TransformToXml(optionObject);
             Assert.AreEqual(expected, actual);
@@ -49,7 +49,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void OptionObject2015TransformToXmlIsString()
         {
-            OptionObject2015 optionObject = new OptionObject2015();
+            OptionObject2015 optionObject = new();
             var expected = ScriptLinkHelpers.SerializeObjectToXmlString(optionObject);
             var actual = optionObject.ToXml();
             Assert.AreEqual(expected, actual);
@@ -59,7 +59,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void OptionObject2015HelperTransformToXmlIsString()
         {
-            OptionObject2015 optionObject = new OptionObject2015();
+            OptionObject2015 optionObject = new();
             var expected = ScriptLinkHelpers.SerializeObjectToXmlString(optionObject);
             var actual = OptionObjectHelpers.TransformToXml(optionObject);
             Assert.AreEqual(expected, actual);
@@ -69,7 +69,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void FormObjectTransformToXmlIsString()
         {
-            FormObject formObject = new FormObject();
+            FormObject formObject = new();
             var expected = ScriptLinkHelpers.SerializeObjectToXmlString(formObject);
             var actual = formObject.ToXml();
             Assert.AreEqual(expected, actual);
@@ -79,7 +79,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void FormObjectHelperTransformToXmlIsString()
         {
-            FormObject formObject = new FormObject();
+            FormObject formObject = new();
             var expected = ScriptLinkHelpers.SerializeObjectToXmlString(formObject);
             var actual = OptionObjectHelpers.TransformToXml(formObject);
             Assert.AreEqual(expected, actual);
@@ -89,7 +89,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void RowObjectTransformToXmlIsString()
         {
-            RowObject rowObject = new RowObject();
+            RowObject rowObject = new();
             var expected = ScriptLinkHelpers.SerializeObjectToXmlString(rowObject);
             var actual = rowObject.ToXml();
             Assert.AreEqual(expected, actual);
@@ -99,7 +99,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void RowObjectHelperTransformToXmlIsString()
         {
-            RowObject rowObject = new RowObject();
+            RowObject rowObject = new();
             var expected = ScriptLinkHelpers.SerializeObjectToXmlString(rowObject);
             var actual = OptionObjectHelpers.TransformToXml(rowObject);
             Assert.AreEqual(expected, actual);
@@ -109,7 +109,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void FieldObjectTransformToXmlIsString()
         {
-            FieldObject fieldObject = new FieldObject();
+            FieldObject fieldObject = new();
             var expected = ScriptLinkHelpers.SerializeObjectToXmlString(fieldObject);
             var actual = fieldObject.ToXml();
             Assert.AreEqual(expected, actual);
@@ -119,7 +119,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void FieldObjectHelperTransformToXmlIsString()
         {
-            FieldObject fieldObject = new FieldObject();
+            FieldObject fieldObject = new();
             var expected = ScriptLinkHelpers.SerializeObjectToXmlString(fieldObject);
             var actual = OptionObjectHelpers.TransformToXml(fieldObject);
             Assert.AreEqual(expected, actual);

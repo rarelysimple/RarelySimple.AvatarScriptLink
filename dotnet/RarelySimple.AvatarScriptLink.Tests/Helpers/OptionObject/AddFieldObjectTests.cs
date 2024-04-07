@@ -11,7 +11,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddFieldObject_ToRowObject_NullRowObject()
         {
-            FieldObject fieldObject = new FieldObject()
+            FieldObject fieldObject = new()
             {
                 FieldNumber = "1",
                 FieldValue = "Test",
@@ -29,7 +29,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddFieldObject_ToRowObject_NullFieldObject()
         {
-            RowObject rowObject = new RowObject();
+            RowObject rowObject = new();
             rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, null);
             Assert.AreNotEqual(rowObject, null);
         }
@@ -39,7 +39,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentException))]
         public void AddFieldObject_ToRowObject_DuplicateFieldObject()
         {
-            FieldObject fieldObject = new FieldObject()
+            FieldObject fieldObject = new()
             {
                 FieldNumber = "1",
                 FieldValue = "Test",
@@ -47,7 +47,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 Required = "0",
                 Lock = "0"
             };
-            RowObject rowObject = new RowObject();
+            RowObject rowObject = new();
             rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, fieldObject);
             rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, fieldObject);
             Assert.IsFalse(rowObject.IsFieldPresent("1"));
@@ -58,7 +58,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentException))]
         public void AddFieldObject_ToRowObject_DuplicateFieldNumber()
         {
-            FieldObject fieldObject1 = new FieldObject()
+            FieldObject fieldObject1 = new()
             {
                 FieldNumber = "1",
                 FieldValue = "Test",
@@ -66,7 +66,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 Required = "0",
                 Lock = "0"
             };
-            FieldObject fieldObject2 = new FieldObject()
+            FieldObject fieldObject2 = new()
             {
                 FieldNumber = "1",
                 FieldValue = "Test 2",
@@ -74,7 +74,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 Required = "0",
                 Lock = "0"
             };
-            RowObject rowObject = new RowObject();
+            RowObject rowObject = new();
             rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, fieldObject1);
             rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, fieldObject2);
             Assert.IsFalse(rowObject.IsFieldPresent("1"));
@@ -84,7 +84,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestCategory("AddFieldObject")]
         public void AddFieldObject_ToRowObject_Succeeds()
         {
-            FieldObject fieldObject = new FieldObject()
+            FieldObject fieldObject = new()
             {
                 FieldNumber = "1",
                 FieldValue = "Test",
@@ -92,7 +92,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 Required = "0",
                 Lock = "0"
             };
-            RowObject rowObject = new RowObject();
+            RowObject rowObject = new();
             rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, fieldObject);
             Assert.IsTrue(rowObject.IsFieldPresent("1"));
         }
@@ -103,7 +103,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string expectedNumber = "1";
             string expectedValue = "Test";
-            RowObject rowObject = new RowObject();
+            RowObject rowObject = new();
             rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, expectedNumber, expectedValue);
             Assert.IsTrue(rowObject.IsFieldPresent(expectedNumber));
             Assert.AreEqual(expectedValue, rowObject.GetFieldValue(expectedNumber));
@@ -116,7 +116,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string expectedNumber = null;
             string expectedValue = "Test";
-            RowObject rowObject = new RowObject();
+            RowObject rowObject = new();
             rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, expectedNumber, expectedValue);
             Assert.IsTrue(rowObject.IsFieldPresent(expectedNumber));
             Assert.AreEqual(expectedValue, rowObject.GetFieldValue(expectedNumber));
@@ -129,7 +129,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string expectedNumber = "";
             string expectedValue = "Test";
-            RowObject rowObject = new RowObject();
+            RowObject rowObject = new();
             rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, expectedNumber, expectedValue);
             Assert.IsTrue(rowObject.IsFieldPresent(expectedNumber));
             Assert.AreEqual(expectedValue, rowObject.GetFieldValue(expectedNumber));
@@ -139,8 +139,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestCategory("AddFieldObject")]
         public void AddFieldObject_ToRowObject_IsEnabled()
         {
-            RowObject rowObject1 = new RowObject();
-            RowObject rowObject2 = new RowObject();
+            RowObject rowObject1 = new();
+            RowObject rowObject2 = new();
             rowObject1 = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject1, "1", "Test", "1", "1", "1");
             rowObject2 = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject2, "1", "Test", true, true, true);
             Assert.IsTrue(rowObject1.IsFieldEnabled("1"));
@@ -151,8 +151,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestCategory("AddFieldObject")]
         public void AddFieldObject_ToRowObject_IsNotEnabled()
         {
-            RowObject rowObject1 = new RowObject();
-            RowObject rowObject2 = new RowObject();
+            RowObject rowObject1 = new();
+            RowObject rowObject2 = new();
             rowObject1 = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject1, "1", "Test", "0", "0", "0");
             rowObject2 = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject2, "1", "Test", false, false, false);
             Assert.IsFalse(rowObject1.IsFieldEnabled("1"));
@@ -163,8 +163,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestCategory("AddFieldObject")]
         public void AddFieldObject_ToRowObject_IsRequired()
         {
-            RowObject rowObject1 = new RowObject();
-            RowObject rowObject2 = new RowObject();
+            RowObject rowObject1 = new();
+            RowObject rowObject2 = new();
             rowObject1 = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject1, "1", "Test", "1", "1", "1");
             rowObject2 = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject2, "1", "Test", true, true, true);
             Assert.IsTrue(rowObject1.IsFieldRequired("1"));
@@ -175,8 +175,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestCategory("AddFieldObject")]
         public void AddFieldObject_ToRowObject_IsNotRequired()
         {
-            RowObject rowObject1 = new RowObject();
-            RowObject rowObject2 = new RowObject();
+            RowObject rowObject1 = new();
+            RowObject rowObject2 = new();
             rowObject1 = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject1, "1", "Test", "0", "0", "0");
             rowObject2 = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject2, "1", "Test", false, false, false);
             Assert.IsFalse(rowObject1.IsFieldRequired("1"));
@@ -187,8 +187,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestCategory("AddFieldObject")]
         public void AddFieldObject_ToRowObject_IsLocked()
         {
-            RowObject rowObject1 = new RowObject();
-            RowObject rowObject2 = new RowObject();
+            RowObject rowObject1 = new();
+            RowObject rowObject2 = new();
             rowObject1 = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject1, "1", "Test", "1", "1", "1");
             rowObject2 = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject2, "1", "Test", true, true, true);
             Assert.IsTrue(rowObject1.IsFieldLocked("1"));
@@ -199,8 +199,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestCategory("AddFieldObject")]
         public void AddFieldObject_ToRowObject_IsNotLocked()
         {
-            RowObject rowObject1 = new RowObject();
-            RowObject rowObject2 = new RowObject();
+            RowObject rowObject1 = new();
+            RowObject rowObject2 = new();
             rowObject1 = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject1, "1", "Test", "0", "0", "0");
             rowObject2 = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject2, "1", "Test", false, false, false);
             Assert.IsFalse(rowObject1.IsFieldLocked("1"));

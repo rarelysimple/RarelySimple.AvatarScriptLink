@@ -12,7 +12,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void FieldObjectFromJson_NullString()
         {
             string json = null;
-            FieldObject expected = new FieldObject();
+            FieldObject expected = new();
             Assert.AreEqual(expected, OptionObjectHelpers.TransformToFieldObject(json));
         }
 
@@ -21,7 +21,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void FieldObjectFromJson_Success()
         {
             string json = "{\"Enabled\":\"\",\"FieldNumber\":\"1\",\"FieldValue\":\"\",\"Lock\":\"\",\"Required\":\"\"}";
-            FieldObject expected = new FieldObject()
+            FieldObject expected = new()
             {
                 FieldNumber = "1"
             };
@@ -36,7 +36,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void FieldObjectFromJson_Failure()
         {
             string json = "{\"Enabled\":\"0\",\"FieldNumber\":\"2\",\"FieldValue\":\"\",\"Lock\":\"0\",\"Required\":\"0\"}";
-            FieldObject expected = new FieldObject
+            FieldObject expected = new()
             {
                 FieldNumber = "1"
             };
@@ -58,7 +58,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                        + "  <Lock />" + Environment.NewLine
                        + "  <Required />" + Environment.NewLine
                        + "</FieldObject>";
-            FieldObject expected = new FieldObject
+            FieldObject expected = new()
             {
                 FieldNumber = "1"
             };
@@ -80,7 +80,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                        + "  <Lock>0</Lock>" + Environment.NewLine
                        + "  <Required>0</Required>" + Environment.NewLine
                        + "</FieldObject>";
-            FieldObject expected = new FieldObject
+            FieldObject expected = new()
             {
                 FieldNumber = "1"
             };

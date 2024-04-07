@@ -10,7 +10,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers.ScriptLink
         {
             // Arrange
             string dateString = "10-10-2010";
-            DateTime expected = new DateTime(2010, 10, 10);
+            DateTime expected = new(2010, 10, 10);
 
             // Act
             DateTime actual = ScriptLinkHelpers.SafeGetDateTime(dateString);
@@ -24,7 +24,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers.ScriptLink
         {
             // Arrange
             string dateString = "10/10/2010";
-            DateTime expected = new DateTime(2010, 10, 10);
+            DateTime expected = new(2010, 10, 10);
 
             // Act
             DateTime actual = ScriptLinkHelpers.SafeGetDateTime(dateString);
@@ -38,7 +38,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers.ScriptLink
         {
             // Arrange
             string dateString = "10-10-10";
-            DateTime expected = new DateTime(2010, 10, 10);
+            DateTime expected = new(2010, 10, 10);
 
             // Act
             DateTime actual = ScriptLinkHelpers.SafeGetDateTime(dateString);
@@ -52,7 +52,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers.ScriptLink
         {
             // Arrange
             string dateString = "10-10-10";
-            DateTime expected = new DateTime(2010, 10, 10);
+            DateTime expected = new(2010, 10, 10);
 
             // Act
             DateTime actual = ScriptLinkHelpers.SafeGetDateTime(dateString);
@@ -66,7 +66,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers.ScriptLink
         {
             // Arrange
             string dateString = "October 10, 2010";
-            DateTime expected = new DateTime(2010, 10, 10);
+            DateTime expected = new(2010, 10, 10);
 
             // Act
             DateTime actual = ScriptLinkHelpers.SafeGetDateTime(dateString);
@@ -80,7 +80,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers.ScriptLink
         {
             // Arrange
             string dateString = "10 October, 2010";
-            DateTime expected = new DateTime(2010, 10, 10);
+            DateTime expected = new(2010, 10, 10);
 
             // Act
             DateTime actual = ScriptLinkHelpers.SafeGetDateTime(dateString);
@@ -94,7 +94,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers.ScriptLink
         {
             // Arrange
             string dateString = "Not a date.";
-            DateTime expected = new DateTime();
+            DateTime expected = new();
 
             // Act
             DateTime actual = ScriptLinkHelpers.SafeGetDateTime(dateString);

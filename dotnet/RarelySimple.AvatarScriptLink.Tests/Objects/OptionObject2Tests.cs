@@ -349,7 +349,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("OptionObject2")]
         public void OptionObject2_SetDisabledFields_IsTrue()
         {
-            List<string> disabledFields = new List<string> { "123" };
+            List<string> disabledFields = ["123"];
             configuredOptionObject2.SetDisabledFields(disabledFields);
             Assert.IsTrue(!configuredOptionObject2.IsFieldEnabled("123"));
         }
@@ -383,7 +383,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("OptionObject2")]
         public void OptionObject2_SetUnlockedFields_IsTrue()
         {
-            List<string> requiredFields = new List<string> { "123" };
+            List<string> requiredFields = ["123"];
             configuredOptionObject2.SetUnlockedFields(requiredFields);
             Assert.IsTrue(!configuredOptionObject2.IsFieldLocked("123"));
         }
@@ -392,7 +392,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("OptionObject2")]
         public void OptionObject2_SetLockedFields_IsTrue()
         {
-            List<string> lockedFields = new List<string> { "123" };
+            List<string> lockedFields = ["123"];
             configuredOptionObject2.SetLockedFields(lockedFields);
             Assert.IsTrue(configuredOptionObject2.IsFieldLocked("123"));
         }
@@ -426,7 +426,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("OptionObject2")]
         public void OptionObject2_SetOptionalFields_IsTrue()
         {
-            List<string> optionalFields = new List<string> { "123" };
+            List<string> optionalFields = ["123"];
             configuredOptionObject2.SetOptionalFields(optionalFields);
             Assert.IsTrue(configuredOptionObject2.IsFieldEnabled("123"));
             Assert.IsFalse(configuredOptionObject2.IsFieldRequired("123"));
@@ -436,7 +436,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("OptionObject2")]
         public void OptionObject2_SetRequiredFields_AreEqual()
         {
-            List<string> requiredFields = new List<string> { "123" };
+            List<string> requiredFields = ["123"];
             configuredOptionObject2.SetRequiredFields(requiredFields);
             Assert.IsTrue(configuredOptionObject2.IsFieldEnabled("123"));
             Assert.IsTrue(configuredOptionObject2.IsFieldRequired("123"));
@@ -458,7 +458,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             string systemCode = "UAT";
             int formCount = 0;
 
-            OptionObject2 optionObject = new OptionObject2(optionId, optionUserId, optionStaffId
+            OptionObject2 optionObject = new(optionId, optionUserId, optionStaffId
                 , facility, entityId, episodeNumber
                 , systemCode, namespaceName, parentNamespace, serverName);
             Assert.AreEqual(entityId, optionObject.EntityID);
@@ -488,14 +488,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             string parentNamespace = "AVPM";
             string serverName = "server";
             string systemCode = "UAT";
-            List<FormObject> forms = new List<FormObject>
-            {
+            List<FormObject> forms =
+            [
                 new FormObject("1"),
                 new FormObject("2")
-            };
+            ];
             int formCount = 2;
 
-            OptionObject2 optionObject = new OptionObject2(optionId, optionUserId, optionStaffId
+            OptionObject2 optionObject = new(optionId, optionUserId, optionStaffId
                 , facility, entityId, episodeNumber
                 , systemCode, namespaceName, parentNamespace, serverName
                 , forms);
@@ -516,13 +516,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("OptionObject2")]
         public void OptionObject2_Clone_AreEqual()
         {
-            List<FieldObject> fieldObjects = new List<FieldObject>
-            {
+            List<FieldObject> fieldObjects =
+            [
                 new FieldObject("123", "Test")
-            };
-            RowObject rowObject = new RowObject("1||1", fieldObjects);
-            FormObject formObject = new FormObject("1", rowObject);
-            OptionObject2 optionObject = new OptionObject2("USER00", "userId", "000111", "1", "123456", 1, "UAT", "AVPM", "AVPM", "SERVER");
+            ];
+            RowObject rowObject = new("1||1", fieldObjects);
+            FormObject formObject = new("1", rowObject);
+            OptionObject2 optionObject = new("USER00", "userId", "000111", "1", "123456", 1, "UAT", "AVPM", "AVPM", "SERVER");
             optionObject.AddFormObject(formObject);
 
             OptionObject2 cloneOptionObject = optionObject.Clone();
@@ -536,13 +536,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("OptionObject2")]
         public void OptionObject2_ReturnOptionObject_ServerNameReturned()
         {
-            List<FieldObject> fieldObjects = new List<FieldObject>
-            {
+            List<FieldObject> fieldObjects =
+            [
                 new FieldObject("123", "Test")
-            };
-            RowObject rowObject = new RowObject("1||1", fieldObjects);
-            FormObject formObject = new FormObject("1", rowObject);
-            OptionObject2 optionObject = new OptionObject2("USER00", "userId", "000111", "1", "123456", 1, "UAT", "AVPM", "AVPM", "SERVER");
+            ];
+            RowObject rowObject = new("1||1", fieldObjects);
+            FormObject formObject = new("1", rowObject);
+            OptionObject2 optionObject = new("USER00", "userId", "000111", "1", "123456", 1, "UAT", "AVPM", "AVPM", "SERVER");
             optionObject.AddFormObject(formObject);
 
             OptionObject2 returnOptionObject = optionObject.ToReturnOptionObject();
@@ -554,13 +554,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("OptionObject2")]
         public void OptionObject2_ReturnOptionObject_AreNotEqual()
         {
-            List<FieldObject> fieldObjects = new List<FieldObject>
-            {
+            List<FieldObject> fieldObjects =
+            [
                 new FieldObject("123", "Test")
-            };
-            RowObject rowObject = new RowObject("1||1", fieldObjects);
-            FormObject formObject = new FormObject("1", rowObject);
-            OptionObject2 optionObject = new OptionObject2("USER00", "userId", "000111", "1", "123456", 1, "UAT", "AVPM", "AVPM", "SERVER");
+            ];
+            RowObject rowObject = new("1||1", fieldObjects);
+            FormObject formObject = new("1", rowObject);
+            OptionObject2 optionObject = new("USER00", "userId", "000111", "1", "123456", 1, "UAT", "AVPM", "AVPM", "SERVER");
             optionObject.AddFormObject(formObject);
 
             OptionObject2 returnOptionObject = optionObject.ToReturnOptionObject();

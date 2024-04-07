@@ -9,15 +9,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueOptionObjectReturnsString()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
             optionObject.Forms.Add(formObject);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -30,15 +30,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueOptionObjectReturnsExpected()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
             optionObject.Forms.Add(formObject);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -52,15 +52,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentException))]
         public void GetFieldValueOptionObjectMissingFieldReturnsError()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
             optionObject.Forms.Add(formObject);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -86,15 +86,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueHelperOptionObjectReturnsString()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
             optionObject.Forms.Add(formObject);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -107,15 +107,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueHelperOptionObjectReturnsExpected()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
             optionObject.Forms.Add(formObject);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -129,15 +129,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentException))]
         public void GetFieldValueHelperOptionObjectMissingFieldReturnsError()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
             optionObject.Forms.Add(formObject);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -163,15 +163,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueOptionObject2ReturnsString()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -184,15 +184,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueOptionObject2ReturnsExpected()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -206,15 +206,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentException))]
         public void GetFieldValueOptionObject2MissingFieldReturnsError()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -240,15 +240,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueHelperOptionObject2ReturnsString()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -261,15 +261,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueHelperOptionObject2ReturnsExpected()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -283,15 +283,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentException))]
         public void GetFieldValueHelperOptionObject2MissingFieldReturnsError()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -317,15 +317,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueOptionObject2015ReturnsString()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2015 optionObject = new OptionObject2015();
+            OptionObject2015 optionObject = new();
             optionObject.Forms.Add(formObject);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -338,15 +338,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueOptionObject2015ReturnsExpected()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2015 optionObject = new OptionObject2015();
+            OptionObject2015 optionObject = new();
             optionObject.Forms.Add(formObject);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -360,15 +360,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentException))]
         public void GetFieldValueOptionObject2015MissingFieldReturnsError()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2015 optionObject = new OptionObject2015();
+            OptionObject2015 optionObject = new();
             optionObject.Forms.Add(formObject);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -394,15 +394,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueHelperOptionObject2015ReturnsString()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2015 optionObject = new OptionObject2015();
+            OptionObject2015 optionObject = new();
             optionObject.Forms.Add(formObject);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -415,15 +415,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueHelperOptionObject2015ReturnsExpected()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2015 optionObject = new OptionObject2015();
+            OptionObject2015 optionObject = new();
             optionObject.Forms.Add(formObject);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -437,15 +437,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentException))]
         public void GetFieldValueHelperOptionObject2015MissingFieldReturnsError()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2015 optionObject = new OptionObject2015();
+            OptionObject2015 optionObject = new();
             optionObject.Forms.Add(formObject);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -471,13 +471,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueFormObjectReturnsString()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -490,13 +490,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueFormObjectReturnsExpected()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -510,13 +510,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentException))]
         public void GetFieldValueFormObjectMissingFieldReturnsError()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -542,13 +542,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueHelperFormObjectReturnsString()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -561,13 +561,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueHelperFormObjectReturnsExpected()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -581,13 +581,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentException))]
         public void GetFieldValueHelperFormObjectMissingFieldReturnsError()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            FormObject formObject = new FormObject("1", rowObject1);
+            FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
             string expected1 = "TEST";
             string expected2 = "TESTED";
@@ -613,10 +613,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueRowObjectReturnsString()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
             string expected1 = "TEST";
@@ -628,10 +628,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueRowObjectReturnsExpected()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
             string expected1 = "TEST";
@@ -644,10 +644,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentException))]
         public void GetFieldValueRowObjectMissingFieldReturnsError()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
             string expected1 = "TEST";
@@ -670,10 +670,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueHelperRowObjectReturnsString()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
             string expected1 = "TEST";
@@ -685,10 +685,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueHelperRowObjectReturnsExpected()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
             string expected1 = "TEST";
@@ -701,10 +701,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentException))]
         public void GetFieldValueHelperRowObjectMissingFieldReturnsError()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            RowObject rowObject1 = new RowObject("1||1");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-            RowObject rowObject2 = new RowObject("1||2");
+            FieldObject fieldObject1 = new("123", "TEST");
+            RowObject rowObject1 = new("1||1");
+            FieldObject fieldObject2 = new("123", "TESTED");
+            RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
             string expected1 = "TEST";
@@ -727,8 +727,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueHelperFieldObjectReturnsString()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
+            FieldObject fieldObject1 = new("123", "TEST");
+            FieldObject fieldObject2 = new("123", "TESTED");
             string expected1 = "TEST";
             string expected2 = "TESTED";
             Assert.AreEqual(expected1.GetType(), OptionObjectHelpers.GetFieldValue(fieldObject1).GetType());
@@ -738,8 +738,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetFieldValueHelperFieldObjectReturnsExpected()
         {
-            FieldObject fieldObject1 = new FieldObject("123", "TEST");
-            FieldObject fieldObject2 = new FieldObject("123", "TESTED");
+            FieldObject fieldObject1 = new("123", "TEST");
+            FieldObject fieldObject2 = new("123", "TESTED");
             string expected1 = "TEST";
             string expected2 = "TESTED";
             Assert.AreEqual(expected1, OptionObjectHelpers.GetFieldValue(fieldObject1));

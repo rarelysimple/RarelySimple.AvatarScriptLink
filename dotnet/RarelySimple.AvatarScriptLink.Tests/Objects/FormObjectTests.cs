@@ -18,7 +18,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void FormObject_OtherRowsObject_IsNotEmpty()
         {
             FormObject formObject = FormObject.Initialize();
-            List<RowObject> expected = new List<RowObject>();
+            List<RowObject> expected = [];
             var actual = formObject.OtherRows;
             Assert.AreNotEqual(expected, actual);
         }
@@ -489,7 +489,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void FormObject_Constructor_1Parameter_NoError()
         {
             string formId = "1";
-            FormObject formObject = new FormObject(formId);
+            FormObject formObject = new(formId);
             Assert.AreEqual(formId, formObject.FormId);
             Assert.AreEqual(null, formObject.CurrentRow);
             Assert.IsFalse(formObject.MultipleIteration);
@@ -502,7 +502,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void FormObject_Constructor_1Parameter_Error()
         {
             string formId = "";
-            FormObject formObject = new FormObject(formId);
+            FormObject formObject = new(formId);
             Assert.AreEqual(formId, formObject.FormId);
             Assert.AreEqual(null, formObject.CurrentRow);
             Assert.IsFalse(formObject.MultipleIteration);
@@ -514,8 +514,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void FormObject_Constructor_2Parameter_NoError()
         {
             string formId = "1";
-            RowObject currentRow = new RowObject();
-            FormObject formObject = new FormObject(formId, currentRow);
+            RowObject currentRow = new();
+            FormObject formObject = new(formId, currentRow);
             Assert.AreEqual(formId, formObject.FormId);
             Assert.AreEqual(currentRow, formObject.CurrentRow);
             Assert.IsFalse(formObject.MultipleIteration);
@@ -528,8 +528,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void FormObject_Constructor_2Parameter_Error()
         {
             string formId = "";
-            RowObject currentRow = new RowObject();
-            FormObject formObject = new FormObject(formId, currentRow);
+            RowObject currentRow = new();
+            FormObject formObject = new(formId, currentRow);
             Assert.AreEqual(formId, formObject.FormId);
             Assert.AreEqual(currentRow, formObject.CurrentRow);
             Assert.IsFalse(formObject.MultipleIteration);
@@ -541,9 +541,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void FormObject_Constructor_3Parameter_NoError()
         {
             string formId = "1";
-            RowObject currentRow = new RowObject();
+            RowObject currentRow = new();
             bool multipleIteration = true;
-            FormObject formObject = new FormObject(formId, currentRow, multipleIteration);
+            FormObject formObject = new(formId, currentRow, multipleIteration);
             Assert.AreEqual(formId, formObject.FormId);
             Assert.AreEqual(currentRow, formObject.CurrentRow);
             Assert.AreEqual(multipleIteration, formObject.MultipleIteration);
@@ -556,9 +556,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void FormObject_Constructor_3Parameter_Error()
         {
             string formId = "";
-            RowObject currentRow = new RowObject();
+            RowObject currentRow = new();
             bool multipleIteration = true;
-            FormObject formObject = new FormObject(formId, currentRow, multipleIteration);
+            FormObject formObject = new(formId, currentRow, multipleIteration);
             Assert.AreEqual(formId, formObject.FormId);
             Assert.AreEqual(currentRow, formObject.CurrentRow);
             Assert.AreEqual(multipleIteration, formObject.MultipleIteration);
@@ -570,14 +570,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void FormObject_Constructor_4Parameter_NoError()
         {
             string formId = "1";
-            RowObject currentRow = new RowObject();
+            RowObject currentRow = new();
             bool multipleIteration = true;
-            RowObject otherRow = new RowObject();
-            List<RowObject> otherRows = new List<RowObject>
-            {
+            RowObject otherRow = new();
+            List<RowObject> otherRows =
+            [
                 otherRow
-            };
-            FormObject formObject = new FormObject(formId, currentRow, multipleIteration, otherRows);
+            ];
+            FormObject formObject = new(formId, currentRow, multipleIteration, otherRows);
             Assert.AreEqual(formId, formObject.FormId);
             Assert.AreEqual(currentRow, formObject.CurrentRow);
             Assert.AreEqual(multipleIteration, formObject.MultipleIteration);
@@ -590,14 +590,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void FormObject_Constructor_4Parameter_Error()
         {
             string formId = "";
-            RowObject currentRow = new RowObject();
+            RowObject currentRow = new();
             bool multipleIteration = true;
-            RowObject otherRow = new RowObject();
-            List<RowObject> otherRows = new List<RowObject>
-            {
+            RowObject otherRow = new();
+            List<RowObject> otherRows =
+            [
                 otherRow
-            };
-            FormObject formObject = new FormObject(formId, currentRow, multipleIteration, otherRows);
+            ];
+            FormObject formObject = new(formId, currentRow, multipleIteration, otherRows);
             Assert.AreEqual(formId, formObject.FormId);
             Assert.AreEqual(currentRow, formObject.CurrentRow);
             Assert.AreEqual(multipleIteration, formObject.MultipleIteration);

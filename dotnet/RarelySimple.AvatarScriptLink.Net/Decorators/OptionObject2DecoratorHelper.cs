@@ -25,9 +25,10 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-                foreach (var form in optionObject.Forms.Where(form => form.IsFieldPresent(fieldNumber)))
+                var form = optionObject.Forms.Where(x => x.IsFieldPresent(fieldNumber)).FirstOrDefault();
+                if (form != null)
                 {
-                        return FormObjectDecorator.Helper.GetFieldValue(form, fieldNumber);
+                    return FormObjectDecorator.Helper.GetFieldValue(form, fieldNumber);
                 }
                 throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString(NoFieldObjectsFoundByFieldNumber, CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
@@ -91,7 +92,8 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-                foreach (var form in optionObject.Forms.Where(form => form.IsFieldPresent(fieldNumber)))
+                var form = optionObject.Forms.Where(x => x.IsFieldPresent(fieldNumber)).FirstOrDefault();
+                if (form != null)
                 {
                     return FormObjectDecorator.Helper.IsFieldEnabled(form, fieldNumber);
                 }
@@ -111,7 +113,8 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-                foreach (var form in optionObject.Forms.Where(form => form.IsFieldPresent(fieldNumber)))
+                var form = optionObject.Forms.Where(x => x.IsFieldPresent(fieldNumber)).FirstOrDefault();
+                if (form != null)
                 {
                     return FormObjectDecorator.Helper.IsFieldLocked(form, fieldNumber);
                 }
@@ -131,11 +134,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     throw new ArgumentNullException(nameof(decorator), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-                foreach (var form in decorator.Forms.Where(form => form.IsFieldPresent(fieldNumber)))
-                {
-                    return true;
-                }
-                return false;
+                return decorator.Forms.Where(x => x.IsFieldPresent(fieldNumber)).FirstOrDefault() != null;
             }
             /// <summary>
             /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="OptionObject2Decorator"/> is required by FieldNumber.
@@ -151,7 +150,8 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-                foreach (var form in optionObject.Forms.Where(form => form.IsFieldPresent(fieldNumber)))
+                var form = optionObject.Forms.Where(x => x.IsFieldPresent(fieldNumber)).FirstOrDefault();
+                if (form != null)
                 {
                     return FormObjectDecorator.Helper.IsFieldRequired(form, fieldNumber);
                 }
@@ -172,7 +172,8 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     throw new ArgumentNullException(nameof(decorator), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-                foreach (var form in decorator.Forms.Where(form => form.IsFieldPresent(fieldNumber)))
+                var form = decorator.Forms.Where(x => x.IsFieldPresent(fieldNumber)).FirstOrDefault();
+                if (form != null)
                 {
                     if (form.MultipleIteration && form.OtherRows.Count > 0)
                         throw new ArgumentException(resourceManager.GetString(UnableToIdentifyFieldObject, CultureInfo.CurrentCulture), nameof(decorator));

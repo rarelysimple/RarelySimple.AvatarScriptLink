@@ -9,7 +9,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("RowObject")]
         public void RowObject_HasFieldsObject()
         {
-            RowObject rowObject = new RowObject();
+            RowObject rowObject = new();
             Assert.IsNotNull(rowObject.Fields);
         }
 
@@ -18,7 +18,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void RowObject_FieldsObjectIsEmpty()
         {
             RowObject rowObject = RowObject.Initialize();
-            List<FieldObject> expected = new List<FieldObject>();
+            List<FieldObject> expected = [];
             var actual = rowObject.Fields;
             Assert.AreNotEqual(expected, actual);
         }
@@ -31,7 +31,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
                 .RowId("1")
                 .ParentRowId("1")
                 .Build();
-            RowObject rowObject2 = new RowObject
+            RowObject rowObject2 = new()
             {
                 ParentRowId = "1",
                 RowAction = "",
@@ -50,7 +50,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
                 .RowId("1")
                 .ParentRowId("1")
                 .Build();
-            RowObject rowObject2 = new RowObject
+            RowObject rowObject2 = new()
             {
                 ParentRowId = "1",
                 RowAction = "",
@@ -317,7 +317,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("RowObject")]
         public void RowObject_CanGetHtmlString_WithoutHtmlHeaders()
         {
-            RowObject rowObject = new RowObject();
+            RowObject rowObject = new();
             var actual = rowObject.ToHtmlString(false);
             Assert.IsNotNull(actual);
         }
@@ -326,7 +326,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestCategory("RowObject")]
         public void RowObject_CanGetHtmlString_WithHtmlHeaders()
         {
-            RowObject rowObject = new RowObject();
+            RowObject rowObject = new();
             var actual = rowObject.ToHtmlString(false);
             Assert.IsNotNull(actual);
         }
@@ -336,7 +336,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void RowObject_Constructor_1Parameter_NoError()
         {
             string rowId = "1||1";
-            RowObject rowObject = new RowObject(rowId);
+            RowObject rowObject = new(rowId);
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual("", rowObject.ParentRowId);
             Assert.AreEqual("", rowObject.RowAction);
@@ -349,7 +349,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void RowObject_Constructor_1Parameter_Error()
         {
             string rowId = "";
-            RowObject rowObject = new RowObject(rowId);
+            RowObject rowObject = new(rowId);
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual("", rowObject.ParentRowId);
             Assert.AreEqual("", rowObject.RowAction);
@@ -362,7 +362,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         {
             string rowId = "1||1";
             string parentRowId = "2||1";
-            RowObject rowObject = new RowObject(rowId, parentRowId);
+            RowObject rowObject = new(rowId, parentRowId);
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual(parentRowId, rowObject.ParentRowId);
             Assert.AreEqual("", rowObject.RowAction);
@@ -376,7 +376,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         {
             string rowId = "";
             string parentRowId = "2||1";
-            RowObject rowObject = new RowObject(rowId, parentRowId);
+            RowObject rowObject = new(rowId, parentRowId);
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual(parentRowId, rowObject.ParentRowId);
             Assert.AreEqual("", rowObject.RowAction);
@@ -390,7 +390,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             string rowId = "1||1";
             string parentRowId = "2||1";
             string rowAction = RowAction.Delete;
-            RowObject rowObject = new RowObject(rowId, parentRowId, rowAction);
+            RowObject rowObject = new(rowId, parentRowId, rowAction);
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual(parentRowId, rowObject.ParentRowId);
             Assert.AreEqual(rowAction, rowObject.RowAction);
@@ -405,7 +405,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             string rowId = "1||1";
             string parentRowId = "2||1";
             string rowAction = "NONE";
-            RowObject rowObject = new RowObject(rowId, parentRowId, rowAction);
+            RowObject rowObject = new(rowId, parentRowId, rowAction);
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual(parentRowId, rowObject.ParentRowId);
             Assert.AreEqual("", rowObject.RowAction);
@@ -417,14 +417,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void RowObject_Constructor_2Parameter_List_NoError()
         {
             string rowId = "1||1";
-            FieldObject fieldObject1 = new FieldObject("123.45");
-            FieldObject fieldObject2 = new FieldObject("123.46");
-            List<FieldObject> fieldObjects = new List<FieldObject>
-            {
+            FieldObject fieldObject1 = new("123.45");
+            FieldObject fieldObject2 = new("123.46");
+            List<FieldObject> fieldObjects =
+            [
                 fieldObject1,
                 fieldObject2
-            };
-            RowObject rowObject = new RowObject(rowId, fieldObjects);
+            ];
+            RowObject rowObject = new(rowId, fieldObjects);
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual("", rowObject.ParentRowId);
             Assert.AreEqual("", rowObject.RowAction);
@@ -437,14 +437,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void RowObject_Constructor_2Parameter_List_Error()
         {
             string rowId = "";
-            FieldObject fieldObject1 = new FieldObject("123.45");
-            FieldObject fieldObject2 = new FieldObject("123.46");
-            List<FieldObject> fieldObjects = new List<FieldObject>
-            {
+            FieldObject fieldObject1 = new("123.45");
+            FieldObject fieldObject2 = new("123.46");
+            List<FieldObject> fieldObjects =
+            [
                 fieldObject1,
                 fieldObject2
-            };
-            RowObject rowObject = new RowObject(rowId, fieldObjects);
+            ];
+            RowObject rowObject = new(rowId, fieldObjects);
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual("", rowObject.ParentRowId);
             Assert.AreEqual("", rowObject.RowAction);
@@ -457,14 +457,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         {
             string rowId = "1||1";
             string parentRowId = "2||1";
-            FieldObject fieldObject1 = new FieldObject("123.45");
-            FieldObject fieldObject2 = new FieldObject("123.46");
-            List<FieldObject> fieldObjects = new List<FieldObject>
-            {
+            FieldObject fieldObject1 = new("123.45");
+            FieldObject fieldObject2 = new("123.46");
+            List<FieldObject> fieldObjects =
+            [
                 fieldObject1,
                 fieldObject2
-            };
-            RowObject rowObject = new RowObject(rowId, fieldObjects, parentRowId);
+            ];
+            RowObject rowObject = new(rowId, fieldObjects, parentRowId);
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual(parentRowId, rowObject.ParentRowId);
             Assert.AreEqual("", rowObject.RowAction);
@@ -478,14 +478,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         {
             string rowId = "";
             string parentRowId = "2||1";
-            FieldObject fieldObject1 = new FieldObject("123.45");
-            FieldObject fieldObject2 = new FieldObject("123.46");
-            List<FieldObject> fieldObjects = new List<FieldObject>
-            {
+            FieldObject fieldObject1 = new("123.45");
+            FieldObject fieldObject2 = new("123.46");
+            List<FieldObject> fieldObjects =
+            [
                 fieldObject1,
                 fieldObject2
-            };
-            RowObject rowObject = new RowObject(rowId, fieldObjects, parentRowId);
+            ];
+            RowObject rowObject = new(rowId, fieldObjects, parentRowId);
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual(parentRowId, rowObject.ParentRowId);
             Assert.AreEqual("", rowObject.RowAction);
@@ -499,14 +499,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             string rowId = "1||1";
             string parentRowId = "2||1";
             string rowAction = RowAction.Delete;
-            FieldObject fieldObject1 = new FieldObject("123.45");
-            FieldObject fieldObject2 = new FieldObject("123.46");
-            List<FieldObject> fieldObjects = new List<FieldObject>
-            {
+            FieldObject fieldObject1 = new("123.45");
+            FieldObject fieldObject2 = new("123.46");
+            List<FieldObject> fieldObjects =
+            [
                 fieldObject1,
                 fieldObject2
-            };
-            RowObject rowObject = new RowObject(rowId, fieldObjects, parentRowId, rowAction);
+            ];
+            RowObject rowObject = new(rowId, fieldObjects, parentRowId, rowAction);
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual(parentRowId, rowObject.ParentRowId);
             Assert.AreEqual(rowAction, rowObject.RowAction);
@@ -521,14 +521,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             string rowId = "1||1";
             string parentRowId = "2||1";
             string rowAction = "NONE";
-            FieldObject fieldObject1 = new FieldObject("123.45");
-            FieldObject fieldObject2 = new FieldObject("123.46");
-            List<FieldObject> fieldObjects = new List<FieldObject>
-            {
+            FieldObject fieldObject1 = new("123.45");
+            FieldObject fieldObject2 = new("123.46");
+            List<FieldObject> fieldObjects =
+            [
                 fieldObject1,
                 fieldObject2
-            };
-            RowObject rowObject = new RowObject(rowId, fieldObjects, parentRowId, rowAction);
+            ];
+            RowObject rowObject = new(rowId, fieldObjects, parentRowId, rowAction);
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual(parentRowId, rowObject.ParentRowId);
             Assert.AreEqual(rowAction, rowObject.RowAction);
