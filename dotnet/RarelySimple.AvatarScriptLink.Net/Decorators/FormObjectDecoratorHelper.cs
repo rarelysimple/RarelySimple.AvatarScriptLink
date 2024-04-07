@@ -21,7 +21,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             public static string GetFieldValue(FormObjectDecorator formObject, string fieldNumber)
             {
                 if (formObject == null)
-                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 return GetFieldValue(formObject, formObject.CurrentRow.RowId, fieldNumber);
             }
             /// <summary>
@@ -34,11 +34,11 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             public static string GetFieldValue(FormObjectDecorator formObject, string rowId, string fieldNumber)
             {
                 if (formObject == null)
-                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(rowId))
-                    throw new ArgumentNullException(nameof(rowId), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(rowId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
-                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (formObject.CurrentRow.RowId == rowId)
                     return RowObjectDecorator.Helper.GetFieldValue(formObject.CurrentRow, fieldNumber);
                 foreach (RowObjectDecorator rowObject in formObject.OtherRows)
@@ -46,7 +46,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     if (rowObject.RowId == rowId)
                         return RowObjectDecorator.Helper.GetFieldValue(rowObject, fieldNumber);
                 }
-                throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
+                throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString(NoFieldObjectsFoundByFieldNumber, CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
             /// <summary>
             /// Returns whether a <see cref="FormObject"/> is Multiple Iteration.
@@ -56,7 +56,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             public static bool GetMultipleIterationStatus(FormObjectDecorator formObject)
             {
                 if (formObject == null)
-                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 return formObject.MultipleIteration;
             }
             /// <summary>
@@ -68,11 +68,11 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             public static bool IsFieldEnabled(FormObjectDecorator formObject, string fieldNumber)
             {
                 if (formObject == null)
-                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (formObject.CurrentRow == null)
-                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(FormObjectMissingCurrentRow, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
-                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 return RowObjectDecorator.Helper.IsFieldEnabled(formObject.CurrentRow, fieldNumber);
             }
             /// <summary>
@@ -84,11 +84,11 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             public static bool IsFieldLocked(FormObjectDecorator formObject, string fieldNumber)
             {
                 if (formObject == null)
-                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (formObject.CurrentRow == null)
-                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(FormObjectMissingCurrentRow, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
-                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 return RowObjectDecorator.Helper.IsFieldLocked(formObject.CurrentRow, fieldNumber);
             }
             /// <summary>
@@ -100,9 +100,9 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             public static bool IsFieldPresent(FormObjectDecorator decorator, string fieldNumber)
             {
                 if (decorator == null)
-                    throw new ArgumentNullException(nameof(decorator), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(decorator), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
-                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (decorator.CurrentRow == null)
                     return false;
                 return RowObjectDecorator.Helper.IsFieldPresent(decorator.CurrentRow, fieldNumber);
@@ -116,11 +116,11 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             public static bool IsFieldRequired(FormObjectDecorator formObject, string fieldNumber)
             {
                 if (formObject == null)
-                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (formObject.CurrentRow == null)
-                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(FormObjectMissingCurrentRow, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
-                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 return RowObjectDecorator.Helper.IsFieldRequired(formObject.CurrentRow, fieldNumber);
             }
             /// <summary>
@@ -133,13 +133,13 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             public static FormObjectDecorator SetFieldValue(FormObjectDecorator decorator, string fieldNumber, string fieldValue)
             {
                 if (decorator == null)
-                    throw new ArgumentNullException(nameof(decorator), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(decorator), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (decorator.CurrentRow == null)
-                    throw new ArgumentNullException(nameof(decorator), resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(decorator), resourceManager.GetString(FormObjectMissingCurrentRow, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
-                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (decorator.MultipleIteration && decorator.OtherRows.Count > 0)
-                    throw new ArgumentException(resourceManager.GetString("unableToIdentifyFieldObject", CultureInfo.CurrentCulture));
+                    throw new ArgumentException(resourceManager.GetString(UnableToIdentifyFieldObject, CultureInfo.CurrentCulture));
                 return SetFieldValue(decorator, decorator.CurrentRow.RowId, fieldNumber, fieldValue);
             }
             /// <summary>
@@ -153,13 +153,13 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             public static FormObjectDecorator SetFieldValue(FormObjectDecorator decorator, string rowId, string fieldNumber, string fieldValue)
             {
                 if (decorator == null)
-                    throw new ArgumentNullException(nameof(decorator), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(decorator), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (decorator.CurrentRow == null)
-                    throw new ArgumentNullException(nameof(decorator), resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(decorator), resourceManager.GetString(FormObjectMissingCurrentRow, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(rowId))
-                    throw new ArgumentNullException(nameof(rowId), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(rowId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
-                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (decorator.CurrentRow.RowId == rowId)
                 {
                     decorator.CurrentRow = RowObjectDecorator.Helper.SetFieldValue(decorator.CurrentRow, fieldNumber, fieldValue);
@@ -176,7 +176,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                         }
                     }
                 }
-                throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
+                throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString(NoFieldObjectsFoundByFieldNumber, CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
         }
     }

@@ -11,7 +11,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
     /// Represents an AvatarScriptLink <see cref="OptionObject2"/>.
     /// <para>Deprecated</para>
     /// </summary>
-    public class OptionObject2 : OptionObject2Base, IEquatable<OptionObject2>
+    public sealed class OptionObject2 : OptionObject2Base, IEquatable<OptionObject2>
     {
         /// <summary>
         /// Creates a new AvatarScriptLink <see cref="OptionObject2"/>.
