@@ -10,8 +10,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveFieldObject_RowObject_ByFieldObject()
         {
             string fieldNumber = "123";
-            FieldObject fieldObject = new FieldObject(fieldNumber);
-            RowObject rowObject = new RowObject("1||1");
+            FieldObject fieldObject = new(fieldNumber);
+            RowObject rowObject = new("1||1");
             rowObject.AddFieldObject(fieldObject);
 
             rowObject.RemoveFieldObject(fieldObject);
@@ -23,8 +23,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveFieldObject_RowObject_ByFieldNumber()
         {
             string fieldNumber = "123";
-            FieldObject fieldObject = new FieldObject(fieldNumber);
-            RowObject rowObject = new RowObject("1||1");
+            FieldObject fieldObject = new(fieldNumber);
+            RowObject rowObject = new("1||1");
             rowObject.AddFieldObject(fieldObject);
 
             rowObject.RemoveFieldObject(fieldNumber);
@@ -36,8 +36,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveFieldObject_RowObject_ByFieldObject_NotPresent()
         {
             string fieldNumber = "123";
-            FieldObject fieldObject = new FieldObject(fieldNumber);
-            RowObject rowObject = new RowObject("1||1");
+            FieldObject fieldObject = new(fieldNumber);
+            RowObject rowObject = new("1||1");
 
             rowObject.RemoveFieldObject(fieldObject);
 
@@ -49,7 +49,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveFieldObject_RowObject_ByFieldNumber_NotPresent()
         {
             string fieldNumber = "123";
-            RowObject rowObject = new RowObject("1||1");
+            RowObject rowObject = new("1||1");
 
             rowObject.RemoveFieldObject(fieldNumber);
 
@@ -62,7 +62,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             string fieldNumber = "123";
             FieldObject fieldObject = null;
-            RowObject rowObject = new RowObject("1||1");
+            RowObject rowObject = new("1||1");
 
             rowObject.RemoveFieldObject(fieldObject);
 
@@ -74,7 +74,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveFieldObject_RowObject_ByFieldNumber_Null()
         {
             string fieldNumber = null;
-            RowObject rowObject = new RowObject("1||1");
+            RowObject rowObject = new("1||1");
 
             rowObject.RemoveFieldObject(fieldNumber);
 
@@ -86,7 +86,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveFieldObject_RowObject_Null_ByFieldObject()
         {
             string fieldNumber = "123";
-            FieldObject fieldObject = new FieldObject(fieldNumber);
+            FieldObject fieldObject = new(fieldNumber);
             RowObject rowObject = null;
 
             rowObject.RemoveFieldObject(fieldObject);
@@ -110,8 +110,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveFieldObject_OptionObjectHelpers_ByFieldObject()
         {
             string fieldNumber = "123";
-            FieldObject fieldObject = new FieldObject(fieldNumber);
-            RowObject rowObject = new RowObject("1||1");
+            FieldObject fieldObject = new(fieldNumber);
+            RowObject rowObject = new("1||1");
             rowObject.AddFieldObject(fieldObject);
 
             OptionObjectHelpers.RemoveFieldObject(rowObject, fieldObject);
@@ -123,8 +123,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveFieldObject_OptionObjectHelpers_ByFieldNumber()
         {
             string fieldNumber = "123";
-            FieldObject fieldObject = new FieldObject(fieldNumber);
-            RowObject rowObject = new RowObject("1||1");
+            FieldObject fieldObject = new(fieldNumber);
+            RowObject rowObject = new("1||1");
             rowObject.AddFieldObject(fieldObject);
 
             OptionObjectHelpers.RemoveFieldObject(rowObject, fieldNumber);
@@ -136,8 +136,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveFieldObject_OptionObjectHelpers_ByFieldObject_NotPresent()
         {
             string fieldNumber = "123";
-            FieldObject fieldObject = new FieldObject(fieldNumber);
-            RowObject rowObject = new RowObject("1||1");
+            FieldObject fieldObject = new(fieldNumber);
+            RowObject rowObject = new("1||1");
 
             OptionObjectHelpers.RemoveFieldObject(rowObject, fieldObject);
 
@@ -149,7 +149,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveFieldObject_OptionObjectHelpers_ByFieldNumber_NotPresent()
         {
             string fieldNumber = "123";
-            RowObject rowObject = new RowObject("1||1");
+            RowObject rowObject = new("1||1");
 
             OptionObjectHelpers.RemoveFieldObject(rowObject, fieldNumber);
 
@@ -162,7 +162,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             string fieldNumber = "123";
             FieldObject fieldObject = null;
-            RowObject rowObject = new RowObject("1||1");
+            RowObject rowObject = new("1||1");
 
             OptionObjectHelpers.RemoveFieldObject(rowObject, fieldObject);
 
@@ -174,7 +174,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveFieldObject_OptionObjectHelpers_ByFieldNumber_Null()
         {
             string fieldNumber = null;
-            RowObject rowObject = new RowObject("1||1");
+            RowObject rowObject = new("1||1");
 
             OptionObjectHelpers.RemoveFieldObject(rowObject, fieldNumber);
 
@@ -186,7 +186,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveFieldObject_OptionObjectHelpers_Null_ByFieldObject()
         {
             string fieldNumber = "123";
-            FieldObject fieldObject = new FieldObject(fieldNumber);
+            FieldObject fieldObject = new(fieldNumber);
             RowObject rowObject = null;
 
             OptionObjectHelpers.RemoveFieldObject(rowObject, fieldObject);

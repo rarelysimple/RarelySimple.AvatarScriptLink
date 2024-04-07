@@ -12,7 +12,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void FormObjectFromJson_NullString()
         {
             string json = null;
-            FormObject expected = new FormObject();
+            FormObject expected = new();
             FormObject actual = (FormObject)OptionObjectHelpers.TransformToFormObject(json);
             //Assert.AreEqual(expected, actual);
         }
@@ -22,7 +22,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void FormObjectFromJson_Success()
         {
             string json = "{\"CurrentRow\":null,\"FormId\":1,\"MultipleIteration\":false,\"OtherRows\":[]}";
-            FormObject expected = new FormObject
+            FormObject expected = new()
             {
                 FormId = "1"
             };
@@ -37,7 +37,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void FormObjectFromJson_Failure()
         {
             string json = "{\"CurrentRow\":null,\"FormId\":2,\"MultipleIteration\":false,\"OtherRows\":[]}";
-            FormObject expected = new FormObject
+            FormObject expected = new()
             {
                 FormId = "1"
             };
@@ -57,7 +57,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                        + "  <MultipleIteration>false</MultipleIteration>" + Environment.NewLine
                        + "  <OtherRows />" + Environment.NewLine
                        + "</FormObject>";
-            FormObject expected = new FormObject
+            FormObject expected = new()
             {
                 FormId = "1"
             };
@@ -77,7 +77,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                        + "  <MultipleIteration>false</MultipleIteration>" + Environment.NewLine
                        + "  <OtherRows />" + Environment.NewLine
                        + "</FormObject>";
-            FormObject expected = new FormObject
+            FormObject expected = new()
             {
                 FormId = "1"
             };

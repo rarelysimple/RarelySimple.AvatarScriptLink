@@ -12,7 +12,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void RowObjectFromJson_NullString()
         {
             string json = null;
-            RowObject expected = new RowObject();
+            RowObject expected = new();
             RowObject actual = (RowObject)OptionObjectHelpers.TransformToRowObject(json);
             //Assert.AreEqual(expected, OptionObjectHelpers.TransformToFieldObject(json));
         }
@@ -22,7 +22,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void RowObjectFromJson_Success()
         {
             string json = "{\"Fields\":[],\"ParentRowId\":null,\"RowAction\":null,\"RowId\":\"1||1\"}";
-            RowObject expected = new RowObject
+            RowObject expected = new()
             {
                 RowId = "1||1"
             };
@@ -37,7 +37,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void RowObjectFromJson_Failure()
         {
             string json = "{\"Fields\":[],\"ParentRowId\":null,\"RowAction\":null,\"RowId\":\"1||2\"}";
-            RowObject expected = new RowObject
+            RowObject expected = new()
             {
                 RowId = "1||1"
             };
@@ -57,7 +57,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                        + "  <RowId>1||1</RowId>" + Environment.NewLine
                        + "  <Fields />" + Environment.NewLine
                        + "</RowObject>";
-            RowObject expected = new RowObject
+            RowObject expected = new()
             {
                 RowId = "1||1"
             };
@@ -76,7 +76,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                        + "  <RowId>1||2</RowId>" + Environment.NewLine
                        + "  <Fields />" + Environment.NewLine
                        + "</RowObject>";
-            RowObject expected = new RowObject
+            RowObject expected = new()
             {
                 RowId = "1||1"
             };

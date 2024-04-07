@@ -253,26 +253,26 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestCategory("ScriptLinkHelpers")]
         public void DisableAllFieldObjects_OptionObject2015_MissingProperties_IsDisabled()
         {
-            FieldObject fieldObject1 = new FieldObject() { FieldNumber = "1", FieldValue = "1" };
-            FieldObject fieldObject2 = new FieldObject() { FieldNumber = "2", FieldValue = "2" };
-            FieldObject fieldObject3 = new FieldObject() { FieldNumber = "3", FieldValue = "3" };
-            FieldObject fieldObject4 = new FieldObject() { FieldNumber = "4", FieldValue = "4" };
-            FieldObject fieldObject5 = new FieldObject() { FieldNumber = "5", FieldValue = "5" };
-            List<FieldObject> fieldObjects = new List<FieldObject>
-            {
+            FieldObject fieldObject1 = new() { FieldNumber = "1", FieldValue = "1" };
+            FieldObject fieldObject2 = new() { FieldNumber = "2", FieldValue = "2" };
+            FieldObject fieldObject3 = new() { FieldNumber = "3", FieldValue = "3" };
+            FieldObject fieldObject4 = new() { FieldNumber = "4", FieldValue = "4" };
+            FieldObject fieldObject5 = new() { FieldNumber = "5", FieldValue = "5" };
+            List<FieldObject> fieldObjects =
+            [
                 fieldObject1,
                 fieldObject2,
                 fieldObject3,
                 fieldObject4,
                 fieldObject5
-            };
-            RowObject rowObject = new RowObject("1||1", fieldObjects);
-            FormObject formObject = new FormObject("1", rowObject);
-            List<FormObject> formObjects = new List<FormObject>
-            {
+            ];
+            RowObject rowObject = new("1||1", fieldObjects);
+            FormObject formObject = new("1", rowObject);
+            List<FormObject> formObjects =
+            [
                 formObject
-            };
-            OptionObject2015 optionObject2015 = new OptionObject2015()
+            ];
+            OptionObject2015 optionObject2015 = new()
             {
                 Forms = formObjects
             };
@@ -290,26 +290,26 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestCategory("ScriptLinkHelpers")]
         public void DisableAllFieldObjects_OptionObject2015_IsModified()
         {
-            FieldObject fieldObject1 = new FieldObject() { FieldNumber = "1", FieldValue = "1" };
-            FieldObject fieldObject2 = new FieldObject() { FieldNumber = "2", FieldValue = "2" };
-            FieldObject fieldObject3 = new FieldObject() { FieldNumber = "3", FieldValue = "3" };
-            FieldObject fieldObject4 = new FieldObject() { FieldNumber = "4", FieldValue = "4" };
-            FieldObject fieldObject5 = new FieldObject() { FieldNumber = "5", FieldValue = "5" };
-            List<FieldObject> fieldObjects = new List<FieldObject>
-            {
+            FieldObject fieldObject1 = new() { FieldNumber = "1", FieldValue = "1" };
+            FieldObject fieldObject2 = new() { FieldNumber = "2", FieldValue = "2" };
+            FieldObject fieldObject3 = new() { FieldNumber = "3", FieldValue = "3" };
+            FieldObject fieldObject4 = new() { FieldNumber = "4", FieldValue = "4" };
+            FieldObject fieldObject5 = new() { FieldNumber = "5", FieldValue = "5" };
+            List<FieldObject> fieldObjects =
+            [
                 fieldObject1,
                 fieldObject2,
                 fieldObject3,
                 fieldObject4,
                 fieldObject5
-            };
-            RowObject rowObject = new RowObject("1||1", fieldObjects);
-            FormObject formObject = new FormObject("1", rowObject);
-            List<FormObject> formObjects = new List<FormObject>
-            {
+            ];
+            RowObject rowObject = new("1||1", fieldObjects);
+            FormObject formObject = new("1", rowObject);
+            List<FormObject> formObjects =
+            [
                 formObject
-            };
-            OptionObject2015 optionObject2015 = new OptionObject2015()
+            ];
+            OptionObject2015 optionObject2015 = new()
             {
                 Forms = formObjects
             };
@@ -327,35 +327,35 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestCategory("ScriptLinkHelpers")]
         public void DisableAllFieldObjects_OptionObject2015_ExcludesFields()
         {
-            FieldObject fieldObject1 = new FieldObject("1", "1", true, false, false);
-            FieldObject fieldObject2 = new FieldObject("2", "2", true, false, false);
-            FieldObject fieldObject3 = new FieldObject("3", "3", true, false, false);
-            FieldObject fieldObject4 = new FieldObject("4", "4", true, false, false);
-            FieldObject fieldObject5 = new FieldObject("5", "5", true, false, false);
-            List<FieldObject> fieldObjects = new List<FieldObject>
-            {
+            FieldObject fieldObject1 = new("1", "1", true, false, false);
+            FieldObject fieldObject2 = new("2", "2", true, false, false);
+            FieldObject fieldObject3 = new("3", "3", true, false, false);
+            FieldObject fieldObject4 = new("4", "4", true, false, false);
+            FieldObject fieldObject5 = new("5", "5", true, false, false);
+            List<FieldObject> fieldObjects =
+            [
                 fieldObject1,
                 fieldObject2,
                 fieldObject3,
                 fieldObject4,
                 fieldObject5
-            };
-            RowObject rowObject = new RowObject("1||1", fieldObjects);
-            FormObject formObject = new FormObject("1", rowObject);
-            List<FormObject> formObjects = new List<FormObject>
-            {
+            ];
+            RowObject rowObject = new("1||1", fieldObjects);
+            FormObject formObject = new("1", rowObject);
+            List<FormObject> formObjects =
+            [
                 formObject
-            };
-            OptionObject2015 optionObject2015 = new OptionObject2015()
+            ];
+            OptionObject2015 optionObject2015 = new()
             {
                 Forms = formObjects
             };
 
-            List<string> excludedFields = new List<string>
-            {
+            List<string> excludedFields =
+            [
                 "2",
                 "4"
-            };
+            ];
             OptionObject2015 returnOptionObject = (OptionObject2015)OptionObjectHelpers.DisableAllFieldObjects(optionObject2015, excludedFields);
 
             Assert.IsFalse(returnOptionObject.IsFieldEnabled("1"));

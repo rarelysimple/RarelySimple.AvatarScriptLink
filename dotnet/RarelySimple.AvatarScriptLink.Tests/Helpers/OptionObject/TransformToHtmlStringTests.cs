@@ -11,12 +11,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject_AreEqual()
         {
-            OptionObject optionObject = new OptionObject()
+            OptionObject optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
             };
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.OptionObject</h1>");
             sb.Append("<table><thead>");
             sb.Append("<tr><th>Property</th><th>Value</th></tr>");
@@ -38,7 +38,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject_IsString()
         {
-            OptionObject optionObject = new OptionObject()
+            OptionObject optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -53,7 +53,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject_DoesNotHaveHeaders()
         {
-            OptionObject optionObject = new OptionObject()
+            OptionObject optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -67,7 +67,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject_OverrideDoesNotHaveHeaders()
         {
-            OptionObject optionObject = new OptionObject()
+            OptionObject optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -81,7 +81,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject_OverrideDoesHaveHeaders()
         {
-            OptionObject optionObject = new OptionObject()
+            OptionObject optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -95,12 +95,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject_Helper_AreEqual()
         {
-            OptionObject optionObject = new OptionObject()
+            OptionObject optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
             };
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.OptionObject</h1>");
             sb.Append("<table><thead>");
             sb.Append("<tr><th>Property</th><th>Value</th></tr>");
@@ -122,7 +122,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject_Helper_IsString()
         {
-            OptionObject optionObject = new OptionObject()
+            OptionObject optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -137,7 +137,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject_Helper_DoesNotHaveHeaders()
         {
-            OptionObject optionObject = new OptionObject()
+            OptionObject optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -151,7 +151,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject_Helper_OverrideDoesNotHaveHeaders()
         {
-            OptionObject optionObject = new OptionObject()
+            OptionObject optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -165,7 +165,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject_Helper_OverrideDoesHaveHeaders()
         {
-            OptionObject optionObject = new OptionObject()
+            OptionObject optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -180,12 +180,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject2_AreEqual()
         {
-            OptionObject2 optionObject = new OptionObject2()
+            OptionObject2 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
             };
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.OptionObject2</h1>");
             sb.Append("<table><thead>");
             sb.Append("<tr><th>Property</th><th>Value</th></tr>");
@@ -207,7 +207,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject2_IsString()
         {
-            OptionObject2 optionObject = new OptionObject2()
+            OptionObject2 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -222,7 +222,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject2_DoesNotHaveHeaders()
         {
-            OptionObject2 optionObject = new OptionObject2()
+            OptionObject2 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -236,7 +236,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject2_OverrideDoesNotHaveHeaders()
         {
-            OptionObject2 optionObject = new OptionObject2()
+            OptionObject2 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -250,7 +250,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject2_OverrideDoesHaveHeaders()
         {
-            OptionObject2 optionObject = new OptionObject2()
+            OptionObject2 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -264,12 +264,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject2_Helper_AreEqual()
         {
-            OptionObject2 optionObject = new OptionObject2()
+            OptionObject2 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
             };
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.OptionObject2</h1>");
             sb.Append("<table><thead>");
             sb.Append("<tr><th>Property</th><th>Value</th></tr>");
@@ -291,7 +291,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject2_Helper_IsString()
         {
-            OptionObject2 optionObject = new OptionObject2()
+            OptionObject2 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -306,7 +306,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject2_Helper_DoesNotHaveHeaders()
         {
-            OptionObject2 optionObject = new OptionObject2()
+            OptionObject2 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -320,7 +320,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject2_Helper_OverrideDoesNotHaveHeaders()
         {
-            OptionObject2 optionObject = new OptionObject2()
+            OptionObject2 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -334,7 +334,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject2_Helper_OverrideDoesHaveHeaders()
         {
-            OptionObject2 optionObject = new OptionObject2()
+            OptionObject2 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -350,12 +350,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject2015_AreEqual()
         {
-            OptionObject2015 optionObject = new OptionObject2015()
+            OptionObject2015 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
             };
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.OptionObject2015</h1>");
             sb.Append("<table><thead>");
             sb.Append("<tr><th>Property</th><th>Value</th></tr>");
@@ -377,7 +377,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject2015_IsString()
         {
-            OptionObject2015 optionObject = new OptionObject2015()
+            OptionObject2015 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -392,7 +392,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject2015_DoesNotHaveHeaders()
         {
-            OptionObject2015 optionObject = new OptionObject2015()
+            OptionObject2015 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -406,7 +406,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject2015_OverrideDoesNotHaveHeaders()
         {
-            OptionObject2015 optionObject = new OptionObject2015()
+            OptionObject2015 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -420,7 +420,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject2015_OverrideDoesHaveHeaders()
         {
-            OptionObject2015 optionObject = new OptionObject2015()
+            OptionObject2015 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -434,12 +434,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject2015_Helper_AreEqual()
         {
-            OptionObject2015 optionObject = new OptionObject2015()
+            OptionObject2015 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
             };
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.OptionObject2015</h1>");
             sb.Append("<table><thead>");
             sb.Append("<tr><th>Property</th><th>Value</th></tr>");
@@ -461,7 +461,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject2015_Helper_IsString()
         {
-            OptionObject2015 optionObject = new OptionObject2015()
+            OptionObject2015 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -476,7 +476,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject2015_Helper_DoesNotHaveHeaders()
         {
-            OptionObject2015 optionObject = new OptionObject2015()
+            OptionObject2015 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -490,7 +490,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject2015_Helper_OverrideDoesNotHaveHeaders()
         {
-            OptionObject2015 optionObject = new OptionObject2015()
+            OptionObject2015 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -504,7 +504,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_OptionObject2015_Helper_OverrideDoesHaveHeaders()
         {
-            OptionObject2015 optionObject = new OptionObject2015()
+            OptionObject2015 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -520,12 +520,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_FormObject_IsString()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = false
             };
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.FormObject</h1>");
             sb.Append("<table><thead>");
             sb.Append("<tr><th>Property</th><th>Value</th></tr>");
@@ -547,7 +547,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_FormObject_DoesNotHaveHeaders()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = false
@@ -561,7 +561,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_FormObject_OverrideDoesNotHaveHeaders()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = false
@@ -575,7 +575,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_FormObject_OverrideDoesHaveHeaders()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = false
@@ -589,12 +589,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_FormObject_Helper_AreEqual()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = false
             };
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.FormObject</h1>");
             sb.Append("<table><thead>");
             sb.Append("<tr><th>Property</th><th>Value</th></tr>");
@@ -615,7 +615,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_FormObject_Helper_IsString()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = false
@@ -630,7 +630,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_FormObject_Helper_DoesNotHaveHeaders()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = false
@@ -644,7 +644,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_FormObject_Helper_OverrideDoesNotHaveHeaders()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = false
@@ -658,7 +658,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_FormObject_Helper_OverrideDoesHaveHeaders()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = false
@@ -674,11 +674,11 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_RowObject_AreEqual()
         {
-            RowObject rowObject = new RowObject()
+            RowObject rowObject = new()
             {
                 RowId = "1"
             };
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.RowObject</h1>");
             sb.Append("<table><thead>");
             sb.Append("<tr><th>Property</th><th>Value</th></tr>");
@@ -698,7 +698,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_RowObject_IsString()
         {
-            RowObject rowObject = new RowObject()
+            RowObject rowObject = new()
             {
                 RowId = "1"
             };
@@ -712,7 +712,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_RowObject_DoesNotHaveHeaders()
         {
-            RowObject rowObject = new RowObject()
+            RowObject rowObject = new()
             {
                 RowId = "1"
             };
@@ -725,7 +725,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_RowObject_OverrideDoesNotHaveHeaders()
         {
-            RowObject rowObject = new RowObject()
+            RowObject rowObject = new()
             {
                 RowId = "1"
             };
@@ -738,7 +738,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_RowObject_OverrideDoesHaveHeaders()
         {
-            RowObject rowObject = new RowObject()
+            RowObject rowObject = new()
             {
                 RowId = "1"
             };
@@ -751,11 +751,11 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_RowObject_Helper_AreEqual()
         {
-            RowObject rowObject = new RowObject()
+            RowObject rowObject = new()
             {
                 RowId = "1"
             };
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.RowObject</h1>");
             sb.Append("<table><thead>");
             sb.Append("<tr><th>Property</th><th>Value</th></tr>");
@@ -775,7 +775,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_RowObject_Helper_IsString()
         {
-            RowObject rowObject = new RowObject()
+            RowObject rowObject = new()
             {
                 RowId = "1"
             };
@@ -789,7 +789,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_RowObject_Helper_DoesNotHaveHeaders()
         {
-            RowObject rowObject = new RowObject()
+            RowObject rowObject = new()
             {
                 RowId = "1"
             };
@@ -802,7 +802,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_RowObject_Helper_OverrideDoesNotHaveHeaders()
         {
-            RowObject rowObject = new RowObject()
+            RowObject rowObject = new()
             {
                 RowId = "1"
             };
@@ -815,7 +815,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_RowObject_Helper_OverrideDoesHaveHeaders()
         {
-            RowObject rowObject = new RowObject()
+            RowObject rowObject = new()
             {
                 RowId = "1"
             };
@@ -830,12 +830,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_FieldObject_AreEqual()
         {
-            FieldObject fieldObject = new FieldObject()
+            FieldObject fieldObject = new()
             {
                 FieldNumber = "1",
                 FieldValue = "TEST"
             };
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.FieldObject</h1>");
             sb.Append("<table><thead>");
             sb.Append("<tr><th>Property</th><th>Value</th></tr>");
@@ -857,7 +857,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_FieldObject_IsString()
         {
-            FieldObject fieldObject = new FieldObject()
+            FieldObject fieldObject = new()
             {
                 FieldNumber = "1",
                 FieldValue = "TEST"
@@ -872,7 +872,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_FieldObject_DoesNotHaveHeaders()
         {
-            FieldObject fieldObject = new FieldObject()
+            FieldObject fieldObject = new()
             {
                 FieldNumber = "1",
                 FieldValue = "TEST"
@@ -886,7 +886,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_FieldObject_OverrideDoesNotHaveHeaders()
         {
-            FieldObject fieldObject = new FieldObject()
+            FieldObject fieldObject = new()
             {
                 FieldNumber = "1",
                 FieldValue = "TEST"
@@ -900,7 +900,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_FieldObject_OverrideDoesHaveHeaders()
         {
-            FieldObject fieldObject = new FieldObject()
+            FieldObject fieldObject = new()
             {
                 FieldNumber = "1",
                 FieldValue = "TEST"
@@ -914,12 +914,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_FieldObject_Helper_AreEqual()
         {
-            FieldObject fieldObject = new FieldObject()
+            FieldObject fieldObject = new()
             {
                 FieldNumber = "1",
                 FieldValue = "TEST"
             };
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.Append("<h1>RarelySimple.AvatarScriptLink.Objects.FieldObject</h1>");
             sb.Append("<table><thead>");
             sb.Append("<tr><th>Property</th><th>Value</th></tr>");
@@ -941,7 +941,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_FieldObject_Helper_IsString()
         {
-            FieldObject fieldObject = new FieldObject()
+            FieldObject fieldObject = new()
             {
                 FieldNumber = "1",
                 FieldValue = "TEST"
@@ -956,7 +956,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_FieldObject_Helper_DoesNotHaveHeaders()
         {
-            FieldObject fieldObject = new FieldObject()
+            FieldObject fieldObject = new()
             {
                 FieldNumber = "1",
                 FieldValue = "TEST"
@@ -970,7 +970,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_FieldObject_Helper_OverrideDoesNotHaveHeaders()
         {
-            FieldObject fieldObject = new FieldObject()
+            FieldObject fieldObject = new()
             {
                 FieldNumber = "1",
                 FieldValue = "TEST"
@@ -984,7 +984,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void TransformToHtmlString_FieldObject_Helper_OverrideDoesHaveHeaders()
         {
-            FieldObject fieldObject = new FieldObject()
+            FieldObject fieldObject = new()
             {
                 FieldNumber = "1",
                 FieldValue = "TEST"

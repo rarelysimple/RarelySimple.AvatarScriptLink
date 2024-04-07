@@ -71,7 +71,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
                 .FieldNumber("123").FieldValue("TEST")
                 .Enabled()
                 .Build();
-            FieldObject fieldObject2 = new FieldObject
+            FieldObject fieldObject2 = new()
             {
                 Enabled = "1",
                 FieldNumber = "123",
@@ -93,7 +93,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
                 .FieldNumber("123").FieldValue("TEST")
                 .Enabled()
                 .Build();
-            FieldObject fieldObject2 = new FieldObject
+            FieldObject fieldObject2 = new()
             {
                 Enabled = "1",
                 FieldNumber = "123",
@@ -322,7 +322,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void FieldObject_Constructor_1Parameter_NoError()
         {
             string expected = "123.45";
-            FieldObject fieldObject = new FieldObject(expected);
+            FieldObject fieldObject = new(expected);
             Assert.AreEqual(expected, fieldObject.FieldNumber);
             Assert.AreEqual("", fieldObject.FieldValue);
             Assert.AreEqual("0", fieldObject.Enabled);
@@ -336,7 +336,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void FieldObject_Constructor_1Parameter_Error()
         {
             string expected = "";
-            FieldObject fieldObject = new FieldObject(expected);
+            FieldObject fieldObject = new(expected);
             Assert.AreEqual(expected, fieldObject.FieldNumber);
             Assert.AreEqual("", fieldObject.FieldValue);
             Assert.AreEqual("1", fieldObject.Enabled);
@@ -350,7 +350,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         {
             string fieldNumber = "123.45";
             string fieldValue = "TEST";
-            FieldObject fieldObject = new FieldObject(fieldNumber, fieldValue);
+            FieldObject fieldObject = new(fieldNumber, fieldValue);
             Assert.AreEqual(fieldNumber, fieldObject.FieldNumber);
             Assert.AreEqual(fieldValue, fieldObject.FieldValue);
             Assert.AreEqual("0", fieldObject.Enabled);
@@ -365,7 +365,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         {
             string fieldNumber = "";
             string fieldValue = "TEST";
-            FieldObject fieldObject = new FieldObject(fieldNumber, fieldValue);
+            FieldObject fieldObject = new(fieldNumber, fieldValue);
             Assert.AreEqual(fieldNumber, fieldObject.FieldNumber);
             Assert.AreEqual(fieldValue, fieldObject.FieldValue);
             Assert.AreEqual("1", fieldObject.Enabled);
@@ -379,7 +379,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         {
             string fieldNumber = "123.45";
             string fieldValue = "TEST";
-            FieldObject fieldObject = new FieldObject(fieldNumber, fieldValue, true, true, true);
+            FieldObject fieldObject = new(fieldNumber, fieldValue, true, true, true);
             Assert.AreEqual(fieldNumber, fieldObject.FieldNumber);
             Assert.AreEqual(fieldValue, fieldObject.FieldValue);
             Assert.AreEqual("1", fieldObject.Enabled);
@@ -394,7 +394,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         {
             string fieldNumber = "";
             string fieldValue = "TEST";
-            FieldObject fieldObject = new FieldObject(fieldNumber, fieldValue, true, true, true);
+            FieldObject fieldObject = new(fieldNumber, fieldValue, true, true, true);
             Assert.AreEqual(fieldNumber, fieldObject.FieldNumber);
             Assert.AreEqual(fieldValue, fieldObject.FieldValue);
             Assert.AreEqual("1", fieldObject.Enabled);
@@ -405,7 +405,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestMethod]
         public void FieldObject_Clone_AreEqual()
         {
-            FieldObject fieldObject = new FieldObject("123", "Test");
+            FieldObject fieldObject = new("123", "Test");
 
             FieldObject cloneObject = fieldObject.Clone();
 
@@ -415,7 +415,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         [TestMethod]
         public void FieldObject_Clone_AreNotEqual()
         {
-            FieldObject fieldObject = new FieldObject("123", "Test");
+            FieldObject fieldObject = new("123", "Test");
             FieldObject cloneObject = fieldObject.Clone();
 
             fieldObject.SetFieldValue("Modified");

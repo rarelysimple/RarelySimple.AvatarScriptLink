@@ -11,7 +11,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestCategory("ScriptLinkHelpers")]
         public void GetOptionObjectHeaders_OptionObject_IsNotNull()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
             List<string> headers = OptionObjectHelpers.GetOptionObjectHeaders((IOptionObject)optionObject);
             Assert.IsNotNull(headers);
         }
@@ -20,7 +20,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestCategory("ScriptLinkHelpers")]
         public void GetOptionObjectHeaders_OptionObject2_IsNotNull()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
             List<string> headers = OptionObjectHelpers.GetOptionObjectHeaders((IOptionObject2)optionObject);
             Assert.IsNotNull(headers);
         }
@@ -29,7 +29,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestCategory("ScriptLinkHelpers")]
         public void GetOptionObjectHeaders_OptionObject2015_IsNotNull()
         {
-            OptionObject2015 optionObject = new OptionObject2015();
+            OptionObject2015 optionObject = new();
             List<string> headers = OptionObjectHelpers.GetOptionObjectHeaders((IOptionObject2015)optionObject);
             Assert.IsNotNull(headers);
         }
@@ -38,7 +38,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestCategory("ScriptLinkHelpers")]
         public void GetOptionObjectHeaders_OptionObject_ContainsExpected_EntityID_Entry()
         {
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
             string expected = "Entity ID: " + optionObject.EntityID;
             List<string> headers = OptionObjectHelpers.GetOptionObjectHeaders((IOptionObject)optionObject);
             bool isPresent = headers.Contains(expected);
@@ -49,7 +49,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestCategory("ScriptLinkHelpers")]
         public void GetOptionObjectHeaders_OptionObject2_ContainsExpected_EntityID_Entry()
         {
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
             string expected = "Entity ID: " + optionObject.EntityID;
             List<string> headers = OptionObjectHelpers.GetOptionObjectHeaders((IOptionObject2)optionObject);
             bool isPresent = headers.Contains(expected);
@@ -60,7 +60,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestCategory("ScriptLinkHelpers")]
         public void GetOptionObjectHeaders_OptionObject2015_ContainsExpected_EntityID_Entry()
         {
-            OptionObject2015 optionObject = new OptionObject2015();
+            OptionObject2015 optionObject = new();
             string expected = "Entity ID: " + optionObject.EntityID;
             List<string> headers = OptionObjectHelpers.GetOptionObjectHeaders((IOptionObject2015)optionObject);
             bool isPresent = headers.Contains(expected);

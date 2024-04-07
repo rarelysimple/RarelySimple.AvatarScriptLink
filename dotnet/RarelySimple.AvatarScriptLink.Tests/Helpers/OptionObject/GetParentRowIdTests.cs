@@ -9,24 +9,24 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetParentRowIdOptionObjectReturnsString()
         {
-            RowObject rowObject1 = new RowObject()
+            RowObject rowObject1 = new()
             {
                 RowId = "1||1",
                 ParentRowId = "1||1"
             };
-            RowObject rowObject2 = new RowObject()
+            RowObject rowObject2 = new()
             {
                 RowId = "1||2",
                 ParentRowId = "1||1"
             };
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true,
                 CurrentRow = rowObject1
             };
             formObject.OtherRows.Add(rowObject2);
-            OptionObject optionObject = new OptionObject()
+            OptionObject optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -40,24 +40,24 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetParentRowIdHelperOptionObjectReturnsString()
         {
-            RowObject rowObject1 = new RowObject()
+            RowObject rowObject1 = new()
             {
                 RowId = "1||1",
                 ParentRowId = "1||1"
             };
-            RowObject rowObject2 = new RowObject()
+            RowObject rowObject2 = new()
             {
                 RowId = "1||2",
                 ParentRowId = "1||1"
             };
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true,
                 CurrentRow = rowObject1
             };
             formObject.OtherRows.Add(rowObject2);
-            OptionObject optionObject = new OptionObject()
+            OptionObject optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -71,24 +71,24 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetParentRowIdOptionObjectReturnsExpected()
         {
-            RowObject rowObject1 = new RowObject()
+            RowObject rowObject1 = new()
             {
                 RowId = "1||1",
                 ParentRowId = "1||1"
             };
-            RowObject rowObject2 = new RowObject()
+            RowObject rowObject2 = new()
             {
                 RowId = "1||2",
                 ParentRowId = "1||1"
             };
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true,
                 CurrentRow = rowObject1
             };
             formObject.OtherRows.Add(rowObject2);
-            OptionObject optionObject = new OptionObject()
+            OptionObject optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -102,24 +102,24 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetParentRowIdHelperOptionObjectReturnsExpected()
         {
-            RowObject rowObject1 = new RowObject()
+            RowObject rowObject1 = new()
             {
                 RowId = "1||1",
                 ParentRowId = "1||1"
             };
-            RowObject rowObject2 = new RowObject()
+            RowObject rowObject2 = new()
             {
                 RowId = "1||2",
                 ParentRowId = "1||1"
             };
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true,
                 CurrentRow = rowObject1
             };
             formObject.OtherRows.Add(rowObject2);
-            OptionObject optionObject = new OptionObject()
+            OptionObject optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -133,24 +133,24 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentException))]
         public void GetParentRowIdHelperOptionObjectReturnsNotFound()
         {
-            RowObject rowObject1 = new RowObject()
+            RowObject rowObject1 = new()
             {
                 RowId = "1||1",
                 ParentRowId = "1||1"
             };
-            RowObject rowObject2 = new RowObject()
+            RowObject rowObject2 = new()
             {
                 RowId = "1||2",
                 ParentRowId = "1||1"
             };
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true,
                 CurrentRow = rowObject1
             };
             formObject.OtherRows.Add(rowObject2);
-            OptionObject optionObject = new OptionObject()
+            OptionObject optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -164,12 +164,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetParentRowIdHelperOptionObjectNoCurrentRowReturnsError()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true
             };
-            OptionObject optionObject = new OptionObject()
+            OptionObject optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -183,7 +183,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentException))]
         public void GetParentRowIdHelperOptionObjectNoFormsReturnsError()
         {
-            OptionObject optionObject = new OptionObject()
+            OptionObject optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -195,24 +195,24 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetParentRowIdOptionObject2ReturnsString()
         {
-            RowObject rowObject1 = new RowObject()
+            RowObject rowObject1 = new()
             {
                 RowId = "1||1",
                 ParentRowId = "1||1"
             };
-            RowObject rowObject2 = new RowObject()
+            RowObject rowObject2 = new()
             {
                 RowId = "1||2",
                 ParentRowId = "1||1"
             };
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true,
                 CurrentRow = rowObject1
             };
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2 optionObject = new OptionObject2()
+            OptionObject2 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -226,24 +226,24 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetParentRowIdHelperOptionObject2ReturnsString()
         {
-            RowObject rowObject1 = new RowObject()
+            RowObject rowObject1 = new()
             {
                 RowId = "1||1",
                 ParentRowId = "1||1"
             };
-            RowObject rowObject2 = new RowObject()
+            RowObject rowObject2 = new()
             {
                 RowId = "1||2",
                 ParentRowId = "1||1"
             };
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true,
                 CurrentRow = rowObject1
             };
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2 optionObject = new OptionObject2()
+            OptionObject2 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -256,24 +256,24 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetParentRowIdOptionObject2ReturnsExpected()
         {
-            RowObject rowObject1 = new RowObject()
+            RowObject rowObject1 = new()
             {
                 RowId = "1||1",
                 ParentRowId = "1||1"
             };
-            RowObject rowObject2 = new RowObject()
+            RowObject rowObject2 = new()
             {
                 RowId = "1||2",
                 ParentRowId = "1||1"
             };
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true,
                 CurrentRow = rowObject1
             };
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2 optionObject = new OptionObject2()
+            OptionObject2 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -287,24 +287,24 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetParentRowIdHelperOptionObject2ReturnsExpected()
         {
-            RowObject rowObject1 = new RowObject()
+            RowObject rowObject1 = new()
             {
                 RowId = "1||1",
                 ParentRowId = "1||1"
             };
-            RowObject rowObject2 = new RowObject()
+            RowObject rowObject2 = new()
             {
                 RowId = "1||2",
                 ParentRowId = "1||1"
             };
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true,
                 CurrentRow = rowObject1
             };
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2 optionObject = new OptionObject2()
+            OptionObject2 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -318,24 +318,24 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentException))]
         public void GetParentRowIdHelperOptionObject2ReturnsNotFound()
         {
-            RowObject rowObject1 = new RowObject()
+            RowObject rowObject1 = new()
             {
                 RowId = "1||1",
                 ParentRowId = "1||1"
             };
-            RowObject rowObject2 = new RowObject()
+            RowObject rowObject2 = new()
             {
                 RowId = "1||2",
                 ParentRowId = "1||1"
             };
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true,
                 CurrentRow = rowObject1
             };
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2 optionObject = new OptionObject2()
+            OptionObject2 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -349,12 +349,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetParentRowIdHelperOptionObject2NoCurrentRowReturnsError()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true
             };
-            OptionObject2 optionObject = new OptionObject2()
+            OptionObject2 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -368,7 +368,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentException))]
         public void GetParentRowIdHelperOptionObject2NoFormsReturnsError()
         {
-            OptionObject2 optionObject = new OptionObject2()
+            OptionObject2 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -381,24 +381,24 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetParentRowIdOptionObject2015ReturnsString()
         {
-            RowObject rowObject1 = new RowObject()
+            RowObject rowObject1 = new()
             {
                 RowId = "1||1",
                 ParentRowId = "1||1"
             };
-            RowObject rowObject2 = new RowObject()
+            RowObject rowObject2 = new()
             {
                 RowId = "1||2",
                 ParentRowId = "1||1"
             };
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true,
                 CurrentRow = rowObject1
             };
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2015 optionObject = new OptionObject2015()
+            OptionObject2015 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -412,24 +412,24 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetParentRowIdHelperOptionObject2015ReturnsString()
         {
-            RowObject rowObject1 = new RowObject()
+            RowObject rowObject1 = new()
             {
                 RowId = "1||1",
                 ParentRowId = "1||1"
             };
-            RowObject rowObject2 = new RowObject()
+            RowObject rowObject2 = new()
             {
                 RowId = "1||2",
                 ParentRowId = "1||1"
             };
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true,
                 CurrentRow = rowObject1
             };
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2015 optionObject = new OptionObject2015()
+            OptionObject2015 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -442,24 +442,24 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetParentRowIdOptionObject2015ReturnsExpected()
         {
-            RowObject rowObject1 = new RowObject()
+            RowObject rowObject1 = new()
             {
                 RowId = "1||1",
                 ParentRowId = "1||1"
             };
-            RowObject rowObject2 = new RowObject()
+            RowObject rowObject2 = new()
             {
                 RowId = "1||2",
                 ParentRowId = "1||1"
             };
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true,
                 CurrentRow = rowObject1
             };
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2015 optionObject = new OptionObject2015()
+            OptionObject2015 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -473,24 +473,24 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void GetParentRowIdHelperOptionObject2015ReturnsExpected()
         {
-            RowObject rowObject1 = new RowObject()
+            RowObject rowObject1 = new()
             {
                 RowId = "1||1",
                 ParentRowId = "1||1"
             };
-            RowObject rowObject2 = new RowObject()
+            RowObject rowObject2 = new()
             {
                 RowId = "1||2",
                 ParentRowId = "1||1"
             };
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true,
                 CurrentRow = rowObject1
             };
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2015 optionObject = new OptionObject2015()
+            OptionObject2015 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -504,24 +504,24 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentException))]
         public void GetParentRowIdHelperOptionObject2015ReturnsNotFound()
         {
-            RowObject rowObject1 = new RowObject()
+            RowObject rowObject1 = new()
             {
                 RowId = "1||1",
                 ParentRowId = "1||1"
             };
-            RowObject rowObject2 = new RowObject()
+            RowObject rowObject2 = new()
             {
                 RowId = "1||2",
                 ParentRowId = "1||1"
             };
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true,
                 CurrentRow = rowObject1
             };
             formObject.OtherRows.Add(rowObject2);
-            OptionObject2015 optionObject = new OptionObject2015()
+            OptionObject2015 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -535,12 +535,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetParentRowIdHelperOptionObject2015NoCurrentRowReturnsError()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true
             };
-            OptionObject2015 optionObject = new OptionObject2015()
+            OptionObject2015 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"
@@ -554,7 +554,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentException))]
         public void GetParentRowIdHelperOptionObject2015NoFormsReturnsError()
         {
-            OptionObject2015 optionObject = new OptionObject2015()
+            OptionObject2015 optionObject = new()
             {
                 EntityID = "1",
                 SystemCode = "UAT"

@@ -19,7 +19,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void GetNextRowId_FormObjectNonMI()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = false
@@ -32,7 +32,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void GetNextRowId_FormObjectNoCurrentRow()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true
@@ -44,7 +44,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void GetNextRowId_FormObjectHasCurrentRow()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true
@@ -57,7 +57,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void GetNextRowId_FormObjectHasOtherRow()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true
@@ -72,7 +72,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void GetNextRowId_FormObjectHasMaximumRows()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true
@@ -103,7 +103,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void GetNextRowId_OptionObjectHelpers_FormObjectNonMI()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = false
@@ -116,7 +116,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void GetNextRowId_OptionObjectHelpers_FormObjectNoCurrentRow()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true
@@ -128,7 +128,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void GetNextRowId_OptionObjectHelpers_FormObjectHasCurrentRow()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true
@@ -141,7 +141,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void GetNextRowId_OptionObjectHelpers_FormObjectHasOtherRow()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true
@@ -156,7 +156,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void GetNextRowId_OptionObjectHelpers_FormObjectHasMaximumRows()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true

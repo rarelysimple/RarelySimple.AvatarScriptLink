@@ -11,7 +11,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddRowObject_ToFormObject_NullFormObject()
         {
-            RowObject rowObject = new RowObject();
+            RowObject rowObject = new();
             FormObject formObject = null;
             formObject = (FormObject)OptionObjectHelpers.AddRowObject(formObject, rowObject);
             //Assert.AreEqual(1, formObject);
@@ -23,7 +23,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void AddRowObject_ToFormObject_NullRowObject()
         {
             RowObject rowObject = null;
-            FormObject formObject = new FormObject();
+            FormObject formObject = new();
             formObject = (FormObject)OptionObjectHelpers.AddRowObject(formObject, rowObject);
             //Assert.AreEqual(1, formObject);
         }
@@ -34,11 +34,11 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string formId = "1";
             string expected = "1||1";
-            RowObject rowObject = new RowObject()
+            RowObject rowObject = new()
             {
                 RowId = expected
             };
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = formId
             };
@@ -52,8 +52,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string formId = "1";
             string expected = "1||1";
-            RowObject rowObject = new RowObject();
-            FormObject formObject = new FormObject()
+            RowObject rowObject = new();
+            FormObject formObject = new()
             {
                 FormId = formId
             };
@@ -67,9 +67,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string formId = "1";
             string expected = "1||1";
-            RowObject rowObject1 = new RowObject();
-            RowObject rowObject2 = new RowObject();
-            FormObject formObject = new FormObject()
+            RowObject rowObject1 = new();
+            RowObject rowObject2 = new();
+            FormObject formObject = new()
             {
                 FormId = formId,
                 MultipleIteration = true
@@ -86,9 +86,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string formId = "1";
             string expected = "1||1";
-            RowObject rowObject1 = new RowObject();
-            RowObject rowObject2 = new RowObject();
-            FormObject formObject = new FormObject()
+            RowObject rowObject1 = new();
+            RowObject rowObject2 = new();
+            FormObject formObject = new()
             {
                 FormId = formId
             };
@@ -104,15 +104,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string formId = "1";
             string expected = "1||1";
-            RowObject rowObject1 = new RowObject()
+            RowObject rowObject1 = new()
             {
                 RowId = expected
             };
-            RowObject rowObject2 = new RowObject()
+            RowObject rowObject2 = new()
             {
                 RowId = expected
             };
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = formId,
                 MultipleIteration = true
@@ -129,9 +129,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             string formId = "1";
             string expected1 = "1||1";
             string expected2 = "1||2";
-            RowObject rowObject1 = new RowObject();
-            RowObject rowObject2 = new RowObject();
-            FormObject formObject = new FormObject()
+            RowObject rowObject1 = new();
+            RowObject rowObject2 = new();
+            FormObject formObject = new()
             {
                 FormId = formId,
                 MultipleIteration = true
@@ -151,13 +151,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string formId = null;
             string expected = "1||1";
-            RowObject rowObject1 = new RowObject();
-            FormObject formObject = new FormObject()
+            RowObject rowObject1 = new();
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = false
             };
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
             optionObject = (OptionObject)OptionObjectHelpers.AddFormObject(optionObject, formObject);
             optionObject = (OptionObject)OptionObjectHelpers.AddRowObject(optionObject, formId, rowObject1);
             Assert.IsTrue(optionObject.IsRowPresent(expected));
@@ -170,13 +170,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string formId = null;
             string expected = "1||1";
-            RowObject rowObject1 = new RowObject();
-            FormObject formObject = new FormObject()
+            RowObject rowObject1 = new();
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = false
             };
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
             optionObject = (OptionObject2)OptionObjectHelpers.AddFormObject(optionObject, formObject);
             optionObject = (OptionObject2)OptionObjectHelpers.AddRowObject(optionObject, formId, rowObject1);
             Assert.IsTrue(optionObject.IsRowPresent(expected));
@@ -189,13 +189,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string formId = null;
             string expected = "1||1";
-            RowObject rowObject1 = new RowObject();
-            FormObject formObject = new FormObject()
+            RowObject rowObject1 = new();
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = false
             };
-            OptionObject2015 optionObject = new OptionObject2015();
+            OptionObject2015 optionObject = new();
             optionObject = (OptionObject2015)OptionObjectHelpers.AddFormObject(optionObject, formObject);
             optionObject = (OptionObject2015)OptionObjectHelpers.AddRowObject(optionObject, formId, rowObject1);
             Assert.IsTrue(optionObject.IsRowPresent(expected));
@@ -208,13 +208,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string formId = "2";
             string expected = "1||1";
-            RowObject rowObject1 = new RowObject();
-            FormObject formObject = new FormObject()
+            RowObject rowObject1 = new();
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = false
             };
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
             optionObject = (OptionObject)OptionObjectHelpers.AddFormObject(optionObject, formObject);
             optionObject = (OptionObject)OptionObjectHelpers.AddRowObject(optionObject, formId, rowObject1);
             Assert.IsTrue(optionObject.IsRowPresent(expected));
@@ -227,13 +227,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string formId = "2";
             string expected = "1||1";
-            RowObject rowObject1 = new RowObject();
-            FormObject formObject = new FormObject()
+            RowObject rowObject1 = new();
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = false
             };
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
             optionObject = (OptionObject2)OptionObjectHelpers.AddFormObject(optionObject, formObject);
             optionObject = (OptionObject2)OptionObjectHelpers.AddRowObject(optionObject, formId, rowObject1);
             Assert.IsTrue(optionObject.IsRowPresent(expected));
@@ -246,13 +246,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string formId = "2";
             string expected = "1||1";
-            RowObject rowObject1 = new RowObject();
-            FormObject formObject = new FormObject()
+            RowObject rowObject1 = new();
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = false
             };
-            OptionObject2015 optionObject = new OptionObject2015();
+            OptionObject2015 optionObject = new();
             optionObject = (OptionObject2015)OptionObjectHelpers.AddFormObject(optionObject, formObject);
             optionObject = (OptionObject2015)OptionObjectHelpers.AddRowObject(optionObject, formId, rowObject1);
             Assert.IsTrue(optionObject.IsRowPresent(expected));
@@ -264,13 +264,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string formId = "1";
             string expected = "1||1";
-            RowObject rowObject1 = new RowObject();
-            FormObject formObject = new FormObject()
+            RowObject rowObject1 = new();
+            FormObject formObject = new()
             {
                 FormId = formId,
                 MultipleIteration = false
             };
-            OptionObject optionObject = new OptionObject();
+            OptionObject optionObject = new();
             optionObject = (OptionObject)OptionObjectHelpers.AddFormObject(optionObject, formObject);
             optionObject = (OptionObject)OptionObjectHelpers.AddRowObject(optionObject, formId, rowObject1);
             Assert.IsTrue(optionObject.IsRowPresent(expected));
@@ -282,13 +282,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string formId = "1";
             string expected = "1||1";
-            RowObject rowObject1 = new RowObject();
-            FormObject formObject = new FormObject()
+            RowObject rowObject1 = new();
+            FormObject formObject = new()
             {
                 FormId = formId,
                 MultipleIteration = false
             };
-            OptionObject2 optionObject = new OptionObject2();
+            OptionObject2 optionObject = new();
             optionObject = (OptionObject2)OptionObjectHelpers.AddFormObject(optionObject, formObject);
             optionObject = (OptionObject2)OptionObjectHelpers.AddRowObject(optionObject, formId, rowObject1);
             Assert.IsTrue(optionObject.IsRowPresent(expected));
@@ -300,13 +300,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string formId = "1";
             string expected = "1||1";
-            RowObject rowObject1 = new RowObject();
-            FormObject formObject = new FormObject()
+            RowObject rowObject1 = new();
+            FormObject formObject = new()
             {
                 FormId = formId,
                 MultipleIteration = false
             };
-            OptionObject2015 optionObject = new OptionObject2015();
+            OptionObject2015 optionObject = new();
             optionObject = (OptionObject2015)OptionObjectHelpers.AddFormObject(optionObject, formObject);
             optionObject = (OptionObject2015)OptionObjectHelpers.AddRowObject(optionObject, formId, rowObject1);
             Assert.IsTrue(optionObject.IsRowPresent(expected));
@@ -316,7 +316,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestCategory("AddRowObject")]
         public void AddRowObject_GetsExpectedRowId()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true
@@ -351,7 +351,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void AddRowObject_TooManyRowsAdded()
         {
-            FormObject formObject = new FormObject()
+            FormObject formObject = new()
             {
                 FormId = "1",
                 MultipleIteration = true

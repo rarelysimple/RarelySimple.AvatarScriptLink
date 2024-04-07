@@ -256,18 +256,18 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestCategory("ScriptLinkHelpers")]
         public void GetReturnOptionObject_ReturnsEditedRow()
         {
-            OptionObject2015 expected = new OptionObject2015("CWSPN22003", "unittestuser", "", "1", "", 0, "UAT", "AVCWS", "AVCWS", "SERVER", "TOKEN");
+            OptionObject2015 expected = new("CWSPN22003", "unittestuser", "", "1", "", 0, "UAT", "AVCWS", "AVCWS", "SERVER", "TOKEN");
 
-            FieldObject fieldObject1 = new FieldObject("51003", "");
-            FieldObject fieldObject2 = new FieldObject("7051.4", "");
-            FieldObject fieldObject3 = new FieldObject("7051.2", "");
-            FieldObject fieldObject4 = new FieldObject("7051.3", "");
-            RowObject rowObject = new RowObject("22003||1");
+            FieldObject fieldObject1 = new("51003", "");
+            FieldObject fieldObject2 = new("7051.4", "");
+            FieldObject fieldObject3 = new("7051.2", "");
+            FieldObject fieldObject4 = new("7051.3", "");
+            RowObject rowObject = new("22003||1");
             rowObject.AddFieldObject(fieldObject1);
             rowObject.AddFieldObject(fieldObject2);
             rowObject.AddFieldObject(fieldObject3);
             rowObject.AddFieldObject(fieldObject4);
-            FormObject indForm = new FormObject("22003", rowObject, false);
+            FormObject indForm = new("22003", rowObject, false);
             expected.AddFormObject(indForm);
 
             expected.SetFieldValue("51003", "Modified");
@@ -280,33 +280,33 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestCategory("ScriptLinkHelpers")]
         public void GetReturnOptionObject_NoCurrentRowReturnsWithoutException()
         {
-            OptionObject2015 expected = new OptionObject2015("USER37", "unittestuser", "", "1", "", 0, "UAT", "AVPM", "AVPM", "SERVER", "TOKEN");
+            OptionObject2015 expected = new("USER37", "unittestuser", "", "1", "", 0, "UAT", "AVPM", "AVPM", "SERVER", "TOKEN");
 
-            FieldObject fieldObject01 = new FieldObject("214.74", "2");
-            FieldObject fieldObject02 = new FieldObject("214.98", "12/07/2020");
-            RowObject rowObject01 = new RowObject("33||1");
+            FieldObject fieldObject01 = new("214.74", "2");
+            FieldObject fieldObject02 = new("214.98", "12/07/2020");
+            RowObject rowObject01 = new("33||1");
             rowObject01.AddFieldObject(fieldObject01);
             rowObject01.AddFieldObject(fieldObject02);
-            FormObject form33 = new FormObject("33", rowObject01, false);
+            FormObject form33 = new("33", rowObject01, false);
             expected.AddFormObject(form33);
 
-            FieldObject fieldObject03 = new FieldObject("214.75", "");
-            FieldObject fieldObject04 = new FieldObject("214.76", "");
-            FieldObject fieldObject05 = new FieldObject("214.77", "");
-            FieldObject fieldObject06 = new FieldObject("214.78", "");
-            FieldObject fieldObject07 = new FieldObject("214.79", "");
-            FieldObject fieldObject08 = new FieldObject("214.8", "");
-            FieldObject fieldObject09 = new FieldObject("214.81", "");
-            FieldObject fieldObject10 = new FieldObject("214.82", "");
-            FieldObject fieldObject11 = new FieldObject("214.83", "");
-            FieldObject fieldObject12 = new FieldObject("214.85", "");
-            FieldObject fieldObject13 = new FieldObject("214.86", "30");
-            FieldObject fieldObject14 = new FieldObject("214.91", "");
-            FieldObject fieldObject15 = new FieldObject("214.93", "");
-            FieldObject fieldObject16 = new FieldObject("214.94", "");
-            FieldObject fieldObject17 = new FieldObject("214.96", "12/3/2020");
-            FieldObject fieldObject18 = new FieldObject("214.97", "12/4/2020");
-            RowObject rowObject02 = new RowObject("34||1", "33||1");
+            FieldObject fieldObject03 = new("214.75", "");
+            FieldObject fieldObject04 = new("214.76", "");
+            FieldObject fieldObject05 = new("214.77", "");
+            FieldObject fieldObject06 = new("214.78", "");
+            FieldObject fieldObject07 = new("214.79", "");
+            FieldObject fieldObject08 = new("214.8", "");
+            FieldObject fieldObject09 = new("214.81", "");
+            FieldObject fieldObject10 = new("214.82", "");
+            FieldObject fieldObject11 = new("214.83", "");
+            FieldObject fieldObject12 = new("214.85", "");
+            FieldObject fieldObject13 = new("214.86", "30");
+            FieldObject fieldObject14 = new("214.91", "");
+            FieldObject fieldObject15 = new("214.93", "");
+            FieldObject fieldObject16 = new("214.94", "");
+            FieldObject fieldObject17 = new("214.96", "12/3/2020");
+            FieldObject fieldObject18 = new("214.97", "12/4/2020");
+            RowObject rowObject02 = new("34||1", "33||1");
             rowObject02.AddFieldObject(fieldObject03);
             rowObject02.AddFieldObject(fieldObject04);
             rowObject02.AddFieldObject(fieldObject05);
@@ -324,23 +324,23 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             rowObject02.AddFieldObject(fieldObject17);
             rowObject02.AddFieldObject(fieldObject18);
 
-            FieldObject fieldObject19 = new FieldObject("214.75", "");
-            FieldObject fieldObject20 = new FieldObject("214.76", "");
-            FieldObject fieldObject21 = new FieldObject("214.77", "");
-            FieldObject fieldObject22 = new FieldObject("214.78", "");
-            FieldObject fieldObject23 = new FieldObject("214.79", "");
-            FieldObject fieldObject24 = new FieldObject("214.8", "");
-            FieldObject fieldObject25 = new FieldObject("214.81", "");
-            FieldObject fieldObject26 = new FieldObject("214.82", "");
-            FieldObject fieldObject27 = new FieldObject("214.83", "");
-            FieldObject fieldObject28 = new FieldObject("214.85", "");
-            FieldObject fieldObject29 = new FieldObject("214.86", "110");
-            FieldObject fieldObject30 = new FieldObject("214.91", "");
-            FieldObject fieldObject31 = new FieldObject("214.93", "");
-            FieldObject fieldObject32 = new FieldObject("214.94", "");
-            FieldObject fieldObject33 = new FieldObject("214.96", "12/4/2020");
-            FieldObject fieldObject34 = new FieldObject("214.97", "");
-            RowObject rowObject03 = new RowObject("34||2", "33||1");
+            FieldObject fieldObject19 = new("214.75", "");
+            FieldObject fieldObject20 = new("214.76", "");
+            FieldObject fieldObject21 = new("214.77", "");
+            FieldObject fieldObject22 = new("214.78", "");
+            FieldObject fieldObject23 = new("214.79", "");
+            FieldObject fieldObject24 = new("214.8", "");
+            FieldObject fieldObject25 = new("214.81", "");
+            FieldObject fieldObject26 = new("214.82", "");
+            FieldObject fieldObject27 = new("214.83", "");
+            FieldObject fieldObject28 = new("214.85", "");
+            FieldObject fieldObject29 = new("214.86", "110");
+            FieldObject fieldObject30 = new("214.91", "");
+            FieldObject fieldObject31 = new("214.93", "");
+            FieldObject fieldObject32 = new("214.94", "");
+            FieldObject fieldObject33 = new("214.96", "12/4/2020");
+            FieldObject fieldObject34 = new("214.97", "");
+            RowObject rowObject03 = new("34||2", "33||1");
             rowObject03.AddFieldObject(fieldObject19);
             rowObject03.AddFieldObject(fieldObject20);
             rowObject03.AddFieldObject(fieldObject21);
@@ -359,7 +359,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             rowObject03.AddFieldObject(fieldObject34);
 
 
-            FormObject form34 = new FormObject("34");
+            FormObject form34 = new("34");
             form34.MultipleIteration = true;
             form34.OtherRows.Add(rowObject02);
             form34.OtherRows.Add(rowObject03);
@@ -374,33 +374,33 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestCategory("ScriptLinkHelpers")]
         public void GetReturnOptionObject_NoCurrentRowModifiedReturnsWithoutException()
         {
-            OptionObject2015 expected = new OptionObject2015("USER37", "unittestuser", "", "1", "", 0, "UAT", "AVPM", "AVPM", "SERVER", "TOKEN");
+            OptionObject2015 expected = new("USER37", "unittestuser", "", "1", "", 0, "UAT", "AVPM", "AVPM", "SERVER", "TOKEN");
 
-            FieldObject fieldObject01 = new FieldObject("214.74", "2");
-            FieldObject fieldObject02 = new FieldObject("214.98", "12/07/2020");
-            RowObject rowObject01 = new RowObject("33||1");
+            FieldObject fieldObject01 = new("214.74", "2");
+            FieldObject fieldObject02 = new("214.98", "12/07/2020");
+            RowObject rowObject01 = new("33||1");
             rowObject01.AddFieldObject(fieldObject01);
             rowObject01.AddFieldObject(fieldObject02);
-            FormObject form33 = new FormObject("33", rowObject01, false);
+            FormObject form33 = new("33", rowObject01, false);
             expected.AddFormObject(form33);
 
-            FieldObject fieldObject03 = new FieldObject("214.75", "");
-            FieldObject fieldObject04 = new FieldObject("214.76", "");
-            FieldObject fieldObject05 = new FieldObject("214.77", "");
-            FieldObject fieldObject06 = new FieldObject("214.78", "");
-            FieldObject fieldObject07 = new FieldObject("214.79", "");
-            FieldObject fieldObject08 = new FieldObject("214.8", "");
-            FieldObject fieldObject09 = new FieldObject("214.81", "");
-            FieldObject fieldObject10 = new FieldObject("214.82", "");
-            FieldObject fieldObject11 = new FieldObject("214.83", "");
-            FieldObject fieldObject12 = new FieldObject("214.85", "");
-            FieldObject fieldObject13 = new FieldObject("214.86", "30");
-            FieldObject fieldObject14 = new FieldObject("214.91", "");
-            FieldObject fieldObject15 = new FieldObject("214.93", "");
-            FieldObject fieldObject16 = new FieldObject("214.94", "");
-            FieldObject fieldObject17 = new FieldObject("214.96", "12/3/2020");
-            FieldObject fieldObject18 = new FieldObject("214.97", "12/4/2020");
-            RowObject rowObject02 = new RowObject("34||1", "33||1");
+            FieldObject fieldObject03 = new("214.75", "");
+            FieldObject fieldObject04 = new("214.76", "");
+            FieldObject fieldObject05 = new("214.77", "");
+            FieldObject fieldObject06 = new("214.78", "");
+            FieldObject fieldObject07 = new("214.79", "");
+            FieldObject fieldObject08 = new("214.8", "");
+            FieldObject fieldObject09 = new("214.81", "");
+            FieldObject fieldObject10 = new("214.82", "");
+            FieldObject fieldObject11 = new("214.83", "");
+            FieldObject fieldObject12 = new("214.85", "");
+            FieldObject fieldObject13 = new("214.86", "30");
+            FieldObject fieldObject14 = new("214.91", "");
+            FieldObject fieldObject15 = new("214.93", "");
+            FieldObject fieldObject16 = new("214.94", "");
+            FieldObject fieldObject17 = new("214.96", "12/3/2020");
+            FieldObject fieldObject18 = new("214.97", "12/4/2020");
+            RowObject rowObject02 = new("34||1", "33||1");
             rowObject02.AddFieldObject(fieldObject03);
             rowObject02.AddFieldObject(fieldObject04);
             rowObject02.AddFieldObject(fieldObject05);
@@ -418,23 +418,23 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             rowObject02.AddFieldObject(fieldObject17);
             rowObject02.AddFieldObject(fieldObject18);
 
-            FieldObject fieldObject19 = new FieldObject("214.75", "");
-            FieldObject fieldObject20 = new FieldObject("214.76", "");
-            FieldObject fieldObject21 = new FieldObject("214.77", "");
-            FieldObject fieldObject22 = new FieldObject("214.78", "");
-            FieldObject fieldObject23 = new FieldObject("214.79", "");
-            FieldObject fieldObject24 = new FieldObject("214.8", "");
-            FieldObject fieldObject25 = new FieldObject("214.81", "");
-            FieldObject fieldObject26 = new FieldObject("214.82", "");
-            FieldObject fieldObject27 = new FieldObject("214.83", "");
-            FieldObject fieldObject28 = new FieldObject("214.85", "");
-            FieldObject fieldObject29 = new FieldObject("214.86", "110");
-            FieldObject fieldObject30 = new FieldObject("214.91", "");
-            FieldObject fieldObject31 = new FieldObject("214.93", "");
-            FieldObject fieldObject32 = new FieldObject("214.94", "");
-            FieldObject fieldObject33 = new FieldObject("214.96", "12/4/2020");
-            FieldObject fieldObject34 = new FieldObject("214.97", "");
-            RowObject rowObject03 = new RowObject("34||2", "33||1");
+            FieldObject fieldObject19 = new("214.75", "");
+            FieldObject fieldObject20 = new("214.76", "");
+            FieldObject fieldObject21 = new("214.77", "");
+            FieldObject fieldObject22 = new("214.78", "");
+            FieldObject fieldObject23 = new("214.79", "");
+            FieldObject fieldObject24 = new("214.8", "");
+            FieldObject fieldObject25 = new("214.81", "");
+            FieldObject fieldObject26 = new("214.82", "");
+            FieldObject fieldObject27 = new("214.83", "");
+            FieldObject fieldObject28 = new("214.85", "");
+            FieldObject fieldObject29 = new("214.86", "110");
+            FieldObject fieldObject30 = new("214.91", "");
+            FieldObject fieldObject31 = new("214.93", "");
+            FieldObject fieldObject32 = new("214.94", "");
+            FieldObject fieldObject33 = new("214.96", "12/4/2020");
+            FieldObject fieldObject34 = new("214.97", "");
+            RowObject rowObject03 = new("34||2", "33||1");
             rowObject03.AddFieldObject(fieldObject19);
             rowObject03.AddFieldObject(fieldObject20);
             rowObject03.AddFieldObject(fieldObject21);
@@ -454,7 +454,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
 
             rowObject03.SetFieldValue("214.96", "12/5/2020");
 
-            FormObject form34 = new FormObject("34")
+            FormObject form34 = new("34")
             {
                 MultipleIteration = true
             };

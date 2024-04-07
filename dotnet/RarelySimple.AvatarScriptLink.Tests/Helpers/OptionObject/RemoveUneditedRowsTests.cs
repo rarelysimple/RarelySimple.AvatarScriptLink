@@ -10,17 +10,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveUneditedRows_OptionObject_IsFalse()
         {
             // Arrange
-            FieldObject fieldObject01 = new FieldObject("123", "");
-            FieldObject fieldObject02 = new FieldObject("124", "");
+            FieldObject fieldObject01 = new("123", "");
+            FieldObject fieldObject02 = new("124", "");
             FieldObject fieldObject03 = FieldObject.Builder().FieldNumber("125").FieldValue("").Build();
-            RowObject rowObject01 = new RowObject("1||1", new List<FieldObject>() { fieldObject01, fieldObject02, fieldObject03 });
-            FormObject formObject = new FormObject("1", rowObject01);
-            OptionObject optionObject = new OptionObject()
+            RowObject rowObject01 = new("1||1", [fieldObject01, fieldObject02, fieldObject03]);
+            FormObject formObject = new("1", rowObject01);
+            OptionObject optionObject = new()
             {
-                Forms = new List<FormObject>()
-                {
+                Forms =
+                [
                     formObject
-                }
+                ]
             };
 
             // Act
@@ -34,17 +34,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveUneditedRows_OptionObject_IsTrue()
         {
             // Arrange
-            FieldObject fieldObject01 = new FieldObject("123", "");
-            FieldObject fieldObject02 = new FieldObject("124", "");
+            FieldObject fieldObject01 = new("123", "");
+            FieldObject fieldObject02 = new("124", "");
             FieldObject fieldObject03 = FieldObject.Builder().FieldNumber("125").FieldValue("").Build();
-            RowObject rowObject01 = new RowObject("1||1", new List<FieldObject>() { fieldObject01, fieldObject02, fieldObject03 });
-            FormObject formObject = new FormObject("1", rowObject01);
-            OptionObject optionObject = new OptionObject()
+            RowObject rowObject01 = new("1||1", [fieldObject01, fieldObject02, fieldObject03]);
+            FormObject formObject = new("1", rowObject01);
+            OptionObject optionObject = new()
             {
-                Forms = new List<FormObject>()
-                {
+                Forms =
+                [
                     formObject
-                }
+                ]
             };
 
             // Act
@@ -59,17 +59,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveUneditedRows_OptionObject_ModifiedFieldIsPresent()
         {
             // Arrange
-            FieldObject fieldObject01 = new FieldObject("123", "");
-            FieldObject fieldObject02 = new FieldObject("124", "");
+            FieldObject fieldObject01 = new("123", "");
+            FieldObject fieldObject02 = new("124", "");
             FieldObject fieldObject03 = FieldObject.Builder().FieldNumber("125").FieldValue("").Build();
-            RowObject rowObject01 = new RowObject("1||1", new List<FieldObject>() { fieldObject01, fieldObject02, fieldObject03 });
-            FormObject formObject = new FormObject("1", rowObject01);
-            OptionObject optionObject = new OptionObject()
+            RowObject rowObject01 = new("1||1", [fieldObject01, fieldObject02, fieldObject03]);
+            FormObject formObject = new("1", rowObject01);
+            OptionObject optionObject = new()
             {
-                Forms = new List<FormObject>()
-                {
+                Forms =
+                [
                     formObject
-                }
+                ]
             };
 
             // Act
@@ -84,17 +84,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveUneditedRows_OptionObject_UnmodifiedFieldIsAbsent()
         {
             // Arrange
-            FieldObject fieldObject01 = new FieldObject("123", "");
-            FieldObject fieldObject02 = new FieldObject("124", "");
+            FieldObject fieldObject01 = new("123", "");
+            FieldObject fieldObject02 = new("124", "");
             FieldObject fieldObject03 = FieldObject.Builder().FieldNumber("125").FieldValue("").Build();
-            RowObject rowObject01 = new RowObject("1||1", new List<FieldObject>() { fieldObject01, fieldObject02, fieldObject03 });
-            FormObject formObject = new FormObject("1", rowObject01);
-            OptionObject optionObject = new OptionObject()
+            RowObject rowObject01 = new("1||1", [fieldObject01, fieldObject02, fieldObject03]);
+            FormObject formObject = new("1", rowObject01);
+            OptionObject optionObject = new()
             {
-                Forms = new List<FormObject>()
-                {
+                Forms =
+                [
                     formObject
-                }
+                ]
             };
 
             // Act
@@ -109,17 +109,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveUneditedRows_OptionObject2_IsFalse()
         {
             // Arrange
-            FieldObject fieldObject01 = new FieldObject("123", "");
-            FieldObject fieldObject02 = new FieldObject("124", "");
+            FieldObject fieldObject01 = new("123", "");
+            FieldObject fieldObject02 = new("124", "");
             FieldObject fieldObject03 = FieldObject.Builder().FieldNumber("125").FieldValue("").Build();
-            RowObject rowObject01 = new RowObject("1||1", new List<FieldObject>() { fieldObject01, fieldObject02, fieldObject03 });
-            FormObject formObject = new FormObject("1", rowObject01);
-            OptionObject2 optionObject = new OptionObject2()
+            RowObject rowObject01 = new("1||1", [fieldObject01, fieldObject02, fieldObject03]);
+            FormObject formObject = new("1", rowObject01);
+            OptionObject2 optionObject = new()
             {
-                Forms = new List<FormObject>()
-                {
+                Forms =
+                [
                     formObject
-                }
+                ]
             };
 
             // Act
@@ -133,17 +133,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveUneditedRows_OptionObject2_IsTrue()
         {
             // Arrange
-            FieldObject fieldObject01 = new FieldObject("123", "");
-            FieldObject fieldObject02 = new FieldObject("124", "");
+            FieldObject fieldObject01 = new("123", "");
+            FieldObject fieldObject02 = new("124", "");
             FieldObject fieldObject03 = FieldObject.Builder().FieldNumber("125").FieldValue("").Build();
-            RowObject rowObject01 = new RowObject("1||1", new List<FieldObject>() { fieldObject01, fieldObject02, fieldObject03 });
-            FormObject formObject = new FormObject("1", rowObject01);
-            OptionObject2 optionObject = new OptionObject2()
+            RowObject rowObject01 = new("1||1", [fieldObject01, fieldObject02, fieldObject03]);
+            FormObject formObject = new("1", rowObject01);
+            OptionObject2 optionObject = new()
             {
-                Forms = new List<FormObject>()
-                {
+                Forms =
+                [
                     formObject
-                }
+                ]
             };
 
             // Act
@@ -158,17 +158,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveUneditedRows_OptionObject2_ModifiedFieldIsPresent()
         {
             // Arrange
-            FieldObject fieldObject01 = new FieldObject("123", "");
-            FieldObject fieldObject02 = new FieldObject("124", "");
+            FieldObject fieldObject01 = new("123", "");
+            FieldObject fieldObject02 = new("124", "");
             FieldObject fieldObject03 = FieldObject.Builder().FieldNumber("125").FieldValue("").Build();
-            RowObject rowObject01 = new RowObject("1||1", new List<FieldObject>() { fieldObject01, fieldObject02, fieldObject03 });
-            FormObject formObject = new FormObject("1", rowObject01);
-            OptionObject2 optionObject = new OptionObject2()
+            RowObject rowObject01 = new("1||1", [fieldObject01, fieldObject02, fieldObject03]);
+            FormObject formObject = new("1", rowObject01);
+            OptionObject2 optionObject = new()
             {
-                Forms = new List<FormObject>()
-                {
+                Forms =
+                [
                     formObject
-                }
+                ]
             };
 
             // Act
@@ -183,17 +183,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveUneditedRows_OptionObject2_UnmodifiedFieldIsAbsent()
         {
             // Arrange
-            FieldObject fieldObject01 = new FieldObject("123", "");
-            FieldObject fieldObject02 = new FieldObject("124", "");
+            FieldObject fieldObject01 = new("123", "");
+            FieldObject fieldObject02 = new("124", "");
             FieldObject fieldObject03 = FieldObject.Builder().FieldNumber("125").FieldValue("").Build();
-            RowObject rowObject01 = new RowObject("1||1", new List<FieldObject>() { fieldObject01, fieldObject02, fieldObject03 });
-            FormObject formObject = new FormObject("1", rowObject01);
-            OptionObject2 optionObject = new OptionObject2()
+            RowObject rowObject01 = new("1||1", [fieldObject01, fieldObject02, fieldObject03]);
+            FormObject formObject = new("1", rowObject01);
+            OptionObject2 optionObject = new()
             {
-                Forms = new List<FormObject>()
-                {
+                Forms =
+                [
                     formObject
-                }
+                ]
             };
 
             // Act
@@ -208,17 +208,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveUneditedRows_OptionObject2015_IsFalse()
         {
             // Arrange
-            FieldObject fieldObject01 = new FieldObject("123", "");
-            FieldObject fieldObject02 = new FieldObject("124", "");
+            FieldObject fieldObject01 = new("123", "");
+            FieldObject fieldObject02 = new("124", "");
             FieldObject fieldObject03 = FieldObject.Builder().FieldNumber("125").FieldValue("").Build();
-            RowObject rowObject01 = new RowObject("1||1", new List<FieldObject>() { fieldObject01, fieldObject02, fieldObject03 });
-            FormObject formObject = new FormObject("1", rowObject01);
-            OptionObject2015 optionObject = new OptionObject2015()
+            RowObject rowObject01 = new("1||1", [fieldObject01, fieldObject02, fieldObject03]);
+            FormObject formObject = new("1", rowObject01);
+            OptionObject2015 optionObject = new()
             {
-                Forms = new List<FormObject>()
-                {
+                Forms =
+                [
                     formObject
-                }
+                ]
             };
 
             // Act
@@ -232,17 +232,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveUneditedRows_OptionObject2015_IsTrue()
         {
             // Arrange
-            FieldObject fieldObject01 = new FieldObject("123", "");
-            FieldObject fieldObject02 = new FieldObject("124", "");
+            FieldObject fieldObject01 = new("123", "");
+            FieldObject fieldObject02 = new("124", "");
             FieldObject fieldObject03 = FieldObject.Builder().FieldNumber("125").FieldValue("").Build();
-            RowObject rowObject01 = new RowObject("1||1", new List<FieldObject>() { fieldObject01, fieldObject02, fieldObject03 });
-            FormObject formObject = new FormObject("1", rowObject01);
-            OptionObject2015 optionObject = new OptionObject2015()
+            RowObject rowObject01 = new("1||1", [fieldObject01, fieldObject02, fieldObject03]);
+            FormObject formObject = new("1", rowObject01);
+            OptionObject2015 optionObject = new()
             {
-                Forms = new List<FormObject>()
-                {
+                Forms =
+                [
                     formObject
-                }
+                ]
             };
 
             // Act
@@ -257,17 +257,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveUneditedRows_OptionObject2015_ModifiedFieldIsPresent()
         {
             // Arrange
-            FieldObject fieldObject01 = new FieldObject("123", "");
-            FieldObject fieldObject02 = new FieldObject("124", "");
+            FieldObject fieldObject01 = new("123", "");
+            FieldObject fieldObject02 = new("124", "");
             FieldObject fieldObject03 = FieldObject.Builder().FieldNumber("125").FieldValue("").Build();
-            RowObject rowObject01 = new RowObject("1||1", new List<FieldObject>() { fieldObject01, fieldObject02, fieldObject03 });
-            FormObject formObject = new FormObject("1", rowObject01);
-            OptionObject2015 optionObject = new OptionObject2015()
+            RowObject rowObject01 = new("1||1", [fieldObject01, fieldObject02, fieldObject03]);
+            FormObject formObject = new("1", rowObject01);
+            OptionObject2015 optionObject = new()
             {
-                Forms = new List<FormObject>()
-                {
+                Forms =
+                [
                     formObject
-                }
+                ]
             };
 
             // Act
@@ -282,17 +282,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveUneditedRows_OptionObject2015_UnmodifiedFieldIsAbsent()
         {
             // Arrange
-            FieldObject fieldObject01 = new FieldObject("123", "");
-            FieldObject fieldObject02 = new FieldObject("124", "");
+            FieldObject fieldObject01 = new("123", "");
+            FieldObject fieldObject02 = new("124", "");
             FieldObject fieldObject03 = FieldObject.Builder().FieldNumber("125").FieldValue("").Build();
-            RowObject rowObject01 = new RowObject("1||1", new List<FieldObject>() { fieldObject01, fieldObject02, fieldObject03 });
-            FormObject formObject = new FormObject("1", rowObject01);
-            OptionObject2015 optionObject = new OptionObject2015()
+            RowObject rowObject01 = new("1||1", [fieldObject01, fieldObject02, fieldObject03]);
+            FormObject formObject = new("1", rowObject01);
+            OptionObject2015 optionObject = new()
             {
-                Forms = new List<FormObject>()
-                {
+                Forms =
+                [
                     formObject
-                }
+                ]
             };
 
             // Act
@@ -307,17 +307,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveUneditedRows_OptionObject2015_DisableAllFields_NoneRemoved()
         {
             // Arrange
-            FieldObject fieldObject01 = new FieldObject("123", "");
-            FieldObject fieldObject02 = new FieldObject("124", "");
+            FieldObject fieldObject01 = new("123", "");
+            FieldObject fieldObject02 = new("124", "");
             FieldObject fieldObject03 = FieldObject.Builder().FieldNumber("125").FieldValue("").Build();
-            RowObject rowObject01 = new RowObject("1||1", new List<FieldObject>() { fieldObject01, fieldObject02, fieldObject03 });
-            FormObject formObject = new FormObject("1", rowObject01);
-            OptionObject2015 optionObject = new OptionObject2015()
+            RowObject rowObject01 = new("1||1", [fieldObject01, fieldObject02, fieldObject03]);
+            FormObject formObject = new("1", rowObject01);
+            OptionObject2015 optionObject = new()
             {
-                Forms = new List<FormObject>()
-                {
+                Forms =
+                [
                     formObject
-                }
+                ]
             };
 
             // Act
@@ -332,13 +332,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void RemoveUneditedRows_FormObject_AddFieldObject_AddedFieldIsPresent()
         {
             // Arrange
-            FieldObject fieldObject01 = new FieldObject("123", "");
-            FieldObject fieldObject02 = new FieldObject("124", "");
+            FieldObject fieldObject01 = new("123", "");
+            FieldObject fieldObject02 = new("124", "");
             FieldObject fieldObject03 = FieldObject.Builder().FieldNumber("125").FieldValue("").Modified().Build();
-            RowObject rowObject01 = new RowObject("1||1", new List<FieldObject>() { fieldObject01, fieldObject02 });
+            RowObject rowObject01 = new("1||1", [fieldObject01, fieldObject02]);
             rowObject01.AddFieldObject(fieldObject03);
             rowObject01.RowAction = RowAction.Edit; // TODO: Revisit/simplify how added fieldobjects are allowed for return.
-            FormObject formObject = new FormObject("1", rowObject01);
+            FormObject formObject = new("1", rowObject01);
 
             // Act
             formObject = (FormObject) OptionObjectHelpers.RemoveUneditedRows(formObject);

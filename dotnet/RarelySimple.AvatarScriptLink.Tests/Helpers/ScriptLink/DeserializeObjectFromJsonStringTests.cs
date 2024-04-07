@@ -69,7 +69,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             // Arrange
             string objectToSerialize = "\"2020-01-01T00:00:00\"";
-            DateTime expected = new DateTime(2020, 1, 1);
+            DateTime expected = new(2020, 1, 1);
 
             // Act
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<DateTime>(objectToSerialize);
@@ -84,7 +84,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             // Arrange
             string objectToSerialize = "<Not XML or Json>";
-            DateTime expected = new DateTime(2020, 1, 1);
+            DateTime expected = new(2020, 1, 1);
 
             // Act
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<DateTime>(objectToSerialize);
@@ -98,7 +98,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             // Arrange
             string objectToSerialize = "{\"EntityID\":null,\"EpisodeNumber\":0.0,\"ErrorCode\":0.0,\"ErrorMesg\":null,\"Facility\":null,\"Forms\":[],\"OptionId\":null,\"OptionStaffId\":null,\"OptionUserId\":null,\"SystemCode\":null}";
-            OptionObject expected = new OptionObject();
+            OptionObject expected = new();
 
             // Act
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<OptionObject>(objectToSerialize);
@@ -113,7 +113,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             // Arrange
             string objectToSerialize = "<Not XML or Json>";
-            OptionObject expected = new OptionObject();
+            OptionObject expected = new();
 
             // Act
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<OptionObject>(objectToSerialize);
@@ -127,7 +127,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             // Arrange
             string objectToSerialize = "{\"EntityID\":null,\"EpisodeNumber\":0.0,\"ErrorCode\":0.0,\"ErrorMesg\":null,\"Facility\":null,\"Forms\":[],\"NamespaceName\":null,\"OptionId\":null,\"OptionStaffId\":null,\"OptionUserId\":null,\"ParentNamespace\":null,\"ServerName\":null,\"SystemCode\":null}";
-            OptionObject2 expected = new OptionObject2();
+            OptionObject2 expected = new();
 
             // Act
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<OptionObject2>(objectToSerialize);
@@ -142,7 +142,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             // Arrange
             string objectToSerialize = "<Not XML or Json>";
-            OptionObject2 expected = new OptionObject2();
+            OptionObject2 expected = new();
 
             // Act
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<OptionObject2>(objectToSerialize);
@@ -156,7 +156,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             // Arrange
             string objectToSerialize = "{\"EntityID\":null,\"EpisodeNumber\":0.0,\"ErrorCode\":0.0,\"ErrorMesg\":null,\"Facility\":null,\"Forms\":[],\"NamespaceName\":null,\"OptionId\":null,\"OptionStaffId\":null,\"OptionUserId\":null,\"ParentNamespace\":null,\"ServerName\":null,\"SystemCode\":null,\"SessionToken\":null}";
-            OptionObject2015 expected = new OptionObject2015();
+            OptionObject2015 expected = new();
 
             // Act
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<OptionObject2015>(objectToSerialize);
@@ -171,7 +171,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             // Arrange
             string objectToSerialize = "<Not XML or Json>";
-            OptionObject2015 expected = new OptionObject2015();
+            OptionObject2015 expected = new();
 
             // Act
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<OptionObject2015>(objectToSerialize);
@@ -185,7 +185,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             // Arrange
             string objectToSerialize = "{\"CurrentRow\":null,\"FormId\":null,\"MultipleIteration\":false,\"OtherRows\":[]}";
-            FormObject expected = new FormObject();
+            FormObject expected = new();
 
             // Act
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<FormObject>(objectToSerialize);
@@ -200,7 +200,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             // Arrange
             string objectToSerialize = "<Not XML or Json>";
-            FormObject expected = new FormObject();
+            FormObject expected = new();
 
             // Act
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<FormObject>(objectToSerialize);
@@ -214,7 +214,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             // Arrange
             string objectToSerialize = "{\"Fields\":[],\"ParentRowId\":null,\"RowAction\":null,\"RowId\":null}";
-            RowObject expected = new RowObject();
+            RowObject expected = new();
 
             // Act
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<RowObject>(objectToSerialize);
@@ -229,7 +229,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             // Arrange
             string objectToSerialize = "<Not XML or Json>";
-            RowObject expected = new RowObject();
+            RowObject expected = new();
 
             // Act
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<RowObject>(objectToSerialize);
@@ -243,7 +243,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             // Arrange
             string objectToSerialize = "{\"Enabled\":\"\",\"FieldNumber\":\"\",\"FieldValue\":\"\",\"Lock\":\"\",\"Required\":\"\",\"Modified\":false}";
-            FieldObject expected = new FieldObject();
+            FieldObject expected = new();
 
             // Act
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<FieldObject>(objectToSerialize);
@@ -258,7 +258,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             // Arrange
             string objectToSerialize = "<Not XML or Json>";
-            FieldObject expected = new FieldObject();
+            FieldObject expected = new();
 
             // Act
             var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<FieldObject>(objectToSerialize);
