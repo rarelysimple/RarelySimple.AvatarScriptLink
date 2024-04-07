@@ -2,6 +2,7 @@ using System;
 using System.Globalization;
 using System.Reflection;
 using System.Resources;
+using RarelySimple.AvatarScriptLink.Net.Exceptions;
 
 namespace RarelySimple.AvatarScriptLink.Net.Decorators
 {

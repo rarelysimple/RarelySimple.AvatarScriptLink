@@ -1,4 +1,5 @@
 ﻿using RarelySimple.AvatarScriptLink.Net.Decorators;
+using RarelySimple.AvatarScriptLink.Net.Exceptions;
 using RarelySimple.AvatarScriptLink.Objects;
 
 namespace RarelySimple.AvatarScriptLink.Net.Tests.Decorators;
@@ -181,7 +182,7 @@ public class FormObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
+    [ExpectedException(typeof(NullReferenceException))]
     public void IsFieldEnabled_FormObject_Null()
     {
         var decorator = new FormObjectDecorator(null);
@@ -269,7 +270,7 @@ public class FormObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
+    [ExpectedException(typeof(NullReferenceException))]
     public void IsFieldLocked_FormObject_Null()
     {
         var decorator = new FormObjectDecorator(null);
@@ -331,7 +332,7 @@ public class FormObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
+    [ExpectedException(typeof(NullReferenceException))]
     public void IsFieldPresent_FormObject_Null()
     {
         var decorator = new FormObjectDecorator(null);
@@ -419,7 +420,7 @@ public class FormObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
+    [ExpectedException(typeof(NullReferenceException))]
     public void IsFieldRequired_FormObject_Null()
     {
         var decorator = new FormObjectDecorator(null);
