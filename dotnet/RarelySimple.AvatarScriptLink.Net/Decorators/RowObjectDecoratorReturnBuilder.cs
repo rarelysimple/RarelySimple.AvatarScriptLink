@@ -1,4 +1,5 @@
-﻿using RarelySimple.AvatarScriptLink.Objects;
+﻿using System.Linq;
+using RarelySimple.AvatarScriptLink.Objects;
 
 namespace RarelySimple.AvatarScriptLink.Net.Decorators
 {
@@ -20,10 +21,9 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 rowObject.RowAction = _decorator.RowAction;
                 rowObject.RowId = _decorator.RowId;
 
-                foreach (var fieldObjectDecorator in _decorator.Fields)
+                foreach (var fieldObjectDecorator in _decorator.Fields.Where(field => field.IsModified()))
                 {
-                    if (fieldObjectDecorator.IsModified())
-                        rowObject.Fields.Add(fieldObjectDecorator.Return().AsFieldObject());
+                    rowObject.Fields.Add(fieldObjectDecorator.Return().AsFieldObject());
                 }
                 return rowObject;
             }

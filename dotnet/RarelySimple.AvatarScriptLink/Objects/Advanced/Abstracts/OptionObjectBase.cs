@@ -191,8 +191,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
             if (other == null)
                 return false;
             return EntityID == other.EntityID &&
-                EpisodeNumber == other.EpisodeNumber &&
-                ErrorCode == other.ErrorCode &&
+                (int)EpisodeNumber == (int)other.EpisodeNumber &&
+                (int)ErrorCode == (int)other.ErrorCode &&
                 ErrorMesg == other.ErrorMesg &&
                 Facility == other.Facility &&
                 OptionId == other.OptionId &&

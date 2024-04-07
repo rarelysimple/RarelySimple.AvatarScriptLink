@@ -42,15 +42,5 @@ namespace RarelySimple.AvatarScriptLink.Net.Exceptions
         {
             FormId = formId;
         }
-
-        // public override string StackTrace
-        // {
-        //     get {
-        //         StringBuilder builder = new StringBuilder();
-        //         builder.AppendLine(base.StackTrace);
-        //         builder.AppendFormat("FormId: {0}", formId);
-        //         return builder.ToString();
-        //     }
-        // }
     }
 }

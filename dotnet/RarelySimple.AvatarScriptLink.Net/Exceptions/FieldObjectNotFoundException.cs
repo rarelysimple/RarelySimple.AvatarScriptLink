@@ -42,15 +42,5 @@ namespace RarelySimple.AvatarScriptLink.Net.Exceptions
         {
             FieldNumber = fieldNumber;
         }
-
-        // public override string StackTrace
-        // {
-        //     get {
-        //         StringBuilder builder = new StringBuilder();
-        //         builder.AppendLine(base.StackTrace);
-        //         builder.AppendFormat("FieldNumber: {0}", FieldNumber);
-        //         return builder.ToString();
-        //     }
-        // }
     }
 }
