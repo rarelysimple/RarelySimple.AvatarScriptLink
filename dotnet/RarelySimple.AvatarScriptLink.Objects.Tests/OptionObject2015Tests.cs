@@ -1,3 +1,5 @@
+using RarelySimple.AvatarScriptLink.Objects.Advanced.Interfaces;
+
 namespace RarelySimple.AvatarScriptLink.Objects.Tests
 {
     [TestClass]
@@ -34,6 +36,29 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
                 SystemCode = "TEST"
             };
             OptionObject2015 optionObject2 = optionObject1.Clone();
+            Assert.IsTrue(optionObject1.Equals(optionObject2));
+        }
+
+        [TestMethod]
+        public void OptionObject2015EqualsMethodObjectIsTrue()
+        {
+            OptionObject2015 optionObject1 = new()
+            {
+                EntityID = "1",
+                EpisodeNumber = 2,
+                ErrorCode = 3,
+                ErrorMesg = "Test response",
+                Facility = "4",
+                NamespaceName = "Namespace",
+                OptionId = "OPTION001",
+                OptionStaffId = "5",
+                OptionUserId = "USER",
+                ParentNamespace = "Parent",
+                ServerName = "Server",
+                SessionToken = "6",
+                SystemCode = "TEST"
+            };
+            IOptionObject2015 optionObject2 = optionObject1.Clone();
             Assert.IsTrue(optionObject1.Equals(optionObject2));
         }
 
@@ -134,6 +159,28 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
         }
 
         [TestMethod]
+        public void OptionObject2015EqualsMethodNullIsFalse()
+        {
+            OptionObject2015 optionObject1 = new()
+            {
+                EntityID = "1",
+                EpisodeNumber = 2,
+                ErrorCode = 3,
+                ErrorMesg = "Test response",
+                Facility = "4",
+                NamespaceName = "Namespace",
+                OptionId = "OPTION001",
+                OptionStaffId = "5",
+                OptionUserId = "USER",
+                ParentNamespace = "Parent",
+                ServerName = "Server",
+                SessionToken = "6",
+                SystemCode = "TEST"
+            };
+            Assert.IsFalse(optionObject1.Equals(null));
+        }
+
+        [TestMethod]
         public void OptionObject2015EqualsObjectMethodIsFalse()
         {
             OptionObject2015 optionObject1 = new()
@@ -206,6 +253,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
                 SystemCode = "TEST"
             };
             Assert.IsTrue(optionObject1 == optionObject2);
+            Assert.IsFalse(optionObject1 != optionObject2);
         }
 
         [TestMethod]
@@ -228,6 +276,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
                 SystemCode = "TEST"
             };
             Assert.IsFalse(null == optionObject1);
+            Assert.IsTrue(null != optionObject1);
         }
 
         [TestMethod]
@@ -250,6 +299,77 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
                 SystemCode = "TEST"
             };
             Assert.IsFalse(optionObject1 == null);
+            Assert.IsTrue(optionObject1 != null);
+        }
+
+        [TestMethod]
+        public void OptionObject2015GetHashCodeAreEqual()
+        {
+            OptionObject2015 optionObject1 = new()
+            {
+                EntityID = "1",
+                EpisodeNumber = 2,
+                ErrorCode = 3,
+                ErrorMesg = "Test response",
+                Facility = "4",
+                NamespaceName = "Namespace",
+                OptionId = "OPTION001",
+                OptionStaffId = "5",
+                OptionUserId = "USER",
+                ParentNamespace = "Parent",
+                ServerName = "Server",
+                SessionToken = "6",
+                SystemCode = "TEST"
+            };
+            OptionObject2015 optionObject2 = optionObject1;
+            Assert.AreEqual(optionObject1.GetHashCode(), optionObject2.GetHashCode());
+        }
+
+        [TestMethod]
+        public void OptionObject2015GetHashCodeCloneAreEqual()
+        {
+            OptionObject2015 optionObject1 = new()
+            {
+                EntityID = "1",
+                EpisodeNumber = 2,
+                ErrorCode = 3,
+                ErrorMesg = "Test response",
+                Facility = "4",
+                NamespaceName = "Namespace",
+                OptionId = "OPTION001",
+                OptionStaffId = "5",
+                OptionUserId = "USER",
+                ParentNamespace = "Parent",
+                ServerName = "Server",
+                SessionToken = "6",
+                SystemCode = "TEST"
+            };
+            OptionObject2015 optionObject2 = optionObject1.Clone();
+            Assert.AreEqual(optionObject1.GetHashCode(), optionObject2.GetHashCode());
+        }
+
+        [TestMethod]
+        public void OptionObject2015GetHashCodeAreNotEqual()
+        {
+            OptionObject2015 optionObject1 = new()
+            {
+                EntityID = "1",
+                EpisodeNumber = 2,
+                ErrorCode = 3,
+                ErrorMesg = "Test response",
+                Facility = "4",
+                NamespaceName = "Namespace",
+                OptionId = "OPTION001",
+                OptionStaffId = "5",
+                OptionUserId = "USER",
+                ParentNamespace = "Parent",
+                ServerName = "Server",
+                SessionToken = "6",
+                SystemCode = "TEST"
+            };
+            OptionObject2015 optionObject2 = optionObject1.Clone();
+            optionObject2.ErrorMesg = "modified";
+            Assert.AreNotEqual(optionObject1.GetHashCode(), optionObject2.GetHashCode());
         }
     }
 }

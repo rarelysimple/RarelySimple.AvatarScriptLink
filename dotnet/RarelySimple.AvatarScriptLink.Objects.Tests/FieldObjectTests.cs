@@ -1,4 +1,6 @@
-﻿namespace RarelySimple.AvatarScriptLink.Objects.Tests
+﻿using RarelySimple.AvatarScriptLink.Objects.Advanced.Interfaces;
+
+namespace RarelySimple.AvatarScriptLink.Objects.Tests
 {
     [TestClass]
     public class FieldObjectTests
@@ -127,7 +129,7 @@
         [TestMethod]
         public void FieldObjectEqualsMethodIsTrue()
         {
-            FieldObject FieldObject1 = new()
+            FieldObject fieldObject1 = new()
             {
                 Enabled = "1",
                 FieldNumber = "12345.0",
@@ -135,14 +137,29 @@
                 Lock = "0",
                 Required = "1"
             };
-            FieldObject FieldObject2 = FieldObject1.Clone();
-            Assert.IsTrue(FieldObject1.Equals(FieldObject2));
+            FieldObject fieldObject2 = fieldObject1.Clone();
+            Assert.IsTrue(fieldObject1.Equals(fieldObject2));
+        }
+
+        [TestMethod]
+        public void FieldObjectEqualsMethodObjectIsTrue()
+        {
+            FieldObject fieldObject1 = new()
+            {
+                Enabled = "1",
+                FieldNumber = "12345.0",
+                FieldValue = "abcdef",
+                Lock = "0",
+                Required = "1"
+            };
+            IFieldObject fieldObject2 = fieldObject1.Clone();
+            Assert.IsTrue(fieldObject1.Equals(fieldObject2));
         }
 
         [TestMethod]
         public void FieldObjectEqualsMethodEmptyFieldsIsTrue()
         {
-            FieldObject FieldObject1 = new()
+            FieldObject fieldObject1 = new()
             {
                 Enabled = "1",
                 FieldNumber = "12345.0",
@@ -150,14 +167,14 @@
                 Lock = "0",
                 Required = "1"
             };
-            FieldObject FieldObject2 = FieldObject1.Clone();
-            Assert.IsTrue(FieldObject1.Equals(FieldObject2));
+            FieldObject fieldObject2 = fieldObject1.Clone();
+            Assert.IsTrue(fieldObject1.Equals(fieldObject2));
         }
 
         [TestMethod]
         public void FieldObjectEqualsMethodIsFalse()
         {
-            FieldObject FieldObject1 = new()
+            FieldObject fieldObject1 = new()
             {
                 Enabled = "1",
                 FieldNumber = "12345.0",
@@ -165,15 +182,15 @@
                 Lock = "0",
                 Required = "1"
             };
-            FieldObject FieldObject2 = FieldObject1.Clone();
-            FieldObject2.FieldValue = "modified";
-            Assert.IsFalse(FieldObject1.Equals(FieldObject2));
+            FieldObject fieldObject2 = fieldObject1.Clone();
+            fieldObject2.FieldValue = "modified";
+            Assert.IsFalse(fieldObject1.Equals(fieldObject2));
         }
 
         [TestMethod]
         public void FieldObjectEqualsObjectMethodIsFalse()
         {
-            FieldObject FieldObject1 = new()
+            FieldObject fieldObject1 = new()
             {
                 Enabled = "1",
                 FieldNumber = "12345.0",
@@ -181,7 +198,7 @@
                 Lock = "0",
                 Required = "1"
             };
-            OptionObject2 FieldObject2 = new()
+            OptionObject2 fieldObject2 = new()
             {
                 EntityID = "1",
                 EpisodeNumber = 2,
@@ -196,13 +213,27 @@
                 ServerName = "Server",
                 SystemCode = "TEST"
             };
-            Assert.IsFalse(FieldObject1.Equals(FieldObject2));
+            Assert.IsFalse(fieldObject1.Equals(fieldObject2));
+        }
+
+        [TestMethod]
+        public void FieldObjectEqualsObjectMethodNullIsFalse()
+        {
+            FieldObject fieldObject1 = new()
+            {
+                Enabled = "1",
+                FieldNumber = "12345.0",
+                FieldValue = "abcdef",
+                Lock = "0",
+                Required = "1"
+            };
+            Assert.IsFalse(fieldObject1.Equals(null));
         }
 
         [TestMethod]
         public void FieldObjectEqualsOperatorIsTrue()
         {
-            FieldObject FieldObject1 = new()
+            FieldObject fieldObject1 = new()
             {
                 Enabled = "1",
                 FieldNumber = "12345.0",
@@ -210,7 +241,7 @@
                 Lock = "0",
                 Required = "1"
             };
-            FieldObject FieldObject2 = new()
+            FieldObject fieldObject2 = new()
             {
                 Enabled = "1",
                 FieldNumber = "12345.0",
@@ -218,13 +249,14 @@
                 Lock = "0",
                 Required = "1"
             };
-            Assert.IsTrue(FieldObject1 == FieldObject2);
+            Assert.IsTrue(fieldObject1 == fieldObject2);
+            Assert.IsFalse(fieldObject1 != fieldObject2);
         }
 
         [TestMethod]
         public void FieldObjectEqualsOperatorLeftNullIsFalse()
         {
-            FieldObject FieldObject1 = new()
+            FieldObject fieldObject1 = new()
             {
                 Enabled = "1",
                 FieldNumber = "12345.0",
@@ -232,13 +264,14 @@
                 Lock = "0",
                 Required = "1"
             };
-            Assert.IsFalse(null == FieldObject1);
+            Assert.IsFalse(null == fieldObject1);
+            Assert.IsTrue(null != fieldObject1);
         }
 
         [TestMethod]
         public void FieldObjectEqualsOperatorRightNullIsFalse()
         {
-            FieldObject FieldObject1 = new()
+            FieldObject fieldObject1 = new()
             {
                 Enabled = "1",
                 FieldNumber = "12345.0",
@@ -246,7 +279,54 @@
                 Lock = "0",
                 Required = "1"
             };
-            Assert.IsFalse(FieldObject1 == null);
+            Assert.IsFalse(fieldObject1 == null);
+            Assert.IsTrue(fieldObject1 != null);
+        }
+
+        [TestMethod]
+        public void FieldObjectGetHashCodeAreEqual()
+        {
+            FieldObject fieldObject1 = new()
+            {
+                Enabled = "1",
+                FieldNumber = "12345.0",
+                FieldValue = "abcdef",
+                Lock = "0",
+                Required = "1"
+            };
+            FieldObject fieldObject2 = fieldObject1;
+            Assert.AreEqual(fieldObject1.GetHashCode(), fieldObject2.GetHashCode());
+        }
+
+        [TestMethod]
+        public void FieldObjectGetHashCodeClonedAreEqual()
+        {
+            FieldObject fieldObject1 = new()
+            {
+                Enabled = "1",
+                FieldNumber = "12345.0",
+                FieldValue = "abcdef",
+                Lock = "0",
+                Required = "1"
+            };
+            FieldObject fieldObject2 = fieldObject1.Clone();
+            Assert.AreEqual(fieldObject1.GetHashCode(), fieldObject2.GetHashCode());
+        }
+
+        [TestMethod]
+        public void FieldObjectGetHashCodeAreNotEqual()
+        {
+            FieldObject fieldObject1 = new()
+            {
+                Enabled = "1",
+                FieldNumber = "12345.0",
+                FieldValue = "abcdef",
+                Lock = "0",
+                Required = "1"
+            };
+            FieldObject fieldObject2 = fieldObject1.Clone();
+            fieldObject2.FieldValue = "modified";
+            Assert.AreNotEqual(fieldObject1.GetHashCode(), fieldObject2.GetHashCode());
         }
     }
 }

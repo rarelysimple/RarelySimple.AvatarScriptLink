@@ -1,3 +1,5 @@
+using RarelySimple.AvatarScriptLink.Objects.Advanced.Interfaces;
+
 namespace RarelySimple.AvatarScriptLink.Objects.Tests
 {
     [TestClass]
@@ -6,96 +8,109 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
         [TestMethod]
         public void RowObjectCloneAreEqual()
         {
-            RowObject RowObject1 = new()
+            RowObject rowObject1 = new()
             {
                 RowId = "1"
             };
-            RowObject RowObject2 = RowObject1.Clone();
-            Assert.AreEqual(RowObject1, RowObject2);
+            RowObject rowObject2 = rowObject1.Clone();
+            Assert.AreEqual(rowObject1, rowObject2);
         }
 
         [TestMethod]
         public void RowObjectEqualsMethodIsTrue()
         {
-            RowObject RowObject1 = new()
+            RowObject rowObject1 = new()
             {
                 RowId = "2",
                 RowAction = "",
                 ParentRowId = "1"
             };
-            RowObject RowObject2 = RowObject1.Clone();
-            Assert.IsTrue(RowObject1.Equals(RowObject2));
+            RowObject rowObject2 = rowObject1.Clone();
+            Assert.IsTrue(rowObject1.Equals(rowObject2));
+        }
+
+        [TestMethod]
+        public void RowObjectEqualsMethodObjectIsTrue()
+        {
+            RowObject rowObject1 = new()
+            {
+                RowId = "2",
+                RowAction = "",
+                ParentRowId = "1"
+            };
+            IRowObject rowObject2 = rowObject1.Clone();
+            Assert.IsTrue(rowObject1.Equals(rowObject2));
         }
 
         [TestMethod]
         public void RowObjectEqualsMethodEmptyFieldsIsTrue()
         {
-            RowObject RowObject1 = new()
+            RowObject rowObject1 = new()
             {
                 RowId = "2",
                 RowAction = "",
                 ParentRowId = "1",
                 Fields = []
             };
-            RowObject RowObject2 = RowObject1.Clone();
-            Assert.IsTrue(RowObject1.Equals(RowObject2));
+            RowObject rowObject2 = rowObject1.Clone();
+            Assert.IsTrue(rowObject1.Equals(rowObject2));
         }
 
         [TestMethod]
         public void RowObjectEqualsMethodFieldsIsTrue()
         {
-            RowObject RowObject1 = new()
+            RowObject rowObject1 = new()
             {
                 RowId = "2",
                 RowAction = "",
                 ParentRowId = "1",
                 Fields = [ new FieldObject() ]
             };
-            RowObject RowObject2 = RowObject1.Clone();
-            Assert.IsTrue(RowObject1.Equals(RowObject2));
+            RowObject rowObject2 = rowObject1.Clone();
+            Assert.IsTrue(rowObject1.Equals(rowObject2));
         }
 
         [TestMethod]
         public void RowObjectEqualsMethodOtherRowsIsFalse()
         {
-            RowObject RowObject1 = new()
+            RowObject rowObject1 = new()
             {
                 RowId = "2",
                 RowAction = "",
                 ParentRowId = "1",
                 Fields = []
             };
-            RowObject RowObject2 = RowObject1.Clone();
-            RowObject2.Fields.Add(new FieldObject());
-            Assert.IsFalse(RowObject1.Equals(RowObject2));
+            RowObject rowObject2 = rowObject1.Clone();
+            rowObject2.Fields.Add(new FieldObject());
+            Assert.IsFalse(rowObject1.Equals(rowObject2));
         }
 
         [TestMethod]
         public void RowObjectEqualsMethodIsFalse()
         {
-            RowObject RowObject1 = new()
+            RowObject rowObject1 = new()
             {
                 RowId = "2",
                 RowAction = "",
                 ParentRowId = "1",
                 Fields = []
             };
-            RowObject RowObject2 = RowObject1.Clone();
-            RowObject2.RowAction = "EDIT";
-            Assert.IsFalse(RowObject1.Equals(RowObject2));
+            RowObject rowObject2 = rowObject1.Clone();
+            rowObject2.RowAction = "EDIT";
+            Assert.IsFalse(rowObject1.Equals(rowObject2));
         }
 
         [TestMethod]
         public void RowObjectEqualsObjectMethodIsFalse()
         {
-            RowObject RowObject1 = new()
+            RowObject rowObject1 = new()
             {
                 RowId = "2",
                 RowAction = "",
                 ParentRowId = "1",
                 Fields = []
             };
-            OptionObject2 RowObject2 = new()
+            OptionObject2 rowObject2 = new()
             {
                 EntityID = "1",
                 EpisodeNumber = 2,
@@ -110,53 +125,112 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
                 ServerName = "Server",
                 SystemCode = "TEST"
             };
-            Assert.IsFalse(RowObject1.Equals(RowObject2));
+            Assert.IsFalse(rowObject1.Equals(rowObject2));
+        }
+
+        [TestMethod]
+        public void RowObjectEqualsObjectMethodNullIsFalse()
+        {
+            RowObject rowObject1 = new()
+            {
+                RowId = "2",
+                RowAction = "",
+                ParentRowId = "1",
+                Fields = []
+            };
+            Assert.IsFalse(rowObject1.Equals(null));
         }
 
         [TestMethod]
         public void RowObjectEqualsOperatorIsTrue()
         {
-            RowObject RowObject1 = new()
+            RowObject rowObject1 = new()
             {
                 RowId = "2",
                 RowAction = "",
                 ParentRowId = "1",
                 Fields = []
             };
-            RowObject RowObject2 = new()
+            RowObject rowObject2 = new()
             {
                 RowId = "2",
                 RowAction = "",
                 ParentRowId = "1",
                 Fields = []
             };
-            Assert.IsTrue(RowObject1 == RowObject2);
+            Assert.IsTrue(rowObject1 == rowObject2);
+            Assert.IsFalse(rowObject1 != rowObject2);
         }
 
         [TestMethod]
         public void RowObjectEqualsOperatorLeftNullIsFalse()
         {
-            RowObject RowObject1 = new()
+            RowObject rowObject1 = new()
             {
                 RowId = "2",
                 RowAction = "",
                 ParentRowId = "1",
                 Fields = []
             };
-            Assert.IsFalse(null == RowObject1);
+            Assert.IsFalse(null == rowObject1);
+            Assert.IsTrue(null != rowObject1);
         }
 
         [TestMethod]
         public void RowObjectEqualsOperatorRightNullIsFalse()
         {
-            RowObject RowObject1 = new()
+            RowObject rowObject1 = new()
             {
                 RowId = "2",
                 RowAction = "",
                 ParentRowId = "1",
                 Fields = []
             };
-            Assert.IsFalse(RowObject1 == null);
+            Assert.IsFalse(rowObject1 == null);
+            Assert.IsTrue(rowObject1 != null);
+        }
+
+        [TestMethod]
+        public void RowObjectGetHashCodeAreEqual()
+        {
+            RowObject rowObject1 = new()
+            {
+                RowId = "2",
+                RowAction = "",
+                ParentRowId = "1",
+                Fields = []
+            };
+            RowObject rowObject2 = rowObject1;
+            Assert.AreEqual(rowObject1.GetHashCode(), rowObject2.GetHashCode());
+        }
+
+        [TestMethod]
+        public void RowObjectGetHashCodeCloneAreEqual()
+        {
+            RowObject rowObject1 = new()
+            {
+                RowId = "2",
+                RowAction = "",
+                ParentRowId = "1",
+                Fields = []
+            };
+            RowObject rowObject2 = rowObject1.Clone();
+            Assert.AreEqual(rowObject1.GetHashCode(), rowObject2.GetHashCode());
+        }
+
+        [TestMethod]
+        public void RowObjectGetHashCodeAreNotEqual()
+        {
+            RowObject rowObject1 = new()
+            {
+                RowId = "2",
+                RowAction = "",
+                ParentRowId = "1",
+                Fields = []
+            };
+            RowObject rowObject2 = rowObject1.Clone();
+            rowObject2.RowAction = "EDIT";
+            Assert.AreNotEqual(rowObject1.GetHashCode(), rowObject2.GetHashCode());
         }
     }
 }

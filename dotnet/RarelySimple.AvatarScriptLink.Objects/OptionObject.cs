@@ -84,22 +84,20 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// <returns>Returns an <see cref="int"/> representing the unique hash code for the <see cref="OptionObject"/>.</returns>
         public override int GetHashCode()
         {
-            string delimiter = "||";
-            StringBuilder sb = new StringBuilder();
-            sb.Append(EntityID
-                + delimiter + EpisodeNumber.ToString(CultureInfo.InvariantCulture)
-                + delimiter + ErrorCode.ToString(CultureInfo.InvariantCulture)
-                + delimiter + ErrorMesg
-                + delimiter + Facility
-                + delimiter + OptionId
-                + delimiter + OptionStaffId
-                + delimiter + OptionUserId
-                + delimiter + SystemCode);
+            int hash = 17;
+            hash = hash * 23 + EpisodeNumber.GetHashCode();
+            hash = hash * 23 + ErrorCode.GetHashCode();
+            hash = hash * 23 + (ErrorMesg != null ? ErrorMesg.GetHashCode() : 0);
+            hash = hash * 23 + (Facility != null ? Facility.GetHashCode() : 0);
+            hash = hash * 23 + (OptionId != null ? OptionId.GetHashCode() : 0);
+            hash = hash * 23 + (OptionStaffId != null ? OptionStaffId.GetHashCode() : 0);
+            hash = hash * 23 + (OptionUserId != null ? OptionUserId.GetHashCode() : 0);
+            hash = hash * 23 + (SystemCode != null ? SystemCode.GetHashCode() : 0);
             foreach (FormObject formObject in Forms)
             {
-                sb.Append(delimiter + formObject.GetHashCode());
+                hash = hash * 23 + (formObject != null ? formObject.GetHashCode() : 0);
             }
-            return sb.GetHashCode();
+            return hash;
         }
 
         private static bool AreFormsEqual(List<FormObject> list1, List<FormObject> list2)

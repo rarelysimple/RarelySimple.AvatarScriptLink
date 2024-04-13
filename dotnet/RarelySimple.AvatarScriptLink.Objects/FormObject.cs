@@ -70,18 +70,18 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// <returns>Returns an <see cref="int"/> representing the unique hash code for the <see cref="FormObject"/>.</returns>
         public override int GetHashCode()
         {
-            string delimiter = "||";
-            StringBuilder sb = new StringBuilder();
-            sb.Append(FormId + delimiter + MultipleIteration.ToString(CultureInfo.InvariantCulture));
-            sb.Append(CurrentRow != null ? delimiter + CurrentRow.GetHashCode().ToString(CultureInfo.InvariantCulture) : "");
+            int hash = 17;
+            hash = hash * 23 + (FormId != null ? FormId.GetHashCode() : 0);
+            hash = hash * 23 + MultipleIteration.GetHashCode();
+            hash = hash * 23 + (CurrentRow != null ? CurrentRow.GetHashCode() : 0);
             if (OtherRows != null)
             {
                 foreach (RowObject rowObject in OtherRows)
                 {
-                    sb.Append(delimiter + rowObject.GetHashCode());
+                    hash = hash * 23 + (rowObject != null ? rowObject.GetHashCode() : 0);
                 }
             }
-            return sb.GetHashCode();
+            return hash;
         }
 
         private static bool AreRowsEqual(List<RowObject> list1, List<RowObject> list2)

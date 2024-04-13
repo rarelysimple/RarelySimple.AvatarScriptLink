@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using RarelySimple.AvatarScriptLink.Services;
 using RS.ScriptLinkService.Demo;
@@ -20,3 +21,6 @@ app.UseEndpoints(endpoints =>
 });
 
 app.Run();
+
+[ExcludeFromCodeCoverage]
+public partial class Program { }

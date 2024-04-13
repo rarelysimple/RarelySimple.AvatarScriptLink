@@ -38,13 +38,12 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// <returns>Returns a <see cref="bool"/> indicating whether the two <see cref="RowObject"/> are equal.</returns>
         public bool Equals(RowObject other)
         {
-            if (other == null)
-                return false;
-            return ParentRowId == other.ParentRowId &&
+            return other != null &&
+                ParentRowId == other.ParentRowId &&
                 ((RowAction == null && other.RowAction == null) ||
                 RowAction == other.RowAction) &&
                 RowId == other.RowId &&
-                AreFieldsEqual(this.Fields, other.Fields);
+                AreFieldsEqual(Fields, other.Fields);
         }
 
         /// <summary>
@@ -64,16 +63,15 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// <returns>Returns an <see cref="int"/> representing the unique hash code for the <see cref="RowObject"/>.</returns>
         public override int GetHashCode()
         {
-            string delimiter = "||";
-            StringBuilder sb = new StringBuilder();
-            sb.Append(ParentRowId
-                + delimiter + RowAction
-                + delimiter + RowId);
+            int hash = 17;
+            hash = hash * 23 + (ParentRowId != null ? ParentRowId.GetHashCode() : 0);
+            hash = hash * 23 + (RowAction != null ? RowAction.GetHashCode() : 0);
+            hash = hash * 23 + (RowId != null ? RowId.GetHashCode() : 0);
             foreach (FieldObject fieldObject in Fields)
             {
-                sb.Append(delimiter + fieldObject.GetHashCode());
+                hash = hash * 23 + (fieldObject != null ? fieldObject.GetHashCode() : 0);
             }
-            return sb.GetHashCode();
+            return hash;
         }
 
         private static bool AreFieldsEqual(List<FieldObject> list1, List<FieldObject> list2)
