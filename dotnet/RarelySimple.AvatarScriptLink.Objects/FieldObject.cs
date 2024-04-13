@@ -36,9 +36,8 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// <returns>Returns a <see cref="bool"/> indicating whether two <see cref="FieldObject"/> are equal.</returns>
         public bool Equals(FieldObject other)
         {
-            if (other == null)
-                return false;
-            return FieldValue == other.FieldValue &&
+            return other != null &&
+                FieldValue == other.FieldValue &&
                 Required == other.Required &&
                 Enabled == other.Enabled &&
                 FieldNumber == other.FieldNumber &&
@@ -62,14 +61,13 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// <returns>Returns an <see cref="int"/> representing the unique hash code for the <see cref="FieldObject"/>.</returns>
         public override int GetHashCode()
         {
-            string delimiter = "||";
-            StringBuilder sb = new StringBuilder();
-            sb.Append(FieldNumber
-                + delimiter + FieldValue
-                + delimiter + Enabled
-                + delimiter + Lock
-                + delimiter + Required);
-            return sb.GetHashCode();
+            int hash = 17;
+            hash = hash * 23 + (FieldNumber != null ? FieldNumber.GetHashCode() : 0);
+            hash = hash * 23 + (FieldValue != null ? FieldValue.GetHashCode() : 0);
+            hash = hash * 23 + (Enabled != null ? Enabled.GetHashCode() : 0);
+            hash = hash * 23 + (Lock != null ? Lock.GetHashCode() : 0);
+            hash = hash * 23 + (Required != null ? Required.GetHashCode() : 0);
+            return hash;
         }
 
         public static bool operator ==(FieldObject fieldObject1, FieldObject fieldObject2)
