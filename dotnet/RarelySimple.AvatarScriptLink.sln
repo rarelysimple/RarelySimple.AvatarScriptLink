@@ -18,8 +18,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RarelySimple.AvatarScriptLi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RarelySimple.AvatarScriptLink.Objects.Tests", "RarelySimple.AvatarScriptLink.Objects.Tests\RarelySimple.AvatarScriptLink.Objects.Tests.csproj", "{E0F2D37A-6C52-45E4-90B7-A60CF5C7B0FF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RS.ScriptLinkService.Demo", "RS.ScriptLinkService.Demo\RS.ScriptLinkService.Demo.csproj", "{715F8B31-520B-495D-9C80-4E3DEB37F347}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RarelySimple.AvatarScriptLink.Net.Tests", "RarelySimple.AvatarScriptLink.Net.Tests\RarelySimple.AvatarScriptLink.Net.Tests.csproj", "{FE75D359-668A-49EF-8175-B965952A41D3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RarelySimple.AvatarScriptLink.Tests", "RarelySimple.AvatarScriptLink.Tests\RarelySimple.AvatarScriptLink.Tests.csproj", "{A5AE2AC4-41C2-4692-B4F1-A77C90B60377}"
