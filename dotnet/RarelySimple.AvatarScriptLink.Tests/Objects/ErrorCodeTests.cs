@@ -9,77 +9,77 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void ErrorCode_None_Returns0()
         {
             int expected = 0;
-            Assert.AreEqual(expected, ErrorCode.None);
+            Assert.IsTrue(ErrorCode.None == expected);
         }
 
         [TestMethod]
         public void ErrorCode_Success_Returns0()
         {
             int expected = 0;
-            Assert.AreEqual(expected, ErrorCode.Success);
+            Assert.IsTrue(ErrorCode.Success == expected);
         }
 
         [TestMethod]
         public void ErrorCode_Error_Returns1()
         {
             int expected = 1;
-            Assert.AreEqual(expected, ErrorCode.Error);
+            Assert.IsTrue(ErrorCode.Error == expected);
         }
 
         [TestMethod]
         public void ErrorCode_Warning_Returns2()
         {
             int expected = 2;
-            Assert.AreEqual(expected, ErrorCode.Warning);
+            Assert.IsTrue(ErrorCode.Warning == expected);
         }
 
         [TestMethod]
         public void ErrorCode_OkCancel_Returns2()
         {
             int expected = 2;
-            Assert.AreEqual(expected, ErrorCode.OkCancel);
+            Assert.IsTrue(ErrorCode.OkCancel == expected);
         }
 
         [TestMethod]
         public void ErrorCode_Alert_Returns3()
         {
             int expected = 3;
-            Assert.AreEqual(expected, ErrorCode.Alert);
+            Assert.IsTrue(ErrorCode.Alert == expected);
         }
 
         [TestMethod]
         public void ErrorCode_Info_Returns3()
         {
             int expected = 3;
-            Assert.AreEqual(expected, ErrorCode.Informational);
+            Assert.IsTrue(ErrorCode.Info == expected);
         }
 
         [TestMethod]
         public void ErrorCode_Confirm_Returns4()
         {
             int expected = 4;
-            Assert.AreEqual(expected, ErrorCode.Confirm);
+            Assert.IsTrue(ErrorCode.Confirm == expected);
         }
 
         [TestMethod]
         public void ErrorCode_YesNo_Returns4()
         {
             int expected = 4;
-            Assert.AreEqual(expected, ErrorCode.YesNo);
+            Assert.IsTrue(ErrorCode.YesNo == expected);
         }
 
         [TestMethod]
         public void ErrorCode_OpenUrl_Returns5()
         {
             int expected = 5;
-            Assert.AreEqual(expected, ErrorCode.OpenUrl);
+            Assert.IsTrue(ErrorCode.OpenUrl == expected);
         }
 
         [TestMethod]
         public void ErrorCode_OpenForm_Returns6()
         {
             int expected = 6;
-            Assert.AreEqual(expected, ErrorCode.OpenForm);
+            Assert.IsTrue(ErrorCode.OpenForm == expected);
         }
     }
 }

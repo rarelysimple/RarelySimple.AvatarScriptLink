@@ -16,9 +16,9 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static bool IsFormPresent(IOptionObject optionObject, string formId)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(formId))
-                throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (optionObject.Forms == null || optionObject.Forms.Count == 0)
                 return false;
             return optionObject.Forms.Exists(f => f.FormId == formId);

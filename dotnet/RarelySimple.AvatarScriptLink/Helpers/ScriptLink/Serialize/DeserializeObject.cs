@@ -18,7 +18,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static T DeserializeObject<T>(string serializedString) where T : new()
         {
             if (string.IsNullOrEmpty(serializedString))
-                throw new ArgumentNullException(nameof(serializedString), GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(serializedString), GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
 
             try { return DeserializeObjectFromXmlString<T>(serializedString); }
             catch { /* Not valid XML or doesn't match the object specification */ }
@@ -36,7 +36,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static T DeserializeObjectFromJsonString<T>(string json)
         {
             if (string.IsNullOrEmpty(json))
-                throw new ArgumentNullException(nameof(json), GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(json), GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
 
             try
             {
@@ -56,7 +56,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static T DeserializeObjectFromXmlString<T>(string xml)
         {
             if (string.IsNullOrEmpty(xml))
-                throw new ArgumentNullException(nameof(xml), GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(xml), GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
 
             try
             {

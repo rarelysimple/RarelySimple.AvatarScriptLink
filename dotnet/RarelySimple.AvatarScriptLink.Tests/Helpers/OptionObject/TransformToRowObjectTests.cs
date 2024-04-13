@@ -11,10 +11,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void RowObjectFromJson_NullString()
         {
-            string json = null;
-            RowObject expected = new();
-            RowObject actual = (RowObject)OptionObjectHelpers.TransformToRowObject(json);
-            //Assert.AreEqual(expected, OptionObjectHelpers.TransformToFieldObject(json));
+            _ = (RowObject)OptionObjectHelpers.TransformToRowObject(null);
         }
 
         [TestMethod]

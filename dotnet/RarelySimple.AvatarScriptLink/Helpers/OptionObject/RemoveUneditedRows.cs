@@ -11,7 +11,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IOptionObject RemoveUneditedRows(IOptionObject optionObject)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
 
             List<FormObject> formsToRemove = new List<FormObject>();
             for (int i = 0; i < optionObject.Forms.Count; i++)
@@ -33,7 +33,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IFormObject RemoveUneditedRows(IFormObject formObject)
         {
             if (formObject == null)
-                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
 
             // CurrentRow
             if (formObject.CurrentRow != null &&

@@ -6,54 +6,64 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
     [TestClass]
     public class GetFieldValuesTests
     {
-        private OptionObject optionObject;
-        private FormObject formObject;
-        private FormObject formObject02;
-        private RowObject rowObject;
-        private RowObject rowObject02;
-        private FieldObject fieldObject;
-        private FieldObject fieldObject02;
-        private FieldObject fieldObject03;
+        private OptionObject optionObject = new();
+        private FormObject formObject = new();
+        private FormObject formObject02 = new();
+        private RowObject rowObject = new();
+        private RowObject rowObject02 = new();
+        private FieldObject fieldObject = new();
+        private FieldObject fieldObject02 = new();
+        private FieldObject fieldObject03 = new();
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this.fieldObject = new FieldObject();
-            fieldObject.Enabled = "1";
-            fieldObject.FieldNumber = "123.45";
-            fieldObject.FieldValue = "Test Value";
-            fieldObject.Lock = "0";
-            fieldObject.Required = "0";
+            fieldObject = new FieldObject
+            {
+                Enabled = "1",
+                FieldNumber = "123.45",
+                FieldValue = "Test Value",
+                Lock = "0",
+                Required = "0"
+            };
 
-            this.fieldObject02 = new FieldObject();
-            fieldObject02.Enabled = "1";
-            fieldObject02.FieldNumber = "123.46";
-            fieldObject02.FieldValue = "Test Value 02";
-            fieldObject02.Lock = "0";
-            fieldObject02.Required = "0";
+            fieldObject02 = new FieldObject
+            {
+                Enabled = "1",
+                FieldNumber = "123.46",
+                FieldValue = "Test Value 02",
+                Lock = "0",
+                Required = "0"
+            };
 
-            this.rowObject = new RowObject();
+            rowObject = new RowObject();
             rowObject.Fields.Add(fieldObject);
             rowObject.Fields.Add(fieldObject02);
 
-            this.formObject = new FormObject();
-            formObject.CurrentRow = rowObject;
+            formObject = new FormObject
+            {
+                CurrentRow = rowObject
+            };
             formObject.OtherRows.Add(rowObject);
 
-            this.fieldObject03 = new FieldObject();
-            fieldObject03.Enabled = "1";
-            fieldObject03.FieldNumber = "123.47";
-            fieldObject03.FieldValue = "Test Value 03";
-            fieldObject03.Lock = "0";
-            fieldObject03.Required = "0";
+            fieldObject03 = new FieldObject
+            {
+                Enabled = "1",
+                FieldNumber = "123.47",
+                FieldValue = "Test Value 03",
+                Lock = "0",
+                Required = "0"
+            };
 
-            this.rowObject02 = new RowObject();
+            rowObject02 = new RowObject();
             rowObject02.Fields.Add(fieldObject03);
 
-            this.formObject02 = new FormObject();
-            formObject02.CurrentRow = rowObject02;
+            formObject02 = new FormObject
+            {
+                CurrentRow = rowObject02
+            };
 
-            this.optionObject = new OptionObject();
+            optionObject = new OptionObject();
             optionObject.Forms.Add(formObject);
             optionObject.Forms.Add(formObject02);
         }

@@ -9,6 +9,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
 {
     public abstract class FieldObjectBase : IEquatable<FieldObjectBase>, IFieldObject
     {
+        protected const string ParameterCannotBeNull = "parameterCannotBeNull";
+        
         #region Constructors
 
         /// <summary>
@@ -30,7 +32,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         protected FieldObjectBase(string fieldNumber)
         {
             if (string.IsNullOrEmpty(fieldNumber))
-                throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             Enabled = "0";
             FieldNumber = fieldNumber;
             FieldValue = "";
@@ -46,7 +48,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         protected FieldObjectBase(string fieldNumber, string fieldValue)
         {
             if (string.IsNullOrEmpty(fieldNumber))
-                throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             Enabled = "0";
             FieldNumber = fieldNumber;
             FieldValue = fieldValue;
@@ -65,7 +67,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         protected FieldObjectBase(string fieldNumber, string fieldValue, bool enabled, bool locked, bool required)
         {
             if (string.IsNullOrEmpty(fieldNumber))
-                throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             Enabled = enabled ? "1" : "0";
             FieldNumber = fieldNumber;
             FieldValue = fieldValue;

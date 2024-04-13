@@ -73,15 +73,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void GetMultipleIterationStatusOptionObjectNullReturnsError()
-        {
-            OptionObject optionObject = null;
-            bool expected = true;
-            Assert.AreEqual(expected, optionObject.GetMultipleIterationStatus("1"));
-        }
-
-        [TestMethod]
         public void GetMultipleIterationStatusHelperOptionObjectReturnsBool()
         {
             FormObject formObject = new()
@@ -151,9 +142,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetMultipleIterationStatusHelperOptionObjectNullReturnsError()
         {
-            OptionObject optionObject = null;
             bool expected = true;
-            Assert.AreEqual(expected, OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "1"));
+            Assert.AreEqual(expected, OptionObjectHelpers.GetMultipleIterationStatus(null, "1"));
         }
 
         [TestMethod]
@@ -218,15 +208,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void GetMultipleIterationStatusOptionObject2NoFormsReturnsError()
         {
             OptionObject2 optionObject = new();
-            bool expected = true;
-            Assert.AreEqual(expected, optionObject.GetMultipleIterationStatus("1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void GetMultipleIterationStatusOptionObject2NullReturnsError()
-        {
-            OptionObject2 optionObject = null;
             bool expected = true;
             Assert.AreEqual(expected, optionObject.GetMultipleIterationStatus("1"));
         }
@@ -301,9 +282,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetMultipleIterationStatusHelperOptionObject2NullReturnsError()
         {
-            OptionObject2 optionObject = null;
             bool expected = true;
-            Assert.AreEqual(expected, OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "1"));
+            Assert.AreEqual(expected, OptionObjectHelpers.GetMultipleIterationStatus(null, "1"));
         }
 
         [TestMethod]
@@ -368,15 +348,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void GetMultipleIterationStatusOptionObject2015NoFormsReturnsError()
         {
             OptionObject2015 optionObject = new();
-            bool expected = true;
-            Assert.AreEqual(expected, optionObject.GetMultipleIterationStatus("1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void GetMultipleIterationStatusOptionObject2015NullReturnsError()
-        {
-            OptionObject2015 optionObject = null;
             bool expected = true;
             Assert.AreEqual(expected, optionObject.GetMultipleIterationStatus("1"));
         }
@@ -451,9 +422,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetMultipleIterationStatusHelperOptionObject2015NullReturnsError()
         {
-            OptionObject2015 optionObject = null;
             bool expected = true;
-            Assert.AreEqual(expected, OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "1"));
+            Assert.AreEqual(expected, OptionObjectHelpers.GetMultipleIterationStatus(null, "1"));
         }
     }
 }

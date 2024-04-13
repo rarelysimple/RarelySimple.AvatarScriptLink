@@ -7,15 +7,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
     public class GetNextAvailableRowIdTests
     {
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void GetNextRowId_FormObjectNull()
-        {
-            FormObject formObject = null;
-            string rowId = formObject.GetNextAvailableRowId();
-            Assert.AreEqual("1||1", rowId);
-        }
-
-        [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void GetNextRowId_FormObjectNonMI()
         {
@@ -94,8 +85,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetNextRowId_OptionObjectHelpers_FormObjectNull()
         {
-            FormObject formObject = null;
-            string rowId = OptionObjectHelpers.GetNextAvailableRowId(formObject);
+            string rowId = OptionObjectHelpers.GetNextAvailableRowId(null);
             Assert.AreEqual("1||1", rowId);
         }
 

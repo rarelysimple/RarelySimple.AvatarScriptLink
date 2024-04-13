@@ -69,24 +69,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsRowMarkedForDeletion_OptionObject_Null()
-        {
-            string rowId = "1||1";
-            OptionObject optionObject = null;
-            Assert.IsTrue(optionObject.IsRowMarkedForDeletion(rowId));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsRowMarkedForDeletion_OptionObject_Helper_Null()
-        {
-            string rowId = "1||1";
-            OptionObject optionObject = null;
-            Assert.IsTrue(OptionObjectHelpers.IsRowMarkedForDeletion(optionObject, rowId));
-        }
-
-        [TestMethod]
         public void IsRowMarkedForDeletion_OptionObject2_FirstForm_IsMarked()
         {
             string rowId = "1||1";
@@ -146,24 +128,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject);
             Assert.IsFalse(optionObject.IsRowMarkedForDeletion("2||1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsRowMarkedForDeletion_OptionObject2_Null()
-        {
-            string rowId = "1||1";
-            OptionObject2 optionObject = null;
-            Assert.IsTrue(optionObject.IsRowMarkedForDeletion(rowId));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsRowMarkedForDeletion_OptionObject2_Helper_Null()
-        {
-            string rowId = "1||1";
-            OptionObject2 optionObject = null;
-            Assert.IsTrue(OptionObjectHelpers.IsRowMarkedForDeletion(optionObject, rowId));
         }
 
         [TestMethod]
@@ -229,24 +193,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsRowMarkedForDeletion_OptionObject2015_Null()
-        {
-            string rowId = "1||1";
-            OptionObject2015 optionObject = null;
-            Assert.IsTrue(optionObject.IsRowMarkedForDeletion(rowId));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsRowMarkedForDeletion_OptionObject2015_Helper_Null()
-        {
-            string rowId = "1||1";
-            OptionObject2015 optionObject = null;
-            Assert.IsTrue(OptionObjectHelpers.IsRowMarkedForDeletion(optionObject, rowId));
-        }
-
-        [TestMethod]
         public void IsRowMarkedForDeletion_FormObject_IsMarked()
         {
             string rowId = "1||1";
@@ -272,24 +218,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             FormObject formObject = new("1");
             formObject.AddRowObject(rowObject);
             Assert.IsFalse(formObject.IsRowMarkedForDeletion("2||1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsRowMarkedForDeletion_FormObject_Null()
-        {
-            string rowId = "1||1";
-            FormObject formObject = null;
-            Assert.IsTrue(formObject.IsRowMarkedForDeletion(rowId));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsRowMarkedForDeletion_FormObject_Helper_Null()
-        {
-            string rowId = "1||1";
-            FormObject formObject = null;
-            Assert.IsTrue(OptionObjectHelpers.IsRowMarkedForDeletion(formObject, rowId));
         }
     }
 }

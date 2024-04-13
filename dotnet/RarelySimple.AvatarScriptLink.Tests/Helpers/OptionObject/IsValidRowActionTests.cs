@@ -9,8 +9,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void IsValidRowAction_Null()
         {
-            string rowAction = null;
-            Assert.IsTrue(OptionObjectHelpers.IsValidRowAction(rowAction));   // Confirm with Netsmart
+            Assert.IsTrue(OptionObjectHelpers.IsValidRowAction(null));
         }
         [TestMethod]
         public void IsValidRowAction_Blank()

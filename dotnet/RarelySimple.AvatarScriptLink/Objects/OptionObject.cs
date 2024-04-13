@@ -203,7 +203,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObjectBuilderFinal OptionId(string optionId)
             {
                 if (string.IsNullOrEmpty(optionId))
-                    throw new ArgumentNullException(nameof(optionId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(optionId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 optionObject.OptionId = optionId;
                 return new OptionObjectBuilderFinal(optionObject);
             }
@@ -216,7 +216,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// </summary>
             public OptionObjectBuilderFinal(OptionObject optionObject)
             {
-                this.optionObject = optionObject ?? throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                this.optionObject = optionObject ?? throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             }
             /// <summary>
             /// Sets the EntityId of the <see cref="OptionObject"/>.
@@ -227,7 +227,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObjectBuilderFinal EntityId(string entityId)
             {
                 if (string.IsNullOrEmpty(entityId))
-                    throw new ArgumentNullException(nameof(entityId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(entityId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 optionObject.EntityID = entityId;
                 return this;
             }
@@ -251,7 +251,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObjectBuilderFinal Facility(string facility)
             {
                 if (string.IsNullOrEmpty(facility))
-                    throw new ArgumentNullException(nameof(facility), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(facility), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 optionObject.Facility = facility;
                 return this;
             }
@@ -264,7 +264,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObjectBuilderFinal OptionStaffId(string optionStaffId)
             {
                 if (string.IsNullOrEmpty(optionStaffId))
-                    throw new ArgumentNullException(nameof(optionStaffId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(optionStaffId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 optionObject.OptionStaffId = optionStaffId;
                 return this;
             }
@@ -277,7 +277,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObjectBuilderFinal OptionUserId(string optionUserId)
             {
                 if (string.IsNullOrEmpty(optionUserId))
-                    throw new ArgumentNullException(nameof(optionUserId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(optionUserId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 optionObject.OptionUserId = optionUserId;
                 return this;
             }
@@ -290,7 +290,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObjectBuilderFinal SystemCode(string systemCode)
             {
                 if (string.IsNullOrEmpty(systemCode))
-                    throw new ArgumentNullException(nameof(systemCode), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(systemCode), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 optionObject.SystemCode = systemCode;
                 return this;
             }

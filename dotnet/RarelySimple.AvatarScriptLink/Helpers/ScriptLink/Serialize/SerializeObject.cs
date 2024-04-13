@@ -8,16 +8,17 @@ namespace RarelySimple.AvatarScriptLink.Helpers
 {
     public static partial class ScriptLinkHelpers
     {
+        private const string ParameterCannotBeNull = "parameterCannotBeNull";
         /// <summary>
         /// Serializes an object as Xml.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="objectToSerialize">The object to be serialized.</param>
         /// <returns></returns>
-        public static string SerializeObject<T>(T objectToSerialize)
+        public static string SerializeObject<T>(T objectToSerialize) where T : class
         {
             if (objectToSerialize == null)
-                throw new ArgumentNullException(nameof(objectToSerialize), GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(objectToSerialize), GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
 
             try 
             { 
@@ -34,10 +35,10 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <typeparam name="T"></typeparam>
         /// <param name="objectToSerialize">The object to be serialized.</param>
         /// <returns></returns>
-        public static string SerializeObjectToJsonString<T>(T objectToSerialize)
+        public static string SerializeObjectToJsonString<T>(T objectToSerialize) where T : class
         {
             if (objectToSerialize == null)
-                throw new ArgumentNullException(nameof(objectToSerialize), GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(objectToSerialize), GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
 
             try
             {
@@ -54,10 +55,10 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <typeparam name="T"></typeparam>
         /// <param name="objectToSerialize">The object to be serialized.</param>
         /// <returns></returns>
-        public static string SerializeObjectToXmlString<T>(T objectToSerialize)
+        public static string SerializeObjectToXmlString<T>(T objectToSerialize) where T : class
         {
             if (objectToSerialize == null)
-                throw new ArgumentNullException(nameof(objectToSerialize), GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(objectToSerialize), GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
 
             try
             {

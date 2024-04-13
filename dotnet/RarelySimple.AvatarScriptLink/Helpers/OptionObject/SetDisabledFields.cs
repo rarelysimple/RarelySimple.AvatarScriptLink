@@ -17,7 +17,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IOptionObject SetDisabledFields(IOptionObject optionObject, List<FieldObject> fieldObjects)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return SetFieldObjects(optionObject, FieldAction.Disable, fieldObjects);
         }
         /// <summary>
@@ -29,7 +29,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IOptionObject SetDisabledFields(IOptionObject optionObject, List<string> fieldNumbers)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return SetFieldObjects(optionObject, FieldAction.Disable, fieldNumbers);
         }
         /// <summary>
@@ -41,7 +41,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IFormObject SetDisabledFields(IFormObject formObject, List<string> fieldNumbers)
         {
             if (formObject == null)
-                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return SetFieldObjects(formObject, FieldAction.Disable, fieldNumbers);
         }
         /// <summary>
@@ -53,7 +53,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IRowObject SetDisabledFields(IRowObject rowObject, List<string> fieldNumbers)
         {
             if (rowObject == null)
-                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return SetFieldObjects(rowObject, FieldAction.Disable, fieldNumbers);
         }
     }

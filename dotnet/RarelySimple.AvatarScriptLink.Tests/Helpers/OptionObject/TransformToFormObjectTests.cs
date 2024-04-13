@@ -11,10 +11,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void FormObjectFromJson_NullString()
         {
-            string json = null;
-            FormObject expected = new();
-            FormObject actual = (FormObject)OptionObjectHelpers.TransformToFormObject(json);
-            //Assert.AreEqual(expected, actual);
+            _ = (FormObject)OptionObjectHelpers.TransformToFormObject(null);
         }
 
         [TestMethod]

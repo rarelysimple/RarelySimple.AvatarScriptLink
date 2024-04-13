@@ -16,7 +16,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IOptionObject SetOptionalField(IOptionObject optionObject, string fieldNumber)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return SetFieldObject(optionObject, FieldAction.Optional, fieldNumber);
         }
         /// <summary>
@@ -28,7 +28,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IFormObject SetOptionalField(IFormObject formObject, string fieldNumber)
         {
             if (formObject == null)
-                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return SetFieldObject(formObject, FieldAction.Optional, fieldNumber);
         }
         /// <summary>
@@ -40,7 +40,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IRowObject SetOptionalField(IRowObject rowObject, string fieldNumber)
         {
             if (rowObject == null)
-                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return SetFieldObject(rowObject, FieldAction.Optional, fieldNumber);
         }
     }

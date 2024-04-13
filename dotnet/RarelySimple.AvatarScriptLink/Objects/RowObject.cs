@@ -140,7 +140,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public RowObjectBuilderFinal RowId(string rowId)
             {
                 if(string.IsNullOrEmpty(rowId))
-                    throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 _rowObject.RowId = rowId;
                 return new RowObjectBuilderFinal(_rowObject);
             }
@@ -159,7 +159,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <exception cref="ArgumentNullException">Thrown if no <see cref="RowObject"/> is provided for continuation of build.</exception>
             public RowObjectBuilderFinal(RowObject rowObject)
             {
-                _rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                _rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             }
             /// <summary>
             /// Sets the RowAction to Add for this <see cref="RowObject"/>
@@ -241,7 +241,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// </summary>
             public CurrentRowObjectBuilder(FormObject formObject)
             {
-                this.formObject = formObject ?? throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                this.formObject = formObject ?? throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 rowObject = new RowObject()
                 {
                     RowAction = ""
@@ -257,7 +257,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public CurrentRowObjectBuilderFinal RowId(string rowId)
             {
                 if (string.IsNullOrEmpty(rowId))
-                    throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 rowObject.RowId = rowId;
                 return new CurrentRowObjectBuilderFinal(rowObject, formObject);
             }
@@ -277,8 +277,8 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <exception cref="ArgumentNullException"></exception>
             public CurrentRowObjectBuilderFinal(RowObject rowObject, FormObject formObject)
             {
-                this.rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-                this.formObject = formObject ?? throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                this.rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                this.formObject = formObject ?? throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             }
             /// <summary>
             /// Sets the RowAction to Add for this <see cref="RowObject"/>
@@ -353,7 +353,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// </summary>
             public OtherRowObjectBuilder(FormObject formObject)
             {
-                this.formObject = formObject ?? throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                this.formObject = formObject ?? throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 rowObject = new RowObject()
                 {
                     RowAction = ""
@@ -369,7 +369,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OtherRowObjectBuilderFinal RowId(string rowId)
             {
                 if (string.IsNullOrEmpty(rowId))
-                    throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 rowObject.RowId = rowId;
                 return new OtherRowObjectBuilderFinal(rowObject, formObject);
             }
@@ -389,8 +389,8 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <exception cref="ArgumentNullException"></exception>
             public OtherRowObjectBuilderFinal(RowObject rowObject, FormObject formObject)
             {
-                this.rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-                this.formObject = formObject ?? throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                this.rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                this.formObject = formObject ?? throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             }
             /// <summary>
             /// Sets the RowAction to Add for this <see cref="RowObject"/>

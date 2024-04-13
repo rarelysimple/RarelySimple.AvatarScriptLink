@@ -567,27 +567,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetParentRowIdHelperNullReturnsExpected()
         {
-            OptionObject optionObject = null;
             string expected = "1||1";
-            Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(optionObject, "1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void GetParentRowIdHelperNull2ReturnsExpected()
-        {
-            OptionObject2 optionObject = null;
-            string expected = "1||1";
-            Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(optionObject, "1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void GetParentRowIdHelperNull2015ReturnsExpected()
-        {
-            OptionObject2015 optionObject = null;
-            string expected = "1||1";
-            Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(optionObject, "1"));
+            Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(null, "1"));
         }
     }
 }

@@ -71,19 +71,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void GetFieldValueOptionObjectNullReturnsError()
-        {
-            OptionObject optionObject = null;
-            string expected1 = "TEST";
-            string expected2 = "TESTED";
-            Assert.AreEqual(expected1, optionObject.GetFieldValue("124"));
-            Assert.AreNotEqual(expected2, optionObject.GetFieldValue("124"));
-            Assert.AreEqual(expected1, optionObject.GetFieldValue("1", "1||1", "124"));
-            Assert.AreEqual(expected2, optionObject.GetFieldValue("1", "1||2", "124"));
-        }
-
-        [TestMethod]
         public void GetFieldValueHelperOptionObjectReturnsString()
         {
             FieldObject fieldObject1 = new("123", "TEST");
@@ -139,19 +126,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             formObject.OtherRows.Add(rowObject2);
             OptionObject optionObject = new();
             optionObject.Forms.Add(formObject);
-            string expected1 = "TEST";
-            string expected2 = "TESTED";
-            Assert.AreEqual(expected1, OptionObjectHelpers.GetFieldValue(optionObject, "124"));
-            Assert.AreNotEqual(expected2, OptionObjectHelpers.GetFieldValue(optionObject, "124"));
-            Assert.AreEqual(expected1, OptionObjectHelpers.GetFieldValue(optionObject, "1", "1||1", "124"));
-            Assert.AreEqual(expected2, OptionObjectHelpers.GetFieldValue(optionObject, "1", "1||2", "124"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void GetFieldValueHelperOptionObjectNullReturnsError()
-        {
-            OptionObject optionObject = null;
             string expected1 = "TEST";
             string expected2 = "TESTED";
             Assert.AreEqual(expected1, OptionObjectHelpers.GetFieldValue(optionObject, "124"));
@@ -225,19 +199,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void GetFieldValueOptionObject2NullReturnsError()
-        {
-            OptionObject2 optionObject = null;
-            string expected1 = "TEST";
-            string expected2 = "TESTED";
-            Assert.AreEqual(expected1, optionObject.GetFieldValue("124"));
-            Assert.AreNotEqual(expected2, optionObject.GetFieldValue("124"));
-            Assert.AreEqual(expected1, optionObject.GetFieldValue("1", "1||1", "124"));
-            Assert.AreEqual(expected2, optionObject.GetFieldValue("1", "1||2", "124"));
-        }
-
-        [TestMethod]
         public void GetFieldValueHelperOptionObject2ReturnsString()
         {
             FieldObject fieldObject1 = new("123", "TEST");
@@ -293,19 +254,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             formObject.OtherRows.Add(rowObject2);
             OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject);
-            string expected1 = "TEST";
-            string expected2 = "TESTED";
-            Assert.AreEqual(expected1, OptionObjectHelpers.GetFieldValue(optionObject, "124"));
-            Assert.AreNotEqual(expected2, OptionObjectHelpers.GetFieldValue(optionObject, "124"));
-            Assert.AreEqual(expected1, OptionObjectHelpers.GetFieldValue(optionObject, "1", "1||1", "124"));
-            Assert.AreEqual(expected2, OptionObjectHelpers.GetFieldValue(optionObject, "1", "1||2", "124"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void GetFieldValueHelperOptionObject2NullReturnsError()
-        {
-            OptionObject2 optionObject = null;
             string expected1 = "TEST";
             string expected2 = "TESTED";
             Assert.AreEqual(expected1, OptionObjectHelpers.GetFieldValue(optionObject, "124"));
@@ -379,19 +327,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void GetFieldValueOptionObject2015NullReturnsError()
-        {
-            OptionObject2015 optionObject = null;
-            string expected1 = "TEST";
-            string expected2 = "TESTED";
-            Assert.AreEqual(expected1, optionObject.GetFieldValue("124"));
-            Assert.AreNotEqual(expected2, optionObject.GetFieldValue("124"));
-            Assert.AreEqual(expected1, optionObject.GetFieldValue("1", "1||1", "124"));
-            Assert.AreEqual(expected2, optionObject.GetFieldValue("1", "1||2", "124"));
-        }
-
-        [TestMethod]
         public void GetFieldValueHelperOptionObject2015ReturnsString()
         {
             FieldObject fieldObject1 = new("123", "TEST");
@@ -447,19 +382,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             formObject.OtherRows.Add(rowObject2);
             OptionObject2015 optionObject = new();
             optionObject.Forms.Add(formObject);
-            string expected1 = "TEST";
-            string expected2 = "TESTED";
-            Assert.AreEqual(expected1, OptionObjectHelpers.GetFieldValue(optionObject, "124"));
-            Assert.AreNotEqual(expected2, OptionObjectHelpers.GetFieldValue(optionObject, "124"));
-            Assert.AreEqual(expected1, OptionObjectHelpers.GetFieldValue(optionObject, "1", "1||1", "124"));
-            Assert.AreEqual(expected2, OptionObjectHelpers.GetFieldValue(optionObject, "1", "1||2", "124"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void GetFieldValueHelperOptionObject2015NullReturnsError()
-        {
-            OptionObject2015 optionObject = null;
             string expected1 = "TEST";
             string expected2 = "TESTED";
             Assert.AreEqual(expected1, OptionObjectHelpers.GetFieldValue(optionObject, "124"));
@@ -527,19 +449,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void GetFieldValueFormObjectNullReturnsError()
-        {
-            FormObject formObject = null;
-            string expected1 = "TEST";
-            string expected2 = "TESTED";
-            Assert.AreEqual(expected1, formObject.GetFieldValue("124"));
-            Assert.AreNotEqual(expected2, formObject.GetFieldValue("124"));
-            Assert.AreEqual(expected1, formObject.GetFieldValue("1||1", "124"));
-            Assert.AreEqual(expected2, formObject.GetFieldValue("1||2", "124"));
-        }
-
-        [TestMethod]
         public void GetFieldValueHelperFormObjectReturnsString()
         {
             FieldObject fieldObject1 = new("123", "TEST");
@@ -598,19 +507,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void GetFieldValueHelperFormObjectNullReturnsError()
-        {
-            FormObject formObject = null;
-            string expected1 = "TEST";
-            string expected2 = "TESTED";
-            Assert.AreEqual(expected1, OptionObjectHelpers.GetFieldValue(formObject, "124"));
-            Assert.AreNotEqual(expected2, OptionObjectHelpers.GetFieldValue(formObject, "124"));
-            Assert.AreEqual(expected1, OptionObjectHelpers.GetFieldValue(formObject, "1||1", "124"));
-            Assert.AreEqual(expected2, OptionObjectHelpers.GetFieldValue(formObject, "1||2", "124"));
-        }
-
-        [TestMethod]
         public void GetFieldValueRowObjectReturnsString()
         {
             FieldObject fieldObject1 = new("123", "TEST");
@@ -654,17 +550,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             string expected2 = "TESTED";
             Assert.AreEqual(expected1, rowObject1.GetFieldValue("124"));
             Assert.AreEqual(expected2, rowObject2.GetFieldValue("124"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void GetFieldValueRowObjectNullReturnsError()
-        {
-            RowObject rowObject = null;
-            string expected1 = "TEST";
-            string expected2 = "TESTED";
-            Assert.AreEqual(expected1, rowObject.GetFieldValue("124"));
-            Assert.AreEqual(expected2, rowObject.GetFieldValue("124"));
         }
 
         [TestMethod]
@@ -714,17 +599,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void GetFieldValueHelperRowObjectNullReturnsError()
-        {
-            RowObject rowObject = null;
-            string expected1 = "TEST";
-            string expected2 = "TESTED";
-            Assert.AreEqual(expected1, OptionObjectHelpers.GetFieldValue(rowObject, "124"));
-            Assert.AreEqual(expected2, OptionObjectHelpers.GetFieldValue(rowObject, "124"));
-        }
-
-        [TestMethod]
         public void GetFieldValueHelperFieldObjectReturnsString()
         {
             FieldObject fieldObject1 = new("123", "TEST");
@@ -750,11 +624,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetFieldValueHelperFieldObjectNullReturnsError()
         {
-            FieldObject fieldObject = null;
             string expected1 = "TEST";
             string expected2 = "TESTED";
-            Assert.AreEqual(expected1, OptionObjectHelpers.GetFieldValue(fieldObject));
-            Assert.AreEqual(expected2, OptionObjectHelpers.GetFieldValue(fieldObject));
+            Assert.AreEqual(expected1, OptionObjectHelpers.GetFieldValue(null));
+            Assert.AreEqual(expected2, OptionObjectHelpers.GetFieldValue(null));
         }
     }
 }

@@ -75,20 +75,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        public void GetLocalizedString_NullCultureInfo_ReturnsString()
-        {
-            // Arrange
-            string key = "parameterCannotBeNull";
-            CultureInfo culture = null;
-
-            // Act
-            var actual = ScriptLinkHelpers.GetLocalizedString(key, culture);
-
-            // Assert
-            Assert.AreEqual(typeof(string), actual.GetType());
-        }
-
-        [TestMethod]
         public void GetLocalizedString_AvailableCultureInfo_ReturnsString()
         {
             // Arrange

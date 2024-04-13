@@ -13,7 +13,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IOptionObject GetReturnOptionObject(IOptionObject optionObject)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             IOptionObject returnOptionObject = ((OptionObjectBase)optionObject).Clone();
             RemoveUneditedRows(returnOptionObject);
             return returnOptionObject;
@@ -28,7 +28,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IOptionObject GetReturnOptionObject(IOptionObject optionObject, double errorCode, string errorMessage)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             IOptionObject returnOptionObject = ((OptionObjectBase)optionObject).Clone();
             returnOptionObject = RemoveUneditedRows(returnOptionObject);
             returnOptionObject = SetErrorCodeAndMessage(returnOptionObject, errorCode, errorMessage);
@@ -41,7 +41,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IOptionObject2 GetReturnOptionObject(IOptionObject2 optionObject)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             IOptionObject2 returnOptionObject = ((OptionObjectBase)optionObject).Clone();
             RemoveUneditedRows(returnOptionObject);
             return returnOptionObject;
@@ -56,7 +56,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IOptionObject2 GetReturnOptionObject(IOptionObject2 optionObject, double errorCode, string errorMessage)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             IOptionObject2 returnOptionObject = ((OptionObjectBase)optionObject).Clone();
             RemoveUneditedRows(returnOptionObject);
             SetErrorCodeAndMessage(returnOptionObject, errorCode, errorMessage);
@@ -70,7 +70,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IOptionObject2015 GetReturnOptionObject(IOptionObject2015 optionObject)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             IOptionObject2015 returnOptionObject = ((OptionObjectBase)optionObject).Clone();
             RemoveUneditedRows(returnOptionObject);
             return returnOptionObject;
@@ -85,7 +85,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IOptionObject2015 GetReturnOptionObject(IOptionObject2015 optionObject, double errorCode, string errorMessage)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             IOptionObject2015 returnOptionObject = ((OptionObjectBase)optionObject).Clone();
             RemoveUneditedRows(returnOptionObject);
             SetErrorCodeAndMessage(returnOptionObject, errorCode, errorMessage);

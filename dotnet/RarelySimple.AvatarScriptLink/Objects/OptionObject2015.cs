@@ -115,26 +115,26 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// Returns a <see cref="string"/> with all of the contents of the <see cref="OptionObject2015"/> formatted in HTML.
         /// </summary>
         /// <returns><see cref="string"/> of all of the contents of the <see cref="OptionObject2015"/> formatted in HTML.</returns>
-        public new string ToHtmlString() => OptionObjectHelpers.TransformToHtmlString((IOptionObject2015)this);
+        public new string ToHtmlString() => OptionObjectHelpers.TransformToHtmlString(this);
 
         /// <summary>
         /// Returns a <see cref="string"/> with all of the contents of the <see cref="OptionObject2015"/> formatted in HTML.
         /// </summary>
         /// <param name="includeHtmlHeaders">Determines whether to include the HTML headers in return. False allows for the embedding of the HTML in another HTML document.</param>
         /// <returns><see cref="string"/> of all of the contents of the <see cref="OptionObject2015"/> formatted in HTML.</returns>
-        public new string ToHtmlString(bool includeHtmlHeaders) => OptionObjectHelpers.TransformToHtmlString((IOptionObject2015)this, includeHtmlHeaders);
+        public new string ToHtmlString(bool includeHtmlHeaders) => OptionObjectHelpers.TransformToHtmlString(this, includeHtmlHeaders);
 
         /// <summary>
         /// Transforms the <see cref="OptionObject2015"/>  to an <see cref="OptionObject"/>.
         /// </summary>
         /// <returns></returns>
-        public override OptionObject ToOptionObject() => (OptionObject)OptionObjectHelpers.TransformToOptionObject((IOptionObject2015)this);
+        public override OptionObject ToOptionObject() => OptionObjectHelpers.TransformToOptionObject(this);
 
         /// <summary>
         /// Transforms the <see cref="OptionObject2015"/>  to an <see cref="OptionObject2"/>.
         /// </summary>
         /// <returns></returns>
-        public override OptionObject2 ToOptionObject2() => (OptionObject2)OptionObjectHelpers.TransformToOptionObject2((IOptionObject2015)this);
+        public override OptionObject2 ToOptionObject2() => (OptionObject2)OptionObjectHelpers.TransformToOptionObject2(this);
 
         /// <summary>
         /// Creates a clone of the <see cref="OptionObject2015"/>.
@@ -181,7 +181,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObject2015BuilderFinal OptionId(string optionId)
             {
                 if (string.IsNullOrEmpty(optionId))
-                    throw new ArgumentNullException(nameof(optionId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(optionId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 optionObject.OptionId = optionId;
                 return new OptionObject2015BuilderFinal(optionObject);
             }
@@ -194,7 +194,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// </summary>
             public OptionObject2015BuilderFinal(OptionObject2015 optionObject)
             {
-                this.optionObject = optionObject ?? throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                this.optionObject = optionObject ?? throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             }
             /// <summary>
             /// Sets the EntityId of the <see cref="OptionObject2015"/>.
@@ -205,7 +205,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObject2015BuilderFinal EntityId(string entityId)
             {
                 if (string.IsNullOrEmpty(entityId))
-                    throw new ArgumentNullException(nameof(entityId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(entityId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 optionObject.EntityID = entityId;
                 return this;
             }
@@ -229,7 +229,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObject2015BuilderFinal Facility(string facility)
             {
                 if (string.IsNullOrEmpty(facility))
-                    throw new ArgumentNullException(nameof(facility), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(facility), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 optionObject.Facility = facility;
                 return this;
             }
@@ -242,7 +242,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObject2015BuilderFinal NamespaceName(string namespaceName)
             {
                 if (string.IsNullOrEmpty(namespaceName))
-                    throw new ArgumentNullException(nameof(namespaceName), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(namespaceName), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 optionObject.NamespaceName = namespaceName;
                 return this;
             }
@@ -255,7 +255,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObject2015BuilderFinal OptionStaffId(string optionStaffId)
             {
                 if (string.IsNullOrEmpty(optionStaffId))
-                    throw new ArgumentNullException(nameof(optionStaffId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(optionStaffId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 optionObject.OptionStaffId = optionStaffId;
                 return this;
             }
@@ -268,7 +268,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObject2015BuilderFinal OptionUserId(string optionUserId)
             {
                 if (string.IsNullOrEmpty(optionUserId))
-                    throw new ArgumentNullException(nameof(optionUserId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(optionUserId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 optionObject.OptionUserId = optionUserId;
                 return this;
             }
@@ -281,7 +281,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObject2015BuilderFinal ParentNamespace(string parentNamespace)
             {
                 if (string.IsNullOrEmpty(parentNamespace))
-                    throw new ArgumentNullException(nameof(parentNamespace), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(parentNamespace), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 optionObject.ParentNamespace = parentNamespace;
                 return this;
             }
@@ -294,7 +294,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObject2015BuilderFinal ServerName(string serverName)
             {
                 if (string.IsNullOrEmpty(serverName))
-                    throw new ArgumentNullException(nameof(serverName), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(serverName), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 optionObject.ServerName = serverName;
                 return this;
             }
@@ -307,7 +307,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObject2015BuilderFinal SessionToken(string sessionToken)
             {
                 if (string.IsNullOrEmpty(sessionToken))
-                    throw new ArgumentNullException(nameof(sessionToken), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(sessionToken), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 optionObject.SessionToken = sessionToken;
                 return this;
             }
@@ -320,7 +320,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObject2015BuilderFinal SystemCode(string systemCode)
             {
                 if (string.IsNullOrEmpty(systemCode))
-                    throw new ArgumentNullException(nameof(systemCode), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(systemCode), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 optionObject.SystemCode = systemCode;
                 return this;
             }

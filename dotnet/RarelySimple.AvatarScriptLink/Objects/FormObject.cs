@@ -126,7 +126,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public FormObjectBuilderFinal FormId(string formId)
             {
                 if (string.IsNullOrEmpty(formId))
-                    throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 formObject.FormId = formId;
                 return new FormObjectBuilderFinal(formObject);
             }
@@ -144,7 +144,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <exception cref="ArgumentNullException">Thrown if no <see cref="FormObject"/> is provided for continuation of build.</exception>
             public FormObjectBuilderFinal(FormObject formObject)
             {
-                this.formObject = formObject ?? throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                this.formObject = formObject ?? throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             }
             /// <summary>
             /// Initializes a builder to construct the CurrentRow.
@@ -162,7 +162,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <exception cref="ArgumentNullException">Thrown if no <see cref="RowObject"/> provided.</exception>
             public FormObjectBuilderFinal CurrentRow(RowObject rowObject)
             {
-                formObject.CurrentRow = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                formObject.CurrentRow = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 return this;
             }
             /// <summary>
@@ -211,7 +211,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public FormObjectBuilderMIFinal OtherRow(RowObject rowObject)
             {
                 if (rowObject == null)
-                    throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 formObject.OtherRows.Add(rowObject);
                 return this;
             }
@@ -242,7 +242,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObjectFormObjectBuilderFinal FormId(string formId)
             {
                 if (string.IsNullOrEmpty(formId))
-                    throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 formObject.FormId = formId;
                 return new OptionObjectFormObjectBuilderFinal(optionObject, formObject);
             }
@@ -272,7 +272,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <exception cref="ArgumentNullException">Thrown if no <see cref="RowObject"/> provided.</exception>
             public OptionObjectFormObjectBuilderFinal CurrentRow(RowObject rowObject)
             {
-                formObject.CurrentRow = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                formObject.CurrentRow = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 return this;
             }
             /// <summary>
@@ -310,7 +310,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObjectFormObjectBuilderMIFinal OtherRow(RowObject rowObject)
             {
                 if (rowObject == null)
-                    throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 formObject.OtherRows.Add(rowObject);
                 return this;
             }
@@ -341,7 +341,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObject2FormObjectBuilderFinal FormId(string formId)
             {
                 if (string.IsNullOrEmpty(formId))
-                    throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 formObject.FormId = formId;
                 return new OptionObject2FormObjectBuilderFinal(optionObject, formObject);
             }
@@ -371,7 +371,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <exception cref="ArgumentNullException">Thrown if no <see cref="RowObject"/> provided.</exception>
             public OptionObject2FormObjectBuilderFinal CurrentRow(RowObject rowObject)
             {
-                formObject.CurrentRow = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                formObject.CurrentRow = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 return this;
             }
             /// <summary>
@@ -409,7 +409,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObject2FormObjectBuilderMIFinal OtherRow(RowObject rowObject)
             {
                 if (rowObject == null)
-                    throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 formObject.OtherRows.Add(rowObject);
                 return this;
             }
@@ -440,7 +440,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObject2015FormObjectBuilderFinal FormId(string formId)
             {
                 if (string.IsNullOrEmpty(formId))
-                    throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 formObject.FormId = formId;
                 return new OptionObject2015FormObjectBuilderFinal(optionObject, formObject);
             }
@@ -470,7 +470,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <exception cref="ArgumentNullException">Thrown if no <see cref="RowObject"/> provided.</exception>
             public OptionObject2015FormObjectBuilderFinal CurrentRow(RowObject rowObject)
             {
-                formObject.CurrentRow = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                formObject.CurrentRow = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 return this;
             }
             /// <summary>
@@ -508,7 +508,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public OptionObject2015FormObjectBuilderMIFinal OtherRow(RowObject rowObject)
             {
                 if (rowObject == null)
-                    throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 formObject.OtherRows.Add(rowObject);
                 return this;
             }
