@@ -110,7 +110,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public FieldObjectBuilderFinal FieldNumber(string fieldNumber)
             {
                 if (string.IsNullOrEmpty(fieldNumber))
-                    throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 fieldObject.FieldNumber = fieldNumber;
                 return new FieldObjectBuilderFinal(fieldObject);
             }
@@ -128,7 +128,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <param name="fieldObject"></param>
             public FieldObjectBuilderFinal(FieldObject fieldObject)
             {
-                this.fieldObject = fieldObject ?? throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture)); ;
+                this.fieldObject = fieldObject ?? throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             }
             /// <summary>
             /// Sets the <see cref="FieldObject"/> to build as enabled.
@@ -197,7 +197,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// </summary>
             public RowObjectFieldObjectBuilder(RowObject rowObject)
             {
-                this.rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                this.rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 fieldObject = new FieldObject();
             }
             /// <summary>
@@ -206,8 +206,8 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <param name="fieldObject"></param>
             protected RowObjectFieldObjectBuilder(FieldObject fieldObject, RowObject rowObject)
             {
-                this.fieldObject = fieldObject ?? throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-                this.rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                this.fieldObject = fieldObject ?? throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                this.rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             }
             /// <summary>
             /// Sets the FieldNumber for the FieldObject to build.
@@ -218,7 +218,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             public RowObjectFieldObjectBuilderFinal FieldNumber(string fieldNumber)
             {
                 if (string.IsNullOrEmpty(fieldNumber))
-                    throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                    throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 fieldObject.FieldNumber = fieldNumber;
                 return new RowObjectFieldObjectBuilderFinal(fieldObject, rowObject);
             }
@@ -236,8 +236,8 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// </summary>
             /// <param name="fieldObject"></param>
             public RowObjectFieldObjectBuilderFinal(FieldObject fieldObject, RowObject rowObject) {
-                this.fieldObject = fieldObject ?? throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-                this.rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                this.fieldObject = fieldObject ?? throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                this.rowObject = rowObject ?? throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             }
 
             /// <summary>

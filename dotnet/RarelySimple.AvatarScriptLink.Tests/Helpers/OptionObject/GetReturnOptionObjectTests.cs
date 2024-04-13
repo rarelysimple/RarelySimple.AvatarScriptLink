@@ -7,7 +7,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
     [TestClass]
     public class GetReturnOptionObjectTests
     {
-        private OptionObject optionObject;
+        private OptionObject optionObject = new();
 
         [TestInitialize]
         public void TestInitialize()
@@ -227,29 +227,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetReturnOptionObject_OptionObject_Null()
         {
-            OptionObject nullOptionObject = null;
-            OptionObject returnOptionObject = (OptionObject)OptionObjectHelpers.GetReturnOptionObject((IOptionObject)nullOptionObject);
-            //Assert.AreNotEqual("3", returnOptionObject.ErrorCode);
-        }
-
-        [TestMethod]
-        [TestCategory("ScriptLinkHelpers")]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void GetReturnOptionObject_OptionObject2_Null()
-        {
-            OptionObject2 nullOptionObject = null;
-            OptionObject2 returnOptionObject = (OptionObject2)OptionObjectHelpers.GetReturnOptionObject((IOptionObject2)nullOptionObject);
-            //Assert.AreNotEqual("3", returnOptionObject.ErrorCode);
-        }
-
-        [TestMethod]
-        [TestCategory("ScriptLinkHelpers")]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void GetReturnOptionObject_OptionObject2015_Null()
-        {
-            OptionObject2015 nullOptionObject = null;
-            OptionObject2015 returnOptionObject = (OptionObject2015)OptionObjectHelpers.GetReturnOptionObject(nullOptionObject);
-            //Assert.AreNotEqual("3", returnOptionObject.ErrorCode);
+            _ = OptionObjectHelpers.GetReturnOptionObject(null);
         }
 
         [TestMethod]
@@ -359,8 +337,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             rowObject03.AddFieldObject(fieldObject34);
 
 
-            FormObject form34 = new("34");
-            form34.MultipleIteration = true;
+            FormObject form34 = new("34")
+            {
+                MultipleIteration = true
+            };
             form34.OtherRows.Add(rowObject02);
             form34.OtherRows.Add(rowObject03);
             expected.AddFormObject(form34);

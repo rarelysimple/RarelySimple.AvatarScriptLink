@@ -39,21 +39,11 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsFormPresent_OptionObject_Null()
-        {
-            string formNumber = "1";
-            OptionObject optionObject = null;
-            Assert.IsFalse(optionObject.IsFormPresent(formNumber));
-        }
-
-        [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void IsFormPresent_OptionObject_Helper_Null()
         {
             string formNumber = "1";
-            OptionObject optionObject = null;
-            Assert.IsFalse(OptionObjectHelpers.IsFormPresent(optionObject, formNumber));
+            Assert.IsFalse(OptionObjectHelpers.IsFormPresent(null, formNumber));
         }
 
         [TestMethod]
@@ -89,24 +79,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsFormPresent_OptionObject2_Null()
-        {
-            string formNumber = "1";
-            OptionObject2 optionObject = null;
-            Assert.IsFalse(optionObject.IsFormPresent(formNumber));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsFormPresent_OptionObject2_Helper_Null()
-        {
-            string formNumber = "1";
-            OptionObject2 optionObject = null;
-            Assert.IsFalse(OptionObjectHelpers.IsFormPresent(optionObject, formNumber));
-        }
-
-        [TestMethod]
         public void IsFormPresent_OptionObject2015_FirstForm_IsPresent()
         {
             string formNumber = "1";
@@ -136,24 +108,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject);
             Assert.IsFalse(optionObject.IsFormPresent("2"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsFormPresent_OptionObject2015_Null()
-        {
-            string formNumber = "1";
-            OptionObject2015 optionObject = null;
-            Assert.IsFalse(optionObject.IsFormPresent(formNumber));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsFormPresent_OptionObject2015_Helper_Null()
-        {
-            string formNumber = "1";
-            OptionObject2015 optionObject = null;
-            Assert.IsFalse(OptionObjectHelpers.IsFormPresent(optionObject, formNumber));
         }
     }
 }

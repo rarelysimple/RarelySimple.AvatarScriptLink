@@ -18,7 +18,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static string TransformToHtmlString(IOptionObject optionObject)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return TransformToHtmlString(optionObject, false);
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static string TransformToHtmlString(IOptionObject optionObject, bool includeHtmlHeaders)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             StringBuilder sb = new StringBuilder();
             sb.Append(GetHeader(optionObject.GetType().ToString(), includeHtmlHeaders));
             sb.Append(GetHtmlForObject(optionObject, HtmlOutputType.Table));
@@ -46,7 +46,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static string TransformToHtmlString(IOptionObject2 optionObject)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return TransformToHtmlString(optionObject, false);
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static string TransformToHtmlString(IOptionObject2 optionObject, bool includeHtmlHeaders)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             StringBuilder sb = new StringBuilder();
             sb.Append(GetHeader(optionObject.GetType().ToString(), includeHtmlHeaders));
             sb.Append(GetHtmlForObject(optionObject, HtmlOutputType.Table));
@@ -74,7 +74,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static string TransformToHtmlString(IOptionObject2015 optionObject)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return TransformToHtmlString(optionObject, false);
         }
         /// <summary>
@@ -86,7 +86,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static string TransformToHtmlString(IOptionObject2015 optionObject, bool includeHtmlHeaders)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             StringBuilder sb = new StringBuilder();
             sb.Append(GetHeader(optionObject.GetType().ToString(), includeHtmlHeaders));
             sb.Append(GetHtmlForObject(optionObject, HtmlOutputType.Table));
@@ -102,7 +102,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static string TransformToHtmlString(IFormObject formObject)
         {
             if (formObject == null)
-                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return TransformToHtmlString(formObject, false);
         }
         /// <summary>
@@ -114,7 +114,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static string TransformToHtmlString(IFormObject formObject, bool includeHtmlHeaders)
         {
             if (formObject == null)
-                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             StringBuilder sb = new StringBuilder();
             sb.Append(GetHeader(formObject.GetType().ToString(), includeHtmlHeaders));
             sb.Append(GetHtmlForObject(formObject, HtmlOutputType.Table));
@@ -130,7 +130,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static string TransformToHtmlString(IRowObject rowObject)
         {
             if (rowObject == null)
-                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return TransformToHtmlString(rowObject, false);
         }
         /// <summary>
@@ -142,7 +142,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static string TransformToHtmlString(IRowObject rowObject, bool includeHtmlHeaders)
         {
             if (rowObject == null)
-                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             StringBuilder sb = new StringBuilder();
             sb.Append(GetHeader(rowObject.GetType().ToString(), includeHtmlHeaders));
             sb.Append(GetHtmlForObject(rowObject, HtmlOutputType.Table));
@@ -158,7 +158,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static string TransformToHtmlString(IFieldObject fieldObject)
         {
             if (fieldObject == null)
-                throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return TransformToHtmlString(fieldObject, false);
         }
         /// <summary>
@@ -170,7 +170,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static string TransformToHtmlString(IFieldObject fieldObject, bool includeHtmlHeaders)
         {
             if (fieldObject == null)
-                throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             StringBuilder sb = new StringBuilder();
             sb.Append(GetHeader(fieldObject.GetType().ToString(), includeHtmlHeaders));
             sb.Append(GetHtmlForObject(fieldObject, HtmlOutputType.Table));

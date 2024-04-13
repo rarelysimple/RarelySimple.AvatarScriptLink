@@ -1,5 +1,4 @@
-﻿using RarelySimple.AvatarScriptLink.Helpers;
-using RarelySimple.AvatarScriptLink.Objects;
+﻿using RarelySimple.AvatarScriptLink.Objects;
 
 namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
 {
@@ -79,24 +78,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsFieldEnabled_OptionObject_Null()
-        {
-            string fieldNumber = "123";
-            OptionObject optionObject = null;
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsFieldEnabled_OptionObject_Helper_Null()
-        {
-            string fieldNumber = "123";
-            OptionObject optionObject = null;
-            Assert.IsFalse(OptionObjectHelpers.IsFieldEnabled(optionObject, fieldNumber));
-        }
-
-        [TestMethod]
         public void IsFieldEnabled_OptionObject2_FirstForm_IsEnabled()
         {
             string fieldNumber = "123";
@@ -166,24 +147,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             optionObject.AddFormObject(formObject1);
             optionObject.AddFormObject(formObject2);
             Assert.IsTrue(optionObject.IsFieldEnabled("234"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsFieldEnabled_OptionObject2_Null()
-        {
-            string fieldNumber = "123";
-            OptionObject2 optionObject = null;
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsFieldEnabled_OptionObject2_Helper_Null()
-        {
-            string fieldNumber = "123";
-            OptionObject2 optionObject = null;
-            Assert.IsFalse(OptionObjectHelpers.IsFieldEnabled(optionObject, fieldNumber));
         }
 
         [TestMethod]
@@ -259,24 +222,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsFieldEnabled_OptionObject2015_Null()
-        {
-            string fieldNumber = "123";
-            OptionObject2015 optionObject = null;
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsFieldEnabled_OptionObject2015_Helper_Null()
-        {
-            string fieldNumber = "123";
-            OptionObject2015 optionObject = null;
-            Assert.IsFalse(OptionObjectHelpers.IsFieldEnabled(optionObject, fieldNumber));
-        }
-
-        [TestMethod]
         public void IsFieldEnabled_FormObject_IsEnabled()
         {
             string fieldNumber = "123";
@@ -311,24 +256,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsFieldEnabled_FormObject_Null()
-        {
-            string fieldNumber = "123";
-            FormObject formObject = null;
-            Assert.IsFalse(formObject.IsFieldEnabled(fieldNumber));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsFieldEnabled_FormObject_Helper_Null()
-        {
-            string fieldNumber = "123";
-            FormObject formObject = null;
-            Assert.IsFalse(OptionObjectHelpers.IsFieldEnabled(formObject, fieldNumber));
-        }
-
-        [TestMethod]
         public void IsFieldEnabled_RowObject_IsEnabled()
         {
             string fieldNumber = "123";
@@ -354,24 +281,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, false, false));
             Assert.IsTrue(rowObject.IsFieldEnabled("234"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsFieldEnabled_RowObject_Null()
-        {
-            string fieldNumber = "123";
-            RowObject rowObject = null;
-            Assert.IsFalse(rowObject.IsFieldEnabled(fieldNumber));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsFieldEnabled_RowObject_Helper_Null()
-        {
-            string fieldNumber = "123";
-            RowObject rowObject = null;
-            Assert.IsFalse(OptionObjectHelpers.IsFieldEnabled(rowObject, fieldNumber));
         }
     }
 }

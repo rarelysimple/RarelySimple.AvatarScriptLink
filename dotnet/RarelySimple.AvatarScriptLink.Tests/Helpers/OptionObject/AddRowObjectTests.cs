@@ -12,9 +12,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void AddRowObject_ToFormObject_NullFormObject()
         {
             RowObject rowObject = new();
-            FormObject formObject = null;
-            formObject = (FormObject)OptionObjectHelpers.AddRowObject(formObject, rowObject);
-            //Assert.AreEqual(1, formObject);
+            FormObject formObject = (FormObject)OptionObjectHelpers.AddRowObject(null, rowObject);
         }
 
         [TestMethod]
@@ -22,10 +20,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddRowObject_ToFormObject_NullRowObject()
         {
-            RowObject rowObject = null;
             FormObject formObject = new();
-            formObject = (FormObject)OptionObjectHelpers.AddRowObject(formObject, rowObject);
-            //Assert.AreEqual(1, formObject);
+            formObject = (FormObject)OptionObjectHelpers.AddRowObject(formObject, null);
         }
 
         [TestMethod]
@@ -149,7 +145,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddRowObject_ToOptionObject_NullFormId()
         {
-            string formId = null;
             string expected = "1||1";
             RowObject rowObject1 = new();
             FormObject formObject = new()
@@ -159,7 +154,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             };
             OptionObject optionObject = new();
             optionObject = (OptionObject)OptionObjectHelpers.AddFormObject(optionObject, formObject);
-            optionObject = (OptionObject)OptionObjectHelpers.AddRowObject(optionObject, formId, rowObject1);
+            optionObject = (OptionObject)OptionObjectHelpers.AddRowObject(optionObject, null, rowObject1);
             Assert.IsTrue(optionObject.IsRowPresent(expected));
         }
 
@@ -168,7 +163,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddRowObject_ToOptionObject2_NullFormId()
         {
-            string formId = null;
             string expected = "1||1";
             RowObject rowObject1 = new();
             FormObject formObject = new()
@@ -178,7 +172,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             };
             OptionObject2 optionObject = new();
             optionObject = (OptionObject2)OptionObjectHelpers.AddFormObject(optionObject, formObject);
-            optionObject = (OptionObject2)OptionObjectHelpers.AddRowObject(optionObject, formId, rowObject1);
+            optionObject = (OptionObject2)OptionObjectHelpers.AddRowObject(optionObject, null, rowObject1);
             Assert.IsTrue(optionObject.IsRowPresent(expected));
         }
 
@@ -187,7 +181,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddRowObject_ToOptionObject2015_NullFormId()
         {
-            string formId = null;
             string expected = "1||1";
             RowObject rowObject1 = new();
             FormObject formObject = new()
@@ -197,7 +190,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             };
             OptionObject2015 optionObject = new();
             optionObject = (OptionObject2015)OptionObjectHelpers.AddFormObject(optionObject, formObject);
-            optionObject = (OptionObject2015)OptionObjectHelpers.AddRowObject(optionObject, formId, rowObject1);
+            optionObject = (OptionObject2015)OptionObjectHelpers.AddRowObject(optionObject, null, rowObject1);
             Assert.IsTrue(optionObject.IsRowPresent(expected));
         }
 
@@ -319,9 +312,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             FormObject formObject = new()
             {
                 FormId = "1",
-                MultipleIteration = true
+                MultipleIteration = true,
+                CurrentRow = new RowObject("1||1")
             };
-            formObject.CurrentRow = new RowObject("1||1");
             formObject.OtherRows.Add(new RowObject("1||2"));
             // Intentional gap in numbering
             formObject.OtherRows.Add(new RowObject("1||4"));

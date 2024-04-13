@@ -15,7 +15,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IFieldObject TransformToFieldObject(string serializedString)
         {
             if (string.IsNullOrEmpty(serializedString))
-                throw new ArgumentNullException(nameof(serializedString), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(serializedString), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             try
             {
                 return ScriptLinkHelpers.DeserializeObject<FieldObject>(serializedString);

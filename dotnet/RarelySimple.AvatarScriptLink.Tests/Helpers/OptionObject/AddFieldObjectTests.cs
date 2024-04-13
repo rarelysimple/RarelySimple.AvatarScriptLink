@@ -19,8 +19,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 Required = "0",
                 Lock = "0"
             };
-            RowObject rowObject = null;
-            rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, fieldObject);
+            RowObject rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(null, fieldObject);
             Assert.AreNotEqual(null, fieldObject);
         }
 
@@ -31,7 +30,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             RowObject rowObject = new();
             rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, null);
-            Assert.AreNotEqual(rowObject, null);
+            Assert.AreNotEqual(null, rowObject);
         }
 
         [TestMethod]
@@ -114,12 +113,11 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddFieldObject_ToRowObject_NullFieldNumber()
         {
-            string expectedNumber = null;
             string expectedValue = "Test";
             RowObject rowObject = new();
-            rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, expectedNumber, expectedValue);
-            Assert.IsTrue(rowObject.IsFieldPresent(expectedNumber));
-            Assert.AreEqual(expectedValue, rowObject.GetFieldValue(expectedNumber));
+            rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, null, expectedValue);
+            Assert.IsTrue(rowObject.IsFieldPresent(null));
+            Assert.AreEqual(expectedValue, rowObject.GetFieldValue(null));
         }
 
         [TestMethod]

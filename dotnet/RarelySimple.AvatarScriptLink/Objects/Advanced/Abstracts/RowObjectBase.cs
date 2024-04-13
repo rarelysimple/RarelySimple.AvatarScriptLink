@@ -9,6 +9,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
 {
     public abstract class RowObjectBase : IEquatable<RowObjectBase>, IRowObject
     {
+        protected const string ParameterCannotBeNull = "parameterCannotBeNull";
+        
         #region Constructors
 
         /// <summary>
@@ -25,7 +27,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         protected RowObjectBase(string rowId)
         {
             if (string.IsNullOrEmpty(rowId))
-                throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             RowAction = "";
             ParentRowId = "";
             RowId = rowId;
@@ -39,7 +41,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         protected RowObjectBase(string rowId, string parentRowId)
         {
             if (string.IsNullOrEmpty(rowId))
-                throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(parentRowId))
                 throw new ArgumentNullException(nameof(parentRowId));
             RowAction = "";
@@ -56,9 +58,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         protected RowObjectBase(string rowId, string parentRowId, string rowAction)
         {
             if (string.IsNullOrEmpty(rowId))
-                throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(parentRowId))
-                throw new ArgumentNullException(nameof(parentRowId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(parentRowId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (!OptionObjectHelpers.IsValidRowAction(rowAction))
                 throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("parameterIsNotValid", CultureInfo.CurrentCulture), nameof(rowAction));
             RowAction = rowAction;
@@ -74,11 +76,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         protected RowObjectBase(string rowId, List<FieldObject> fieldObjects)
         {
             if (string.IsNullOrEmpty(rowId))
-                throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             RowAction = "";
             ParentRowId = "";
             RowId = rowId;
-            Fields = fieldObjects ?? throw new ArgumentNullException(nameof(fieldObjects), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+            Fields = fieldObjects ?? throw new ArgumentNullException(nameof(fieldObjects), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
         }
         /// <summary>
         /// Creates a new <see cref="RowObject"/> with specified <see cref="RowId"/> and <see cref="List{T}"/> of <see cref="FieldObject"/>.
@@ -89,13 +91,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         protected RowObjectBase(string rowId, List<FieldObject> fieldObjects, string parentRowId)
         {
             if (string.IsNullOrEmpty(rowId))
-                throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(parentRowId))
-                throw new ArgumentNullException(nameof(parentRowId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(parentRowId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             RowAction = "";
             ParentRowId = parentRowId;
             RowId = rowId;
-            Fields = fieldObjects ?? throw new ArgumentNullException(nameof(fieldObjects), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+            Fields = fieldObjects ?? throw new ArgumentNullException(nameof(fieldObjects), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
         }
         /// <summary>
         /// Creates a new <see cref="RowObject"/> with specified <see cref="RowId"/> and <see cref="List{T}"/> of <see cref="FieldObject"/>.
@@ -107,15 +109,15 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         protected RowObjectBase(string rowId, List<FieldObject> fieldObjects, string parentRowId, string rowAction)
         {
             if (string.IsNullOrEmpty(rowId))
-                throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(parentRowId))
-                throw new ArgumentNullException(nameof(parentRowId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(parentRowId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (!OptionObjectHelpers.IsValidRowAction(rowAction))
                 throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("parameterIsNotValid", CultureInfo.CurrentCulture), nameof(rowAction));
             RowAction = rowAction;
             ParentRowId = parentRowId;
             RowId = rowId;
-            Fields = fieldObjects ?? throw new ArgumentNullException(nameof(fieldObjects), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+            Fields = fieldObjects ?? throw new ArgumentNullException(nameof(fieldObjects), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
         }
 
         #endregion

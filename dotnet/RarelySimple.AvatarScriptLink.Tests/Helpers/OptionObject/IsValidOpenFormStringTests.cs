@@ -51,8 +51,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void IsValidOpenFormString_NullString_NotValid()
         {
-            string openFormString = null;
-            Assert.IsFalse(OptionObjectHelpers.IsValidOpenFormString(openFormString));
+            Assert.IsFalse(OptionObjectHelpers.IsValidOpenFormString(null));
         }
 
         [TestMethod]

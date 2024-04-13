@@ -17,7 +17,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IOptionObject SetErrorCodeAndMessage(IOptionObject optionObject, double errorCode = 0, string errorMessage = "")
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (!IsValidErrorCode(errorCode))
                 throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("errorCodeIsNotValid", CultureInfo.CurrentCulture));
             if ((int)errorCode == (int)ErrorCode.OpenUrl && !ScriptLinkHelpers.IsValidUrl(errorMessage))

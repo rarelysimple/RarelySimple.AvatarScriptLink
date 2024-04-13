@@ -17,7 +17,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static OptionObject TransformToOptionObject(IOptionObject2 optionObject2)
         {
             if (optionObject2 == null)
-                throw new ArgumentNullException(nameof(optionObject2), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject2), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (!IsValidErrorCode(optionObject2.ErrorCode))
                 throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("errorCodeIsNotValid", CultureInfo.CurrentCulture));
             var optionObject = new OptionObject
@@ -43,7 +43,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static OptionObject TransformToOptionObject(IOptionObject2015 optionObject2015)
         {
             if (optionObject2015 == null)
-                throw new ArgumentNullException(nameof(optionObject2015), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject2015), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (!IsValidErrorCode(optionObject2015.ErrorCode))
                 throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("errorCodeIsNotValid", CultureInfo.CurrentCulture));
             var optionObject = new OptionObject
@@ -69,7 +69,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static OptionObject TransformToOptionObject(string serializedString)
         {
             if (string.IsNullOrEmpty(serializedString))
-                throw new ArgumentNullException(nameof(serializedString), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(serializedString), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             try
             {
                 return ScriptLinkHelpers.DeserializeObject<OptionObject>(serializedString);

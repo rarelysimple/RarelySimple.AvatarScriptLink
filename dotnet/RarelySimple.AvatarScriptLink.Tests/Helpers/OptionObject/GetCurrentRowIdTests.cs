@@ -12,8 +12,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void GetCurrentRowId_FromFormObject_NullFormObject()
         {
             string expected = "1||1";
-            FormObject formObject = null;
-            string actual = OptionObjectHelpers.GetCurrentRowId(formObject);
+            string actual = OptionObjectHelpers.GetCurrentRowId(null);
             Assert.AreNotEqual(expected, actual);
         }
 
@@ -50,8 +49,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void GetCurrentRowId_FromOptionObject_NullOptionObject()
         {
             string expected = "1||1";
-            OptionObject optionObject = null;
-            string actual = OptionObjectHelpers.GetCurrentRowId(optionObject, "1");
+            string actual = OptionObjectHelpers.GetCurrentRowId(null, "1");
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
@@ -60,8 +58,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void GetCurrentRowId_FromOptionObject2_NullOptionObject()
         {
             string expected = "1||1";
-            OptionObject2 optionObject = null;
-            string actual = OptionObjectHelpers.GetCurrentRowId(optionObject, "1");
+            string actual = OptionObjectHelpers.GetCurrentRowId(null, "1");
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
@@ -70,8 +67,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void GetCurrentRowId_FromOptionObject2015_NullOptionObject()
         {
             string expected = "1||1";
-            OptionObject2015 optionObject = null;
-            string actual = OptionObjectHelpers.GetCurrentRowId(optionObject, "1");
+            string actual = OptionObjectHelpers.GetCurrentRowId(null, "1");
             Assert.AreEqual(expected, actual);
         }
 

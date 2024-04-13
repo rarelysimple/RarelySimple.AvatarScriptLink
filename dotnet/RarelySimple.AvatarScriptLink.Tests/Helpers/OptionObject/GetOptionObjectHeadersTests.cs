@@ -72,8 +72,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetOptionObjectHeaders_OptionObject_Null()
         {
-            OptionObject nullOptionObject = null;
-            List<string> headers = OptionObjectHelpers.GetOptionObjectHeaders((IOptionObject)nullOptionObject);
+            List<string> headers = OptionObjectHelpers.GetOptionObjectHeaders(null);
             Assert.AreEqual(5, headers.Count);
         }
 
@@ -82,8 +81,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetOptionObjectHeaders_OptionObject2_Null()
         {
-            OptionObject2 nullOptionObject = null;
-            List<string> headers = OptionObjectHelpers.GetOptionObjectHeaders((IOptionObject2)nullOptionObject);
+            List<string> headers = OptionObjectHelpers.GetOptionObjectHeaders(null);
             Assert.AreEqual(5, headers.Count);
         }
 
@@ -92,8 +90,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetOptionObjectHeaders_OptionObject2015_Null()
         {
-            OptionObject2015 nullOptionObject = null;
-            List<string> headers = OptionObjectHelpers.GetOptionObjectHeaders((IOptionObject2015)nullOptionObject);
+            List<string> headers = OptionObjectHelpers.GetOptionObjectHeaders(null);
             Assert.AreEqual(5, headers.Count);
         }
     }

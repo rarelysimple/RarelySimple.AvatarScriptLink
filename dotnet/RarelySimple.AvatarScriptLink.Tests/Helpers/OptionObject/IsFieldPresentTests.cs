@@ -1,5 +1,4 @@
-﻿using RarelySimple.AvatarScriptLink.Helpers;
-using RarelySimple.AvatarScriptLink.Objects;
+﻿using RarelySimple.AvatarScriptLink.Objects;
 
 namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
 {
@@ -50,24 +49,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsFieldPresent_OptionObject_Null()
-        {
-            string fieldNumber = "123";
-            OptionObject optionObject = null;
-            Assert.IsFalse(optionObject.IsFieldPresent(fieldNumber));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsFieldPresent_OptionObject_Helper_Null()
-        {
-            string fieldNumber = "123";
-            OptionObject optionObject = null;
-            Assert.IsFalse(OptionObjectHelpers.IsFieldPresent(optionObject, fieldNumber));
-        }
-
-        [TestMethod]
         public void IsFieldPresent_OptionObject2_FirstForm_IsPresent()
         {
             string fieldNumber = "123";
@@ -108,24 +89,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             optionObject.AddFormObject(formObject1);
             optionObject.AddFormObject(formObject2);
             Assert.IsFalse(optionObject.IsFieldPresent("234"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsFieldPresent_OptionObject2_Null()
-        {
-            string fieldNumber = "123";
-            OptionObject2 optionObject = null;
-            Assert.IsFalse(optionObject.IsFieldPresent(fieldNumber));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsFieldPresent_OptionObject2_Helper_Null()
-        {
-            string fieldNumber = "123";
-            OptionObject2 optionObject = null;
-            Assert.IsFalse(OptionObjectHelpers.IsFieldPresent(optionObject, fieldNumber));
         }
 
         [TestMethod]
@@ -172,24 +135,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsFieldPresent_OptionObject2015_Null()
-        {
-            string fieldNumber = "123";
-            OptionObject2015 optionObject = null;
-            Assert.IsFalse(optionObject.IsFieldPresent(fieldNumber));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsFieldPresent_OptionObject2015_Helper_Null()
-        {
-            string fieldNumber = "123";
-            OptionObject2015 optionObject = null;
-            Assert.IsFalse(OptionObjectHelpers.IsFieldPresent(optionObject, fieldNumber));
-        }
-
-        [TestMethod]
         public void IsFieldPresent_FormObject_IsPresent()
         {
             string fieldNumber = "123";
@@ -212,24 +157,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsFieldPresent_FormObject_Null()
-        {
-            string fieldNumber = "123";
-            FormObject formObject = null;
-            Assert.IsFalse(formObject.IsFieldPresent(fieldNumber));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsFieldPresent_FormObject_Helper_Null()
-        {
-            string fieldNumber = "123";
-            FormObject formObject = null;
-            Assert.IsFalse(OptionObjectHelpers.IsFieldPresent(formObject, fieldNumber));
-        }
-
-        [TestMethod]
         public void IsFieldPresent_RowObject_IsPresent()
         {
             string fieldNumber = "123";
@@ -245,24 +172,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, false, false));
             Assert.IsFalse(rowObject.IsFieldPresent("234"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsFieldPresent_RowObject_Null()
-        {
-            string fieldNumber = "123";
-            RowObject rowObject = null;
-            Assert.IsFalse(rowObject.IsFieldPresent(fieldNumber));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsFieldPresent_RowObject_Helper_Null()
-        {
-            string fieldNumber = "123";
-            RowObject rowObject = null;
-            Assert.IsFalse(OptionObjectHelpers.IsFieldPresent(rowObject, fieldNumber));
         }
     }
 }

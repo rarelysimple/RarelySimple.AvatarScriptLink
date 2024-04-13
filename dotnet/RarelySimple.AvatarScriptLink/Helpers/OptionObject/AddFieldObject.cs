@@ -6,6 +6,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
 {
     public static partial class OptionObjectHelpers
     {
+        private const string ParameterCannotBeNull = "parameterCannotBeNull";
+
         /// <summary>
         /// Adds a <see cref="IFieldObject"/> to a <see cref="IRowObject"/>.
         /// </summary>
@@ -15,9 +17,9 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IRowObject AddFieldObject(IRowObject rowObject, IFieldObject fieldObject)
         {
             if (rowObject == null)
-                throw new System.ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new System.ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (fieldObject == null)
-                throw new System.ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new System.ArgumentNullException(nameof(fieldObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (rowObject.Fields.Contains((FieldObject)fieldObject))
                 throw new System.ArgumentException(ScriptLinkHelpers.GetLocalizedString("fieldObjectAlreadyExists", CultureInfo.CurrentCulture), nameof(fieldObject));
             if (rowObject.Fields.Exists(f => f.FieldNumber == fieldObject.FieldNumber))
@@ -37,7 +39,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
             if (rowObject == null)
                 throw new System.ArgumentNullException(nameof(rowObject));
             if (string.IsNullOrEmpty(fieldNumber))
-                throw new System.ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new System.ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return AddFieldObject(rowObject, fieldNumber, fieldValue, false, false, false);
         }
         /// <summary>
@@ -53,9 +55,9 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IRowObject AddFieldObject(IRowObject rowObject, string fieldNumber, string fieldValue, string enabledValue, string lockedValue, string requiredValue)
         {
             if (rowObject == null)
-                throw new System.ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new System.ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(fieldNumber))
-                throw new System.ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new System.ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             bool enabled = enabledValue == "1";
             bool locked = lockedValue == "1";
             bool required = requiredValue == "1";
@@ -74,9 +76,9 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IRowObject AddFieldObject(IRowObject rowObject, string fieldNumber, string fieldValue, bool enabled, bool locked, bool required)
         {
             if (rowObject == null)
-                throw new System.ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new System.ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(fieldNumber))
-                throw new System.ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new System.ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             FieldObject fieldObject = new FieldObject(fieldNumber, fieldValue, enabled, locked, required);
             return AddFieldObject(rowObject, fieldObject);
         }

@@ -1,5 +1,4 @@
-﻿using RarelySimple.AvatarScriptLink.Helpers;
-using RarelySimple.AvatarScriptLink.Objects;
+﻿using RarelySimple.AvatarScriptLink.Objects;
 
 namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 {
@@ -16,9 +15,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject = new()
             {
                 FormId = "1",
-                MultipleIteration = false
+                MultipleIteration = false,
+                CurrentRow = rowObject
             };
-            formObject.CurrentRow = rowObject;
             OptionObject optionObject = new();
             optionObject.Forms.Add(formObject);
 
@@ -43,9 +42,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject = new()
             {
                 FormId = "1",
-                MultipleIteration = false
+                MultipleIteration = false,
+                CurrentRow = rowObject
             };
-            formObject.CurrentRow = rowObject;
             OptionObject optionObject = new();
             optionObject.Forms.Add(formObject);
 
@@ -65,9 +64,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject = new()
             {
                 FormId = "1",
-                MultipleIteration = false
+                MultipleIteration = false,
+                CurrentRow = rowObject
             };
-            formObject.CurrentRow = rowObject;
             OptionObject optionObject = new();
             optionObject.Forms.Add(formObject);
 
@@ -92,9 +91,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject = new()
             {
                 FormId = "1",
-                MultipleIteration = false
+                MultipleIteration = false,
+                CurrentRow = rowObject
             };
-            formObject.CurrentRow = rowObject;
             OptionObject optionObject = new();
             optionObject.Forms.Add(formObject);
 
@@ -113,9 +112,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject = new()
             {
                 FormId = "1",
-                MultipleIteration = false
+                MultipleIteration = false,
+                CurrentRow = rowObject
             };
-            formObject.CurrentRow = rowObject;
             OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject);
 
@@ -140,9 +139,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject = new()
             {
                 FormId = "1",
-                MultipleIteration = false
+                MultipleIteration = false,
+                CurrentRow = rowObject
             };
-            formObject.CurrentRow = rowObject;
             OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject);
 
@@ -162,9 +161,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject = new()
             {
                 FormId = "1",
-                MultipleIteration = false
+                MultipleIteration = false,
+                CurrentRow = rowObject
             };
-            formObject.CurrentRow = rowObject;
             OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject);
 
@@ -189,9 +188,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject = new()
             {
                 FormId = "1",
-                MultipleIteration = false
+                MultipleIteration = false,
+                CurrentRow = rowObject
             };
-            formObject.CurrentRow = rowObject;
             OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject);
 
@@ -211,9 +210,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject = new()
             {
                 FormId = "1",
-                MultipleIteration = false
+                MultipleIteration = false,
+                CurrentRow = rowObject
             };
-            formObject.CurrentRow = rowObject;
 
             formObject.DeleteRowObject(rowObject);
 
@@ -236,9 +235,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject = new()
             {
                 FormId = "1",
-                MultipleIteration = false
+                MultipleIteration = false,
+                CurrentRow = rowObject
             };
-            formObject.CurrentRow = rowObject;
 
             formObject.DeleteRowObject(rowObject2);
 
@@ -256,9 +255,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject = new()
             {
                 FormId = "1",
-                MultipleIteration = false
+                MultipleIteration = false,
+                CurrentRow = rowObject
             };
-            formObject.CurrentRow = rowObject;
 
             formObject.DeleteRowObject(rowObject.RowId);
 
@@ -281,9 +280,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject = new()
             {
                 FormId = "1",
-                MultipleIteration = false
+                MultipleIteration = false,
+                CurrentRow = rowObject
             };
-            formObject.CurrentRow = rowObject;
 
             formObject.DeleteRowObject(rowObject2.RowId);
 
@@ -301,9 +300,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject1 = new()
             {
                 FormId = "1",
-                MultipleIteration = false
+                MultipleIteration = false,
+                CurrentRow = rowObject
             };
-            formObject1.CurrentRow = rowObject;
             RowObject rowObject1 = new()
             {
                 RowId = "2||1"
@@ -315,9 +314,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject2 = new()
             {
                 FormId = "1",
-                MultipleIteration = true
+                MultipleIteration = true,
+                CurrentRow = rowObject1
             };
-            formObject2.CurrentRow = rowObject1;
             formObject2.OtherRows.Add(rowObject2);
             OptionObject optionObject = new();
             optionObject.Forms.Add(formObject1);
@@ -343,9 +342,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject1 = new()
             {
                 FormId = "1",
-                MultipleIteration = false
+                MultipleIteration = false,
+                CurrentRow = rowObject
             };
-            formObject1.CurrentRow = rowObject;
             RowObject rowObject1 = new()
             {
                 RowId = "2||1"
@@ -357,9 +356,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject2 = new()
             {
                 FormId = "1",
-                MultipleIteration = true
+                MultipleIteration = true,
+                CurrentRow = rowObject1
             };
-            formObject2.CurrentRow = rowObject1;
             formObject2.OtherRows.Add(rowObject2);
             OptionObject optionObject = new();
             optionObject.Forms.Add(formObject1);
@@ -386,9 +385,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject1 = new()
             {
                 FormId = "1",
-                MultipleIteration = false
+                MultipleIteration = false,
+                CurrentRow = rowObject
             };
-            formObject1.CurrentRow = rowObject;
             RowObject rowObject1 = new()
             {
                 RowId = "2||1"
@@ -400,9 +399,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject2 = new()
             {
                 FormId = "1",
-                MultipleIteration = true
+                MultipleIteration = true,
+                CurrentRow = rowObject1
             };
-            formObject2.CurrentRow = rowObject1;
             formObject2.OtherRows.Add(rowObject2);
             OptionObject optionObject = new();
             optionObject.Forms.Add(formObject1);
@@ -428,9 +427,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject1 = new()
             {
                 FormId = "1",
-                MultipleIteration = false
+                MultipleIteration = false,
+                CurrentRow = rowObject
             };
-            formObject1.CurrentRow = rowObject;
             RowObject rowObject1 = new()
             {
                 RowId = "2||1"
@@ -442,9 +441,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject2 = new()
             {
                 FormId = "1",
-                MultipleIteration = true
+                MultipleIteration = true,
+                CurrentRow = rowObject1
             };
-            formObject2.CurrentRow = rowObject1;
             formObject2.OtherRows.Add(rowObject2);
             OptionObject optionObject = new();
             optionObject.Forms.Add(formObject1);
@@ -470,9 +469,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject1 = new()
             {
                 FormId = "1",
-                MultipleIteration = false
+                MultipleIteration = false,
+                CurrentRow = rowObject
             };
-            formObject1.CurrentRow = rowObject;
             RowObject rowObject1 = new()
             {
                 RowId = "2||1"
@@ -484,9 +483,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject2 = new()
             {
                 FormId = "1",
-                MultipleIteration = true
+                MultipleIteration = true,
+                CurrentRow = rowObject1
             };
-            formObject2.CurrentRow = rowObject1;
             formObject2.OtherRows.Add(rowObject2);
             OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject1);
@@ -512,9 +511,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject1 = new()
             {
                 FormId = "1",
-                MultipleIteration = false
+                MultipleIteration = false,
+                CurrentRow = rowObject
             };
-            formObject1.CurrentRow = rowObject;
             RowObject rowObject1 = new()
             {
                 RowId = "2||1"
@@ -526,9 +525,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject2 = new()
             {
                 FormId = "1",
-                MultipleIteration = true
+                MultipleIteration = true,
+                CurrentRow = rowObject1
             };
-            formObject2.CurrentRow = rowObject1;
             formObject2.OtherRows.Add(rowObject2);
             OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject1);
@@ -556,9 +555,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject1 = new()
             {
                 FormId = "1",
-                MultipleIteration = false
+                MultipleIteration = false,
+                CurrentRow = rowObject
             };
-            formObject1.CurrentRow = rowObject;
             RowObject rowObject1 = new()
             {
                 RowId = "2||1"
@@ -570,9 +569,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject2 = new()
             {
                 FormId = "1",
-                MultipleIteration = true
+                MultipleIteration = true,
+                CurrentRow = rowObject1
             };
-            formObject2.CurrentRow = rowObject1;
             formObject2.OtherRows.Add(rowObject2);
             OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject1);
@@ -598,9 +597,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject1 = new()
             {
                 FormId = "1",
-                MultipleIteration = false
+                MultipleIteration = false,
+                CurrentRow = rowObject
             };
-            formObject1.CurrentRow = rowObject;
             RowObject rowObject1 = new()
             {
                 RowId = "2||1"
@@ -612,9 +611,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject2 = new()
             {
                 FormId = "1",
-                MultipleIteration = true
+                MultipleIteration = true,
+                CurrentRow = rowObject1
             };
-            formObject2.CurrentRow = rowObject1;
             formObject2.OtherRows.Add(rowObject2);
             OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject1);
@@ -644,9 +643,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject = new()
             {
                 FormId = "2",
-                MultipleIteration = true
+                MultipleIteration = true,
+                CurrentRow = rowObject1
             };
-            formObject.CurrentRow = rowObject1;
             formObject.OtherRows.Add(rowObject2);
 
             formObject.DeleteRowObject(rowObject1);
@@ -673,9 +672,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject = new()
             {
                 FormId = "2",
-                MultipleIteration = true
+                MultipleIteration = true,
+                CurrentRow = rowObject
             };
-            formObject.CurrentRow = rowObject;
 
             formObject.DeleteRowObject(rowObject2);
 
@@ -697,9 +696,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject = new()
             {
                 FormId = "2",
-                MultipleIteration = true
+                MultipleIteration = true,
+                CurrentRow = rowObject1
             };
-            formObject.CurrentRow = rowObject1;
             formObject.OtherRows.Add(rowObject2);
 
             formObject.DeleteRowObject(rowObject1.RowId);
@@ -726,184 +725,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject = new()
             {
                 FormId = "2",
-                MultipleIteration = true
+                MultipleIteration = true,
+                CurrentRow = rowObject
             };
-            formObject.CurrentRow = rowObject;
 
             formObject.DeleteRowObject(rowObject2.RowId);
 
             Assert.IsTrue(formObject.IsRowPresent(rowObject2.RowId));
             Assert.IsTrue(formObject.IsRowMarkedForDeletion(rowObject2.RowId));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void DeleteRowObject_OptionObject_Null()
-        {
-            OptionObject optionObject = null;
-            optionObject.DeleteRowObject("1||1");
-            Assert.IsFalse(optionObject.IsFieldPresent("1||1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void DeleteRowObject_OptionObject2_Null()
-        {
-            OptionObject2 optionObject = null;
-            optionObject.DeleteRowObject("1||1");
-            Assert.IsFalse(optionObject.IsFieldPresent("1||1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void DeleteRowObject_OptionObject2015_Null()
-        {
-            OptionObject2015 optionObject = null;
-            optionObject.DeleteRowObject("1||1");
-            Assert.IsFalse(optionObject.IsFieldPresent("1||1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void DeleteRowObject_FormObject_Null()
-        {
-            FormObject formObject = null;
-            formObject.DeleteRowObject("1||1");
-            Assert.IsFalse(formObject.IsFieldPresent("1||1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteRowObject_OptionObjectHelpers_OptionObject_Null_RowId_Error()
-        {
-            OptionObject optionObject = null;
-
-            OptionObjectHelpers.DeleteRowObject(optionObject, "1||1");
-
-            Assert.IsFalse(optionObject.IsFieldPresent("1||1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteRowObject_OptionObjectHelpers_OptionObject_Null_RowObject_Error()
-        {
-            RowObject rowObject = new("1||1");
-            OptionObject optionObject = null;
-
-            OptionObjectHelpers.DeleteRowObject(optionObject, rowObject);
-
-            Assert.IsFalse(optionObject.IsFieldPresent("1||1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteRowObject_OptionObjectHelpers_OptionObject_RowObject_Null_Error()
-        {
-            RowObject rowObject = null;
-            OptionObject optionObject = new();
-
-            OptionObjectHelpers.DeleteRowObject(optionObject, rowObject);
-
-            Assert.IsFalse(optionObject.IsFieldPresent("1||1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteRowObject_OptionObjectHelpers_OptionObject2_Null_RowId_Error()
-        {
-            OptionObject2 optionObject = null;
-            OptionObjectHelpers.DeleteRowObject(optionObject, "1||1");
-            Assert.IsFalse(optionObject.IsFieldPresent("1||1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteRowObject_OptionObjectHelpers_OptionObject2_Null_RowObject_Error()
-        {
-            RowObject rowObject = new("1||1");
-            OptionObject2 optionObject = null;
-
-            OptionObjectHelpers.DeleteRowObject(optionObject, rowObject);
-
-            Assert.IsFalse(optionObject.IsFieldPresent("1||1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteRowObject_OptionObjectHelpers_OptionObject2_RowObject_Null_Error()
-        {
-            RowObject rowObject = null;
-            OptionObject2 optionObject = new();
-
-            OptionObjectHelpers.DeleteRowObject(optionObject, rowObject);
-
-            Assert.IsFalse(optionObject.IsFieldPresent("1||1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteRowObject_OptionObjectHelpers_OptionObject2015_Null_RowId_Error()
-        {
-            OptionObject2015 optionObject = null;
-            OptionObjectHelpers.DeleteRowObject(optionObject, "1||1");
-            Assert.IsFalse(optionObject.IsFieldPresent("1||1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteRowObject_OptionObjectHelpers_OptionObject2015_Null_RowObject_Error()
-        {
-            RowObject rowObject = new("1||1");
-            OptionObject2015 optionObject = null;
-
-            OptionObjectHelpers.DeleteRowObject(optionObject, rowObject);
-
-            Assert.IsFalse(optionObject.IsFieldPresent("1||1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteRowObject_OptionObjectHelpers_OptionObject2015_RowObject_Null_Error()
-        {
-            RowObject rowObject = null;
-            OptionObject2015 optionObject = new();
-
-            OptionObjectHelpers.DeleteRowObject(optionObject, rowObject);
-
-            Assert.IsFalse(optionObject.IsFieldPresent("1||1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteRowObject_OptionObjectHelpers_FormObject_Null_RowId_Error()
-        {
-            FormObject formObject = null;
-            OptionObjectHelpers.DeleteRowObject(formObject, "1||1");
-            Assert.IsFalse(formObject.IsFieldPresent("1||1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteRowObject_OptionObjectHelpers_FormObject_Null_RowObject_Error()
-        {
-            RowObject rowObject = new("1||1");
-            FormObject formObject = null;
-
-            OptionObjectHelpers.DeleteRowObject(formObject, rowObject);
-
-            Assert.IsFalse(formObject.IsFieldPresent("1||1"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteRowObject_OptionObjectHelpers_FormObject_RowObject_Null_Error()
-        {
-            RowObject rowObject = null;
-            FormObject formObject = new();
-
-            OptionObjectHelpers.DeleteRowObject(formObject, rowObject);
-
-            Assert.IsFalse(formObject.IsFieldPresent("1||1"));
         }
     }
 }

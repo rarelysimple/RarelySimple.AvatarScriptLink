@@ -16,8 +16,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 FormId = "1",
                 MultipleIteration = false
             };
-            OptionObject optionObject = null;
-            optionObject = (OptionObject)OptionObjectHelpers.AddFormObject(optionObject, formObject);
+            OptionObject optionObject = (OptionObject)OptionObjectHelpers.AddFormObject(null, formObject);
             Assert.IsTrue(optionObject.IsFormPresent("1"));
         }
         [TestMethod]
@@ -30,8 +29,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 FormId = "1",
                 MultipleIteration = false
             };
-            OptionObject2 optionObject = null;
-            optionObject = (OptionObject2)OptionObjectHelpers.AddFormObject(optionObject, formObject);
+            OptionObject2 optionObject = (OptionObject2)OptionObjectHelpers.AddFormObject(null, formObject);
             Assert.IsTrue(optionObject.IsFormPresent("1"));
         }
         [TestMethod]
@@ -44,8 +42,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 FormId = "1",
                 MultipleIteration = false
             };
-            OptionObject2015 optionObject = null;
-            optionObject = (OptionObject2015)OptionObjectHelpers.AddFormObject(optionObject, formObject);
+            OptionObject2015 optionObject = (OptionObject2015)OptionObjectHelpers.AddFormObject(null, formObject);
             Assert.IsTrue(optionObject.IsFormPresent("1"));
         }
 

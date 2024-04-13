@@ -9,6 +9,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
 {
     public abstract class OptionObjectBase : IEquatable<OptionObjectBase>, IOptionObject2015
     {
+        protected const string ParameterCannotBeNull = "parameterCannotBeNull";
+        
         #region Constructors
 
         /// <summary>

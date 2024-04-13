@@ -17,7 +17,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IOptionObject SetRequiredFields(IOptionObject optionObject, List<FieldObject> fieldObjects)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return SetFieldObjects(optionObject, FieldAction.Require, fieldObjects);
         }
         /// <summary>
@@ -29,7 +29,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IOptionObject SetRequiredFields(IOptionObject optionObject, List<string> fieldNumbers)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return SetFieldObjects(optionObject, FieldAction.Require, fieldNumbers);
         }
         /// <summary>
@@ -41,7 +41,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IFormObject SetRequiredFields(IFormObject formObject, List<string> fieldNumbers)
         {
             if (formObject == null)
-                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return SetFieldObjects(formObject, FieldAction.Require, fieldNumbers);
         }
         /// <summary>
@@ -53,7 +53,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IRowObject SetRequiredFields(IRowObject rowObject, List<string> fieldNumbers)
         {
             if (rowObject == null)
-                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return SetFieldObjects(rowObject, FieldAction.Require, fieldNumbers);
         }
     }

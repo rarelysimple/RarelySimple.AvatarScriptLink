@@ -9,6 +9,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
 {
     public abstract class FormObjectBase : IEquatable<FormObjectBase>, IFormObject
     {
+        protected const string ParameterCannotBeNull = "parameterCannotBeNull";
+        
         #region Constructors
 
         /// <summary>
@@ -22,7 +24,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         protected FormObjectBase(string formId)
         {
             if (string.IsNullOrEmpty(formId))
-                throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             CurrentRow = null;
             FormId = formId;
             MultipleIteration = false;
@@ -32,8 +34,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         protected FormObjectBase(string formId, RowObject currentRow)
         {
             if (string.IsNullOrEmpty(formId))
-                throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            CurrentRow = currentRow ?? throw new ArgumentNullException(nameof(currentRow), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+            CurrentRow = currentRow ?? throw new ArgumentNullException(nameof(currentRow), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             FormId = formId;
             MultipleIteration = false;
             OtherRows = new List<RowObject>();
@@ -42,8 +44,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         protected FormObjectBase(string formId, RowObject currentRow, bool multipleIteration)
         {
             if (string.IsNullOrEmpty(formId))
-                throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            CurrentRow = currentRow ?? throw new ArgumentNullException(nameof(currentRow), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+            CurrentRow = currentRow ?? throw new ArgumentNullException(nameof(currentRow), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             FormId = formId;
             MultipleIteration = multipleIteration;
             OtherRows = new List<RowObject>();
@@ -52,11 +54,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         protected FormObjectBase(string formId, RowObject currentRow, bool multipleIteration, List<RowObject> otherRows)
         {
             if (string.IsNullOrEmpty(formId))
-                throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
-            CurrentRow = currentRow ?? throw new ArgumentNullException(nameof(currentRow), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+            CurrentRow = currentRow ?? throw new ArgumentNullException(nameof(currentRow), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             FormId = formId;
             MultipleIteration = multipleIteration;
-            OtherRows = otherRows ?? throw new ArgumentNullException(nameof(otherRows), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+            OtherRows = otherRows ?? throw new ArgumentNullException(nameof(otherRows), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
         }
 
         #endregion

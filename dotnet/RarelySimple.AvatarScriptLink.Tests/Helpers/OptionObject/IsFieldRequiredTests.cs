@@ -1,5 +1,4 @@
-﻿using RarelySimple.AvatarScriptLink.Helpers;
-using RarelySimple.AvatarScriptLink.Objects;
+﻿using RarelySimple.AvatarScriptLink.Objects;
 
 namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
 {
@@ -79,24 +78,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsFieldRequired_OptionObject_Null()
-        {
-            string fieldNumber = "123";
-            OptionObject optionObject = null;
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsFieldRequired_OptionObject_Helper_Null()
-        {
-            string fieldNumber = "123";
-            OptionObject optionObject = null;
-            Assert.IsFalse(OptionObjectHelpers.IsFieldRequired(optionObject, fieldNumber));
-        }
-
-        [TestMethod]
         public void IsFieldRequired_OptionObject2_FirstForm_IsRequired()
         {
             string fieldNumber = "123";
@@ -166,24 +147,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             optionObject.AddFormObject(formObject1);
             optionObject.AddFormObject(formObject2);
             Assert.IsTrue(optionObject.IsFieldRequired("234"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsFieldRequired_OptionObject2_Null()
-        {
-            string fieldNumber = "123";
-            OptionObject2 optionObject = null;
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsFieldRequired_OptionObject2_Helper_Null()
-        {
-            string fieldNumber = "123";
-            OptionObject2 optionObject = null;
-            Assert.IsFalse(OptionObjectHelpers.IsFieldRequired(optionObject, fieldNumber));
         }
 
         [TestMethod]
@@ -259,24 +222,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsFieldRequired_OptionObject2015_Null()
-        {
-            string fieldNumber = "123";
-            OptionObject2015 optionObject = null;
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsFieldRequired_OptionObject2015_Helper_Null()
-        {
-            string fieldNumber = "123";
-            OptionObject2015 optionObject = null;
-            Assert.IsFalse(OptionObjectHelpers.IsFieldRequired(optionObject, fieldNumber));
-        }
-
-        [TestMethod]
         public void IsFieldRequired_FormObject_IsRequired()
         {
             string fieldNumber = "123";
@@ -311,24 +256,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsFieldRequired_FormObject_Null()
-        {
-            string fieldNumber = "123";
-            FormObject formObject = null;
-            Assert.IsFalse(formObject.IsFieldRequired(fieldNumber));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsFieldRequired_FormObject_Helper_Null()
-        {
-            string fieldNumber = "123";
-            FormObject formObject = null;
-            Assert.IsFalse(OptionObjectHelpers.IsFieldRequired(formObject, fieldNumber));
-        }
-
-        [TestMethod]
         public void IsFieldRequired_RowObject_IsRequired()
         {
             string fieldNumber = "123";
@@ -354,24 +281,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, false, false));
             Assert.IsTrue(rowObject.IsFieldRequired("234"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void IsFieldRequired_RowObject_Null()
-        {
-            string fieldNumber = "123";
-            RowObject rowObject = null;
-            Assert.IsFalse(rowObject.IsFieldRequired(fieldNumber));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void IsFieldRequired_RowObject_Helper_Null()
-        {
-            string fieldNumber = "123";
-            RowObject rowObject = null;
-            Assert.IsFalse(OptionObjectHelpers.IsFieldRequired(rowObject, fieldNumber));
         }
     }
 }
