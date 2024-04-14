@@ -68,8 +68,6 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(formId))
                     throw new ArgumentNullException(nameof(formId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-                if (optionObject.Forms == null)
-                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
                 foreach (var formObject in optionObject.Forms)
                 {
                     if (formObject.FormId == formId)
@@ -87,8 +85,6 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             {
                 if (optionObject == null)
                     throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-                if (optionObject.Forms == null)
-                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 var form = optionObject.Forms.Find(x => x.IsFieldPresent(fieldNumber));
@@ -108,8 +104,6 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             {
                 if (optionObject == null)
                     throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-                if (optionObject.Forms == null)
-                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 var form = optionObject.Forms.Find(x => x.IsFieldPresent(fieldNumber));
@@ -129,8 +123,6 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             {
                 if (decorator == null)
                     throw new ArgumentNullException(nameof(decorator), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-                if (decorator.Forms == null)
-                    throw new ArgumentNullException(nameof(decorator), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 return decorator.Forms.Find(x => x.IsFieldPresent(fieldNumber)) != null;
@@ -145,8 +137,6 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             {
                 if (optionObject == null)
                     throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-                if (optionObject.Forms == null)
-                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 var form = optionObject.Forms.Find(x => x.IsFieldPresent(fieldNumber));
@@ -167,8 +157,6 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             {
                 if (decorator == null)
                     throw new ArgumentNullException(nameof(decorator), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-                if (decorator.Forms == null)
-                    throw new ArgumentNullException(nameof(decorator), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 var form = decorator.Forms.Find(x => x.IsFieldPresent(fieldNumber));
@@ -199,8 +187,6 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     throw new ArgumentNullException(nameof(rowId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-                if (decorator.Forms == null)
-                    throw new ArgumentNullException(nameof(decorator), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
                 for (int i = 0; i < decorator.Forms.Count; i++)
                 {
                     if (decorator.Forms[i].FormId == formId)

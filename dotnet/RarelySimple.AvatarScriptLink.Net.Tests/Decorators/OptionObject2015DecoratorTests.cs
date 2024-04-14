@@ -74,6 +74,38 @@ public class OptionObject2015DecoratorTests
     }
 
     [TestMethod]
+    public void TestOptionObject2015Decorator_GetFieldValue_FormAndRowId_Succeeds()
+    {
+        var fieldNumber = "123.45";
+        var expected = "initial value";
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = fieldNumber,
+            FieldValue = expected,
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        Assert.AreEqual(expected, decorator.GetFieldValue("456", "456||1", fieldNumber));
+    }
+
+    [TestMethod]
     [ExpectedException(typeof(FieldObjectNotFoundException))]
     public void TestOptionObject2015Decorator_GetFieldValue_NotPresent()
     {
@@ -104,6 +136,303 @@ public class OptionObject2015DecoratorTests
         };
         var decorator = new OptionObject2015Decorator(optionObject);
         Assert.AreEqual(expected, decorator.GetFieldValue("678.90"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(FieldObjectNotFoundException))]
+    public void TestOptionObject2015Decorator_GetFieldValue_FormAndRowId_NotPresent()
+    {
+        var fieldNumber = "123.45";
+        var expected = "initial value";
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = fieldNumber,
+            FieldValue = expected,
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        Assert.AreEqual(expected, decorator.GetFieldValue("123", "123||1", "678.90"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TestOptionObject2015Decorator_GetFieldValue_Empty_NotPresent()
+    {
+        var fieldNumber = "123.45";
+        var expected = "initial value";
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = fieldNumber,
+            FieldValue = expected,
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        Assert.AreEqual(expected, decorator.GetFieldValue(""));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TestOptionObject2015Decorator_GetFieldValue_Null_NotPresent()
+    {
+        var fieldNumber = "123.45";
+        var expected = "initial value";
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = fieldNumber,
+            FieldValue = expected,
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        Assert.AreEqual(expected, decorator.GetFieldValue(null));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TestOptionObject2015Decorator_GetFieldValue_FormIdEmpty_NotPresent()
+    {
+        var fieldNumber = "123.45";
+        var expected = "initial value";
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = fieldNumber,
+            FieldValue = expected,
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        Assert.AreEqual(expected, decorator.GetFieldValue("", "456||1", fieldNumber));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TestOptionObject2015Decorator_GetFieldValue_FormIdNull_NotPresent()
+    {
+        var fieldNumber = "123.45";
+        var expected = "initial value";
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = fieldNumber,
+            FieldValue = expected,
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        Assert.AreEqual(expected, decorator.GetFieldValue(null, "456||1", fieldNumber));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TestOptionObject2015Decorator_GetFieldValue_RowIdEmpty_NotPresent()
+    {
+        var fieldNumber = "123.45";
+        var expected = "initial value";
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = fieldNumber,
+            FieldValue = expected,
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        Assert.AreEqual(expected, decorator.GetFieldValue("456", "", fieldNumber));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TestOptionObject2015Decorator_GetFieldValue_RowIdNull_NotPresent()
+    {
+        var fieldNumber = "123.45";
+        var expected = "initial value";
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = fieldNumber,
+            FieldValue = expected,
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        Assert.AreEqual(expected, decorator.GetFieldValue("456", null, fieldNumber));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TestOptionObject2015Decorator_GetFieldValue_FieldNumberEmpty_NotPresent()
+    {
+        var fieldNumber = "123.45";
+        var expected = "initial value";
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = fieldNumber,
+            FieldValue = expected,
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        Assert.AreEqual(expected, decorator.GetFieldValue("456", "456||1", ""));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TestOptionObject2015Decorator_GetFieldValue_FieldNumberNull_NotPresent()
+    {
+        var fieldNumber = "123.45";
+        var expected = "initial value";
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = fieldNumber,
+            FieldValue = expected,
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        Assert.AreEqual(expected, decorator.GetFieldValue("456", "456||1", null));
     }
 
     #endregion
@@ -387,6 +716,37 @@ public class OptionObject2015DecoratorTests
         };
         var decorator = new OptionObject2015Decorator(optionObject);
         Assert.IsTrue(decorator.IsFieldEnabled("678.90"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void IsFieldEnabled_OptionObject2015_Null_IsNotPresent()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123.45",
+            FieldValue = "initial value",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        Assert.IsTrue(decorator.IsFieldEnabled(null));
     }
 
     [TestMethod]
