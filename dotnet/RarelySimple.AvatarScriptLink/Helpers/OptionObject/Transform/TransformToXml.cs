@@ -8,6 +8,9 @@
         /// <typeparam name="T">Type of object.</typeparam>
         /// <param name="objectToTransform">object to transform.</param>
         /// <returns></returns>
-        public static string TransformToXml<T>(T objectToTransform) => ScriptLinkHelpers.SerializeObjectToXmlString(objectToTransform);
+        public static string TransformToXml<T>(T objectToTransform)
+        {
+            return ScriptLinkHelpers.SerializeObjectToXmlString(objectToTransform);
+        }
     }
 }

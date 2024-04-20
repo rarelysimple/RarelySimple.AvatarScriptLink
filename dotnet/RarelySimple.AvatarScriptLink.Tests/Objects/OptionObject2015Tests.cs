@@ -5,7 +5,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
     [TestClass]
     public class OptionObject2015Tests
     {
-        private OptionObject2015 configuredOptionObject2015;
+        private OptionObject2015 configuredOptionObject2015 = new();
 
         [TestInitialize]
         public void TestInitialize()

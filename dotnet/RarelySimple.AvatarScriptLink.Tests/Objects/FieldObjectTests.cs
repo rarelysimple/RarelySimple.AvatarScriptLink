@@ -5,12 +5,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
     [TestClass]
     public class FieldObjectTests
     {
-        private FieldObject newFieldObject;
+        private FieldObject newFieldObject = new();
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this.newFieldObject = new FieldObject();
+            newFieldObject = new FieldObject();
         }
 
         [TestMethod]
