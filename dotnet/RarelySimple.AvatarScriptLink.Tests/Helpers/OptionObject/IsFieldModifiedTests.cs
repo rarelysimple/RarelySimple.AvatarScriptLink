@@ -53,6 +53,31 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IsFieldModified_OptionObject_IsTrue_NullFieldNumber()
+        {
+            // Arrange
+            FieldObject fieldObject01 = new("123", "");
+            FieldObject fieldObject02 = new("124", "");
+            FieldObject fieldObject03 = new("125", "");
+            RowObject rowObject01 = new("1||1", [fieldObject01, fieldObject02, fieldObject03]);
+            FormObject formObject = new("1", rowObject01);
+            OptionObject optionObject = new()
+            {
+                Forms =
+                [
+                    formObject
+                ]
+            };
+
+            // Act
+            optionObject.SetFieldValue("123", "MODIFIED");
+
+            // Assert
+            Assert.IsTrue(optionObject.IsFieldModified(null));
+        }
+
+        [TestMethod]
         public void IsFieldModified_OptionObject2_IsFalse()
         {
             // Arrange
@@ -180,6 +205,24 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IsFieldModified_FormObject_IsTrue_NullFieldNumber()
+        {
+            // Arrange
+            FieldObject fieldObject01 = new("123", "");
+            FieldObject fieldObject02 = new("124", "");
+            FieldObject fieldObject03 = new("125", "");
+            RowObject rowObject01 = new("1||1", [fieldObject01, fieldObject02, fieldObject03]);
+            FormObject formObject = new("1", rowObject01);
+
+            // Act
+            formObject.SetFieldValue("123", "MODIFIED");
+
+            // Assert
+            Assert.IsTrue(formObject.IsFieldModified(null));
+        }
+
+        [TestMethod]
         public void IsFieldModified_RowObject_IsFalse()
         {
             // Arrange
@@ -208,6 +251,23 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
             // Assert
             Assert.IsTrue(rowObject01.IsFieldModified("123"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IsFieldModified_RowObject_IsTrue_NullFieldNumber()
+        {
+            // Arrange
+            FieldObject fieldObject01 = new("123", "");
+            FieldObject fieldObject02 = new("124", "");
+            FieldObject fieldObject03 = new("125", "");
+            RowObject rowObject01 = new("1||1", [fieldObject01, fieldObject02, fieldObject03]);
+
+            // Act
+            rowObject01.SetFieldValue("123", "MODIFIED");
+
+            // Assert
+            Assert.IsTrue(rowObject01.IsFieldModified(null));
         }
     }
 }
