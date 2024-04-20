@@ -15,7 +15,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <typeparam name="T"></typeparam>
         /// <param name="objectToSerialize">The object to be serialized.</param>
         /// <returns></returns>
-        public static string SerializeObject<T>(T objectToSerialize) where T : class
+        public static string SerializeObject<T>(T objectToSerialize)
         {
             if (objectToSerialize == null)
                 throw new ArgumentNullException(nameof(objectToSerialize), GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
@@ -35,7 +35,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <typeparam name="T"></typeparam>
         /// <param name="objectToSerialize">The object to be serialized.</param>
         /// <returns></returns>
-        public static string SerializeObjectToJsonString<T>(T objectToSerialize) where T : class
+        public static string SerializeObjectToJsonString<T>(T objectToSerialize)
         {
             if (objectToSerialize == null)
                 throw new ArgumentNullException(nameof(objectToSerialize), GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
@@ -55,7 +55,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <typeparam name="T"></typeparam>
         /// <param name="objectToSerialize">The object to be serialized.</param>
         /// <returns></returns>
-        public static string SerializeObjectToXmlString<T>(T objectToSerialize) where T : class
+        public static string SerializeObjectToXmlString<T>(T objectToSerialize)
         {
             if (objectToSerialize == null)
                 throw new ArgumentNullException(nameof(objectToSerialize), GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));

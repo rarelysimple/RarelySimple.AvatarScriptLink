@@ -10,17 +10,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [ExpectedException(typeof(ArgumentNullException))]
         public void SetErrorCodeAndMessage_OptionObject_Null_Error()
         {
-            // Arrange
-            OptionObject optionObject = null;
             double errorCode = 0;
             string message = "Test Message";
-
-            // Act
-            OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message);
-
-            // Assert
-            Assert.AreEqual(errorCode, optionObject.ErrorCode);
-            Assert.AreEqual(message, optionObject.ErrorMesg);
+            OptionObjectHelpers.SetErrorCodeAndMessage(null, errorCode, message);
         }
 
         [TestMethod]
@@ -207,17 +199,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [ExpectedException(typeof(ArgumentNullException))]
         public void SetErrorCodeAndMessage_OptionObject2_Null_Error()
         {
-            // Arrange
-            OptionObject2 optionObject = null;
             double errorCode = 0;
             string message = "Test Message";
-
-            // Act
-            OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message);
-
-            // Assert
-            Assert.AreEqual(errorCode, optionObject.ErrorCode);
-            Assert.AreEqual(message, optionObject.ErrorMesg);
+            OptionObjectHelpers.SetErrorCodeAndMessage(null, errorCode, message);
         }
 
         [TestMethod]
@@ -404,17 +388,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [ExpectedException(typeof(ArgumentNullException))]
         public void SetErrorCodeAndMessage_OptionObject2015_Null_Error()
         {
-            // Arrange
-            OptionObject2015 optionObject = null;
             double errorCode = 0;
             string message = "Test Message";
-
-            // Act
-            OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message);
-
-            // Assert
-            Assert.AreEqual(errorCode, optionObject.ErrorCode);
-            Assert.AreEqual(message, optionObject.ErrorMesg);
+            OptionObjectHelpers.SetErrorCodeAndMessage(null, errorCode, message);
         }
 
         [TestMethod]
