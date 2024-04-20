@@ -174,11 +174,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         {
             if (other == null)
                 return false;
-            return this.ParentRowId == other.ParentRowId &&
-                ((this.RowAction == null && other.RowAction == null) ||
-                this.RowAction == other.RowAction) &&
-                this.RowId == other.RowId &&
-                AreFieldsEqual(this.Fields, other.Fields);
+            return ParentRowId == other.ParentRowId &&
+                ((RowAction == null && other.RowAction == null) ||
+                RowAction == other.RowAction) &&
+                RowId == other.RowId &&
+                AreFieldsEqual(Fields, other.Fields);
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
             RowObject rowObject = obj as RowObject;
             if (rowObject == null)
                 return false;
-            return this.Equals(rowObject);
+            return Equals(rowObject);
         }
         /// <summary>
         /// Overrides the <see cref="GetHashCode"/> method for a <see cref="RowObject"/>.
@@ -201,10 +201,10 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         {
             string delimiter = "||";
             StringBuilder sb = new StringBuilder();
-            sb.Append(this.ParentRowId
-                + delimiter + this.RowAction
-                + delimiter + this.RowId);
-            foreach (FieldObject fieldObject in this.Fields)
+            sb.Append(ParentRowId
+                + delimiter + RowAction
+                + delimiter + RowId);
+            foreach (FieldObject fieldObject in Fields)
             {
                 sb.Append(delimiter + fieldObject.GetHashCode());
             }
@@ -256,14 +256,14 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// Adds a <see cref="FieldObject"/> to a <see cref="RowObject"/>.
         /// </summary>
         /// <param name="fieldObject"></param>
-        public void AddFieldObject(FieldObject fieldObject) => this.Fields = OptionObjectHelpers.AddFieldObject(this, fieldObject).Fields;
+        public void AddFieldObject(FieldObject fieldObject) => Fields = OptionObjectHelpers.AddFieldObject(this, fieldObject).Fields;
 
         /// <summary>
         /// Adds a <see cref="FieldObject"/> to a <see cref="RowObject"/> with the provided <see cref="FieldObject.FieldNumber"/> and <see cref="FieldObject.FieldValue"/>.
         /// </summary>
         /// <param name="fieldNumber">A <see cref="string"/> containing the <see cref="FieldObject.FieldNumber"/> of the <see cref="FieldObject"/>.</param>
         /// <param name="fieldValue">A <see cref="string"/> containing the <see cref="FieldObject.FieldValue"/> of the <see cref="FieldObject"/>.</param>
-        public void AddFieldObject(string fieldNumber, string fieldValue) => this.Fields = OptionObjectHelpers.AddFieldObject(this, fieldNumber, fieldValue).Fields;
+        public void AddFieldObject(string fieldNumber, string fieldValue) => Fields = OptionObjectHelpers.AddFieldObject(this, fieldNumber, fieldValue).Fields;
 
         /// <summary>
         /// Adds a <see cref="FieldObject"/> to a <see cref="RowObject"/> with the provided property values.
@@ -273,7 +273,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// <param name="enabledValue">A <see cref="string"/> containing the <see cref="FieldObject.Enabled"/> of the <see cref="FieldObject"/>.</param>
         /// <param name="lockedValue">A <see cref="string"/> containing the <see cref="FieldObject.Lock"/> of the <see cref="FieldObject"/>.</param>
         /// <param name="requiredValue">A <see cref="string"/> containing the <see cref="FieldObject.Required"/> of the <see cref="FieldObject"/>.</param>
-        public void AddFieldObject(string fieldNumber, string fieldValue, string enabledValue, string lockedValue, string requiredValue) => this.Fields = OptionObjectHelpers.AddFieldObject(this, fieldNumber, fieldValue, enabledValue, lockedValue, requiredValue).Fields;
+        public void AddFieldObject(string fieldNumber, string fieldValue, string enabledValue, string lockedValue, string requiredValue) => Fields = OptionObjectHelpers.AddFieldObject(this, fieldNumber, fieldValue, enabledValue, lockedValue, requiredValue).Fields;
 
         /// <summary>
         /// Adds a <see cref="FieldObject"/> to a <see cref="RowObject"/> with the provided property values.
@@ -283,7 +283,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// <param name="enabled">A <see cref="bool"/> containing the <see cref="FieldObject.Enabled"/> of the <see cref="FieldObject"/>.</param>
         /// <param name="locked">A <see cref="bool"/> containing the <see cref="FieldObject.Lock"/> of the <see cref="FieldObject"/>.</param>
         /// <param name="required">A <see cref="bool"/> containing the <see cref="FieldObject.Required"/> of the <see cref="FieldObject"/>.</param>
-        public void AddFieldObject(string fieldNumber, string fieldValue, bool enabled, bool locked, bool required) => this.Fields = OptionObjectHelpers.AddFieldObject(this, fieldNumber, fieldValue, enabled, locked, required).Fields;
+        public void AddFieldObject(string fieldNumber, string fieldValue, bool enabled, bool locked, bool required) => Fields = OptionObjectHelpers.AddFieldObject(this, fieldNumber, fieldValue, enabled, locked, required).Fields;
 
         /// <summary>
         /// Returns a deep copy of the <see cref="object"/>.
@@ -342,13 +342,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// Removes a <see cref="FieldObject"/> from a <see cref="RowObject"/>.
         /// </summary>
         /// <param name="fieldObject">The <see cref="FieldObject"/> to remove.</param>
-        public void RemoveFieldObject(FieldObject fieldObject) => this.Fields = OptionObjectHelpers.RemoveFieldObject(this, fieldObject).Fields;
+        public void RemoveFieldObject(FieldObject fieldObject) => Fields = OptionObjectHelpers.RemoveFieldObject(this, fieldObject).Fields;
 
         /// <summary>
         /// Removes a <see cref="FieldObject"/> from a <see cref="RowObject"/> by <see cref="FieldObject.FieldNumber"/>.
         /// </summary>
         /// <param name="fieldNumber">A <see cref="string"/> containing the <see cref="FieldObject.FieldNumber"/> to remove.</param>
-        public void RemoveFieldObject(string fieldNumber) => this.Fields = OptionObjectHelpers.RemoveFieldObject(this, fieldNumber).Fields;
+        public void RemoveFieldObject(string fieldNumber) => Fields = OptionObjectHelpers.RemoveFieldObject(this, fieldNumber).Fields;
 
         /// <summary>
         /// Removes any unmodified <see cref="FieldObject"/> from the <see cref="RowObject"/>.
@@ -359,27 +359,27 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// Sets the specified field as disabled and unrequires if required.
         /// </summary>
         /// <param name="fieldNumber"></param>
-        public void SetDisabledField(string fieldNumber) => this.Fields = OptionObjectHelpers.SetDisabledField(this, fieldNumber).Fields;
+        public void SetDisabledField(string fieldNumber) => Fields = OptionObjectHelpers.SetDisabledField(this, fieldNumber).Fields;
 
         /// <summary>
         /// Sets the specified fields as disabled and unrequires if required.
         /// </summary>
         /// <param name="fieldNumbers"></param>
-        public void SetDisabledFields(List<string> fieldNumbers) => this.Fields = OptionObjectHelpers.SetDisabledFields(this, fieldNumbers).Fields;
+        public void SetDisabledFields(List<string> fieldNumbers) => Fields = OptionObjectHelpers.SetDisabledFields(this, fieldNumbers).Fields;
 
         /// <summary>
         /// Sets the specified field as enabled and not required.
         /// <para>This is the equivalent of <see cref="SetOptionalField(string)"/>.</para>
         /// </summary>
         /// <param name="fieldNumber"></param>
-        public void SetEnabledField(string fieldNumber) => this.Fields = OptionObjectHelpers.SetEnabledField(this, fieldNumber).Fields;
+        public void SetEnabledField(string fieldNumber) => Fields = OptionObjectHelpers.SetEnabledField(this, fieldNumber).Fields;
 
         /// <summary>
         /// Sets the specified fields as enabled and not required.
         /// <para>This is the equivalent of <see cref="SetOptionalFields(List{string})"/>.</para>
         /// </summary>
         /// <param name="fieldNumbers"></param>
-        public void SetEnabledFields(List<string> fieldNumbers) => this.Fields = OptionObjectHelpers.SetEnabledFields(this, fieldNumbers).Fields;
+        public void SetEnabledFields(List<string> fieldNumbers) => Fields = OptionObjectHelpers.SetEnabledFields(this, fieldNumbers).Fields;
 
         /// <summary>
         /// Sets the value of a <see cref="FieldObject"/> in the <see cref="RowObject"/>.
@@ -387,55 +387,55 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// <param name="fieldNumber"></param>
         /// <param name="fieldValue"></param>
         /// <returns></returns>
-        public void SetFieldValue(string fieldNumber, string fieldValue) => this.Fields = OptionObjectHelpers.SetFieldValue(this, fieldNumber, fieldValue).Fields;
+        public void SetFieldValue(string fieldNumber, string fieldValue) => Fields = OptionObjectHelpers.SetFieldValue(this, fieldNumber, fieldValue).Fields;
 
         /// <summary>
         /// Sets the specified field as disabled and unrequires if required.
         /// </summary>
         /// <param name="fieldNumber"></param>
-        public void SetLockedField(string fieldNumber) => this.Fields = OptionObjectHelpers.SetLockedField(this, fieldNumber).Fields;
+        public void SetLockedField(string fieldNumber) => Fields = OptionObjectHelpers.SetLockedField(this, fieldNumber).Fields;
 
         /// <summary>
         /// Sets the specified fields as disabled and unrequires if required.
         /// </summary>
         /// <param name="fieldNumbers"></param>
-        public void SetLockedFields(List<string> fieldNumbers) => this.Fields = OptionObjectHelpers.SetLockedFields(this, fieldNumbers).Fields;
+        public void SetLockedFields(List<string> fieldNumbers) => Fields = OptionObjectHelpers.SetLockedFields(this, fieldNumbers).Fields;
 
         /// <summary>
         /// Sets the specified field as enabled and not required.
         /// </summary>
         /// <param name="fieldNumber"></param>
-        public void SetOptionalField(string fieldNumber) => this.Fields = OptionObjectHelpers.SetOptionalField(this, fieldNumber).Fields;
+        public void SetOptionalField(string fieldNumber) => Fields = OptionObjectHelpers.SetOptionalField(this, fieldNumber).Fields;
 
         /// <summary>
         /// Sets the specified fields as enabled and not require.
         /// </summary>
         /// <param name="fieldNumbers"></param>
-        public void SetOptionalFields(List<string> fieldNumbers) => this.Fields = OptionObjectHelpers.SetOptionalFields(this, fieldNumbers).Fields;
+        public void SetOptionalFields(List<string> fieldNumbers) => Fields = OptionObjectHelpers.SetOptionalFields(this, fieldNumbers).Fields;
 
         /// <summary>
         /// Sets the specified field as disabled and unrequires if required.
         /// </summary>
         /// <param name="fieldNumber"></param>
-        public void SetRequiredField(string fieldNumber) => this.Fields = OptionObjectHelpers.SetRequiredField(this, fieldNumber).Fields;
+        public void SetRequiredField(string fieldNumber) => Fields = OptionObjectHelpers.SetRequiredField(this, fieldNumber).Fields;
 
         /// <summary>
         /// Sets the specified fields as disabled and unrequires if required.
         /// </summary>
         /// <param name="fieldNumbers"></param>
-        public void SetRequiredFields(List<string> fieldNumbers) => this.Fields = OptionObjectHelpers.SetRequiredFields(this, fieldNumbers).Fields;
+        public void SetRequiredFields(List<string> fieldNumbers) => Fields = OptionObjectHelpers.SetRequiredFields(this, fieldNumbers).Fields;
 
         /// <summary>
         /// Sets the specified field as disabled and unrequires if required.
         /// </summary>
         /// <param name="fieldNumber"></param>
-        public void SetUnlockedField(string fieldNumber) => this.Fields = OptionObjectHelpers.SetUnlockedField(this, fieldNumber).Fields;
+        public void SetUnlockedField(string fieldNumber) => Fields = OptionObjectHelpers.SetUnlockedField(this, fieldNumber).Fields;
 
         /// <summary>
         /// Sets the specified fields as disabled and unrequires if required.
         /// </summary>
         /// <param name="fieldNumbers"></param>
-        public void SetUnlockedFields(List<string> fieldNumbers) => this.Fields = OptionObjectHelpers.SetUnlockedFields(this, fieldNumbers).Fields;
+        public void SetUnlockedFields(List<string> fieldNumbers) => Fields = OptionObjectHelpers.SetUnlockedFields(this, fieldNumbers).Fields;
 
         /// <summary>
         /// Returns a <see cref="string"/> with all of the contents of the <see cref="RowObject"/> formatted in HTML.

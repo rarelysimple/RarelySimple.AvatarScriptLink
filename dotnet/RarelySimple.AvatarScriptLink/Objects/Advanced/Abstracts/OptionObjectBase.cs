@@ -448,32 +448,32 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// Sets the specified field as disabled.
         /// </summary>
         /// <param name="fieldNumber"></param>
-        public void SetDisabledField(string fieldNumber) => this.Forms = OptionObjectHelpers.SetDisabledField(this, fieldNumber).Forms;
+        public void SetDisabledField(string fieldNumber) => Forms = OptionObjectHelpers.SetDisabledField(this, fieldNumber).Forms;
 
         /// <summary>
         /// Sets the specified fields as disabled.
         /// </summary>
         /// <param name="fieldNumbers"></param>
-        public void SetDisabledFields(List<string> fieldNumbers) => this.Forms = OptionObjectHelpers.SetDisabledFields(this, fieldNumbers).Forms;
+        public void SetDisabledFields(List<string> fieldNumbers) => Forms = OptionObjectHelpers.SetDisabledFields(this, fieldNumbers).Forms;
 
         /// <summary>
         /// Set the specified field as enabled.
         /// </summary>
         /// <param name="fieldNumber"></param>
-        public void SetEnabledField(string fieldNumber) => this.Forms = OptionObjectHelpers.SetEnabledField(this, fieldNumber).Forms;
+        public void SetEnabledField(string fieldNumber) => Forms = OptionObjectHelpers.SetEnabledField(this, fieldNumber).Forms;
 
         /// <summary>
         /// Set the specified fields as enabled.
         /// </summary>
         /// <param name="fieldNumbers"></param>
-        public void SetEnabledFields(List<string> fieldNumbers) => this.Forms = OptionObjectHelpers.SetEnabledFields(this, fieldNumbers).Forms;
+        public void SetEnabledFields(List<string> fieldNumbers) => Forms = OptionObjectHelpers.SetEnabledFields(this, fieldNumbers).Forms;
 
         /// <summary>
         /// Sets the FieldValue of a <see cref="FieldObject"/> in the <see cref="OptionObject"/> on the first form CurrentRow.
         /// </summary>
         /// <param name="fieldNumber"></param>
         /// <param name="fieldValue"></param>
-        public void SetFieldValue(string fieldNumber, string fieldValue) => this.Forms = OptionObjectHelpers.SetFieldValue(this, fieldNumber, fieldValue).Forms;
+        public void SetFieldValue(string fieldNumber, string fieldValue) => Forms = OptionObjectHelpers.SetFieldValue(this, fieldNumber, fieldValue).Forms;
 
         /// <summary>
         /// Sets the FieldValue of a <see cref="FieldObject"/> in the <see cref="OptionObject2015"/> 
@@ -482,55 +482,55 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// <param name="rowId"></param>
         /// <param name="fieldNumber"></param>
         /// <param name="fieldValue"></param>
-        public void SetFieldValue(string formId, string rowId, string fieldNumber, string fieldValue) => this.Forms = OptionObjectHelpers.SetFieldValue(this, formId, rowId, fieldNumber, fieldValue).Forms;
+        public void SetFieldValue(string formId, string rowId, string fieldNumber, string fieldValue) => Forms = OptionObjectHelpers.SetFieldValue(this, formId, rowId, fieldNumber, fieldValue).Forms;
 
         /// <summary>
         /// Set the specified field as locked.
         /// </summary>
         /// <param name="fieldNumber"></param>
-        public void SetLockedField(string fieldNumber) => this.Forms = OptionObjectHelpers.SetLockedField(this, fieldNumber).Forms;
+        public void SetLockedField(string fieldNumber) => Forms = OptionObjectHelpers.SetLockedField(this, fieldNumber).Forms;
 
         /// <summary>
         /// Set the specified fields as locked.
         /// </summary>
         /// <param name="fieldNumbers"></param>
-        public void SetLockedFields(List<string> fieldNumbers) => this.Forms = OptionObjectHelpers.SetLockedFields(this, fieldNumbers).Forms;
+        public void SetLockedFields(List<string> fieldNumbers) => Forms = OptionObjectHelpers.SetLockedFields(this, fieldNumbers).Forms;
 
         /// <summary>
         /// Set the specified field as not required and enables if disabled.
         /// </summary>
         /// <param name="fieldNumber"></param>
-        public void SetOptionalField(string fieldNumber) => this.Forms = OptionObjectHelpers.SetOptionalField(this, fieldNumber).Forms;
+        public void SetOptionalField(string fieldNumber) => Forms = OptionObjectHelpers.SetOptionalField(this, fieldNumber).Forms;
 
         /// <summary>
         /// Set the specified fields as not required and enables if disabled.
         /// </summary>
         /// <param name="fieldNumbers"></param>
-        public void SetOptionalFields(List<string> fieldNumbers) => this.Forms = OptionObjectHelpers.SetOptionalFields(this, fieldNumbers).Forms;
+        public void SetOptionalFields(List<string> fieldNumbers) => Forms = OptionObjectHelpers.SetOptionalFields(this, fieldNumbers).Forms;
 
         /// <summary>
         /// Sets the specified field as required.
         /// </summary>
         /// <param name="fieldNumber"></param>
-        public void SetRequiredField(string fieldNumber) => this.Forms = OptionObjectHelpers.SetRequiredField(this, fieldNumber).Forms;
+        public void SetRequiredField(string fieldNumber) => Forms = OptionObjectHelpers.SetRequiredField(this, fieldNumber).Forms;
 
         /// <summary>
         /// Sets the specified fields as required.
         /// </summary>
         /// <param name="fieldNumbers"></param>
-        public void SetRequiredFields(List<string> fieldNumbers) => this.Forms = OptionObjectHelpers.SetRequiredFields(this, fieldNumbers).Forms;
+        public void SetRequiredFields(List<string> fieldNumbers) => Forms = OptionObjectHelpers.SetRequiredFields(this, fieldNumbers).Forms;
 
         /// <summary>
         /// Set the specified field as unlocked.
         /// </summary>
         /// <param name="fieldNumber"></param>
-        public void SetUnlockedField(string fieldNumber) => this.Forms = OptionObjectHelpers.SetUnlockedField(this, fieldNumber).Forms;
+        public void SetUnlockedField(string fieldNumber) => Forms = OptionObjectHelpers.SetUnlockedField(this, fieldNumber).Forms;
 
         /// <summary>
         /// Set the specified fields as unlocked.
         /// </summary>
         /// <param name="fieldNumbers"></param>
-        public void SetUnlockedFields(List<string> fieldNumbers) => this.Forms = OptionObjectHelpers.SetUnlockedFields(this, fieldNumbers).Forms;
+        public void SetUnlockedFields(List<string> fieldNumbers) => Forms = OptionObjectHelpers.SetUnlockedFields(this, fieldNumbers).Forms;
 
         /// <summary>
         /// Returns a <see cref="string"/> with all of the contents of the <see cref="OptionObject2015"/> formatted in HTML.

@@ -218,11 +218,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         {
             if (other == null)
                 return false;
-            return this.FieldValue == other.FieldValue &&
-                this.Required == other.Required &&
-                this.Enabled == other.Enabled &&
-                this.FieldNumber == other.FieldNumber &&
-                this.Lock == other.Lock;
+            return FieldValue == other.FieldValue &&
+                Required == other.Required &&
+                Enabled == other.Enabled &&
+                FieldNumber == other.FieldNumber &&
+                Lock == other.Lock;
         }
         /// <summary>
         /// Used to compare <see cref="FieldObject"/> to an <see cref="object"/> to determine if they are equal. Returns <see cref="bool"/>.
@@ -237,7 +237,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
             FieldObjectBase fieldObject = obj as FieldObjectBase;
             if (fieldObject == null)
                 return false;
-            return this.Equals(fieldObject);
+            return Equals(fieldObject);
         }
 
         /// <summary>
@@ -248,11 +248,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         {
             string delimiter = "||";
             StringBuilder sb = new StringBuilder();
-            sb.Append(this.FieldNumber
-                + delimiter + this.FieldValue
-                + delimiter + this.Enabled
-                + delimiter + this.Lock
-                + delimiter + this.Required);
+            sb.Append(FieldNumber
+                + delimiter + FieldValue
+                + delimiter + Enabled
+                + delimiter + Lock
+                + delimiter + Required);
             return sb.GetHashCode();
         }
 

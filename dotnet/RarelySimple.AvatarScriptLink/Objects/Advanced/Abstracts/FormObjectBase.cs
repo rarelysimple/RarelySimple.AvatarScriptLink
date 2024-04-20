@@ -18,7 +18,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         /// </summary>
         protected FormObjectBase()
         {
-            this.OtherRows = new List<RowObject>();
+            OtherRows = new List<RowObject>();
         }
 
         protected FormObjectBase(string formId)
@@ -115,11 +115,10 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         {
             if (other == null)
                 return false;
-            return this.FormId == other.FormId &&
-                   this.MultipleIteration == other.MultipleIteration &&
-                   ((this.CurrentRow == null && other.CurrentRow == null) ||
-                   this.CurrentRow.Equals(other.CurrentRow)) &&
-                   AreRowsEqual(this.OtherRows, other.OtherRows);
+            return FormId == other.FormId &&
+                   MultipleIteration == other.MultipleIteration &&
+                   CurrentRow == other.CurrentRow &&
+                   AreRowsEqual(OtherRows, other.OtherRows);
         }
 
         /// <summary>
@@ -132,7 +131,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
             FormObject formObject = obj as FormObject;
             if (formObject == null)
                 return false;
-            return this.Equals(formObject);
+            return Equals(formObject);
         }
 
         /// <summary>
@@ -143,11 +142,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         {
             string delimiter = "||";
             StringBuilder sb = new StringBuilder();
-            sb.Append(this.FormId + delimiter + this.MultipleIteration.ToString(CultureInfo.InvariantCulture));
-            sb.Append(this.CurrentRow != null ? delimiter + this.CurrentRow.GetHashCode().ToString(CultureInfo.InvariantCulture) : "");
-            if (this.OtherRows != null)
+            sb.Append(FormId + delimiter + MultipleIteration.ToString(CultureInfo.InvariantCulture));
+            sb.Append(CurrentRow != null ? delimiter + CurrentRow.GetHashCode().ToString(CultureInfo.InvariantCulture) : "");
+            if (OtherRows != null)
             {
-                foreach (RowObject rowObject in this.OtherRows)
+                foreach (RowObject rowObject in OtherRows)
                 {
                     sb.Append(delimiter + rowObject.GetHashCode());
                 }
@@ -204,8 +203,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
             if (rowObject == null)
                 return;
             IFormObject tempFormObject = OptionObjectHelpers.AddRowObject(this, rowObject);
-            this.CurrentRow = tempFormObject.CurrentRow;
-            this.OtherRows = tempFormObject.OtherRows;
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
         }
         /// <summary>
         /// Adds a <see cref="RowObject"/> to the <see cref="CurrentRow"/> of a <see cref="FormObject"/>.
@@ -215,8 +214,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void AddRowObject(string rowId, string parentRowId)
         {
             IFormObject tempFormObject = OptionObjectHelpers.AddRowObject(this, rowId, parentRowId);
-            this.CurrentRow = tempFormObject.CurrentRow;
-            this.OtherRows = tempFormObject.OtherRows;
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
         }
         /// <summary>
         /// Adds a <see cref="RowObject"/> to a <see cref="FormObject"/>.
@@ -227,8 +226,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void AddRowObject(string rowId, string parentRowId, string rowAction)
         {
             IFormObject tempFormObject = OptionObjectHelpers.AddRowObject(this, rowId, parentRowId, rowAction);
-            this.CurrentRow = tempFormObject.CurrentRow;
-            this.OtherRows = tempFormObject.OtherRows;
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
         }
 
         /// <summary>
@@ -254,8 +253,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void DeleteRowObject(RowObject rowObject)
         {
             IFormObject tempFormObject = OptionObjectHelpers.DeleteRowObject(this, rowObject);
-            this.CurrentRow = tempFormObject.CurrentRow;
-            this.OtherRows = tempFormObject.OtherRows;
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
         }
         /// <summary>
         /// Marks a <see cref="RowObject"/> for deletion.
@@ -264,8 +263,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void DeleteRowObject(string rowId)
         {
             IFormObject tempFormObject = OptionObjectHelpers.DeleteRowObject(this, rowId);
-            this.CurrentRow = tempFormObject.CurrentRow;
-            this.OtherRows = tempFormObject.OtherRows;
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
         }
 
         /// <summary>
@@ -364,8 +363,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetDisabledField(string fieldNumber)
         {
             IFormObject tempFormObject = OptionObjectHelpers.SetDisabledField(this, fieldNumber);
-            this.CurrentRow = tempFormObject.CurrentRow;
-            this.OtherRows = tempFormObject.OtherRows;
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
         }
         /// <summary>
         /// Sets the specified fields as disabled and unrequires if required.
@@ -374,8 +373,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetDisabledFields(List<string> fieldNumbers)
         {
             IFormObject tempFormObject = OptionObjectHelpers.SetDisabledFields(this, fieldNumbers);
-            this.CurrentRow = tempFormObject.CurrentRow;
-            this.OtherRows = tempFormObject.OtherRows;
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
         }
         /// <summary>
         /// Sets the specified field as enabled and not required.
@@ -385,8 +384,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetEnabledField(string fieldNumber)
         {
             IFormObject tempFormObject = OptionObjectHelpers.SetEnabledField(this, fieldNumber);
-            this.CurrentRow = tempFormObject.CurrentRow;
-            this.OtherRows = tempFormObject.OtherRows;
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
         }
         /// <summary>
         /// Sets the specified fields as enabled and not required.
@@ -396,8 +395,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetEnabledFields(List<string> fieldNumbers)
         {
             IFormObject tempFormObject = OptionObjectHelpers.SetEnabledFields(this, fieldNumbers);
-            this.CurrentRow = tempFormObject.CurrentRow;
-            this.OtherRows = tempFormObject.OtherRows;
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
         }
         /// <summary>
         /// Sets the value of a <see cref="FieldObject"/> in the <see cref="CurrentRow"/> of a <see cref="FormObject"/>.
@@ -407,8 +406,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetFieldValue(string fieldNumber, string fieldValue)
         {
             IFormObject tempFormObject = OptionObjectHelpers.SetFieldValue(this, fieldNumber, fieldValue);
-            this.CurrentRow = tempFormObject.CurrentRow;
-            this.OtherRows = tempFormObject.OtherRows;
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
         }
         /// <summary>
         /// Sets the value of a <see cref="FieldObject"/> in a <see cref="FormObject"/>.
@@ -420,8 +419,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetFieldValue(string rowId, string fieldNumber, string fieldValue)
         {
             IFormObject tempFormObject = OptionObjectHelpers.SetFieldValue(this, rowId, fieldNumber, fieldValue);
-            this.CurrentRow = tempFormObject.CurrentRow;
-            this.OtherRows = tempFormObject.OtherRows;
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
         }
         /// <summary>
         /// Sets the specified field as locked.
@@ -430,8 +429,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetLockedField(string fieldNumber)
         {
             IFormObject tempFormObject = OptionObjectHelpers.SetLockedField(this, fieldNumber);
-            this.CurrentRow = tempFormObject.CurrentRow;
-            this.OtherRows = tempFormObject.OtherRows;
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
         }
         /// <summary>
         /// Sets the specified fields as locked.
@@ -440,8 +439,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetLockedFields(List<string> fieldNumbers)
         {
             IFormObject tempFormObject = OptionObjectHelpers.SetLockedFields(this, fieldNumbers);
-            this.CurrentRow = tempFormObject.CurrentRow;
-            this.OtherRows = tempFormObject.OtherRows;
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
         }
         /// <summary>
         /// Sets the specified field as enabled and not required.
@@ -450,8 +449,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetOptionalField(string fieldNumber)
         {
             IFormObject tempFormObject = OptionObjectHelpers.SetOptionalField(this, fieldNumber);
-            this.CurrentRow = tempFormObject.CurrentRow;
-            this.OtherRows = tempFormObject.OtherRows;
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
         }
         /// <summary>
         /// Sets the specified fields as enabled and not required.
@@ -460,8 +459,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetOptionalFields(List<string> fieldNumbers)
         {
             IFormObject tempFormObject = OptionObjectHelpers.SetOptionalFields(this, fieldNumbers);
-            this.CurrentRow = tempFormObject.CurrentRow;
-            this.OtherRows = tempFormObject.OtherRows;
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
         }
         /// <summary>
         /// Sets the specified field as enabled and required.
@@ -470,8 +469,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetRequiredField(string fieldNumber)
         {
             IFormObject tempFormObject = OptionObjectHelpers.SetRequiredField(this, fieldNumber);
-            this.CurrentRow = tempFormObject.CurrentRow;
-            this.OtherRows = tempFormObject.OtherRows;
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
         }
         /// <summary>
         /// Sets the specified fields as enabled and required.
@@ -480,8 +479,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetRequiredFields(List<string> fieldNumbers)
         {
             IFormObject tempFormObject = OptionObjectHelpers.SetRequiredFields(this, fieldNumbers);
-            this.CurrentRow = tempFormObject.CurrentRow;
-            this.OtherRows = tempFormObject.OtherRows;
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
         }
         /// <summary>
         /// Sets the specified field as unlocked.
@@ -490,8 +489,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetUnlockedField(string fieldNumber)
         {
             IFormObject tempFormObject = OptionObjectHelpers.SetUnlockedField(this, fieldNumber);
-            this.CurrentRow = tempFormObject.CurrentRow;
-            this.OtherRows = tempFormObject.OtherRows;
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
         }
         /// <summary>
         /// Sets the specified fields as unlocked.
@@ -500,8 +499,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void SetUnlockedFields(List<string> fieldNumbers)
         {
             IFormObject tempFormObject = OptionObjectHelpers.SetUnlockedFields(this, fieldNumbers);
-            this.CurrentRow = tempFormObject.CurrentRow;
-            this.OtherRows = tempFormObject.OtherRows;
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
         }
 
         /// <summary>
