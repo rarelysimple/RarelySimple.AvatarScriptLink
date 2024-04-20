@@ -1,7 +1,5 @@
 ﻿using RarelySimple.AvatarScriptLink.Objects;
 using RarelySimple.AvatarScriptLink.Objects.Advanced;
-using System;
-using System.Globalization;
 
 namespace RarelySimple.AvatarScriptLink.Helpers
 {
@@ -15,8 +13,6 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static IOptionObject SetLockedField(IOptionObject optionObject, string fieldNumber)
         {
-            if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return SetFieldObject(optionObject, FieldAction.Lock, fieldNumber);
         }
         /// <summary>
@@ -27,8 +23,6 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static IFormObject SetLockedField(IFormObject formObject, string fieldNumber)
         {
-            if (formObject == null)
-                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return SetFieldObject(formObject, FieldAction.Lock, fieldNumber);
         }
         /// <summary>
@@ -39,8 +33,6 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static IRowObject SetLockedField(IRowObject rowObject, string fieldNumber)
         {
-            if (rowObject == null)
-                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return SetFieldObject(rowObject, FieldAction.Lock, fieldNumber);
         }
     }

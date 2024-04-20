@@ -28,8 +28,6 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static IOptionObject SetDisabledFields(IOptionObject optionObject, List<string> fieldNumbers)
         {
-            if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return SetFieldObjects(optionObject, FieldAction.Disable, fieldNumbers);
         }
         /// <summary>
@@ -40,8 +38,6 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static IFormObject SetDisabledFields(IFormObject formObject, List<string> fieldNumbers)
         {
-            if (formObject == null)
-                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return SetFieldObjects(formObject, FieldAction.Disable, fieldNumbers);
         }
         /// <summary>
@@ -52,8 +48,6 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static IRowObject SetDisabledFields(IRowObject rowObject, List<string> fieldNumbers)
         {
-            if (rowObject == null)
-                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return SetFieldObjects(rowObject, FieldAction.Disable, fieldNumbers);
         }
     }

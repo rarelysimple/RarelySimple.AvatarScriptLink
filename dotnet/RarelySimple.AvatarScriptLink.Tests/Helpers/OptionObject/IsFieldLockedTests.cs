@@ -1,6 +1,7 @@
-﻿using RarelySimple.AvatarScriptLink.Objects;
+﻿using RarelySimple.AvatarScriptLink.Helpers;
+using RarelySimple.AvatarScriptLink.Objects;
 
-namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
+namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 {
     [TestClass]
     public class IsFieldLockedTests
@@ -75,6 +76,20 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             optionObject.AddFormObject(formObject1);
             optionObject.AddFormObject(formObject2);
             Assert.IsTrue(optionObject.IsFieldLocked("234"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IsFieldLocked_OptionObject_IsLocked_NullFieldNumber()
+        {
+            string fieldNumber = "123";
+            RowObject rowObject = new();
+            rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, true, false));
+            FormObject formObject = new("1");
+            formObject.AddRowObject(rowObject);
+            OptionObject optionObject = new();
+            optionObject.AddFormObject(formObject);
+            Assert.IsTrue(optionObject.IsFieldLocked(null));
         }
 
         [TestMethod]
@@ -256,6 +271,18 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IsFieldLocked_FormObject_IsLocked_NullFieldNumber()
+        {
+            string fieldNumber = "123";
+            RowObject rowObject = new();
+            rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, true, false));
+            FormObject formObject = new("1");
+            formObject.AddRowObject(rowObject);
+            Assert.IsTrue(formObject.IsFieldLocked(null));
+        }
+
+        [TestMethod]
         public void IsFieldLocked_RowObject_IsLocked()
         {
             string fieldNumber = "123";
@@ -281,6 +308,23 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, false, false));
             Assert.IsTrue(rowObject.IsFieldLocked("234"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IsFieldLocked_RowObject_IsLocked_NullFieldNumber()
+        {
+            string fieldNumber = "123";
+            RowObject rowObject = new();
+            rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, true, false));
+            Assert.IsTrue(rowObject.IsFieldLocked(null));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IsFieldLocked_FieldObject_IsLocked_NullFieldNumber()
+        {
+            Assert.IsTrue(OptionObjectHelpers.IsFieldLocked(null));
         }
     }
 }

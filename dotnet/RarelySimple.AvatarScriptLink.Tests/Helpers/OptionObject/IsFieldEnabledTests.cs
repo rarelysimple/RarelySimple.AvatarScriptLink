@@ -1,6 +1,7 @@
-﻿using RarelySimple.AvatarScriptLink.Objects;
+﻿using RarelySimple.AvatarScriptLink.Helpers;
+using RarelySimple.AvatarScriptLink.Objects;
 
-namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
+namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 {
     [TestClass]
     public class IsFieldEnabledTests
@@ -75,6 +76,20 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             optionObject.AddFormObject(formObject1);
             optionObject.AddFormObject(formObject2);
             Assert.IsTrue(optionObject.IsFieldEnabled("234"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IsFieldEnabled_OptionObject_IsEnabled_NullFieldNumber()
+        {
+            string fieldNumber = "123";
+            RowObject rowObject = new();
+            rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, true, false));
+            FormObject formObject = new("1");
+            formObject.AddRowObject(rowObject);
+            OptionObject optionObject = new();
+            optionObject.AddFormObject(formObject);
+            Assert.IsTrue(optionObject.IsFieldEnabled(null));
         }
 
         [TestMethod]
@@ -256,6 +271,18 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IsFieldEnabled_FormObject_IsEnabled_NullFieldNumber()
+        {
+            string fieldNumber = "123";
+            RowObject rowObject = new();
+            rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, true, false));
+            FormObject formObject = new("1");
+            formObject.AddRowObject(rowObject);
+            Assert.IsTrue(formObject.IsFieldEnabled(null));
+        }
+
+        [TestMethod]
         public void IsFieldEnabled_RowObject_IsEnabled()
         {
             string fieldNumber = "123";
@@ -281,6 +308,23 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, false, false));
             Assert.IsTrue(rowObject.IsFieldEnabled("234"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IsFieldEnabled_RowObject_IsEnabled_NullFieldNumber()
+        {
+            string fieldNumber = "123";
+            RowObject rowObject = new();
+            rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, true, false));
+            Assert.IsTrue(rowObject.IsFieldEnabled(null));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IsFieldEnabled_FieldObject_IsEnabled_NullFieldNumber()
+        {
+            Assert.IsTrue(OptionObjectHelpers.IsFieldEnabled(null));
         }
     }
 }
