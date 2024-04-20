@@ -1,4 +1,4 @@
-name: SonarCloud Analysis
+name: SonarCloud Analysis (.NET)
 on:
   push:
     branches:
@@ -9,6 +9,9 @@ jobs:
   build:
     name: Build and analyze
     runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: ./dotnet
     steps:
       - name: Set up JDK 17
         uses: actions/setup-java@v3
@@ -38,7 +41,6 @@ jobs:
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
       - name: Build and analyze
-        working-directory: ./dotnet
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
