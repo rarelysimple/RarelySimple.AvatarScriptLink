@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Xml.Serialization;
@@ -18,9 +17,6 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static string SerializeObject<T>(T objectToSerialize)
         {
-            if (EqualityComparer<T>.Default.Equals(objectToSerialize, default))
-                throw new ArgumentNullException(nameof(objectToSerialize), GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-
             try 
             { 
                 return SerializeObjectToXmlString<T>(objectToSerialize); 
@@ -38,9 +34,6 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static string SerializeObjectToJsonString<T>(T objectToSerialize)
         {
-            if (EqualityComparer<T>.Default.Equals(objectToSerialize, default))
-                throw new ArgumentNullException(nameof(objectToSerialize), GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-
             try
             {
                 return JsonConvert.SerializeObject(objectToSerialize);
@@ -58,9 +51,6 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static string SerializeObjectToXmlString<T>(T objectToSerialize)
         {
-            if (EqualityComparer<T>.Default.Equals(objectToSerialize, default))
-                throw new ArgumentNullException(nameof(objectToSerialize), GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-
             try
             {
                 using (StringWriter stringWriter = new StringWriter())
