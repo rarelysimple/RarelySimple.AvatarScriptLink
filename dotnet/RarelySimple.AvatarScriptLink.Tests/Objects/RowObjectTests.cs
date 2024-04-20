@@ -608,5 +608,27 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
                 .Build();
             Assert.AreEqual(RowAction.None, rowObject.RowAction);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void RowObject_Builder_RowIdNull()
+        {
+            _ = RowObject.Builder().RowId(null).Build();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void RowObject_Builder_FieldNumberNull()
+        {
+            _ = RowObject.Builder().RowId("1||1").Field().FieldNumber(null).AddField().Build();
+        }
+
+        [TestMethod]
+        public void RowObject_Builder_FieldIsModified()
+        {
+            string fieldNumber = "123.45";
+            RowObject rowObject = RowObject.Builder().RowId("1||1").Field().FieldNumber(fieldNumber).Modified().AddField().Build();
+            Assert.IsTrue(rowObject.IsFieldModified(fieldNumber));
+        }
     }
 }
