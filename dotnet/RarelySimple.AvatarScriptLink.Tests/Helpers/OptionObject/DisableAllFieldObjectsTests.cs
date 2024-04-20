@@ -66,7 +66,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             multipleIterationForm.OtherRows.Add((RowObject)otherRow1);
             multipleIterationForm.OtherRows.Add((RowObject)otherRow2);
 
-            this.optionObject = new OptionObject();
+            optionObject = new OptionObject();
 
             optionObject.EntityID = "123456";
             optionObject.EpisodeNumber = 1;
@@ -78,7 +78,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             optionObject.OptionUserId = "username";
             optionObject.SystemCode = "UAT";
 
-            this.optionObject2 = new OptionObject2();
+            optionObject2 = new OptionObject2();
 
             optionObject2.EntityID = "123456";
             optionObject2.EpisodeNumber = 1;
