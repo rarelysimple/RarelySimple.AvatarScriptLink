@@ -328,5 +328,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
             fieldObject2.FieldValue = "modified";
             Assert.AreNotEqual(fieldObject1.GetHashCode(), fieldObject2.GetHashCode());
         }
+
+        [TestMethod]
+        public void FieldObjectInitializeNotNull()
+        {
+            Assert.IsNotNull(FieldObject.Initialize());
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using RarelySimple.AvatarScriptLink.Objects;
+﻿using System.Security.Cryptography;
+using RarelySimple.AvatarScriptLink.Objects;
 
 namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
 {
@@ -644,6 +645,30 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             Assert.IsTrue(formObject.IsRowMarkedForDeletion("1||1"));
             Assert.IsTrue(cloneObject.IsFieldPresent("123"));
             Assert.IsFalse(cloneObject.IsRowMarkedForDeletion("1||1"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void FormObject_Builder_FormIdIsNull() {
+            _ = FormObject.Builder().FormId(null).Build();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void FormObject_Builder_CurrentRowIdIsNull() {
+            _ = FormObject.Builder().FormId("1").CurrentRow().RowId(null).AddRow().Build();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void FormObject_Builder_OtherRowIsNull() {
+            _ = FormObject.Builder().FormId("1").MultipleIteration().OtherRow(null).Build();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void FormObject_Builder_OtherRowIdIsNull() {
+            _ = FormObject.Builder().FormId("1").MultipleIteration().OtherRow().RowId(null).AddRow().Build();
         }
     }
 }

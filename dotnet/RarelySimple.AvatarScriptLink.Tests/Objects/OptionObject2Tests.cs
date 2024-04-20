@@ -593,5 +593,83 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
 
             Assert.AreEqual(expected, returnOptionObject.ErrorMesg);
         }
+
+        [TestMethod]
+        public void OptionObject2015_ReturnOptionObject_ErrorCodeAndMesgAreEqual()
+        {
+            string expected = "message";
+            OptionObject2015 optionObject = OptionObject2015.Builder().OptionId("USER123").Build();
+            OptionObject2015 returnOptionObject = optionObject.ToReturnOptionObject(ErrorCode.Success, expected);
+
+            Assert.AreEqual(ErrorCode.Success, returnOptionObject.ErrorCode);
+            Assert.AreEqual(expected, returnOptionObject.ErrorMesg);
+        }
+
+        [TestMethod]
+        public void OptionObject2015_ToOptionObject2015_AreEqual() {
+            OptionObject2 optionObject = OptionObject2.Builder().OptionId("USER123").Build();
+            OptionObject2 clone = optionObject.ToOptionObject2();
+            Assert.AreEqual(optionObject, clone);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OptionObject2_Builder_OptionIdIsNull() {
+            _ = OptionObject2.Builder().OptionId(null).Build();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OptionObject2_Builder_EntityIdIsNull() {
+            _ = OptionObject2.Builder().OptionId("USER123").EntityId(null).Build();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OptionObject2_Builder_FacilityIsNull() {
+            _ = OptionObject2.Builder().OptionId("USER123").Facility(null).Build();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OptionObject2_Builder_NamespaceNameIsNull() {
+            _ = OptionObject2.Builder().OptionId("USER123").NamespaceName(null).Build();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OptionObject2_Builder_OptionStaffIdIsNull() {
+            _ = OptionObject2.Builder().OptionId("USER123").OptionStaffId(null).Build();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OptionObject2_Builder_OptionUserIdIsNull() {
+            _ = OptionObject2.Builder().OptionId("USER123").OptionUserId(null).Build();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OptionObject2_Builder_ParentNamespaceIsNull() {
+            _ = OptionObject2.Builder().OptionId("USER123").ParentNamespace(null).Build();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OptionObject2_Builder_ServerNameIsNull() {
+            _ = OptionObject2.Builder().OptionId("USER123").ServerName(null).Build();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OptionObject2_Builder_SessionTokenIsNull() {
+            _ = OptionObject2.Builder().OptionId("USER123").SessionToken(null).Build();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OptionObject2_Builder_SystemCodeIsNull() {
+            _ = OptionObject2.Builder().OptionId("USER123").SystemCode(null).Build();
+        }
     }
 }

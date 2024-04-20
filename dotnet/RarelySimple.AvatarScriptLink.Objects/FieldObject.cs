@@ -1,6 +1,5 @@
 ﻿using RarelySimple.AvatarScriptLink.Objects.Advanced.Abstracts;
 using System;
-using System.Text;
 
 namespace RarelySimple.AvatarScriptLink.Objects
 {

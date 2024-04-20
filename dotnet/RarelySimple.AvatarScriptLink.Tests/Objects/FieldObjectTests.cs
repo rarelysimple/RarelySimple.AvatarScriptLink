@@ -1,4 +1,5 @@
-﻿using RarelySimple.AvatarScriptLink.Objects;
+﻿using System.Security.Cryptography;
+using RarelySimple.AvatarScriptLink.Objects;
 
 namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
 {
@@ -421,6 +422,26 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             fieldObject.SetFieldValue("Modified");
 
             Assert.AreNotEqual(fieldObject, cloneObject);
+        }
+
+        [TestMethod]
+        public void FieldObject_Initialize()
+        {
+            Assert.IsNotNull(FieldObject.Initialize());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void FieldObject_Builder_FieldNumberNull()
+        {
+            _ = FieldObject.Builder().FieldNumber(null).Build();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void FieldObject_Builder_FieldNumberEmpty()
+        {
+            _ = FieldObject.Builder().FieldNumber("").Build();
         }
     }
 }

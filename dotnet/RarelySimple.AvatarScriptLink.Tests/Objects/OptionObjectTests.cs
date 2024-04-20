@@ -563,5 +563,59 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
 
             Assert.AreEqual(expected, returnOptionObject.ErrorMesg);
         }
+
+        [TestMethod]
+        public void OptionObject2015_ReturnOptionObject_ErrorCodeAndMesgAreEqual()
+        {
+            string expected = "message";
+            OptionObject2015 optionObject = OptionObject2015.Builder().OptionId("USER123").Build();
+            OptionObject2015 returnOptionObject = optionObject.ToReturnOptionObject(ErrorCode.Success, expected);
+
+            Assert.AreEqual(ErrorCode.Success, returnOptionObject.ErrorCode);
+            Assert.AreEqual(expected, returnOptionObject.ErrorMesg);
+        }
+
+        [TestMethod]
+        public void OptionObject2015_ToOptionObject2015_AreEqual() {
+            OptionObject2015 optionObject = OptionObject2015.Builder().OptionId("USER123").Build();
+            OptionObject2015 clone = optionObject.ToOptionObject2015();
+            Assert.AreEqual(optionObject, clone);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OptionObject_Builder_OptionIdIsNull() {
+            _ = OptionObject.Builder().OptionId(null).Build();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OptionObject_Builder_EntityIdIsNull() {
+            _ = OptionObject.Builder().OptionId("USER123").EntityId(null).Build();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OptionObject_Builder_FacilityIsNull() {
+            _ = OptionObject.Builder().OptionId("USER123").Facility(null).Build();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OptionObject_Builder_OptionStaffIdIsNull() {
+            _ = OptionObject.Builder().OptionId("USER123").OptionStaffId(null).Build();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OptionObject_Builder_OptionUserIdIsNull() {
+            _ = OptionObject.Builder().OptionId("USER123").OptionUserId(null).Build();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OptionObject_Builder_SystemCodeIsNull() {
+            _ = OptionObject.Builder().OptionId("USER123").SystemCode(null).Build();
+        }
     }
 }

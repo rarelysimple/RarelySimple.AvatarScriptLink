@@ -213,10 +213,6 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <returns>A <see cref="RowObjectBuilderFinal"/> to resume build.</returns>
             public RowObjectBuilderFinal Field(FieldObject fieldObject)
             {
-                if (_rowObject.Fields == null)
-                {
-                    _rowObject.Fields = new List<FieldObject>();
-                }
                 _rowObject.Fields.Add(fieldObject);
                 return this;
             }

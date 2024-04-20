@@ -349,10 +349,6 @@ namespace RarelySimple.AvatarScriptLink.Objects
             /// <exception cref="ArgumentNullException"></exception>
             public OptionObject2BuilderFinal Form(FormObject formObject)
             {
-                if (optionObject.Forms == null)
-                {
-                    optionObject.Forms = new List<FormObject>();
-                }
                 optionObject.Forms.Add(formObject);
                 return this;
             }
