@@ -40,6 +40,25 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
+        public void IsFormPresent_OptionObject_NullFormId()
+        {
+            string formNumber = "1";
+            FormObject formObject = new(formNumber);
+            OptionObject optionObject = new();
+            optionObject.AddFormObject(formObject);
+            Assert.IsFalse(optionObject.IsFormPresent(null));
+        }
+
+        [TestMethod]
+        public void IsFormPresent_OptionObject_NoForms()
+        {
+            string formNumber = "1";
+            OptionObject optionObject = new();
+            Assert.IsFalse(optionObject.IsFormPresent(formNumber));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void IsFormPresent_OptionObject_Helper_Null()
         {
             string formNumber = "1";

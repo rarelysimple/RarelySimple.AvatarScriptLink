@@ -1,8 +1,6 @@
 ﻿using RarelySimple.AvatarScriptLink.Objects;
 using RarelySimple.AvatarScriptLink.Objects.Advanced;
-using System;
 using System.Collections.Generic;
-using System.Globalization;
 
 namespace RarelySimple.AvatarScriptLink.Helpers
 {
@@ -16,8 +14,6 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static IOptionObject SetOptionalFields(IOptionObject optionObject, List<FieldObject> fieldObjects)
         {
-            if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return SetFieldObjects(optionObject, FieldAction.Optional, fieldObjects);
         }
         /// <summary>
