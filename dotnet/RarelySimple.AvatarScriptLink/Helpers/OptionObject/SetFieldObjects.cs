@@ -17,8 +17,6 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static IOptionObject SetFieldObjects(IOptionObject optionObject, string fieldAction, List<FieldObject> fieldObjects)
         {
-            if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             List<string> fieldNumbers = GetFieldNumbersToSet(fieldObjects);
             return SetFieldObjects(optionObject, fieldAction, fieldNumbers);
         }
@@ -33,8 +31,6 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (string.IsNullOrEmpty(fieldAction))
                 throw new ArgumentNullException(nameof(fieldAction), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-            if (fieldNumbers == null || fieldNumbers.Count == 0)
-                throw new ArgumentNullException(nameof(fieldNumbers), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
 
             List<string> fieldsToSet = new List<string>();
             foreach (string fieldNumber in fieldNumbers)
@@ -72,12 +68,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static IFormObject SetFieldObjects(IFormObject formObject, string fieldAction, List<string> fieldNumbers)
         {
-            if (formObject.CurrentRow == null)
-                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(fieldAction))
                 throw new ArgumentNullException(nameof(fieldAction), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-            if (fieldNumbers == null || fieldNumbers.Count == 0)
-                throw new ArgumentNullException(nameof(fieldNumbers), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
 
             List<string> fieldsToSet = new List<string>();
             foreach (string fieldNumber in fieldNumbers)
@@ -110,8 +102,6 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (string.IsNullOrEmpty(fieldAction))
                 throw new ArgumentNullException(nameof(fieldAction), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-            if (fieldNumbers == null || fieldNumbers.Count == 0)
-                throw new ArgumentNullException(nameof(fieldNumbers), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
 
             List<string> fieldsToSet = new List<string>();
             foreach (string fieldNumber in fieldNumbers)
@@ -167,8 +157,6 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         #region HelperMethods
         private static List<string> GetFieldNumbersToSet(List<FieldObject> fieldObjects)
         {
-            if (fieldObjects == null || fieldObjects.Count == 0)
-                throw new ArgumentNullException(nameof(fieldObjects), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             List<string> fieldNumbers = new List<string>();
             foreach (var fieldObject in fieldObjects)
             {

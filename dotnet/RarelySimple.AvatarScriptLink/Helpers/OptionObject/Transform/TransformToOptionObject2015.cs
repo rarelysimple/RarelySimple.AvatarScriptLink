@@ -16,8 +16,6 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static IOptionObject2015 TransformToOptionObject2015(IOptionObject optionObject)
         {
-            if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (!IsValidErrorCode(optionObject.ErrorCode))
                 throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("errorCodeIsNotValid", CultureInfo.CurrentCulture));
             var optionObject2015 = new OptionObject2015
@@ -42,8 +40,6 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static IOptionObject2015 TransformToOptionObject2015(IOptionObject2 optionObject2)
         {
-            if (optionObject2 == null)
-                throw new ArgumentNullException(nameof(optionObject2), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (!IsValidErrorCode(optionObject2.ErrorCode))
                 throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("errorCodeIsNotValid", CultureInfo.CurrentCulture));
             var optionObject2015 = new OptionObject2015
@@ -60,7 +56,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 ParentNamespace = optionObject2.ParentNamespace,
                 ServerName = optionObject2.ServerName,
                 SystemCode = optionObject2.SystemCode,
-                Forms = optionObject2.Forms.Any() ? optionObject2.Forms : new List<FormObject>()
+                Forms = optionObject2.Forms.Count != 0 ? optionObject2.Forms : new List<FormObject>()
             };
             return optionObject2015;
         }
