@@ -29,7 +29,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 OptionStaffId = optionObject2.OptionStaffId,
                 OptionUserId = optionObject2.OptionUserId,
                 SystemCode = optionObject2.SystemCode,
-                Forms = optionObject2.Forms.Any() ? optionObject2.Forms : new List<FormObject>()
+                Forms = optionObject2.Forms.Count != 0 ? optionObject2.Forms : new List<FormObject>()
             };
             return optionObject;
         }

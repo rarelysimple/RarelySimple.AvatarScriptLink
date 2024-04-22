@@ -170,7 +170,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
             return true;
         }
 
-        private static bool AreBothEmpty(List<RowObject> list1, List<RowObject> list2) => (!list1.Any() && !list2.Any());
+        private static bool AreBothEmpty(List<RowObject> list1, List<RowObject> list2) => (list1.Count == 0 && list2.Count == 0);
 
         private static bool AreBothNull(List<RowObject> list1, List<RowObject> list2) => (list1 == null && list2 == null);
 
