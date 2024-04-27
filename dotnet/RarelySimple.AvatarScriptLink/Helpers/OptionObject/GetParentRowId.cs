@@ -18,8 +18,6 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(formId))
                 throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-            if (optionObject.Forms == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("optionObjectMissingForms", CultureInfo.CurrentCulture));
             foreach (var formObject in optionObject.Forms)
             {
                 if (formObject.FormId == formId)

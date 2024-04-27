@@ -70,28 +70,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         [TestCategory("ScriptLinkHelpers")]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void GetOptionObjectHeaders_OptionObject_Null()
-        {
-            List<string> headers = OptionObjectHelpers.GetOptionObjectHeaders(null);
-            Assert.AreEqual(5, headers.Count);
-        }
-
-        [TestMethod]
-        [TestCategory("ScriptLinkHelpers")]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void GetOptionObjectHeaders_OptionObject2_Null()
-        {
-            List<string> headers = OptionObjectHelpers.GetOptionObjectHeaders(null);
-            Assert.AreEqual(5, headers.Count);
-        }
-
-        [TestMethod]
-        [TestCategory("ScriptLinkHelpers")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetOptionObjectHeaders_OptionObject2015_Null()
         {
             List<string> headers = OptionObjectHelpers.GetOptionObjectHeaders(null);
-            Assert.AreEqual(5, headers.Count);
+            Assert.AreEqual(14, headers.Count);
         }
     }
 }

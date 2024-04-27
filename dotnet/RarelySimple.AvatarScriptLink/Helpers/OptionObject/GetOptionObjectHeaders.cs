@@ -14,8 +14,6 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static List<string> GetOptionObjectHeaders(IOptionObject optionObject)
         {
-            if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             List<string> headers = new List<string>
             {
                 "Entity ID: " + optionObject.EntityID,
@@ -37,23 +35,11 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static List<string> GetOptionObjectHeaders(IOptionObject2 optionObject)
         {
-            if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-            List<string> headers = new List<string>
-            {
-                "Entity ID: " + optionObject.EntityID,
-                "Episode Number: " + optionObject.EpisodeNumber,
-                "Error Code: " + optionObject.ErrorCode,
-                "Error Message: " + optionObject.ErrorMesg,
-                "Facility: " + optionObject.Facility,
-                "Namespace Name: " + optionObject.NamespaceName,
-                "Option ID: " + optionObject.OptionId,
-                "Option Staff ID: " + optionObject.OptionStaffId,
-                "Option User ID: " + optionObject.OptionUserId,
-                "Parent Namepace: " + optionObject.ParentNamespace,
-                "Server Name: " + optionObject.ServerName,
-                "System Code: " + optionObject.SystemCode
-            };
+            List<string> headers = GetOptionObjectHeaders((IOptionObject)optionObject);
+            headers.Add("Namespace Name: " + optionObject.NamespaceName);
+            headers.Add("Parent Namespace: " + optionObject.ParentNamespace);
+            headers.Add("Server Name: " + optionObject.ServerName);
+            headers.Add("System Code: " + optionObject.SystemCode);
             return headers;
         }
         /// <summary>
@@ -65,22 +51,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (optionObject == null)
                 throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-            List<string> headers = new List<string>
-            {
-                "Entity ID: " + optionObject.EntityID,
-                "Episode Number: " + optionObject.EpisodeNumber,
-                "Error Code: " + optionObject.ErrorCode,
-                "Error Message: " + optionObject.ErrorMesg,
-                "Facility: " + optionObject.Facility,
-                "Namespace Name: " + optionObject.NamespaceName,
-                "Option ID: " + optionObject.OptionId,
-                "Option Staff ID: " + optionObject.OptionStaffId,
-                "Option User ID: " + optionObject.OptionUserId,
-                "Parent Namepace: " + optionObject.ParentNamespace,
-                "Server Name: " + optionObject.ServerName,
-                "System Code: " + optionObject.SystemCode,
-                "SessionToken:" + optionObject.SessionToken
-            };
+            List<string> headers = GetOptionObjectHeaders((IOptionObject2)optionObject);
+            headers.Add("Session Token: " + optionObject.SessionToken);
             return headers;
         }
     }

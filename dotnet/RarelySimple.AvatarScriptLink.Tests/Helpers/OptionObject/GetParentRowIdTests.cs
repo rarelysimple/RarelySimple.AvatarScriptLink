@@ -1,7 +1,7 @@
 ﻿using RarelySimple.AvatarScriptLink.Helpers;
 using RarelySimple.AvatarScriptLink.Objects;
 
-namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
+namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 {
     [TestClass]
     public class GetParentRowIdTests
@@ -569,6 +569,76 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string expected = "1||1";
             Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(null, "1"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetParentRowIdHelperFormIdEmptyReturnsExpected()
+        {
+            RowObject rowObject1 = new()
+            {
+                RowId = "1||1",
+                ParentRowId = "1||1"
+            };
+            RowObject rowObject2 = new()
+            {
+                RowId = "1||2",
+                ParentRowId = "1||1"
+            };
+            FormObject formObject = new()
+            {
+                FormId = "1",
+                MultipleIteration = true,
+                CurrentRow = rowObject1
+            };
+            formObject.OtherRows.Add(rowObject2);
+            OptionObject2015 optionObject = new()
+            {
+                EntityID = "1",
+                SystemCode = "UAT"
+            };
+            optionObject.Forms.Add(formObject);
+            string expected = "1||1";
+            Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(optionObject, ""));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetParentRowIdHelperFormIdNullReturnsExpected()
+        {
+            RowObject rowObject1 = new()
+            {
+                RowId = "1||1",
+                ParentRowId = "1||1"
+            };
+            RowObject rowObject2 = new()
+            {
+                RowId = "1||2",
+                ParentRowId = "1||1"
+            };
+            FormObject formObject = new()
+            {
+                FormId = "1",
+                MultipleIteration = true,
+                CurrentRow = rowObject1
+            };
+            formObject.OtherRows.Add(rowObject2);
+            OptionObject2015 optionObject = new()
+            {
+                EntityID = "1",
+                SystemCode = "UAT"
+            };
+            optionObject.Forms.Add(formObject);
+            string expected = "1||1";
+            Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(optionObject, null));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetParentRowIdHelperNullFormObjectReturnsExpected()
+        {
+            string expected = "1||1";
+            Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(null));
         }
     }
 }

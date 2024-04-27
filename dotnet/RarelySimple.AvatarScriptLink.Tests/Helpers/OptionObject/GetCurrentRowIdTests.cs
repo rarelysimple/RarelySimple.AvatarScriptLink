@@ -1,7 +1,7 @@
 ﻿using RarelySimple.AvatarScriptLink.Helpers;
 using RarelySimple.AvatarScriptLink.Objects;
 
-namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
+namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 {
     [TestClass]
     public class GetCurrentRowIdTests
@@ -217,6 +217,56 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             string actual = OptionObjectHelpers.GetCurrentRowId(optionObject, "1");
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        [TestCategory("GetCurrentRowId")]
+        [ExpectedException(typeof(ArgumentException))]
+        public void GetCurrentRowId_FromOptionObject_FormsNull()
+        {
+            string expected = "1||1";
+            OptionObject optionObject = new();
+            string actual = OptionObjectHelpers.GetCurrentRowId(optionObject, "1");
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [TestCategory("GetCurrentRowId")]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetCurrentRowId_FromOptionObject_FormIdEmpty()
+        {
+            string expected = "1||1";
+            RowObject rowObject = new();
+            FormObject formObject = new()
+            {
+                FormId = "1",
+                MultipleIteration = false
+            };
+            formObject.AddRowObject(rowObject);
+            OptionObject optionObject = new();
+            optionObject.AddFormObject(formObject);
+            string actual = OptionObjectHelpers.GetCurrentRowId(optionObject, "");
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [TestCategory("GetCurrentRowId")]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetCurrentRowId_FromOptionObject_FormIdNull()
+        {
+            string expected = "1||1";
+            RowObject rowObject = new();
+            FormObject formObject = new()
+            {
+                FormId = "1",
+                MultipleIteration = false
+            };
+            formObject.AddRowObject(rowObject);
+            OptionObject optionObject = new();
+            optionObject.AddFormObject(formObject);
+            string actual = OptionObjectHelpers.GetCurrentRowId(optionObject, null);
+            Assert.AreEqual(expected, actual);
+        }
+
         [TestMethod]
         [TestCategory("GetCurrentRowId")]
         public void GetCurrentRowId_FromOptionObject2_Success()
