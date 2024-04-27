@@ -14,7 +14,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static string GetNextAvailableRowId(IFormObject formObject)
         {
             if (formObject == null)
-                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (formObject.CurrentRow != null && !formObject.MultipleIteration)
                 throw new ArgumentOutOfRangeException(ScriptLinkHelpers.GetLocalizedString("cannotAddAnotherRowObject", CultureInfo.CurrentCulture));
             int maximumNumberOfMultipleIterationRows = 9999;    // To be confirmed with Netsmart

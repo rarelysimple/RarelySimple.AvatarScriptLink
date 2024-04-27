@@ -15,7 +15,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static List<string> GetOptionObjectHeaders(IOptionObject optionObject)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             List<string> headers = new List<string>
             {
                 "Entity ID: " + optionObject.EntityID,
@@ -38,7 +38,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static List<string> GetOptionObjectHeaders(IOptionObject2 optionObject)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             List<string> headers = new List<string>
             {
                 "Entity ID: " + optionObject.EntityID,
@@ -64,7 +64,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static List<string> GetOptionObjectHeaders(IOptionObject2015 optionObject)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             List<string> headers = new List<string>
             {
                 "Entity ID: " + optionObject.EntityID,
