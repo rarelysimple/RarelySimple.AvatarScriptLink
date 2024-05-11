@@ -16,7 +16,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IOptionObject DisableAllFieldObjects(IOptionObject optionObject)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return DisableAllFieldObjects(optionObject, new List<string>());
         }
         /// <summary>
@@ -28,11 +28,11 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IOptionObject DisableAllFieldObjects(IOptionObject optionObject, List<string> excludedFields)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (optionObject.Forms.Count == 0)
                 throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("optionObjectMissingForms", CultureInfo.CurrentCulture));
             if (excludedFields == null)
-                throw new ArgumentNullException(nameof(excludedFields), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(excludedFields), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return DisableAllFieldObjectsByOptionObject(optionObject, excludedFields);
         }
 

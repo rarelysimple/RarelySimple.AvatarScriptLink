@@ -15,9 +15,9 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static bool GetMultipleIterationStatus(IOptionObject optionObject, string formId)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(formId))
-                throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             foreach (var formObject in optionObject.Forms)
             {
                 if (formObject.FormId == formId)
@@ -35,7 +35,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static bool GetMultipleIterationStatus(IFormObject formObject)
         {
             if (formObject == null)
-                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return formObject.MultipleIteration;
         }
     }

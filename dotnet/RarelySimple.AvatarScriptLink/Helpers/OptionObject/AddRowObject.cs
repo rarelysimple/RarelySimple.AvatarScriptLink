@@ -17,11 +17,11 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IOptionObject AddRowObject(IOptionObject optionObject, string formId, IRowObject rowObject)
         {
             if (optionObject == null)
-                throw new System.ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new System.ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(formId))
-                throw new System.ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new System.ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (rowObject == null)
-                throw new System.ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new System.ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (IsFormPresent(optionObject, formId))
             {
                 for (int i = 0; i < optionObject.Forms.Count; i++)
@@ -44,9 +44,9 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IFormObject AddRowObject(IFormObject formObject, IRowObject rowObject)
         {
             if (formObject == null)
-                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (rowObject == null)
-                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (!formObject.MultipleIteration && formObject.CurrentRow != null)
                 throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("cannotAddAnotherRowObject", CultureInfo.CurrentCulture));
             
@@ -77,7 +77,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IFormObject AddRowObject(IFormObject formObject, string rowId, string parentRowId)
         {
             if (formObject == null)
-                throw new System.ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new System.ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return AddRowObject(formObject, rowId, parentRowId, RowAction.Add);
         }
         /// <summary>
@@ -91,7 +91,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IFormObject AddRowObject(IFormObject formObject, string rowId, string parentRowId, string rowAction)
         {
             if (formObject == null)
-                throw new System.ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new System.ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             RowObject rowObject = new RowObject
             {
                 ParentRowId = parentRowId,

@@ -16,9 +16,9 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IOptionObject AddFormObject(IOptionObject optionObject, IFormObject formObject)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (formObject == null)
-                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (optionObject.Forms.Count == 0 && formObject.MultipleIteration)
                 throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("firstFormCannotBeMultipleIteration", CultureInfo.CurrentCulture));
             if (optionObject.Forms.Contains((FormObject)formObject) || optionObject.Forms.Exists(f => f.FormId == formObject.FormId))
@@ -36,7 +36,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IOptionObject AddFormObject(IOptionObject optionObject, string formId, bool multipleIteration)
         {
             if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("parameterCannotBeNull", CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             FormObject formObject = new FormObject
             {
                 FormId = formId,

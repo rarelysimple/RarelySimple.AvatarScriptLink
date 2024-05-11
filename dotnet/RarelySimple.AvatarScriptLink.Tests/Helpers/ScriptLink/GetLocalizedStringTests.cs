@@ -6,11 +6,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
     [TestClass]
     public class GetLocalizedStringTests
     {
+        private const string ParameterCannotBeNull = "parameterCannotBeNull";
+        
         [TestMethod]
         public void GetLocalizedString_ValidKey_ReturnsString()
         {
             // Arrange
-            string key = "parameterCannotBeNull";
+            string key = ParameterCannotBeNull;
 
             // Act
             var actual = ScriptLinkHelpers.GetLocalizedString(key);
@@ -36,7 +38,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void GetLocalizedString_EmptyCulture_ReturnsString()
         {
             // Arrange
-            string key = "parameterCannotBeNull";
+            string key = ParameterCannotBeNull;
             string culture = "";
 
             // Act
@@ -50,7 +52,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void GetLocalizedString_AvailableCulture_ReturnsString()
         {
             // Arrange
-            string key = "parameterCannotBeNull";
+            string key = ParameterCannotBeNull;
             string culture = "en-US";
 
             // Act
@@ -64,7 +66,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void GetLocalizedString_UnavailableCulture_ReturnsString()
         {
             // Arrange
-            string key = "parameterCannotBeNull";
+            string key = ParameterCannotBeNull;
             string culture = "sl";
 
             // Act
@@ -78,7 +80,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void GetLocalizedString_AvailableCultureInfo_ReturnsString()
         {
             // Arrange
-            string key = "parameterCannotBeNull";
+            string key = ParameterCannotBeNull;
             CultureInfo culture = CultureInfo.GetCultureInfo("en-US");
 
             // Act
@@ -92,7 +94,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void GetLocalizedString_UnavailableCultureInfo_ReturnsString()
         {
             // Arrange
-            string key = "parameterCannotBeNull";
+            string key = ParameterCannotBeNull;
             CultureInfo culture = CultureInfo.GetCultureInfo("sl");
 
             // Act
