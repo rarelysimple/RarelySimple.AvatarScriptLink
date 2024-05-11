@@ -1,10 +1,31 @@
-﻿using RarelySimple.AvatarScriptLink.Objects;
+﻿using RarelySimple.AvatarScriptLink.Helpers;
+using RarelySimple.AvatarScriptLink.Objects;
 
 namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 {
     [TestClass]
     public class DeleteRowObjectTests
     {
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void DeleteRowObject_OptionObject_RowObject_IsEmpty()
+        {
+            RowObject rowObject = new()
+            {
+                RowId = "1||1"
+            };
+            FormObject formObject = new()
+            {
+                FormId = "1",
+                MultipleIteration = false,
+                CurrentRow = rowObject
+            };
+            OptionObject optionObject = new();
+            optionObject.Forms.Add(formObject);
+
+            optionObject.DeleteRowObject("");
+        }
+
         [TestMethod]
         public void DeleteRowObject_OptionObject_RowObject_IsFound()
         {
@@ -198,6 +219,24 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
             Assert.IsTrue(optionObject.IsRowPresent(rowObject2.RowId));
             Assert.IsTrue(optionObject.IsRowMarkedForDeletion(rowObject2.RowId));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof (ArgumentNullException))]
+        public void DeleteRowObject_FormObject_RowObject_IsEmpty()
+        {
+            RowObject rowObject = new()
+            {
+                RowId = "1||1"
+            };
+            FormObject formObject = new()
+            {
+                FormId = "1",
+                MultipleIteration = false,
+                CurrentRow = rowObject
+            };
+
+            formObject.DeleteRowObject("");
         }
 
         [TestMethod]
@@ -629,6 +668,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             Assert.IsTrue(optionObject.IsRowPresent(rowObject4.RowId));
             Assert.IsTrue(optionObject.IsRowMarkedForDeletion(rowObject4.RowId));
         }
+
         [TestMethod]
         public void DeleteRowObject_FormObject_MI_RowObject_IsFound()
         {

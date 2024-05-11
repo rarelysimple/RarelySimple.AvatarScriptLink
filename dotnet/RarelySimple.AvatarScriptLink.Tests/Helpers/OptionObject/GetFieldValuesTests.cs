@@ -111,6 +111,22 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
 
         [TestMethod]
         [TestCategory("ScriptLinkHelpers")]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetFieldValue_OptionObject_FieldNumber_IsEmpty()
+        {
+            List<string> values = OptionObjectHelpers.GetFieldValues(optionObject, "");
+        }
+
+        [TestMethod]
+        [TestCategory("ScriptLinkHelpers")]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetFieldValue_FormObject_FieldNumber_IsEmpty()
+        {
+            List<string> values = OptionObjectHelpers.GetFieldValues(formObject, "");
+        }
+
+        [TestMethod]
+        [TestCategory("ScriptLinkHelpers")]
         public void GetFieldValue_FormObject_CurrentRow_IsPresent_AreEqual()
         {
             List<string> values = OptionObjectHelpers.GetFieldValues(formObject, "123.45");
