@@ -1,5 +1,4 @@
-﻿using RarelySimple.AvatarScriptLink.Objects;
-using RarelySimple.AvatarScriptLink.Objects.Advanced;
+﻿using RarelySimple.AvatarScriptLink.Objects.Advanced;
 using System;
 using System.Globalization;
 
@@ -15,18 +14,11 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static bool IsRowPresent(IOptionObject optionObject, string rowId)
         {
-            if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (optionObject.Forms == null)
                 throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("optionObjectMissingForms", CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(rowId))
                 throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-            foreach (FormObject formObject in optionObject.Forms)
-            {
-                if (IsRowPresent(formObject, rowId))
-                    return true;
-            }
-            return false;
+            return optionObject.Forms.Find(x => x.IsRowPresent(rowId)) != null;
         }
         /// <summary>
         /// Returns whether the <see cref="IRowObject"/> in the <see cref="IFormObject"/> is enabled by RowId.
@@ -36,8 +28,6 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static bool IsRowPresent(IFormObject formObject, string rowId)
         {
-            if (formObject == null)
-                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (formObject.CurrentRow == null)
                 throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(rowId))

@@ -3,6 +3,7 @@ using RarelySimple.AvatarScriptLink.Objects.Advanced;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 
 namespace RarelySimple.AvatarScriptLink.Helpers
 {
@@ -33,10 +34,9 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 throw new ArgumentNullException(nameof(fieldAction), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
 
             List<string> fieldsToSet = new List<string>();
-            foreach (string fieldNumber in fieldNumbers)
+            foreach (string fieldNumber in fieldNumbers.Where(f => IsFieldPresent(optionObject, f)))
             {
-                if (IsFieldPresent(optionObject, fieldNumber))
-                    fieldsToSet.Add(fieldNumber);
+                fieldsToSet.Add(fieldNumber);
             }
             if (fieldsToSet.Count == 0)
                 throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFound", CultureInfo.CurrentCulture));
@@ -72,10 +72,9 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 throw new ArgumentNullException(nameof(fieldAction), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
 
             List<string> fieldsToSet = new List<string>();
-            foreach (string fieldNumber in fieldNumbers)
+            foreach (string fieldNumber in fieldNumbers.Where(f => IsFieldPresent(formObject, f)))
             {
-                if (IsFieldPresent(formObject, fieldNumber))
-                    fieldsToSet.Add(fieldNumber);
+                fieldsToSet.Add(fieldNumber);
             }
             if (fieldsToSet.Count == 0)
                 throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFound", CultureInfo.CurrentCulture));
@@ -104,51 +103,47 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 throw new ArgumentNullException(nameof(fieldAction), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
 
             List<string> fieldsToSet = new List<string>();
-            foreach (string fieldNumber in fieldNumbers)
+            foreach (string fieldNumber in fieldNumbers.Where(f => IsFieldPresent(rowObject, f)))
             {
-                if (IsFieldPresent(rowObject, fieldNumber))
-                    fieldsToSet.Add(fieldNumber);
+                fieldsToSet.Add(fieldNumber);
             }
             if (fieldsToSet.Count == 0)
                 throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFound", CultureInfo.CurrentCulture));
 
-            foreach (var fieldObject in rowObject.Fields)
+            foreach (var fieldObject in rowObject.Fields.Where(f => fieldsToSet.Contains(f.FieldNumber)))
             {
-                if (fieldsToSet.Contains(fieldObject.FieldNumber))
+                switch (fieldAction)
                 {
-                    switch (fieldAction)
-                    {
-                        case FieldAction.Disable:
-                            fieldObject.SetAsDisabled();
-                            rowObject.RowAction = RowAction.Edit;
-                            break;
-                        case FieldAction.Enable:
-                            fieldObject.SetAsEnabled();
-                            rowObject.RowAction = RowAction.Edit;
-                            break;
-                        case FieldAction.Lock:
-                            fieldObject.SetAsLocked();
-                            rowObject.RowAction = RowAction.Edit;
-                            break;
-                        case FieldAction.Modify:
-                            fieldObject.SetAsModified();
-                            rowObject.RowAction = RowAction.Edit;
-                            break;
-                        case FieldAction.Optional:
-                            fieldObject.SetAsOptional();
-                            rowObject.RowAction = RowAction.Edit;
-                            break;
-                        case FieldAction.Require:
-                            fieldObject.SetAsRequired();
-                            rowObject.RowAction = RowAction.Edit;
-                            break;
-                        case FieldAction.Unlock:
-                            fieldObject.SetAsUnlocked();
-                            rowObject.RowAction = RowAction.Edit;
-                            break;
-                        default:
-                            break;
-                    }
+                    case FieldAction.Disable:
+                        fieldObject.SetAsDisabled();
+                        rowObject.RowAction = RowAction.Edit;
+                        break;
+                    case FieldAction.Enable:
+                        fieldObject.SetAsEnabled();
+                        rowObject.RowAction = RowAction.Edit;
+                        break;
+                    case FieldAction.Lock:
+                        fieldObject.SetAsLocked();
+                        rowObject.RowAction = RowAction.Edit;
+                        break;
+                    case FieldAction.Modify:
+                        fieldObject.SetAsModified();
+                        rowObject.RowAction = RowAction.Edit;
+                        break;
+                    case FieldAction.Optional:
+                        fieldObject.SetAsOptional();
+                        rowObject.RowAction = RowAction.Edit;
+                        break;
+                    case FieldAction.Require:
+                        fieldObject.SetAsRequired();
+                        rowObject.RowAction = RowAction.Edit;
+                        break;
+                    case FieldAction.Unlock:
+                        fieldObject.SetAsUnlocked();
+                        rowObject.RowAction = RowAction.Edit;
+                        break;
+                    default:
+                        break;
                 }
             }
             return rowObject;

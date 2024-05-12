@@ -3,7 +3,6 @@ using RarelySimple.AvatarScriptLink.Objects.Advanced;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 
 namespace RarelySimple.AvatarScriptLink.Helpers
 {

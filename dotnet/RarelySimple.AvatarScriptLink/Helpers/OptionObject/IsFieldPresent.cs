@@ -17,14 +17,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (string.IsNullOrEmpty(fieldNumber))
                 throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-            foreach (var form in optionObject.Forms)
-            {
-                if (IsFieldPresent(form, fieldNumber))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return optionObject.Forms.Find(x => x.IsFieldPresent(fieldNumber)) != null;
         }
         /// <summary>
         /// Returns whether the <see cref="IFieldObject"/> in the <see cref="IFormObject"/> is present by FieldNumber.

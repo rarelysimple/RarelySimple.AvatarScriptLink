@@ -2,6 +2,7 @@
 using RarelySimple.AvatarScriptLink.Objects.Advanced;
 using System;
 using System.Globalization;
+using System.Linq;
 
 namespace RarelySimple.AvatarScriptLink.Helpers
 {
@@ -17,14 +18,11 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static string GetFieldValue(IOptionObject optionObject, string fieldNumber)
         {
-            if (optionObject == null)
-                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(fieldNumber))
                 throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-            foreach (var form in optionObject.Forms)
+            foreach (var form in optionObject.Forms.Where(f => f.IsFieldPresent(fieldNumber)))
             {
-                if (form.IsFieldPresent(fieldNumber))
-                    return GetFieldValue(form, fieldNumber);
+                return GetFieldValue(form, fieldNumber);
             }
             throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString(NoFieldObjectsFoundByFieldNumber, CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
         }
@@ -61,9 +59,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static string GetFieldValue(IFormObject formObject, string fieldNumber)
         {
-            if (formObject == null)
-                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-            return GetFieldValue(formObject, formObject.CurrentRow.RowId, fieldNumber);
+            return GetFieldValue(formObject, formObject.CurrentRow?.RowId, fieldNumber);
         }
         /// <summary>
         /// Returns the FieldValue of a <see cref="IFieldObject"/> in a <see cref="IFormObject"/> by RowId and FieldNumber.

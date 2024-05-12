@@ -235,7 +235,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2 optionObject = new();
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.EntityID, transformedOptionObject.EntityID);
         }
@@ -245,7 +245,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2 optionObject = new();
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.EpisodeNumber, transformedOptionObject.EpisodeNumber);
         }
@@ -255,7 +255,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2 optionObject = new();
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.ErrorCode, transformedOptionObject.ErrorCode);
         }
@@ -265,7 +265,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2 optionObject = new();
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.ErrorMesg, transformedOptionObject.ErrorMesg);
         }
@@ -275,7 +275,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2 optionObject = new();
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.Facility, transformedOptionObject.Facility);
         }
@@ -285,7 +285,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2 optionObject = new();
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.OptionId, transformedOptionObject.OptionId);
         }
@@ -295,7 +295,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2 optionObject = new();
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.OptionStaffId, transformedOptionObject.OptionStaffId);
         }
@@ -305,7 +305,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2 optionObject = new();
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.OptionUserId, transformedOptionObject.OptionUserId);
         }
@@ -315,7 +315,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2 optionObject = new();
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.SystemCode, transformedOptionObject.SystemCode);
         }
@@ -325,7 +325,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2 optionObject = new();
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.Forms.Count, transformedOptionObject.Forms.Count);
         }
@@ -337,7 +337,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2 optionObject = new();
             optionObject.Forms.Add(addForm);
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.Forms.Count, transformedOptionObject.Forms.Count);
         }
@@ -347,7 +347,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2015 optionObject = new();
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.EntityID, transformedOptionObject.EntityID);
         }
@@ -357,7 +357,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2015 optionObject = new();
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.EpisodeNumber, transformedOptionObject.EpisodeNumber);
         }
@@ -367,7 +367,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2015 optionObject = new();
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.ErrorCode, transformedOptionObject.ErrorCode);
         }
@@ -377,7 +377,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2015 optionObject = new();
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.ErrorMesg, transformedOptionObject.ErrorMesg);
         }
@@ -387,7 +387,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2015 optionObject = new();
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.Facility, transformedOptionObject.Facility);
         }
@@ -397,7 +397,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2015 optionObject = new();
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.OptionId, transformedOptionObject.OptionId);
         }
@@ -407,7 +407,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2015 optionObject = new();
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.OptionStaffId, transformedOptionObject.OptionStaffId);
         }
@@ -417,7 +417,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2015 optionObject = new();
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.OptionUserId, transformedOptionObject.OptionUserId);
         }
@@ -427,7 +427,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2015 optionObject = new();
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.SystemCode, transformedOptionObject.SystemCode);
         }
@@ -437,7 +437,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2015 optionObject = new();
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.Forms.Count, transformedOptionObject.Forms.Count);
         }
@@ -449,7 +449,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2 optionObject = new();
             optionObject.Forms.Add(addForm);
 
-            OptionObject transformedOptionObject = (OptionObject)OptionObjectHelpers.TransformToOptionObject(optionObject);
+            OptionObject transformedOptionObject = OptionObjectHelpers.TransformToOptionObject(optionObject);
 
             Assert.AreEqual(optionObject.Forms.Count, transformedOptionObject.Forms.Count);
         }
@@ -462,7 +462,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             {
                 EntityID = "1"
             };
-            OptionObject actual = (OptionObject)OptionObjectHelpers.TransformToOptionObject(json);
+            OptionObject actual = OptionObjectHelpers.TransformToOptionObject(json);
             Assert.IsNotNull(actual.EntityID);
             Assert.AreEqual(expected.EntityID, actual.EntityID);
             Assert.AreEqual(expected, actual);
@@ -476,7 +476,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             {
                 EntityID = "1"
             };
-            OptionObject actual = (OptionObject)OptionObjectHelpers.TransformToOptionObject(json);
+            OptionObject actual = OptionObjectHelpers.TransformToOptionObject(json);
             Assert.IsNotNull(actual.EntityID);
             Assert.AreNotEqual(expected.EntityID, actual.EntityID);
             Assert.AreNotEqual(expected, actual);
@@ -496,7 +496,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             {
                 EntityID = "1"
             };
-            OptionObject actual = (OptionObject)OptionObjectHelpers.TransformToOptionObject(xml);
+            OptionObject actual = OptionObjectHelpers.TransformToOptionObject(xml);
             Assert.IsNotNull(actual.EntityID);
             Assert.AreEqual(expected.EntityID, actual.EntityID);
             Assert.AreEqual(expected, actual);
@@ -516,7 +516,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             {
                 EntityID = "1"
             };
-            OptionObject actual = (OptionObject)OptionObjectHelpers.TransformToOptionObject(xml);
+            OptionObject actual = OptionObjectHelpers.TransformToOptionObject(xml);
             Assert.IsNotNull(actual.EntityID);
             Assert.AreNotEqual(expected.EntityID, actual.EntityID);
             Assert.AreNotEqual(expected, actual);

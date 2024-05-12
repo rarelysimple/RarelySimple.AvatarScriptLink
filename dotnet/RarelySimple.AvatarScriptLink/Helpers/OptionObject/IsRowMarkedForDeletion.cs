@@ -17,12 +17,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (string.IsNullOrEmpty(rowId))
                 throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-            foreach (FormObject formObject in optionObject.Forms)
-            {
-                if (IsRowMarkedForDeletion(formObject, rowId))
-                    return true;
-            }
-            return false;
+            return optionObject.Forms.Find(f => f.IsRowMarkedForDeletion(rowId)) != null;
         }
         /// <summary>
         /// Returns whether the <see cref="IRowObject"/> in an <see cref="IFormObject"/> is marked for deletion by RowId.

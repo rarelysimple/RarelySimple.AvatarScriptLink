@@ -2,6 +2,7 @@
 using RarelySimple.AvatarScriptLink.Objects.Advanced;
 using System;
 using System.Globalization;
+using System.Linq;
 
 namespace RarelySimple.AvatarScriptLink.Helpers
 {
@@ -18,17 +19,14 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (string.IsNullOrEmpty(fieldNumber))
                 throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-            foreach (FormObject formObject in optionObject.Forms)
+            foreach (FormObject formObject in optionObject.Forms.Where(f => f.IsFieldPresent(fieldNumber)))
             {
-                if (formObject.IsFieldPresent(fieldNumber))
-                {
-                    if (formObject.MultipleIteration && formObject.OtherRows.Count > 0)
-                        throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("unableToIdentifyFieldObject", CultureInfo.CurrentCulture), nameof(optionObject));
+                if (formObject.MultipleIteration && formObject.OtherRows.Count > 0)
+                    throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("unableToIdentifyFieldObject", CultureInfo.CurrentCulture), nameof(optionObject));
 
-                    string formId = formObject.FormId;
-                    string rowId = formObject.GetCurrentRowId();
-                    return SetFieldValue(optionObject, formId, rowId, fieldNumber, fieldValue);
-                }
+                string formId = formObject.FormId;
+                string rowId = formObject.GetCurrentRowId();
+                return SetFieldValue(optionObject, formId, rowId, fieldNumber, fieldValue);
             }
             throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
         }

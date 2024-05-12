@@ -2,7 +2,7 @@
 using RarelySimple.AvatarScriptLink.Objects;
 using RarelySimple.AvatarScriptLink.Objects.Advanced;
 
-namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
+namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 {
     [TestClass]
     public class GetReturnOptionObjectTests
@@ -249,7 +249,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             expected.AddFormObject(indForm);
 
             expected.SetFieldValue("51003", "Modified");
-            OptionObject2015 actual = (OptionObject2015)expected.ToReturnOptionObject();
+            OptionObject2015 actual = expected.ToReturnOptionObject();
 
             Assert.IsTrue(actual.IsFieldPresent("51003"));
         }
@@ -345,7 +345,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             form34.OtherRows.Add(rowObject03);
             expected.AddFormObject(form34);
 
-            OptionObject2015 actual = (OptionObject2015)expected.ToReturnOptionObject();
+            OptionObject2015 actual = expected.ToReturnOptionObject();
 
             Assert.AreEqual(expected.OptionId, actual.OptionId);
         }
@@ -442,7 +442,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             form34.OtherRows.Add(rowObject03);
             expected.AddFormObject(form34);
 
-            OptionObject2015 actual = (OptionObject2015)expected.ToReturnOptionObject();
+            OptionObject2015 actual = expected.ToReturnOptionObject();
 
             Assert.AreEqual(expected.OptionId, actual.OptionId);
         }
