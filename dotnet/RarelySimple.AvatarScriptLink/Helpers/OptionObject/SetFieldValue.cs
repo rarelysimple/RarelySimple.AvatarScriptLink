@@ -19,7 +19,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (string.IsNullOrEmpty(fieldNumber))
                 throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-            var formObject = optionObject.Forms.FirstOrDefault(f => f.IsFieldPresent(fieldNumber));
+            var formObject = optionObject.Forms.Find(f => f.IsFieldPresent(fieldNumber));
             if (formObject != null)
             {
                 if (formObject.MultipleIteration && formObject.OtherRows.Count > 0)
