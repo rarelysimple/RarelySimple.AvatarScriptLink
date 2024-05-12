@@ -30,7 +30,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void GetOptionObjectHeaders_OptionObject2015_IsNotNull()
         {
             OptionObject2015 optionObject = new();
-            List<string> headers = OptionObjectHelpers.GetOptionObjectHeaders((IOptionObject2015)optionObject);
+            List<string> headers = OptionObjectHelpers.GetOptionObjectHeaders(optionObject);
             Assert.IsNotNull(headers);
         }
 
@@ -62,7 +62,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject2015 optionObject = new();
             string expected = "Entity ID: " + optionObject.EntityID;
-            List<string> headers = OptionObjectHelpers.GetOptionObjectHeaders((IOptionObject2015)optionObject);
+            List<string> headers = OptionObjectHelpers.GetOptionObjectHeaders(optionObject);
             bool isPresent = headers.Contains(expected);
             Assert.IsTrue(isPresent);
         }

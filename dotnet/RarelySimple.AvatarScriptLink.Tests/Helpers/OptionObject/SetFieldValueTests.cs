@@ -1,7 +1,7 @@
 ﻿using RarelySimple.AvatarScriptLink.Helpers;
 using RarelySimple.AvatarScriptLink.Objects;
 
-namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
+namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 {
     [TestClass]
     public class SetFieldValueTests

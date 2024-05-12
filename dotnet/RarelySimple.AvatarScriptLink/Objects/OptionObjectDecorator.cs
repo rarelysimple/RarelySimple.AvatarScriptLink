@@ -1,8 +1,6 @@
 ﻿using RarelySimple.AvatarScriptLink.Helpers;
 using RarelySimple.AvatarScriptLink.Objects.Advanced;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace RarelySimple.AvatarScriptLink.Objects
 {

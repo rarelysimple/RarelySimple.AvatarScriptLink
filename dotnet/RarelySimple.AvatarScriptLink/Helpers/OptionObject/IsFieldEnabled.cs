@@ -17,10 +17,10 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (string.IsNullOrEmpty(fieldNumber))
                 throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-            foreach (var form in optionObject.Forms)
+            var form = optionObject.Forms.Find(f => f.IsFieldPresent(fieldNumber));
+            if (form != null)
             {
-                if (IsFieldPresent(form, fieldNumber))
-                    return IsFieldEnabled(form, fieldNumber);
+                return IsFieldEnabled(form, fieldNumber);
             }
             throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
         }

@@ -3,7 +3,7 @@ using RarelySimple.AvatarScriptLink.Objects;
 using RarelySimple.AvatarScriptLink.Objects.Advanced;
 using System.Text;
 
-namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
+namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 {
     [TestClass]
     public class TransformToHtmlStringTests
@@ -453,7 +453,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             sb.Append("<h2>Forms</h2>");
             string expected = sb.ToString();
 
-            string actual = OptionObjectHelpers.TransformToHtmlString((IOptionObject2015)optionObject);
+            string actual = OptionObjectHelpers.TransformToHtmlString(optionObject);
 
             Assert.AreEqual(expected, actual);
         }
@@ -468,7 +468,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             };
             string expected = "<h1>RarelySimple.AvatarScriptLink.Objects.OptionObject2015</h1><h2>Forms</h2>";
 
-            var actual = OptionObjectHelpers.TransformToHtmlString((IOptionObject2015)optionObject);
+            var actual = OptionObjectHelpers.TransformToHtmlString(optionObject);
 
             Assert.AreEqual(expected.GetType(), actual.GetType());
         }
@@ -482,7 +482,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 SystemCode = "UAT"
             };
 
-            string actual = OptionObjectHelpers.TransformToHtmlString((IOptionObject2015)optionObject);
+            string actual = OptionObjectHelpers.TransformToHtmlString(optionObject);
 
             Assert.IsFalse(actual.Contains("<html>"));
         }
@@ -496,7 +496,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 SystemCode = "UAT"
             };
 
-            string actual = OptionObjectHelpers.TransformToHtmlString((IOptionObject2015)optionObject, false);
+            string actual = OptionObjectHelpers.TransformToHtmlString(optionObject, false);
 
             Assert.IsFalse(actual.Contains("<html>"));
         }
@@ -510,7 +510,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 SystemCode = "UAT"
             };
 
-            string actual = OptionObjectHelpers.TransformToHtmlString((IOptionObject2015)optionObject, true);
+            string actual = OptionObjectHelpers.TransformToHtmlString(optionObject, true);
 
             Assert.IsTrue(actual.Contains("<html>"));
         }

@@ -1,11 +1,34 @@
-﻿using RarelySimple.AvatarScriptLink.Helpers;
-using RarelySimple.AvatarScriptLink.Objects;
+﻿using RarelySimple.AvatarScriptLink.Objects;
 
-namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
+namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 {
     [TestClass]
     public class IsRowMarkedForDeletionTests
     {
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IsRowMarkedForDeletion_RowId_IsEmpty()
+        {
+            string rowId = "1||1";
+            FormObject formObject = new("1");
+            formObject.AddRowObject(new RowObject(rowId, rowId, RowAction.Delete));
+            OptionObject optionObject = new();
+            optionObject.AddFormObject(formObject);
+            Assert.IsTrue(optionObject.IsRowMarkedForDeletion(""));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IsRowMarkedForDeletion_RowId_IsNull()
+        {
+            string rowId = "1||1";
+            FormObject formObject = new("1");
+            formObject.AddRowObject(new RowObject(rowId, rowId, RowAction.Delete));
+            OptionObject optionObject = new();
+            optionObject.AddFormObject(formObject);
+            Assert.IsTrue(optionObject.IsRowMarkedForDeletion(null));
+        }
+
         [TestMethod]
         public void IsRowMarkedForDeletion_OptionObject_FirstForm_IsMarked()
         {

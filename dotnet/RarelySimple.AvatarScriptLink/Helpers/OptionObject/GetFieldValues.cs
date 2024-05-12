@@ -17,12 +17,10 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (string.IsNullOrEmpty(fieldNumber))
                 throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-            foreach (var form in optionObject.Forms)
+            var form = optionObject.Forms.Find(f => f.IsFieldPresent(fieldNumber));
+            if (form != null)
             {
-                if (IsFieldPresent(form, fieldNumber))
-                {
-                    return GetFieldValues(form, fieldNumber);
-                }
+                return GetFieldValues(form, fieldNumber);
             }
             return new List<string>();
         }
@@ -34,8 +32,6 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static List<string> GetFieldValues(IFormObject formObject, string fieldNumber)
         {
-            if (formObject.CurrentRow == null)
-                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(fieldNumber))
                 throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             List<string> values = new List<string>();

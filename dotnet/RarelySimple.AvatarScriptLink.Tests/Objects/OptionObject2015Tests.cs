@@ -1,6 +1,6 @@
 ﻿using RarelySimple.AvatarScriptLink.Objects;
 
-namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
+namespace RarelySimple.AvatarScriptLink.Tests.Objects
 {
     [TestClass]
     public class OptionObject2015Tests
@@ -531,7 +531,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
             OptionObject2015 optionObject = new("USER00", "userId", "000111", "1", "123456", 1, "UAT", "AVPM", "AVPM", "SERVER", "TOKEN");
             optionObject.AddFormObject(formObject);
 
-            OptionObject2015 cloneOptionObject = (OptionObject2015)optionObject.Clone();
+            OptionObject2015 cloneOptionObject = optionObject.Clone();
 
             Assert.AreEqual(optionObject, cloneOptionObject);
             Assert.IsTrue(optionObject.IsFieldPresent("123"));
