@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[8769],{9477:e=>{e.exports=JSON.parse('{"label":"azure devops","permalink":"/blog/tags/azure-devops","allTagsPath":"/blog/tags","count":1,"unlisted":false}')}}]);

@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[9722],{7922:s=>{s.exports=JSON.parse('{"label":"visual basic","permalink":"/blog/tags/visual-basic","allTagsPath":"/blog/tags","count":10,"unlisted":false}')}}]);

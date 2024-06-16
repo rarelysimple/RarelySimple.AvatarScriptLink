@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[3978],{3529:e=>{e.exports=JSON.parse('{"permalink":"/blog/tags/visual-studio","page":1,"postsPerPage":10,"totalPages":2,"totalCount":11,"nextPage":"/blog/tags/visual-studio/page/2","blogDescription":"Blog","blogTitle":"Blog"}')}}]);

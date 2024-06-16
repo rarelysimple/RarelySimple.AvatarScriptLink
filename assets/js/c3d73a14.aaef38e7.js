@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[1268],{1349:e=>{e.exports=JSON.parse('{"label":"azure pipelines","permalink":"/blog/tags/azure-pipelines","allTagsPath":"/blog/tags","count":1,"unlisted":false}')}}]);
