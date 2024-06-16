@@ -9,6 +9,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
 {
     public static partial class OptionObjectHelpers
     {
+        const string HtmlHeader = "<html><head></head><body>";
+        const string HtmlFooter = "</body></html>";
         /// <summary>
         /// Returns <see cref="IOptionObject"/> as an HTML string without HTML headers.
         /// </summary>
@@ -306,14 +308,9 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         private static string GetHeader(string type, bool includeHtmlHeaders)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(includeHtmlHeaders ? GetHtmlHeader() : "");
+            sb.Append(includeHtmlHeaders ? HtmlHeader : "");
             sb.Append(GetPageHeader(type));
             return sb.ToString();
-        }
-
-        private static string GetHtmlHeader()
-        {
-            return "<html><head></head><body>";
         }
 
         private static string GetPageHeader(string pageTitle)
@@ -325,13 +322,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         private static string GetFooter(bool includeHtmlHeaders)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(includeHtmlHeaders ? GetHtmlFooter() : "");
+            sb.Append(includeHtmlHeaders ? HtmlFooter : "");
             return sb.ToString();
-        }
-
-        private static string GetHtmlFooter()
-        {
-            return "</body></html>";
         }
 
         private enum HtmlOutputType
