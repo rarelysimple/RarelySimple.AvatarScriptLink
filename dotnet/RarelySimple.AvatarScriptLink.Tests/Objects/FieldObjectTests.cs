@@ -1,7 +1,6 @@
-﻿using System.Security.Cryptography;
-using RarelySimple.AvatarScriptLink.Objects;
+﻿using RarelySimple.AvatarScriptLink.Objects;
 
-namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
+namespace RarelySimple.AvatarScriptLink.Tests.Objects
 {
     [TestClass]
     public class FieldObjectTests

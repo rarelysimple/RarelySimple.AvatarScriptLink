@@ -1,7 +1,6 @@
-﻿using System.Security.Cryptography;
-using RarelySimple.AvatarScriptLink.Objects;
+﻿using RarelySimple.AvatarScriptLink.Objects;
 
-namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
+namespace RarelySimple.AvatarScriptLink.Tests.Objects
 {
     [TestClass]
     public class FormObjectTests
@@ -140,7 +139,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void FormObject_CanGetHtmlString_WithHtmlHeaders()
         {
             FormObject formObject = FormObject.Initialize();
-            var actual = formObject.ToHtmlString(false);
+            var actual = formObject.ToHtmlString(true);
             Assert.IsNotNull(actual);
         }
 
