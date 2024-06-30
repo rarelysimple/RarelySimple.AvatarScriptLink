@@ -1,6 +1,6 @@
 ﻿using RarelySimple.AvatarScriptLink.Objects;
 
-namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
+namespace RarelySimple.AvatarScriptLink.Tests.Objects
 {
     [TestClass]
     public class RowActionTests

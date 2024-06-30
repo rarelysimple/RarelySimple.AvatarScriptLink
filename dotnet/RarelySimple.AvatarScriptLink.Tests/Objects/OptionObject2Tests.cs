@@ -1,6 +1,6 @@
 ﻿using RarelySimple.AvatarScriptLink.Objects;
 
-namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
+namespace RarelySimple.AvatarScriptLink.Tests.Objects
 {
     [TestClass]
     public class OptionObject2Tests
@@ -90,7 +90,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void OptionObject2_CanGetHtmlString_WithHtmlHeaders()
         {
             OptionObject2 optionObject = OptionObject2.Initialize();
-            var actual = optionObject.ToHtmlString(false);
+            var actual = optionObject.ToHtmlString(true);
             Assert.IsNotNull(actual);
         }
 

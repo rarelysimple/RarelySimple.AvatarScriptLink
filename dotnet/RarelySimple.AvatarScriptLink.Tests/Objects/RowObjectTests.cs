@@ -1,6 +1,6 @@
 ﻿using RarelySimple.AvatarScriptLink.Objects;
 
-namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
+namespace RarelySimple.AvatarScriptLink.Tests.Objects
 {
     [TestClass]
     public class RowObjectTests
@@ -327,7 +327,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.ObjectsTests
         public void RowObject_CanGetHtmlString_WithHtmlHeaders()
         {
             RowObject rowObject = new();
-            var actual = rowObject.ToHtmlString(false);
+            var actual = rowObject.ToHtmlString(true);
             Assert.IsNotNull(actual);
         }
 
