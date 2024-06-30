@@ -1,10 +1,16 @@
-name: Build and Test (.NET)
+name: Build and Test .NET Package
 on:
   push:
     branches:
       - main
+    paths:
+      - '.github/workflows/dotnet-check-build.yml'
+      - 'dotnet/**'
   pull_request:
     types: [opened, synchronize, reopened]
+    paths:
+      - '.github/workflows/dotnet-check-build.yml'
+      - 'dotnet/**'
   workflow_dispatch:
 jobs:
   build:
@@ -16,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup dotnet
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
       - name: Install dependencies
