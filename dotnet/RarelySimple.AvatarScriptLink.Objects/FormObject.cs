@@ -47,7 +47,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
                    MultipleIteration == other.MultipleIteration &&
                    ((CurrentRow == null && other.CurrentRow == null) ||
                    CurrentRow == other.CurrentRow) &&
-                   AreRowsEqual(OtherRows, other.OtherRows);
+                   RowObject.AreRowsEqual(OtherRows, other.OtherRows);
         }
 
         /// <summary>
@@ -82,12 +82,14 @@ namespace RarelySimple.AvatarScriptLink.Objects
             return hash;
         }
 
-        private static bool AreRowsEqual(List<RowObject> list1, List<RowObject> list2)
+        public static bool AreFormsEqual(List<FormObject> list1, List<FormObject> list2)
         {
             if (!AreBothNull(list1, list2) && AreBothEmpty(list1, list2))
                 return true;
+
             if (list1.Count != list2.Count)
                 return false;
+
             for (int i = 0; i < list1.Count; i++)
             {
                 if (!list1[i].Equals(list2[i]))
@@ -98,9 +100,9 @@ namespace RarelySimple.AvatarScriptLink.Objects
             return true;
         }
 
-        private static bool AreBothEmpty(List<RowObject> list1, List<RowObject> list2) => !list1.Any() && !list2.Any();
+        public static bool AreBothEmpty(List<FormObject> list1, List<FormObject> list2) => !list1.Any() && !list2.Any();
 
-        private static bool AreBothNull(List<RowObject> list1, List<RowObject> list2) => list1 == null && list2 == null;
+        public static bool AreBothNull(List<FormObject> list1, List<FormObject> list2) => list1 == null && list2 == null;
 
         public static bool operator ==(FormObject formObject1, FormObject formObject2)
         {

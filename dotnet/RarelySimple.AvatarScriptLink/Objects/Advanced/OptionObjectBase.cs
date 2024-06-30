@@ -167,6 +167,54 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         // Begin Customizations (only methods and private properties)
         //
 
+        protected int CalculateHashCode()
+        {            
+            int hash = 17;
+            hash = hash * 23 + EpisodeNumber.GetHashCode();
+            hash = hash * 23 + ErrorCode.GetHashCode();
+            hash = hash * 23 + (ErrorMesg != null ? ErrorMesg.GetHashCode() : 0);
+            hash = hash * 23 + (Facility != null ? Facility.GetHashCode() : 0);
+            hash = hash * 23 + (OptionId != null ? OptionId.GetHashCode() : 0);
+            hash = hash * 23 + (OptionStaffId != null ? OptionStaffId.GetHashCode() : 0);
+            hash = hash * 23 + (OptionUserId != null ? OptionUserId.GetHashCode() : 0);
+            hash = hash * 23 + (SystemCode != null ? SystemCode.GetHashCode() : 0);
+            if (GetType() == typeof(OptionObject2) || GetType() == typeof(OptionObject2015)) {
+                hash = hash * 23 + (NamespaceName != null ? NamespaceName.GetHashCode() : 0);
+                hash = hash * 23 + (ParentNamespace != null ? ParentNamespace.GetHashCode() : 0);
+                hash = hash * 23 + (ServerName != null ? ServerName.GetHashCode() : 0);
+            }
+            if (GetType() == typeof(OptionObject2015)) {
+                hash = hash * 23 + (SessionToken != null ? SessionToken.GetHashCode() : 0);
+            }
+            foreach (FormObject formObject in Forms)
+            {
+                hash = hash * 23 + (formObject != null ? formObject.GetHashCode() : 0);
+            }
+            return hash;
+        }
+
+        protected static bool AreFormsEqual(List<FormObject> list1, List<FormObject> list2)
+        {
+            if (!AreBothNull(list1, list2) && AreBothEmpty(list1, list2))
+                return true;
+
+            if (list1.Count != list2.Count)
+                return false;
+
+            for (int i = 0; i < list1.Count; i++)
+            {
+                if (!list1[i].Equals(list2[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        protected static bool AreBothEmpty(List<FormObject> list1, List<FormObject> list2) => list1.Count == 0 && list2.Count == 0;
+
+        protected static bool AreBothNull(List<FormObject> list1, List<FormObject> list2) => list1 == null && list2 == null;
+
         /// <summary>
         /// Adds a <see cref="FormObject"/> to an <see cref="OptionObject2015"/>.
         /// </summary>

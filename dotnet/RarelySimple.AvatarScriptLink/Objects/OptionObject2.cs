@@ -167,46 +167,8 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// <returns>Returns an <see cref="int"/> representing the unique hash code for the <see cref="OptionObject2"/>.</returns>
         public override int GetHashCode()
         {
-            int hash = 17;
-            hash = hash * 23 + EpisodeNumber.GetHashCode();
-            hash = hash * 23 + ErrorCode.GetHashCode();
-            hash = hash * 23 + (ErrorMesg != null ? ErrorMesg.GetHashCode() : 0);
-            hash = hash * 23 + (Facility != null ? Facility.GetHashCode() : 0);
-            hash = hash * 23 + (NamespaceName != null ? NamespaceName.GetHashCode() : 0);
-            hash = hash * 23 + (OptionId != null ? OptionId.GetHashCode() : 0);
-            hash = hash * 23 + (OptionStaffId != null ? OptionStaffId.GetHashCode() : 0);
-            hash = hash * 23 + (OptionUserId != null ? OptionUserId.GetHashCode() : 0);
-            hash = hash * 23 + (ParentNamespace != null ? ParentNamespace.GetHashCode() : 0);
-            hash = hash * 23 + (ServerName != null ? ServerName.GetHashCode() : 0);
-            hash = hash * 23 + (SystemCode != null ? SystemCode.GetHashCode() : 0);
-            foreach (FormObject formObject in Forms)
-            {
-                hash = hash * 23 + (formObject != null ? formObject.GetHashCode() : 0);
-            }
-            return hash;
+            return CalculateHashCode();
         }
-
-        private static bool AreFormsEqual(List<FormObject> list1, List<FormObject> list2)
-        {
-            if (!AreBothNull(list1, list2) && AreBothEmpty(list1, list2))
-                return true;
-
-            if (list1.Count != list2.Count)
-                return false;
-
-            for (int i = 0; i < list1.Count; i++)
-            {
-                if (!list1[i].Equals(list2[i]))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private static bool AreBothEmpty(List<FormObject> list1, List<FormObject> list2) => list1.Count == 0 && list2.Count == 0;
-
-        private static bool AreBothNull(List<FormObject> list1, List<FormObject> list2) => list1 == null && list2 == null;
 
         public static bool operator ==(OptionObject2 optionObject1, OptionObject2 optionObject2)
         {
