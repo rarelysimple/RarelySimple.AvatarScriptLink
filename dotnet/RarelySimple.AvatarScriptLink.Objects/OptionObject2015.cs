@@ -59,7 +59,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
                 ServerName == other.ServerName &&
                 SessionToken == other.SessionToken &&
                 SystemCode == other.SystemCode &&
-                AreFormsEqual(Forms, other.Forms);
+                FormObject.AreFormsEqual(Forms, other.Forms);
 
         }
 
@@ -100,28 +100,6 @@ namespace RarelySimple.AvatarScriptLink.Objects
             }
             return hash;
         }
-
-        private static bool AreFormsEqual(List<FormObject> list1, List<FormObject> list2)
-        {
-            if (!AreBothNull(list1, list2) && AreBothEmpty(list1, list2))
-                return true;
-
-            if (list1.Count != list2.Count)
-                return false;
-
-            for (int i = 0; i < list1.Count; i++)
-            {
-                if (!list1[i].Equals(list2[i]))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private static bool AreBothEmpty(List<FormObject> list1, List<FormObject> list2) => !list1.Any() && !list2.Any();
-
-        private static bool AreBothNull(List<FormObject> list1, List<FormObject> list2) => list1 == null && list2 == null;
 
         public static bool operator ==(OptionObject2015 optionObject1, OptionObject2015 optionObject2)
         {

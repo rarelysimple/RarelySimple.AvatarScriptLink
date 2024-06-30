@@ -1,5 +1,7 @@
 ﻿using RarelySimple.AvatarScriptLink.Objects.Advanced.Abstracts;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RarelySimple.AvatarScriptLink.Objects
 {
@@ -84,6 +86,26 @@ namespace RarelySimple.AvatarScriptLink.Objects
 
             return !fieldObject1.Equals(fieldObject2);
         }
+
+        public static bool AreFieldsEqual(List<FieldObject> list1, List<FieldObject> list2)
+        {
+            if (!AreBothNull(list1, list2) && AreBothEmpty(list1, list2))
+                return true;
+            if (list1.Count != list2.Count)
+                return false;
+            for (int i = 0; i < list1.Count; i++)
+            {
+                if (!list1[i].Equals(list2[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public static bool AreBothEmpty(List<FieldObject> list1, List<FieldObject> list2) => !list1.Any() && !list2.Any();
+
+        public static bool AreBothNull(List<FieldObject> list1, List<FieldObject> list2) => list1 == null && list2 == null;
 
         #endregion
     }

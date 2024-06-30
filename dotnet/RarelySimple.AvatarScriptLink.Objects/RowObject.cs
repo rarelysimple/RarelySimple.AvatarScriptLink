@@ -42,7 +42,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
                 ((RowAction == null && other.RowAction == null) ||
                 RowAction == other.RowAction) &&
                 RowId == other.RowId &&
-                AreFieldsEqual(Fields, other.Fields);
+                FieldObject.AreFieldsEqual(Fields, other.Fields);
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             return hash;
         }
 
-        private static bool AreFieldsEqual(List<FieldObject> list1, List<FieldObject> list2)
+        public static bool AreRowsEqual(List<RowObject> list1, List<RowObject> list2)
         {
             if (!AreBothNull(list1, list2) && AreBothEmpty(list1, list2))
                 return true;
@@ -89,9 +89,9 @@ namespace RarelySimple.AvatarScriptLink.Objects
             return true;
         }
 
-        private static bool AreBothEmpty(List<FieldObject> list1, List<FieldObject> list2) => !list1.Any() && !list2.Any();
+        public static bool AreBothEmpty(List<RowObject> list1, List<RowObject> list2) => !list1.Any() && !list2.Any();
 
-        private static bool AreBothNull(List<FieldObject> list1, List<FieldObject> list2) => list1 == null && list2 == null;
+        public static bool AreBothNull(List<RowObject> list1, List<RowObject> list2) => list1 == null && list2 == null;
 
         public static bool operator ==(RowObject rowObject1, RowObject rowObject2)
         {
