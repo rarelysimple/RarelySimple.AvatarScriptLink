@@ -159,7 +159,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
         /// <returns>Returns an <see cref="int"/> representing the unique hash code for the <see cref="OptionObject2015"/>.</returns>
         public override int GetHashCode()
         {
-            return CalculateHashCode();
+            return CalculateHashCode(17);
         }
 
         public static bool operator ==(OptionObject2015 optionObject1, OptionObject2015 optionObject2)

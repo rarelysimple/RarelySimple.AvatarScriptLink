@@ -167,25 +167,21 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         // Begin Customizations (only methods and private properties)
         //
 
-        protected int CalculateHashCode()
+        protected int CalculateHashCode(int seed)
         {            
-            int hash = 17;
+            int hash = seed;
             hash = hash * 23 + EpisodeNumber.GetHashCode();
             hash = hash * 23 + ErrorCode.GetHashCode();
             hash = hash * 23 + (ErrorMesg != null ? ErrorMesg.GetHashCode() : 0);
             hash = hash * 23 + (Facility != null ? Facility.GetHashCode() : 0);
+            hash = hash * 23 + (NamespaceName != null ? NamespaceName.GetHashCode() : 0);
             hash = hash * 23 + (OptionId != null ? OptionId.GetHashCode() : 0);
             hash = hash * 23 + (OptionStaffId != null ? OptionStaffId.GetHashCode() : 0);
             hash = hash * 23 + (OptionUserId != null ? OptionUserId.GetHashCode() : 0);
+            hash = hash * 23 + (ParentNamespace != null ? ParentNamespace.GetHashCode() : 0);
+            hash = hash * 23 + (ServerName != null ? ServerName.GetHashCode() : 0);
+            hash = hash * 23 + (SessionToken != null ? SessionToken.GetHashCode() : 0);
             hash = hash * 23 + (SystemCode != null ? SystemCode.GetHashCode() : 0);
-            if (GetType() == typeof(OptionObject2) || GetType() == typeof(OptionObject2015)) {
-                hash = hash * 23 + (NamespaceName != null ? NamespaceName.GetHashCode() : 0);
-                hash = hash * 23 + (ParentNamespace != null ? ParentNamespace.GetHashCode() : 0);
-                hash = hash * 23 + (ServerName != null ? ServerName.GetHashCode() : 0);
-            }
-            if (GetType() == typeof(OptionObject2015)) {
-                hash = hash * 23 + (SessionToken != null ? SessionToken.GetHashCode() : 0);
-            }
             foreach (FormObject formObject in Forms)
             {
                 hash = hash * 23 + (formObject != null ? formObject.GetHashCode() : 0);
