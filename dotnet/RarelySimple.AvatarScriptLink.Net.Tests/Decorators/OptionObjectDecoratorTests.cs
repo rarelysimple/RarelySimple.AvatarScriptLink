@@ -38,6 +38,167 @@ public class OptionObjectDecoratorTests
         Assert.AreEqual(0, actual.Forms.Count);
     }
 
+    #region AddFormObject
+
+    [TestMethod]
+    public void AddFormObject_Expected() {
+        var expected = new FormObject() {
+            FormId = "1"
+        };
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123"
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        decorator.AddFormObject(expected);
+        Assert.IsTrue(decorator.IsFormPresent("1"));
+    }
+
+    [TestMethod]
+    public void AddFormObjectDecorator_Expected() {
+        var expected = FormObjectDecorator.Builder().FormId("1").Build();
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123"
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        decorator.AddFormObject(expected);
+        Assert.IsTrue(decorator.IsFormPresent("1"));
+    }
+
+    [TestMethod]
+    public void AddFormObjectById_Expected() {
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123"
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        decorator.AddFormObject("1");
+        Assert.IsTrue(decorator.IsFormPresent("1"));
+    }
+
+    [TestMethod]
+    public void AddFormObjectByIdAndMI_Expected() {
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123"
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        decorator.AddFormObject("1", false);
+        Assert.IsTrue(decorator.IsFormPresent("1"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void AddFormObjectByIdAndMI_ArgumentNullException() {
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123"
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        decorator.AddFormObject(null, false);
+        Assert.IsTrue(decorator.IsFormPresent("1"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void AddFormObject_MICannotBeFirst() {
+        var expected = new FormObject() {
+            FormId = "1",
+            MultipleIteration = true
+        };
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123"
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        decorator.AddFormObject(expected);
+        Assert.IsTrue(decorator.IsFormPresent("1"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void AddFormObjectDecorator_MICannotBeFirst() {
+        var expected = FormObjectDecorator.Builder().FormId("1").MultipleIteration().Build();
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123"
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        decorator.AddFormObject(expected);
+        Assert.IsTrue(decorator.IsFormPresent("1"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void AddFormObjectByIdAndMI_MICannotBeFirst() {
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123"
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        decorator.AddFormObject("1", true);
+        Assert.IsTrue(decorator.IsFormPresent("1"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void AddFormObject_DuplicateForms() {
+        var expected = new FormObject() {
+            FormId = "1"
+        };
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123"
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        decorator.AddFormObject(expected);
+        decorator.AddFormObject(expected);
+        Assert.IsTrue(decorator.IsFormPresent("1"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void AddFormObjectDecorator_DuplicateForms() {
+        var expected = FormObjectDecorator.Builder().FormId("1").Build();
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123"
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        decorator.AddFormObject(expected);
+        decorator.AddFormObject(expected);
+        Assert.IsTrue(decorator.IsFormPresent("1"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void AddFormObjectById_DuplicateForms() {
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123"
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        decorator.AddFormObject("1");
+        decorator.AddFormObject("1");
+        Assert.IsTrue(decorator.IsFormPresent("1"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void AddFormObjectByIdAndMI_DuplicateForms() {
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123"
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        decorator.AddFormObject("1", false);
+        decorator.AddFormObject("1", false);
+        Assert.IsTrue(decorator.IsFormPresent("1"));
+    }
+
+    #endregion
+
     #region GetFieldValue
 
 

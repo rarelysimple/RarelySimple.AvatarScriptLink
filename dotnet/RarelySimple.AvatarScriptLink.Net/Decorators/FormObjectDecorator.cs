@@ -25,6 +25,11 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public string FormId => _formObject.FormId;
         public bool MultipleIteration => _formObject.MultipleIteration;
 
+        public static FormObjectDecoratorBuilder Builder()
+        {
+            return new FormObjectDecoratorBuilder();
+        }
+
         public FormObjectDecoratorReturnBuilder Return()
         {
             return new FormObjectDecoratorReturnBuilder(this);

@@ -1,5 +1,4 @@
-﻿using System;
-using RarelySimple.AvatarScriptLink.Objects;
+﻿using RarelySimple.AvatarScriptLink.Objects;
 
 namespace RarelySimple.AvatarScriptLink.Net.Decorators
 {

@@ -37,6 +37,31 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         }
 
         /// <summary>
+        /// Adds a <see cref="FormObject"/> to an <see cref="OptionObjectDecorator"/>.
+        /// </summary>
+        /// <param name="formObject"></param>
+        public void AddFormObject(FormObject formObject) => Forms = Helper.AddFormObject(this, formObject).Forms;
+
+        /// <summary>
+        /// Adds a <see cref="FormObjectDecorator"/> to an <see cref="OptionObjectDecorator"/>.
+        /// </summary>
+        /// <param name="formObject"></param>
+        public void AddFormObject(FormObjectDecorator formObject) => Forms = Helper.AddFormObject(this, formObject).Forms;
+
+        /// <summary>
+        /// Adds a <see cref="FormObject"/> to an <see cref="OptionObjectDecorator"/>.
+        /// </summary>
+        /// <param name="formId"></param>
+        public void AddFormObject(string formId) => Forms = Helper.AddFormObject(this, formId).Forms;
+
+        /// <summary>
+        /// Adds a <see cref="FormObject"/> to an <see cref="OptionObjectDecorator"/>.
+        /// </summary>
+        /// <param name="formId"></param>
+        /// <param name="multipleIteration"></param>
+        public void AddFormObject(string formId, bool multipleIteration) => Forms = Helper.AddFormObject(this, formId, multipleIteration).Forms;
+
+        /// <summary>
         /// Returns the first value of the field matching the Field Number.
         /// </summary>
         /// <param name="fieldNumber"></param>
@@ -84,6 +109,13 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         /// <param name="fieldNumber"></param>
         /// <returns></returns>
         public bool IsFieldRequired(string fieldNumber) => Helper.IsFieldRequired(this, fieldNumber);
+
+        /// <summary>
+        /// Returns whether the specified <see cref="FormObject"/> is present.
+        /// </summary>
+        /// <param name="formId"></param>
+        /// <returns></returns>
+        public bool IsFormPresent(string formId) => Helper.IsFormPresent(this, formId);
 
         /// <summary>
         /// Sets the FieldValue of a <see cref="FieldObject"/> in the <see cref="OptionObjectDecorator"/> on the first form CurrentRow.
