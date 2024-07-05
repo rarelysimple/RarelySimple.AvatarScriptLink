@@ -250,8 +250,6 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             /// <returns></returns>
             public static bool IsRowPresent(OptionObjectDecorator optionObject, string rowId)
             {
-                if (optionObject.Forms == null)
-                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString("optionObjectMissingForms", CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(rowId))
                     throw new ArgumentNullException(nameof(rowId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 return optionObject.Forms.Find(x => x.IsRowPresent(rowId)) != null;

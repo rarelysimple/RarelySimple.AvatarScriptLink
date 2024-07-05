@@ -974,6 +974,122 @@ public class OptionObject2DecoratorTests
 
     #endregion
 
+    #region IsFormPresent
+
+    [TestMethod]
+    public void IsFormPresent_Expected()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "123"
+        };
+        var formObject2 = new FormObject()
+        {
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject,formObject2]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.IsTrue(decorator.IsFormPresent("123"));
+        Assert.IsTrue(decorator.IsFormPresent("456"));
+        Assert.IsFalse(decorator.IsFormPresent("789"));
+    }
+
+    [TestMethod]
+    public void IsFormPresent_NoForms_Expected()
+    {
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123"
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.IsFalse(decorator.IsFormPresent("123"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void IsFormPresent_Null()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "123"
+        };
+        var formObject2 = new FormObject()
+        {
+            FormId = "456"
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject,formObject2]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.IsTrue(decorator.IsFormPresent(null));
+    }
+
+    #endregion
+
+    #region IsRowPresent
+
+    [TestMethod]
+    public void IsRowPresent_Expected()
+    {
+        var rowObject = new RowObject()
+        {
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "456",
+            CurrentRow = rowObject
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.IsTrue(decorator.IsRowPresent("456||1"));
+    }
+
+    [TestMethod]
+    public void IsRowPresent_NoForms_Expected()
+    {
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123"
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.IsFalse(decorator.IsRowPresent("123||1"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void IsRowPresent_Null()
+    {
+        var rowObject = new RowObject()
+        {
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "456",
+            CurrentRow = rowObject
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.IsTrue(decorator.IsRowPresent(null));
+    }
+
+    #endregion
+
     #region SetFieldValue
 
     [TestMethod]
