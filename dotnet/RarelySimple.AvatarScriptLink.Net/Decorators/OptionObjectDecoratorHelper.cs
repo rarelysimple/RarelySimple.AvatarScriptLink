@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Resources;
 using RarelySimple.AvatarScriptLink.Net.Exceptions;
+using RarelySimple.AvatarScriptLink.Objects;
 
 namespace RarelySimple.AvatarScriptLink.Net.Decorators
 {
@@ -12,6 +13,75 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         {
             private static readonly ResourceManager resourceManager = new ResourceManager("RarelySimple.AvatarScriptLink.Net.Localizations", Assembly.GetExecutingAssembly());
 
+            /// <summary>
+            /// Adds a <see cref="FormObject"/> to an <see cref="OptionObject"/>.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <param name="formObject"></param>
+            /// <returns></returns>
+            public static OptionObjectDecorator AddFormObject(OptionObjectDecorator optionObject, FormObject formObject)
+            {
+                if (optionObject == null)
+                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (formObject == null)
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                return AddFormObject(optionObject, new FormObjectDecorator(formObject));
+            }
+            /// <summary>
+            /// Adds a <see cref="FormObject"/> to an <see cref="OptionObject"/>.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <param name="formObject"></param>
+            /// <returns></returns>
+            public static OptionObjectDecorator AddFormObject(OptionObjectDecorator optionObject, FormObjectDecorator formObject)
+            {
+                if (optionObject == null)
+                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (formObject == null)
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (optionObject.Forms.Count == 0 && formObject.MultipleIteration)
+                    throw new ArgumentException(resourceManager.GetString("firstFormCannotBeMultipleIteration", CultureInfo.CurrentCulture));
+                if (optionObject.Forms.Contains(formObject) || optionObject.Forms.Exists(f => f.FormId == formObject.FormId))
+                    throw new ArgumentException(resourceManager.GetString("formIdAlreadyExists", CultureInfo.CurrentCulture));
+                optionObject.Forms.Add(formObject);
+                return optionObject;
+            }
+            /// <summary>
+            /// Creates a <see cref="FormObject"/> with specified FormId and adds to an <see cref="OptionObject"/> using provided FormId.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <param name="formId"></param>
+            /// <returns></returns>
+            public static OptionObjectDecorator AddFormObject(OptionObjectDecorator optionObject, string formId)
+            {
+                if (optionObject == null)
+                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (formId == null)
+                    throw new ArgumentNullException(nameof(formId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                FormObjectDecorator formObject = FormObjectDecorator.Builder()
+                    .FormId(formId)
+                    .Build();
+                return AddFormObject(optionObject, formObject);
+            }
+            /// <summary>
+            /// Creates a <see cref="FormObject"/> with specified FormId and adds to an <see cref="OptionObject"/> using provided FormId and indicating whether it is a multiple iteration table.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <param name="formId"></param>
+            /// <param name="multipleIteration"></param>
+            /// <returns></returns>
+            public static OptionObjectDecorator AddFormObject(OptionObjectDecorator optionObject, string formId, bool multipleIteration)
+            {
+                if (optionObject == null)
+                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (formId == null)
+                    throw new ArgumentNullException(nameof(formId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                FormObjectDecorator formObject = FormObjectDecorator.Builder()
+                    .FormId(formId)
+                    .MultipleIteration(multipleIteration)
+                    .Build();
+                return AddFormObject(optionObject, formObject);
+            }
             /// <summary>
             /// Returns the FieldValue of a specified <see cref="FieldObject"/> in an <see cref="OptionObjectDecorator"/> by FieldNumber.
             /// </summary>
@@ -155,6 +225,34 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     return FormObjectDecorator.Helper.IsFieldRequired(form, fieldNumber);
                 }
                 throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString(NoFieldObjectsFoundByFieldNumber, CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
+            }
+            /// <summary>
+            /// Returns whether a <see cref="FormObject"/> exists in an <see cref="OptionObjectDecorator"/> by <see cref="FormObject.FormId"/>.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <param name="formId"></param>
+            /// <returns></returns>
+            public static bool IsFormPresent(OptionObjectDecorator optionObject, string formId)
+            {
+                if (optionObject == null)
+                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (string.IsNullOrEmpty(formId))
+                    throw new ArgumentNullException(nameof(formId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (optionObject.Forms == null || optionObject.Forms.Count == 0)
+                    return false;
+                return optionObject.Forms.Exists(f => f.FormId == formId);
+            }
+            /// <summary>
+            /// Returns whether the <see cref="RowObject"/> in the <see cref="OptionObjectDecorator"/> is enabled by RowId.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <param name="rowId"></param>
+            /// <returns></returns>
+            public static bool IsRowPresent(OptionObjectDecorator optionObject, string rowId)
+            {
+                if (string.IsNullOrEmpty(rowId))
+                    throw new ArgumentNullException(nameof(rowId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                return optionObject.Forms.Find(x => x.IsRowPresent(rowId)) != null;
             }
             /// <summary>
             /// Sets the FieldValue of a <see cref="FieldObject"/> in an <see cref="OptionObjectDecorator"/> by FieldNumber.

@@ -25,6 +25,16 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public string FormId => _formObject.FormId;
         public bool MultipleIteration => _formObject.MultipleIteration;
 
+        public static FormObjectDecoratorBuilder Builder()
+        {
+            return new FormObjectDecoratorBuilder();
+        }
+
+        public static FormObjectDecoratorBuilder Builder(FormObject formObject)
+        {
+            return new FormObjectDecoratorBuilder(formObject);
+        }
+
         public FormObjectDecoratorReturnBuilder Return()
         {
             return new FormObjectDecoratorReturnBuilder(this);
@@ -78,6 +88,13 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         /// <param name="fieldNumber"></param>
         /// <returns></returns>
         public bool IsFieldRequired(string fieldNumber) => Helper.IsFieldRequired(this, fieldNumber);
+
+        /// <summary>
+        /// Determines whether the <see cref="RowObject"/> is present in the <see cref="FormObject"/> by RowId.
+        /// </summary>
+        /// <param name="fieldNumber"></param>
+        /// <returns></returns>
+        public bool IsRowPresent(string rowId) => Helper.IsRowPresent(this, rowId);
         
         /// <summary>
         /// Sets the value of a <see cref="FieldObject"/> in the <see cref="CurrentRow"/> of a <see cref="FormObject"/>.
