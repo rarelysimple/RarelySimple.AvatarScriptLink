@@ -33,6 +33,91 @@ public class FormObjectDecoratorTests
         Assert.IsNull(actual.CurrentRow);
     }
 
+    #region Builder
+
+    [TestMethod]
+    public void TestFormObjectDecorator_Builder_Expected()
+    {
+        var fieldNumber = "123.45";
+        var expected = "initial value";
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = fieldNumber,
+            FieldValue = expected,
+            Lock = "1",
+            Required = "1"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject,
+            FormId = "456"
+        };
+        var decorator = FormObjectDecorator.Builder(formObject).Build();
+        Assert.AreEqual(expected, decorator.GetFieldValue(fieldNumber));
+        Assert.IsTrue(decorator.IsFieldEnabled(fieldNumber));
+        Assert.IsTrue(decorator.IsFieldLocked(fieldNumber));
+        Assert.IsTrue(decorator.IsFieldRequired(fieldNumber));        
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_Builder_CurrentRowExpected()
+    {
+        var expected = "456||1";
+        var rowObject = new RowObject()
+        {
+            RowId = expected
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "456"
+        };
+        var decorator = FormObjectDecorator.Builder(formObject).CurrentRow(rowObject).Build();
+        Assert.IsTrue(decorator.IsRowPresent(expected));        
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_Builder_OtherRowExpected()
+    {
+        var expected = "456||1";
+        var rowObject = new RowObject()
+        {
+            RowId = expected
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "456",
+            MultipleIteration = true
+        };
+        var decorator = FormObjectDecorator.Builder(formObject).OtherRow(rowObject).Build();
+        Assert.IsTrue(decorator.IsRowPresent(expected));        
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_Builder_OtherRowsExpected()
+    {
+        var expected = "456||1";
+        var rowObject = new RowObject()
+        {
+            RowId = expected
+        };
+        List<RowObject> rows = [rowObject];
+        var formObject = new FormObject()
+        {
+            FormId = "456",
+            MultipleIteration = true
+        };
+        var decorator = FormObjectDecorator.Builder(formObject).OtherRows(rows).Build();
+        Assert.IsTrue(decorator.IsRowPresent(expected));        
+    }
+
+    #endregion
+
     #region GetFieldValue
 
     [TestMethod]

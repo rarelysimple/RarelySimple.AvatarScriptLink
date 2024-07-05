@@ -13,7 +13,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             private static readonly ResourceManager resourceManager = new ResourceManager("RarelySimple.AvatarScriptLink.Net.Localizations", Assembly.GetExecutingAssembly());
 
             /// <summary>
-            /// Returns the FieldValue of a <see cref="FieldObject"/> in the curent row of a <see cref="FormObjectDecorator"/> by FieldNumber.
+            /// Returns the FieldValue of a <see cref="FieldObjectDecorator"/> in the curent row of a <see cref="FormObjectDecorator"/> by FieldNumber.
             /// </summary>
             /// <param name="formObject"></param>
             /// <param name="fieldNumber"></param>
@@ -25,7 +25,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 return GetFieldValue(formObject, formObject.CurrentRow.RowId, fieldNumber);
             }
             /// <summary>
-            /// Returns the FieldValue of a <see cref="FieldObject"/> in a <see cref="FormObjectDecorator"/> by RowId and FieldNumber.
+            /// Returns the FieldValue of a <see cref="FieldObjectDecorator"/> in a <see cref="FormObjectDecorator"/> by RowId and FieldNumber.
             /// </summary>
             /// <param name="formObject"></param>
             /// <param name="rowId"></param>
@@ -49,7 +49,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString(NoFieldObjectsFoundByFieldNumber, CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
             /// <summary>
-            /// Returns whether a <see cref="FormObject"/> is Multiple Iteration.
+            /// Returns whether a <see cref="FormObjectDecorator"/> is Multiple Iteration.
             /// </summary>
             /// <param name="formObject"></param>
             /// <returns></returns>
@@ -60,7 +60,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 return formObject.MultipleIteration;
             }
             /// <summary>
-            /// Returns whether the <see cref="IFieldObject"/> in the <see cref="IFormObject"/> is enabled by FieldNumber.
+            /// Returns whether the <see cref="IFieldObject"/> in the <see cref="FormObjectDecorator"/> is enabled by FieldNumber.
             /// </summary>
             /// <param name="formObject"></param>
             /// <param name="fieldNumber"></param>
@@ -76,7 +76,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 return RowObjectDecorator.Helper.IsFieldEnabled(formObject.CurrentRow, fieldNumber);
             }
             /// <summary>
-            /// Returns whether the <see cref="IFieldObject"/> in the <see cref="IFormObject"/> is locked by FieldNumber.
+            /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="FormObjectDecorator"/> is locked by FieldNumber.
             /// </summary>
             /// <param name="formObject"></param>
             /// <param name="fieldNumber"></param>
@@ -108,7 +108,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 return RowObjectDecorator.Helper.IsFieldPresent(decorator.CurrentRow, fieldNumber);
             }
             /// <summary>
-            /// Returns whether the <see cref="IFieldObject"/> in the <see cref="IFormObject"/> is required by FieldNumber.
+            /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="FormObjectDecorator"/> is required by FieldNumber.
             /// </summary>
             /// <param name="formObject"></param>
             /// <param name="fieldNumber"></param>
@@ -124,7 +124,25 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 return RowObjectDecorator.Helper.IsFieldRequired(formObject.CurrentRow, fieldNumber);
             }
             /// <summary>
-            /// Sets the FieldValue of a <see cref="FieldObject"/> in a <see cref="IFormObject"/> by FieldNumber.
+            /// Returns whether the <see cref="RowObjectDecorator"/> in the <see cref="FormObjectDecorator"/> is enabled by RowId.
+            /// </summary>
+            /// <param name="formObject"></param>
+            /// <param name="rowId"></param>
+            /// <returns></returns>
+            public static bool IsRowPresent(FormObjectDecorator formObject, string rowId)
+            {
+                if (formObject == null)
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (string.IsNullOrEmpty(rowId))
+                    throw new ArgumentNullException(nameof(rowId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (formObject.CurrentRow != null && formObject.CurrentRow.RowId == rowId)
+                    return true;
+                if (formObject.MultipleIteration)
+                    return formObject.OtherRows.Exists(r => r.RowId == rowId);
+                return false;
+            }
+            /// <summary>
+            /// Sets the FieldValue of a <see cref="FieldObjectDecorator"/> in a <see cref="FormObjectDecorator"/> by FieldNumber.
             /// </summary>
             /// <param name="decorator"></param>
             /// <param name="fieldNumber"></param>
@@ -143,7 +161,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 return SetFieldValue(decorator, decorator.CurrentRow.RowId, fieldNumber, fieldValue);
             }
             /// <summary>
-            /// Sets the FieldValue of a <see cref="FieldObject"/> in a <see cref="IFormObject"/> by RowId and FieldNumber.
+            /// Sets the FieldValue of a <see cref="FieldObjectDecorator"/> in a <see cref="FormObjectDecorator"/> by RowId and FieldNumber.
             /// </summary>
             /// <param name="decorator"></param>
             /// <param name="rowId"></param>

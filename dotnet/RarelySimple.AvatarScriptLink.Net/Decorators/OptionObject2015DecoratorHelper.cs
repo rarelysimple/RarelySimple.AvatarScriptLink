@@ -243,6 +243,20 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 return optionObject.Forms.Exists(f => f.FormId == formId);
             }
             /// <summary>
+            /// Returns whether the <see cref="RowObject"/> in the <see cref="OptionObject2015Decorator"/> is enabled by RowId.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <param name="rowId"></param>
+            /// <returns></returns>
+            public static bool IsRowPresent(OptionObject2015Decorator optionObject, string rowId)
+            {
+                if (optionObject.Forms == null)
+                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString("optionObjectMissingForms", CultureInfo.CurrentCulture));
+                if (string.IsNullOrEmpty(rowId))
+                    throw new ArgumentNullException(nameof(rowId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                return optionObject.Forms.Find(x => x.IsRowPresent(rowId)) != null;
+            }
+            /// <summary>
             /// Sets the FieldValue of a <see cref="FieldObject"/> in an <see cref="OptionObject2015Decorator"/> by FieldNumber.
             /// </summary>
             /// <param name="decorator"></param>

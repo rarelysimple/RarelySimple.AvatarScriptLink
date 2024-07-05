@@ -121,6 +121,13 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public bool IsFormPresent(string formId) => Helper.IsFormPresent(this, formId);
 
         /// <summary>
+        /// Returns whether the specified <see cref="RowObject"/> is present.
+        /// </summary>
+        /// <param name="rowId"></param>
+        /// <returns></returns>
+        public bool IsRowPresent(string rowId) => Helper.IsRowPresent(this, rowId);
+
+        /// <summary>
         /// Sets the FieldValue of a <see cref="FieldObject"/> in the <see cref="OptionObject2Decorator"/> on the first form CurrentRow.
         /// </summary>
         /// <param name="fieldNumber"></param>
