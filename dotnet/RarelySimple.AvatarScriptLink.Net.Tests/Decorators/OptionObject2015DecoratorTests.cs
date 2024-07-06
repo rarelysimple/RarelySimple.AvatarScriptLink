@@ -199,6 +199,43 @@ public class OptionObject2015DecoratorTests
 
     #endregion
 
+    #region GetCurrentRowId
+
+    [TestMethod]
+    public void TestOptionObject2015Decorator_GetCurrentRowId_Expected() {
+        var expected = "456||1";
+        RowObject rowObject = new() {
+            RowId = expected
+        };
+        FormObject formObject = new() {
+            FormId = "456",
+            CurrentRow = rowObject
+        };
+        OptionObject2015 optionObject = new() {
+            OptionId = "USER123",
+            Forms = [formObject]
+        };
+        OptionObject2015Decorator decorator = new(optionObject);
+        Assert.AreEqual(expected, decorator.GetCurrentRowId("456"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TestOptionObject2015Decorator_GetCurrentRowId_Exception() {
+        var expected = "456||1";
+        FormObject formObject = new() {
+            FormId = "456"
+        };
+        OptionObject2015 optionObject = new() {
+            OptionId = "USER123",
+            Forms = [formObject]
+        };
+        OptionObject2015Decorator decorator = new(optionObject);
+        Assert.AreEqual(expected, decorator.GetCurrentRowId("456"));
+    }
+
+    #endregion
+
     #region GetFieldValue
 
 

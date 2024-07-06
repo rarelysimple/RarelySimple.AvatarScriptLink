@@ -9,7 +9,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
 {
     public sealed partial class OptionObjectDecorator
     {
-        public class Helper : DecoratorHelper
+        private sealed class Helper : DecoratorHelper
         {
             private static readonly ResourceManager resourceManager = new ResourceManager("RarelySimple.AvatarScriptLink.Net.Localizations", Assembly.GetExecutingAssembly());
 
@@ -83,6 +83,23 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 return AddFormObject(optionObject, formObject);
             }
             /// <summary>
+            /// Gets the CurrentRow.RowId of the <see cref="FormObject"/> in the <see cref="OptionObjectDecorator"/> by FormId.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <param name="formId"></param>
+            /// <returns></returns>
+            public static string GetCurrentRowId(OptionObjectDecorator optionObject, string formId)
+            {
+                if (string.IsNullOrEmpty(formId))
+                    throw new ArgumentNullException(nameof(formId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                foreach (var formObject in optionObject.Forms)
+                {
+                    if (formObject.FormId == formId)
+                        return formObject.GetCurrentRowId();
+                }
+                throw new ArgumentException(resourceManager.GetString("noFormObjectsFoundByFormId", CultureInfo.CurrentCulture), nameof(optionObject));
+            }
+            /// <summary>
             /// Returns the FieldValue of a specified <see cref="FieldObject"/> in an <see cref="OptionObjectDecorator"/> by FieldNumber.
             /// </summary>
             /// <param name="optionObject"></param>
@@ -97,7 +114,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 var form = optionObject.Forms.Find(x => x.IsFieldPresent(fieldNumber));
                 if (form != null)
                 {
-                    return FormObjectDecorator.Helper.GetFieldValue(form, fieldNumber);
+                    return form.GetFieldValue(fieldNumber);
                 }
                 throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString(NoFieldObjectsFoundByFieldNumber, CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
@@ -122,7 +139,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 foreach (var form in optionObject.Forms)
                 {
                     if (form.FormId == formId)
-                        return FormObjectDecorator.Helper.GetFieldValue(form, rowId, fieldNumber);
+                        return form.GetFieldValue(rowId, fieldNumber);
                 }
                 throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString(NoFieldObjectsFoundByFieldNumber, CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
@@ -140,10 +157,10 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     throw new ArgumentNullException(nameof(formId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (optionObject.Forms == null)
                     throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
-                foreach (var formObject in optionObject.Forms)
+                foreach (var form in optionObject.Forms)
                 {
-                    if (formObject.FormId == formId)
-                        return FormObjectDecorator.Helper.GetMultipleIterationStatus(formObject);
+                    if (form.FormId == formId)
+                        return form.GetMultipleIterationStatus();
                 }
                 throw new FormObjectNotFoundException(string.Format(resourceManager.GetString(NoFormObjectsFoundByFormId, CultureInfo.CurrentCulture), formId), formId);
             }
@@ -164,7 +181,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 var form = optionObject.Forms.Find(x => x.IsFieldPresent(fieldNumber));
                 if (form != null)
                 {
-                    return FormObjectDecorator.Helper.IsFieldEnabled(form, fieldNumber);
+                    return form.IsFieldEnabled(fieldNumber);
                 }
                 throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString(NoFieldObjectsFoundByFieldNumber, CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
@@ -185,7 +202,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 var form = optionObject.Forms.Find(x => x.IsFieldPresent(fieldNumber));
                 if (form != null)
                 {
-                    return FormObjectDecorator.Helper.IsFieldLocked(form, fieldNumber);
+                    return form.IsFieldLocked(fieldNumber);
                 }
                 throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString(NoFieldObjectsFoundByFieldNumber, CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
@@ -222,7 +239,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 var form = optionObject.Forms.Find(x => x.IsFieldPresent(fieldNumber));
                 if (form != null)
                 {
-                    return FormObjectDecorator.Helper.IsFieldRequired(form, fieldNumber);
+                    return form.IsFieldRequired(fieldNumber);
                 }
                 throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString(NoFieldObjectsFoundByFieldNumber, CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
@@ -302,12 +319,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 for (int i = 0; i < decorator.Forms.Count; i++)
                 {
                     if (decorator.Forms[i].FormId == formId)
-                    {
-                        var formObject = FormObjectDecorator.Helper.SetFieldValue(decorator.Forms[i], rowId, fieldNumber, fieldValue);
-                        if (formObject.CurrentRow != null ||
-                            formObject.OtherRows.Count > 0)
-                            decorator.Forms[i] = formObject;
-                    }
+                        decorator.Forms[i].SetFieldValue(rowId, fieldNumber, fieldValue);
                 }
                 return decorator;
             }

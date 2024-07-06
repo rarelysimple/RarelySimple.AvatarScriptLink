@@ -118,6 +118,28 @@ public class FormObjectDecoratorTests
 
     #endregion
 
+    #region GetCurrentRowId
+
+    [TestMethod]
+    public void TestFormObjectDecorator_GetCurrentRowId_Expected() {
+        var expected = "456||1";
+        RowObject rowObject = new() {
+            RowId = expected
+        };
+        FormObjectDecorator decorator = FormObjectDecorator.Builder().FormId("456").CurrentRow(rowObject).Build();
+        Assert.AreEqual(expected, decorator.GetCurrentRowId());
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TestFormObjectDecorator_GetCurrentRowId_Exception() {
+        var expected = "456||1";
+        FormObjectDecorator decorator = FormObjectDecorator.Builder().FormId("456").Build();
+        Assert.AreEqual(expected, decorator.GetCurrentRowId());
+    }
+
+    #endregion
+
     #region GetFieldValue
 
     [TestMethod]

@@ -41,6 +41,12 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         }
 
         /// <summary>
+        /// Returns the RowId of the <see cref="CurrentRow"/>.
+        /// </summary>
+        /// <returns></returns>
+        public string GetCurrentRowId() => Helper.GetCurrentRowId(this);
+
+        /// <summary>
         /// Returns the value of the <see cref="FieldObject"/> in the CurrentRow of the <see cref="FormObject"/> by FieldNumber.
         /// </summary>
         /// <param name="fieldNumber"></param>

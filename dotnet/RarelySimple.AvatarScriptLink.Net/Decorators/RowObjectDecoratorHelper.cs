@@ -9,7 +9,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
 {
     public sealed partial class RowObjectDecorator
     {
-        public class Helper : DecoratorHelper
+        private sealed class Helper : DecoratorHelper
         {
             private static readonly ResourceManager resourceManager = new ResourceManager("RarelySimple.AvatarScriptLink.Net.Localizations", Assembly.GetExecutingAssembly());
 

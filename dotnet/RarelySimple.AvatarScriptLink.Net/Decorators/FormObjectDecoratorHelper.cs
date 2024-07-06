@@ -8,10 +8,21 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
 {
     public sealed partial class FormObjectDecorator
     {
-        public class Helper : DecoratorHelper
+        private sealed class Helper : DecoratorHelper
         {
             private static readonly ResourceManager resourceManager = new ResourceManager("RarelySimple.AvatarScriptLink.Net.Localizations", Assembly.GetExecutingAssembly());
 
+            /// <summary>
+            /// Gets the CurrentRow.RowId of the <see cref="FormObjectDecorator"/>.
+            /// </summary>
+            /// <param name="formObject"></param>
+            /// <returns></returns>
+            public static string GetCurrentRowId(FormObjectDecorator formObject)
+            {
+                if (formObject.CurrentRow == null)
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
+                return formObject.CurrentRow.RowId;
+            }
             /// <summary>
             /// Returns the FieldValue of a <see cref="FieldObjectDecorator"/> in the curent row of a <see cref="FormObjectDecorator"/> by FieldNumber.
             /// </summary>
@@ -40,11 +51,11 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (formObject.CurrentRow.RowId == rowId)
-                    return RowObjectDecorator.Helper.GetFieldValue(formObject.CurrentRow, fieldNumber);
+                    return formObject.CurrentRow.GetFieldValue(fieldNumber);
                 foreach (RowObjectDecorator rowObject in formObject.OtherRows)
                 {
                     if (rowObject.RowId == rowId)
-                        return RowObjectDecorator.Helper.GetFieldValue(rowObject, fieldNumber);
+                        return rowObject.GetFieldValue(fieldNumber);
                 }
                 throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString(NoFieldObjectsFoundByFieldNumber, CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
@@ -73,7 +84,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(FormObjectMissingCurrentRow, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-                return RowObjectDecorator.Helper.IsFieldEnabled(formObject.CurrentRow, fieldNumber);
+                return formObject.CurrentRow.IsFieldEnabled(fieldNumber);
             }
             /// <summary>
             /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="FormObjectDecorator"/> is locked by FieldNumber.
@@ -89,7 +100,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(FormObjectMissingCurrentRow, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-                return RowObjectDecorator.Helper.IsFieldLocked(formObject.CurrentRow, fieldNumber);
+                return formObject.CurrentRow.IsFieldLocked(fieldNumber);
             }
             /// <summary>
             /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="FormObjectDecorator"/> is present by FieldNumber.
@@ -105,7 +116,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (decorator.CurrentRow == null)
                     return false;
-                return RowObjectDecorator.Helper.IsFieldPresent(decorator.CurrentRow, fieldNumber);
+                return decorator.CurrentRow.IsFieldPresent(fieldNumber);
             }
             /// <summary>
             /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="FormObjectDecorator"/> is required by FieldNumber.
@@ -121,7 +132,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(FormObjectMissingCurrentRow, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-                return RowObjectDecorator.Helper.IsFieldRequired(formObject.CurrentRow, fieldNumber);
+                return formObject.CurrentRow.IsFieldRequired(fieldNumber);
             }
             /// <summary>
             /// Returns whether the <see cref="RowObjectDecorator"/> in the <see cref="FormObjectDecorator"/> is enabled by RowId.
@@ -180,7 +191,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (decorator.CurrentRow.RowId == rowId)
                 {
-                    decorator.CurrentRow = RowObjectDecorator.Helper.SetFieldValue(decorator.CurrentRow, fieldNumber, fieldValue);
+                    decorator.CurrentRow.SetFieldValue(fieldNumber, fieldValue);
                     return decorator;
                 }
                 if (decorator.MultipleIteration)
@@ -189,7 +200,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     {
                         if (decorator.OtherRows[i].RowId == rowId)
                         {
-                            decorator.OtherRows[i] = RowObjectDecorator.Helper.SetFieldValue(decorator.OtherRows[i], fieldNumber, fieldValue);
+                            decorator.OtherRows[i].SetFieldValue(fieldNumber, fieldValue);
                             return decorator;
                         }
                     }
