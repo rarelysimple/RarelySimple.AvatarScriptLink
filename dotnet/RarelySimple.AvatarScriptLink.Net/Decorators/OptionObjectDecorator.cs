@@ -62,6 +62,13 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public void AddFormObject(string formId, bool multipleIteration) => Forms = Helper.AddFormObject(this, formId, multipleIteration).Forms;
 
         /// <summary>
+        /// Returns the CurrentRow RowId of the form matching the FormId.
+        /// </summary>
+        /// <param name="formId"></param>
+        /// <returns></returns>
+        public string GetCurrentRowId(string formId) => Helper.GetCurrentRowId(this, formId);
+
+        /// <summary>
         /// Returns the first value of the field matching the Field Number.
         /// </summary>
         /// <param name="fieldNumber"></param>
