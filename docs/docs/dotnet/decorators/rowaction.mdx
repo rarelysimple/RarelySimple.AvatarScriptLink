@@ -1,0 +1,20 @@
+---
+title: RowAction
+image: ./RowAction.png
+sidebar_position: 8
+---
+
+# RowAction
+
+The RowAction class is used to help you return valid RowAction values to myAvatar.
+These values instruct myAvatar to add, edit, or delete a RowObject upon receipt of the response from the ScriptLink API.
+
+AvatarScriptLink.NET will set this value for you automatically when using the library's methods.
+However, if you modify a FormObject or a FieldObject's properties directly then you will need to remember to set the RowObject.RowAction as well.
+
+| Action           | myAvatar Value | Description                                                     |
+|:-----------------|:---------------|:----------------------------------------------------------------|
+| RowAction.Add    | "ADD"          | Instructs myAvatar to add this RowObject to form.               |
+| RowAction.Delete | "DELETE"       | Instructs myAvatar to remve this RowObject from the form.       |
+| RowAction.Edit   | "EDIT"         | Instructs myAvatar to edit this RowObject on the form.          |
+| RowAction.None   | ""             | (default) Instructs myAvatar to do nothing to this RowObject. |

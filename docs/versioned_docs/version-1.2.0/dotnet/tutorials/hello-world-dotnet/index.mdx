@@ -67,24 +67,20 @@ You will need the following to complete this tutorial:
 
 We will add two NuGet packages to our project.
 
-* [RarelySimple.AvatarScriptLink.Net](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink.Net)
-* [RarelySimple.AvatarScriptLink.Services](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink.Services)
+* [RarelySimple.AvatarScriptLink](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink)
 * [SoapCore](https://www.nuget.org/packages/SoapCore)
 
 <Tabs groupId="ide" queryString="ide">
     <TabItem value="vs" label="Visual Studio" default>
         1. Right-click on the soution in Solution Explorer and select **Manage NuGet Packages for Solution...**.
-        2. Select Browse and search for *AvatarScriptLink*.
-        3. Select `RarelySimple.AvatarScriptLink.Net` by Scott Olson Jr and install this in your project.
-        4. Select `RarelySimple.AvatarScriptLink.Services` by Scott Olson Jr and install this in your project.
-        5. Select Browse and search for *SoapCore*. Select `SoapCore` by Digital Design and install this in your project.
-        6. Select the Install tab, clear the search text and confirm you now have two packages installed in your project.
+        2. Select Browse and search for *AvatarScriptLink*. Select RarelySimple.AvatarScriptLink by Scott Olson Jr and install this in your project.
+        3. Select Browse and search for *SoapCore*. Select SoapCore by Digital Design and install this in your project.
+        4. Select the Install tab, clear the search text and confirm you now have two packages installed in your project.
     </TabItem>
     <TabItem value="code" label="Visual Studio Code">
         1. Change to the project directory.
-        2. Select View > Terminal (Ctrl + `) to show the Terminal.
-        2. Install RarelySimple.AvatarScriptLink.Net with `dotnet add package RarelySimple.AvatarScriptLink.Net`.
-        2. Install RarelySimple.AvatarScriptLink.Services with `dotnet add package RarelySimple.AvatarScriptLink.Services`.
+        2. Select View > Terminal (Ctrl +`) to show the Terminal.
+        2. Install RarelySimple.AvatarScriptLink with `dotnet add package RarelySimple.AvatarScriptLink`.
         3. Install SoapCore with `dotnet add package SoapCore`.
         ```bash
         cd ScriptLinkHelloWorldDemo
@@ -94,6 +90,29 @@ We will add two NuGet packages to our project.
     </TabItem>
 </Tabs>
 
+## Create the Service Contract
+
+1. Add a new class to your project named *IScriptLinkService2015*.
+2. Implement the *GetVersion* and *RunScript* operation contracts as shown below.
+
+```cs title="/IScriptLinkService2015.cs"
+using RarelySimple.AvatarScriptLink.Objects;
+using System.ServiceModel;
+
+namespace ScriptLinkHelloWorldDemo
+{
+    [ServiceContract]
+    public interface IScriptLinkService
+    {
+        [OperationContract]
+        string GetVersion();
+
+        [OperationContract]
+        OptionObject RunScript(OptionObject optionObject, string parameter);
+    }
+}
+```
+
 ## Create ScriptLink Service
 
 1. Add a new class to your project named *ScriptLinkService*.
@@ -101,9 +120,7 @@ We will add two NuGet packages to our project.
 3. Implement the *GetVersion* and *RunScript* methods as shown below.
 
 ```cs title="/ScriptLinkService.cs"
-using RarelySimple.AvatarScriptLink.Net.Decorators;
 using RarelySimple.AvatarScriptLink.Objects;
-using RarelySimple.AvatarScriptLink.Services;
 
 namespace ScriptLinkHelloWorldDemo
 {
@@ -116,11 +133,7 @@ namespace ScriptLinkHelloWorldDemo
 
         public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameter)
         {
-            var decorator = new OptionObject2015(optionObject);
-            return decorator.Return()
-                .WithErrorCode(ErrorCode.Alert)
-                .WithErrorMesg("Hello World!")
-                .AsOptionObject2015();
+            return optionObject.ToReturnOptionObject(ErrorCode.Alert, "Hello World!");
         }
     }
 }
@@ -150,7 +163,7 @@ app.UseRouting();
 app.UseEndpoints(endpoints =>
 {
     _ = endpoints.UseSoapEndpoint<IScriptLinkService>("/ScriptLinkService.asmx", new SoapEncoderOptions(), SoapSerializer.XmlSerializer);
-    // Alternative
+    // Optional Alternative
     // _ = endpoints.UseSoapEndpoint<IScriptLinkService>("/ScriptLinkService.svc", new SoapEncoderOptions(), SoapSerializer.DataContractSerializer);
 });
 // highlight-end

@@ -26,6 +26,22 @@ class FieldObject {
     +Equals(object) bool
     +GetHashCode() int
     +Initialize() FieldObject
+    +IsEnabled() bool
+    +IsLocked() bool
+    +IsModified() bool
+    +IsRequired() bool
+    +SetAsDisabled()
+    +SetAsEnabled()
+    +SetAsLocked()
+    +SetAsModified()
+    +SetAsOptional()
+    +SetAsRequired()
+    +SetAsUnlocked()
+    +SetFieldValue(string)
+    +ToHtmlString() string
+    +ToHtmlString(bool) string
+    +ToJson() string
+    +ToXml() string
 }
 ```
 
@@ -41,11 +57,26 @@ class FieldObject {
 
 ## Methods
 
-| Method       | Description |
-|:-------------|:------------|
-| Builder()    | Initializes a builder for constructing a FieldObject. |
-| Clone()      | Creates a copy of the FieldObject.                    |
+| Method        | Description |
+|:----------------|:------------|
+| Builder() | Initializes a builder for constructing a FieldObject. |
+| Clone() | Creates a copy of the FieldObject. |
+| GetFieldValue() | Returns the FieldValue of a FieldObject. |
 | Initialize() | Initializes an empty FieldObject. This FieldObject will be disabled, unlocked, and not required upon initialization. |
+| IsEnabled() | Returns whether the FieldObject is enabled. |
+| IsLocked() | Returns whether the FieldObject is locked. |
+| IsModified() | Returns whether the FieldObject has been modified. |
+| IsRequired() | Returns whether the FieldObject is required. | 
+| SetAsDisabled() | Sets FieldObject as disabled and marks the FieldObject as modified. |
+| SetAsEnabled() | Sets FieldObject as enabled and marks the FieldObject as modified. |
+| SetAsLocked() | Sets FieldObject as locked and marks the FieldObject as modified. |
+| SetAsModified() | Sets FieldObject as modified. |
+| SetAsRequired() | Sets FieldObject as required and marks the FieldObject as modified. |
+| SetAsUnlocked() | Sets FieldObject as unlocked and marks the FieldObject as modified. |
+| SetFieldValue(string) | Sets the FieldValue of a FieldObject and marks the FieldObject as modified. |
+| ToHtmlString(bool) | Returns the FieldObject as an HTML string. The `<html>`, `<head>`, and `<body>` tags can be included if desired. |
+| ToJson() | Returns the FieldObject as a JSON string. |
+| ToXml() | Returns the FieldObject as an XML string. |
 
 ## Examples
 
@@ -116,10 +147,8 @@ classDiagram
 class FieldObject {
     +Builder() FieldObjectBuilder
     +Clone() FieldObject
-    +Equals(FieldObject) bool
-    +Equals(object) bool
-    +GetHashCode() int
     +Initialize() FieldObject
+    +ToXml() string
 }
 
 class FieldObjectBase {
@@ -128,41 +157,55 @@ class FieldObjectBase {
     +string FieldValue
     +string Lock
     +string Required
+    +bool Modified
+    -string _enabled
+    -string _fieldNumber
+    -string _fieldValue
+    -string _locked
+    -bool _modified
+    -string _required
+    -string OriginalEnabled
+    -string OriginalFieldNumber
+    -string OriginalLocked
+    -string OriginalLocked
+    -string OriginalRequired
+    +Clone() FieldObjectBase
+    +Equals(FieldObjectBase) bool
+    +Equals(object) bool
+    +GetHashCode() int
     +IsEnabled() bool
     +IsLocked() bool
+    +IsModified() bool
     +IsRequired() bool
+    +SetAsDisabled()
+    +SetAsEnabled()
+    +SetAsLocked()
+    +SetAsModified()
+    +SetAsOptional()
+    +SetAsRequired()
+    +SetAsUnlocked()
+    +SetFieldValue(string)
+    +ToHtmlString() string
+    +ToHtmlString(bool) string
+    +ToJson() string
+    +ToXml() string
 }
 <<abstract>> FieldObjectBase
-
-class ObjectBase {
-    +Clone() object
-}
-<<abstract>> ObjectBase
-
-class ICloneable {
-    +Clone() object
-}
-<<interface>> ICloneable
 
 class IFieldObject {
     string Enabled
     string FieldName
     string FieldValue
     string Lock
+    bool Modified
     string Required
 }
 <<interface>> IFieldObject
 
-class IEquatable~FieldObject~ {
-    +Equals(FormObject) bool
-    +Equals(object) bool
-    +GetHashCode() int
-}
-<<interface>> IEquatable~FieldObject~
+class IEquatable~FieldObjectBase~
+<<interface>> IEquatable~FieldObjectBase~
 
 FieldObject --|> FieldObjectBase : inherits
-FieldObject --|> IEquatable~FieldObject~ : inherits
-FieldObjectBase --|> ObjectBase : inherits
+FieldObjectBase --|> IEquatable~FieldObjectBase~ : inherits
 FieldObjectBase --|> IFieldObject : inherits
-ObjectBase --|> ICloneable : inherits
 ```

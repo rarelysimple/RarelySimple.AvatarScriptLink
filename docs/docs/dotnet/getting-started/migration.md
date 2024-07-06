@@ -2,6 +2,7 @@
 title: Migrating to AvatarScriptLink.NET v2 
 image: ./migration-to-v2.png
 sidebar_position: 10
+sidebar_label: Migration
 ---
 
 # Migrating to v2
@@ -19,7 +20,7 @@ If you are migrating from version 1, please review the changes below.
 ### NuGet package has changed
 
 In version 1, the NuGet package was named `RarelySimple.AvatarScriptLink`.
-With version 2, we have split this package to better support a greater variety of use cases and better support .NET 8 and later solutions.
+With version 2, we have split this package to better support a greater variety of use cases and better support solutions built with .NET 8 and later.
 
 The simplest option is to replace the `RarelySimple.AvatarScriptLink` package with `RarelySimple.AvatarScriptLink.Net`.
 
@@ -28,7 +29,7 @@ dotnet remove package RarelySimple.AvatarScriptLink
 dotnet add package RarelySimple.AvatarScriptLink.Net --version 2.0.0
 ```
 
-If your use case only uses the objects and none of the helper methods, you may be able to get by with just using the `RarelySimple.AvatarScriptLink.Objects` package. This is rare.
+If your use case only uses the objects and none of the helper methods, you may be able to get by with just using the `RarelySimple.AvatarScriptLink.Objects` package. This is uncommon but a use case this new version is intended to better support.
 
 ### Helper methods are no longer available on the native objects
 
@@ -39,12 +40,12 @@ The helper methods are still available for use but the implementation is a littl
 To use the helper methods in version consider this example v1 implementation:
 
 ```cs
-public OptionObject2015 RunScript(OptionObject2015 _optionObject2015, string paramter)
+public OptionObject2015 RunScript(OptionObject2015 optionObject2015, string paramter)
 {
     var fieldNumber = "123.45";
-    if (_optionObject2015.IsFieldPresent(fieldNumber))
-        _optionObject2015.SetFieldObject(fieldNumber, "default value");
-    return _optionObject2015.ToReturnOptionObject();
+    if (optionObject2015.IsFieldPresent(fieldNumber))
+        optionObject2015.SetFieldObject(fieldNumber, "default value");
+    return optionObject2015.ToReturnOptionObject();
 }
 ```
 
@@ -52,9 +53,9 @@ To migrate to v2 create a new `OptionObject2015Decorator` (wrapper class) using 
 You will then read and modify the objectObject using the decorator.
 
 ```cs
-public OptionObject2015 RunScript(OptionObject2015 _optionObject2015, string paramter)
+public OptionObject2015 RunScript(OptionObject2015 optionObject2015, string paramter)
 {
-    var decorator = new OptionObject2015Decorator(_optionObject2015);
+    var decorator = new OptionObject2015Decorator(optionObject2015);
 
     var fieldNumber = "123.45";
     if (decorator.IsFieldPresent(fieldNumber))
@@ -66,7 +67,7 @@ public OptionObject2015 RunScript(OptionObject2015 _optionObject2015, string par
 If you were using the `Clone()` method to leave the received OptionObject2015 intact then you can just replace your clone line with the new decorator constructor line.
 
 ```cs
-// var clone = _optionObject2015.Clone();
+// var clone = optionObject2015.Clone();
 var clone = new OptionObject2015Decorator(_optionObject2015);
 // rest of implementation
 ```
