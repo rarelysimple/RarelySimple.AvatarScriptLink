@@ -1,0 +1,22 @@
+---
+title: ErrorCode
+image: ./ErrorCode.png
+sidebar_position: 7
+---
+
+# ErrorCode
+
+Avatar ScriptLink APIs must respond with an ErrorCode (i.e., Status Code).
+The valid codes are defined by myAvatar and are listed below with their helper class equivalents.
+
+The helper class is designed to help your code remain readable even to new developer who have never worked with Avatar ScriptLink before.
+
+| myAvatar ErrorCode | Available ErrorCodes | Description |
+|:-------------------|:---------------------|:------------|
+| 0 | `None`, `Success`                | Indicates that the request was successful and no prompts are required. |
+| 1 | `Error`                          | Indicates an error occurred, a notice should be displayed, and processing should be aborted. |
+| 2 | `OkCancel`, `Warning`            | Indicates a business error occurred and the user should be prompted whether to abort processing as a result. |
+| 3 | `Info`, `Informational`, `Alert` | Indicates the request was successful a message should be displayed to the user. |
+| 4 | `YesNo`, `Confirm`               | Indicates a business error occurred and the user should be prompted whether to abort processing as a result. |
+| 5 | `OpenUrl`                        | Indicates that myAvatar should launch the URL passed in the ErrorMesg. |
+| 6 | `OpenForm`                       | Indicates that myAvatar should launch the myAvatar form specified in the ErrorMesg. |

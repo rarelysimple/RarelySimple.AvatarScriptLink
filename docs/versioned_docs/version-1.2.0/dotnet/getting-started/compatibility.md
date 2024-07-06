@@ -8,22 +8,6 @@ sidebar_position: 2
 
 AvatarScriptLink.NET is built on .NET Standard 2.0. to support the widest range of .NET Framework, .NET, and Windows Server versions and features.
 
-## .NET and .NET Core
-
-AvatarScriptLink.NET is compatible with .NET and .NET Core.
-
-| .NET        | Compatible |
-|:------------|:-----------|
-| 8.0         | Yes        |
-| 7.0         | Yes        |
-| 6.0         | Yes        |
-| 5.0         | Yes        |
-| 3.1  (Core) | Yes        |
-| 3.0  (Core) | Yes        |
-| 2.1  (Core) | Yes        |
-| 2.0  (Core) | Yes        |
-| 1.0  (Core) | Yes        |
-
 ## .NET Framework
 
 .NET Standard 2.0 libraries are compatible with the following [.NET Framework versions](https://docs.microsoft.com/en-us/dotnet/framework/).
@@ -42,6 +26,22 @@ AvatarScriptLink.NET is compatible with .NET and .NET Core.
 For .NET Framework v.4.6.1 projects, the recommendation is to upgrade to version 4.7.2 or higher due to several issue with consuming .NET Standard libraries. The AvatarScriptLink.NET NuGet package includes a version that specifically targets v.4.6.1 to address these issues if upgrading is not currently an option.
 
 Check out the Microsoft Docs for more information on [.NET Standard compatibility](https://docs.microsoft.com/en-us/dotnet/standard/net-standard).
+
+## .NET and .NET Core
+
+AvatarScriptLink.NET is compatible with .NET and .NET Core.
+
+| .NET        | Compatible |
+|:------------|:-----------|
+| 8.0         | Yes        |
+| 7.0         | Yes        |
+| 6.0         | Yes        |
+| 5.0         | Yes        |
+| 3.1  (Core) | Yes        |
+| 3.0  (Core) | Yes        |
+| 2.1  (Core) | Yes        |
+| 2.0  (Core) | Yes        |
+| 1.0  (Core) | Yes        |
 
 
 ## Windows Server

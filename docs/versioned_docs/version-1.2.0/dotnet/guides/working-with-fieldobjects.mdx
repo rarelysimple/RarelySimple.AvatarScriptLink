@@ -1,0 +1,99 @@
+---
+title: Working with FieldObjects
+image: ./WorkingWithFieldObjects.png
+sidebar_position: 3
+---
+
+Nearly all ScriptLink use cases invlove working with [FieldObjects](../data-model/fieldobject.mdx) whether reading, setting, or modifying.
+The AvatarScriptLink.NET library helps with these very common tasks.
+
+## Read the Value
+
+The `GetFieldObject` method will return the FieldValue from the matching FieldObject in the CurrentRow.
+
+```cs title="Read the Value of a FieldObject"
+var clone = _optionObject.Clone();
+
+string fieldValue = clone.GetFieldValue("123.45");
+
+return clone.ToReturnOptionObject();
+```
+
+## Set the Value
+
+When setting the value of a [FieldObject](../data-model/fieldobject.mdx) the `SetFieldObject` method will also update the [RowAction](../data-model/rowaction.mdx) to `EDIT` for you.
+
+```cs title="Read a FieldValue"
+var clone = _optionObject.Clone();
+
+clone.SetFieldValue("123.45", "My new value.");
+
+return clone.ToReturnOptionObject();
+```
+
+## Verify Presence
+
+The `IsFieldPresent` can be used to assist with validation and unit testing.
+
+```cs title="Verify a Field is Present before Modification"
+var clone = _optionObject.Clone();
+
+string fieldNumber = "123.45";
+if (clone.IsFieldPresent(fieldNumber))
+    clone.SetFieldValue(fieldNumber, "My new value.");
+
+return clone.ToReturnOptionObject();
+```
+
+## Set Statuses
+
+There are three different statuses that can be set on a [FieldObject](../data-model/fieldobject.mdx): `Enabled`, `Locked`, and `Required`.
+
+```cs title="Set/Change the Status of a FieldObject"
+var clone = _optionObject.Clone();
+
+string fieldNumber = "123.45";
+
+clone.SetEnabledField(fieldNumber)      // or clone.SetDisabledField(fieldNumber)
+clone.SetLockedField(fieldNumber)       // or clone.SetUnlockedField(fieldNumber)
+clone.SetRequiredField(fieldNumber);    // or clone.SetOptionalField(fieldNumber)
+
+return clone.ToReturnOptionObject();
+```
+
+You can also set the status of multiple [FieldObjects](../data-model/fieldobject.mdx) in a single request.
+
+```cs title="Set/Change the Status of a FieldObject"
+var clone = _optionObject.Clone();
+
+List<string> fieldNumbers = new List<string>() {
+    "123.45",
+    "123.46",
+    "123.54"
+};
+
+clone.SetEnabledFields(fieldNumbers)     // or clone.SetDisabledFields(fieldNumbers)
+clone.SetLockedFields(fieldNumbers)      // or clone.SetUnlockedFields(fieldNumbers)
+clone.SetRequiredFields(fieldNumbers);   // or clone.SetOptionalFields(fieldNumbers)
+
+return clone.ToReturnOptionObject();
+```
+
+## Verify Statuses
+
+There are also helper methods to help verify the current state of a [FieldObject](../data-model/fieldobject.mdx).
+
+* `IsFieldEnabled`
+* `IsFieldLocked`
+* `IsFieldRequired`
+
+```cs title="Verify the Status of a FieldObject"
+var clone = _optionObject.Clone();
+
+string fieldNumber = "123.45";
+
+if (!clone.IsFieldRequired(fieldNumber))
+    clone.SetRequiredField(fieldNumber);
+
+return clone.ToReturnOptionObject();
+```

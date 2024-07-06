@@ -26,7 +26,8 @@ const sidebars = {
         label: 'Getting Started',
         items: [
             'dotnet/getting-started/installation',
-            'dotnet/getting-started/compatibility'
+            'dotnet/getting-started/compatibility',
+            'dotnet/getting-started/migration'
         ]
     },
     {
@@ -43,6 +44,22 @@ const sidebars = {
             'dotnet/data-model/fieldobject',
             'dotnet/data-model/errorcode',
             'dotnet/data-model/rowaction'
+        ]
+    },
+    {
+        type: 'category',
+        label: 'Decorators',
+        link: {
+            type: 'doc',
+            id: 'dotnet/decorators/README'
+        },
+        items: [
+            'dotnet/decorators/optionobject2015',
+            'dotnet/decorators/formobject',
+            'dotnet/decorators/rowobject',
+            'dotnet/decorators/fieldobject',
+            'dotnet/decorators/errorcode',
+            'dotnet/decorators/rowaction'
         ]
     },
     {

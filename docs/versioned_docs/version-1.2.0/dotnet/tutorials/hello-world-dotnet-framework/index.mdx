@@ -42,10 +42,10 @@ When using Visual Studio you will want the following workloads and components in
 
 We will add the RarelySimple.AvatarScriptLink package to our project.
 
-* [RarelySimple.AvatarScriptLink.Net](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink.Net)
+* [RarelySimple.AvatarScriptLink](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink)
 
 1. Right-click on the soution in Solution Explorer and select **Manage NuGet Packages for Solution...**.
-2. Select Browse and search for *AvatarScriptLink*. Select `RarelySimple.AvatarScriptLink.Net` by Scott Olson Jr and install this in your project.
+2. Select Browse and search for *AvatarScriptLink*. Select RarelySimple.AvatarScriptLink by Scott Olson Jr and install this in your project.
 3. Select the Install tab, clear the search text and confirm you now have the package installed in your project.
 
 ## Create ScriptLink Service
@@ -56,7 +56,6 @@ We will add the RarelySimple.AvatarScriptLink package to our project.
 4. Implement the *GetVersion* and *RunScript* methods as shown below.
 
 ```cs title="/api/ScriptLinkService.asmx"
-using RarelySimple.AvatarScriptLink.Net.Decorators;
 using RarelySimple.AvatarScriptLink.Objects;
 using System.Web.Services;
 
@@ -79,11 +78,7 @@ namespace ScriptLinkHelloWorldDemo.api
         [WebMethod]
         public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameter)
         {
-            var decorator = new OptionObject2015(optionObject);
-            return decorator.Return()
-                .WithErrorCode(ErrorCode.Alert)
-                .WithErrorMesg("Hello World!")
-                .AsOptionObject2015();
+            return optionObject.ToReturnOptionObject(ErrorCode.Alert, "Hello World!");
         }
     }
 }
