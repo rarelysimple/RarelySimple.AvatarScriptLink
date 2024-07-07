@@ -45,24 +45,5 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced.Abstracts
         }
 
         #endregion
-
-        #region Public Methods
-
-        public bool IsEnabled()
-        {
-            return Enabled == "1";
-        }
-
-        public bool IsLocked()
-        {
-            return Lock == "1";
-        }
-
-        public bool IsRequired()
-        {
-            return Required == "1";
-        }
-
-        #endregion
     }
 }

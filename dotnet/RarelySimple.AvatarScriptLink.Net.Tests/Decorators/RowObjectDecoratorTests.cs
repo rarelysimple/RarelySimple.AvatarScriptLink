@@ -1,6 +1,7 @@
 ﻿using RarelySimple.AvatarScriptLink.Net.Decorators;
 using RarelySimple.AvatarScriptLink.Net.Exceptions;
 using RarelySimple.AvatarScriptLink.Objects;
+using static RarelySimple.AvatarScriptLink.Objects.RowObject;
 
 namespace RarelySimple.AvatarScriptLink.Net.Tests.Decorators;
 
@@ -105,33 +106,6 @@ public class RowObjectDecoratorTests
         Assert.AreEqual(expected, decorator.GetFieldValue(fieldNumber));
         Assert.AreEqual(expected.GetType(), decorator.GetFieldValue(fieldNumber).GetType());
     }
-
-    // [TestMethod]
-    // [ExpectedException(typeof(ArgumentException))]
-    // public void GetFieldValueRowObjectMissingFieldReturnsError()
-    // {
-    //     FieldObject fieldObject1 = new FieldObject("123", "TEST");
-    //     RowObject rowObject1 = new RowObject("1||1");
-    //     FieldObject fieldObject2 = new FieldObject("123", "TESTED");
-    //     RowObject rowObject2 = new RowObject("1||2");
-    //     rowObject1.Fields.Add(fieldObject1);
-    //     rowObject2.Fields.Add(fieldObject2);
-    //     string expected1 = "TEST";
-    //     string expected2 = "TESTED";
-    //     Assert.AreEqual(expected1, rowObject1.GetFieldValue("124"));
-    //     Assert.AreEqual(expected2, rowObject2.GetFieldValue("124"));
-    // }
-
-    // [TestMethod]
-    // [ExpectedException(typeof(ArgumentNullException))]
-    // public void GetFieldValueRowObjectNullReturnsError()
-    // {
-    //     RowObject rowObject = null;
-    //     string expected1 = "TEST";
-    //     string expected2 = "TESTED";
-    //     Assert.AreEqual(expected1, rowObject.GetFieldValue("124"));
-    //     Assert.AreEqual(expected2, rowObject.GetFieldValue("124"));
-    // }
 
     #endregion
 

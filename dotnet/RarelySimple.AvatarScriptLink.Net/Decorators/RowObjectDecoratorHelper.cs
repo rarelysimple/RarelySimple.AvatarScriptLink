@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Resources;
 using RarelySimple.AvatarScriptLink.Net.Exceptions;
 using RarelySimple.AvatarScriptLink.Objects;
+using static RarelySimple.AvatarScriptLink.Objects.RowObject;
 
 namespace RarelySimple.AvatarScriptLink.Net.Decorators
 {

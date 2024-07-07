@@ -1,6 +1,7 @@
 ﻿using RarelySimple.AvatarScriptLink.Net.Decorators;
 using RarelySimple.AvatarScriptLink.Net.Exceptions;
 using RarelySimple.AvatarScriptLink.Objects;
+using static RarelySimple.AvatarScriptLink.Objects.RowObject;
 
 namespace RarelySimple.AvatarScriptLink.Net.Tests.Decorators;
 
@@ -1136,7 +1137,7 @@ public class OptionObject2015DecoratorTests
         var rowObject2 = new RowObject()
         {
             RowId = "456||2",
-            RowAction = RowAction.Delete
+            RowAction = RowActions.Delete
         };
         var formObject = new FormObject()
         {
@@ -1166,7 +1167,7 @@ public class OptionObject2015DecoratorTests
         var rowObject2 = new RowObject()
         {
             RowId = "456||2",
-            RowAction = RowAction.Delete
+            RowAction = RowActions.Delete
         };
         var formObject = new FormObject()
         {
