@@ -93,6 +93,13 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public bool GetMultipleIterationStatus(string formId) => Helper.GetMultipleIterationStatus(this, formId);
 
         /// <summary>
+        /// Returns the CurrentRow ParentRowId of the form matching the FormId.
+        /// </summary>
+        /// <param name="formId"></param>
+        /// <returns></returns>
+        public string GetParentRowId(string formId) => Helper.GetParentRowId(this, formId);
+
+        /// <summary>
         /// Returns whether the specified field is enabled.
         /// </summary>
         /// <param name="fieldNumber"></param>

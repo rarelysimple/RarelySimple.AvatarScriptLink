@@ -68,6 +68,12 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public bool GetMultipleIterationStatus() => Helper.GetMultipleIterationStatus(this);
 
         /// <summary>
+        /// Returns the ParentRowId of the <see cref="CurrentRow"/>.
+        /// </summary>
+        /// <returns></returns>
+        public string GetParentRowId() => Helper.GetParentRowId(this);
+
+        /// <summary>
         /// Determines whether the <see cref="FieldObject"/> is enabled in the <see cref="FormObject"/> by FieldNumber.
         /// </summary>
         /// <param name="fieldNumber"></param>
