@@ -277,6 +277,18 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 return optionObject.Forms.Exists(f => f.FormId == formId);
             }
             /// <summary>
+            /// Returns whether the <see cref="RowObject"/> in an <see cref="OptionObject"/> is marked for deletion by RowId.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <param name="rowId"></param>
+            /// <returns></returns>
+            public static bool IsRowMarkedForDeletion(OptionObjectDecorator optionObject, string rowId)
+            {
+                if (string.IsNullOrEmpty(rowId))
+                    throw new ArgumentNullException(nameof(rowId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                return optionObject.Forms.Find(f => f.IsRowMarkedForDeletion(rowId)) != null;
+            }
+            /// <summary>
             /// Returns whether the <see cref="RowObject"/> in the <see cref="OptionObjectDecorator"/> is enabled by RowId.
             /// </summary>
             /// <param name="optionObject"></param>

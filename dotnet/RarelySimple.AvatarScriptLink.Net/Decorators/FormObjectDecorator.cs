@@ -102,6 +102,13 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public bool IsFieldRequired(string fieldNumber) => Helper.IsFieldRequired(this, fieldNumber);
 
         /// <summary>
+        /// Determines whether the <see cref="RowObject"/> is marked for deletion in the <see cref="FormObject"/> by RowId.
+        /// </summary>
+        /// <param name="fieldNumber"></param>
+        /// <returns></returns>
+        public bool IsRowMarkedForDeletion(string rowId) => Helper.IsRowMarkedForDeletion(this, rowId);
+
+        /// <summary>
         /// Determines whether the <see cref="RowObject"/> is present in the <see cref="FormObject"/> by RowId.
         /// </summary>
         /// <param name="fieldNumber"></param>
