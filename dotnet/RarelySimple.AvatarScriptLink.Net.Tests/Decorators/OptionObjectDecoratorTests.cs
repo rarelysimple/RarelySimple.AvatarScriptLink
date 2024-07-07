@@ -426,6 +426,61 @@ public class OptionObjectDecoratorTests
 
     #endregion
 
+    #region GetParentRowId
+
+    [TestMethod]
+    public void TestOptionObjectDecorator_GetParentRowId_Expected() {
+        var expected = "456||1";
+        RowObject rowObject = new() {
+            RowId = "456||3",
+            ParentRowId = expected
+        };
+        FormObject formObject = new() {
+            FormId = "456",
+            CurrentRow = rowObject
+        };
+        OptionObject optionObject = new() {
+            OptionId = "USER123",
+            Forms = [formObject]
+        };
+        OptionObjectDecorator decorator = new(optionObject);
+        Assert.AreEqual(expected, decorator.GetParentRowId("456"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TestOptionObjectDecorator_GetParentRowId_Exception() {
+        var expected = "456||1";
+        FormObject formObject = new() {
+            FormId = "456"
+        };
+        OptionObject optionObject = new() {
+            OptionId = "USER123",
+            Forms = [formObject]
+        };
+        OptionObjectDecorator decorator = new(optionObject);
+        Assert.AreEqual(expected, decorator.GetParentRowId("456"));
+    }
+
+    [TestMethod]
+    public void TestOptionObjectDecorator_GetParentRowId_Null() {
+        RowObject rowObject = new() {
+            RowId = "456||3",
+        };
+        FormObject formObject = new() {
+            FormId = "456",
+            CurrentRow = rowObject
+        };
+        OptionObject optionObject = new() {
+            OptionId = "USER123",
+            Forms = [formObject]
+        };
+        OptionObjectDecorator decorator = new(optionObject);
+        Assert.IsNull(decorator.GetParentRowId("456"));
+    }
+
+    #endregion
+
     #region IsFieldEnabled
 
     [TestMethod]

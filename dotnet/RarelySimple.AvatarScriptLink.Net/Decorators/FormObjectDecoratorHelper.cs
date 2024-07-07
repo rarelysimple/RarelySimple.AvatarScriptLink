@@ -71,6 +71,17 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 return formObject.MultipleIteration;
             }
             /// <summary>
+            /// Returns the ParentRowId of a <see cref="FormObjectDecorator"/>.
+            /// </summary>
+            /// <param name="formObject"></param>
+            /// <returns></returns>
+            public static string GetParentRowId(FormObjectDecorator formObject)
+            {
+                if (formObject.CurrentRow == null)
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
+                return formObject.CurrentRow.ParentRowId;
+            }
+            /// <summary>
             /// Returns whether the <see cref="IFieldObject"/> in the <see cref="FormObjectDecorator"/> is enabled by FieldNumber.
             /// </summary>
             /// <param name="formObject"></param>

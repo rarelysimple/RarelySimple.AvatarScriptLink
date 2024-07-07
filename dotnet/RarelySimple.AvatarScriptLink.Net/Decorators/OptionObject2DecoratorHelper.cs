@@ -165,6 +165,23 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 throw new FormObjectNotFoundException(string.Format(resourceManager.GetString(NoFormObjectsFoundByFormId, CultureInfo.CurrentCulture), formId), formId);
             }
             /// <summary>
+            /// Returns the ParentRowId of a <see cref="FormObject"/> in the <see cref="OptionObject2"/> by FormId.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <param name="formId"></param>
+            /// <returns></returns>
+            public static string GetParentRowId(OptionObject2Decorator optionObject, string formId)
+            {
+                if (string.IsNullOrEmpty(formId))
+                    throw new ArgumentNullException(nameof(formId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                foreach (var formObject in optionObject.Forms)
+                {
+                    if (formObject.FormId == formId)
+                        return formObject.GetParentRowId();
+                }
+                throw new ArgumentException(resourceManager.GetString("noFormObjectsFoundByFormId", CultureInfo.CurrentCulture), nameof(formId));
+            }
+            /// <summary>
             /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="OptionObject2Decorator"/> is enabled by FieldNumber.
             /// </summary>
             /// <param name="optionObject"></param>

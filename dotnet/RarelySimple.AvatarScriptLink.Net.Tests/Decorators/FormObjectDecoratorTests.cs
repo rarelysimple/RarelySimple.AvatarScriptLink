@@ -210,6 +210,38 @@ public class FormObjectDecoratorTests
 
     #endregion
 
+    #region GetParentRowId
+
+    [TestMethod]
+    public void TestFormObjectDecorator_GetParentRowId_Expected() {
+        var expected = "456||1";
+        RowObject rowObject = new() {
+            RowId = "456||3",
+            ParentRowId = expected
+        };
+        FormObjectDecorator decorator = FormObjectDecorator.Builder().FormId("456").CurrentRow(rowObject).Build();
+        Assert.AreEqual(expected, decorator.GetParentRowId());
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TestFormObjectDecorator_GetParentRowId_Exception() {
+        var expected = "456||1";
+        FormObjectDecorator decorator = FormObjectDecorator.Builder().FormId("456").Build();
+        Assert.AreEqual(expected, decorator.GetParentRowId());
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_GetParentRowId_Null() {
+        RowObject rowObject = new() {
+            RowId = "456||3"
+        };
+        FormObjectDecorator decorator = FormObjectDecorator.Builder().FormId("456").CurrentRow(rowObject).Build();
+        Assert.IsNull(decorator.GetParentRowId());
+    }
+
+    #endregion
+
     #region IsFieldEnabled
 
     [TestMethod]
