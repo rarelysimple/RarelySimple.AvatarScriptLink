@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Resources;
 using RarelySimple.AvatarScriptLink.Net.Exceptions;
+using RarelySimple.AvatarScriptLink.Objects;
 
 namespace RarelySimple.AvatarScriptLink.Net.Decorators
 {
@@ -144,6 +145,22 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 if (string.IsNullOrEmpty(fieldNumber))
                     throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 return formObject.CurrentRow.IsFieldRequired(fieldNumber);
+            }
+            /// <summary>
+            /// Returns whether the <see cref="RowObject"/> in an <see cref="FormObject"/> is marked for deletion by RowId.
+            /// </summary>
+            /// <param name="formObject"></param>
+            /// <param name="rowId"></param>
+            /// <returns></returns>
+            public static bool IsRowMarkedForDeletion(FormObjectDecorator formObject, string rowId)
+            {
+                if (string.IsNullOrEmpty(rowId))
+                    throw new ArgumentNullException(nameof(rowId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (formObject.CurrentRow.RowId == rowId)
+                    return formObject.CurrentRow.RowAction == RowAction.Delete;
+                if (formObject.MultipleIteration)
+                    return formObject.OtherRows.Exists(r => r.RowId == rowId && r.RowAction == RowAction.Delete);
+                return false;
             }
             /// <summary>
             /// Returns whether the <see cref="RowObjectDecorator"/> in the <see cref="FormObjectDecorator"/> is enabled by RowId.

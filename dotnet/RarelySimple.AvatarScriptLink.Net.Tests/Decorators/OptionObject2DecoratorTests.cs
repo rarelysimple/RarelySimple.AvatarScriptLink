@@ -1124,6 +1124,68 @@ public class OptionObject2DecoratorTests
 
     #endregion
 
+    #region IsRowMarkedForDeletion
+
+    [TestMethod]
+    public void IsRowMarkedForDeletion_Expected()
+    {
+        var rowObject1 = new RowObject()
+        {
+            RowId = "456||1"
+        };
+        var rowObject2 = new RowObject()
+        {
+            RowId = "456||2",
+            RowAction = RowAction.Delete
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject1,
+            FormId = "456",
+            MultipleIteration = true,
+            OtherRows = [rowObject2]
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.IsFalse(decorator.IsRowMarkedForDeletion("456||1"));
+        Assert.IsTrue(decorator.IsRowMarkedForDeletion("456||2"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void IsRowMarkedForDeletion_NullRowId()
+    {
+        var rowObject1 = new RowObject()
+        {
+            RowId = "456||1"
+        };
+        var rowObject2 = new RowObject()
+        {
+            RowId = "456||2",
+            RowAction = RowAction.Delete
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject1,
+            FormId = "456",
+            MultipleIteration = true,
+            OtherRows = [rowObject2]
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        Assert.IsTrue(decorator.IsRowMarkedForDeletion(null));
+    }
+
+    #endregion
+
     #region IsRowPresent
 
     [TestMethod]

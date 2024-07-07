@@ -136,6 +136,13 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public bool IsFormPresent(string formId) => Helper.IsFormPresent(this, formId);
 
         /// <summary>
+        /// Returns whether the specified <see cref="RowObject"/> is marked for deletion.
+        /// </summary>
+        /// <param name="rowId"></param>
+        /// <returns></returns>
+        public bool IsRowMarkedForDeletion(string rowId) => Helper.IsRowMarkedForDeletion(this, rowId);
+
+        /// <summary>
         /// Returns whether the specified <see cref="RowObject"/> is present.
         /// </summary>
         /// <param name="rowId"></param>

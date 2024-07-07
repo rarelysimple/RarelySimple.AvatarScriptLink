@@ -568,6 +568,56 @@ public class FormObjectDecoratorTests
 
     #endregion
 
+    #region IsRowMarkedForDeletion
+
+    [TestMethod]
+    public void IsRowMarkedForDeletion_FormObject_Expected() {
+        var rowObject1 = new RowObject()
+        {
+            RowId = "456||1"
+        };
+        var rowObject2 = new RowObject()
+        {
+            RowId = "456||2",
+            RowAction = RowAction.Delete
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject1,
+            FormId = "456",
+            MultipleIteration = true,
+            OtherRows = [rowObject2]
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        Assert.IsFalse(decorator.IsRowMarkedForDeletion("456||1"));
+        Assert.IsTrue(decorator.IsRowMarkedForDeletion("456||2"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void IsRowMarkedForDeletion_FormObject_NoRowId() {
+        var rowObject1 = new RowObject()
+        {
+            RowId = "456||1"
+        };
+        var rowObject2 = new RowObject()
+        {
+            RowId = "456||2",
+            RowAction = RowAction.Delete
+        };
+        var formObject = new FormObject()
+        {
+            CurrentRow = rowObject1,
+            FormId = "456",
+            MultipleIteration = true,
+            OtherRows = [rowObject2]
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        Assert.IsTrue(decorator.IsRowMarkedForDeletion(null));
+    }
+
+    #endregion
+
     #region SetFieldValue
 
     [TestMethod]
