@@ -108,5 +108,68 @@ namespace RarelySimple.AvatarScriptLink.Objects
         public static bool AreBothNull(List<FieldObject> list1, List<FieldObject> list2) => list1 == null && list2 == null;
 
         #endregion
+
+        #region Public Methods
+
+        public bool IsEnabled()
+        {
+            return Enabled == EnabledStatus.Enabled;
+        }
+
+        public bool IsLocked()
+        {
+            return Lock == LockStatus.Locked;
+        }
+
+        public bool IsRequired()
+        {
+            return Required == RequiredStatus.Required;
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Represents a valid AvatarScriptLink Enabled status on a <see cref="FieldObject"/>.
+        /// </summary>
+        public static class EnabledStatus {
+            /// <summary>
+            /// Indicates the <see cref="FieldObject"/> is disabled.
+            /// </summary>
+            public const string Disabled = "0";
+            /// <summary>
+            /// Indicates the <see cref="FieldObject"/> is enabled.
+            /// </summary>
+            public const string Enabled = "1";
+        }
+        
+        /// <summary>
+        /// Represents a valid AvatarScriptLink Lock status on a <see cref="FieldObject"/>.
+        /// </summary>
+        public static class LockStatus
+        {
+            /// <summary>
+            /// Indicates the <see cref="FieldObject"/> is locked.
+            /// </summary>
+            public const string Locked = "1";
+            /// <summary>
+            /// Indicates the <see cref="FieldObject"/> is unlocked.
+            /// </summary>
+            public const string Unlocked = "0";
+        }
+        
+        /// <summary>
+        /// Represents a valid AvatarScriptLink Required status on a <see cref="FieldObject"/>.
+        /// </summary>
+        public static class RequiredStatus
+        {
+            /// <summary>
+            /// Indicates the <see cref="FieldObject"/> is optional.
+            /// </summary>
+            public const string Optional = "0";
+            /// <summary>
+            /// Indicates the <see cref="FieldObject"/> is required.
+            /// </summary>
+            public const string Required = "1";
+        }
     }
 }

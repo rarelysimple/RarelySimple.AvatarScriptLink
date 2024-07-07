@@ -1,3 +1,5 @@
+using static RarelySimple.AvatarScriptLink.Objects.RowObject;
+
 namespace RarelySimple.AvatarScriptLink.Net.Decorators
 {
     public abstract class DecoratorHelper

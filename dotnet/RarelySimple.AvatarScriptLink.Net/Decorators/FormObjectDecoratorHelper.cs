@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Resources;
 using RarelySimple.AvatarScriptLink.Net.Exceptions;
 using RarelySimple.AvatarScriptLink.Objects;
+using static RarelySimple.AvatarScriptLink.Objects.RowObject;
 
 namespace RarelySimple.AvatarScriptLink.Net.Decorators
 {
@@ -157,9 +158,9 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 if (string.IsNullOrEmpty(rowId))
                     throw new ArgumentNullException(nameof(rowId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (formObject.CurrentRow.RowId == rowId)
-                    return formObject.CurrentRow.RowAction == RowAction.Delete;
+                    return formObject.CurrentRow.RowAction == RowActions.Delete;
                 if (formObject.MultipleIteration)
-                    return formObject.OtherRows.Exists(r => r.RowId == rowId && r.RowAction == RowAction.Delete);
+                    return formObject.OtherRows.Exists(r => r.RowId == rowId && r.RowAction == RowActions.Delete);
                 return false;
             }
             /// <summary>
