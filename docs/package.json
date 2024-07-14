@@ -44,6 +44,7 @@
   },
   "overrides": {
     "braces": "^3.0.3",
+    "micromatch": "^4.0.7",
     "ws": "^8.17.1"
   }
 }
