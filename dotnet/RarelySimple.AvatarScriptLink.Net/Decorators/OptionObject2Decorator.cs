@@ -114,6 +114,13 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public bool IsFieldLocked(string fieldNumber) => Helper.IsFieldLocked(this, fieldNumber);
 
         /// <summary>
+        /// Returns whether the specified field is modified.
+        /// </summary>
+        /// <param name="fieldNumber"></param>
+        /// <returns></returns>
+        public bool IsFieldModified(string fieldNumber) => Helper.IsFieldModified(this, fieldNumber);
+
+        /// <summary>
         /// Returns whether the specified field is present.
         /// </summary>
         /// <param name="fieldNumber"></param>

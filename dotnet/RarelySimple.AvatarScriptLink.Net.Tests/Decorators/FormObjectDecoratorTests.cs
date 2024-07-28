@@ -419,6 +419,100 @@ public class FormObjectDecoratorTests
 
     #endregion
 
+    #region IsFieldModified
+
+    [TestMethod]
+    public void IsFieldModified_FormObject_IsFalse()
+    {
+        FieldObject fieldObject01 = new()
+        {
+            FieldNumber = "123",
+            FieldValue = ""
+        };
+        FieldObject fieldObject02 = new()
+        {
+            FieldNumber = "124",
+            FieldValue = ""
+        };
+        FieldObject fieldObject03 = new()
+        {
+            FieldNumber = "125",
+            FieldValue = ""
+        };
+        RowObject rowObject = new() {
+            Fields = [fieldObject01, fieldObject02, fieldObject03]
+        };
+        FormObject formObject = new() {
+            FormId = "1",
+            CurrentRow = rowObject
+        };
+        FormObjectDecorator decorator = new(formObject);
+        Assert.IsFalse(decorator.IsFieldModified("123"));
+    }
+
+    [TestMethod]
+    public void IsFieldModified_FormObject_IsTrue()
+    {
+        FieldObject fieldObject01 = new()
+        {
+            FieldNumber = "123",
+            FieldValue = ""
+        };
+        FieldObject fieldObject02 = new()
+        {
+            FieldNumber = "124",
+            FieldValue = ""
+        };
+        FieldObject fieldObject03 = new()
+        {
+            FieldNumber = "125",
+            FieldValue = ""
+        };
+        RowObject rowObject = new() {
+            RowId = "1||1",
+            Fields = [fieldObject01, fieldObject02, fieldObject03]
+        };
+        FormObject formObject = new() {
+            FormId = "1",
+            CurrentRow = rowObject
+        };
+        FormObjectDecorator decorator = new(formObject);
+        decorator.SetFieldValue("123", "MODIFIED");
+        Assert.IsTrue(decorator.IsFieldModified("123"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void IsFieldModified_FormObject_IsTrue_NullFieldNumber()
+    {
+        FieldObject fieldObject01 = new()
+        {
+            FieldNumber = "123",
+            FieldValue = ""
+        };
+        FieldObject fieldObject02 = new()
+        {
+            FieldNumber = "124",
+            FieldValue = ""
+        };
+        FieldObject fieldObject03 = new()
+        {
+            FieldNumber = "125",
+            FieldValue = ""
+        };
+        RowObject rowObject = new() {
+            Fields = [fieldObject01, fieldObject02, fieldObject03]
+        };
+        FormObject formObject = new() {
+            FormId = "1",
+            CurrentRow = rowObject
+        };
+        FormObjectDecorator decorator = new(formObject);
+        Assert.IsTrue(decorator.IsFieldModified(null));
+    }
+
+    #endregion
+
     #region IsFieldPresent
 
     [TestMethod]
