@@ -224,6 +224,23 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString(NoFieldObjectsFoundByFieldNumber, CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
             /// <summary>
+            /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="OptionObjectDecorator"/> is modified by FieldNumber.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <param name="fieldNumber"></param>
+            /// <returns></returns>
+            public static bool IsFieldModified(OptionObjectDecorator optionObject, string fieldNumber)
+            {
+                if (string.IsNullOrEmpty(fieldNumber))
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                var form = optionObject.Forms.Find(f => f.IsFieldPresent(fieldNumber));
+                if (form != null)
+                {
+                    return form.IsFieldModified(fieldNumber);
+                }
+                throw new ArgumentException("The OptionObject does not contain the FieldObject " + fieldNumber + ".");
+            }
+            /// <summary>
             /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="OptionObjectDecorator"/> is present by FieldNumber.
             /// </summary>
             /// <param name="decorator"></param>

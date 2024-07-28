@@ -824,6 +824,111 @@ public class OptionObject2015DecoratorTests
 
     #endregion
 
+    #region IsFieldModified
+
+    [TestMethod]
+    public void IsFieldModified_OptionObject2015_IsFalse()
+    {
+        FieldObject fieldObject01 = new()
+        {
+            FieldNumber = "123",
+            FieldValue = ""
+        };
+        FieldObject fieldObject02 = new()
+        {
+            FieldNumber = "124",
+            FieldValue = ""
+        };
+        FieldObject fieldObject03 = new()
+        {
+            FieldNumber = "125",
+            FieldValue = ""
+        };
+        RowObject rowObject = new() {
+            RowId = "1||1",
+            Fields = [fieldObject01, fieldObject02, fieldObject03]
+        };
+        FormObject formObject = new() {
+            FormId = "1",
+            CurrentRow = rowObject
+        };
+        OptionObject2015 optionObject = new() {
+            Forms = [formObject]
+        };
+        OptionObject2015Decorator decorator = new(optionObject);
+        Assert.IsFalse(decorator.IsFieldModified("123"));
+    }
+
+    [TestMethod]
+    public void IsFieldModified_OptionObject2015_IsTrue()
+    {
+        FieldObject fieldObject01 = new()
+        {
+            FieldNumber = "123",
+            FieldValue = ""
+        };
+        FieldObject fieldObject02 = new()
+        {
+            FieldNumber = "124",
+            FieldValue = ""
+        };
+        FieldObject fieldObject03 = new()
+        {
+            FieldNumber = "125",
+            FieldValue = ""
+        };
+        RowObject rowObject = new() {
+            RowId = "1||1",
+            Fields = [fieldObject01, fieldObject02, fieldObject03]
+        };
+        FormObject formObject = new() {
+            FormId = "1",
+            CurrentRow = rowObject
+        };
+        OptionObject2015 optionObject = new() {
+            Forms = [formObject]
+        };
+        OptionObject2015Decorator decorator = new(optionObject);
+        decorator.SetFieldValue("123", "MODIFIED");
+        Assert.IsTrue(decorator.IsFieldModified("123"));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void IsFieldModified_OptionObject2015_IsFalse_NullFieldNumber()
+    {
+        FieldObject fieldObject01 = new()
+        {
+            FieldNumber = "123",
+            FieldValue = ""
+        };
+        FieldObject fieldObject02 = new()
+        {
+            FieldNumber = "124",
+            FieldValue = ""
+        };
+        FieldObject fieldObject03 = new()
+        {
+            FieldNumber = "125",
+            FieldValue = ""
+        };
+        RowObject rowObject = new() {
+            RowId = "1||1",
+            Fields = [fieldObject01, fieldObject02, fieldObject03]
+        };
+        FormObject formObject = new() {
+            FormId = "1",
+            CurrentRow = rowObject
+        };
+        OptionObject2015 optionObject = new() {
+            Forms = [formObject]
+        };
+        OptionObject2015Decorator decorator = new(optionObject);
+        Assert.IsFalse(decorator.IsFieldModified(null));
+    }
+
+    #endregion
+
     #region IsFieldPresent
 
     [TestMethod]

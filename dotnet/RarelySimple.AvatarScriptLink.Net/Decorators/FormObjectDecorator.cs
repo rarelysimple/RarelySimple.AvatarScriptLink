@@ -88,6 +88,13 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public bool IsFieldLocked(string fieldNumber) => Helper.IsFieldLocked(this, fieldNumber);
 
         /// <summary>
+        /// Determines whether the <see cref="FieldObject"/> is modified in the <see cref="FormObject"/> by FieldNumber.
+        /// </summary>
+        /// <param name="fieldNumber"></param>
+        /// <returns></returns>
+        public bool IsFieldModified(string fieldNumber) => Helper.IsFieldModified(this, fieldNumber);
+
+        /// <summary>
         /// Determines whether the <see cref="FieldObject"/> is present in the <see cref="FormObject"/> by FieldNumber.
         /// </summary>
         /// <param name="fieldNumber"></param>

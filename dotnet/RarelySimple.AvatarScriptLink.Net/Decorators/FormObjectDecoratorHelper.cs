@@ -116,6 +116,20 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 return formObject.CurrentRow.IsFieldLocked(fieldNumber);
             }
             /// <summary>
+            /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="FormObjectDecorator"/> is modified by FieldNumber.
+            /// </summary>
+            /// <param name="formObject"></param>
+            /// <param name="fieldNumber"></param>
+            /// <returns></returns>
+            public static bool IsFieldModified(FormObjectDecorator formObject, string fieldNumber)
+            {
+                if (formObject.CurrentRow == null)
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString("formObjectMissingCurrentRow", CultureInfo.CurrentCulture));
+                if (string.IsNullOrEmpty(fieldNumber))
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                return formObject.CurrentRow.IsFieldModified(fieldNumber);
+            }
+            /// <summary>
             /// Returns whether the <see cref="FieldObjectDecorator"/> in the <see cref="FormObjectDecorator"/> is present by FieldNumber.
             /// </summary>
             /// <param name="decorator"></param>
