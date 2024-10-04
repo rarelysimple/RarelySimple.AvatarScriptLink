@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using System.Resources;
@@ -142,6 +143,21 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                         return form.GetFieldValue(rowId, fieldNumber);
                 }
                 throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString(NoFieldObjectsFoundByFieldNumber, CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
+            }
+            /// <summary>
+            /// Returns a list of FieldValues of a specified <see cref="FieldObject"/> in the <see cref="OptionObject2"/> by FieldNumber.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <param name="fieldNumber"></param>
+            /// <returns></returns>
+            public static List<string> GetFieldValues(OptionObject2Decorator optionObject, string fieldNumber)
+            {
+                if (string.IsNullOrEmpty(fieldNumber))
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                var form = optionObject.Forms.Find(f => f.IsFieldPresent(fieldNumber));
+                if (form != null)
+                    return form.GetFieldValues(fieldNumber);
+                return new List<string>();
             }
             /// <summary>
             /// Returns whether a <see cref="FormObject"/> in the <see cref="OptionObject2"/> is Multiple Iteration by specified FormId.

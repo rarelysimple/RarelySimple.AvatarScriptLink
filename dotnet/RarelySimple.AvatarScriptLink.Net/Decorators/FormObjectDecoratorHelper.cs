@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using System.Resources;
@@ -60,6 +61,31 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                         return rowObject.GetFieldValue(fieldNumber);
                 }
                 throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString(NoFieldObjectsFoundByFieldNumber, CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
+            }
+            /// <summary>
+            /// Returns a list of FieldValues of a specified <see cref="FieldObject"/> in the <see cref="FormObjectDecorator"/> by FieldNumber.
+            /// </summary>
+            /// <param name="formObject"></param>
+            /// <param name="fieldNumber"></param>
+            /// <returns></returns>
+            public static List<string> GetFieldValues(FormObjectDecorator formObject, string fieldNumber)
+            {
+                if (string.IsNullOrEmpty(fieldNumber))
+                    throw new ArgumentNullException(nameof(fieldNumber), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                List<string> values = new List<string>();
+                if (IsFieldPresent(formObject, fieldNumber))
+                {
+                    values.Add(formObject.CurrentRow.GetFieldValue(fieldNumber));
+                    if (formObject.MultipleIteration)
+                    {
+                        foreach (RowObjectDecorator rowObject in formObject.OtherRows)
+                        {
+                            values.Add(rowObject.GetFieldValue(fieldNumber));
+                        }
+                    }
+                    return values;
+                }
+                return values;
             }
             /// <summary>
             /// Returns whether a <see cref="FormObjectDecorator"/> is Multiple Iteration.

@@ -62,6 +62,13 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public string GetFieldValue(string rowId, string fieldNumber) => Helper.GetFieldValue(this, rowId, fieldNumber);
 
         /// <summary>
+        /// Returns a <see cref="List{string}"/> of FieldValues in a <see cref="FormObject"/>.
+        /// </summary>
+        /// <param name="fieldNumber"></param>
+        /// <returns></returns>
+        public List<string> GetFieldValues(string fieldNumber) => Helper.GetFieldValues(this, fieldNumber);
+
+        /// <summary>
         /// Returns the Multiple Iteration Status of the <see cref="FormObject">.
         /// </summary>
         /// <returns></returns>
