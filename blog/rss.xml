@@ -47,8 +47,9 @@ With this release you can set these values prior to calling <code>ToReturnOption
             <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.1.10/</guid>
             <pubDate>Sat, 15 Oct 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[AvatarScriptLink.NET version 1.1.10 is now available on NuGet.]]></description>
-            <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.1.10 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.1.10" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
-This release corrects <a href="https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/22" target="_blank" rel="noopener noreferrer">a reported issue causing some using the OpenForm Error Code (6) to fail</a>.</p>]]></content:encoded>
+            <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.1.10 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.1.10" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.</p>
+<!-- -->
+<p>This release corrects <a href="https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/22" target="_blank" rel="noopener noreferrer">a reported issue causing some using the OpenForm Error Code (6) to fail</a>.</p>]]></content:encoded>
             <category>scriptlink</category>
             <category>myavatar</category>
             <category>dotnet</category>
@@ -96,6 +97,7 @@ If your implementation relies on the assumptions that "all required fields are e
             <description><![CDATA[AvatarScriptLink.NET version 1.0.28 is now available on NuGet.]]></description>
             <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.0.28 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.0.28" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
 This release addresses security vulnerabilities identified in Newtonsoft.Json and includes miscellaneous updates to other project dependencies.</p>
+<!-- -->
 <p>Security vulnerabilities addressed include:</p>
 <ul>
 <li><a href="https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/issues/8" target="_blank" rel="noopener noreferrer">CVE-2020-11022</a></li>
@@ -118,6 +120,7 @@ This release addresses security vulnerabilities identified in Newtonsoft.Json an
             <description><![CDATA[AvatarScriptLink.NET version 1.0.25 is now available on NuGet.]]></description>
             <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.0.25 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.0.25" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
 This is a maintenance release which includes updates to miscellaneous project dependencies.</p>
+<!-- -->
 <p>With this update, <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink" target="_blank" rel="noopener noreferrer">Nuget now displays a README tab in its package directory</a> for <code>RarelySimple.AvatarScriptLink</code>.</p>]]></content:encoded>
             <category>scriptlink</category>
             <category>myavatar</category>
@@ -134,8 +137,9 @@ This is a maintenance release which includes updates to miscellaneous project de
             <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.22/</guid>
             <pubDate>Sun, 08 Aug 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[AvatarScriptLink.NET version 1.0.22 is now available on NuGet.]]></description>
-            <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.0.22 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.0.22" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
-This is a maintenance release which includes the following updates:</p>
+            <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.0.22 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.0.22" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.</p>
+<!-- -->
+<p>This is a maintenance release which includes the following updates:</p>
 <ul>
 <li>Addresses security vulnerabilities from various project dependencies.</li>
 <li>Converting OptionObject content to HTML has been improved.</li>
@@ -156,8 +160,9 @@ This is a maintenance release which includes the following updates:</p>
             <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.7/</guid>
             <pubDate>Sat, 12 Dec 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[AvatarScriptLink.NET version 1.0.7 is now available on NuGet.]]></description>
-            <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.0.7 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.0.7" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
-This release corrects an issue that may occur when the myAvatar Registry Setting <code>Include FormObject for sections without a current row selected</code> is set to <code>Y</code>.</p>]]></content:encoded>
+            <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.0.7 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.0.7" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.</p>
+<!-- -->
+<p>This release corrects an issue that may occur when the myAvatar Registry Setting <code>Include FormObject for sections without a current row selected</code> is set to <code>Y</code>.</p>]]></content:encoded>
             <category>scriptlink</category>
             <category>myavatar</category>
             <category>dotnet</category>
@@ -173,8 +178,9 @@ This release corrects an issue that may occur when the myAvatar Registry Setting
             <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-1.0.6/</guid>
             <pubDate>Tue, 09 Jun 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[AvatarScriptLink.NET version 1.0.6 is now available on NuGet.]]></description>
-            <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.0.6 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.0.6" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.
-This is a maintenance release with a number of minor fixes and enhancements.</p>]]></content:encoded>
+            <content:encoded><![CDATA[<p>AvatarScriptLink.NET version 1.0.6 is <a href="https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/1.0.6" target="_blank" rel="noopener noreferrer">now available on NuGet</a>.</p>
+<!-- -->
+<p>This is a maintenance release with a number of minor fixes and enhancements.</p>]]></content:encoded>
             <category>scriptlink</category>
             <category>myavatar</category>
             <category>dotnet</category>
@@ -191,6 +197,7 @@ This is a maintenance release with a number of minor fixes and enhancements.</p>
             <pubDate>Tue, 31 Mar 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[Congratulations! You have created your “Hello, World!” ScriptLink web application, tested it with Unit Tests, tested it on your development web server, and submitted your code to a source control solution. Next, we will be looking at various methods for deploying our .NET ScriptLink applications. This will enable us to setup our Test server to use with UAT or other myAvatar Test environment and later the Production server to use with our LIVE or other production myAvatar environment.]]></description>
             <content:encoded><![CDATA[<p>Congratulations! You have created your “Hello, World!” ScriptLink web application, tested it with Unit Tests, tested it on your development web server, and submitted your code to a source control solution. Next, we will be looking at various methods for deploying our .NET ScriptLink applications. This will enable us to setup our Test server to use with UAT or other myAvatar Test environment and later the Production server to use with our LIVE or other production myAvatar environment.</p>
+<!-- -->
 <p>As a review, what I described above is a basic workflow for the testing of your changes to the ScriptLink solution. Testing should be as thorough as possible and in general you should not move to the next stage of testing until all tests have passed in the current.</p>
 <ol>
 <li>Test your code changes with Unit Tests.</li>
@@ -244,7 +251,8 @@ This is a maintenance release with a number of minor fixes and enhancements.</p>
             <guid>https://scriptlink.rarelysimple.com/blog/announcing-avatarscriptlink.net-general-availability/</guid>
             <pubDate>Fri, 21 Feb 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[Placeholder for general availability announcement.]]></description>
-            <content:encoded><![CDATA[<p>Placeholder for general availability announcement.</p>]]></content:encoded>
+            <content:encoded><![CDATA[<p>Placeholder for general availability announcement.</p>
+]]></content:encoded>
             <category>scriptlink</category>
             <category>myavatar</category>
             <category>dotnet</category>
