@@ -1,19 +1,19 @@
 "use strict";
-exports.id = 966;
-exports.ids = [966];
+exports.id = 17;
+exports.ids = [17];
 exports.modules = {
 
-/***/ 79966:
+/***/ 98017:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   diagram: () => (/* binding */ diagram)
 /* harmony export */ });
 /* harmony import */ var _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(96294);
-/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(74353);
-/* harmony import */ var _braintree_sanitize_url__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(16750);
-/* harmony import */ var d3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(26312);
-/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(77046);
+/* harmony import */ var d3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(26312);
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(74353);
+/* harmony import */ var _braintree_sanitize_url__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(16750);
+/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(99418);
 
 
 
@@ -30,28 +30,47 @@ var parser = function() {
     for (o2 = o2 || {}, l = k.length; l--; o2[k[l]] = v)
       ;
     return o2;
-  }, $V0 = [6, 9, 10];
+  }, $V0 = [1, 3], $V1 = [1, 4], $V2 = [1, 5], $V3 = [1, 6], $V4 = [1, 10, 12, 14, 16, 18, 19, 20, 21, 22], $V5 = [2, 4], $V6 = [1, 5, 10, 12, 14, 16, 18, 19, 20, 21, 22], $V7 = [20, 21, 22], $V8 = [2, 7], $V9 = [1, 12], $Va = [1, 13], $Vb = [1, 14], $Vc = [1, 15], $Vd = [1, 16], $Ve = [1, 17];
   var parser2 = {
     trace: function trace() {
     },
     yy: {},
-    symbols_: { "error": 2, "start": 3, "info": 4, "document": 5, "EOF": 6, "line": 7, "statement": 8, "NL": 9, "showInfo": 10, "$accept": 0, "$end": 1 },
-    terminals_: { 2: "error", 4: "info", 6: "EOF", 9: "NL", 10: "showInfo" },
-    productions_: [0, [3, 3], [5, 0], [5, 2], [7, 1], [7, 1], [8, 1]],
+    symbols_: { "error": 2, "start": 3, "eol": 4, "PIE": 5, "document": 6, "showData": 7, "line": 8, "statement": 9, "txt": 10, "value": 11, "title": 12, "title_value": 13, "acc_title": 14, "acc_title_value": 15, "acc_descr": 16, "acc_descr_value": 17, "acc_descr_multiline_value": 18, "section": 19, "NEWLINE": 20, ";": 21, "EOF": 22, "$accept": 0, "$end": 1 },
+    terminals_: { 2: "error", 5: "PIE", 7: "showData", 10: "txt", 11: "value", 12: "title", 13: "title_value", 14: "acc_title", 15: "acc_title_value", 16: "acc_descr", 17: "acc_descr_value", 18: "acc_descr_multiline_value", 19: "section", 20: "NEWLINE", 21: ";", 22: "EOF" },
+    productions_: [0, [3, 2], [3, 2], [3, 3], [6, 0], [6, 2], [8, 2], [9, 0], [9, 2], [9, 2], [9, 2], [9, 2], [9, 1], [9, 1], [4, 1], [4, 1], [4, 1]],
     performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate, $$, _$) {
-      $$.length - 1;
+      var $0 = $$.length - 1;
       switch (yystate) {
-        case 1:
-          return yy;
-        case 4:
+        case 3:
+          yy.setShowData(true);
           break;
         case 6:
-          yy.setInfo(true);
+          this.$ = $$[$0 - 1];
+          break;
+        case 8:
+          yy.addSection($$[$0 - 1], yy.cleanupValue($$[$0]));
+          break;
+        case 9:
+          this.$ = $$[$0].trim();
+          yy.setDiagramTitle(this.$);
+          break;
+        case 10:
+          this.$ = $$[$0].trim();
+          yy.setAccTitle(this.$);
+          break;
+        case 11:
+        case 12:
+          this.$ = $$[$0].trim();
+          yy.setAccDescription(this.$);
+          break;
+        case 13:
+          yy.addSection($$[$0].substr(8));
+          this.$ = $$[$0].substr(8);
           break;
       }
     },
-    table: [{ 3: 1, 4: [1, 2] }, { 1: [3] }, o($V0, [2, 2], { 5: 3 }), { 6: [1, 4], 7: 5, 8: 6, 9: [1, 7], 10: [1, 8] }, { 1: [2, 1] }, o($V0, [2, 3]), o($V0, [2, 4]), o($V0, [2, 5]), o($V0, [2, 6])],
-    defaultActions: { 4: [2, 1] },
+    table: [{ 3: 1, 4: 2, 5: $V0, 20: $V1, 21: $V2, 22: $V3 }, { 1: [3] }, { 3: 7, 4: 2, 5: $V0, 20: $V1, 21: $V2, 22: $V3 }, o($V4, $V5, { 6: 8, 7: [1, 9] }), o($V6, [2, 14]), o($V6, [2, 15]), o($V6, [2, 16]), { 1: [2, 1] }, o($V7, $V8, { 8: 10, 9: 11, 1: [2, 2], 10: $V9, 12: $Va, 14: $Vb, 16: $Vc, 18: $Vd, 19: $Ve }), o($V4, $V5, { 6: 18 }), o($V4, [2, 5]), { 4: 19, 20: $V1, 21: $V2, 22: $V3 }, { 11: [1, 20] }, { 13: [1, 21] }, { 15: [1, 22] }, { 17: [1, 23] }, o($V7, [2, 12]), o($V7, [2, 13]), o($V7, $V8, { 8: 10, 9: 11, 1: [2, 3], 10: $V9, 12: $Va, 14: $Vb, 16: $Vc, 18: $Vd, 19: $Ve }), o($V4, [2, 6]), o($V7, [2, 8]), o($V7, [2, 9]), o($V7, [2, 10]), o($V7, [2, 11])],
+    defaultActions: { 7: [2, 1] },
     parseError: function parseError(str, hash) {
       if (hash.recoverable) {
         this.trace(str);
@@ -474,21 +493,61 @@ var parser = function() {
       performAction: function anonymous(yy, yy_, $avoiding_name_collisions, YY_START) {
         switch ($avoiding_name_collisions) {
           case 0:
-            return 4;
+            break;
           case 1:
-            return 9;
+            break;
           case 2:
-            return "space";
+            return 20;
           case 3:
-            return 10;
+            break;
           case 4:
-            return 6;
+            break;
           case 5:
-            return "TXT";
+            this.begin("title");
+            return 12;
+          case 6:
+            this.popState();
+            return "title_value";
+          case 7:
+            this.begin("acc_title");
+            return 14;
+          case 8:
+            this.popState();
+            return "acc_title_value";
+          case 9:
+            this.begin("acc_descr");
+            return 16;
+          case 10:
+            this.popState();
+            return "acc_descr_value";
+          case 11:
+            this.begin("acc_descr_multiline");
+            break;
+          case 12:
+            this.popState();
+            break;
+          case 13:
+            return "acc_descr_multiline_value";
+          case 14:
+            this.begin("string");
+            break;
+          case 15:
+            this.popState();
+            break;
+          case 16:
+            return "txt";
+          case 17:
+            return 5;
+          case 18:
+            return 7;
+          case 19:
+            return "value";
+          case 20:
+            return 22;
         }
       },
-      rules: [/^(?:info\b)/i, /^(?:[\s\n\r]+)/i, /^(?:[\s]+)/i, /^(?:showInfo\b)/i, /^(?:$)/i, /^(?:.)/i],
-      conditions: { "INITIAL": { "rules": [0, 1, 2, 3, 4, 5], "inclusive": true } }
+      rules: [/^(?:%%(?!\{)[^\n]*)/i, /^(?:[^\}]%%[^\n]*)/i, /^(?:[\n\r]+)/i, /^(?:%%[^\n]*)/i, /^(?:[\s]+)/i, /^(?:title\b)/i, /^(?:(?!\n||)*[^\n]*)/i, /^(?:accTitle\s*:\s*)/i, /^(?:(?!\n||)*[^\n]*)/i, /^(?:accDescr\s*:\s*)/i, /^(?:(?!\n||)*[^\n]*)/i, /^(?:accDescr\s*\{\s*)/i, /^(?:[\}])/i, /^(?:[^\}]*)/i, /^(?:["])/i, /^(?:["])/i, /^(?:[^"]*)/i, /^(?:pie\b)/i, /^(?:showData\b)/i, /^(?::[\s]*[\d]+(?:\.[\d]+)?)/i, /^(?:$)/i],
+      conditions: { "acc_descr_multiline": { "rules": [12, 13], "inclusive": false }, "acc_descr": { "rules": [10], "inclusive": false }, "acc_title": { "rules": [8], "inclusive": false }, "title": { "rules": [6], "inclusive": false }, "string": { "rules": [15, 16], "inclusive": false }, "INITIAL": { "rules": [0, 1, 2, 3, 4, 5, 7, 9, 11, 14, 17, 18, 19, 20], "inclusive": true } }
     };
     return lexer2;
   }();
@@ -502,34 +561,174 @@ var parser = function() {
 }();
 parser.parser = parser;
 const parser$1 = parser;
-const DEFAULT_INFO_DB = {
-  info: false
+const DEFAULT_PIE_CONFIG = _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_4__.A.pie;
+const DEFAULT_PIE_DB = {
+  sections: {},
+  showData: false,
+  config: DEFAULT_PIE_CONFIG
 };
-let info = DEFAULT_INFO_DB.info;
-const setInfo = (toggle) => {
-  info = toggle;
-};
-const getInfo = () => info;
+let sections = DEFAULT_PIE_DB.sections;
+let showData = DEFAULT_PIE_DB.showData;
+const config = structuredClone(DEFAULT_PIE_CONFIG);
+const getConfig = () => structuredClone(config);
 const clear = () => {
-  info = DEFAULT_INFO_DB.info;
+  sections = structuredClone(DEFAULT_PIE_DB.sections);
+  showData = DEFAULT_PIE_DB.showData;
+  (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_4__.t)();
 };
+const addSection = (label, value) => {
+  label = (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_4__.d)(label, (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_4__.c)());
+  if (sections[label] === void 0) {
+    sections[label] = value;
+    _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_4__.l.debug(`added new section: ${label}, with value: ${value}`);
+  }
+};
+const getSections = () => sections;
+const cleanupValue = (value) => {
+  if (value.substring(0, 1) === ":") {
+    value = value.substring(1).trim();
+  }
+  return Number(value.trim());
+};
+const setShowData = (toggle) => {
+  showData = toggle;
+};
+const getShowData = () => showData;
 const db = {
+  getConfig,
   clear,
-  setInfo,
-  getInfo
+  setDiagramTitle: _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_4__.q,
+  getDiagramTitle: _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_4__.r,
+  setAccTitle: _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_4__.s,
+  getAccTitle: _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_4__.g,
+  setAccDescription: _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_4__.b,
+  getAccDescription: _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_4__.a,
+  addSection,
+  getSections,
+  cleanupValue,
+  setShowData,
+  getShowData
 };
-const draw = (text, id, version) => {
-  _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_4__.l.debug("rendering info diagram\n" + text);
+const getStyles = (options) => `
+  .pieCircle{
+    stroke: ${options.pieStrokeColor};
+    stroke-width : ${options.pieStrokeWidth};
+    opacity : ${options.pieOpacity};
+  }
+  .pieOuterCircle{
+    stroke: ${options.pieOuterStrokeColor};
+    stroke-width: ${options.pieOuterStrokeWidth};
+    fill: none;
+  }
+  .pieTitleText {
+    text-anchor: middle;
+    font-size: ${options.pieTitleTextSize};
+    fill: ${options.pieTitleTextColor};
+    font-family: ${options.fontFamily};
+  }
+  .slice {
+    font-family: ${options.fontFamily};
+    fill: ${options.pieSectionTextColor};
+    font-size:${options.pieSectionTextSize};
+    // fill: white;
+  }
+  .legend text {
+    fill: ${options.pieLegendTextColor};
+    font-family: ${options.fontFamily};
+    font-size: ${options.pieLegendTextSize};
+  }
+`;
+const styles = getStyles;
+const createPieArcs = (sections2) => {
+  const pieData = Object.entries(sections2).map((element) => {
+    return {
+      label: element[0],
+      value: element[1]
+    };
+  }).sort((a, b) => {
+    return b.value - a.value;
+  });
+  const pie$1 = (0,d3__WEBPACK_IMPORTED_MODULE_0__/* .pie */ .rLf)().value(
+    (d3Section) => d3Section.value
+  );
+  return pie$1(pieData);
+};
+const draw = (text, id, _version, diagObj) => {
+  var _a, _b;
+  _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_4__.l.debug("rendering pie chart\n" + text);
+  const db2 = diagObj.db;
+  const globalConfig = (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_4__.c)();
+  const pieConfig = (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_4__.B)(db2.getConfig(), globalConfig.pie);
+  const height = 450;
+  const width = ((_b = (_a = document.getElementById(id)) == null ? void 0 : _a.parentElement) == null ? void 0 : _b.offsetWidth) ?? pieConfig.useWidth;
   const svg = (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_4__.z)(id);
-  (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_4__.i)(svg, 100, 400, true);
+  svg.attr("viewBox", `0 0 ${width} ${height}`);
+  (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_4__.i)(svg, height, width, pieConfig.useMaxWidth);
+  const MARGIN = 40;
+  const LEGEND_RECT_SIZE = 18;
+  const LEGEND_SPACING = 4;
   const group = svg.append("g");
-  group.append("text").attr("x", 100).attr("y", 40).attr("class", "version").attr("font-size", 32).style("text-anchor", "middle").text(`v${version}`);
+  group.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+  const { themeVariables } = globalConfig;
+  let [outerStrokeWidth] = (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_4__.C)(themeVariables.pieOuterStrokeWidth);
+  outerStrokeWidth ?? (outerStrokeWidth = 2);
+  const textPosition = pieConfig.textPosition;
+  const radius = Math.min(width, height) / 2 - MARGIN;
+  const arcGenerator = (0,d3__WEBPACK_IMPORTED_MODULE_0__/* .arc */ .JLW)().innerRadius(0).outerRadius(radius);
+  const labelArcGenerator = (0,d3__WEBPACK_IMPORTED_MODULE_0__/* .arc */ .JLW)().innerRadius(radius * textPosition).outerRadius(radius * textPosition);
+  group.append("circle").attr("cx", 0).attr("cy", 0).attr("r", radius + outerStrokeWidth / 2).attr("class", "pieOuterCircle");
+  const sections2 = db2.getSections();
+  const arcs = createPieArcs(sections2);
+  const myGeneratedColors = [
+    themeVariables.pie1,
+    themeVariables.pie2,
+    themeVariables.pie3,
+    themeVariables.pie4,
+    themeVariables.pie5,
+    themeVariables.pie6,
+    themeVariables.pie7,
+    themeVariables.pie8,
+    themeVariables.pie9,
+    themeVariables.pie10,
+    themeVariables.pie11,
+    themeVariables.pie12
+  ];
+  const color = (0,d3__WEBPACK_IMPORTED_MODULE_0__/* .scaleOrdinal */ .UMr)(myGeneratedColors);
+  group.selectAll("mySlices").data(arcs).enter().append("path").attr("d", arcGenerator).attr("fill", (datum) => {
+    return color(datum.data.label);
+  }).attr("class", "pieCircle");
+  let sum = 0;
+  Object.keys(sections2).forEach((key) => {
+    sum += sections2[key];
+  });
+  group.selectAll("mySlices").data(arcs).enter().append("text").text((datum) => {
+    return (datum.data.value / sum * 100).toFixed(0) + "%";
+  }).attr("transform", (datum) => {
+    return "translate(" + labelArcGenerator.centroid(datum) + ")";
+  }).style("text-anchor", "middle").attr("class", "slice");
+  group.append("text").text(db2.getDiagramTitle()).attr("x", 0).attr("y", -(height - 50) / 2).attr("class", "pieTitleText");
+  const legend = group.selectAll(".legend").data(color.domain()).enter().append("g").attr("class", "legend").attr("transform", (_datum, index) => {
+    const height2 = LEGEND_RECT_SIZE + LEGEND_SPACING;
+    const offset = height2 * color.domain().length / 2;
+    const horizontal = 12 * LEGEND_RECT_SIZE;
+    const vertical = index * height2 - offset;
+    return "translate(" + horizontal + "," + vertical + ")";
+  });
+  legend.append("rect").attr("width", LEGEND_RECT_SIZE).attr("height", LEGEND_RECT_SIZE).style("fill", color).style("stroke", color);
+  legend.data(arcs).append("text").attr("x", LEGEND_RECT_SIZE + LEGEND_SPACING).attr("y", LEGEND_RECT_SIZE - LEGEND_SPACING).text((datum) => {
+    const { label, value } = datum.data;
+    if (db2.getShowData()) {
+      return `${label} [${value}]`;
+    }
+    return label;
+  });
 };
 const renderer = { draw };
 const diagram = {
   parser: parser$1,
   db,
-  renderer
+  renderer,
+  styles
 };
 
 

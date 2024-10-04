@@ -1,6 +1,6 @@
 "use strict";
-exports.id = 570;
-exports.ids = [570];
+exports.id = 778;
+exports.ids = [778];
 exports.modules = {
 
 /***/ 21176:
@@ -8948,19 +8948,20 @@ function values(object) {
 
 /***/ }),
 
-/***/ 15570:
+/***/ 80778:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   diagram: () => (/* binding */ diagram)
 /* harmony export */ });
-/* harmony import */ var _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(96294);
+/* harmony import */ var _styles_4ba6ed67_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(27830);
 /* harmony import */ var d3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(26312);
 /* harmony import */ var dagre_d3_es_src_dagre_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(21176);
 /* harmony import */ var dagre_d3_es_src_graphlib_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(697);
+/* harmony import */ var _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(96294);
 /* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(74353);
 /* harmony import */ var _braintree_sanitize_url__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(16750);
-/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(77046);
+/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(99418);
 
 
 
@@ -8972,6 +8973,369 @@ function values(object) {
 
 
 
+
+
+
+let edgeCount = 0;
+const drawEdge = function(elem, path, relation, conf, diagObj) {
+  const getRelationType = function(type) {
+    switch (type) {
+      case diagObj.db.relationType.AGGREGATION:
+        return "aggregation";
+      case diagObj.db.relationType.EXTENSION:
+        return "extension";
+      case diagObj.db.relationType.COMPOSITION:
+        return "composition";
+      case diagObj.db.relationType.DEPENDENCY:
+        return "dependency";
+      case diagObj.db.relationType.LOLLIPOP:
+        return "lollipop";
+    }
+  };
+  path.points = path.points.filter((p) => !Number.isNaN(p.y));
+  const lineData = path.points;
+  const lineFunction = (0,d3__WEBPACK_IMPORTED_MODULE_0__/* .line */ .n8j)().x(function(d) {
+    return d.x;
+  }).y(function(d) {
+    return d.y;
+  }).curve(d3__WEBPACK_IMPORTED_MODULE_0__/* .curveBasis */ .qrM);
+  const svgPath = elem.append("path").attr("d", lineFunction(lineData)).attr("id", "edge" + edgeCount).attr("class", "relation");
+  let url = "";
+  if (conf.arrowMarkerAbsolute) {
+    url = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.search;
+    url = url.replace(/\(/g, "\\(");
+    url = url.replace(/\)/g, "\\)");
+  }
+  if (relation.relation.lineType == 1) {
+    svgPath.attr("class", "relation dashed-line");
+  }
+  if (relation.relation.lineType == 10) {
+    svgPath.attr("class", "relation dotted-line");
+  }
+  if (relation.relation.type1 !== "none") {
+    svgPath.attr(
+      "marker-start",
+      "url(" + url + "#" + getRelationType(relation.relation.type1) + "Start)"
+    );
+  }
+  if (relation.relation.type2 !== "none") {
+    svgPath.attr(
+      "marker-end",
+      "url(" + url + "#" + getRelationType(relation.relation.type2) + "End)"
+    );
+  }
+  let x, y;
+  const l = path.points.length;
+  let labelPosition = _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.u.calcLabelPosition(path.points);
+  x = labelPosition.x;
+  y = labelPosition.y;
+  let p1_card_x, p1_card_y;
+  let p2_card_x, p2_card_y;
+  if (l % 2 !== 0 && l > 1) {
+    let cardinality_1_point = _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.u.calcCardinalityPosition(
+      relation.relation.type1 !== "none",
+      path.points,
+      path.points[0]
+    );
+    let cardinality_2_point = _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.u.calcCardinalityPosition(
+      relation.relation.type2 !== "none",
+      path.points,
+      path.points[l - 1]
+    );
+    _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.l.debug("cardinality_1_point " + JSON.stringify(cardinality_1_point));
+    _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.l.debug("cardinality_2_point " + JSON.stringify(cardinality_2_point));
+    p1_card_x = cardinality_1_point.x;
+    p1_card_y = cardinality_1_point.y;
+    p2_card_x = cardinality_2_point.x;
+    p2_card_y = cardinality_2_point.y;
+  }
+  if (relation.title !== void 0) {
+    const g = elem.append("g").attr("class", "classLabel");
+    const label = g.append("text").attr("class", "label").attr("x", x).attr("y", y).attr("fill", "red").attr("text-anchor", "middle").text(relation.title);
+    window.label = label;
+    const bounds = label.node().getBBox();
+    g.insert("rect", ":first-child").attr("class", "box").attr("x", bounds.x - conf.padding / 2).attr("y", bounds.y - conf.padding / 2).attr("width", bounds.width + conf.padding).attr("height", bounds.height + conf.padding);
+  }
+  _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.l.info("Rendering relation " + JSON.stringify(relation));
+  if (relation.relationTitle1 !== void 0 && relation.relationTitle1 !== "none") {
+    const g = elem.append("g").attr("class", "cardinality");
+    g.append("text").attr("class", "type1").attr("x", p1_card_x).attr("y", p1_card_y).attr("fill", "black").attr("font-size", "6").text(relation.relationTitle1);
+  }
+  if (relation.relationTitle2 !== void 0 && relation.relationTitle2 !== "none") {
+    const g = elem.append("g").attr("class", "cardinality");
+    g.append("text").attr("class", "type2").attr("x", p2_card_x).attr("y", p2_card_y).attr("fill", "black").attr("font-size", "6").text(relation.relationTitle2);
+  }
+  edgeCount++;
+};
+const drawClass = function(elem, classDef, conf, diagObj) {
+  _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.l.debug("Rendering class ", classDef, conf);
+  const id = classDef.id;
+  const classInfo = {
+    id,
+    label: classDef.id,
+    width: 0,
+    height: 0
+  };
+  const g = elem.append("g").attr("id", diagObj.db.lookUpDomId(id)).attr("class", "classGroup");
+  let title;
+  if (classDef.link) {
+    title = g.append("svg:a").attr("xlink:href", classDef.link).attr("target", classDef.linkTarget).append("text").attr("y", conf.textHeight + conf.padding).attr("x", 0);
+  } else {
+    title = g.append("text").attr("y", conf.textHeight + conf.padding).attr("x", 0);
+  }
+  let isFirst = true;
+  classDef.annotations.forEach(function(member) {
+    const titleText2 = title.append("tspan").text("«" + member + "»");
+    if (!isFirst) {
+      titleText2.attr("dy", conf.textHeight);
+    }
+    isFirst = false;
+  });
+  let classTitleString = getClassTitleString(classDef);
+  const classTitle = title.append("tspan").text(classTitleString).attr("class", "title");
+  if (!isFirst) {
+    classTitle.attr("dy", conf.textHeight);
+  }
+  const titleHeight = title.node().getBBox().height;
+  let membersLine;
+  let membersBox;
+  let methodsLine;
+  if (classDef.members.length > 0) {
+    membersLine = g.append("line").attr("x1", 0).attr("y1", conf.padding + titleHeight + conf.dividerMargin / 2).attr("y2", conf.padding + titleHeight + conf.dividerMargin / 2);
+    const members = g.append("text").attr("x", conf.padding).attr("y", titleHeight + conf.dividerMargin + conf.textHeight).attr("fill", "white").attr("class", "classText");
+    isFirst = true;
+    classDef.members.forEach(function(member) {
+      addTspan(members, member, isFirst, conf);
+      isFirst = false;
+    });
+    membersBox = members.node().getBBox();
+  }
+  if (classDef.methods.length > 0) {
+    methodsLine = g.append("line").attr("x1", 0).attr("y1", conf.padding + titleHeight + conf.dividerMargin + membersBox.height).attr("y2", conf.padding + titleHeight + conf.dividerMargin + membersBox.height);
+    const methods = g.append("text").attr("x", conf.padding).attr("y", titleHeight + 2 * conf.dividerMargin + membersBox.height + conf.textHeight).attr("fill", "white").attr("class", "classText");
+    isFirst = true;
+    classDef.methods.forEach(function(method) {
+      addTspan(methods, method, isFirst, conf);
+      isFirst = false;
+    });
+  }
+  const classBox = g.node().getBBox();
+  var cssClassStr = " ";
+  if (classDef.cssClasses.length > 0) {
+    cssClassStr = cssClassStr + classDef.cssClasses.join(" ");
+  }
+  const rect = g.insert("rect", ":first-child").attr("x", 0).attr("y", 0).attr("width", classBox.width + 2 * conf.padding).attr("height", classBox.height + conf.padding + 0.5 * conf.dividerMargin).attr("class", cssClassStr);
+  const rectWidth = rect.node().getBBox().width;
+  title.node().childNodes.forEach(function(x) {
+    x.setAttribute("x", (rectWidth - x.getBBox().width) / 2);
+  });
+  if (classDef.tooltip) {
+    title.insert("title").text(classDef.tooltip);
+  }
+  if (membersLine) {
+    membersLine.attr("x2", rectWidth);
+  }
+  if (methodsLine) {
+    methodsLine.attr("x2", rectWidth);
+  }
+  classInfo.width = rectWidth;
+  classInfo.height = classBox.height + conf.padding + 0.5 * conf.dividerMargin;
+  return classInfo;
+};
+const getClassTitleString = function(classDef) {
+  let classTitleString = classDef.id;
+  if (classDef.type) {
+    classTitleString += "<" + (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.v)(classDef.type) + ">";
+  }
+  return classTitleString;
+};
+const drawNote = function(elem, note, conf, diagObj) {
+  _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.l.debug("Rendering note ", note, conf);
+  const id = note.id;
+  const noteInfo = {
+    id,
+    text: note.text,
+    width: 0,
+    height: 0
+  };
+  const g = elem.append("g").attr("id", id).attr("class", "classGroup");
+  let text = g.append("text").attr("y", conf.textHeight + conf.padding).attr("x", 0);
+  const lines = JSON.parse(`"${note.text}"`).split("\n");
+  lines.forEach(function(line2) {
+    _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.l.debug(`Adding line: ${line2}`);
+    text.append("tspan").text(line2).attr("class", "title").attr("dy", conf.textHeight);
+  });
+  const noteBox = g.node().getBBox();
+  const rect = g.insert("rect", ":first-child").attr("x", 0).attr("y", 0).attr("width", noteBox.width + 2 * conf.padding).attr(
+    "height",
+    noteBox.height + lines.length * conf.textHeight + conf.padding + 0.5 * conf.dividerMargin
+  );
+  const rectWidth = rect.node().getBBox().width;
+  text.node().childNodes.forEach(function(x) {
+    x.setAttribute("x", (rectWidth - x.getBBox().width) / 2);
+  });
+  noteInfo.width = rectWidth;
+  noteInfo.height = noteBox.height + lines.length * conf.textHeight + conf.padding + 0.5 * conf.dividerMargin;
+  return noteInfo;
+};
+const addTspan = function(textEl, member, isFirst, conf) {
+  const { displayText, cssStyle } = member.getDisplayDetails();
+  const tSpan = textEl.append("tspan").attr("x", conf.padding).text(displayText);
+  if (cssStyle !== "") {
+    tSpan.attr("style", member.cssStyle);
+  }
+  if (!isFirst) {
+    tSpan.attr("dy", conf.textHeight);
+  }
+};
+const svgDraw = {
+  getClassTitleString,
+  drawClass,
+  drawEdge,
+  drawNote
+};
+let idCache = {};
+const padding = 20;
+const getGraphId = function(label) {
+  const foundEntry = Object.entries(idCache).find((entry) => entry[1].label === label);
+  if (foundEntry) {
+    return foundEntry[0];
+  }
+};
+const insertMarkers = function(elem) {
+  elem.append("defs").append("marker").attr("id", "extensionStart").attr("class", "extension").attr("refX", 0).attr("refY", 7).attr("markerWidth", 190).attr("markerHeight", 240).attr("orient", "auto").append("path").attr("d", "M 1,7 L18,13 V 1 Z");
+  elem.append("defs").append("marker").attr("id", "extensionEnd").attr("refX", 19).attr("refY", 7).attr("markerWidth", 20).attr("markerHeight", 28).attr("orient", "auto").append("path").attr("d", "M 1,1 V 13 L18,7 Z");
+  elem.append("defs").append("marker").attr("id", "compositionStart").attr("class", "extension").attr("refX", 0).attr("refY", 7).attr("markerWidth", 190).attr("markerHeight", 240).attr("orient", "auto").append("path").attr("d", "M 18,7 L9,13 L1,7 L9,1 Z");
+  elem.append("defs").append("marker").attr("id", "compositionEnd").attr("refX", 19).attr("refY", 7).attr("markerWidth", 20).attr("markerHeight", 28).attr("orient", "auto").append("path").attr("d", "M 18,7 L9,13 L1,7 L9,1 Z");
+  elem.append("defs").append("marker").attr("id", "aggregationStart").attr("class", "extension").attr("refX", 0).attr("refY", 7).attr("markerWidth", 190).attr("markerHeight", 240).attr("orient", "auto").append("path").attr("d", "M 18,7 L9,13 L1,7 L9,1 Z");
+  elem.append("defs").append("marker").attr("id", "aggregationEnd").attr("refX", 19).attr("refY", 7).attr("markerWidth", 20).attr("markerHeight", 28).attr("orient", "auto").append("path").attr("d", "M 18,7 L9,13 L1,7 L9,1 Z");
+  elem.append("defs").append("marker").attr("id", "dependencyStart").attr("class", "extension").attr("refX", 0).attr("refY", 7).attr("markerWidth", 190).attr("markerHeight", 240).attr("orient", "auto").append("path").attr("d", "M 5,7 L9,13 L1,7 L9,1 Z");
+  elem.append("defs").append("marker").attr("id", "dependencyEnd").attr("refX", 19).attr("refY", 7).attr("markerWidth", 20).attr("markerHeight", 28).attr("orient", "auto").append("path").attr("d", "M 18,7 L9,13 L14,7 L9,1 Z");
+};
+const draw = function(text, id, _version, diagObj) {
+  const conf = (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.c)().class;
+  idCache = {};
+  _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.l.info("Rendering diagram " + text);
+  const securityLevel = (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.c)().securityLevel;
+  let sandboxElement;
+  if (securityLevel === "sandbox") {
+    sandboxElement = (0,d3__WEBPACK_IMPORTED_MODULE_0__/* .select */ .Ltv)("#i" + id);
+  }
+  const root = securityLevel === "sandbox" ? (0,d3__WEBPACK_IMPORTED_MODULE_0__/* .select */ .Ltv)(sandboxElement.nodes()[0].contentDocument.body) : (0,d3__WEBPACK_IMPORTED_MODULE_0__/* .select */ .Ltv)("body");
+  const diagram2 = root.select(`[id='${id}']`);
+  insertMarkers(diagram2);
+  const g = new dagre_d3_es_src_graphlib_index_js__WEBPACK_IMPORTED_MODULE_2__/* .Graph */ .T({
+    multigraph: true
+  });
+  g.setGraph({
+    isMultiGraph: true
+  });
+  g.setDefaultEdgeLabel(function() {
+    return {};
+  });
+  const classes = diagObj.db.getClasses();
+  const keys = Object.keys(classes);
+  for (const key of keys) {
+    const classDef = classes[key];
+    const node = svgDraw.drawClass(diagram2, classDef, conf, diagObj);
+    idCache[node.id] = node;
+    g.setNode(node.id, node);
+    _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.l.info("Org height: " + node.height);
+  }
+  const relations = diagObj.db.getRelations();
+  relations.forEach(function(relation) {
+    _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.l.info(
+      "tjoho" + getGraphId(relation.id1) + getGraphId(relation.id2) + JSON.stringify(relation)
+    );
+    g.setEdge(
+      getGraphId(relation.id1),
+      getGraphId(relation.id2),
+      {
+        relation
+      },
+      relation.title || "DEFAULT"
+    );
+  });
+  const notes = diagObj.db.getNotes();
+  notes.forEach(function(note) {
+    _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.l.debug(`Adding note: ${JSON.stringify(note)}`);
+    const node = svgDraw.drawNote(diagram2, note, conf, diagObj);
+    idCache[node.id] = node;
+    g.setNode(node.id, node);
+    if (note.class && note.class in classes) {
+      g.setEdge(
+        note.id,
+        getGraphId(note.class),
+        {
+          relation: {
+            id1: note.id,
+            id2: note.class,
+            relation: {
+              type1: "none",
+              type2: "none",
+              lineType: 10
+            }
+          }
+        },
+        "DEFAULT"
+      );
+    }
+  });
+  (0,dagre_d3_es_src_dagre_index_js__WEBPACK_IMPORTED_MODULE_1__/* .layout */ .Zp)(g);
+  g.nodes().forEach(function(v) {
+    if (v !== void 0 && g.node(v) !== void 0) {
+      _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.l.debug("Node " + v + ": " + JSON.stringify(g.node(v)));
+      root.select("#" + (diagObj.db.lookUpDomId(v) || v)).attr(
+        "transform",
+        "translate(" + (g.node(v).x - g.node(v).width / 2) + "," + (g.node(v).y - g.node(v).height / 2) + " )"
+      );
+    }
+  });
+  g.edges().forEach(function(e) {
+    if (e !== void 0 && g.edge(e) !== void 0) {
+      _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.l.debug("Edge " + e.v + " -> " + e.w + ": " + JSON.stringify(g.edge(e)));
+      svgDraw.drawEdge(diagram2, g.edge(e), g.edge(e).relation, conf, diagObj);
+    }
+  });
+  const svgBounds = diagram2.node().getBBox();
+  const width = svgBounds.width + padding * 2;
+  const height = svgBounds.height + padding * 2;
+  (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.i)(diagram2, height, width, conf.useMaxWidth);
+  const vBox = `${svgBounds.x - padding} ${svgBounds.y - padding} ${width} ${height}`;
+  _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.l.debug(`viewBox ${vBox}`);
+  diagram2.attr("viewBox", vBox);
+};
+const renderer = {
+  draw
+};
+const diagram = {
+  parser: _styles_4ba6ed67_js__WEBPACK_IMPORTED_MODULE_7__.p,
+  db: _styles_4ba6ed67_js__WEBPACK_IMPORTED_MODULE_7__.d,
+  renderer,
+  styles: _styles_4ba6ed67_js__WEBPACK_IMPORTED_MODULE_7__.s,
+  init: (cnf) => {
+    if (!cnf.class) {
+      cnf.class = {};
+    }
+    cnf.class.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+    _styles_4ba6ed67_js__WEBPACK_IMPORTED_MODULE_7__.d.clear();
+  }
+};
+
+
+
+/***/ }),
+
+/***/ 27830:
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   d: () => (/* binding */ db),
+/* harmony export */   p: () => (/* binding */ parser$1),
+/* harmony export */   s: () => (/* binding */ styles)
+/* harmony export */ });
+/* harmony import */ var d3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(26312);
+/* harmony import */ var _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(96294);
 
 
 var parser = function() {
@@ -8979,123 +9343,233 @@ var parser = function() {
     for (o2 = o2 || {}, l = k.length; l--; o2[k[l]] = v)
       ;
     return o2;
-  }, $V0 = [1, 3], $V1 = [1, 4], $V2 = [1, 5], $V3 = [1, 6], $V4 = [5, 6, 8, 9, 11, 13, 31, 32, 33, 34, 35, 36, 44, 62, 63], $V5 = [1, 18], $V6 = [2, 7], $V7 = [1, 22], $V8 = [1, 23], $V9 = [1, 24], $Va = [1, 25], $Vb = [1, 26], $Vc = [1, 27], $Vd = [1, 20], $Ve = [1, 28], $Vf = [1, 29], $Vg = [62, 63], $Vh = [5, 8, 9, 11, 13, 31, 32, 33, 34, 35, 36, 44, 51, 53, 62, 63], $Vi = [1, 47], $Vj = [1, 48], $Vk = [1, 49], $Vl = [1, 50], $Vm = [1, 51], $Vn = [1, 52], $Vo = [1, 53], $Vp = [53, 54], $Vq = [1, 64], $Vr = [1, 60], $Vs = [1, 61], $Vt = [1, 62], $Vu = [1, 63], $Vv = [1, 65], $Vw = [1, 69], $Vx = [1, 70], $Vy = [1, 67], $Vz = [1, 68], $VA = [5, 8, 9, 11, 13, 31, 32, 33, 34, 35, 36, 44, 62, 63];
+  }, $V0 = [1, 16], $V1 = [1, 17], $V2 = [1, 18], $V3 = [1, 37], $V4 = [1, 38], $V5 = [1, 24], $V6 = [1, 22], $V7 = [1, 23], $V8 = [1, 29], $V9 = [1, 30], $Va = [1, 31], $Vb = [1, 32], $Vc = [1, 33], $Vd = [1, 34], $Ve = [1, 25], $Vf = [1, 26], $Vg = [1, 27], $Vh = [1, 28], $Vi = [1, 42], $Vj = [1, 39], $Vk = [1, 40], $Vl = [1, 41], $Vm = [1, 43], $Vn = [1, 9], $Vo = [1, 8, 9], $Vp = [1, 54], $Vq = [1, 55], $Vr = [1, 56], $Vs = [1, 57], $Vt = [1, 58], $Vu = [1, 59], $Vv = [1, 60], $Vw = [1, 8, 9, 38], $Vx = [1, 71], $Vy = [1, 8, 9, 12, 13, 21, 36, 38, 41, 58, 59, 60, 61, 62, 63, 64, 69, 71], $Vz = [1, 8, 9, 12, 13, 19, 21, 36, 38, 41, 45, 58, 59, 60, 61, 62, 63, 64, 69, 71, 84, 86, 87, 88, 89], $VA = [13, 84, 86, 87, 88, 89], $VB = [13, 63, 64, 84, 86, 87, 88, 89], $VC = [13, 58, 59, 60, 61, 62, 84, 86, 87, 88, 89], $VD = [1, 90], $VE = [1, 8, 9, 36, 38, 41], $VF = [1, 8, 9, 21];
   var parser2 = {
     trace: function trace() {
     },
     yy: {},
-    symbols_: { "error": 2, "start": 3, "directive": 4, "NEWLINE": 5, "RD": 6, "diagram": 7, "EOF": 8, "acc_title": 9, "acc_title_value": 10, "acc_descr": 11, "acc_descr_value": 12, "acc_descr_multiline_value": 13, "requirementDef": 14, "elementDef": 15, "relationshipDef": 16, "requirementType": 17, "requirementName": 18, "STRUCT_START": 19, "requirementBody": 20, "ID": 21, "COLONSEP": 22, "id": 23, "TEXT": 24, "text": 25, "RISK": 26, "riskLevel": 27, "VERIFYMTHD": 28, "verifyType": 29, "STRUCT_STOP": 30, "REQUIREMENT": 31, "FUNCTIONAL_REQUIREMENT": 32, "INTERFACE_REQUIREMENT": 33, "PERFORMANCE_REQUIREMENT": 34, "PHYSICAL_REQUIREMENT": 35, "DESIGN_CONSTRAINT": 36, "LOW_RISK": 37, "MED_RISK": 38, "HIGH_RISK": 39, "VERIFY_ANALYSIS": 40, "VERIFY_DEMONSTRATION": 41, "VERIFY_INSPECTION": 42, "VERIFY_TEST": 43, "ELEMENT": 44, "elementName": 45, "elementBody": 46, "TYPE": 47, "type": 48, "DOCREF": 49, "ref": 50, "END_ARROW_L": 51, "relationship": 52, "LINE": 53, "END_ARROW_R": 54, "CONTAINS": 55, "COPIES": 56, "DERIVES": 57, "SATISFIES": 58, "VERIFIES": 59, "REFINES": 60, "TRACES": 61, "unqString": 62, "qString": 63, "$accept": 0, "$end": 1 },
-    terminals_: { 2: "error", 5: "NEWLINE", 6: "RD", 8: "EOF", 9: "acc_title", 10: "acc_title_value", 11: "acc_descr", 12: "acc_descr_value", 13: "acc_descr_multiline_value", 19: "STRUCT_START", 21: "ID", 22: "COLONSEP", 24: "TEXT", 26: "RISK", 28: "VERIFYMTHD", 30: "STRUCT_STOP", 31: "REQUIREMENT", 32: "FUNCTIONAL_REQUIREMENT", 33: "INTERFACE_REQUIREMENT", 34: "PERFORMANCE_REQUIREMENT", 35: "PHYSICAL_REQUIREMENT", 36: "DESIGN_CONSTRAINT", 37: "LOW_RISK", 38: "MED_RISK", 39: "HIGH_RISK", 40: "VERIFY_ANALYSIS", 41: "VERIFY_DEMONSTRATION", 42: "VERIFY_INSPECTION", 43: "VERIFY_TEST", 44: "ELEMENT", 47: "TYPE", 49: "DOCREF", 51: "END_ARROW_L", 53: "LINE", 54: "END_ARROW_R", 55: "CONTAINS", 56: "COPIES", 57: "DERIVES", 58: "SATISFIES", 59: "VERIFIES", 60: "REFINES", 61: "TRACES", 62: "unqString", 63: "qString" },
-    productions_: [0, [3, 3], [3, 2], [3, 4], [4, 2], [4, 2], [4, 1], [7, 0], [7, 2], [7, 2], [7, 2], [7, 2], [7, 2], [14, 5], [20, 5], [20, 5], [20, 5], [20, 5], [20, 2], [20, 1], [17, 1], [17, 1], [17, 1], [17, 1], [17, 1], [17, 1], [27, 1], [27, 1], [27, 1], [29, 1], [29, 1], [29, 1], [29, 1], [15, 5], [46, 5], [46, 5], [46, 2], [46, 1], [16, 5], [16, 5], [52, 1], [52, 1], [52, 1], [52, 1], [52, 1], [52, 1], [52, 1], [18, 1], [18, 1], [23, 1], [23, 1], [25, 1], [25, 1], [45, 1], [45, 1], [48, 1], [48, 1], [50, 1], [50, 1]],
+    symbols_: { "error": 2, "start": 3, "mermaidDoc": 4, "statements": 5, "graphConfig": 6, "CLASS_DIAGRAM": 7, "NEWLINE": 8, "EOF": 9, "statement": 10, "classLabel": 11, "SQS": 12, "STR": 13, "SQE": 14, "namespaceName": 15, "alphaNumToken": 16, "className": 17, "classLiteralName": 18, "GENERICTYPE": 19, "relationStatement": 20, "LABEL": 21, "namespaceStatement": 22, "classStatement": 23, "memberStatement": 24, "annotationStatement": 25, "clickStatement": 26, "cssClassStatement": 27, "noteStatement": 28, "direction": 29, "acc_title": 30, "acc_title_value": 31, "acc_descr": 32, "acc_descr_value": 33, "acc_descr_multiline_value": 34, "namespaceIdentifier": 35, "STRUCT_START": 36, "classStatements": 37, "STRUCT_STOP": 38, "NAMESPACE": 39, "classIdentifier": 40, "STYLE_SEPARATOR": 41, "members": 42, "CLASS": 43, "ANNOTATION_START": 44, "ANNOTATION_END": 45, "MEMBER": 46, "SEPARATOR": 47, "relation": 48, "NOTE_FOR": 49, "noteText": 50, "NOTE": 51, "direction_tb": 52, "direction_bt": 53, "direction_rl": 54, "direction_lr": 55, "relationType": 56, "lineType": 57, "AGGREGATION": 58, "EXTENSION": 59, "COMPOSITION": 60, "DEPENDENCY": 61, "LOLLIPOP": 62, "LINE": 63, "DOTTED_LINE": 64, "CALLBACK": 65, "LINK": 66, "LINK_TARGET": 67, "CLICK": 68, "CALLBACK_NAME": 69, "CALLBACK_ARGS": 70, "HREF": 71, "CSSCLASS": 72, "commentToken": 73, "textToken": 74, "graphCodeTokens": 75, "textNoTagsToken": 76, "TAGSTART": 77, "TAGEND": 78, "==": 79, "--": 80, "PCT": 81, "DEFAULT": 82, "SPACE": 83, "MINUS": 84, "keywords": 85, "UNICODE_TEXT": 86, "NUM": 87, "ALPHA": 88, "BQUOTE_STR": 89, "$accept": 0, "$end": 1 },
+    terminals_: { 2: "error", 7: "CLASS_DIAGRAM", 8: "NEWLINE", 9: "EOF", 12: "SQS", 13: "STR", 14: "SQE", 19: "GENERICTYPE", 21: "LABEL", 30: "acc_title", 31: "acc_title_value", 32: "acc_descr", 33: "acc_descr_value", 34: "acc_descr_multiline_value", 36: "STRUCT_START", 38: "STRUCT_STOP", 39: "NAMESPACE", 41: "STYLE_SEPARATOR", 43: "CLASS", 44: "ANNOTATION_START", 45: "ANNOTATION_END", 46: "MEMBER", 47: "SEPARATOR", 49: "NOTE_FOR", 51: "NOTE", 52: "direction_tb", 53: "direction_bt", 54: "direction_rl", 55: "direction_lr", 58: "AGGREGATION", 59: "EXTENSION", 60: "COMPOSITION", 61: "DEPENDENCY", 62: "LOLLIPOP", 63: "LINE", 64: "DOTTED_LINE", 65: "CALLBACK", 66: "LINK", 67: "LINK_TARGET", 68: "CLICK", 69: "CALLBACK_NAME", 70: "CALLBACK_ARGS", 71: "HREF", 72: "CSSCLASS", 75: "graphCodeTokens", 77: "TAGSTART", 78: "TAGEND", 79: "==", 80: "--", 81: "PCT", 82: "DEFAULT", 83: "SPACE", 84: "MINUS", 85: "keywords", 86: "UNICODE_TEXT", 87: "NUM", 88: "ALPHA", 89: "BQUOTE_STR" },
+    productions_: [0, [3, 1], [3, 1], [4, 1], [6, 4], [5, 1], [5, 2], [5, 3], [11, 3], [15, 1], [15, 2], [17, 1], [17, 1], [17, 2], [17, 2], [17, 2], [10, 1], [10, 2], [10, 1], [10, 1], [10, 1], [10, 1], [10, 1], [10, 1], [10, 1], [10, 1], [10, 2], [10, 2], [10, 1], [22, 4], [22, 5], [35, 2], [37, 1], [37, 2], [37, 3], [23, 1], [23, 3], [23, 4], [23, 6], [40, 2], [40, 3], [25, 4], [42, 1], [42, 2], [24, 1], [24, 2], [24, 1], [24, 1], [20, 3], [20, 4], [20, 4], [20, 5], [28, 3], [28, 2], [29, 1], [29, 1], [29, 1], [29, 1], [48, 3], [48, 2], [48, 2], [48, 1], [56, 1], [56, 1], [56, 1], [56, 1], [56, 1], [57, 1], [57, 1], [26, 3], [26, 4], [26, 3], [26, 4], [26, 4], [26, 5], [26, 3], [26, 4], [26, 4], [26, 5], [26, 4], [26, 5], [26, 5], [26, 6], [27, 3], [73, 1], [73, 1], [74, 1], [74, 1], [74, 1], [74, 1], [74, 1], [74, 1], [74, 1], [76, 1], [76, 1], [76, 1], [76, 1], [16, 1], [16, 1], [16, 1], [16, 1], [18, 1], [50, 1]],
     performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate, $$, _$) {
       var $0 = $$.length - 1;
       switch (yystate) {
-        case 4:
+        case 8:
+          this.$ = $$[$0 - 1];
+          break;
+        case 9:
+        case 11:
+        case 12:
+          this.$ = $$[$0];
+          break;
+        case 10:
+        case 13:
+          this.$ = $$[$0 - 1] + $$[$0];
+          break;
+        case 14:
+        case 15:
+          this.$ = $$[$0 - 1] + "~" + $$[$0] + "~";
+          break;
+        case 16:
+          yy.addRelation($$[$0]);
+          break;
+        case 17:
+          $$[$0 - 1].title = yy.cleanupLabel($$[$0]);
+          yy.addRelation($$[$0 - 1]);
+          break;
+        case 26:
           this.$ = $$[$0].trim();
           yy.setAccTitle(this.$);
           break;
-        case 5:
-        case 6:
+        case 27:
+        case 28:
           this.$ = $$[$0].trim();
           yy.setAccDescription(this.$);
           break;
-        case 7:
-          this.$ = [];
-          break;
-        case 13:
-          yy.addRequirement($$[$0 - 3], $$[$0 - 4]);
-          break;
-        case 14:
-          yy.setNewReqId($$[$0 - 2]);
-          break;
-        case 15:
-          yy.setNewReqText($$[$0 - 2]);
-          break;
-        case 16:
-          yy.setNewReqRisk($$[$0 - 2]);
-          break;
-        case 17:
-          yy.setNewReqVerifyMethod($$[$0 - 2]);
-          break;
-        case 20:
-          this.$ = yy.RequirementType.REQUIREMENT;
-          break;
-        case 21:
-          this.$ = yy.RequirementType.FUNCTIONAL_REQUIREMENT;
-          break;
-        case 22:
-          this.$ = yy.RequirementType.INTERFACE_REQUIREMENT;
-          break;
-        case 23:
-          this.$ = yy.RequirementType.PERFORMANCE_REQUIREMENT;
-          break;
-        case 24:
-          this.$ = yy.RequirementType.PHYSICAL_REQUIREMENT;
-          break;
-        case 25:
-          this.$ = yy.RequirementType.DESIGN_CONSTRAINT;
-          break;
-        case 26:
-          this.$ = yy.RiskLevel.LOW_RISK;
-          break;
-        case 27:
-          this.$ = yy.RiskLevel.MED_RISK;
-          break;
-        case 28:
-          this.$ = yy.RiskLevel.HIGH_RISK;
-          break;
         case 29:
-          this.$ = yy.VerifyType.VERIFY_ANALYSIS;
+          yy.addClassesToNamespace($$[$0 - 3], $$[$0 - 1]);
           break;
         case 30:
-          this.$ = yy.VerifyType.VERIFY_DEMONSTRATION;
+          yy.addClassesToNamespace($$[$0 - 4], $$[$0 - 1]);
           break;
         case 31:
-          this.$ = yy.VerifyType.VERIFY_INSPECTION;
+          this.$ = $$[$0];
+          yy.addNamespace($$[$0]);
           break;
         case 32:
-          this.$ = yy.VerifyType.VERIFY_TEST;
+          this.$ = [$$[$0]];
           break;
         case 33:
-          yy.addElement($$[$0 - 3]);
+          this.$ = [$$[$0 - 1]];
           break;
         case 34:
-          yy.setNewElementType($$[$0 - 2]);
+          $$[$0].unshift($$[$0 - 2]);
+          this.$ = $$[$0];
           break;
-        case 35:
-          yy.setNewElementDocRef($$[$0 - 2]);
+        case 36:
+          yy.setCssClass($$[$0 - 2], $$[$0]);
+          break;
+        case 37:
+          yy.addMembers($$[$0 - 3], $$[$0 - 1]);
           break;
         case 38:
-          yy.addRelationship($$[$0 - 2], $$[$0], $$[$0 - 4]);
+          yy.setCssClass($$[$0 - 5], $$[$0 - 3]);
+          yy.addMembers($$[$0 - 5], $$[$0 - 1]);
           break;
         case 39:
-          yy.addRelationship($$[$0 - 2], $$[$0 - 4], $$[$0]);
+          this.$ = $$[$0];
+          yy.addClass($$[$0]);
           break;
         case 40:
-          this.$ = yy.Relationships.CONTAINS;
+          this.$ = $$[$0 - 1];
+          yy.addClass($$[$0 - 1]);
+          yy.setClassLabel($$[$0 - 1], $$[$0]);
           break;
         case 41:
-          this.$ = yy.Relationships.COPIES;
+          yy.addAnnotation($$[$0], $$[$0 - 2]);
           break;
         case 42:
-          this.$ = yy.Relationships.DERIVES;
+          this.$ = [$$[$0]];
           break;
         case 43:
-          this.$ = yy.Relationships.SATISFIES;
+          $$[$0].push($$[$0 - 1]);
+          this.$ = $$[$0];
           break;
         case 44:
-          this.$ = yy.Relationships.VERIFIES;
           break;
         case 45:
-          this.$ = yy.Relationships.REFINES;
+          yy.addMember($$[$0 - 1], yy.cleanupLabel($$[$0]));
           break;
         case 46:
-          this.$ = yy.Relationships.TRACES;
+          break;
+        case 47:
+          break;
+        case 48:
+          this.$ = { "id1": $$[$0 - 2], "id2": $$[$0], relation: $$[$0 - 1], relationTitle1: "none", relationTitle2: "none" };
+          break;
+        case 49:
+          this.$ = { id1: $$[$0 - 3], id2: $$[$0], relation: $$[$0 - 1], relationTitle1: $$[$0 - 2], relationTitle2: "none" };
+          break;
+        case 50:
+          this.$ = { id1: $$[$0 - 3], id2: $$[$0], relation: $$[$0 - 2], relationTitle1: "none", relationTitle2: $$[$0 - 1] };
+          break;
+        case 51:
+          this.$ = { id1: $$[$0 - 4], id2: $$[$0], relation: $$[$0 - 2], relationTitle1: $$[$0 - 3], relationTitle2: $$[$0 - 1] };
+          break;
+        case 52:
+          yy.addNote($$[$0], $$[$0 - 1]);
+          break;
+        case 53:
+          yy.addNote($$[$0]);
+          break;
+        case 54:
+          yy.setDirection("TB");
+          break;
+        case 55:
+          yy.setDirection("BT");
+          break;
+        case 56:
+          yy.setDirection("RL");
+          break;
+        case 57:
+          yy.setDirection("LR");
+          break;
+        case 58:
+          this.$ = { type1: $$[$0 - 2], type2: $$[$0], lineType: $$[$0 - 1] };
+          break;
+        case 59:
+          this.$ = { type1: "none", type2: $$[$0], lineType: $$[$0 - 1] };
+          break;
+        case 60:
+          this.$ = { type1: $$[$0 - 1], type2: "none", lineType: $$[$0] };
+          break;
+        case 61:
+          this.$ = { type1: "none", type2: "none", lineType: $$[$0] };
+          break;
+        case 62:
+          this.$ = yy.relationType.AGGREGATION;
+          break;
+        case 63:
+          this.$ = yy.relationType.EXTENSION;
+          break;
+        case 64:
+          this.$ = yy.relationType.COMPOSITION;
+          break;
+        case 65:
+          this.$ = yy.relationType.DEPENDENCY;
+          break;
+        case 66:
+          this.$ = yy.relationType.LOLLIPOP;
+          break;
+        case 67:
+          this.$ = yy.lineType.LINE;
+          break;
+        case 68:
+          this.$ = yy.lineType.DOTTED_LINE;
+          break;
+        case 69:
+        case 75:
+          this.$ = $$[$0 - 2];
+          yy.setClickEvent($$[$0 - 1], $$[$0]);
+          break;
+        case 70:
+        case 76:
+          this.$ = $$[$0 - 3];
+          yy.setClickEvent($$[$0 - 2], $$[$0 - 1]);
+          yy.setTooltip($$[$0 - 2], $$[$0]);
+          break;
+        case 71:
+          this.$ = $$[$0 - 2];
+          yy.setLink($$[$0 - 1], $$[$0]);
+          break;
+        case 72:
+          this.$ = $$[$0 - 3];
+          yy.setLink($$[$0 - 2], $$[$0 - 1], $$[$0]);
+          break;
+        case 73:
+          this.$ = $$[$0 - 3];
+          yy.setLink($$[$0 - 2], $$[$0 - 1]);
+          yy.setTooltip($$[$0 - 2], $$[$0]);
+          break;
+        case 74:
+          this.$ = $$[$0 - 4];
+          yy.setLink($$[$0 - 3], $$[$0 - 2], $$[$0]);
+          yy.setTooltip($$[$0 - 3], $$[$0 - 1]);
+          break;
+        case 77:
+          this.$ = $$[$0 - 3];
+          yy.setClickEvent($$[$0 - 2], $$[$0 - 1], $$[$0]);
+          break;
+        case 78:
+          this.$ = $$[$0 - 4];
+          yy.setClickEvent($$[$0 - 3], $$[$0 - 2], $$[$0 - 1]);
+          yy.setTooltip($$[$0 - 3], $$[$0]);
+          break;
+        case 79:
+          this.$ = $$[$0 - 3];
+          yy.setLink($$[$0 - 2], $$[$0]);
+          break;
+        case 80:
+          this.$ = $$[$0 - 4];
+          yy.setLink($$[$0 - 3], $$[$0 - 1], $$[$0]);
+          break;
+        case 81:
+          this.$ = $$[$0 - 4];
+          yy.setLink($$[$0 - 3], $$[$0 - 1]);
+          yy.setTooltip($$[$0 - 3], $$[$0]);
+          break;
+        case 82:
+          this.$ = $$[$0 - 5];
+          yy.setLink($$[$0 - 4], $$[$0 - 2], $$[$0]);
+          yy.setTooltip($$[$0 - 4], $$[$0 - 1]);
+          break;
+        case 83:
+          yy.setCssClass($$[$0 - 1], $$[$0]);
           break;
       }
     },
-    table: [{ 3: 1, 4: 2, 6: $V0, 9: $V1, 11: $V2, 13: $V3 }, { 1: [3] }, { 3: 8, 4: 2, 5: [1, 7], 6: $V0, 9: $V1, 11: $V2, 13: $V3 }, { 5: [1, 9] }, { 10: [1, 10] }, { 12: [1, 11] }, o($V4, [2, 6]), { 3: 12, 4: 2, 6: $V0, 9: $V1, 11: $V2, 13: $V3 }, { 1: [2, 2] }, { 4: 17, 5: $V5, 7: 13, 8: $V6, 9: $V1, 11: $V2, 13: $V3, 14: 14, 15: 15, 16: 16, 17: 19, 23: 21, 31: $V7, 32: $V8, 33: $V9, 34: $Va, 35: $Vb, 36: $Vc, 44: $Vd, 62: $Ve, 63: $Vf }, o($V4, [2, 4]), o($V4, [2, 5]), { 1: [2, 1] }, { 8: [1, 30] }, { 4: 17, 5: $V5, 7: 31, 8: $V6, 9: $V1, 11: $V2, 13: $V3, 14: 14, 15: 15, 16: 16, 17: 19, 23: 21, 31: $V7, 32: $V8, 33: $V9, 34: $Va, 35: $Vb, 36: $Vc, 44: $Vd, 62: $Ve, 63: $Vf }, { 4: 17, 5: $V5, 7: 32, 8: $V6, 9: $V1, 11: $V2, 13: $V3, 14: 14, 15: 15, 16: 16, 17: 19, 23: 21, 31: $V7, 32: $V8, 33: $V9, 34: $Va, 35: $Vb, 36: $Vc, 44: $Vd, 62: $Ve, 63: $Vf }, { 4: 17, 5: $V5, 7: 33, 8: $V6, 9: $V1, 11: $V2, 13: $V3, 14: 14, 15: 15, 16: 16, 17: 19, 23: 21, 31: $V7, 32: $V8, 33: $V9, 34: $Va, 35: $Vb, 36: $Vc, 44: $Vd, 62: $Ve, 63: $Vf }, { 4: 17, 5: $V5, 7: 34, 8: $V6, 9: $V1, 11: $V2, 13: $V3, 14: 14, 15: 15, 16: 16, 17: 19, 23: 21, 31: $V7, 32: $V8, 33: $V9, 34: $Va, 35: $Vb, 36: $Vc, 44: $Vd, 62: $Ve, 63: $Vf }, { 4: 17, 5: $V5, 7: 35, 8: $V6, 9: $V1, 11: $V2, 13: $V3, 14: 14, 15: 15, 16: 16, 17: 19, 23: 21, 31: $V7, 32: $V8, 33: $V9, 34: $Va, 35: $Vb, 36: $Vc, 44: $Vd, 62: $Ve, 63: $Vf }, { 18: 36, 62: [1, 37], 63: [1, 38] }, { 45: 39, 62: [1, 40], 63: [1, 41] }, { 51: [1, 42], 53: [1, 43] }, o($Vg, [2, 20]), o($Vg, [2, 21]), o($Vg, [2, 22]), o($Vg, [2, 23]), o($Vg, [2, 24]), o($Vg, [2, 25]), o($Vh, [2, 49]), o($Vh, [2, 50]), { 1: [2, 3] }, { 8: [2, 8] }, { 8: [2, 9] }, { 8: [2, 10] }, { 8: [2, 11] }, { 8: [2, 12] }, { 19: [1, 44] }, { 19: [2, 47] }, { 19: [2, 48] }, { 19: [1, 45] }, { 19: [2, 53] }, { 19: [2, 54] }, { 52: 46, 55: $Vi, 56: $Vj, 57: $Vk, 58: $Vl, 59: $Vm, 60: $Vn, 61: $Vo }, { 52: 54, 55: $Vi, 56: $Vj, 57: $Vk, 58: $Vl, 59: $Vm, 60: $Vn, 61: $Vo }, { 5: [1, 55] }, { 5: [1, 56] }, { 53: [1, 57] }, o($Vp, [2, 40]), o($Vp, [2, 41]), o($Vp, [2, 42]), o($Vp, [2, 43]), o($Vp, [2, 44]), o($Vp, [2, 45]), o($Vp, [2, 46]), { 54: [1, 58] }, { 5: $Vq, 20: 59, 21: $Vr, 24: $Vs, 26: $Vt, 28: $Vu, 30: $Vv }, { 5: $Vw, 30: $Vx, 46: 66, 47: $Vy, 49: $Vz }, { 23: 71, 62: $Ve, 63: $Vf }, { 23: 72, 62: $Ve, 63: $Vf }, o($VA, [2, 13]), { 22: [1, 73] }, { 22: [1, 74] }, { 22: [1, 75] }, { 22: [1, 76] }, { 5: $Vq, 20: 77, 21: $Vr, 24: $Vs, 26: $Vt, 28: $Vu, 30: $Vv }, o($VA, [2, 19]), o($VA, [2, 33]), { 22: [1, 78] }, { 22: [1, 79] }, { 5: $Vw, 30: $Vx, 46: 80, 47: $Vy, 49: $Vz }, o($VA, [2, 37]), o($VA, [2, 38]), o($VA, [2, 39]), { 23: 81, 62: $Ve, 63: $Vf }, { 25: 82, 62: [1, 83], 63: [1, 84] }, { 27: 85, 37: [1, 86], 38: [1, 87], 39: [1, 88] }, { 29: 89, 40: [1, 90], 41: [1, 91], 42: [1, 92], 43: [1, 93] }, o($VA, [2, 18]), { 48: 94, 62: [1, 95], 63: [1, 96] }, { 50: 97, 62: [1, 98], 63: [1, 99] }, o($VA, [2, 36]), { 5: [1, 100] }, { 5: [1, 101] }, { 5: [2, 51] }, { 5: [2, 52] }, { 5: [1, 102] }, { 5: [2, 26] }, { 5: [2, 27] }, { 5: [2, 28] }, { 5: [1, 103] }, { 5: [2, 29] }, { 5: [2, 30] }, { 5: [2, 31] }, { 5: [2, 32] }, { 5: [1, 104] }, { 5: [2, 55] }, { 5: [2, 56] }, { 5: [1, 105] }, { 5: [2, 57] }, { 5: [2, 58] }, { 5: $Vq, 20: 106, 21: $Vr, 24: $Vs, 26: $Vt, 28: $Vu, 30: $Vv }, { 5: $Vq, 20: 107, 21: $Vr, 24: $Vs, 26: $Vt, 28: $Vu, 30: $Vv }, { 5: $Vq, 20: 108, 21: $Vr, 24: $Vs, 26: $Vt, 28: $Vu, 30: $Vv }, { 5: $Vq, 20: 109, 21: $Vr, 24: $Vs, 26: $Vt, 28: $Vu, 30: $Vv }, { 5: $Vw, 30: $Vx, 46: 110, 47: $Vy, 49: $Vz }, { 5: $Vw, 30: $Vx, 46: 111, 47: $Vy, 49: $Vz }, o($VA, [2, 14]), o($VA, [2, 15]), o($VA, [2, 16]), o($VA, [2, 17]), o($VA, [2, 34]), o($VA, [2, 35])],
-    defaultActions: { 8: [2, 2], 12: [2, 1], 30: [2, 3], 31: [2, 8], 32: [2, 9], 33: [2, 10], 34: [2, 11], 35: [2, 12], 37: [2, 47], 38: [2, 48], 40: [2, 53], 41: [2, 54], 83: [2, 51], 84: [2, 52], 86: [2, 26], 87: [2, 27], 88: [2, 28], 90: [2, 29], 91: [2, 30], 92: [2, 31], 93: [2, 32], 95: [2, 55], 96: [2, 56], 98: [2, 57], 99: [2, 58] },
+    table: [{ 3: 1, 4: 2, 5: 3, 6: 4, 7: [1, 6], 10: 5, 16: 35, 17: 19, 18: 36, 20: 7, 22: 8, 23: 9, 24: 10, 25: 11, 26: 12, 27: 13, 28: 14, 29: 15, 30: $V0, 32: $V1, 34: $V2, 35: 20, 39: $V3, 40: 21, 43: $V4, 44: $V5, 46: $V6, 47: $V7, 49: $V8, 51: $V9, 52: $Va, 53: $Vb, 54: $Vc, 55: $Vd, 65: $Ve, 66: $Vf, 68: $Vg, 72: $Vh, 84: $Vi, 86: $Vj, 87: $Vk, 88: $Vl, 89: $Vm }, { 1: [3] }, { 1: [2, 1] }, { 1: [2, 2] }, { 1: [2, 3] }, o($Vn, [2, 5], { 8: [1, 44] }), { 8: [1, 45] }, o($Vo, [2, 16], { 21: [1, 46] }), o($Vo, [2, 18]), o($Vo, [2, 19]), o($Vo, [2, 20]), o($Vo, [2, 21]), o($Vo, [2, 22]), o($Vo, [2, 23]), o($Vo, [2, 24]), o($Vo, [2, 25]), { 31: [1, 47] }, { 33: [1, 48] }, o($Vo, [2, 28]), o($Vo, [2, 44], { 48: 49, 56: 52, 57: 53, 13: [1, 50], 21: [1, 51], 58: $Vp, 59: $Vq, 60: $Vr, 61: $Vs, 62: $Vt, 63: $Vu, 64: $Vv }), { 36: [1, 61] }, o($Vw, [2, 35], { 36: [1, 63], 41: [1, 62] }), o($Vo, [2, 46]), o($Vo, [2, 47]), { 16: 64, 84: $Vi, 86: $Vj, 87: $Vk, 88: $Vl }, { 16: 35, 17: 65, 18: 36, 84: $Vi, 86: $Vj, 87: $Vk, 88: $Vl, 89: $Vm }, { 16: 35, 17: 66, 18: 36, 84: $Vi, 86: $Vj, 87: $Vk, 88: $Vl, 89: $Vm }, { 16: 35, 17: 67, 18: 36, 84: $Vi, 86: $Vj, 87: $Vk, 88: $Vl, 89: $Vm }, { 13: [1, 68] }, { 16: 35, 17: 69, 18: 36, 84: $Vi, 86: $Vj, 87: $Vk, 88: $Vl, 89: $Vm }, { 13: $Vx, 50: 70 }, o($Vo, [2, 54]), o($Vo, [2, 55]), o($Vo, [2, 56]), o($Vo, [2, 57]), o($Vy, [2, 11], { 16: 35, 18: 36, 17: 72, 19: [1, 73], 84: $Vi, 86: $Vj, 87: $Vk, 88: $Vl, 89: $Vm }), o($Vy, [2, 12], { 19: [1, 74] }), { 15: 75, 16: 76, 84: $Vi, 86: $Vj, 87: $Vk, 88: $Vl }, { 16: 35, 17: 77, 18: 36, 84: $Vi, 86: $Vj, 87: $Vk, 88: $Vl, 89: $Vm }, o($Vz, [2, 97]), o($Vz, [2, 98]), o($Vz, [2, 99]), o($Vz, [2, 100]), o([1, 8, 9, 12, 13, 19, 21, 36, 38, 41, 58, 59, 60, 61, 62, 63, 64, 69, 71], [2, 101]), o($Vn, [2, 6], { 10: 5, 20: 7, 22: 8, 23: 9, 24: 10, 25: 11, 26: 12, 27: 13, 28: 14, 29: 15, 17: 19, 35: 20, 40: 21, 16: 35, 18: 36, 5: 78, 30: $V0, 32: $V1, 34: $V2, 39: $V3, 43: $V4, 44: $V5, 46: $V6, 47: $V7, 49: $V8, 51: $V9, 52: $Va, 53: $Vb, 54: $Vc, 55: $Vd, 65: $Ve, 66: $Vf, 68: $Vg, 72: $Vh, 84: $Vi, 86: $Vj, 87: $Vk, 88: $Vl, 89: $Vm }), { 5: 79, 10: 5, 16: 35, 17: 19, 18: 36, 20: 7, 22: 8, 23: 9, 24: 10, 25: 11, 26: 12, 27: 13, 28: 14, 29: 15, 30: $V0, 32: $V1, 34: $V2, 35: 20, 39: $V3, 40: 21, 43: $V4, 44: $V5, 46: $V6, 47: $V7, 49: $V8, 51: $V9, 52: $Va, 53: $Vb, 54: $Vc, 55: $Vd, 65: $Ve, 66: $Vf, 68: $Vg, 72: $Vh, 84: $Vi, 86: $Vj, 87: $Vk, 88: $Vl, 89: $Vm }, o($Vo, [2, 17]), o($Vo, [2, 26]), o($Vo, [2, 27]), { 13: [1, 81], 16: 35, 17: 80, 18: 36, 84: $Vi, 86: $Vj, 87: $Vk, 88: $Vl, 89: $Vm }, { 48: 82, 56: 52, 57: 53, 58: $Vp, 59: $Vq, 60: $Vr, 61: $Vs, 62: $Vt, 63: $Vu, 64: $Vv }, o($Vo, [2, 45]), { 57: 83, 63: $Vu, 64: $Vv }, o($VA, [2, 61], { 56: 84, 58: $Vp, 59: $Vq, 60: $Vr, 61: $Vs, 62: $Vt }), o($VB, [2, 62]), o($VB, [2, 63]), o($VB, [2, 64]), o($VB, [2, 65]), o($VB, [2, 66]), o($VC, [2, 67]), o($VC, [2, 68]), { 8: [1, 86], 23: 87, 37: 85, 40: 21, 43: $V4 }, { 16: 88, 84: $Vi, 86: $Vj, 87: $Vk, 88: $Vl }, { 42: 89, 46: $VD }, { 45: [1, 91] }, { 13: [1, 92] }, { 13: [1, 93] }, { 69: [1, 94], 71: [1, 95] }, { 16: 96, 84: $Vi, 86: $Vj, 87: $Vk, 88: $Vl }, { 13: $Vx, 50: 97 }, o($Vo, [2, 53]), o($Vo, [2, 102]), o($Vy, [2, 13]), o($Vy, [2, 14]), o($Vy, [2, 15]), { 36: [2, 31] }, { 15: 98, 16: 76, 36: [2, 9], 84: $Vi, 86: $Vj, 87: $Vk, 88: $Vl }, o($VE, [2, 39], { 11: 99, 12: [1, 100] }), o($Vn, [2, 7]), { 9: [1, 101] }, o($VF, [2, 48]), { 16: 35, 17: 102, 18: 36, 84: $Vi, 86: $Vj, 87: $Vk, 88: $Vl, 89: $Vm }, { 13: [1, 104], 16: 35, 17: 103, 18: 36, 84: $Vi, 86: $Vj, 87: $Vk, 88: $Vl, 89: $Vm }, o($VA, [2, 60], { 56: 105, 58: $Vp, 59: $Vq, 60: $Vr, 61: $Vs, 62: $Vt }), o($VA, [2, 59]), { 38: [1, 106] }, { 23: 87, 37: 107, 40: 21, 43: $V4 }, { 8: [1, 108], 38: [2, 32] }, o($Vw, [2, 36], { 36: [1, 109] }), { 38: [1, 110] }, { 38: [2, 42], 42: 111, 46: $VD }, { 16: 35, 17: 112, 18: 36, 84: $Vi, 86: $Vj, 87: $Vk, 88: $Vl, 89: $Vm }, o($Vo, [2, 69], { 13: [1, 113] }), o($Vo, [2, 71], { 13: [1, 115], 67: [1, 114] }), o($Vo, [2, 75], { 13: [1, 116], 70: [1, 117] }), { 13: [1, 118] }, o($Vo, [2, 83]), o($Vo, [2, 52]), { 36: [2, 10] }, o($VE, [2, 40]), { 13: [1, 119] }, { 1: [2, 4] }, o($VF, [2, 50]), o($VF, [2, 49]), { 16: 35, 17: 120, 18: 36, 84: $Vi, 86: $Vj, 87: $Vk, 88: $Vl, 89: $Vm }, o($VA, [2, 58]), o($Vo, [2, 29]), { 38: [1, 121] }, { 23: 87, 37: 122, 38: [2, 33], 40: 21, 43: $V4 }, { 42: 123, 46: $VD }, o($Vw, [2, 37]), { 38: [2, 43] }, o($Vo, [2, 41]), o($Vo, [2, 70]), o($Vo, [2, 72]), o($Vo, [2, 73], { 67: [1, 124] }), o($Vo, [2, 76]), o($Vo, [2, 77], { 13: [1, 125] }), o($Vo, [2, 79], { 13: [1, 127], 67: [1, 126] }), { 14: [1, 128] }, o($VF, [2, 51]), o($Vo, [2, 30]), { 38: [2, 34] }, { 38: [1, 129] }, o($Vo, [2, 74]), o($Vo, [2, 78]), o($Vo, [2, 80]), o($Vo, [2, 81], { 67: [1, 130] }), o($VE, [2, 8]), o($Vw, [2, 38]), o($Vo, [2, 82])],
+    defaultActions: { 2: [2, 1], 3: [2, 2], 4: [2, 3], 75: [2, 31], 98: [2, 10], 101: [2, 4], 111: [2, 43], 122: [2, 34] },
     parseError: function parseError(str, hash) {
       if (hash.recoverable) {
         this.trace(str);
@@ -9514,124 +9988,222 @@ var parser = function() {
       stateStackSize: function stateStackSize() {
         return this.conditionStack.length;
       },
-      options: { "case-insensitive": true },
+      options: {},
       performAction: function anonymous(yy, yy_, $avoiding_name_collisions, YY_START) {
         switch ($avoiding_name_collisions) {
           case 0:
-            return "title";
+            return 52;
           case 1:
-            this.begin("acc_title");
-            return 9;
+            return 53;
           case 2:
-            this.popState();
-            return "acc_title_value";
+            return 54;
           case 3:
-            this.begin("acc_descr");
-            return 11;
+            return 55;
           case 4:
-            this.popState();
-            return "acc_descr_value";
+            break;
           case 5:
-            this.begin("acc_descr_multiline");
             break;
           case 6:
-            this.popState();
-            break;
+            this.begin("acc_title");
+            return 30;
           case 7:
-            return "acc_descr_multiline_value";
+            this.popState();
+            return "acc_title_value";
           case 8:
-            return 5;
+            this.begin("acc_descr");
+            return 32;
           case 9:
-            break;
+            this.popState();
+            return "acc_descr_value";
           case 10:
+            this.begin("acc_descr_multiline");
             break;
           case 11:
-            break;
-          case 12:
-            return 8;
-          case 13:
-            return 6;
-          case 14:
-            return 19;
-          case 15:
-            return 30;
-          case 16:
-            return 22;
-          case 17:
-            return 21;
-          case 18:
-            return 24;
-          case 19:
-            return 26;
-          case 20:
-            return 28;
-          case 21:
-            return 31;
-          case 22:
-            return 32;
-          case 23:
-            return 33;
-          case 24:
-            return 34;
-          case 25:
-            return 35;
-          case 26:
-            return 36;
-          case 27:
-            return 37;
-          case 28:
-            return 38;
-          case 29:
-            return 39;
-          case 30:
-            return 40;
-          case 31:
-            return 41;
-          case 32:
-            return 42;
-          case 33:
-            return 43;
-          case 34:
-            return 44;
-          case 35:
-            return 55;
-          case 36:
-            return 56;
-          case 37:
-            return 57;
-          case 38:
-            return 58;
-          case 39:
-            return 59;
-          case 40:
-            return 60;
-          case 41:
-            return 61;
-          case 42:
-            return 47;
-          case 43:
-            return 49;
-          case 44:
-            return 51;
-          case 45:
-            return 54;
-          case 46:
-            return 53;
-          case 47:
-            this.begin("string");
-            break;
-          case 48:
             this.popState();
             break;
+          case 12:
+            return "acc_descr_multiline_value";
+          case 13:
+            return 8;
+          case 14:
+            break;
+          case 15:
+            return 7;
+          case 16:
+            return 7;
+          case 17:
+            return "EDGE_STATE";
+          case 18:
+            this.begin("callback_name");
+            break;
+          case 19:
+            this.popState();
+            break;
+          case 20:
+            this.popState();
+            this.begin("callback_args");
+            break;
+          case 21:
+            return 69;
+          case 22:
+            this.popState();
+            break;
+          case 23:
+            return 70;
+          case 24:
+            this.popState();
+            break;
+          case 25:
+            return "STR";
+          case 26:
+            this.begin("string");
+            break;
+          case 27:
+            this.begin("namespace");
+            return 39;
+          case 28:
+            this.popState();
+            return 8;
+          case 29:
+            break;
+          case 30:
+            this.begin("namespace-body");
+            return 36;
+          case 31:
+            this.popState();
+            return 38;
+          case 32:
+            return "EOF_IN_STRUCT";
+          case 33:
+            return 8;
+          case 34:
+            break;
+          case 35:
+            return "EDGE_STATE";
+          case 36:
+            this.begin("class");
+            return 43;
+          case 37:
+            this.popState();
+            return 8;
+          case 38:
+            break;
+          case 39:
+            this.popState();
+            this.popState();
+            return 38;
+          case 40:
+            this.begin("class-body");
+            return 36;
+          case 41:
+            this.popState();
+            return 38;
+          case 42:
+            return "EOF_IN_STRUCT";
+          case 43:
+            return "EDGE_STATE";
+          case 44:
+            return "OPEN_IN_STRUCT";
+          case 45:
+            break;
+          case 46:
+            return "MEMBER";
+          case 47:
+            return 72;
+          case 48:
+            return 65;
           case 49:
-            return "qString";
+            return 66;
           case 50:
-            yy_.yytext = yy_.yytext.trim();
+            return 68;
+          case 51:
+            return 49;
+          case 52:
+            return 51;
+          case 53:
+            return 44;
+          case 54:
+            return 45;
+          case 55:
+            return 71;
+          case 56:
+            this.popState();
+            break;
+          case 57:
+            return "GENERICTYPE";
+          case 58:
+            this.begin("generic");
+            break;
+          case 59:
+            this.popState();
+            break;
+          case 60:
+            return "BQUOTE_STR";
+          case 61:
+            this.begin("bqstring");
+            break;
+          case 62:
+            return 67;
+          case 63:
+            return 67;
+          case 64:
+            return 67;
+          case 65:
+            return 67;
+          case 66:
+            return 59;
+          case 67:
+            return 59;
+          case 68:
+            return 61;
+          case 69:
+            return 61;
+          case 70:
+            return 60;
+          case 71:
+            return 58;
+          case 72:
             return 62;
+          case 73:
+            return 63;
+          case 74:
+            return 64;
+          case 75:
+            return 21;
+          case 76:
+            return 41;
+          case 77:
+            return 84;
+          case 78:
+            return "DOT";
+          case 79:
+            return "PLUS";
+          case 80:
+            return 81;
+          case 81:
+            return "EQUALS";
+          case 82:
+            return "EQUALS";
+          case 83:
+            return 88;
+          case 84:
+            return 12;
+          case 85:
+            return 14;
+          case 86:
+            return "PUNCTUATION";
+          case 87:
+            return 87;
+          case 88:
+            return 86;
+          case 89:
+            return 83;
+          case 90:
+            return 9;
         }
       },
-      rules: [/^(?:title\s[^#\n;]+)/i, /^(?:accTitle\s*:\s*)/i, /^(?:(?!\n||)*[^\n]*)/i, /^(?:accDescr\s*:\s*)/i, /^(?:(?!\n||)*[^\n]*)/i, /^(?:accDescr\s*\{\s*)/i, /^(?:[\}])/i, /^(?:[^\}]*)/i, /^(?:(\r?\n)+)/i, /^(?:\s+)/i, /^(?:#[^\n]*)/i, /^(?:%[^\n]*)/i, /^(?:$)/i, /^(?:requirementDiagram\b)/i, /^(?:\{)/i, /^(?:\})/i, /^(?::)/i, /^(?:id\b)/i, /^(?:text\b)/i, /^(?:risk\b)/i, /^(?:verifyMethod\b)/i, /^(?:requirement\b)/i, /^(?:functionalRequirement\b)/i, /^(?:interfaceRequirement\b)/i, /^(?:performanceRequirement\b)/i, /^(?:physicalRequirement\b)/i, /^(?:designConstraint\b)/i, /^(?:low\b)/i, /^(?:medium\b)/i, /^(?:high\b)/i, /^(?:analysis\b)/i, /^(?:demonstration\b)/i, /^(?:inspection\b)/i, /^(?:test\b)/i, /^(?:element\b)/i, /^(?:contains\b)/i, /^(?:copies\b)/i, /^(?:derives\b)/i, /^(?:satisfies\b)/i, /^(?:verifies\b)/i, /^(?:refines\b)/i, /^(?:traces\b)/i, /^(?:type\b)/i, /^(?:docref\b)/i, /^(?:<-)/i, /^(?:->)/i, /^(?:-)/i, /^(?:["])/i, /^(?:["])/i, /^(?:[^"]*)/i, /^(?:[\w][^\r\n\{\<\>\-\=]*)/i],
-      conditions: { "acc_descr_multiline": { "rules": [6, 7], "inclusive": false }, "acc_descr": { "rules": [4], "inclusive": false }, "acc_title": { "rules": [2], "inclusive": false }, "unqString": { "rules": [], "inclusive": false }, "token": { "rules": [], "inclusive": false }, "string": { "rules": [48, 49], "inclusive": false }, "INITIAL": { "rules": [0, 1, 3, 5, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 50], "inclusive": true } }
+      rules: [/^(?:.*direction\s+TB[^\n]*)/, /^(?:.*direction\s+BT[^\n]*)/, /^(?:.*direction\s+RL[^\n]*)/, /^(?:.*direction\s+LR[^\n]*)/, /^(?:%%(?!\{)*[^\n]*(\r?\n?)+)/, /^(?:%%[^\n]*(\r?\n)*)/, /^(?:accTitle\s*:\s*)/, /^(?:(?!\n||)*[^\n]*)/, /^(?:accDescr\s*:\s*)/, /^(?:(?!\n||)*[^\n]*)/, /^(?:accDescr\s*\{\s*)/, /^(?:[\}])/, /^(?:[^\}]*)/, /^(?:\s*(\r?\n)+)/, /^(?:\s+)/, /^(?:classDiagram-v2\b)/, /^(?:classDiagram\b)/, /^(?:\[\*\])/, /^(?:call[\s]+)/, /^(?:\([\s]*\))/, /^(?:\()/, /^(?:[^(]*)/, /^(?:\))/, /^(?:[^)]*)/, /^(?:["])/, /^(?:[^"]*)/, /^(?:["])/, /^(?:namespace\b)/, /^(?:\s*(\r?\n)+)/, /^(?:\s+)/, /^(?:[{])/, /^(?:[}])/, /^(?:$)/, /^(?:\s*(\r?\n)+)/, /^(?:\s+)/, /^(?:\[\*\])/, /^(?:class\b)/, /^(?:\s*(\r?\n)+)/, /^(?:\s+)/, /^(?:[}])/, /^(?:[{])/, /^(?:[}])/, /^(?:$)/, /^(?:\[\*\])/, /^(?:[{])/, /^(?:[\n])/, /^(?:[^{}\n]*)/, /^(?:cssClass\b)/, /^(?:callback\b)/, /^(?:link\b)/, /^(?:click\b)/, /^(?:note for\b)/, /^(?:note\b)/, /^(?:<<)/, /^(?:>>)/, /^(?:href\b)/, /^(?:[~])/, /^(?:[^~]*)/, /^(?:~)/, /^(?:[`])/, /^(?:[^`]+)/, /^(?:[`])/, /^(?:_self\b)/, /^(?:_blank\b)/, /^(?:_parent\b)/, /^(?:_top\b)/, /^(?:\s*<\|)/, /^(?:\s*\|>)/, /^(?:\s*>)/, /^(?:\s*<)/, /^(?:\s*\*)/, /^(?:\s*o\b)/, /^(?:\s*\(\))/, /^(?:--)/, /^(?:\.\.)/, /^(?::{1}[^:\n;]+)/, /^(?::{3})/, /^(?:-)/, /^(?:\.)/, /^(?:\+)/, /^(?:%)/, /^(?:=)/, /^(?:=)/, /^(?:\w+)/, /^(?:\[)/, /^(?:\])/, /^(?:[!"#$%&'*+,-.`?\\/])/, /^(?:[0-9]+)/, /^(?:[\u00AA\u00B5\u00BA\u00C0-\u00D6\u00D8-\u00F6]|[\u00F8-\u02C1\u02C6-\u02D1\u02E0-\u02E4\u02EC\u02EE\u0370-\u0374\u0376\u0377]|[\u037A-\u037D\u0386\u0388-\u038A\u038C\u038E-\u03A1\u03A3-\u03F5]|[\u03F7-\u0481\u048A-\u0527\u0531-\u0556\u0559\u0561-\u0587\u05D0-\u05EA]|[\u05F0-\u05F2\u0620-\u064A\u066E\u066F\u0671-\u06D3\u06D5\u06E5\u06E6\u06EE]|[\u06EF\u06FA-\u06FC\u06FF\u0710\u0712-\u072F\u074D-\u07A5\u07B1\u07CA-\u07EA]|[\u07F4\u07F5\u07FA\u0800-\u0815\u081A\u0824\u0828\u0840-\u0858\u08A0]|[\u08A2-\u08AC\u0904-\u0939\u093D\u0950\u0958-\u0961\u0971-\u0977]|[\u0979-\u097F\u0985-\u098C\u098F\u0990\u0993-\u09A8\u09AA-\u09B0\u09B2]|[\u09B6-\u09B9\u09BD\u09CE\u09DC\u09DD\u09DF-\u09E1\u09F0\u09F1\u0A05-\u0A0A]|[\u0A0F\u0A10\u0A13-\u0A28\u0A2A-\u0A30\u0A32\u0A33\u0A35\u0A36\u0A38\u0A39]|[\u0A59-\u0A5C\u0A5E\u0A72-\u0A74\u0A85-\u0A8D\u0A8F-\u0A91\u0A93-\u0AA8]|[\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABD\u0AD0\u0AE0\u0AE1\u0B05-\u0B0C]|[\u0B0F\u0B10\u0B13-\u0B28\u0B2A-\u0B30\u0B32\u0B33\u0B35-\u0B39\u0B3D\u0B5C]|[\u0B5D\u0B5F-\u0B61\u0B71\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99]|[\u0B9A\u0B9C\u0B9E\u0B9F\u0BA3\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB9\u0BD0]|[\u0C05-\u0C0C\u0C0E-\u0C10\u0C12-\u0C28\u0C2A-\u0C33\u0C35-\u0C39\u0C3D]|[\u0C58\u0C59\u0C60\u0C61\u0C85-\u0C8C\u0C8E-\u0C90\u0C92-\u0CA8\u0CAA-\u0CB3]|[\u0CB5-\u0CB9\u0CBD\u0CDE\u0CE0\u0CE1\u0CF1\u0CF2\u0D05-\u0D0C\u0D0E-\u0D10]|[\u0D12-\u0D3A\u0D3D\u0D4E\u0D60\u0D61\u0D7A-\u0D7F\u0D85-\u0D96\u0D9A-\u0DB1]|[\u0DB3-\u0DBB\u0DBD\u0DC0-\u0DC6\u0E01-\u0E30\u0E32\u0E33\u0E40-\u0E46\u0E81]|[\u0E82\u0E84\u0E87\u0E88\u0E8A\u0E8D\u0E94-\u0E97\u0E99-\u0E9F\u0EA1-\u0EA3]|[\u0EA5\u0EA7\u0EAA\u0EAB\u0EAD-\u0EB0\u0EB2\u0EB3\u0EBD\u0EC0-\u0EC4\u0EC6]|[\u0EDC-\u0EDF\u0F00\u0F40-\u0F47\u0F49-\u0F6C\u0F88-\u0F8C\u1000-\u102A]|[\u103F\u1050-\u1055\u105A-\u105D\u1061\u1065\u1066\u106E-\u1070\u1075-\u1081]|[\u108E\u10A0-\u10C5\u10C7\u10CD\u10D0-\u10FA\u10FC-\u1248\u124A-\u124D]|[\u1250-\u1256\u1258\u125A-\u125D\u1260-\u1288\u128A-\u128D\u1290-\u12B0]|[\u12B2-\u12B5\u12B8-\u12BE\u12C0\u12C2-\u12C5\u12C8-\u12D6\u12D8-\u1310]|[\u1312-\u1315\u1318-\u135A\u1380-\u138F\u13A0-\u13F4\u1401-\u166C]|[\u166F-\u167F\u1681-\u169A\u16A0-\u16EA\u1700-\u170C\u170E-\u1711]|[\u1720-\u1731\u1740-\u1751\u1760-\u176C\u176E-\u1770\u1780-\u17B3\u17D7]|[\u17DC\u1820-\u1877\u1880-\u18A8\u18AA\u18B0-\u18F5\u1900-\u191C]|[\u1950-\u196D\u1970-\u1974\u1980-\u19AB\u19C1-\u19C7\u1A00-\u1A16]|[\u1A20-\u1A54\u1AA7\u1B05-\u1B33\u1B45-\u1B4B\u1B83-\u1BA0\u1BAE\u1BAF]|[\u1BBA-\u1BE5\u1C00-\u1C23\u1C4D-\u1C4F\u1C5A-\u1C7D\u1CE9-\u1CEC]|[\u1CEE-\u1CF1\u1CF5\u1CF6\u1D00-\u1DBF\u1E00-\u1F15\u1F18-\u1F1D]|[\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D]|[\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC2-\u1FC4\u1FC6-\u1FCC\u1FD0-\u1FD3]|[\u1FD6-\u1FDB\u1FE0-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u2071\u207F]|[\u2090-\u209C\u2102\u2107\u210A-\u2113\u2115\u2119-\u211D\u2124\u2126\u2128]|[\u212A-\u212D\u212F-\u2139\u213C-\u213F\u2145-\u2149\u214E\u2183\u2184]|[\u2C00-\u2C2E\u2C30-\u2C5E\u2C60-\u2CE4\u2CEB-\u2CEE\u2CF2\u2CF3]|[\u2D00-\u2D25\u2D27\u2D2D\u2D30-\u2D67\u2D6F\u2D80-\u2D96\u2DA0-\u2DA6]|[\u2DA8-\u2DAE\u2DB0-\u2DB6\u2DB8-\u2DBE\u2DC0-\u2DC6\u2DC8-\u2DCE]|[\u2DD0-\u2DD6\u2DD8-\u2DDE\u2E2F\u3005\u3006\u3031-\u3035\u303B\u303C]|[\u3041-\u3096\u309D-\u309F\u30A1-\u30FA\u30FC-\u30FF\u3105-\u312D]|[\u3131-\u318E\u31A0-\u31BA\u31F0-\u31FF\u3400-\u4DB5\u4E00-\u9FCC]|[\uA000-\uA48C\uA4D0-\uA4FD\uA500-\uA60C\uA610-\uA61F\uA62A\uA62B]|[\uA640-\uA66E\uA67F-\uA697\uA6A0-\uA6E5\uA717-\uA71F\uA722-\uA788]|[\uA78B-\uA78E\uA790-\uA793\uA7A0-\uA7AA\uA7F8-\uA801\uA803-\uA805]|[\uA807-\uA80A\uA80C-\uA822\uA840-\uA873\uA882-\uA8B3\uA8F2-\uA8F7\uA8FB]|[\uA90A-\uA925\uA930-\uA946\uA960-\uA97C\uA984-\uA9B2\uA9CF\uAA00-\uAA28]|[\uAA40-\uAA42\uAA44-\uAA4B\uAA60-\uAA76\uAA7A\uAA80-\uAAAF\uAAB1\uAAB5]|[\uAAB6\uAAB9-\uAABD\uAAC0\uAAC2\uAADB-\uAADD\uAAE0-\uAAEA\uAAF2-\uAAF4]|[\uAB01-\uAB06\uAB09-\uAB0E\uAB11-\uAB16\uAB20-\uAB26\uAB28-\uAB2E]|[\uABC0-\uABE2\uAC00-\uD7A3\uD7B0-\uD7C6\uD7CB-\uD7FB\uF900-\uFA6D]|[\uFA70-\uFAD9\uFB00-\uFB06\uFB13-\uFB17\uFB1D\uFB1F-\uFB28\uFB2A-\uFB36]|[\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D]|[\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE74\uFE76-\uFEFC]|[\uFF21-\uFF3A\uFF41-\uFF5A\uFF66-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF]|[\uFFD2-\uFFD7\uFFDA-\uFFDC])/, /^(?:\s)/, /^(?:$)/],
+      conditions: { "namespace-body": { "rules": [26, 31, 32, 33, 34, 35, 36, 47, 48, 49, 50, 51, 52, 53, 54, 55, 58, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90], "inclusive": false }, "namespace": { "rules": [26, 27, 28, 29, 30, 47, 48, 49, 50, 51, 52, 53, 54, 55, 58, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90], "inclusive": false }, "class-body": { "rules": [26, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 58, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90], "inclusive": false }, "class": { "rules": [26, 37, 38, 39, 40, 47, 48, 49, 50, 51, 52, 53, 54, 55, 58, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90], "inclusive": false }, "acc_descr_multiline": { "rules": [11, 12, 26, 47, 48, 49, 50, 51, 52, 53, 54, 55, 58, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90], "inclusive": false }, "acc_descr": { "rules": [9, 26, 47, 48, 49, 50, 51, 52, 53, 54, 55, 58, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90], "inclusive": false }, "acc_title": { "rules": [7, 26, 47, 48, 49, 50, 51, 52, 53, 54, 55, 58, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90], "inclusive": false }, "callback_args": { "rules": [22, 23, 26, 47, 48, 49, 50, 51, 52, 53, 54, 55, 58, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90], "inclusive": false }, "callback_name": { "rules": [19, 20, 21, 26, 47, 48, 49, 50, 51, 52, 53, 54, 55, 58, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90], "inclusive": false }, "href": { "rules": [26, 47, 48, 49, 50, 51, 52, 53, 54, 55, 58, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90], "inclusive": false }, "struct": { "rules": [26, 47, 48, 49, 50, 51, 52, 53, 54, 55, 58, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90], "inclusive": false }, "generic": { "rules": [26, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90], "inclusive": false }, "bqstring": { "rules": [26, 47, 48, 49, 50, 51, 52, 53, 54, 55, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90], "inclusive": false }, "string": { "rules": [24, 25, 26, 47, 48, 49, 50, 51, 52, 53, 54, 55, 58, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90], "inclusive": false }, "INITIAL": { "rules": [0, 1, 2, 3, 4, 5, 6, 8, 10, 13, 14, 15, 16, 17, 18, 26, 27, 36, 47, 48, 49, 50, 51, 52, 53, 54, 55, 58, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90], "inclusive": true } }
     };
     return lexer2;
   }();
@@ -9645,417 +10217,560 @@ var parser = function() {
 }();
 parser.parser = parser;
 const parser$1 = parser;
-let relations = [];
-let latestRequirement = {};
-let requirements = {};
-let latestElement = {};
-let elements = {};
-const RequirementType = {
-  REQUIREMENT: "Requirement",
-  FUNCTIONAL_REQUIREMENT: "Functional Requirement",
-  INTERFACE_REQUIREMENT: "Interface Requirement",
-  PERFORMANCE_REQUIREMENT: "Performance Requirement",
-  PHYSICAL_REQUIREMENT: "Physical Requirement",
-  DESIGN_CONSTRAINT: "Design Constraint"
-};
-const RiskLevel = {
-  LOW_RISK: "Low",
-  MED_RISK: "Medium",
-  HIGH_RISK: "High"
-};
-const VerifyType = {
-  VERIFY_ANALYSIS: "Analysis",
-  VERIFY_DEMONSTRATION: "Demonstration",
-  VERIFY_INSPECTION: "Inspection",
-  VERIFY_TEST: "Test"
-};
-const Relationships = {
-  CONTAINS: "contains",
-  COPIES: "copies",
-  DERIVES: "derives",
-  SATISFIES: "satisfies",
-  VERIFIES: "verifies",
-  REFINES: "refines",
-  TRACES: "traces"
-};
-const addRequirement = (name, type) => {
-  if (requirements[name] === void 0) {
-    requirements[name] = {
-      name,
-      type,
-      id: latestRequirement.id,
-      text: latestRequirement.text,
-      risk: latestRequirement.risk,
-      verifyMethod: latestRequirement.verifyMethod
+const visibilityValues = ["#", "+", "~", "-", ""];
+class ClassMember {
+  constructor(input, memberType) {
+    this.memberType = memberType;
+    this.visibility = "";
+    this.classifier = "";
+    const sanitizedInput = (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.d)(input, (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.c)());
+    this.parseMember(sanitizedInput);
+  }
+  getDisplayDetails() {
+    let displayText = this.visibility + (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.v)(this.id);
+    if (this.memberType === "method") {
+      displayText += `(${(0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.v)(this.parameters.trim())})`;
+      if (this.returnType) {
+        displayText += " : " + (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.v)(this.returnType);
+      }
+    }
+    displayText = displayText.trim();
+    const cssStyle = this.parseClassifier();
+    return {
+      displayText,
+      cssStyle
     };
   }
-  latestRequirement = {};
-  return requirements[name];
-};
-const getRequirements = () => requirements;
-const setNewReqId = (id) => {
-  if (latestRequirement !== void 0) {
-    latestRequirement.id = id;
-  }
-};
-const setNewReqText = (text) => {
-  if (latestRequirement !== void 0) {
-    latestRequirement.text = text;
-  }
-};
-const setNewReqRisk = (risk) => {
-  if (latestRequirement !== void 0) {
-    latestRequirement.risk = risk;
-  }
-};
-const setNewReqVerifyMethod = (verifyMethod) => {
-  if (latestRequirement !== void 0) {
-    latestRequirement.verifyMethod = verifyMethod;
-  }
-};
-const addElement = (name) => {
-  if (elements[name] === void 0) {
-    elements[name] = {
-      name,
-      type: latestElement.type,
-      docRef: latestElement.docRef
-    };
-    _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.l.info("Added new requirement: ", name);
-  }
-  latestElement = {};
-  return elements[name];
-};
-const getElements = () => elements;
-const setNewElementType = (type) => {
-  if (latestElement !== void 0) {
-    latestElement.type = type;
-  }
-};
-const setNewElementDocRef = (docRef) => {
-  if (latestElement !== void 0) {
-    latestElement.docRef = docRef;
-  }
-};
-const addRelationship = (type, src, dst) => {
-  relations.push({
-    type,
-    src,
-    dst
-  });
-};
-const getRelationships = () => relations;
-const clear = () => {
-  relations = [];
-  latestRequirement = {};
-  requirements = {};
-  latestElement = {};
-  elements = {};
-  (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.t)();
-};
-const db = {
-  RequirementType,
-  RiskLevel,
-  VerifyType,
-  Relationships,
-  getConfig: () => (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.c)().req,
-  addRequirement,
-  getRequirements,
-  setNewReqId,
-  setNewReqText,
-  setNewReqRisk,
-  setNewReqVerifyMethod,
-  setAccTitle: _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.s,
-  getAccTitle: _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.g,
-  setAccDescription: _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.b,
-  getAccDescription: _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.a,
-  addElement,
-  getElements,
-  setNewElementType,
-  setNewElementDocRef,
-  addRelationship,
-  getRelationships,
-  clear
-};
-const getStyles = (options) => `
-
-  marker {
-    fill: ${options.relationColor};
-    stroke: ${options.relationColor};
-  }
-
-  marker.cross {
-    stroke: ${options.lineColor};
-  }
-
-  svg {
-    font-family: ${options.fontFamily};
-    font-size: ${options.fontSize};
-  }
-
-  .reqBox {
-    fill: ${options.requirementBackground};
-    fill-opacity: 1.0;
-    stroke: ${options.requirementBorderColor};
-    stroke-width: ${options.requirementBorderSize};
-  }
-  
-  .reqTitle, .reqLabel{
-    fill:  ${options.requirementTextColor};
-  }
-  .reqLabelBox {
-    fill: ${options.relationLabelBackground};
-    fill-opacity: 1.0;
-  }
-
-  .req-title-line {
-    stroke: ${options.requirementBorderColor};
-    stroke-width: ${options.requirementBorderSize};
-  }
-  .relationshipLine {
-    stroke: ${options.relationColor};
-    stroke-width: 1;
-  }
-  .relationshipLabel {
-    fill: ${options.relationLabelColor};
-  }
-
-`;
-const styles = getStyles;
-const ReqMarkers = {
-  CONTAINS: "contains",
-  ARROW: "arrow"
-};
-const insertLineEndings = (parentNode, conf2) => {
-  let containsNode = parentNode.append("defs").append("marker").attr("id", ReqMarkers.CONTAINS + "_line_ending").attr("refX", 0).attr("refY", conf2.line_height / 2).attr("markerWidth", conf2.line_height).attr("markerHeight", conf2.line_height).attr("orient", "auto").append("g");
-  containsNode.append("circle").attr("cx", conf2.line_height / 2).attr("cy", conf2.line_height / 2).attr("r", conf2.line_height / 2).attr("fill", "none");
-  containsNode.append("line").attr("x1", 0).attr("x2", conf2.line_height).attr("y1", conf2.line_height / 2).attr("y2", conf2.line_height / 2).attr("stroke-width", 1);
-  containsNode.append("line").attr("y1", 0).attr("y2", conf2.line_height).attr("x1", conf2.line_height / 2).attr("x2", conf2.line_height / 2).attr("stroke-width", 1);
-  parentNode.append("defs").append("marker").attr("id", ReqMarkers.ARROW + "_line_ending").attr("refX", conf2.line_height).attr("refY", 0.5 * conf2.line_height).attr("markerWidth", conf2.line_height).attr("markerHeight", conf2.line_height).attr("orient", "auto").append("path").attr(
-    "d",
-    `M0,0
-      L${conf2.line_height},${conf2.line_height / 2}
-      M${conf2.line_height},${conf2.line_height / 2}
-      L0,${conf2.line_height}`
-  ).attr("stroke-width", 1);
-};
-const markers = {
-  ReqMarkers,
-  insertLineEndings
-};
-let conf = {};
-let relCnt = 0;
-const newRectNode = (parentNode, id) => {
-  return parentNode.insert("rect", "#" + id).attr("class", "req reqBox").attr("x", 0).attr("y", 0).attr("width", conf.rect_min_width + "px").attr("height", conf.rect_min_height + "px");
-};
-const newTitleNode = (parentNode, id, txts) => {
-  let x = conf.rect_min_width / 2;
-  let title = parentNode.append("text").attr("class", "req reqLabel reqTitle").attr("id", id).attr("x", x).attr("y", conf.rect_padding).attr("dominant-baseline", "hanging");
-  let i = 0;
-  txts.forEach((textStr) => {
-    if (i == 0) {
-      title.append("tspan").attr("text-anchor", "middle").attr("x", conf.rect_min_width / 2).attr("dy", 0).text(textStr);
+  parseMember(input) {
+    let potentialClassifier = "";
+    if (this.memberType === "method") {
+      const methodRegEx = /([#+~-])?(.+)\((.*)\)([\s$*])?(.*)([$*])?/;
+      const match = input.match(methodRegEx);
+      if (match) {
+        const detectedVisibility = match[1] ? match[1].trim() : "";
+        if (visibilityValues.includes(detectedVisibility)) {
+          this.visibility = detectedVisibility;
+        }
+        this.id = match[2].trim();
+        this.parameters = match[3] ? match[3].trim() : "";
+        potentialClassifier = match[4] ? match[4].trim() : "";
+        this.returnType = match[5] ? match[5].trim() : "";
+        if (potentialClassifier === "") {
+          const lastChar = this.returnType.substring(this.returnType.length - 1);
+          if (lastChar.match(/[$*]/)) {
+            potentialClassifier = lastChar;
+            this.returnType = this.returnType.substring(0, this.returnType.length - 1);
+          }
+        }
+      }
     } else {
-      title.append("tspan").attr("text-anchor", "middle").attr("x", conf.rect_min_width / 2).attr("dy", conf.line_height * 0.75).text(textStr);
-    }
-    i++;
-  });
-  let yPadding = 1.5 * conf.rect_padding;
-  let linePadding = i * conf.line_height * 0.75;
-  let totalY = yPadding + linePadding;
-  parentNode.append("line").attr("class", "req-title-line").attr("x1", "0").attr("x2", conf.rect_min_width).attr("y1", totalY).attr("y2", totalY);
-  return {
-    titleNode: title,
-    y: totalY
-  };
-};
-const newBodyNode = (parentNode, id, txts, yStart) => {
-  let body = parentNode.append("text").attr("class", "req reqLabel").attr("id", id).attr("x", conf.rect_padding).attr("y", yStart).attr("dominant-baseline", "hanging");
-  let currentRow = 0;
-  const charLimit = 30;
-  let wrappedTxts = [];
-  txts.forEach((textStr) => {
-    let currentTextLen = textStr.length;
-    while (currentTextLen > charLimit && currentRow < 3) {
-      let firstPart = textStr.substring(0, charLimit);
-      textStr = textStr.substring(charLimit, textStr.length);
-      currentTextLen = textStr.length;
-      wrappedTxts[wrappedTxts.length] = firstPart;
-      currentRow++;
-    }
-    if (currentRow == 3) {
-      let lastStr = wrappedTxts[wrappedTxts.length - 1];
-      wrappedTxts[wrappedTxts.length - 1] = lastStr.substring(0, lastStr.length - 4) + "...";
-    } else {
-      wrappedTxts[wrappedTxts.length] = textStr;
-    }
-    currentRow = 0;
-  });
-  wrappedTxts.forEach((textStr) => {
-    body.append("tspan").attr("x", conf.rect_padding).attr("dy", conf.line_height).text(textStr);
-  });
-  return body;
-};
-const addEdgeLabel = (parentNode, svgPath, conf2, txt) => {
-  const len = svgPath.node().getTotalLength();
-  const labelPoint = svgPath.node().getPointAtLength(len * 0.5);
-  const labelId = "rel" + relCnt;
-  relCnt++;
-  const labelNode = parentNode.append("text").attr("class", "req relationshipLabel").attr("id", labelId).attr("x", labelPoint.x).attr("y", labelPoint.y).attr("text-anchor", "middle").attr("dominant-baseline", "middle").text(txt);
-  const labelBBox = labelNode.node().getBBox();
-  parentNode.insert("rect", "#" + labelId).attr("class", "req reqLabelBox").attr("x", labelPoint.x - labelBBox.width / 2).attr("y", labelPoint.y - labelBBox.height / 2).attr("width", labelBBox.width).attr("height", labelBBox.height).attr("fill", "white").attr("fill-opacity", "85%");
-};
-const drawRelationshipFromLayout = function(svg, rel, g, insert, diagObj) {
-  const edge = g.edge(elementString(rel.src), elementString(rel.dst));
-  const lineFunction = (0,d3__WEBPACK_IMPORTED_MODULE_0__/* .line */ .n8j)().x(function(d) {
-    return d.x;
-  }).y(function(d) {
-    return d.y;
-  });
-  const svgPath = svg.insert("path", "#" + insert).attr("class", "er relationshipLine").attr("d", lineFunction(edge.points)).attr("fill", "none");
-  if (rel.type == diagObj.db.Relationships.CONTAINS) {
-    svgPath.attr(
-      "marker-start",
-      "url(" + _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.e.getUrl(conf.arrowMarkerAbsolute) + "#" + rel.type + "_line_ending)"
-    );
-  } else {
-    svgPath.attr("stroke-dasharray", "10,7");
-    svgPath.attr(
-      "marker-end",
-      "url(" + _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.e.getUrl(conf.arrowMarkerAbsolute) + "#" + markers.ReqMarkers.ARROW + "_line_ending)"
-    );
-  }
-  addEdgeLabel(svg, svgPath, conf, `<<${rel.type}>>`);
-  return;
-};
-const drawReqs = (reqs, graph, svgNode) => {
-  Object.keys(reqs).forEach((reqName) => {
-    let req = reqs[reqName];
-    reqName = elementString(reqName);
-    _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.l.info("Added new requirement: ", reqName);
-    const groupNode = svgNode.append("g").attr("id", reqName);
-    const textId = "req-" + reqName;
-    const rectNode = newRectNode(groupNode, textId);
-    let titleNodeInfo = newTitleNode(groupNode, reqName + "_title", [
-      `<<${req.type}>>`,
-      `${req.name}`
-    ]);
-    newBodyNode(
-      groupNode,
-      reqName + "_body",
-      [
-        `Id: ${req.id}`,
-        `Text: ${req.text}`,
-        `Risk: ${req.risk}`,
-        `Verification: ${req.verifyMethod}`
-      ],
-      titleNodeInfo.y
-    );
-    const rectBBox = rectNode.node().getBBox();
-    graph.setNode(reqName, {
-      width: rectBBox.width,
-      height: rectBBox.height,
-      shape: "rect",
-      id: reqName
-    });
-  });
-};
-const drawElements = (els, graph, svgNode) => {
-  Object.keys(els).forEach((elName) => {
-    let el = els[elName];
-    const id = elementString(elName);
-    const groupNode = svgNode.append("g").attr("id", id);
-    const textId = "element-" + id;
-    const rectNode = newRectNode(groupNode, textId);
-    let titleNodeInfo = newTitleNode(groupNode, textId + "_title", [`<<Element>>`, `${elName}`]);
-    newBodyNode(
-      groupNode,
-      textId + "_body",
-      [`Type: ${el.type || "Not Specified"}`, `Doc Ref: ${el.docRef || "None"}`],
-      titleNodeInfo.y
-    );
-    const rectBBox = rectNode.node().getBBox();
-    graph.setNode(id, {
-      width: rectBBox.width,
-      height: rectBBox.height,
-      shape: "rect",
-      id
-    });
-  });
-};
-const addRelationships = (relationships, g) => {
-  relationships.forEach(function(r) {
-    let src = elementString(r.src);
-    let dst = elementString(r.dst);
-    g.setEdge(src, dst, { relationship: r });
-  });
-  return relationships;
-};
-const adjustEntities = function(svgNode, graph) {
-  graph.nodes().forEach(function(v) {
-    if (v !== void 0 && graph.node(v) !== void 0) {
-      svgNode.select("#" + v);
-      svgNode.select("#" + v).attr(
-        "transform",
-        "translate(" + (graph.node(v).x - graph.node(v).width / 2) + "," + (graph.node(v).y - graph.node(v).height / 2) + " )"
+      const length = input.length;
+      const firstChar = input.substring(0, 1);
+      const lastChar = input.substring(length - 1);
+      if (visibilityValues.includes(firstChar)) {
+        this.visibility = firstChar;
+      }
+      if (lastChar.match(/[*?]/)) {
+        potentialClassifier = lastChar;
+      }
+      this.id = input.substring(
+        this.visibility === "" ? 0 : 1,
+        potentialClassifier === "" ? length : length - 1
       );
     }
-  });
-  return;
-};
-const elementString = (str) => {
-  return str.replace(/\s/g, "").replace(/\./g, "_");
-};
-const draw = (text, id, _version, diagObj) => {
-  conf = (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.c)().requirement;
-  const securityLevel = conf.securityLevel;
-  let sandboxElement;
-  if (securityLevel === "sandbox") {
-    sandboxElement = (0,d3__WEBPACK_IMPORTED_MODULE_0__/* .select */ .Ltv)("#i" + id);
+    this.classifier = potentialClassifier;
   }
-  const root = securityLevel === "sandbox" ? (0,d3__WEBPACK_IMPORTED_MODULE_0__/* .select */ .Ltv)(sandboxElement.nodes()[0].contentDocument.body) : (0,d3__WEBPACK_IMPORTED_MODULE_0__/* .select */ .Ltv)("body");
-  const svg = root.select(`[id='${id}']`);
-  markers.insertLineEndings(svg, conf);
-  const g = new dagre_d3_es_src_graphlib_index_js__WEBPACK_IMPORTED_MODULE_2__/* .Graph */ .T({
-    multigraph: false,
-    compound: false,
-    directed: true
-  }).setGraph({
-    rankdir: conf.layoutDirection,
-    marginx: 20,
-    marginy: 20,
-    nodesep: 100,
-    edgesep: 100,
-    ranksep: 100
-  }).setDefaultEdgeLabel(function() {
-    return {};
+  parseClassifier() {
+    switch (this.classifier) {
+      case "*":
+        return "font-style:italic;";
+      case "$":
+        return "text-decoration:underline;";
+      default:
+        return "";
+    }
+  }
+}
+const MERMAID_DOM_ID_PREFIX = "classId-";
+let relations = [];
+let classes = {};
+let notes = [];
+let classCounter = 0;
+let namespaces = {};
+let namespaceCounter = 0;
+let functions = [];
+const sanitizeText = (txt) => _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.e.sanitizeText(txt, (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.c)());
+const splitClassNameAndType = function(_id) {
+  const id = _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.e.sanitizeText(_id, (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.c)());
+  let genericType = "";
+  let className = id;
+  if (id.indexOf("~") > 0) {
+    const split = id.split("~");
+    className = sanitizeText(split[0]);
+    genericType = sanitizeText(split[1]);
+  }
+  return { className, type: genericType };
+};
+const setClassLabel = function(_id, label) {
+  const id = _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.e.sanitizeText(_id, (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.c)());
+  if (label) {
+    label = sanitizeText(label);
+  }
+  const { className } = splitClassNameAndType(id);
+  classes[className].label = label;
+};
+const addClass = function(_id) {
+  const id = _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.e.sanitizeText(_id, (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.c)());
+  const { className, type } = splitClassNameAndType(id);
+  if (Object.hasOwn(classes, className)) {
+    return;
+  }
+  const name = _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.e.sanitizeText(className, (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.c)());
+  classes[name] = {
+    id: name,
+    type,
+    label: name,
+    cssClasses: [],
+    methods: [],
+    members: [],
+    annotations: [],
+    domId: MERMAID_DOM_ID_PREFIX + name + "-" + classCounter
+  };
+  classCounter++;
+};
+const lookUpDomId = function(_id) {
+  const id = _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.e.sanitizeText(_id, (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.c)());
+  if (id in classes) {
+    return classes[id].domId;
+  }
+  throw new Error("Class not found: " + id);
+};
+const clear = function() {
+  relations = [];
+  classes = {};
+  notes = [];
+  functions = [];
+  functions.push(setupToolTips);
+  namespaces = {};
+  namespaceCounter = 0;
+  (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.t)();
+};
+const getClass = function(id) {
+  return classes[id];
+};
+const getClasses = function() {
+  return classes;
+};
+const getRelations = function() {
+  return relations;
+};
+const getNotes = function() {
+  return notes;
+};
+const addRelation = function(relation) {
+  _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.l.debug("Adding relation: " + JSON.stringify(relation));
+  addClass(relation.id1);
+  addClass(relation.id2);
+  relation.id1 = splitClassNameAndType(relation.id1).className;
+  relation.id2 = splitClassNameAndType(relation.id2).className;
+  relation.relationTitle1 = _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.e.sanitizeText(relation.relationTitle1.trim(), (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.c)());
+  relation.relationTitle2 = _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.e.sanitizeText(relation.relationTitle2.trim(), (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.c)());
+  relations.push(relation);
+};
+const addAnnotation = function(className, annotation) {
+  const validatedClassName = splitClassNameAndType(className).className;
+  classes[validatedClassName].annotations.push(annotation);
+};
+const addMember = function(className, member) {
+  addClass(className);
+  const validatedClassName = splitClassNameAndType(className).className;
+  const theClass = classes[validatedClassName];
+  if (typeof member === "string") {
+    const memberString = member.trim();
+    if (memberString.startsWith("<<") && memberString.endsWith(">>")) {
+      theClass.annotations.push(sanitizeText(memberString.substring(2, memberString.length - 2)));
+    } else if (memberString.indexOf(")") > 0) {
+      theClass.methods.push(new ClassMember(memberString, "method"));
+    } else if (memberString) {
+      theClass.members.push(new ClassMember(memberString, "attribute"));
+    }
+  }
+};
+const addMembers = function(className, members) {
+  if (Array.isArray(members)) {
+    members.reverse();
+    members.forEach((member) => addMember(className, member));
+  }
+};
+const addNote = function(text, className) {
+  const note = {
+    id: `note${notes.length}`,
+    class: className,
+    text
+  };
+  notes.push(note);
+};
+const cleanupLabel = function(label) {
+  if (label.startsWith(":")) {
+    label = label.substring(1);
+  }
+  return sanitizeText(label.trim());
+};
+const setCssClass = function(ids, className) {
+  ids.split(",").forEach(function(_id) {
+    let id = _id;
+    if (_id[0].match(/\d/)) {
+      id = MERMAID_DOM_ID_PREFIX + id;
+    }
+    if (classes[id] !== void 0) {
+      classes[id].cssClasses.push(className);
+    }
   });
-  let requirements2 = diagObj.db.getRequirements();
-  let elements2 = diagObj.db.getElements();
-  let relationships = diagObj.db.getRelationships();
-  drawReqs(requirements2, g, svg);
-  drawElements(elements2, g, svg);
-  addRelationships(relationships, g);
-  (0,dagre_d3_es_src_dagre_index_js__WEBPACK_IMPORTED_MODULE_1__/* .layout */ .Zp)(g);
-  adjustEntities(svg, g);
-  relationships.forEach(function(rel) {
-    drawRelationshipFromLayout(svg, rel, g, id, diagObj);
+};
+const setTooltip = function(ids, tooltip) {
+  ids.split(",").forEach(function(id) {
+    if (tooltip !== void 0) {
+      classes[id].tooltip = sanitizeText(tooltip);
+    }
   });
-  const padding = conf.rect_padding;
-  const svgBounds = svg.node().getBBox();
-  const width = svgBounds.width + padding * 2;
-  const height = svgBounds.height + padding * 2;
-  (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_6__.i)(svg, height, width, conf.useMaxWidth);
-  svg.attr("viewBox", `${svgBounds.x - padding} ${svgBounds.y - padding} ${width} ${height}`);
 };
-const renderer = {
-  draw
+const getTooltip = function(id, namespace) {
+  if (namespace) {
+    return namespaces[namespace].classes[id].tooltip;
+  }
+  return classes[id].tooltip;
 };
-const diagram = {
-  parser: parser$1,
-  db,
-  renderer,
-  styles
+const setLink = function(ids, linkStr, target) {
+  const config = (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.c)();
+  ids.split(",").forEach(function(_id) {
+    let id = _id;
+    if (_id[0].match(/\d/)) {
+      id = MERMAID_DOM_ID_PREFIX + id;
+    }
+    if (classes[id] !== void 0) {
+      classes[id].link = _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.u.formatUrl(linkStr, config);
+      if (config.securityLevel === "sandbox") {
+        classes[id].linkTarget = "_top";
+      } else if (typeof target === "string") {
+        classes[id].linkTarget = sanitizeText(target);
+      } else {
+        classes[id].linkTarget = "_blank";
+      }
+    }
+  });
+  setCssClass(ids, "clickable");
 };
+const setClickEvent = function(ids, functionName, functionArgs) {
+  ids.split(",").forEach(function(id) {
+    setClickFunc(id, functionName, functionArgs);
+    classes[id].haveCallback = true;
+  });
+  setCssClass(ids, "clickable");
+};
+const setClickFunc = function(_domId, functionName, functionArgs) {
+  const domId = _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.e.sanitizeText(_domId, (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.c)());
+  const config = (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.c)();
+  if (config.securityLevel !== "loose") {
+    return;
+  }
+  if (functionName === void 0) {
+    return;
+  }
+  const id = domId;
+  if (classes[id] !== void 0) {
+    const elemId = lookUpDomId(id);
+    let argList = [];
+    if (typeof functionArgs === "string") {
+      argList = functionArgs.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+      for (let i = 0; i < argList.length; i++) {
+        let item = argList[i].trim();
+        if (item.charAt(0) === '"' && item.charAt(item.length - 1) === '"') {
+          item = item.substr(1, item.length - 2);
+        }
+        argList[i] = item;
+      }
+    }
+    if (argList.length === 0) {
+      argList.push(elemId);
+    }
+    functions.push(function() {
+      const elem = document.querySelector(`[id="${elemId}"]`);
+      if (elem !== null) {
+        elem.addEventListener(
+          "click",
+          function() {
+            _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.u.runFunc(functionName, ...argList);
+          },
+          false
+        );
+      }
+    });
+  }
+};
+const bindFunctions = function(element) {
+  functions.forEach(function(fun) {
+    fun(element);
+  });
+};
+const lineType = {
+  LINE: 0,
+  DOTTED_LINE: 1
+};
+const relationType = {
+  AGGREGATION: 0,
+  EXTENSION: 1,
+  COMPOSITION: 2,
+  DEPENDENCY: 3,
+  LOLLIPOP: 4
+};
+const setupToolTips = function(element) {
+  let tooltipElem = (0,d3__WEBPACK_IMPORTED_MODULE_0__/* .select */ .Ltv)(".mermaidTooltip");
+  if ((tooltipElem._groups || tooltipElem)[0][0] === null) {
+    tooltipElem = (0,d3__WEBPACK_IMPORTED_MODULE_0__/* .select */ .Ltv)("body").append("div").attr("class", "mermaidTooltip").style("opacity", 0);
+  }
+  const svg = (0,d3__WEBPACK_IMPORTED_MODULE_0__/* .select */ .Ltv)(element).select("svg");
+  const nodes = svg.selectAll("g.node");
+  nodes.on("mouseover", function() {
+    const el = (0,d3__WEBPACK_IMPORTED_MODULE_0__/* .select */ .Ltv)(this);
+    const title = el.attr("title");
+    if (title === null) {
+      return;
+    }
+    const rect = this.getBoundingClientRect();
+    tooltipElem.transition().duration(200).style("opacity", ".9");
+    tooltipElem.text(el.attr("title")).style("left", window.scrollX + rect.left + (rect.right - rect.left) / 2 + "px").style("top", window.scrollY + rect.top - 14 + document.body.scrollTop + "px");
+    tooltipElem.html(tooltipElem.html().replace(/&lt;br\/&gt;/g, "<br/>"));
+    el.classed("hover", true);
+  }).on("mouseout", function() {
+    tooltipElem.transition().duration(500).style("opacity", 0);
+    const el = (0,d3__WEBPACK_IMPORTED_MODULE_0__/* .select */ .Ltv)(this);
+    el.classed("hover", false);
+  });
+};
+functions.push(setupToolTips);
+let direction = "TB";
+const getDirection = () => direction;
+const setDirection = (dir) => {
+  direction = dir;
+};
+const addNamespace = function(id) {
+  if (namespaces[id] !== void 0) {
+    return;
+  }
+  namespaces[id] = {
+    id,
+    classes: {},
+    children: {},
+    domId: MERMAID_DOM_ID_PREFIX + id + "-" + namespaceCounter
+  };
+  namespaceCounter++;
+};
+const getNamespace = function(name) {
+  return namespaces[name];
+};
+const getNamespaces = function() {
+  return namespaces;
+};
+const addClassesToNamespace = function(id, classNames) {
+  if (namespaces[id] !== void 0) {
+    classNames.map((className) => {
+      classes[className].parent = id;
+      namespaces[id].classes[className] = classes[className];
+    });
+  }
+};
+const db = {
+  setAccTitle: _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.s,
+  getAccTitle: _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.g,
+  getAccDescription: _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.a,
+  setAccDescription: _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.b,
+  getConfig: () => (0,_mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.c)().class,
+  addClass,
+  bindFunctions,
+  clear,
+  getClass,
+  getClasses,
+  getNotes,
+  addAnnotation,
+  addNote,
+  getRelations,
+  addRelation,
+  getDirection,
+  setDirection,
+  addMember,
+  addMembers,
+  cleanupLabel,
+  lineType,
+  relationType,
+  setClickEvent,
+  setCssClass,
+  setLink,
+  getTooltip,
+  setTooltip,
+  lookUpDomId,
+  setDiagramTitle: _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.q,
+  getDiagramTitle: _mermaid_934d9bea_js__WEBPACK_IMPORTED_MODULE_1__.r,
+  setClassLabel,
+  addNamespace,
+  addClassesToNamespace,
+  getNamespace,
+  getNamespaces
+};
+const getStyles = (options) => `g.classGroup text {
+  fill: ${options.nodeBorder || options.classText};
+  stroke: none;
+  font-family: ${options.fontFamily};
+  font-size: 10px;
+
+  .title {
+    font-weight: bolder;
+  }
+
+}
+
+.nodeLabel, .edgeLabel {
+  color: ${options.classText};
+}
+.edgeLabel .label rect {
+  fill: ${options.mainBkg};
+}
+.label text {
+  fill: ${options.classText};
+}
+.edgeLabel .label span {
+  background: ${options.mainBkg};
+}
+
+.classTitle {
+  font-weight: bolder;
+}
+.node rect,
+  .node circle,
+  .node ellipse,
+  .node polygon,
+  .node path {
+    fill: ${options.mainBkg};
+    stroke: ${options.nodeBorder};
+    stroke-width: 1px;
+  }
+
+
+.divider {
+  stroke: ${options.nodeBorder};
+  stroke-width: 1;
+}
+
+g.clickable {
+  cursor: pointer;
+}
+
+g.classGroup rect {
+  fill: ${options.mainBkg};
+  stroke: ${options.nodeBorder};
+}
+
+g.classGroup line {
+  stroke: ${options.nodeBorder};
+  stroke-width: 1;
+}
+
+.classLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: ${options.mainBkg};
+  opacity: 0.5;
+}
+
+.classLabel .label {
+  fill: ${options.nodeBorder};
+  font-size: 10px;
+}
+
+.relation {
+  stroke: ${options.lineColor};
+  stroke-width: 1;
+  fill: none;
+}
+
+.dashed-line{
+  stroke-dasharray: 3;
+}
+
+.dotted-line{
+  stroke-dasharray: 1 2;
+}
+
+#compositionStart, .composition {
+  fill: ${options.lineColor} !important;
+  stroke: ${options.lineColor} !important;
+  stroke-width: 1;
+}
+
+#compositionEnd, .composition {
+  fill: ${options.lineColor} !important;
+  stroke: ${options.lineColor} !important;
+  stroke-width: 1;
+}
+
+#dependencyStart, .dependency {
+  fill: ${options.lineColor} !important;
+  stroke: ${options.lineColor} !important;
+  stroke-width: 1;
+}
+
+#dependencyStart, .dependency {
+  fill: ${options.lineColor} !important;
+  stroke: ${options.lineColor} !important;
+  stroke-width: 1;
+}
+
+#extensionStart, .extension {
+  fill: transparent !important;
+  stroke: ${options.lineColor} !important;
+  stroke-width: 1;
+}
+
+#extensionEnd, .extension {
+  fill: transparent !important;
+  stroke: ${options.lineColor} !important;
+  stroke-width: 1;
+}
+
+#aggregationStart, .aggregation {
+  fill: transparent !important;
+  stroke: ${options.lineColor} !important;
+  stroke-width: 1;
+}
+
+#aggregationEnd, .aggregation {
+  fill: transparent !important;
+  stroke: ${options.lineColor} !important;
+  stroke-width: 1;
+}
+
+#lollipopStart, .lollipop {
+  fill: ${options.mainBkg} !important;
+  stroke: ${options.lineColor} !important;
+  stroke-width: 1;
+}
+
+#lollipopEnd, .lollipop {
+  fill: ${options.mainBkg} !important;
+  stroke: ${options.lineColor} !important;
+  stroke-width: 1;
+}
+
+.edgeTerminals {
+  font-size: 11px;
+}
+
+.classTitleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: ${options.textColor};
+}
+`;
+const styles = getStyles;
 
 
 

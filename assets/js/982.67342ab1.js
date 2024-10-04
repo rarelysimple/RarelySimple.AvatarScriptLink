@@ -49769,7 +49769,7 @@ const createText = (el, text = "", {
 /* harmony import */ var khroma__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(75263);
 /* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(74353);
 /* harmony import */ var _braintree_sanitize_url__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(16750);
-/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(77046);
+/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(99418);
 
 
 
