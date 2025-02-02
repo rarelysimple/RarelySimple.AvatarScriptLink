@@ -45,6 +45,7 @@
   "overrides": {
     "braces": "^3.0.3",
     "cross-spawn": "^7.0.5",
+    "dompurify": "^3.2.3",
     "katex": "^0.16.21",
     "micromatch": "^4.0.8",
     "path-to-regexp": "^0.1.12",
