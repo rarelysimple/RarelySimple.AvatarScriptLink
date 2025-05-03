@@ -102,13 +102,13 @@ using System.ServiceModel;
 namespace ScriptLinkHelloWorldDemo
 {
     [ServiceContract]
-    public interface IScriptLinkService
+    public interface IScriptLinkService2015
     {
         [OperationContract]
         string GetVersion();
 
         [OperationContract]
-        OptionObject RunScript(OptionObject optionObject, string parameter);
+        OptionObject2015 RunScript(OptionObject2015 optionObject, string parameter);
     }
 }
 ```
@@ -162,9 +162,9 @@ app.UseHttpsRedirection();
 app.UseRouting();
 app.UseEndpoints(endpoints =>
 {
-    _ = endpoints.UseSoapEndpoint<IScriptLinkService>("/ScriptLinkService.asmx", new SoapEncoderOptions(), SoapSerializer.XmlSerializer);
+    _ = endpoints.UseSoapEndpoint<IScriptLinkService2015>("/ScriptLinkService.asmx", new SoapEncoderOptions(), SoapSerializer.XmlSerializer);
     // Optional Alternative
-    // _ = endpoints.UseSoapEndpoint<IScriptLinkService>("/ScriptLinkService.svc", new SoapEncoderOptions(), SoapSerializer.DataContractSerializer);
+    // _ = endpoints.UseSoapEndpoint<IScriptLinkService2015>("/ScriptLinkService.svc", new SoapEncoderOptions(), SoapSerializer.DataContractSerializer);
 });
 // highlight-end
 
