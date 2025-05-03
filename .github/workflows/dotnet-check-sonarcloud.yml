@@ -1,4 +1,7 @@
 name: SonarCloud Analysis (.NET)
+permissions:
+  contents: read
+  pull-requests: read
 on:
   push:
     branches:
