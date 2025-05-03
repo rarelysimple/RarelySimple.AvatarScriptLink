@@ -1,4 +1,6 @@
 name: SonarCloud Analysis (Docusaurus)
+permissions:
+  contents: read
 on:
 #   push:
 #     branches:
