@@ -1,4 +1,6 @@
 name: Build and Test .NET Package
+permissions:
+  contents: read
 on:
   push:
     branches:
