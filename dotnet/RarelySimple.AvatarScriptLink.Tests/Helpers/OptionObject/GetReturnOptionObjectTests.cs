@@ -194,6 +194,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
         [TestMethod]
         [TestCategory("ScriptLinkHelpers")]
+        public void GetReturnOptionObject_ErrorCode_6_RADplusForms_AreEqual()
+        {
+            int expected = 6;
+            OptionObject returnOptionObject = (OptionObject)OptionObjectHelpers.GetReturnOptionObject((IOptionObject)optionObject, expected, "RADplus_Client100");
+            Assert.AreEqual(expected, returnOptionObject.ErrorCode);
+        }
+
+        [TestMethod]
+        [TestCategory("ScriptLinkHelpers")]
         [ExpectedException(typeof(ArgumentException))]
         public void GetReturnOptionObject_ErrorCode_6_InvalidOpenFormString()
         {
