@@ -182,7 +182,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         public void OptionObject2_GetFieldValue_AreNotEqual()
         {
             OptionObject2 optionObject = OptionObject2.Initialize();
-            var expected = "Value";
             Assert.ThrowsException<ArgumentException>(() => optionObject.GetFieldValue("123"));
         }
 
@@ -199,7 +198,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         [TestCategory("OptionObject2")]
         public void OptionObject2_GetFieldValue_MI_AreNotEqual()
         {
-            var expected = "Value";
             Assert.ThrowsException<ArgumentException>(() => configuredOptionObject2.GetFieldValue("456"));
         }
 

@@ -49,7 +49,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetMultipleIterationStatusOptionObjectMissingFormReturnsError()
         {
             FormObject formObject = new()
@@ -59,17 +58,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             OptionObject optionObject = new();
             optionObject.Forms.Add(formObject);
-            bool expected = true;
-            Assert.AreEqual(expected, optionObject.GetMultipleIterationStatus("2"));
+            Assert.ThrowsException<ArgumentException>(() => optionObject.GetMultipleIterationStatus("2"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetMultipleIterationStatusOptionObjectNoFormsReturnsError()
         {
             OptionObject optionObject = new();
-            bool expected = true;
-            Assert.AreEqual(expected, optionObject.GetMultipleIterationStatus("1"));
+            Assert.ThrowsException<ArgumentException>(() => optionObject.GetMultipleIterationStatus("1"));
         }
 
         [TestMethod]
@@ -115,7 +111,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetMultipleIterationStatusHelperOptionObjectMissingFormReturnsError()
         {
             FormObject formObject = new()
@@ -125,25 +120,20 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             OptionObject optionObject = new();
             optionObject.Forms.Add(formObject);
-            bool expected = true;
-            Assert.AreEqual(expected, OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "2"));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "2"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetMultipleIterationStatusHelperOptionObjectNoFormsReturnsError()
         {
             OptionObject optionObject = new();
-            bool expected = true;
-            Assert.AreEqual(expected, OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "1"));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "1"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetMultipleIterationStatusHelperOptionObjectNullReturnsError()
         {
-            bool expected = true;
-            Assert.AreEqual(expected, OptionObjectHelpers.GetMultipleIterationStatus(null, "1"));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetMultipleIterationStatus(null, "1"));
         }
 
         [TestMethod]
@@ -189,7 +179,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetMultipleIterationStatusOptionObject2MissingFormReturnsError()
         {
             FormObject formObject = new()
@@ -199,17 +188,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject);
-            bool expected = true;
-            Assert.AreEqual(expected, optionObject.GetMultipleIterationStatus("2"));
+            Assert.ThrowsException<ArgumentException>(() => optionObject.GetMultipleIterationStatus("2"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetMultipleIterationStatusOptionObject2NoFormsReturnsError()
         {
             OptionObject2 optionObject = new();
-            bool expected = true;
-            Assert.AreEqual(expected, optionObject.GetMultipleIterationStatus("1"));
+            Assert.ThrowsException<ArgumentException>(() => optionObject.GetMultipleIterationStatus("1"));
         }
 
         [TestMethod]
@@ -255,7 +241,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetMultipleIterationStatusHelperOptionObject2MissingFormReturnsError()
         {
             FormObject formObject = new()
@@ -265,25 +250,20 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject);
-            bool expected = true;
-            Assert.AreEqual(expected, OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "2"));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "2"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetMultipleIterationStatusHelperOptionObject2NoFormsReturnsError()
         {
             OptionObject2 optionObject = new();
-            bool expected = true;
-            Assert.AreEqual(expected, OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "1"));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "1"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetMultipleIterationStatusHelperOptionObject2NullReturnsError()
         {
-            bool expected = true;
-            Assert.AreEqual(expected, OptionObjectHelpers.GetMultipleIterationStatus(null, "1"));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetMultipleIterationStatus(null, "1"));
         }
 
         [TestMethod]
@@ -329,7 +309,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetMultipleIterationStatusOptionObject2015MissingFormReturnsError()
         {
             FormObject formObject = new()
@@ -339,17 +318,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             OptionObject2015 optionObject = new();
             optionObject.Forms.Add(formObject);
-            bool expected = true;
-            Assert.AreEqual(expected, optionObject.GetMultipleIterationStatus("2"));
+            Assert.ThrowsException<ArgumentException>(() => optionObject.GetMultipleIterationStatus("2"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetMultipleIterationStatusOptionObject2015NoFormsReturnsError()
         {
             OptionObject2015 optionObject = new();
-            bool expected = true;
-            Assert.AreEqual(expected, optionObject.GetMultipleIterationStatus("1"));
+            Assert.ThrowsException<ArgumentException>(() => optionObject.GetMultipleIterationStatus("1"));
         }
 
         [TestMethod]
@@ -395,7 +371,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetMultipleIterationStatusHelperOptionObject2015MissingFormReturnsError()
         {
             FormObject formObject = new()
@@ -405,25 +380,20 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             OptionObject2015 optionObject = new();
             optionObject.Forms.Add(formObject);
-            bool expected = true;
-            Assert.AreEqual(expected, OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "2"));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "2"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetMultipleIterationStatusHelperOptionObject2015NoFormsReturnsError()
         {
             OptionObject2015 optionObject = new();
-            bool expected = true;
-            Assert.AreEqual(expected, OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "1"));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "1"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetMultipleIterationStatusHelperOptionObject2015NullReturnsError()
         {
-            bool expected = true;
-            Assert.AreEqual(expected, OptionObjectHelpers.GetMultipleIterationStatus(null, "1"));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetMultipleIterationStatus(null, "1"));
         }
     }
 }

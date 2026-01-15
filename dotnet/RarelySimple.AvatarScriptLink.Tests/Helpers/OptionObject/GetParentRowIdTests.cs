@@ -130,7 +130,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetParentRowIdHelperOptionObjectReturnsNotFound()
         {
             RowObject rowObject1 = new()
@@ -156,12 +155,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 SystemCode = "UAT"
             };
             optionObject.Forms.Add(formObject);
-            string expected = "2||1";
-            Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(optionObject, "2"));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "2"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetParentRowIdHelperOptionObjectNoCurrentRowReturnsError()
         {
             FormObject formObject = new()
@@ -175,12 +172,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 SystemCode = "UAT"
             };
             optionObject.Forms.Add(formObject);
-            string expected = "1||1";
-            Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(optionObject, "1"));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "1"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetParentRowIdHelperOptionObjectNoFormsReturnsError()
         {
             OptionObject optionObject = new()
@@ -188,8 +183,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 EntityID = "1",
                 SystemCode = "UAT"
             };
-            string expected = "1||1";
-            Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(optionObject, "1"));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "1"));
         }
 
         [TestMethod]
@@ -315,7 +309,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetParentRowIdHelperOptionObject2ReturnsNotFound()
         {
             RowObject rowObject1 = new()
@@ -341,12 +334,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 SystemCode = "UAT"
             };
             optionObject.Forms.Add(formObject);
-            string expected = "2||1";
-            Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(optionObject, "2"));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "2"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetParentRowIdHelperOptionObject2NoCurrentRowReturnsError()
         {
             FormObject formObject = new()
@@ -360,12 +351,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 SystemCode = "UAT"
             };
             optionObject.Forms.Add(formObject);
-            string expected = "1||1";
-            Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(optionObject, "1"));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "1"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetParentRowIdHelperOptionObject2NoFormsReturnsError()
         {
             OptionObject2 optionObject = new()
@@ -373,8 +362,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 EntityID = "1",
                 SystemCode = "UAT"
             };
-            string expected = "1||1";
-            Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(optionObject, "1"));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "1"));
         }
 
 
@@ -501,7 +489,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetParentRowIdHelperOptionObject2015ReturnsNotFound()
         {
             RowObject rowObject1 = new()
@@ -527,12 +514,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 SystemCode = "UAT"
             };
             optionObject.Forms.Add(formObject);
-            string expected = "2||1";
-            Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(optionObject, "2"));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "2"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetParentRowIdHelperOptionObject2015NoCurrentRowReturnsError()
         {
             FormObject formObject = new()
@@ -546,12 +531,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 SystemCode = "UAT"
             };
             optionObject.Forms.Add(formObject);
-            string expected = "1||1";
-            Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(optionObject, "1"));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "1"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetParentRowIdHelperOptionObject2015NoFormsReturnsError()
         {
             OptionObject2015 optionObject = new()
@@ -559,20 +542,16 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 EntityID = "1",
                 SystemCode = "UAT"
             };
-            string expected = "1||1";
-            Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(optionObject, "1"));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "1"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetParentRowIdHelperNullReturnsExpected()
         {
-            string expected = "1||1";
-            Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(null, "1"));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(null, "1"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetParentRowIdHelperFormIdEmptyReturnsExpected()
         {
             RowObject rowObject1 = new()
@@ -598,12 +577,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 SystemCode = "UAT"
             };
             optionObject.Forms.Add(formObject);
-            string expected = "1||1";
-            Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(optionObject, ""));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(optionObject, ""));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetParentRowIdHelperFormIdNullReturnsExpected()
         {
             RowObject rowObject1 = new()
@@ -629,16 +606,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 SystemCode = "UAT"
             };
             optionObject.Forms.Add(formObject);
-            string expected = "1||1";
-            Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(optionObject, null));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(optionObject, null));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetParentRowIdHelperNullFormObjectReturnsExpected()
         {
-            string expected = "1||1";
-            Assert.AreEqual(expected, OptionObjectHelpers.GetParentRowId(null));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(null));
         }
     }
 }
