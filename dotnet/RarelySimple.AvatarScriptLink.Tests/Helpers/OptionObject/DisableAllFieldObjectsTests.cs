@@ -98,11 +98,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
         [TestMethod]
         [TestCategory("ScriptLinkHelpers")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void DisableAllFieldObjects_OptionObject_Null()
         {
-            OptionObject returnOptionObject = (OptionObject)OptionObjectHelpers.DisableAllFieldObjects(null);
-            Assert.AreEqual(optionObject.EntityID, returnOptionObject.EntityID);
+            Assert.ThrowsException<ArgumentNullException>(() => (OptionObject)OptionObjectHelpers.DisableAllFieldObjects(null));
         }
 
         [TestMethod]
@@ -379,7 +377,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
         [TestMethod]
         [TestCategory("ScriptLinkHelpers")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void DisableAllFieldObjects_OptionObject2015_Null_ExcludesFields()
         {
             List<string> excludedFields =
@@ -387,19 +384,11 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 "2",
                 "4"
             ];
-            OptionObject2015 returnOptionObject = (OptionObject2015)OptionObjectHelpers.DisableAllFieldObjects(null, excludedFields);
-
-            Assert.IsFalse(returnOptionObject.IsFieldEnabled("1"));
-            Assert.AreEqual("1", returnOptionObject.GetFieldValue("1"));
-            Assert.IsTrue(returnOptionObject.IsFieldEnabled("2"));
-            Assert.IsFalse(returnOptionObject.IsFieldEnabled("3"));
-            Assert.IsTrue(returnOptionObject.IsFieldEnabled("4"));
-            Assert.IsFalse(returnOptionObject.IsFieldEnabled("5"));
+            Assert.ThrowsException<ArgumentNullException>(() => (OptionObject2015)OptionObjectHelpers.DisableAllFieldObjects(null, excludedFields));
         }
 
         [TestMethod]
         [TestCategory("ScriptLinkHelpers")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void DisableAllFieldObjects_OptionObject2015_ExcludesFields_Null()
         {
             FieldObject fieldObject1 = new("1", "1", true, false, false);
@@ -426,19 +415,11 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 Forms = formObjects
             };
 
-            OptionObject2015 returnOptionObject = (OptionObject2015)OptionObjectHelpers.DisableAllFieldObjects(optionObject2015, null);
-
-            Assert.IsFalse(returnOptionObject.IsFieldEnabled("1"));
-            Assert.AreEqual("1", returnOptionObject.GetFieldValue("1"));
-            Assert.IsTrue(returnOptionObject.IsFieldEnabled("2"));
-            Assert.IsFalse(returnOptionObject.IsFieldEnabled("3"));
-            Assert.IsTrue(returnOptionObject.IsFieldEnabled("4"));
-            Assert.IsFalse(returnOptionObject.IsFieldEnabled("5"));
+            Assert.ThrowsException<ArgumentNullException>(() => (OptionObject2015)OptionObjectHelpers.DisableAllFieldObjects(optionObject2015, null));
         }
 
         [TestMethod]
         [TestCategory("ScriptLinkHelpers")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void DisableAllFieldObjects_OptionObject2015_ExcludesFields_NoForms()
         {
             OptionObject2015 optionObject2015 = new();
@@ -448,14 +429,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 "2",
                 "4"
             ];
-            OptionObject2015 returnOptionObject = (OptionObject2015)OptionObjectHelpers.DisableAllFieldObjects(optionObject2015, excludedFields);
-
-            Assert.IsFalse(returnOptionObject.IsFieldEnabled("1"));
-            Assert.AreEqual("1", returnOptionObject.GetFieldValue("1"));
-            Assert.IsTrue(returnOptionObject.IsFieldEnabled("2"));
-            Assert.IsFalse(returnOptionObject.IsFieldEnabled("3"));
-            Assert.IsTrue(returnOptionObject.IsFieldEnabled("4"));
-            Assert.IsFalse(returnOptionObject.IsFieldEnabled("5"));
+            Assert.ThrowsException<ArgumentNullException>(() => (OptionObject2015)OptionObjectHelpers.DisableAllFieldObjects(optionObject2015, excludedFields));
         }
     }
 }

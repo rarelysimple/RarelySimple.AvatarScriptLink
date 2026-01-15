@@ -69,11 +69,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
         [TestMethod]
         [TestCategory("ScriptLinkHelpers")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetOptionObjectHeaders_OptionObject2015_Null()
         {
-            List<string> headers = OptionObjectHelpers.GetOptionObjectHeaders(null);
-            Assert.AreEqual(14, headers.Count);
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetOptionObjectHeaders(null));
         }
     }
 }

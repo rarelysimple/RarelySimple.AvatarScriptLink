@@ -143,18 +143,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
 
         [TestMethod]
         [TestCategory("RowObject")]
-        [ExpectedException(typeof(System.ArgumentException))]
         public void RowObject_AddFieldObject_DoesNotDuplicate()
         {
             string fieldNumber = "123";
-            int expected = 1;
             RowObject rowObject = RowObject.Builder().RowId("1||1").Build();
             rowObject.AddFieldObject(fieldNumber, "TEST", "1", "0", "0");
-            Assert.AreEqual("TEST", rowObject.GetFieldValue(fieldNumber));
-
-            rowObject.AddFieldObject(fieldNumber, "TEST", "1", "0", "0");
-            int actual = rowObject.Fields.FindAll(f => f.FieldNumber == fieldNumber).Count;
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentException>(() => rowObject.AddFieldObject(fieldNumber, "TEST", "1", "0", "0"));
         }
 
         [TestMethod]
@@ -345,15 +339,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
 
         [TestMethod]
         [TestCategory("RowObject")]
-        [ExpectedException(typeof(System.ArgumentNullException))]
         public void RowObject_Constructor_1Parameter_Error()
         {
             string rowId = "";
-            RowObject rowObject = new(rowId);
-            Assert.AreEqual(rowId, rowObject.RowId);
-            Assert.AreEqual("", rowObject.ParentRowId);
-            Assert.AreEqual("", rowObject.RowAction);
-            Assert.AreEqual(0, rowObject.Fields.Count);
+            Assert.ThrowsException<ArgumentNullException>(() => new RowObject(rowId));
         }
 
         [TestMethod]
@@ -371,16 +360,11 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
 
         [TestMethod]
         [TestCategory("RowObject")]
-        [ExpectedException(typeof(System.ArgumentNullException))]
         public void RowObject_Constructor_2Parameter_Error()
         {
             string rowId = "";
             string parentRowId = "2||1";
-            RowObject rowObject = new(rowId, parentRowId);
-            Assert.AreEqual(rowId, rowObject.RowId);
-            Assert.AreEqual(parentRowId, rowObject.ParentRowId);
-            Assert.AreEqual("", rowObject.RowAction);
-            Assert.AreEqual(0, rowObject.Fields.Count);
+            Assert.ThrowsException<ArgumentNullException>(() => new RowObject(rowId, parentRowId));
         }
 
         [TestMethod]
@@ -399,17 +383,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
 
         [TestMethod]
         [TestCategory("RowObject")]
-        [ExpectedException(typeof(System.ArgumentException))]
         public void RowObject_Constructor_3Parameter_Error()
         {
             string rowId = "1||1";
             string parentRowId = "2||1";
             string rowAction = "NONE";
-            RowObject rowObject = new(rowId, parentRowId, rowAction);
-            Assert.AreEqual(rowId, rowObject.RowId);
-            Assert.AreEqual(parentRowId, rowObject.ParentRowId);
-            Assert.AreEqual("", rowObject.RowAction);
-            Assert.AreEqual(0, rowObject.Fields.Count);
+            Assert.ThrowsException<ArgumentException>(() => new RowObject(rowId, parentRowId, rowAction));
         }
 
         [TestMethod]
@@ -433,7 +412,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
 
         [TestMethod]
         [TestCategory("RowObject")]
-        [ExpectedException(typeof(System.ArgumentNullException))]
         public void RowObject_Constructor_2Parameter_List_Error()
         {
             string rowId = "";
@@ -444,11 +422,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
                 fieldObject1,
                 fieldObject2
             ];
-            RowObject rowObject = new(rowId, fieldObjects);
-            Assert.AreEqual(rowId, rowObject.RowId);
-            Assert.AreEqual("", rowObject.ParentRowId);
-            Assert.AreEqual("", rowObject.RowAction);
-            Assert.AreEqual(0, rowObject.Fields.Count);
+            Assert.ThrowsException<ArgumentNullException>(() => new RowObject(rowId, fieldObjects));
         }
 
         [TestMethod]
@@ -473,7 +447,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
 
         [TestMethod]
         [TestCategory("RowObject")]
-        [ExpectedException(typeof(System.ArgumentNullException))]
         public void RowObject_Constructor_3Parameter_List_Error()
         {
             string rowId = "";
@@ -485,11 +458,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
                 fieldObject1,
                 fieldObject2
             ];
-            RowObject rowObject = new(rowId, fieldObjects, parentRowId);
-            Assert.AreEqual(rowId, rowObject.RowId);
-            Assert.AreEqual(parentRowId, rowObject.ParentRowId);
-            Assert.AreEqual("", rowObject.RowAction);
-            Assert.AreEqual(0, rowObject.Fields.Count);
+            Assert.ThrowsException<ArgumentNullException>(() => new RowObject(rowId, fieldObjects, parentRowId));
         }
 
         [TestMethod]
@@ -515,7 +484,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
 
         [TestMethod]
         [TestCategory("RowObject")]
-        [ExpectedException(typeof(System.ArgumentException))]
         public void RowObject_Constructor_4Parameter_List_Error()
         {
             string rowId = "1||1";
@@ -528,11 +496,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
                 fieldObject1,
                 fieldObject2
             ];
-            RowObject rowObject = new(rowId, fieldObjects, parentRowId, rowAction);
-            Assert.AreEqual(rowId, rowObject.RowId);
-            Assert.AreEqual(parentRowId, rowObject.ParentRowId);
-            Assert.AreEqual(rowAction, rowObject.RowAction);
-            Assert.AreEqual(0, rowObject.Fields.Count);
+            Assert.ThrowsException<ArgumentException>(() => new RowObject(rowId, fieldObjects, parentRowId, rowAction));
         }
 
         [TestMethod]
@@ -610,19 +574,16 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void RowObject_Builder_RowIdNull()
         {
-            _ = RowObject.Builder().RowId(null).Build();
+            Assert.ThrowsException<ArgumentNullException>(() => _ = RowObject.Builder().RowId(null).Build());
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void RowObject_Builder_FieldNumberNull()
         {
-            _ = RowObject.Builder().RowId("1||1").Field().FieldNumber(null).AddField().Build();
+            Assert.ThrowsException<ArgumentNullException>(() => _ = RowObject.Builder().RowId("1||1").Field().FieldNumber(null).AddField().Build());
         }
-
         [TestMethod]
         public void RowObject_Builder_FieldIsModified()
         {

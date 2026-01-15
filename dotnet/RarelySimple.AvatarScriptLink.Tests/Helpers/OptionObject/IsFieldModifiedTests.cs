@@ -53,7 +53,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void IsFieldModified_OptionObject_IsTrue_NullFieldNumber()
         {
             // Arrange
@@ -74,7 +73,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             optionObject.SetFieldValue("123", "MODIFIED");
 
             // Assert
-            Assert.IsTrue(optionObject.IsFieldModified(null));
+            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsFieldModified(null));
         }
 
         [TestMethod]
@@ -205,7 +204,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void IsFieldModified_FormObject_IsTrue_NullFieldNumber()
         {
             // Arrange
@@ -219,7 +217,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.SetFieldValue("123", "MODIFIED");
 
             // Assert
-            Assert.IsTrue(formObject.IsFieldModified(null));
+            Assert.ThrowsException<ArgumentNullException>(() => formObject.IsFieldModified(null));
         }
 
         [TestMethod]
@@ -254,7 +252,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void IsFieldModified_RowObject_IsTrue_NullFieldNumber()
         {
             // Arrange
@@ -267,7 +264,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             rowObject01.SetFieldValue("123", "MODIFIED");
 
             // Assert
-            Assert.IsTrue(rowObject01.IsFieldModified(null));
+            Assert.ThrowsException<ArgumentNullException>(() => rowObject01.IsFieldModified(null));
         }
     }
 }

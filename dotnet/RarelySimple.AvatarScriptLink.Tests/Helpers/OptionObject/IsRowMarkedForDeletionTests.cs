@@ -6,7 +6,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
     public class IsRowMarkedForDeletionTests
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void IsRowMarkedForDeletion_RowId_IsEmpty()
         {
             string rowId = "1||1";
@@ -14,11 +13,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(new RowObject(rowId, rowId, RowAction.Delete));
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
-            Assert.IsTrue(optionObject.IsRowMarkedForDeletion(""));
+            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsRowMarkedForDeletion(""));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void IsRowMarkedForDeletion_RowId_IsNull()
         {
             string rowId = "1||1";
@@ -26,7 +24,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(new RowObject(rowId, rowId, RowAction.Delete));
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
-            Assert.IsTrue(optionObject.IsRowMarkedForDeletion(null));
+            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsRowMarkedForDeletion(null));
         }
 
         [TestMethod]

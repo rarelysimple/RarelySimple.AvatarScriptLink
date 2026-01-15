@@ -49,7 +49,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void IsFieldPresent_OptionObject_IsNotPresent_NullFieldNumber()
         {
             string fieldNumber = "123";
@@ -61,7 +60,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject1);
             optionObject.AddFormObject(formObject2);
-            Assert.IsFalse(optionObject.IsFieldPresent(null));
+            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsFieldPresent(null));
         }
 
         [TestMethod]
@@ -173,14 +172,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void IsFieldPresent_FormObject_IsNotPresent_NullFieldNumber()
         {
             string fieldNumber = "123";
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, false, false));
             FormObject formObject1 = new("1");
-            Assert.IsFalse(formObject1.IsFieldPresent(null));
+            Assert.ThrowsException<ArgumentNullException>(() => formObject1.IsFieldPresent(null));
         }
 
         [TestMethod]
@@ -202,13 +200,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void IsFieldPresent_RowObject_IsNotPresent_NullFieldNumber()
         {
             string fieldNumber = "123";
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, false, false));
-            Assert.IsFalse(rowObject.IsFieldPresent(null));
+            Assert.ThrowsException<ArgumentNullException>(() => rowObject.IsFieldPresent(null));
         }
     }
 }

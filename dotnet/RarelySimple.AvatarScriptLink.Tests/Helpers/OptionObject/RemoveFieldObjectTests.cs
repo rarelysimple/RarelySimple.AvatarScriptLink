@@ -45,15 +45,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void RemoveFieldObject_RowObject_ByFieldNumber_NotPresent()
         {
             string fieldNumber = "123";
             RowObject rowObject = new("1||1");
 
-            rowObject.RemoveFieldObject(fieldNumber);
-
-            Assert.IsTrue(rowObject.IsFieldPresent(fieldNumber));
+            Assert.ThrowsException<ArgumentNullException>(() => rowObject.RemoveFieldObject(fieldNumber));
         }
 
         [TestMethod]
@@ -95,15 +92,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void RemoveFieldObject_OptionObjectHelpers_ByFieldNumber_NotPresent()
         {
             string fieldNumber = "123";
             RowObject rowObject = new("1||1");
 
-            OptionObjectHelpers.RemoveFieldObject(rowObject, fieldNumber);
-
-            Assert.IsTrue(rowObject.IsFieldPresent(fieldNumber));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.RemoveFieldObject(rowObject, fieldNumber));
         }
     }
 }
