@@ -85,7 +85,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void IsValidOpenFormString_PMForm_IsValid()
         {
-            string openFormString = "[PM]GUISYS562";
+            string openFormString = "[PM]GUISYS567";
             Assert.IsTrue(OptionObjectHelpers.IsValidOpenFormString(openFormString));
         }
 
@@ -108,6 +108,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string openFormString = "[INCIDENT]GUISYS560";
             Assert.IsFalse(OptionObjectHelpers.IsValidOpenFormString(openFormString));
+        }
+
+        [TestMethod]
+        public void IsValidOpenFormString_RADplus_IsValid()
+        {
+            string openFormString = "RADplus_Client100";
+            Assert.IsTrue(OptionObjectHelpers.IsValidOpenFormString(openFormString));
         }
     }
 }
