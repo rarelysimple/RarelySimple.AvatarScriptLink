@@ -85,7 +85,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void IsValidOpenFormString_PMForm_IsValid()
         {
-            string openFormString = "[PM]GUISYS560";
+            string openFormString = "[PM]GUISYS562";
             Assert.IsTrue(OptionObjectHelpers.IsValidOpenFormString(openFormString));
         }
 
