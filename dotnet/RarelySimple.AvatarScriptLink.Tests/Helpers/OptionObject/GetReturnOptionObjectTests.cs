@@ -175,12 +175,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
         [TestMethod]
         [TestCategory("ScriptLinkHelpers")]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetReturnOptionObject_ErrorCode_5_InvalidURL()
         {
             int expected = 5;
-            OptionObject returnOptionObject = (OptionObject)OptionObjectHelpers.GetReturnOptionObject((IOptionObject)optionObject, expected, "test");
-            Assert.AreEqual(expected, returnOptionObject.ErrorCode);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetReturnOptionObject((IOptionObject)optionObject, expected, "test"));
         }
 
         [TestMethod]
@@ -203,40 +201,33 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
         [TestMethod]
         [TestCategory("ScriptLinkHelpers")]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetReturnOptionObject_ErrorCode_6_InvalidOpenFormString()
         {
             int expected = 6;
-            OptionObject returnOptionObject = (OptionObject)OptionObjectHelpers.GetReturnOptionObject((IOptionObject)optionObject, expected, "test");
-            Assert.AreEqual(expected, returnOptionObject.ErrorCode);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetReturnOptionObject((IOptionObject)optionObject, expected, "test"));
         }
 
         [TestMethod]
         [TestCategory("ScriptLinkHelpers")]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetReturnOptionObject_ErrorCode_7_Error()
         {
             int expected = 7;
-            OptionObject returnOptionObject = (OptionObject)OptionObjectHelpers.GetReturnOptionObject((IOptionObject)optionObject, expected, "test");
-            Assert.AreNotEqual(expected, returnOptionObject.ErrorCode);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetReturnOptionObject((IOptionObject)optionObject, expected, "test"));
         }
 
         [TestMethod]
         [TestCategory("ScriptLinkHelpers")]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetReturnOptionObject_ErrorCode_Negative1_Error()
         {
             int expected = -1;
-            OptionObject returnOptionObject = (OptionObject)OptionObjectHelpers.GetReturnOptionObject((IOptionObject)optionObject, expected, "test");
-            Assert.AreNotEqual(expected, returnOptionObject.ErrorCode);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetReturnOptionObject((IOptionObject)optionObject, expected, "test"));
         }
 
         [TestMethod]
         [TestCategory("ScriptLinkHelpers")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetReturnOptionObject_OptionObject_Null()
         {
-            _ = OptionObjectHelpers.GetReturnOptionObject(null);
+            Assert.ThrowsException<ArgumentNullException>(() => _ = OptionObjectHelpers.GetReturnOptionObject(null));
         }
 
         [TestMethod]
