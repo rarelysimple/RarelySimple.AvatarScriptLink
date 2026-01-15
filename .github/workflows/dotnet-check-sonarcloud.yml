@@ -18,18 +18,15 @@ jobs:
   build:
     name: Build and analyze
     runs-on: windows-latest
-    defaults:
-      run:
-        working-directory: ./dotnet
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: 17
           distribution: 'zulu' # Alternative distribution options are available.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: Cache SonarCloud packages
         uses: actions/cache@v4
         with:
@@ -40,23 +37,23 @@ jobs:
         id: cache-sonar-scanner
         uses: actions/cache@v4
         with:
-          path: .\.sonar\scanner
+          path: ${{ runner.temp }}\scanner
           key: ${{ runner.os }}-sonar-scanner
           restore-keys: ${{ runner.os }}-sonar-scanner
       - name: Install SonarCloud scanner
         if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
         shell: powershell
         run: |
-          New-Item -Path .\.sonar\scanner -ItemType Directory
-          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+          New-Item -Path ${{ runner.temp }}\scanner -ItemType Directory
+          dotnet tool update dotnet-sonarscanner --tool-path ${{ runner.temp }}\scanner
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
+        working-directory: ./dotnet
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"rarelysimple_RarelySimple.AvatarScriptLink" /o:"rarelysimple" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet restore
-          dotnet build --no-restore --configuration release
+          ${{ runner.temp }}\scanner\dotnet-sonarscanner begin /k:"rarelysimple_RarelySimple.AvatarScriptLink" /o:"rarelysimple" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          dotnet build --configuration release
           dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory TestResults/ --configuration release -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover --logger "trx;LogFileName=unittests.trx"
-          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+          ${{ runner.temp }}\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
