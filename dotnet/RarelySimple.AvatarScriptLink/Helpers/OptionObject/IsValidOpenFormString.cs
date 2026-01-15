@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
 namespace RarelySimple.AvatarScriptLink.Helpers
 {
@@ -13,7 +14,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         {
             if (string.IsNullOrEmpty(openFormString))
                 return false;
-            return Regex.IsMatch(openFormString, RegexPatterns.FullPattern);
+            return Regex.IsMatch(openFormString, RegexPatterns.FullPattern, RegexOptions.None, TimeSpan.FromMilliseconds(100));
         }
 
         /// <summary>
