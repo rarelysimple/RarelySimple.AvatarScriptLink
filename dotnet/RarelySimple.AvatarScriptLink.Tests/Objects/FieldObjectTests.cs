@@ -332,16 +332,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
 
         [TestMethod]
         [TestCategory("FieldObject")]
-        [ExpectedException(typeof(System.ArgumentNullException))]
         public void FieldObject_Constructor_1Parameter_Error()
         {
             string expected = "";
-            FieldObject fieldObject = new(expected);
-            Assert.AreEqual(expected, fieldObject.FieldNumber);
-            Assert.AreEqual("", fieldObject.FieldValue);
-            Assert.AreEqual("1", fieldObject.Enabled);
-            Assert.AreEqual("1", fieldObject.Lock);
-            Assert.AreEqual("1", fieldObject.Required);
+            Assert.ThrowsException<ArgumentNullException>(() => new FieldObject(expected));
         }
 
         [TestMethod]
@@ -360,17 +354,11 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
 
         [TestMethod]
         [TestCategory("FieldObject")]
-        [ExpectedException(typeof(System.ArgumentNullException))]
         public void FieldObject_Constructor_2Parameter_Error()
         {
             string fieldNumber = "";
             string fieldValue = "TEST";
-            FieldObject fieldObject = new(fieldNumber, fieldValue);
-            Assert.AreEqual(fieldNumber, fieldObject.FieldNumber);
-            Assert.AreEqual(fieldValue, fieldObject.FieldValue);
-            Assert.AreEqual("1", fieldObject.Enabled);
-            Assert.AreEqual("1", fieldObject.Lock);
-            Assert.AreEqual("1", fieldObject.Required);
+            Assert.ThrowsException<ArgumentNullException>(() => new FieldObject(fieldNumber, fieldValue));
         }
 
         [TestMethod]
@@ -389,17 +377,11 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
 
         [TestMethod]
         [TestCategory("FieldObject")]
-        [ExpectedException(typeof(System.ArgumentNullException))]
         public void FieldObject_Constructor_5Parameter_Error()
         {
             string fieldNumber = "";
             string fieldValue = "TEST";
-            FieldObject fieldObject = new(fieldNumber, fieldValue, true, true, true);
-            Assert.AreEqual(fieldNumber, fieldObject.FieldNumber);
-            Assert.AreEqual(fieldValue, fieldObject.FieldValue);
-            Assert.AreEqual("1", fieldObject.Enabled);
-            Assert.AreEqual("1", fieldObject.Lock);
-            Assert.AreEqual("1", fieldObject.Required);
+            Assert.ThrowsException<ArgumentNullException>(() => new FieldObject(fieldNumber, fieldValue, true, true, true));
         }
 
         [TestMethod]
@@ -430,17 +412,15 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void FieldObject_Builder_FieldNumberNull()
         {
-            _ = FieldObject.Builder().FieldNumber(null).Build();
+            Assert.ThrowsException<ArgumentNullException>(() => FieldObject.Builder().FieldNumber(null).Build());
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void FieldObject_Builder_FieldNumberEmpty()
         {
-            _ = FieldObject.Builder().FieldNumber("").Build();
+            Assert.ThrowsException<ArgumentNullException>(() => FieldObject.Builder().FieldNumber("").Build());
         }
     }
 }
