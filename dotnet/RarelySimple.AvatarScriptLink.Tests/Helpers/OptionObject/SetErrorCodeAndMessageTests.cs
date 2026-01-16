@@ -7,12 +7,11 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
     public class SetErrorCodeAndMessageTests
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetErrorCodeAndMessage_OptionObject_Null_Error()
         {
             double errorCode = 0;
             string message = "Test Message";
-            OptionObjectHelpers.SetErrorCodeAndMessage(null, errorCode, message);
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(null, errorCode, message));
         }
 
         [TestMethod]
@@ -96,20 +95,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void SetErrorCodeAndMessage_OptionObject_5_Error()
         {
-            // Arrange
             var optionObject = new OptionObject();
             double errorCode = 5;
             string message = "Test Message";
-
-            // Act
-            OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message);
-
-            // Assert
-            Assert.AreEqual(errorCode, optionObject.ErrorCode);
-            Assert.AreEqual(message, optionObject.ErrorMesg);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
@@ -118,7 +109,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             // Arrange
             var optionObject = new OptionObject();
             double errorCode = 5;
-            string message = "https://www.rarelysimple.com";
+            string message = "https://scriptlink.rarelysimple.com";
 
             // Act
             OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message);
@@ -129,20 +120,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void SetErrorCodeAndMessage_OptionObject_6_Error()
         {
-            // Arrange
             var optionObject = new OptionObject();
             double errorCode = 6;
             string message = "Test Message";
-
-            // Act
-            OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message);
-
-            // Assert
-            Assert.AreEqual(errorCode, optionObject.ErrorCode);
-            Assert.AreEqual(message, optionObject.ErrorMesg);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
@@ -162,46 +145,29 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void SetErrorCodeAndMessage_OptionObject_7_Error()
         {
-            // Arrange
             var optionObject = new OptionObject();
             double errorCode = 7;
             string message = "Test Message";
-
-            // Act
-            OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message);
-
-            // Assert
-            Assert.AreEqual(errorCode, optionObject.ErrorCode);
-            Assert.AreEqual(message, optionObject.ErrorMesg);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void SetErrorCodeAndMessage_OptionObject_Negative1_Error()
         {
-            // Arrange
             var optionObject = new OptionObject();
             double errorCode = -1;
             string message = "Test Message";
-
-            // Act
-            OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message);
-
-            // Assert
-            Assert.AreEqual(errorCode, optionObject.ErrorCode);
-            Assert.AreEqual(message, optionObject.ErrorMesg);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetErrorCodeAndMessage_OptionObject2_Null_Error()
         {
             double errorCode = 0;
             string message = "Test Message";
-            OptionObjectHelpers.SetErrorCodeAndMessage(null, errorCode, message);
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(null, errorCode, message));
         }
 
         [TestMethod]
@@ -285,20 +251,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void SetErrorCodeAndMessage_OptionObject2_5_Error()
         {
-            // Arrange
             var optionObject = new OptionObject2();
             double errorCode = 5;
             string message = "Test Message";
-
-            // Act
-            OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message);
-
-            // Assert
-            Assert.AreEqual(errorCode, optionObject.ErrorCode);
-            Assert.AreEqual(message, optionObject.ErrorMesg);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
@@ -318,20 +276,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void SetErrorCodeAndMessage_OptionObject2_6_Error()
         {
-            // Arrange
             var optionObject = new OptionObject2();
             double errorCode = 6;
             string message = "Test Message";
-
-            // Act
-            OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message);
-
-            // Assert
-            Assert.AreEqual(errorCode, optionObject.ErrorCode);
-            Assert.AreEqual(message, optionObject.ErrorMesg);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
@@ -351,46 +301,29 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void SetErrorCodeAndMessage_OptionObject2_7_Error()
         {
-            // Arrange
             var optionObject = new OptionObject2();
             double errorCode = 7;
             string message = "Test Message";
-
-            // Act
-            OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message);
-
-            // Assert
-            Assert.AreEqual(errorCode, optionObject.ErrorCode);
-            Assert.AreEqual(message, optionObject.ErrorMesg);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void SetErrorCodeAndMessage_OptionObject2_Negative1_Error()
         {
-            // Arrange
             var optionObject = new OptionObject2();
             double errorCode = -1;
             string message = "Test Message";
-
-            // Act
-            OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message);
-
-            // Assert
-            Assert.AreEqual(errorCode, optionObject.ErrorCode);
-            Assert.AreEqual(message, optionObject.ErrorMesg);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetErrorCodeAndMessage_OptionObject2015_Null_Error()
         {
             double errorCode = 0;
             string message = "Test Message";
-            OptionObjectHelpers.SetErrorCodeAndMessage(null, errorCode, message);
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(null, errorCode, message));
         }
 
         [TestMethod]
@@ -474,20 +407,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void SetErrorCodeAndMessage_OptionObject2015_5_Error()
         {
-            // Arrange
             var optionObject = new OptionObject2015();
             double errorCode = 5;
             string message = "Test Message";
-
-            // Act
-            OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message);
-
-            // Assert
-            Assert.AreEqual(errorCode, optionObject.ErrorCode);
-            Assert.AreEqual(message, optionObject.ErrorMesg);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
@@ -496,7 +421,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             // Arrange
             var optionObject = new OptionObject2015();
             double errorCode = 5;
-            string message = "https://www.rarelysimple.com";
+            string message = "https://scriptlink.rarelysimple.com";
 
             // Act
             OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message);
@@ -507,20 +432,12 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void SetErrorCodeAndMessage_OptionObject2015_6_Error()
         {
-            // Arrange
             var optionObject = new OptionObject2015();
             double errorCode = 6;
             string message = "Test Message";
-
-            // Act
-            OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message);
-
-            // Assert
-            Assert.AreEqual(errorCode, optionObject.ErrorCode);
-            Assert.AreEqual(message, optionObject.ErrorMesg);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
@@ -540,37 +457,21 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void SetErrorCodeAndMessage_OptionObject2015_7_Error()
         {
-            // Arrange
             var optionObject = new OptionObject2015();
             double errorCode = 7;
             string message = "Test Message";
-
-            // Act
-            OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message);
-
-            // Assert
-            Assert.AreEqual(errorCode, optionObject.ErrorCode);
-            Assert.AreEqual(message, optionObject.ErrorMesg);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void SetErrorCodeAndMessage_OptionObject2015_Negative1_Error()
         {
-            // Arrange
             var optionObject = new OptionObject2015();
             double errorCode = -1;
             string message = "Test Message";
-
-            // Act
-            OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message);
-
-            // Assert
-            Assert.AreEqual(errorCode, optionObject.ErrorCode);
-            Assert.AreEqual(message, optionObject.ErrorMesg);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
     }
 }

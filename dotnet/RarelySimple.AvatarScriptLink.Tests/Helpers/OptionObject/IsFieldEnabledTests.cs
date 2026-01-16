@@ -63,7 +63,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void IsFieldEnabled_OptionObject_IsNotPresent()
         {
             string fieldNumber = "123";
@@ -75,11 +74,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject1);
             optionObject.AddFormObject(formObject2);
-            Assert.IsTrue(optionObject.IsFieldEnabled("234"));
+            Assert.ThrowsException<ArgumentException>(() => optionObject.IsFieldEnabled("234"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void IsFieldEnabled_OptionObject_IsEnabled_NullFieldNumber()
         {
             string fieldNumber = "123";
@@ -89,7 +87,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(rowObject);
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
-            Assert.IsTrue(optionObject.IsFieldEnabled(null));
+            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsFieldEnabled(null));
         }
 
         [TestMethod]
@@ -149,7 +147,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void IsFieldEnabled_OptionObject2_IsNotPresent()
         {
             string fieldNumber = "123";
@@ -161,7 +158,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject1);
             optionObject.AddFormObject(formObject2);
-            Assert.IsTrue(optionObject.IsFieldEnabled("234"));
+            Assert.ThrowsException<ArgumentException>(() => optionObject.IsFieldEnabled("234"));
         }
 
         [TestMethod]
@@ -221,7 +218,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void IsFieldEnabled_OptionObject2015_IsNotPresent()
         {
             string fieldNumber = "123";
@@ -233,7 +229,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject1);
             optionObject.AddFormObject(formObject2);
-            Assert.IsTrue(optionObject.IsFieldEnabled("234"));
+            Assert.ThrowsException<ArgumentException>(() => optionObject.IsFieldEnabled("234"));
         }
 
         [TestMethod]
@@ -259,7 +255,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void IsFieldEnabled_FormObject_IsNotPresent()
         {
             string fieldNumber = "123";
@@ -267,11 +262,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, false, false));
             FormObject formObject = new("1");
             formObject.AddRowObject(rowObject);
-            Assert.IsTrue(formObject.IsFieldEnabled("234"));
+            Assert.ThrowsException<ArgumentException>(() => formObject.IsFieldEnabled("234"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void IsFieldEnabled_FormObject_IsEnabled_NullFieldNumber()
         {
             string fieldNumber = "123";
@@ -279,7 +273,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, true, false));
             FormObject formObject = new("1");
             formObject.AddRowObject(rowObject);
-            Assert.IsTrue(formObject.IsFieldEnabled(null));
+            Assert.ThrowsException<ArgumentNullException>(() => formObject.IsFieldEnabled(null));
         }
 
         [TestMethod]
@@ -301,30 +295,27 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void IsFieldEnabled_RowObject_IsNotPresent()
         {
             string fieldNumber = "123";
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, false, false));
-            Assert.IsTrue(rowObject.IsFieldEnabled("234"));
+            Assert.ThrowsException<ArgumentException>(() => rowObject.IsFieldEnabled("234"));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void IsFieldEnabled_RowObject_IsEnabled_NullFieldNumber()
         {
             string fieldNumber = "123";
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, true, false));
-            Assert.IsTrue(rowObject.IsFieldEnabled(null));
+            Assert.ThrowsException<ArgumentNullException>(() => rowObject.IsFieldEnabled(null));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void IsFieldEnabled_FieldObject_IsEnabled_NullFieldNumber()
         {
-            Assert.IsTrue(OptionObjectHelpers.IsFieldEnabled(null));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.IsFieldEnabled(null));
         }
     }
 }

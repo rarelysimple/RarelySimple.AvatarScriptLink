@@ -21,18 +21,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void DeserializeObject_Double_Error()
         {
-            // Arrange
             string objectToDeserialize = "<Not XML or Json>";
-            double expected = 3;
-
-            // Act
-            var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<double>(objectToDeserialize);
-
-            // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromJsonString<double>(objectToDeserialize));
         }
 
         [TestMethod]
@@ -50,18 +42,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void DeserializeObject_Int_Error()
         {
-            // Arrange
             string objectToDeserialize = "<Not XML or Json>";
-            int expected = 3;
-
-            // Act
-            var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<int>(objectToDeserialize);
-
-            // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromJsonString<int>(objectToDeserialize));
         }
 
         [TestMethod]
@@ -79,18 +63,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void DeserializeObject_DateTime_Error()
         {
-            // Arrange
             string objectToSerialize = "<Not XML or Json>";
-            DateTime expected = new(2020, 1, 1);
-
-            // Act
-            var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<DateTime>(objectToSerialize);
-
-            // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromJsonString<DateTime>(objectToSerialize));
         }
 
         [TestMethod]
@@ -108,18 +84,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void DeserializeObject_OptionObject_Error()
         {
-            // Arrange
             string objectToSerialize = "<Not XML or Json>";
-            OptionObject expected = new();
-
-            // Act
-            var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<OptionObject>(objectToSerialize);
-
-            // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromJsonString<OptionObject>(objectToSerialize));
         }
 
         [TestMethod]
@@ -137,18 +105,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void DeserializeObject_OptionObject2_Error()
         {
-            // Arrange
             string objectToSerialize = "<Not XML or Json>";
-            OptionObject2 expected = new();
-
-            // Act
-            var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<OptionObject2>(objectToSerialize);
-
-            // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromJsonString<OptionObject2>(objectToSerialize));
         }
 
         [TestMethod]
@@ -166,18 +126,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void DeserializeObject_OptionObject2015_Error()
         {
-            // Arrange
             string objectToSerialize = "<Not XML or Json>";
-            OptionObject2015 expected = new();
-
-            // Act
-            var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<OptionObject2015>(objectToSerialize);
-
-            // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromJsonString<OptionObject2015>(objectToSerialize));
         }
 
         [TestMethod]
@@ -195,18 +147,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void DeserializeObject_FormObject_Error()
         {
-            // Arrange
             string objectToSerialize = "<Not XML or Json>";
-            FormObject expected = new();
-
-            // Act
-            var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<FormObject>(objectToSerialize);
-
-            // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromJsonString<FormObject>(objectToSerialize));
         }
 
         [TestMethod]
@@ -224,18 +168,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void DeserializeObject_RowObject_Error()
         {
-            // Arrange
             string objectToSerialize = "<Not XML or Json>";
-            RowObject expected = new();
-
-            // Act
-            var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<RowObject>(objectToSerialize);
-
-            // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromJsonString<RowObject>(objectToSerialize));
         }
 
         [TestMethod]
@@ -253,18 +189,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void DeserializeObject_FieldObject_Error()
         {
-            // Arrange
             string objectToSerialize = "<Not XML or Json>";
-            FieldObject expected = new();
-
-            // Act
-            var actual = ScriptLinkHelpers.DeserializeObjectFromJsonString<FieldObject>(objectToSerialize);
-
-            // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromJsonString<FieldObject>(objectToSerialize));
         }
     }
 }

@@ -7,7 +7,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
     public class SetFieldObjectsTests
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetFieldObjects_OptionObject_NullAction_FieldObjects()
         {
             string fieldNumber = "123";
@@ -22,14 +21,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            OptionObjectHelpers.SetFieldObjects(optionObject, null, fieldObjects);
-
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, null, fieldObjects));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetFieldObjects_OptionObject_BlankAction_FieldObjects()
         {
             string fieldNumber = "123";
@@ -44,10 +39,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            OptionObjectHelpers.SetFieldObjects(optionObject, "", fieldObjects);
-
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, "", fieldObjects));
         }
 
         [TestMethod]
@@ -72,7 +64,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void SetFieldObjects_OptionObject_Disabled_FieldObjectsNotPresent()
         {
             string fieldNumber = "123";
@@ -87,14 +78,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            OptionObjectHelpers.SetFieldObjects(optionObject, FieldAction.Disable, fieldObjects);
-
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, FieldAction.Disable, fieldObjects));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetFieldObjects_OptionObject_NullAction_FieldNumbers()
         {
             string fieldNumber = "123";
@@ -109,14 +96,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            OptionObjectHelpers.SetFieldObjects(optionObject, null, fieldNumbers);
-
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, null, fieldNumbers));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetFieldObjects_OptionObject_BlankAction_FieldNumbers()
         {
             string fieldNumber = "123";
@@ -131,10 +114,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            OptionObjectHelpers.SetFieldObjects(optionObject, "", fieldNumbers);
-
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, "", fieldNumbers));
         }
 
         [TestMethod]
@@ -159,7 +139,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void SetFieldObjects_OptionObject_Disabled_FieldNumbersNotPresent()
         {
             string fieldNumber = "123";
@@ -174,14 +153,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            OptionObjectHelpers.SetFieldObjects(optionObject, FieldAction.Disable, fieldNumbers);
-
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, FieldAction.Disable, fieldNumbers));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetFieldObjects_OptionObject2_NullAction_FieldObjects()
         {
             string fieldNumber = "123";
@@ -196,14 +171,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            OptionObjectHelpers.SetFieldObjects(optionObject, null, fieldObjects);
-
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, null, fieldObjects));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetFieldObjects_OptionObject2_BlankAction_FieldObjects()
         {
             string fieldNumber = "123";
@@ -218,10 +189,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            OptionObjectHelpers.SetFieldObjects(optionObject, "", fieldObjects);
-
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, "", fieldObjects));
         }
 
         [TestMethod]
@@ -246,7 +214,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void SetFieldObjects_OptionObject2_Disabled_FieldObjectsNotPresent()
         {
             string fieldNumber = "123";
@@ -261,14 +228,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            OptionObjectHelpers.SetFieldObjects(optionObject, FieldAction.Disable, fieldObjects);
-
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, FieldAction.Disable, fieldObjects));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetFieldObjects_OptionObject2_NullAction_FieldNumbers()
         {
             string fieldNumber = "123";
@@ -283,14 +246,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            OptionObjectHelpers.SetFieldObjects(optionObject, null, fieldNumbers);
-
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, null, fieldNumbers));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetFieldObjects_OptionObject2_BlankAction_FieldNumbers()
         {
             string fieldNumber = "123";
@@ -305,10 +264,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            OptionObjectHelpers.SetFieldObjects(optionObject, "", fieldNumbers);
-
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, "", fieldNumbers));
         }
 
         [TestMethod]
@@ -333,7 +289,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void SetFieldObjects_OptionObject2_Disabled_FieldNumbersNotPresent()
         {
             string fieldNumber = "123";
@@ -348,14 +303,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            OptionObjectHelpers.SetFieldObjects(optionObject, FieldAction.Disable, fieldNumbers);
-
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, FieldAction.Disable, fieldNumbers));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetFieldObjects_OptionObject2015_NullAction_FieldObjects()
         {
             string fieldNumber = "123";
@@ -370,14 +321,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            OptionObjectHelpers.SetFieldObjects(optionObject, null, fieldObjects);
-
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, null, fieldObjects));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetFieldObjects_OptionObject2015_BlankAction_FieldObjects()
         {
             string fieldNumber = "123";
@@ -392,10 +339,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            OptionObjectHelpers.SetFieldObjects(optionObject, "", fieldObjects);
-
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, "", fieldObjects));
         }
 
         [TestMethod]
@@ -420,7 +364,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void SetFieldObjects_OptionObject2015_Disabled_FieldObjectsNotPresent()
         {
             string fieldNumber = "123";
@@ -435,14 +378,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            OptionObjectHelpers.SetFieldObjects(optionObject, FieldAction.Disable, fieldObjects);
-
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, FieldAction.Disable, fieldObjects));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetFieldObjects_OptionObject2015_NullAction_FieldNumbers()
         {
             string fieldNumber = "123";
@@ -457,14 +396,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            OptionObjectHelpers.SetFieldObjects(optionObject, null, fieldNumbers);
-
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, null, fieldNumbers));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetFieldObjects_OptionObject2015_BlankAction_FieldNumbers()
         {
             string fieldNumber = "123";
@@ -479,10 +414,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            OptionObjectHelpers.SetFieldObjects(optionObject, "", fieldNumbers);
-
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, "", fieldNumbers));
         }
 
         [TestMethod]
@@ -507,7 +439,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void SetFieldObjects_OptionObject2015_Disabled_FieldNumbersNotPresent()
         {
             string fieldNumber = "123";
@@ -522,14 +453,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            OptionObjectHelpers.SetFieldObjects(optionObject, FieldAction.Disable, fieldNumbers);
-
-            Assert.IsFalse(optionObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(optionObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, FieldAction.Disable, fieldNumbers));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetFieldObjects_FormObject_NullAction_FieldNumbers()
         {
             string fieldNumber = "123";
@@ -542,14 +469,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject = new("1");
             formObject.AddRowObject(rowObject);
 
-            OptionObjectHelpers.SetFieldObjects(formObject, null, fieldNumbers);
-
-            Assert.IsFalse(formObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(formObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(formObject, null, fieldNumbers));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetFieldObjects_FormObject_BlankAction_FieldNumbers()
         {
             string fieldNumber = "123";
@@ -562,10 +485,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject = new("1");
             formObject.AddRowObject(rowObject);
 
-            OptionObjectHelpers.SetFieldObjects(formObject, "", fieldNumbers);
-
-            Assert.IsFalse(formObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(formObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(formObject, "", fieldNumbers));
         }
 
         [TestMethod]
@@ -588,7 +508,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void SetFieldObjects_FormObject_Disabled_FieldNumbersNotPresent()
         {
             string fieldNumber = "123";
@@ -601,15 +520,11 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             FormObject formObject = new("1");
             formObject.AddRowObject(rowObject);
 
-            OptionObjectHelpers.SetFieldObjects(formObject, FieldAction.Disable, fieldNumbers);
-
-            Assert.IsFalse(formObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(formObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObjects(formObject, FieldAction.Disable, fieldNumbers));
         }
 
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetFieldObjects_RowObject_NullAction_FieldNumbers()
         {
             string fieldNumber = "123";
@@ -620,14 +535,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber));
 
-            OptionObjectHelpers.SetFieldObjects(rowObject, null, fieldNumbers);
-
-            Assert.IsFalse(rowObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(rowObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(rowObject, null, fieldNumbers));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetFieldObjects_RowObject_BlankAction_FieldNumbers()
         {
             string fieldNumber = "123";
@@ -638,10 +549,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber));
 
-            OptionObjectHelpers.SetFieldObjects(rowObject, "", fieldNumbers);
-
-            Assert.IsFalse(rowObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(rowObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(rowObject, "", fieldNumbers));
         }
 
         [TestMethod]
@@ -662,7 +570,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void SetFieldObjects_RowObject_Disabled_FieldNumbersNotPresent()
         {
             string fieldNumber = "123";
@@ -673,10 +580,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber));
 
-            OptionObjectHelpers.SetFieldObjects(rowObject, FieldAction.Disable, fieldNumbers);
-
-            Assert.IsFalse(rowObject.IsFieldEnabled(fieldNumber));
-            Assert.IsFalse(rowObject.IsFieldRequired(fieldNumber));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObjects(rowObject, FieldAction.Disable, fieldNumbers));
         }
     }
 }
