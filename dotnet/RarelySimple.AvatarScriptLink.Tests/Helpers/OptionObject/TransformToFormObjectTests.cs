@@ -8,10 +8,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
     {
         [TestMethod]
         [TestCategory("FormObject")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void FormObjectFromJson_NullString()
         {
-            _ = (FormObject)OptionObjectHelpers.TransformToFormObject(null);
+            Assert.ThrowsException<ArgumentNullException>(() => _ = (FormObject)OptionObjectHelpers.TransformToFormObject(null));
         }
 
         [TestMethod]

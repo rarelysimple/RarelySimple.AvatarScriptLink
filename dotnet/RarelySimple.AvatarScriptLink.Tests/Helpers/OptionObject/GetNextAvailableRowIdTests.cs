@@ -7,7 +7,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
     public class GetNextAvailableRowIdTests
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void GetNextRowId_FormObjectNonMI()
         {
             FormObject formObject = new()
@@ -16,8 +15,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 MultipleIteration = false
             };
             formObject.AddRowObject(new RowObject());
-            string rowId = formObject.GetNextAvailableRowId();
-            Assert.AreNotEqual("1||2", rowId);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => formObject.GetNextAvailableRowId());
         }
 
         [TestMethod]
@@ -60,7 +58,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void GetNextRowId_FormObjectHasMaximumRows()
         {
             FormObject formObject = new()
@@ -77,20 +74,16 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 formObject.OtherRows.Add(new RowObject(tempRowId));
             }
 
-            string rowId = formObject.GetNextAvailableRowId();   // Should throw error as there are no more rows available
-            Assert.AreNotEqual("1||10000", rowId);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => formObject.GetNextAvailableRowId());
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetNextRowId_OptionObjectHelpers_FormObjectNull()
         {
-            string rowId = OptionObjectHelpers.GetNextAvailableRowId(null);
-            Assert.AreEqual("1||1", rowId);
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetNextAvailableRowId(null));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void GetNextRowId_OptionObjectHelpers_FormObjectNonMI()
         {
             FormObject formObject = new()
@@ -99,8 +92,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 MultipleIteration = false
             };
             formObject.AddRowObject(new RowObject());
-            string rowId = OptionObjectHelpers.GetNextAvailableRowId(formObject);
-            Assert.AreNotEqual("1||2", rowId);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => OptionObjectHelpers.GetNextAvailableRowId(formObject));
         }
 
         [TestMethod]
@@ -143,7 +135,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void GetNextRowId_OptionObjectHelpers_FormObjectHasMaximumRows()
         {
             FormObject formObject = new()
@@ -160,9 +151,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 formObject.OtherRows.Add(new RowObject(tempRowId));
             }
 
-            string rowId = OptionObjectHelpers.GetNextAvailableRowId(formObject);   // Should throw error as there are no more rows available
-
-            Assert.AreNotEqual("1||10000", rowId);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => OptionObjectHelpers.GetNextAvailableRowId(formObject));
         }
     }
 }

@@ -132,11 +132,9 @@ public class FormObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void TestFormObjectDecorator_GetCurrentRowId_Exception() {
-        var expected = "456||1";
         FormObjectDecorator decorator = FormObjectDecorator.Builder().FormId("456").Build();
-        Assert.AreEqual(expected, decorator.GetCurrentRowId());
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.GetCurrentRowId());
     }
 
     #endregion
@@ -389,11 +387,9 @@ public class FormObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void TestFormObjectDecorator_GetParentRowId_Exception() {
-        var expected = "456||1";
         FormObjectDecorator decorator = FormObjectDecorator.Builder().FormId("456").Build();
-        Assert.AreEqual(expected, decorator.GetParentRowId());
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.GetParentRowId());
     }
 
     [TestMethod]
@@ -460,7 +456,6 @@ public class FormObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(FieldObjectNotFoundException))]
     public void IsFieldEnabled_FormObject_IsNotPresent()
     {
         var fieldObject = new FieldObject()
@@ -482,15 +477,7 @@ public class FormObjectDecoratorTests
             FormId = "456"
         };
         var decorator = new FormObjectDecorator(formObject);
-        Assert.IsFalse(decorator.IsFieldEnabled("678.90"));
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
-    public void IsFieldEnabled_FormObject_Null()
-    {
-        var decorator = new FormObjectDecorator(null);
-        Assert.IsFalse(decorator.IsFieldEnabled("123.45"));
+        Assert.ThrowsException<FieldObjectNotFoundException>(() => decorator.IsFieldEnabled("678.90"));
     }
 
     #endregion
@@ -548,7 +535,6 @@ public class FormObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(FieldObjectNotFoundException))]
     public void IsFieldLocked_FormObject_IsNotPresent()
     {
         var fieldObject = new FieldObject()
@@ -570,15 +556,7 @@ public class FormObjectDecoratorTests
             FormId = "456"
         };
         var decorator = new FormObjectDecorator(formObject);
-        Assert.IsFalse(decorator.IsFieldLocked("678.90"));
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
-    public void IsFieldLocked_FormObject_Null()
-    {
-        var decorator = new FormObjectDecorator(null);
-        Assert.IsFalse(decorator.IsFieldLocked("123.45"));
+        Assert.ThrowsException<FieldObjectNotFoundException>(() => decorator.IsFieldLocked("678.90"));
     }
 
     #endregion
@@ -646,7 +624,6 @@ public class FormObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void IsFieldModified_FormObject_IsTrue_NullFieldNumber()
     {
         FieldObject fieldObject01 = new()
@@ -672,7 +649,7 @@ public class FormObjectDecoratorTests
             CurrentRow = rowObject
         };
         FormObjectDecorator decorator = new(formObject);
-        Assert.IsTrue(decorator.IsFieldModified(null));
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.IsFieldModified(null));
     }
 
     #endregion
@@ -727,14 +704,6 @@ public class FormObjectDecoratorTests
         };
         var decorator = new FormObjectDecorator(formObject);
         Assert.IsFalse(decorator.IsFieldPresent("678.90"));
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
-    public void IsFieldPresent_FormObject_Null()
-    {
-        var decorator = new FormObjectDecorator(null);
-        Assert.IsFalse(decorator.IsFieldPresent("123.45"));
     }
 
     #endregion
@@ -792,7 +761,6 @@ public class FormObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(FieldObjectNotFoundException))]
     public void IsFieldRequired_FormObject_IsNotPresent()
     {
         var fieldObject = new FieldObject()
@@ -814,15 +782,7 @@ public class FormObjectDecoratorTests
             FormId = "456"
         };
         var decorator = new FormObjectDecorator(formObject);
-        Assert.IsFalse(decorator.IsFieldRequired("678.90"));
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
-    public void IsFieldRequired_FormObject_Null()
-    {
-        var decorator = new FormObjectDecorator(null);
-        Assert.IsFalse(decorator.IsFieldRequired("123.45"));
+        Assert.ThrowsException<FieldObjectNotFoundException>(() => decorator.IsFieldRequired("678.90"));
     }
 
     #endregion
@@ -853,7 +813,6 @@ public class FormObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void IsRowMarkedForDeletion_FormObject_NoRowId() {
         var rowObject1 = new RowObject()
         {
@@ -872,7 +831,7 @@ public class FormObjectDecoratorTests
             OtherRows = [rowObject2]
         };
         var decorator = new FormObjectDecorator(formObject);
-        Assert.IsTrue(decorator.IsRowMarkedForDeletion(null));
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.IsRowMarkedForDeletion(null));
     }
 
     #endregion

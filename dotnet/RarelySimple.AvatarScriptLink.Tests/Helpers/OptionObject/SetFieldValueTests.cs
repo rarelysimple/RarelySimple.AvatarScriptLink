@@ -6,12 +6,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
     [TestClass]
     public class SetFieldValueTests
     {
-        [TestInitialize]
-        public void TestInitialize()
-        {
-
-        }
-
         [TestMethod]
         [TestCategory("ScriptLinkHelpers")]
         public void SetFieldValue_FieldObject_AreEqual()
@@ -27,14 +21,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
         [TestMethod]
         [TestCategory("ScriptLinkHelpers")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetFieldValue_FieldObject_Null()
         {
-            var expected = new FieldObject
-            {
-                FieldValue = "Test"
-            };
-            FieldObject actual = (FieldObject)OptionObjectHelpers.SetFieldValue(null, "Test");
+            Assert.ThrowsException<ArgumentNullException>(() => (FieldObject)OptionObjectHelpers.SetFieldValue(null, "Test"));
         }
 
         [TestMethod]
@@ -130,11 +119,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
         [TestMethod]
         [TestCategory("ScriptLinkHelpers")]
-        [ExpectedException(typeof(System.ArgumentException))]
         public void SetFieldValue_FormObject_CurrentRow_MI_Error()
         {
-            string expected = "Test";
-
             var fieldObject01 = new FieldObject
             {
                 FieldNumber = "123"
@@ -170,9 +156,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.OtherRows.Add(rowObject02);
             formObject.OtherRows.Add(rowObject03);
 
-            formObject = (FormObject)OptionObjectHelpers.SetFieldValue(formObject, "123", "Test");
-            string actual = OptionObjectHelpers.GetFieldValue(formObject, "123");
-            Assert.AreNotEqual(expected, actual);
+            Assert.ThrowsException<ArgumentException>(() => (FormObject)OptionObjectHelpers.SetFieldValue(formObject, "123", "Test"));
         }
 
         [TestMethod]

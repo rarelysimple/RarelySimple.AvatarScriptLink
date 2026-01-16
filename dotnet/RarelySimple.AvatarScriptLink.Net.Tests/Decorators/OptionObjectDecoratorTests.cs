@@ -90,19 +90,16 @@ public class OptionObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void AddFormObjectByIdAndMI_ArgumentNullException() {
         var optionObject = new OptionObject()
         {
             OptionId = "TEST123"
         };
         var decorator = new OptionObjectDecorator(optionObject);
-        decorator.AddFormObject(null, false);
-        Assert.IsTrue(decorator.IsFormPresent("1"));
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.AddFormObject(null, false));
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
     public void AddFormObject_MICannotBeFirst() {
         var expected = new FormObject() {
             FormId = "1",
@@ -113,12 +110,10 @@ public class OptionObjectDecoratorTests
             OptionId = "TEST123"
         };
         var decorator = new OptionObjectDecorator(optionObject);
-        decorator.AddFormObject(expected);
-        Assert.IsTrue(decorator.IsFormPresent("1"));
+        Assert.ThrowsException<ArgumentException>(() => decorator.AddFormObject(expected));
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
     public void AddFormObjectDecorator_MICannotBeFirst() {
         var expected = FormObjectDecorator.Builder().FormId("1").MultipleIteration().Build();
         var optionObject = new OptionObject()
@@ -126,24 +121,20 @@ public class OptionObjectDecoratorTests
             OptionId = "TEST123"
         };
         var decorator = new OptionObjectDecorator(optionObject);
-        decorator.AddFormObject(expected);
-        Assert.IsTrue(decorator.IsFormPresent("1"));
+        Assert.ThrowsException<ArgumentException>(() => decorator.AddFormObject(expected));
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
     public void AddFormObjectByIdAndMI_MICannotBeFirst() {
         var optionObject = new OptionObject()
         {
             OptionId = "TEST123"
         };
         var decorator = new OptionObjectDecorator(optionObject);
-        decorator.AddFormObject("1", true);
-        Assert.IsTrue(decorator.IsFormPresent("1"));
+        Assert.ThrowsException<ArgumentException>(() => decorator.AddFormObject("1", true));
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
     public void AddFormObject_DuplicateForms() {
         var expected = new FormObject() {
             FormId = "1"
@@ -154,12 +145,10 @@ public class OptionObjectDecoratorTests
         };
         var decorator = new OptionObjectDecorator(optionObject);
         decorator.AddFormObject(expected);
-        decorator.AddFormObject(expected);
-        Assert.IsTrue(decorator.IsFormPresent("1"));
+        Assert.ThrowsException<ArgumentException>(() => decorator.AddFormObject(expected));
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
     public void AddFormObjectDecorator_DuplicateForms() {
         var expected = FormObjectDecorator.Builder().FormId("1").Build();
         var optionObject = new OptionObject()
@@ -168,12 +157,10 @@ public class OptionObjectDecoratorTests
         };
         var decorator = new OptionObjectDecorator(optionObject);
         decorator.AddFormObject(expected);
-        decorator.AddFormObject(expected);
-        Assert.IsTrue(decorator.IsFormPresent("1"));
+        Assert.ThrowsException<ArgumentException>(() => decorator.AddFormObject(expected));
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
     public void AddFormObjectById_DuplicateForms() {
         var optionObject = new OptionObject()
         {
@@ -181,12 +168,10 @@ public class OptionObjectDecoratorTests
         };
         var decorator = new OptionObjectDecorator(optionObject);
         decorator.AddFormObject("1");
-        decorator.AddFormObject("1");
-        Assert.IsTrue(decorator.IsFormPresent("1"));
+        Assert.ThrowsException<ArgumentException>(() => decorator.AddFormObject("1"));
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
     public void AddFormObjectByIdAndMI_DuplicateForms() {
         var optionObject = new OptionObject()
         {
@@ -194,8 +179,7 @@ public class OptionObjectDecoratorTests
         };
         var decorator = new OptionObjectDecorator(optionObject);
         decorator.AddFormObject("1", false);
-        decorator.AddFormObject("1", false);
-        Assert.IsTrue(decorator.IsFormPresent("1"));
+        Assert.ThrowsException<ArgumentException>(() => decorator.AddFormObject("1", false));
     }
 
     #endregion
@@ -221,9 +205,7 @@ public class OptionObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void TestOptionObjectDecorator_GetCurrentRowId_Exception() {
-        var expected = "456||1";
         FormObject formObject = new() {
             FormId = "456"
         };
@@ -232,7 +214,7 @@ public class OptionObjectDecoratorTests
             Forms = [formObject]
         };
         OptionObjectDecorator decorator = new(optionObject);
-        Assert.AreEqual(expected, decorator.GetCurrentRowId("456"));
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.GetCurrentRowId("456"));
     }
 
     #endregion
@@ -273,7 +255,6 @@ public class OptionObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(FieldObjectNotFoundException))]
     public void TestOptionObjectDecorator_GetFieldValue_NotPresent()
     {
         var fieldNumber = "123.45";
@@ -302,7 +283,7 @@ public class OptionObjectDecoratorTests
             Forms = [formObject]
         };
         var decorator = new OptionObjectDecorator(optionObject);
-        Assert.AreEqual(expected, decorator.GetFieldValue("678.90"));
+        Assert.ThrowsException<FieldObjectNotFoundException>(() => decorator.GetFieldValue("678.90"));
     }
 
     #endregion
@@ -552,11 +533,9 @@ public class OptionObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(FormObjectNotFoundException))]
     public void TestOptionObjectDecorator_GetMultipleIterationStatus_ReturnsFormObjectNotFoundException()
     {
         var formId = "456";
-        var expected = true;
         var formObject = new FormObject()
         {
             FormId = "123",
@@ -568,50 +547,19 @@ public class OptionObjectDecoratorTests
             Forms = [formObject]
         };
         var decorator = new OptionObjectDecorator(optionObject);
-        Assert.AreEqual(expected, decorator.GetMultipleIterationStatus(formId));
+        Assert.ThrowsException<FormObjectNotFoundException>(() => decorator.GetMultipleIterationStatus(formId));
     }
 
     [TestMethod]
-    [ExpectedException(typeof(FormObjectNotFoundException))]
     public void TestOptionObjectDecorator_GetMultipleIterationStatus_NoForms_ReturnsFormObjectNotFoundException()
     {
         var formId = "456";
-        var expected = true;
         var optionObject = new OptionObject()
         {
             OptionId = "TEST123"
         };
         var decorator = new OptionObjectDecorator(optionObject);
-        Assert.AreEqual(expected, decorator.GetMultipleIterationStatus(formId));
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
-    public void TestOptionObjectDecorator_GetMultipleIterationStatus_ReturnsNullReferenceException()
-    {
-        var formId = "456";
-        var expected = true;
-        var decorator = new OptionObjectDecorator(null);
-        Assert.AreEqual(expected, decorator.GetMultipleIterationStatus(formId));
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void TestOptionObjectDecorator_GetMultipleIterationStatus_ReturnsArgumentNullException()
-    {
-        var expected = true;
-        var formObject = new FormObject()
-        {
-            FormId = "123",
-            MultipleIteration = true
-        };
-        var optionObject = new OptionObject()
-        {
-            OptionId = "TEST123",
-            Forms = [formObject]
-        };
-        var decorator = new OptionObjectDecorator(optionObject);
-        Assert.AreEqual(expected, decorator.GetMultipleIterationStatus(null));
+        Assert.ThrowsException<FormObjectNotFoundException>(() => decorator.GetMultipleIterationStatus(formId));
     }
 
     #endregion
@@ -638,9 +586,7 @@ public class OptionObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void TestOptionObjectDecorator_GetParentRowId_Exception() {
-        var expected = "456||1";
         FormObject formObject = new() {
             FormId = "456"
         };
@@ -649,7 +595,7 @@ public class OptionObjectDecoratorTests
             Forms = [formObject]
         };
         OptionObjectDecorator decorator = new(optionObject);
-        Assert.AreEqual(expected, decorator.GetParentRowId("456"));
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.GetParentRowId("456"));
     }
 
     [TestMethod]
@@ -802,7 +748,6 @@ public class OptionObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(FieldObjectNotFoundException))]
     public void IsFieldEnabled_OptionObject_IsNotPresent()
     {
         var fieldObject = new FieldObject()
@@ -829,15 +774,7 @@ public class OptionObjectDecoratorTests
             Forms = [formObject]
         };
         var decorator = new OptionObjectDecorator(optionObject);
-        Assert.IsTrue(decorator.IsFieldEnabled("678.90"));
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
-    public void IsFieldEnabled_OptionObject_Null()
-    {
-        var decorator = new OptionObjectDecorator(null);
-        Assert.IsTrue(decorator.IsFieldEnabled("123.45"));
+        Assert.ThrowsException<FieldObjectNotFoundException>(() => decorator.IsFieldEnabled("678.90"));
     }
 
     #endregion
@@ -973,7 +910,6 @@ public class OptionObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(FieldObjectNotFoundException))]
     public void IsFieldLocked_OptionObject_IsNotPresent()
     {
         var fieldObject = new FieldObject()
@@ -1000,15 +936,7 @@ public class OptionObjectDecoratorTests
             Forms = [formObject]
         };
         var decorator = new OptionObjectDecorator(optionObject);
-        Assert.IsTrue(decorator.IsFieldLocked("678.90"));
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
-    public void IsFieldLocked_OptionObject_Null()
-    {
-        var decorator = new OptionObjectDecorator(null);
-        Assert.IsTrue(decorator.IsFieldLocked("123.45"));
+        Assert.ThrowsException<FieldObjectNotFoundException>(() => decorator.IsFieldLocked("678.90"));
     }
 
     #endregion
@@ -1083,7 +1011,6 @@ public class OptionObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void IsFieldModified_OptionObject_IsFalse_NullFieldNumber()
     {
         FieldObject fieldObject01 = new()
@@ -1113,7 +1040,7 @@ public class OptionObjectDecoratorTests
             Forms = [formObject]
         };
         OptionObjectDecorator decorator = new(optionObject);
-        Assert.IsFalse(decorator.IsFieldModified(null));
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.IsFieldModified(null));
     }
 
     #endregion
@@ -1178,14 +1105,6 @@ public class OptionObjectDecoratorTests
         };
         var decorator = new OptionObjectDecorator(optionObject);
         Assert.IsFalse(decorator.IsFieldPresent("678.90"));
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
-    public void IsFieldPresent_OptionObject_Null()
-    {
-        var decorator = new OptionObjectDecorator(null);
-        Assert.IsTrue(decorator.IsFieldPresent("123.45"));
     }
 
     #endregion
@@ -1321,7 +1240,6 @@ public class OptionObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(FieldObjectNotFoundException))]
     public void IsFieldRequired_OptionObject_IsNotPresent()
     {
         var fieldObject = new FieldObject()
@@ -1348,15 +1266,7 @@ public class OptionObjectDecoratorTests
             Forms = [formObject]
         };
         var decorator = new OptionObjectDecorator(optionObject);
-        Assert.IsTrue(decorator.IsFieldRequired("678.90"));
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
-    public void IsFieldRequired_OptionObject_Null()
-    {
-        var decorator = new OptionObjectDecorator(null);
-        Assert.IsTrue(decorator.IsFieldRequired("123.45"));
+        Assert.ThrowsException<FieldObjectNotFoundException>(() => decorator.IsFieldRequired("678.90"));
     }
 
     #endregion
@@ -1397,7 +1307,6 @@ public class OptionObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void IsFormPresent_Null()
     {
         var formObject = new FormObject()
@@ -1414,7 +1323,7 @@ public class OptionObjectDecoratorTests
             Forms = [formObject,formObject2]
         };
         var decorator = new OptionObjectDecorator(optionObject);
-        Assert.IsTrue(decorator.IsFormPresent(null));
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.IsFormPresent(null));
     }
 
     #endregion
@@ -1451,7 +1360,6 @@ public class OptionObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void IsRowMarkedForDeletion_NullRowId()
     {
         var rowObject1 = new RowObject()
@@ -1476,7 +1384,7 @@ public class OptionObjectDecoratorTests
             Forms = [formObject]
         };
         var decorator = new OptionObjectDecorator(optionObject);
-        Assert.IsTrue(decorator.IsRowMarkedForDeletion(null));
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.IsRowMarkedForDeletion(null));
     }
 
     #endregion
@@ -1516,7 +1424,6 @@ public class OptionObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void IsRowPresent_Null()
     {
         var rowObject = new RowObject()
@@ -1534,7 +1441,7 @@ public class OptionObjectDecoratorTests
             Forms = [formObject]
         };
         var decorator = new OptionObjectDecorator(optionObject);
-        Assert.IsTrue(decorator.IsRowPresent(null));
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.IsRowPresent(null));
     }
 
     #endregion

@@ -8,11 +8,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
     {
         [TestMethod]
         [TestCategory("FieldObject")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void FieldObjectFromJson_NullString()
         {
-            FieldObject expected = new();
-            Assert.AreEqual(expected, OptionObjectHelpers.TransformToFieldObject(null));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.TransformToFieldObject(null));
         }
 
         [TestMethod]

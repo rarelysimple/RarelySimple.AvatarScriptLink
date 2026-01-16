@@ -39,14 +39,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void IsFormPresent_OptionObject_NullFormId()
         {
             string formNumber = "1";
             FormObject formObject = new(formNumber);
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
-            Assert.IsFalse(optionObject.IsFormPresent(null));
+            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsFormPresent(null));
         }
 
         [TestMethod]
@@ -58,11 +57,10 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void IsFormPresent_OptionObject_Helper_Null()
         {
             string formNumber = "1";
-            Assert.IsFalse(OptionObjectHelpers.IsFormPresent(null, formNumber));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.IsFormPresent(null, formNumber));
         }
 
         [TestMethod]

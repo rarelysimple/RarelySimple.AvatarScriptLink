@@ -8,23 +8,17 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
     {
         [TestMethod]
         [TestCategory("GetCurrentRowId")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetCurrentRowId_FromFormObject_NullFormObject()
         {
-            string expected = "1||1";
-            string actual = OptionObjectHelpers.GetCurrentRowId(null);
-            Assert.AreNotEqual(expected, actual);
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(null));
         }
 
         [TestMethod]
         [TestCategory("GetCurrentRowId")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetCurrentRowId_FromFormObject_NoCurrentRow()
         {
-            string expected = "1||1";
             FormObject formObject = new();
-            string actual = OptionObjectHelpers.GetCurrentRowId(formObject);
-            Assert.AreNotEqual(expected, actual);
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(formObject));
         }
 
         [TestMethod]
@@ -45,112 +39,89 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
         [TestMethod]
         [TestCategory("GetCurrentRowId")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetCurrentRowId_FromOptionObject_NullOptionObject()
         {
-            string expected = "1||1";
-            string actual = OptionObjectHelpers.GetCurrentRowId(null, "1");
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(null, "1"));
         }
+        
         [TestMethod]
         [TestCategory("GetCurrentRowId")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetCurrentRowId_FromOptionObject2_NullOptionObject()
         {
-            string expected = "1||1";
-            string actual = OptionObjectHelpers.GetCurrentRowId(null, "1");
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(null, "1"));
         }
+        
         [TestMethod]
         [TestCategory("GetCurrentRowId")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetCurrentRowId_FromOptionObject2015_NullOptionObject()
         {
-            string expected = "1||1";
-            string actual = OptionObjectHelpers.GetCurrentRowId(null, "1");
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(null, "1"));
         }
 
         [TestMethod]
         [TestCategory("GetCurrentRowId")]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetCurrentRowId_FromOptionObject_NullFormId()
         {
-            string expected = "1||1";
             RowObject rowObject = new();
             FormObject formObject = new();
             formObject.AddRowObject(rowObject);
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
-            string actual = OptionObjectHelpers.GetCurrentRowId(optionObject, "1");
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
         }
+        
         [TestMethod]
         [TestCategory("GetCurrentRowId")]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetCurrentRowId_FromOptionObject2_NullFormId()
         {
-            string expected = "1||1";
             RowObject rowObject = new();
             FormObject formObject = new();
             formObject.AddRowObject(rowObject);
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject);
-            string actual = OptionObjectHelpers.GetCurrentRowId(optionObject, "1");
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
         }
+        
         [TestMethod]
         [TestCategory("GetCurrentRowId")]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetCurrentRowId_FromOptionObject2015_NullFormId()
         {
-            string expected = "1||1";
             RowObject rowObject = new();
             FormObject formObject = new();
             formObject.AddRowObject(rowObject);
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject);
-            string actual = OptionObjectHelpers.GetCurrentRowId(optionObject, "1");
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
         }
 
         [TestMethod]
         [TestCategory("GetCurrentRowId")]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetCurrentRowId_FromOptionObject_NoForms()
         {
-            string expected = "1||1";
             OptionObject optionObject = new();
-            string actual = OptionObjectHelpers.GetCurrentRowId(optionObject, "1");
-            Assert.AreEqual(expected, actual);
-        }
-        [TestMethod]
-        [TestCategory("GetCurrentRowId")]
-        [ExpectedException(typeof(ArgumentException))]
-        public void GetCurrentRowId_FromOptionObject2_NoForms()
-        {
-            string expected = "1||1";
-            OptionObject2 optionObject = new();
-            string actual = OptionObjectHelpers.GetCurrentRowId(optionObject, "1");
-            Assert.AreEqual(expected, actual);
-        }
-        [TestMethod]
-        [TestCategory("GetCurrentRowId")]
-        [ExpectedException(typeof(ArgumentException))]
-        public void GetCurrentRowId_FromOptionObject2015_NoForms()
-        {
-            string expected = "1||1";
-            OptionObject2015 optionObject = new();
-            string actual = OptionObjectHelpers.GetCurrentRowId(optionObject, "1");
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
         }
 
         [TestMethod]
         [TestCategory("GetCurrentRowId")]
-        [ExpectedException(typeof(ArgumentException))]
+        public void GetCurrentRowId_FromOptionObject2_NoForms()
+        {
+            OptionObject2 optionObject = new();
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
+        }
+        
+        [TestMethod]
+        [TestCategory("GetCurrentRowId")]
+        public void GetCurrentRowId_FromOptionObject2015_NoForms()
+        {
+            OptionObject2015 optionObject = new();
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
+        }
+
+        [TestMethod]
+        [TestCategory("GetCurrentRowId")]
         public void GetCurrentRowId_FromOptionObject_NoMatchingForms()
         {
-            string expected = "1||1";
             RowObject rowObject = new();
             FormObject formObject = new()
             {
@@ -160,15 +131,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(rowObject);
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
-            string actual = OptionObjectHelpers.GetCurrentRowId(optionObject, "2");
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "2"));
         }
+        
         [TestMethod]
         [TestCategory("GetCurrentRowId")]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetCurrentRowId_FromOptionObject2_NoMatchingForms()
         {
-            string expected = "1||1";
             RowObject rowObject = new();
             FormObject formObject = new()
             {
@@ -178,15 +147,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(rowObject);
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject);
-            string actual = OptionObjectHelpers.GetCurrentRowId(optionObject, "2");
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "2"));
         }
+        
         [TestMethod]
         [TestCategory("GetCurrentRowId")]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetCurrentRowId_FromOptionObject2015_NoMatchingForms()
         {
-            string expected = "1||1";
             RowObject rowObject = new();
             FormObject formObject = new()
             {
@@ -196,8 +163,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(rowObject);
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject);
-            string actual = OptionObjectHelpers.GetCurrentRowId(optionObject, "2");
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "2"));
         }
 
         [TestMethod]
@@ -220,21 +186,16 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
         [TestMethod]
         [TestCategory("GetCurrentRowId")]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetCurrentRowId_FromOptionObject_FormsNull()
         {
-            string expected = "1||1";
             OptionObject optionObject = new();
-            string actual = OptionObjectHelpers.GetCurrentRowId(optionObject, "1");
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
         }
 
         [TestMethod]
         [TestCategory("GetCurrentRowId")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetCurrentRowId_FromOptionObject_FormIdEmpty()
         {
-            string expected = "1||1";
             RowObject rowObject = new();
             FormObject formObject = new()
             {
@@ -244,16 +205,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(rowObject);
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
-            string actual = OptionObjectHelpers.GetCurrentRowId(optionObject, "");
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, ""));
         }
 
         [TestMethod]
         [TestCategory("GetCurrentRowId")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetCurrentRowId_FromOptionObject_FormIdNull()
         {
-            string expected = "1||1";
             RowObject rowObject = new();
             FormObject formObject = new()
             {
@@ -263,8 +221,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(rowObject);
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
-            string actual = OptionObjectHelpers.GetCurrentRowId(optionObject, null);
-            Assert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, null));
         }
 
         [TestMethod]

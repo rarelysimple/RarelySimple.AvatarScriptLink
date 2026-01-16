@@ -8,7 +8,6 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
     {
         [TestMethod]
         [TestCategory("AddFieldObject")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void AddFieldObject_ToRowObject_NullRowObject()
         {
             FieldObject fieldObject = new()
@@ -19,23 +18,19 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 Required = "0",
                 Lock = "0"
             };
-            RowObject rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(null, fieldObject);
-            Assert.AreNotEqual(null, fieldObject);
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddFieldObject(null, fieldObject));
         }
 
         [TestMethod]
         [TestCategory("AddFieldObject")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void AddFieldObject_ToRowObject_NullFieldObject()
         {
             RowObject rowObject = new();
-            rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, null);
-            Assert.AreNotEqual(null, rowObject);
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddFieldObject(rowObject, null));
         }
 
         [TestMethod]
         [TestCategory("AddFieldObject")]
-        [ExpectedException(typeof(ArgumentException))]
         public void AddFieldObject_ToRowObject_DuplicateFieldObject()
         {
             FieldObject fieldObject = new()
@@ -48,13 +43,11 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             };
             RowObject rowObject = new();
             rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, fieldObject);
-            rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, fieldObject);
-            Assert.IsFalse(rowObject.IsFieldPresent("1"));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.AddFieldObject(rowObject, fieldObject));
         }
 
         [TestMethod]
         [TestCategory("AddFieldObject")]
-        [ExpectedException(typeof(ArgumentException))]
         public void AddFieldObject_ToRowObject_DuplicateFieldNumber()
         {
             FieldObject fieldObject1 = new()
@@ -75,8 +68,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             };
             RowObject rowObject = new();
             rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, fieldObject1);
-            rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, fieldObject2);
-            Assert.IsFalse(rowObject.IsFieldPresent("1"));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.AddFieldObject(rowObject, fieldObject2));
         }
 
         [TestMethod]
@@ -110,27 +102,21 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
 
         [TestMethod]
         [TestCategory("AddFieldObject")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void AddFieldObject_ToRowObject_NullFieldNumber()
         {
             string expectedValue = "Test";
             RowObject rowObject = new();
-            rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, null, expectedValue);
-            Assert.IsTrue(rowObject.IsFieldPresent(null));
-            Assert.AreEqual(expectedValue, rowObject.GetFieldValue(null));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddFieldObject(rowObject, null, expectedValue));
         }
 
         [TestMethod]
         [TestCategory("AddFieldObject")]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void AddFieldObject_ToRowObject_BlankFieldNumber()
         {
             string expectedNumber = "";
             string expectedValue = "Test";
             RowObject rowObject = new();
-            rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, expectedNumber, expectedValue);
-            Assert.IsTrue(rowObject.IsFieldPresent(expectedNumber));
-            Assert.AreEqual(expectedValue, rowObject.GetFieldValue(expectedNumber));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddFieldObject(rowObject, expectedNumber, expectedValue));
         }
 
         [TestMethod]

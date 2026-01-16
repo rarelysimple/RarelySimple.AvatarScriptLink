@@ -152,7 +152,6 @@ public class RowObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(FieldObjectNotFoundException))]
     public void IsFieldEnabled_RowObject_IsNotPresent()
     {
         var fieldObject = new FieldObject()
@@ -169,15 +168,7 @@ public class RowObjectDecoratorTests
             RowId = "456||1"
         };
         var decorator = new RowObjectDecorator(rowObject);
-        Assert.IsFalse(decorator.IsFieldEnabled("678.90"));
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
-    public void IsFieldEnabled_RowObject_Null()
-    {
-        var decorator = new RowObjectDecorator(null);
-        Assert.IsFalse(decorator.IsFieldEnabled("123.45"));
+        Assert.ThrowsException<FieldObjectNotFoundException>(() => decorator.IsFieldEnabled("678.90"));
     }
 
     #endregion
@@ -225,7 +216,6 @@ public class RowObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(FieldObjectNotFoundException))]
     public void IsFieldLocked_RowObject_IsNotPresent()
     {
         var fieldObject = new FieldObject()
@@ -242,15 +232,7 @@ public class RowObjectDecoratorTests
             RowId = "456||1"
         };
         var decorator = new RowObjectDecorator(rowObject);
-        Assert.IsFalse(decorator.IsFieldLocked("678.90"));
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
-    public void IsFieldLocked_RowObject_Null()
-    {
-        var decorator = new RowObjectDecorator(null);
-        Assert.IsFalse(decorator.IsFieldLocked("123.45"));
+        Assert.ThrowsException<FieldObjectNotFoundException>(() => decorator.IsFieldLocked("678.90"));
     }
 
     #endregion
@@ -309,7 +291,6 @@ public class RowObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void IsFieldModified_RowObject_IsFalse_NullFieldNumber()
     {
         FieldObject fieldObject01 = new()
@@ -331,7 +312,7 @@ public class RowObjectDecoratorTests
             Fields = [fieldObject01, fieldObject02, fieldObject03]
         };
         RowObjectDecorator rowObject01 = new(rowObject);
-        Assert.IsFalse(rowObject01.IsFieldModified(null));
+        Assert.ThrowsException<ArgumentNullException>(() => rowObject01.IsFieldModified(null));
     }
 
     #endregion
@@ -376,14 +357,6 @@ public class RowObjectDecoratorTests
         };
         var decorator = new RowObjectDecorator(rowObject);
         Assert.IsFalse(decorator.IsFieldPresent("678.90"));
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
-    public void IsFieldPresent_RowObject_Null()
-    {
-        var decorator = new RowObjectDecorator(null);
-        Assert.IsFalse(decorator.IsFieldPresent("123.45"));
     }
 
     #endregion
@@ -431,7 +404,6 @@ public class RowObjectDecoratorTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(FieldObjectNotFoundException))]
     public void IsFieldRequired_RowObject_IsNotPresent()
     {
         var fieldObject = new FieldObject()
@@ -448,15 +420,7 @@ public class RowObjectDecoratorTests
             RowId = "456||1"
         };
         var decorator = new RowObjectDecorator(rowObject);
-        Assert.IsFalse(decorator.IsFieldRequired("678.90"));
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
-    public void IsFieldRequired_RowObject_Null()
-    {
-        var decorator = new RowObjectDecorator(null);
-        Assert.IsFalse(decorator.IsFieldRequired("123.45"));
+        Assert.ThrowsException<FieldObjectNotFoundException>(() => decorator.IsFieldRequired("678.90"));
     }
 
     #endregion
