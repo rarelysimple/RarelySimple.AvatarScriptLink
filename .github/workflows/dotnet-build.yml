@@ -77,5 +77,5 @@ jobs:
         if: ${{ inputs.package }}
         with:
           name: dotnet-artifacts
-          path: 'artifacts/*.nupkg'
+          path: ${{inputs.working-directory}}/artifacts/*.nupkg
           retention-days: ${{ inputs.retention-days }}
