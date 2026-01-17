@@ -5,7 +5,7 @@ image: ./Changelog.png
 
 # Changelog
 
-[![NuGet Latest](https://badgen.net/nuget/v/rarelysimple.avatarscriptlink/latest)](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/)
+[![NuGet Latest](https://img.shields.io/nuget/v/RarelySimple.AvatarScriptLink)](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink/)
 
 ## 2.0.0 (Future)
 
