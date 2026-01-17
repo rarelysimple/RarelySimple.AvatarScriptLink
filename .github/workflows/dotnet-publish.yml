@@ -14,16 +14,12 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - uses: ./github/workflows/dotnet-build.yml
-        with:
-          working-directory: ./dotnet
-          dotnet-version: '8.0.x'
-          package: true
-          test: false
+    uses: ./.github/workflows/dotnet-build.yml
+    with:
+      working-directory: ./dotnet
+      dotnet-version: '8.0.x'
+      package: true
+      test: false
 
   publish-to-github-packages:
     name: Publish to GitHub Packages
