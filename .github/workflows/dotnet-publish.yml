@@ -56,10 +56,14 @@ jobs:
     environment: nuget
 
     permissions:
-      contents: read
+      contents: write
+      discussions: write
       id-token: write
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
       - name: Download Build Artifacts
         uses: actions/download-artifact@v7
         with:
@@ -89,6 +93,7 @@ jobs:
         with:
           files: |
             **/RarelySimple.AvatarScriptLink.[0-9]*.nupkg
-            LICENSE
+            **/LICENSE
+          fail_on_unmatched_files: false
           discussion_category_name: Announcements
           generate_release_notes: true
