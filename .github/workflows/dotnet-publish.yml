@@ -1,0 +1,103 @@
+name: dotnet-publish
+run-name: Publish .NET Package by ${{ github.actor }}
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'dotnet/**'
+    
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: ./github/workflows/dotnet-build.yml
+        with:
+          working-directory: ./dotnet
+          dotnet-version: '8.0.x'
+          package: true
+          test: false
+
+  publish-to-github-packages:
+    name: Publish to GitHub Packages
+    needs: build
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./dotnet
+
+    permissions:
+      id-token: write
+
+    steps:
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v7
+        with:
+          name: dotnet-artifacts
+          path: ./artifacts
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      
+      - name: Publish to GitHub Packages
+        run: dotnet nuget push **/*.nupkg \
+              --api-key ${{ secrets.GITHUB_TOKEN }} \
+              --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" \
+              --skip-duplicate
+
+  publish-to-nuget:
+    name: Publish to NuGet.org
+    if: github.ref_type == 'tag'
+    needs: build
+    runs-on: ubuntu-latest
+    environment: nuget
+
+    defaults:
+      run:
+        working-directory: ./dotnet
+
+    permissions:
+      id-token: write
+
+    steps:
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v7
+        with:
+          name: dotnet-artifacts
+          path: ./artifacts
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: NuGet Login
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ secrets.NUGET_USERNAME }}
+      
+      - name: Publish to NuGet.org
+        run: dotnet nuget push **/RarelySimple.AvatarScriptLink.[0-9]*.nupkg \
+              --api-key $${{ steps.login.outputs.NUGET_API_KEY}} \
+              --source https://api.nuget.org/v3/index.json
+              --skip-duplicate
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            - **/RarelySimple.AvatarScriptLink.[0-9]*.nupkg
+            - LICENSE
+          discussion_category_name: Announcements
+          generate_release_notes: true
