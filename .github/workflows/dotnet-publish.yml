@@ -88,7 +88,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            - **/RarelySimple.AvatarScriptLink.[0-9]*.nupkg
-            - LICENSE
+            **/RarelySimple.AvatarScriptLink.[0-9]*.nupkg
+            LICENSE
           discussion_category_name: Announcements
           generate_release_notes: true
