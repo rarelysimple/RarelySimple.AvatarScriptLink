@@ -16,5 +16,6 @@ jobs:
     with:
       working-directory: ./dotnet
       dotnet-version: '8.0.x'
-      package: false
       test: true
+      package: true
+      retention-days: 1

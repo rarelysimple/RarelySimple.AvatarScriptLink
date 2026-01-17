@@ -16,8 +16,8 @@ jobs:
     with:
       working-directory: ./dotnet
       dotnet-version: '8.0.x'
-      package: true
       test: false
+      package: true
 
   publish-to-github-packages:
     name: Publish to GitHub Packages
