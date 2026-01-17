@@ -24,10 +24,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: ./dotnet
-
     permissions:
       id-token: write
 
@@ -44,7 +40,7 @@ jobs:
           dotnet-version: '8.0.x'
       
       - name: Publish to GitHub Packages
-        run: dotnet nuget push **/*.nupkg \
+        run: dotnet nuget push ./artifacts/*.nupkg \
               --api-key ${{ secrets.GITHUB_TOKEN }} \
               --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" \
               --skip-duplicate
@@ -55,10 +51,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     environment: nuget
-
-    defaults:
-      run:
-        working-directory: ./dotnet
 
     permissions:
       id-token: write
@@ -82,8 +74,8 @@ jobs:
           user: ${{ secrets.NUGET_USERNAME }}
       
       - name: Publish to NuGet.org
-        run: dotnet nuget push **/RarelySimple.AvatarScriptLink.[0-9]*.nupkg \
-              --api-key $${{ steps.login.outputs.NUGET_API_KEY}} \
+        run: dotnet nuget push ./artifacts/RarelySimple.AvatarScriptLink.[0-9]*.nupkg \
+              --api-key ${{ steps.login.outputs.NUGET_API_KEY}} \
               --source https://api.nuget.org/v3/index.json
               --skip-duplicate
 
