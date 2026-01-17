@@ -12,10 +12,9 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: ./.github/workflows/dotnet-build.yml
-        with:
-          working-directory: ./dotnet
-          test: true
-          package: false
+    uses: ./.github/workflows/dotnet-build.yml
+    with:
+      working-directory: ./dotnet
+      dotnet-version: '8.0.x'
+      package: false
+      test: true
