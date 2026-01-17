@@ -57,6 +57,7 @@ jobs:
 
     permissions:
       contents: read
+      id-token: write
 
     steps:
       - name: Download Build Artifacts
