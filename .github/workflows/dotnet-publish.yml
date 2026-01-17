@@ -25,6 +25,8 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
+      contents: read
+      packages: write
       id-token: write
 
     steps:
@@ -54,7 +56,7 @@ jobs:
     environment: nuget
 
     permissions:
-      id-token: write
+      contents: read
 
     steps:
       - name: Download Build Artifacts
