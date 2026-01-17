@@ -1,0 +1,81 @@
+name: dotnet-build
+run-name: Build .NET Package by ${{ github.actor }}
+  
+on:
+  workflow_call:
+    inputs:
+      configuration:
+        description: 'Build configuration'
+        required: false
+        type: string
+        default: 'Release'
+      dotnet-version:
+        description: 'Version of .NET to use'
+        required: false
+        type: string
+        default: '8.0.x'
+      package:
+        description: 'Create NuGet package'
+        required: false
+        type: boolean
+        default: true
+      retention-days:
+        description: 'Number of days to retain the build artifacts'
+        required: false
+        type: number
+        default: 5
+      test:
+        description: 'Run tests'
+        required: false
+        type: boolean
+        default: false
+      working-directory:
+        description: 'Working directory for the build'
+        required: false
+        type: string
+        default: '.'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          filter: tree:0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ inputs.dotnet-version }}
+        
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build project
+        run: dotnet build --configuration ${{ inputs.configuration }} --no-restore
+
+      - name: Test with the dotnet CLI
+        if: ${{ inputs.test }}
+        run: dotnet test
+
+      - name: Pack NuGet package
+        if: ${{ inputs.package }}
+        run: dotnet pack --configuration ${{ inputs.configuration }} --no-build --output ./artifacts
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v6
+        if: ${{ inputs.package }}
+        with:
+          name: dotnet-artifacts
+          path: 'artifacts/*.nupkg'
+          retention-days: ${{ inputs.retention-days }}
