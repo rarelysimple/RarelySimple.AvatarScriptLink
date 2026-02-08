@@ -20,13 +20,6 @@ The original project, **RarelySimple.AvatarScriptLink**, provided both the found
 
 The repository is organized into the following directories:
 
-- `docs`: Contains public documentation site for the project.
-- `docs/blog`: Contains blog posts related to the project.
-- `docs/docs`: Contains detailed documentation and guides for using the ScriptLink libraries.
-- `docs/src`: Contains the source code for custom components, CSS, and other pages of the documentation site.
-- `docs/static`: Contains static assets such as images, fonts, and other resources used in the documentation site.
-- `docs/versioned_docs`: Contains versioned documentation for different releases of the ScriptLink libraries.
-- `docs/versioned_sidebars`: Contains versioned sidebars for navigating the documentation site.
 - `dotnet`: Contains the .NET implementation of the ScriptLink libraries.
 - `dotnet/RarelySimple.AvatarScriptLink`: Contains the original ScriptLink project with foundational data types and helper methods.
 - `dotnet/RarelySimple.AvatarScriptLink.Tests`: Contains unit tests for the RarelySimple.AvatarScriptLink project.
@@ -123,7 +116,7 @@ Future versions will continue to follow Semantic Versioning principles, with new
 - **LICENSE**: MIT License - all code must comply
 - **CONTRIBUTING.md**: Contribution guidelines and process
 - **.github/copilot-instructions.md**: These general instructions
-- **.github/instructions/**: Specific instructions for different parts of the repo (dotnet, docs)
+- **.github/instructions/**: Specific instructions for different parts of the repo
 
 ## Design Principles & Architecture
 
@@ -140,7 +133,7 @@ RarelySimple.AvatarScriptLink.Objects
 ├── RarelySimple.AvatarScriptLink.Net (depends on Objects)
 └── RarelySimple.AvatarScriptLink.Services (depends on Net)
 
-RarelySimple.AvatarScriptLink (legacy, depends on Objects)
+RarelySimple.AvatarScriptLink (legacy)
 └── Contains both Objects and Net functionality for backward compatibility
 ```
 
@@ -238,7 +231,6 @@ RarelySimple.AvatarScriptLink (legacy, depends on Objects)
 - **Bug Reports**: Issues discovered during testing
 - **Feature Requests**: Ideas for new functionality
 - **Bug Fixes**: Patches for reported issues
-- **Documentation**: Improvements to docs, blog posts, examples
 - **Tests**: Additional test cases improving coverage
 - **Performance Improvements**: Optimizations maintaining backward compatibility
 
@@ -280,18 +272,8 @@ RarelySimple.AvatarScriptLink (legacy, depends on Objects)
 8. Create GitHub release from the tag (via GitHub UI or CLI)
 9. CI/CD pipeline automatically builds and publishes to NuGet.org
 
-### Updating Documentation for New Features
-1. Add feature documentation to `docs/docs/`
-2. Update relevant API reference pages
-3. Create blog post announcing feature (if significant)
-4. Update `docs/sidebars.js` if new section added
-5. Test locally with `npm run start` in docs directory
-6. Ensure documentation builds without errors
-7. Include documentation updates in PR with code changes
-
 ### Handling Breaking Changes
 1. **Planning**: Discuss breaking change scope and timing
-2. **Documentation**: Create migration guide in docs
 3. **Versioning**: Plan for next MAJOR version bump
 4. **Deprecation**: Add deprecation warnings in current version first (if possible)
 5. **Communication**: Announce in blog post well in advance
@@ -304,5 +286,4 @@ RarelySimple.AvatarScriptLink (legacy, depends on Objects)
 3. Restore NuGet packages: `dotnet restore`
 4. Build solution: `dotnet build`
 5. Run all tests: `dotnet test`
-6. For documentation work, navigate to `docs/` and run `npm install && npm start`
-7. Review `.github/instructions/` files for specific guidelines
+6. Review `.github/instructions/` files for specific guidelines
