@@ -17,20 +17,17 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         public static IOptionObject AddRowObject(IOptionObject optionObject, string formId, IRowObject rowObject)
         {
             if (optionObject == null)
-                throw new System.ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(formId))
-                throw new System.ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(formId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (rowObject == null)
-                throw new System.ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (IsFormPresent(optionObject, formId))
             {
-                for (int i = 0; i < optionObject.Forms.Count; i++)
+                int formIndex = optionObject.Forms.FindIndex(f => f.FormId == formId);
+                if (formIndex >= 0)
                 {
-                    if (optionObject.Forms[i].FormId == formId)
-                    {
-                        optionObject.Forms[i] = (FormObject)AddRowObject(optionObject.Forms[i], rowObject);
-                        break;
-                    }
+                    optionObject.Forms[formIndex] = (FormObject)AddRowObject(optionObject.Forms[formIndex], rowObject);
                 }
             }
             return optionObject;
@@ -50,8 +47,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
             if (!formObject.MultipleIteration && formObject.CurrentRow != null)
                 throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("cannotAddAnotherRowObject", CultureInfo.CurrentCulture));
             
-            if ((formObject.CurrentRow != null && formObject.CurrentRow.RowId == rowObject.RowId && !string.IsNullOrEmpty(rowObject.RowId) ||
-                (formObject.OtherRows != null && formObject.OtherRows.Exists(r => r.RowId == rowObject.RowId && string.IsNullOrEmpty(rowObject.RowId)))))
+            if ((formObject.CurrentRow != null && formObject.CurrentRow.RowId == rowObject.RowId && !string.IsNullOrEmpty(rowObject.RowId)) ||
+                (formObject.OtherRows != null && formObject.OtherRows.Exists(r => r.RowId == rowObject.RowId && !string.IsNullOrEmpty(rowObject.RowId))))
                 throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("rowIdAlreadyExists", CultureInfo.CurrentCulture));
 
             if (formObject.CurrentRow == null)

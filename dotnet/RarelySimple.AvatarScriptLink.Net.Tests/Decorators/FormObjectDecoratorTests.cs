@@ -896,4 +896,227 @@ public class FormObjectDecoratorTests
     }
 
     #endregion
+
+    #region AddRowObject
+
+    [TestMethod]
+    public void TestFormObjectDecorator_AddRowObject_WithRowObject()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            MultipleIteration = true
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        var rowObject = new RowObject();
+        decorator.AddRowObject(rowObject);
+        Assert.IsNotNull(decorator.CurrentRow);
+        Assert.AreEqual("1||1", decorator.CurrentRow.RowId);
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_AddRowObject_WithRowIdAndParentRowId()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            MultipleIteration = true
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        decorator.AddRowObject("1||1", "1||1");
+        Assert.IsNotNull(decorator.CurrentRow);
+        Assert.AreEqual("1||1", decorator.CurrentRow.RowId);
+        Assert.AreEqual("1||1", decorator.CurrentRow.ParentRowId);
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_AddRowObject_WithRowIdParentRowIdAndAction()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            MultipleIteration = true
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        decorator.AddRowObject("1||1", "1||1", RowActions.Edit);
+        Assert.IsNotNull(decorator.CurrentRow);
+        Assert.AreEqual("1||1", decorator.CurrentRow.RowId);
+        Assert.AreEqual("1||1", decorator.CurrentRow.ParentRowId);
+        Assert.AreEqual(RowActions.Edit, decorator.CurrentRow.RowAction);
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_AddRowObject_MultipleRows()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            MultipleIteration = true
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        var rowObject1 = new RowObject();
+        decorator.AddRowObject(rowObject1);
+        Assert.AreEqual("1||1", decorator.CurrentRow.RowId);
+        
+        var rowObject2 = new RowObject();
+        decorator.AddRowObject(rowObject2);
+        Assert.AreEqual(1, decorator.OtherRows.Count);
+        Assert.AreEqual("1||2", decorator.OtherRows[0].RowId);
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_AddRowObject_NullRowObject()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            MultipleIteration = true
+        };
+        var decorator = new FormObjectDecorator(formObject);
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.AddRowObject((RowObject)null));
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_AddRowObject_NonMultipleIterationWithExistingRow()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            MultipleIteration = false,
+            CurrentRow = new RowObject() { RowId = "1||1" }
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        var rowObject = new RowObject();
+        Assert.ThrowsException<ArgumentException>(() => decorator.AddRowObject(rowObject));
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_AddRowObject_DuplicateRowId()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            MultipleIteration = true,
+            CurrentRow = new RowObject() { RowId = "1||1" }
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        var rowObject = new RowObject() { RowId = "1||1" };
+        Assert.ThrowsException<ArgumentException>(() => decorator.AddRowObject(rowObject));
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_GetNextAvailableRowId()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            MultipleIteration = true
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        string rowId = decorator.GetNextAvailableRowId();
+        Assert.AreEqual("1||1", rowId);
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_GetNextAvailableRowId_WithExistingRows()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            MultipleIteration = true,
+            CurrentRow = new RowObject() { RowId = "1||1" }
+        };
+        formObject.OtherRows.Add(new RowObject() { RowId = "1||2" });
+        var decorator = new FormObjectDecorator(formObject);
+        string rowId = decorator.GetNextAvailableRowId();
+        Assert.AreEqual("1||3", rowId);
+    }
+
+    #endregion
+
+    #region Edge Case Tests - Regression & Coverage
+
+    [TestMethod]
+    public void TestFormObjectDecorator_Constructor_WithNullOtherRowsCollection()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            MultipleIteration = true,
+            CurrentRow = new RowObject() { RowId = "1||1" },
+            OtherRows = null
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        Assert.IsNotNull(decorator.OtherRows);
+        Assert.AreEqual(0, decorator.OtherRows.Count);
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_GetNextAvailableRowId_WithNullCurrentRowButExistingOtherRows()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            MultipleIteration = true
+        };
+        formObject.OtherRows.Add(new RowObject() { RowId = "1||1" });
+        formObject.OtherRows.Add(new RowObject() { RowId = "1||2" });
+        var decorator = new FormObjectDecorator(formObject);
+        string rowId = decorator.GetNextAvailableRowId();
+        Assert.AreEqual("1||3", rowId);
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_GetNextAvailableRowId_WithGapInSequence()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            MultipleIteration = true,
+            CurrentRow = new RowObject() { RowId = "1||1" }
+        };
+        formObject.OtherRows.Add(new RowObject() { RowId = "1||3" });
+        formObject.OtherRows.Add(new RowObject() { RowId = "1||4" });
+        var decorator = new FormObjectDecorator(formObject);
+        string rowId = decorator.GetNextAvailableRowId();
+        Assert.AreEqual("1||2", rowId);
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_AddRowObject_WithEmptyRowId_IsAutoGenerated()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            MultipleIteration = true
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        var rowObject = new RowObject() { RowId = "" };
+        decorator.AddRowObject(rowObject);
+        Assert.IsNotNull(decorator.CurrentRow);
+        // Empty row IDs are auto-generated
+        Assert.AreEqual("1||1", decorator.CurrentRow.RowId);
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_AddRowObject_WithNullOtherRows_BecomesCurrentRow()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            MultipleIteration = true,
+            OtherRows = null
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        var rowObject = new RowObject();
+        decorator.AddRowObject(rowObject);
+        Assert.IsNotNull(decorator.OtherRows);
+        // When adding first row to form with null OtherRows, it becomes CurrentRow
+        Assert.AreEqual(0, decorator.OtherRows.Count);
+        Assert.AreEqual("1||1", decorator.CurrentRow.RowId);
+    }
+
+    #endregion
 }

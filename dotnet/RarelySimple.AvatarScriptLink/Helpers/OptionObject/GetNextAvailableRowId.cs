@@ -23,9 +23,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
             for (int i = 1; i <= maximumNumberOfMultipleIterationRows; i++)
             {
                 string tempRowId = formObject.FormId + "||" + i.ToString(CultureInfo.InvariantCulture);
-                if (formObject.CurrentRow == null)
-                    return tempRowId;
-                if (formObject.CurrentRow.RowId != tempRowId
+                if ((formObject.CurrentRow == null || formObject.CurrentRow.RowId != tempRowId)
                     && !formObject.OtherRows.Exists(r => r.RowId == tempRowId))
                     return tempRowId;
             }
