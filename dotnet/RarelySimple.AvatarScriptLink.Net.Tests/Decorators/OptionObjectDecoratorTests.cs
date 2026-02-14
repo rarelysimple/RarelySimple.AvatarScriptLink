@@ -1879,6 +1879,32 @@ public class OptionObjectDecoratorTests
     }
 
     [TestMethod]
+    public void DisableAllFieldObjects_NullForms_ThrowsException()
+    {
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123",
+            Forms = new List<FormObject>()
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        decorator.Forms = null;
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.DisableAllFieldObjects());
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_NullForms_WithExclusionList_ThrowsException()
+    {
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123",
+            Forms = new List<FormObject>()
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        decorator.Forms = null;
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.DisableAllFieldObjects(new List<string>()));
+    }
+
+    [TestMethod]
     public void DisableAllFieldObjects_PreservesEntityID()
     {
         var fieldObject = new FieldObject()
@@ -2004,6 +2030,94 @@ public class OptionObjectDecoratorTests
         var decorator = new OptionObjectDecorator(optionObject);
         decorator.DisableAllFieldObjects();
         Assert.AreEqual("EDIT", decorator.Forms[0].CurrentRow.RowAction);
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_PreservesExistingRowAction()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "1",
+            RowAction = "DELETE"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            CurrentRow = rowObject
+        };
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        decorator.DisableAllFieldObjects();
+        Assert.AreEqual("DELETE", decorator.Forms[0].CurrentRow.RowAction);
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_WithNullCurrentRow()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1"
+        };
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        decorator.DisableAllFieldObjects();
+        Assert.IsNull(decorator.Forms[0].CurrentRow);
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_NonMultipleIterationForm()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "1"
+        };
+        var otherRow = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "2"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            CurrentRow = rowObject,
+            MultipleIteration = false,
+            OtherRows = [otherRow]
+        };
+        var optionObject = new OptionObject()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObjectDecorator(optionObject);
+        decorator.DisableAllFieldObjects();
+        Assert.IsFalse(decorator.Forms[0].CurrentRow.Fields[0].Enabled);
+        Assert.IsTrue(decorator.Forms[0].OtherRows[0].Fields[0].Enabled);
     }
 
     #endregion
