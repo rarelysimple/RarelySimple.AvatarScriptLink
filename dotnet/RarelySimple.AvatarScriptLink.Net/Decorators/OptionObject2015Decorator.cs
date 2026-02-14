@@ -1,5 +1,6 @@
 ﻿using RarelySimple.AvatarScriptLink.Objects;
 using RarelySimple.AvatarScriptLink.Objects.Advanced.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace RarelySimple.AvatarScriptLink.Net.Decorators
@@ -14,6 +15,8 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
 
         public OptionObject2015Decorator(OptionObject2015 optionObject)
         {
+            if (optionObject == null)
+                throw new ArgumentNullException(nameof(optionObject));
             _optionObject = optionObject.Clone();
 
             Forms = new List<FormObjectDecorator>();
@@ -66,6 +69,13 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         /// <param name="formId"></param>
         /// <param name="rowObject"></param>
         public void AddRowObject(string formId, RowObject rowObject) => Forms = Helper.AddRowObject(this, formId, rowObject).Forms;
+
+        /// <summary>
+        /// Flags a <see cref="RowObject"/> for deletion in a specified <see cref="FormObjectDecorator"/> within the <see cref="OptionObject2015Decorator"/> by RowId.
+        /// </summary>
+        /// <param name="formId"></param>
+        /// <param name="rowId"></param>
+        public void DeleteRowObject(string formId, string rowId) => Forms = Helper.DeleteRowObject(this, formId, rowId).Forms;
 
         /// <summary>
         /// Returns the CurrentRow RowId of the form matching the FormId.

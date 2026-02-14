@@ -6,6 +6,16 @@ namespace RarelySimple.AvatarScriptLink.Net.Tests.Decorators
     [TestClass]
     public class FieldObjectDecoratorTests
     {
+        #region Constructor
+
+        [TestMethod]
+        public void TestFieldObjectDecorator_Constructor_NullFieldObject()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => new FieldObjectDecorator((FieldObject)null));
+        }
+
+        #endregion
+
         [TestMethod]
         public void TestFieldObjectIsNotModified()
         {

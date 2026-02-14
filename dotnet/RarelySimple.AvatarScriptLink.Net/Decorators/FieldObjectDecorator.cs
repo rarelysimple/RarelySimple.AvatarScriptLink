@@ -1,4 +1,5 @@
 ﻿using RarelySimple.AvatarScriptLink.Objects;
+using System;
 
 namespace RarelySimple.AvatarScriptLink.Net.Decorators
 {
@@ -34,6 +35,8 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
 
         public FieldObjectDecorator(FieldObject fieldObject)
         {
+            if (fieldObject == null)
+                throw new ArgumentNullException(nameof(fieldObject));
             _fieldObject = fieldObject;
             Enabled = fieldObject.IsEnabled();
             FieldNumber = fieldObject.FieldNumber;

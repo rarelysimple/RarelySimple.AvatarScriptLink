@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using RarelySimple.AvatarScriptLink.Objects;
 
@@ -12,6 +13,8 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
 
         public FormObjectDecorator(FormObject formObject)
         {
+            if (formObject == null)
+                throw new ArgumentNullException(nameof(formObject));
             _formObject = formObject;
             if (formObject.CurrentRow != null)
                 CurrentRow = new RowObjectDecorator(formObject.CurrentRow);
@@ -67,6 +70,28 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public void AddRowObject(string rowId, string parentRowId, string rowAction)
         {
             var tempDecorator = Helper.AddRowObject(this, rowId, parentRowId, rowAction);
+            CurrentRow = tempDecorator.CurrentRow;
+            OtherRows = tempDecorator.OtherRows;
+        }
+
+        /// <summary>
+        /// Flags a <see cref="RowObject"/> for deletion in a <see cref="FormObjectDecorator"/>.
+        /// </summary>
+        /// <param name="rowObject"></param>
+        public void DeleteRowObject(RowObject rowObject)
+        {
+            var tempDecorator = Helper.DeleteRowObject(this, rowObject);
+            CurrentRow = tempDecorator.CurrentRow;
+            OtherRows = tempDecorator.OtherRows;
+        }
+
+        /// <summary>
+        /// Flags a <see cref="RowObject"/> for deletion in a <see cref="FormObjectDecorator"/> by RowId.
+        /// </summary>
+        /// <param name="rowId"></param>
+        public void DeleteRowObject(string rowId)
+        {
+            var tempDecorator = Helper.DeleteRowObject(this, rowId);
             CurrentRow = tempDecorator.CurrentRow;
             OtherRows = tempDecorator.OtherRows;
         }

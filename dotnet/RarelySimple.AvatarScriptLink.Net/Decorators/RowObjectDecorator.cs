@@ -1,4 +1,5 @@
 ﻿using RarelySimple.AvatarScriptLink.Objects;
+using System;
 using System.Collections.Generic;
 
 namespace RarelySimple.AvatarScriptLink.Net.Decorators
@@ -12,6 +13,8 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
 
         public RowObjectDecorator(RowObject rowObject)
         {
+            if (rowObject == null)
+                throw new ArgumentNullException(nameof(rowObject));
             _rowObject = rowObject;
             RowAction = rowObject.RowAction;
 

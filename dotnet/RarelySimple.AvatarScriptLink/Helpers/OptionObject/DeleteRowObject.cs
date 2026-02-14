@@ -16,25 +16,29 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static IOptionObject DeleteRowObject(IOptionObject optionObject, IRowObject rowObject)
         {
+            if (rowObject == null)
+                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return DeleteRowObject(optionObject, rowObject.RowId);
         }
         /// <summary>
-        /// Flags a <see cref="RowObject"/> for deletion in specified <see cref="IOptionObject2015"/> by RowId.
+        /// Flags a <see cref="RowObject"/> for deletion in specified <see cref="IOptionObject"/> by RowId.
         /// </summary>
         /// <param name="optionObject"></param>
         /// <param name="rowId"></param>
         /// <returns></returns>
         public static IOptionObject DeleteRowObject(IOptionObject optionObject, string rowId)
         {
+            if (optionObject == null)
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+            if (optionObject.Forms == null)
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("optionObjectMissingForms", CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(rowId))
                 throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-            for (int i = 0; i < optionObject.Forms.Count; i++)
+            int formIndex = optionObject.Forms.FindIndex(f => IsRowPresent(f, rowId));
+            if (formIndex >= 0)
             {
-                if (IsRowPresent(optionObject.Forms[i], rowId))
-                {
-                    optionObject.Forms[i] = (FormObject)DeleteRowObject(optionObject.Forms[i], rowId);
-                    return optionObject;
-                }
+                optionObject.Forms[formIndex] = (FormObject)DeleteRowObject(optionObject.Forms[formIndex], rowId);
+                return optionObject;
             }
             throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noRowObjectsFoundByRowId", CultureInfo.CurrentCulture), nameof(rowId));
         }
@@ -46,6 +50,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static IFormObject DeleteRowObject(IFormObject formObject, IRowObject rowObject)
         {
+            if (rowObject == null)
+                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return DeleteRowObject(formObject, rowObject.RowId);
         }
         /// <summary>
@@ -56,6 +62,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static IFormObject DeleteRowObject(IFormObject formObject, string rowId)
         {
+            if (formObject == null)
+                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(rowId))
                 throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (formObject.CurrentRow?.RowId == rowId)
@@ -65,13 +73,11 @@ namespace RarelySimple.AvatarScriptLink.Helpers
             }
             if (formObject.MultipleIteration)
             {
-                foreach (RowObject rowObject in formObject.OtherRows)
+                int rowIndex = formObject.OtherRows.FindIndex(r => r.RowId == rowId);
+                if (rowIndex >= 0)
                 {
-                    if (rowObject.RowId == rowId)
-                    {
-                        rowObject.RowAction = RowAction.Delete;
-                        return formObject;
-                    }
+                    formObject.OtherRows[rowIndex].RowAction = RowAction.Delete;
+                    return formObject;
                 }
             }
             throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noRowObjectsFoundByRowId", CultureInfo.CurrentCulture), nameof(rowId));

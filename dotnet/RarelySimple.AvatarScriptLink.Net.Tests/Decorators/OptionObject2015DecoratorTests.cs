@@ -8,6 +8,16 @@ namespace RarelySimple.AvatarScriptLink.Net.Tests.Decorators;
 [TestClass]
 public class OptionObject2015DecoratorTests
 {
+    #region Constructor
+
+    [TestMethod]
+    public void TestOptionObject2015Decorator_Constructor_NullOptionObject()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => new OptionObject2015Decorator(null));
+    }
+
+    #endregion
+
     [TestMethod]
     public void TestOptionObject2015Decorator_ReturnsNoForms()
     {
@@ -1389,6 +1399,67 @@ public class OptionObject2015DecoratorTests
 
     #endregion
 
+    #region DeleteRowObject
+
+    [TestMethod]
+    public void TestOptionObject2015Decorator_DeleteRowObject_CurrentRow()
+    {
+        var rowObject = new RowObject()
+        {
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "456",
+            CurrentRow = rowObject
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        decorator.DeleteRowObject("456", "456||1");
+        Assert.AreEqual(RowActions.Delete, decorator.Forms[0].CurrentRow.RowAction);
+    }
+
+    [TestMethod]
+    public void TestOptionObject2015Decorator_DeleteRowObject_Errors()
+    {
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123"
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.DeleteRowObject(null, "1||1"));
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.DeleteRowObject("456", null));
+        Assert.ThrowsException<ArgumentException>(() => decorator.DeleteRowObject("999", "1||1"));
+    }
+
+    [TestMethod]
+    public void TestOptionObject2015Decorator_DeleteRowObject_OtherRow()
+    {
+        var row1 = new RowObject() { RowId = "456||1" };
+        var row2 = new RowObject() { RowId = "456||2" };
+        var formObject = new FormObject()
+        {
+            FormId = "456",
+            CurrentRow = row1,
+            MultipleIteration = true,
+            OtherRows = [row2]
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        decorator.DeleteRowObject("456", "456||2");
+        Assert.AreEqual(RowActions.Delete, decorator.Forms[0].OtherRows[0].RowAction);
+    }
+
+    #endregion
+
     #region IsRowPresent
 
     [TestMethod]
@@ -1639,16 +1710,6 @@ public class OptionObject2015DecoratorTests
         var decorator = new OptionObject2015Decorator(optionObject);
         Assert.IsNotNull(decorator.Forms);
         Assert.AreEqual(0, decorator.Forms.Count);
-    }
-
-    [TestMethod]
-    public void TestOptionObject2015Decorator_AddRowObject_RegressionNullFormIdHandling()
-    {
-        var formObject = new FormObject() { FormId = "1", MultipleIteration = true };
-        var optionObject = new OptionObject2015() { OptionId = "TEST123", Forms = [formObject] };
-        var decorator = new OptionObject2015Decorator(optionObject);
-        var rowObject = new RowObject();
-        Assert.ThrowsException<ArgumentNullException>(() => decorator.AddRowObject(null, rowObject));
     }
 
     #endregion
