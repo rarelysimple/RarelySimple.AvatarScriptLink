@@ -1190,4 +1190,246 @@ public class FormObjectDecoratorTests
     }
 
     #endregion
+
+    #region DisableAllFieldObjects
+
+    [TestMethod]
+    public void DisableAllFieldObjects_NullExclusionList_ThrowsException()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            CurrentRow = rowObject
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.DisableAllFieldObjects(null));
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_DisablesFieldsInCurrentRow()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            CurrentRow = rowObject
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        decorator.DisableAllFieldObjects(new List<string>());
+        Assert.IsFalse(decorator.CurrentRow.Fields[0].Enabled);
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_DisablesFieldsInOtherRowsWhenMultipleIteration()
+    {
+        var fieldObject1 = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var fieldObject2 = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "124",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var currentRow = new RowObject()
+        {
+            Fields = [fieldObject1],
+            RowId = "1"
+        };
+        var otherRow = new RowObject()
+        {
+            Fields = [fieldObject2],
+            RowId = "2",
+            ParentRowId = "1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            CurrentRow = currentRow,
+            MultipleIteration = true,
+            OtherRows = [otherRow]
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        decorator.DisableAllFieldObjects(new List<string>());
+        Assert.IsFalse(decorator.CurrentRow.Fields[0].Enabled);
+        Assert.IsFalse(decorator.OtherRows[0].Fields[0].Enabled);
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_DisablesFieldsInOtherRowsEvenWhenNotMultipleIteration()
+    {
+        var fieldObject1 = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var fieldObject2 = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "124",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var currentRow = new RowObject()
+        {
+            Fields = [fieldObject1],
+            RowId = "1"
+        };
+        var otherRow = new RowObject()
+        {
+            Fields = [fieldObject2],
+            RowId = "2",
+            ParentRowId = "1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            CurrentRow = currentRow,
+            MultipleIteration = false,
+            OtherRows = [otherRow]
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        decorator.DisableAllFieldObjects(new List<string>());
+        Assert.IsFalse(decorator.CurrentRow.Fields[0].Enabled);
+        Assert.IsFalse(decorator.OtherRows[0].Fields[0].Enabled);
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_ExcludedFieldsRemainEnabled()
+    {
+        var fieldObject1 = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var fieldObject2 = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "124",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject1, fieldObject2],
+            RowId = "1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            CurrentRow = rowObject
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        decorator.DisableAllFieldObjects(new List<string> { "123" });
+        Assert.IsTrue(decorator.CurrentRow.Fields[0].Enabled);
+        Assert.IsFalse(decorator.CurrentRow.Fields[1].Enabled);
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_WithNullCurrentRow()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1"
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        decorator.DisableAllFieldObjects(new List<string>());
+        Assert.IsNull(decorator.CurrentRow);
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_SetsRowActionToEdit()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "1",
+            RowAction = ""
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            CurrentRow = rowObject
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        decorator.DisableAllFieldObjects(new List<string>());
+        Assert.AreEqual(RowActions.Edit, decorator.CurrentRow.RowAction);
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_WithoutExclusionList()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            CurrentRow = rowObject
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        decorator.DisableAllFieldObjects();
+        Assert.IsFalse(decorator.CurrentRow.Fields[0].Enabled);
+        Assert.AreEqual(RowActions.Edit, decorator.CurrentRow.RowAction);
+    }
+
+    #endregion
 }

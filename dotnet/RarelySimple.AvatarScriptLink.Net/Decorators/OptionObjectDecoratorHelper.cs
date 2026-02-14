@@ -444,6 +444,37 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     throw new ArgumentNullException(nameof(rowId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 return ExecuteOnForm(optionObject, formId, form => form.DeleteRowObject(rowId));
             }
+            /// <summary>
+            /// Disables all <see cref="FieldObject"/> in the <see cref="OptionObjectDecorator"/>.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <returns></returns>
+            public static OptionObjectDecorator DisableAllFieldObjects(OptionObjectDecorator optionObject)
+            {
+                if (optionObject == null)
+                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                return DisableAllFieldObjects(optionObject, new List<string>());
+            }
+            /// <summary>
+            /// Disables all <see cref="FieldObject"/> in the <see cref="OptionObjectDecorator"/>, except for the FieldNumbers specified in the list.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <param name="excludedFields"></param>
+            /// <returns></returns>
+            public static OptionObjectDecorator DisableAllFieldObjects(OptionObjectDecorator optionObject, List<string> excludedFields)
+            {
+                if (optionObject == null)
+                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (optionObject.Forms == null)
+                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
+                if (optionObject.Forms.Count == 0)
+                    throw new ArgumentException(resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture), nameof(optionObject));
+                if (excludedFields == null)
+                    throw new ArgumentNullException(nameof(excludedFields), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+
+                optionObject.Forms.ForEach(f => f.DisableAllFieldObjects(excludedFields));
+                return optionObject;
+            }
         }
     }
 }

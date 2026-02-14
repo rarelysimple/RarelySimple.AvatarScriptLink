@@ -407,6 +407,41 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
 
                 throw new ArgumentException(resourceManager.GetString("noRowObjectsFoundByRowId", CultureInfo.CurrentCulture), nameof(rowId));
             }
+            /// <summary>
+            /// Disables all <see cref="FieldObject"/> in the <see cref="FormObjectDecorator"/>.
+            /// </summary>
+            /// <param name="formObject"></param>
+            /// <returns></returns>
+            public static FormObjectDecorator DisableAllFieldObjects(FormObjectDecorator formObject)
+            {
+                if (formObject == null)
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                return DisableAllFieldObjects(formObject, new List<string>());
+            }
+            /// <summary>
+            /// Disables all <see cref="FieldObject"/> in the <see cref="FormObjectDecorator"/>, except for the FieldNumbers specified in the list.
+            /// </summary>
+            /// <param name="formObject"></param>
+            /// <param name="excludedFields"></param>
+            /// <returns></returns>
+            public static FormObjectDecorator DisableAllFieldObjects(FormObjectDecorator formObject, List<string> excludedFields)
+            {
+                if (formObject == null)
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (excludedFields == null)
+                    throw new ArgumentNullException(nameof(excludedFields), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+
+                if (formObject.CurrentRow != null)
+                {
+                    formObject.CurrentRow.DisableAllFieldObjects(excludedFields);
+                }
+
+                // Process all OtherRows unconditionally, matching legacy implementation behavior.
+                // This ensures fields in OtherRows are disabled regardless of the MultipleIteration flag.
+                formObject.OtherRows.ForEach(r => r.DisableAllFieldObjects(excludedFields));
+
+                return formObject;
+            }
         }
     }
 }
