@@ -436,10 +436,9 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     formObject.CurrentRow.DisableAllFieldObjects(excludedFields);
                 }
 
-                if (formObject.MultipleIteration)
-                {
-                    formObject.OtherRows.ForEach(r => r.DisableAllFieldObjects(excludedFields));
-                }
+                // Process all OtherRows unconditionally, matching legacy implementation behavior.
+                // This ensures fields in OtherRows are disabled regardless of the MultipleIteration flag.
+                formObject.OtherRows.ForEach(r => r.DisableAllFieldObjects(excludedFields));
 
                 return formObject;
             }

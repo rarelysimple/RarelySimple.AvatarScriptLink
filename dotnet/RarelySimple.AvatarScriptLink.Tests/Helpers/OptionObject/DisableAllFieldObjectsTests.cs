@@ -105,6 +105,34 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
         [TestMethod]
         [TestCategory("ScriptLinkHelpers")]
+        public void DisableAllFieldObjects_OptionObject_NullForms_Throws()
+        {
+            var invalidOptionObject = new OptionObject
+            {
+                EntityID = "123456",
+                EpisodeNumber = 1,
+                OptionId = "USER00",
+                Forms = null
+            };
+            Assert.ThrowsException<ArgumentNullException>(() => (OptionObject)OptionObjectHelpers.DisableAllFieldObjects(invalidOptionObject));
+        }
+
+        [TestMethod]
+        [TestCategory("ScriptLinkHelpers")]
+        public void DisableAllFieldObjects_OptionObject_NullForms_WithExcludedFields_Throws()
+        {
+            var invalidOptionObject = new OptionObject
+            {
+                EntityID = "123456",
+                EpisodeNumber = 1,
+                OptionId = "USER00",
+                Forms = null
+            };
+            Assert.ThrowsException<ArgumentNullException>(() => (OptionObject)OptionObjectHelpers.DisableAllFieldObjects(invalidOptionObject, new List<string>()));
+        }
+
+        [TestMethod]
+        [TestCategory("ScriptLinkHelpers")]
         public void DisableAllFieldObjects_OptionObject_EntityID_AreEqual()
         {
             OptionObject returnOptionObject = (OptionObject)OptionObjectHelpers.DisableAllFieldObjects(optionObject);

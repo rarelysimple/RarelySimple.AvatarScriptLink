@@ -1288,6 +1288,49 @@ public class FormObjectDecoratorTests
     }
 
     [TestMethod]
+    public void DisableAllFieldObjects_DisablesFieldsInOtherRowsEvenWhenNotMultipleIteration()
+    {
+        var fieldObject1 = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var fieldObject2 = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "124",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var currentRow = new RowObject()
+        {
+            Fields = [fieldObject1],
+            RowId = "1"
+        };
+        var otherRow = new RowObject()
+        {
+            Fields = [fieldObject2],
+            RowId = "2",
+            ParentRowId = "1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            CurrentRow = currentRow,
+            MultipleIteration = false,
+            OtherRows = [otherRow]
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        decorator.DisableAllFieldObjects(new List<string>());
+        Assert.IsFalse(decorator.CurrentRow.Fields[0].Enabled);
+        Assert.IsFalse(decorator.OtherRows[0].Fields[0].Enabled);
+    }
+
+    [TestMethod]
     public void DisableAllFieldObjects_ExcludedFieldsRemainEnabled()
     {
         var fieldObject1 = new FieldObject()

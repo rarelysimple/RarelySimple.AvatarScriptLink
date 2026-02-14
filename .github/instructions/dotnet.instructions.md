@@ -66,9 +66,22 @@ To provide the broadest compatiblity, the projects target .NET Standard 2.0, all
 - Avoid catching generic `Exception` types; catch specific exceptions
 - Log exceptions with sufficient context for troubleshooting
 
+### RowAction Semantics
+Understanding RowAction values is critical for proper row state management in ScriptLink operations:
+- **RowActions.None** (`""` empty string): No action pending on the row. Use this to indicate that a row should be preserved as-is. When modifying fields in a row with RowAction.None, set it to RowActions.Edit to indicate modification.
+- **RowActions.Add** (`"ADD"`): A new row is being added to the form. Preserve this action when modifying the row; do not override with Edit.
+- **RowActions.Edit** (`"EDIT"`): An existing row is being modified. Set a row's RowAction to Edit when making field changes on a row that was previously in None state.
+- **RowActions.Delete** (`"DELETE"`): The row is marked for removal from the form. Do not change this action even if fields are modified; the row deletion takes precedence.
+
+When implementing helper methods that modify rows (e.g., `DisableAllFieldObjects`, `SetFieldValue`):
+- Only set RowAction to Edit if it's currently None
+- Preserve existing RowAction values (Add, Edit, Delete) to avoid overriding the intended operation
+- This ensures that a row marked for deletion remains marked for deletion, a row being added retains that intent, etc.
+
 ### Documentation
 - Include XML documentation for all public types and members
 - Document non-obvious logic with inline comments
+- Explain why certain decisions are made, especially regarding RowAction handling
 - Include examples in XML documentation for complex methods
 - Keep documentation up-to-date with code changes
 - Document breaking changes and migration paths in release notes

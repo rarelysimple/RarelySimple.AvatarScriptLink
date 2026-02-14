@@ -2118,7 +2118,7 @@ public class OptionObject2DecoratorTests
         var decorator = new OptionObject2Decorator(optionObject);
         decorator.DisableAllFieldObjects();
         Assert.IsFalse(decorator.Forms[0].CurrentRow.Fields[0].Enabled);
-        Assert.IsTrue(decorator.Forms[0].OtherRows[0].Fields[0].Enabled);
+        Assert.IsFalse(decorator.Forms[0].OtherRows[0].Fields[0].Enabled);
     }
 
     #endregion
