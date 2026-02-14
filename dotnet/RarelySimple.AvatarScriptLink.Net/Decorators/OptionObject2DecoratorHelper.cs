@@ -406,7 +406,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 }
                 else
                 {
-                    throw new ArgumentException(resourceManager.GetString("noFormObjectsFoundByFormId", CultureInfo.CurrentCulture), nameof(optionObject));
+                    throw new ArgumentException(resourceManager.GetString("noFormObjectsFoundByFormId", CultureInfo.CurrentCulture), nameof(formId));
                 }
                 return optionObject;
             }
@@ -421,6 +421,8 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             {
                 if (optionObject == null)
                     throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (optionObject.Forms == null)
+                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(formId))
                     throw new ArgumentNullException(nameof(formId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (rowObject == null)
@@ -438,6 +440,8 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             {
                 if (optionObject == null)
                     throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (optionObject.Forms == null)
+                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(formId))
                     throw new ArgumentNullException(nameof(formId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(rowId))
