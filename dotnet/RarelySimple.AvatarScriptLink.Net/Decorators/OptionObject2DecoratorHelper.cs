@@ -386,6 +386,31 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 return decorator;
             }
             /// <summary>
+            /// Executes an operation on a form within the OptionObject2Decorator by FormId.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <param name="formId"></param>
+            /// <param name="action"></param>
+            /// <returns></returns>
+            private static OptionObject2Decorator ExecuteOnForm(OptionObject2Decorator optionObject, string formId, Action<FormObjectDecorator> action)
+            {
+                if (optionObject.Forms == null)
+                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
+                if (optionObject.Forms.Exists(f => f.FormId == formId))
+                {
+                    int formIndex = optionObject.Forms.FindIndex(f => f.FormId == formId);
+                    if (formIndex >= 0)
+                    {
+                        action(optionObject.Forms[formIndex]);
+                    }
+                }
+                else
+                {
+                    throw new ArgumentException(resourceManager.GetString("noFormObjectsFoundByFormId", CultureInfo.CurrentCulture), nameof(optionObject));
+                }
+                return optionObject;
+            }
+            /// <summary>
             /// Adds a <see cref="RowObject"/> to a specified <see cref="FormObjectDecorator"/> within provided <see cref="OptionObject2Decorator"/>.
             /// </summary>
             /// <param name="optionObject"></param>
@@ -400,19 +425,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     throw new ArgumentNullException(nameof(formId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (rowObject == null)
                     throw new ArgumentNullException(nameof(rowObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-                if (optionObject.Forms.Exists(f => f.FormId == formId))
-                {
-                    int formIndex = optionObject.Forms.FindIndex(f => f.FormId == formId);
-                    if (formIndex >= 0)
-                    {
-                        optionObject.Forms[formIndex].AddRowObject(rowObject);
-                    }
-                }
-                else
-                {
-                    throw new ArgumentException(resourceManager.GetString("noFormObjectsFoundByFormId", CultureInfo.CurrentCulture), nameof(optionObject));
-                }
-                return optionObject;
+                return ExecuteOnForm(optionObject, formId, form => form.AddRowObject(rowObject));
             }
             /// <summary>
             /// Flags a <see cref="RowObject"/> for deletion in a specified <see cref="FormObjectDecorator"/> within the <see cref="OptionObject2Decorator"/> by RowId.
@@ -429,19 +442,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     throw new ArgumentNullException(nameof(formId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(rowId))
                     throw new ArgumentNullException(nameof(rowId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-                if (optionObject.Forms.Exists(f => f.FormId == formId))
-                {
-                    int formIndex = optionObject.Forms.FindIndex(f => f.FormId == formId);
-                    if (formIndex >= 0)
-                    {
-                        optionObject.Forms[formIndex].DeleteRowObject(rowId);
-                    }
-                }
-                else
-                {
-                    throw new ArgumentException(resourceManager.GetString("noFormObjectsFoundByFormId", CultureInfo.CurrentCulture), nameof(optionObject));
-                }
-                return optionObject;
+                return ExecuteOnForm(optionObject, formId, form => form.DeleteRowObject(rowId));
             }
         }
     }
