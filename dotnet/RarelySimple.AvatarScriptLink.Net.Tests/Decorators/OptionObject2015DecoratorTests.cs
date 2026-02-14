@@ -1713,4 +1713,281 @@ public class OptionObject2015DecoratorTests
     }
 
     #endregion
+
+    #region DisableAllFieldObjects
+
+    [TestMethod]
+    public void DisableAllFieldObjects_AllFieldsDisabled()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            CurrentRow = rowObject
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        decorator.DisableAllFieldObjects();
+        Assert.IsFalse(decorator.Forms[0].CurrentRow.Fields[0].Enabled);
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_WithExcludedFields()
+    {
+        var fieldObject1 = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var fieldObject2 = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "124",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject1, fieldObject2],
+            RowId = "1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            CurrentRow = rowObject
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        decorator.DisableAllFieldObjects(new List<string> { "123" });
+        Assert.IsTrue(decorator.Forms[0].CurrentRow.Fields[0].Enabled);
+        Assert.IsFalse(decorator.Forms[0].CurrentRow.Fields[1].Enabled);
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_NullExcludedFieldsList_ThrowsException()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            CurrentRow = rowObject
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.DisableAllFieldObjects(null));
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_EmptyForms_ThrowsException()
+    {
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = new List<FormObject>()
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        Assert.ThrowsException<ArgumentException>(() => decorator.DisableAllFieldObjects());
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_EmptyExclusionList()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            CurrentRow = rowObject
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        decorator.DisableAllFieldObjects(new List<string>());
+        Assert.IsFalse(decorator.Forms[0].CurrentRow.Fields[0].Enabled);
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_PreservesSessionToken()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            CurrentRow = rowObject
+        };
+        var optionObject = new OptionObject2015()
+        {
+            SessionToken = "SESSIONTOKEN123",
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        decorator.DisableAllFieldObjects();
+        Assert.AreEqual("SESSIONTOKEN123", decorator.SessionToken);
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_PreservesNamespaceName()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            CurrentRow = rowObject
+        };
+        var optionObject = new OptionObject2015()
+        {
+            NamespaceName = "NAMESPACE",
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        decorator.DisableAllFieldObjects();
+        Assert.AreEqual("NAMESPACE", decorator.NamespaceName);
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_MultipleIterationForm()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var otherRow = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "2",
+            ParentRowId = "1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            MultipleIteration = true,
+            OtherRows = [otherRow]
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        decorator.DisableAllFieldObjects();
+        Assert.IsFalse(decorator.Forms[0].OtherRows[0].Fields[0].Enabled);
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_SetsRowActionToEdit()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "1",
+            RowAction = ""
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            CurrentRow = rowObject
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        decorator.DisableAllFieldObjects();
+        Assert.AreEqual("EDIT", decorator.Forms[0].CurrentRow.RowAction);
+    }
+
+    #endregion
 }

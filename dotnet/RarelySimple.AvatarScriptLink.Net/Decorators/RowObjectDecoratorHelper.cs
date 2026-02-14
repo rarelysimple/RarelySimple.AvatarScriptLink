@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Resources;
 using RarelySimple.AvatarScriptLink.Net.Exceptions;
@@ -188,6 +189,40 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     }
                 }
                 return decorator;
+            }
+            /// <summary>
+            /// Disables all <see cref="FieldObject"/> in the <see cref="RowObjectDecorator"/>.
+            /// </summary>
+            /// <param name="rowObject"></param>
+            /// <returns></returns>
+            public static RowObjectDecorator DisableAllFieldObjects(RowObjectDecorator rowObject)
+            {
+                if (rowObject == null)
+                    throw new ArgumentNullException(nameof(rowObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                return DisableAllFieldObjects(rowObject, new System.Collections.Generic.List<string>());
+            }
+            /// <summary>
+            /// Disables all <see cref="FieldObject"/> in the <see cref="RowObjectDecorator"/>, except for the FieldNumbers specified in the list.
+            /// </summary>
+            /// <param name="rowObject"></param>
+            /// <param name="excludedFields"></param>
+            /// <returns></returns>
+            public static RowObjectDecorator DisableAllFieldObjects(RowObjectDecorator rowObject, System.Collections.Generic.List<string> excludedFields)
+            {
+                if (rowObject == null)
+                    throw new ArgumentNullException(nameof(rowObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (excludedFields == null)
+                    throw new ArgumentNullException(nameof(excludedFields), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+
+                foreach (var field in rowObject.Fields.Where(f => !excludedFields.Contains(f.FieldNumber)))
+                {
+                    field.Enabled = false;
+                }
+
+                if (rowObject.RowAction == RowActions.None)
+                    rowObject.RowAction = RowActions.Edit;
+
+                return rowObject;
             }
         }
     }

@@ -429,7 +429,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 "2",
                 "4"
             ];
-            Assert.ThrowsException<ArgumentNullException>(() => (OptionObject2015)OptionObjectHelpers.DisableAllFieldObjects(optionObject2015, excludedFields));
+            Assert.ThrowsException<ArgumentException>(() => (OptionObject2015)OptionObjectHelpers.DisableAllFieldObjects(optionObject2015, excludedFields));
         }
     }
 }

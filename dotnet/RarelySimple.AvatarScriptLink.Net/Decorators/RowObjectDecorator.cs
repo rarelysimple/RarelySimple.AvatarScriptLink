@@ -85,5 +85,22 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         /// <param name="fieldValue"></param>
         /// <returns></returns>
         public void SetFieldValue(string fieldNumber, string fieldValue) => Fields = Helper.SetFieldValue(this, fieldNumber, fieldValue).Fields;
+
+        /// <summary>
+        /// Disables all <see cref="FieldObject"/> in the <see cref="RowObjectDecorator"/>.
+        /// </summary>
+        public void DisableAllFieldObjects()
+        {
+            Fields = Helper.DisableAllFieldObjects(this).Fields;
+        }
+
+        /// <summary>
+        /// Disables all <see cref="FieldObject"/> in the <see cref="RowObjectDecorator"/>, except for the FieldNumbers specified in the list.
+        /// </summary>
+        /// <param name="excludedFields"></param>
+        public void DisableAllFieldObjects(List<string> excludedFields)
+        {
+            Fields = Helper.DisableAllFieldObjects(this, excludedFields).Fields;
+        }
     }
 }
