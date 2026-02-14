@@ -385,6 +385,35 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 }
                 return decorator;
             }
+            /// <summary>
+            /// Adds a <see cref="RowObject"/> to a specified <see cref="FormObjectDecorator"/> within provided <see cref="OptionObject2015Decorator"/>.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <param name="formId"></param>
+            /// <param name="rowObject"></param>
+            /// <returns></returns>
+            public static OptionObject2015Decorator AddRowObject(OptionObject2015Decorator optionObject, string formId, RowObject rowObject)
+            {
+                if (optionObject == null)
+                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (string.IsNullOrEmpty(formId))
+                    throw new ArgumentNullException(nameof(formId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (rowObject == null)
+                    throw new ArgumentNullException(nameof(rowObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (optionObject.Forms.Exists(f => f.FormId == formId))
+                {
+                    int formIndex = optionObject.Forms.FindIndex(f => f.FormId == formId);
+                    if (formIndex >= 0)
+                    {
+                        optionObject.Forms[formIndex].AddRowObject(rowObject);
+                    }
+                }
+                else
+                {
+                    throw new ArgumentException(resourceManager.GetString("noFormObjectsFoundByFormId", CultureInfo.CurrentCulture), nameof(optionObject));
+                }
+                return optionObject;
+            }
         }
     }
 }

@@ -17,7 +17,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             _optionObject = optionObject.Clone();
 
             Forms = new List<FormObjectDecorator>();
-            foreach (var form in optionObject.Forms)
+            foreach (var form in optionObject.Forms ?? new List<FormObject>())
             {
                 Forms.Add(new FormObjectDecorator(form));
             }
@@ -34,11 +34,6 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public string ServerName => _optionObject.ServerName;
         public string SessionToken => _optionObject.SessionToken;
         public string SystemCode => _optionObject.SystemCode;
-
-        public OptionObject2015DecoratorReturnBuilder Return()
-        {
-            return new OptionObject2015DecoratorReturnBuilder(this);
-        }
 
         /// <summary>
         /// Adds a <see cref="FormObject"/> to an <see cref="OptionObject2015Decorator"/>.
@@ -64,6 +59,13 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         /// <param name="formId"></param>
         /// <param name="multipleIteration"></param>
         public void AddFormObject(string formId, bool multipleIteration) => Forms = Helper.AddFormObject(this, formId, multipleIteration).Forms;
+
+        /// <summary>
+        /// Adds a <see cref="RowObject"/> to a specified <see cref="FormObjectDecorator"/> within the <see cref="OptionObject2015Decorator"/>.
+        /// </summary>
+        /// <param name="formId"></param>
+        /// <param name="rowObject"></param>
+        public void AddRowObject(string formId, RowObject rowObject) => Forms = Helper.AddRowObject(this, formId, rowObject).Forms;
 
         /// <summary>
         /// Returns the CurrentRow RowId of the form matching the FormId.
@@ -162,6 +164,15 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         /// <param name="rowId"></param>
         /// <returns></returns>
         public bool IsRowPresent(string rowId) => Helper.IsRowPresent(this, rowId);
+
+        /// <summary>
+        /// Creates a return builder for the <see cref="OptionObject2015Decorator"/>.
+        /// </summary>
+        /// <returns></returns>
+        public OptionObject2015DecoratorReturnBuilder Return()
+        {
+            return new OptionObject2015DecoratorReturnBuilder(this);
+        }
 
         /// <summary>
         /// Sets the FieldValue of a <see cref="FieldObject"/> in the <see cref="OptionObject2015Decorator"/> on the first form CurrentRow.

@@ -276,6 +276,94 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 }
                 throw new FieldObjectNotFoundException(string.Format(resourceManager.GetString(NoFieldObjectsFoundByFieldNumber, CultureInfo.CurrentCulture), fieldNumber), fieldNumber);
             }
+            /// <summary>
+            /// Returns the next available RowId for a <see cref="FormObjectDecorator"/>.
+            /// </summary>
+            /// <param name="formObject"></param>
+            /// <returns></returns>
+            public static string GetNextAvailableRowId(FormObjectDecorator formObject)
+            {
+                if (formObject == null)
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (formObject.CurrentRow != null && !formObject.MultipleIteration)
+                    throw new ArgumentOutOfRangeException(resourceManager.GetString("cannotAddAnotherRowObject", CultureInfo.CurrentCulture));
+                int maximumNumberOfMultipleIterationRows = 9999;
+                if (formObject.CurrentRow != null && formObject.OtherRows.Count + 1 >= maximumNumberOfMultipleIterationRows)
+                    throw new ArgumentOutOfRangeException(resourceManager.GetString("cannotAddAnotherRowObject", CultureInfo.CurrentCulture));
+                for (int i = 1; i <= maximumNumberOfMultipleIterationRows; i++)
+                {
+                    string tempRowId = formObject.FormId + "||" + i.ToString(CultureInfo.InvariantCulture);
+                    if ((formObject.CurrentRow == null || formObject.CurrentRow.RowId != tempRowId)
+                        && !formObject.OtherRows.Exists(r => r.RowId == tempRowId))
+                        return tempRowId;
+                }
+                throw new ArgumentException(resourceManager.GetString("couldNotDetermineNextRowId", CultureInfo.CurrentCulture));
+            }
+            /// <summary>
+            /// Adds a <see cref="RowObjectDecorator"/> to a provided <see cref="FormObjectDecorator"/>.
+            /// </summary>
+            /// <param name="formObject"></param>
+            /// <param name="rowObject"></param>
+            /// <returns></returns>
+            public static FormObjectDecorator AddRowObject(FormObjectDecorator formObject, RowObject rowObject)
+            {
+                if (formObject == null)
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (rowObject == null)
+                    throw new ArgumentNullException(nameof(rowObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (!formObject.MultipleIteration && formObject.CurrentRow != null)
+                    throw new ArgumentException(resourceManager.GetString("cannotAddAnotherRowObject", CultureInfo.CurrentCulture));
+                
+                if ((formObject.CurrentRow != null && formObject.CurrentRow.RowId == rowObject.RowId && !string.IsNullOrEmpty(rowObject.RowId)) ||
+                    (formObject.OtherRows != null && formObject.OtherRows.Exists(r => r.RowId == rowObject.RowId && !string.IsNullOrEmpty(rowObject.RowId))))
+                    throw new ArgumentException(resourceManager.GetString("rowIdAlreadyExists", CultureInfo.CurrentCulture));
+
+                if (formObject.CurrentRow == null)
+                {
+                    rowObject.RowId = GetNextAvailableRowId(formObject);
+                    formObject.CurrentRow = new RowObjectDecorator(rowObject);
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(rowObject.RowId))
+                        rowObject.RowId = GetNextAvailableRowId(formObject);
+                    formObject.OtherRows.Add(new RowObjectDecorator(rowObject));
+                }
+                return formObject;
+            }
+            /// <summary>
+            /// Adds a <see cref="RowObject"/> to a provided <see cref="FormObjectDecorator"/> using provided RowId and ParentRowId.
+            /// </summary>
+            /// <param name="formObject"></param>
+            /// <param name="rowId"></param>
+            /// <param name="parentRowId"></param>
+            /// <returns></returns>
+            public static FormObjectDecorator AddRowObject(FormObjectDecorator formObject, string rowId, string parentRowId)
+            {
+                if (formObject == null)
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                return AddRowObject(formObject, rowId, parentRowId, RowActions.Add);
+            }
+            /// <summary>
+            /// Adds a <see cref="RowObject"/> to a provided <see cref="FormObjectDecorator"/> using provided RowId, ParentRowId, and RowAction.
+            /// </summary>
+            /// <param name="formObject"></param>
+            /// <param name="rowId"></param>
+            /// <param name="parentRowId"></param>
+            /// <param name="rowAction"></param>
+            /// <returns></returns>
+            public static FormObjectDecorator AddRowObject(FormObjectDecorator formObject, string rowId, string parentRowId, string rowAction)
+            {
+                if (formObject == null)
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                RowObject rowObject = new RowObject
+                {
+                    ParentRowId = parentRowId,
+                    RowAction = rowAction,
+                    RowId = rowId
+                };
+                return AddRowObject(formObject, rowObject);
+            }
         }
     }
 }

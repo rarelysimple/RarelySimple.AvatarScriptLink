@@ -1546,4 +1546,110 @@ public class OptionObject2015DecoratorTests
     }
 
     #endregion
+
+    #region AddRowObject
+
+    [TestMethod]
+    public void TestOptionObject2015Decorator_AddRowObject_Success()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            MultipleIteration = true
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        var rowObject = new RowObject();
+        decorator.AddRowObject("1", rowObject);
+        Assert.IsNotNull(decorator.Forms[0].CurrentRow);
+        Assert.AreEqual("1||1", decorator.Forms[0].CurrentRow.RowId);
+    }
+
+    [TestMethod]
+    public void TestOptionObject2015Decorator_AddRowObject_FormNotFound()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            MultipleIteration = true
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        var rowObject = new RowObject();
+        Assert.ThrowsException<ArgumentException>(() => decorator.AddRowObject("99", rowObject));
+    }
+
+    [TestMethod]
+    public void TestOptionObject2015Decorator_AddRowObject_NullRowObject()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            MultipleIteration = true
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.AddRowObject("1", null));
+    }
+
+    [TestMethod]
+    public void TestOptionObject2015Decorator_AddRowObject_WithMultipleRows()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            MultipleIteration = true
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        decorator.AddRowObject("1", new RowObject());
+        decorator.AddRowObject("1", new RowObject());
+        Assert.AreEqual(1, decorator.Forms[0].OtherRows.Count);
+        Assert.AreEqual("1||2", decorator.Forms[0].OtherRows[0].RowId);
+    }
+
+    #endregion
+
+    #region Edge Case Tests - Regression & Coverage
+
+    [TestMethod]
+    public void TestOptionObject2015Decorator_Constructor_WithEmptyFormsCollection()
+    {
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = new List<FormObject>()
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        Assert.IsNotNull(decorator.Forms);
+        Assert.AreEqual(0, decorator.Forms.Count);
+    }
+
+    [TestMethod]
+    public void TestOptionObject2015Decorator_AddRowObject_RegressionNullFormIdHandling()
+    {
+        var formObject = new FormObject() { FormId = "1", MultipleIteration = true };
+        var optionObject = new OptionObject2015() { OptionId = "TEST123", Forms = [formObject] };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        var rowObject = new RowObject();
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.AddRowObject(null, rowObject));
+    }
+
+    #endregion
 }

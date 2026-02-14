@@ -16,7 +16,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             if (formObject.CurrentRow != null)
                 CurrentRow = new RowObjectDecorator(formObject.CurrentRow);
             OtherRows = new List<RowObjectDecorator>();
-            foreach (var rowObject in formObject.OtherRows)
+            foreach (var rowObject in formObject.OtherRows ?? new List<RowObject>())
             {
                 OtherRows.Add(new RowObjectDecorator(rowObject));
             }
@@ -35,9 +35,40 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             return new FormObjectDecoratorBuilder(formObject);
         }
 
-        public FormObjectDecoratorReturnBuilder Return()
+        /// <summary>
+        /// Adds a <see cref="RowObject"/> to a <see cref="FormObjectDecorator"/>.
+        /// </summary>
+        /// <param name="rowObject"></param>
+        public void AddRowObject(RowObject rowObject)
         {
-            return new FormObjectDecoratorReturnBuilder(this);
+            var tempDecorator = Helper.AddRowObject(this, rowObject);
+            CurrentRow = tempDecorator.CurrentRow;
+            OtherRows = tempDecorator.OtherRows;
+        }
+
+        /// <summary>
+        /// Adds a <see cref="RowObject"/> to a <see cref="FormObjectDecorator"/> using provided RowId and ParentRowId.
+        /// </summary>
+        /// <param name="rowId"></param>
+        /// <param name="parentRowId"></param>
+        public void AddRowObject(string rowId, string parentRowId)
+        {
+            var tempDecorator = Helper.AddRowObject(this, rowId, parentRowId);
+            CurrentRow = tempDecorator.CurrentRow;
+            OtherRows = tempDecorator.OtherRows;
+        }
+
+        /// <summary>
+        /// Adds a <see cref="RowObject"/> to a <see cref="FormObjectDecorator"/> using provided RowId, ParentRowId, and RowAction.
+        /// </summary>
+        /// <param name="rowId"></param>
+        /// <param name="parentRowId"></param>
+        /// <param name="rowAction"></param>
+        public void AddRowObject(string rowId, string parentRowId, string rowAction)
+        {
+            var tempDecorator = Helper.AddRowObject(this, rowId, parentRowId, rowAction);
+            CurrentRow = tempDecorator.CurrentRow;
+            OtherRows = tempDecorator.OtherRows;
         }
 
         /// <summary>
@@ -73,6 +104,12 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         /// </summary>
         /// <returns></returns>
         public bool GetMultipleIterationStatus() => Helper.GetMultipleIterationStatus(this);
+
+        /// <summary>
+        /// Returns the next available RowId for the <see cref="FormObject"/>.
+        /// </summary>
+        /// <returns></returns>
+        public string GetNextAvailableRowId() => Helper.GetNextAvailableRowId(this);
 
         /// <summary>
         /// Returns the ParentRowId of the <see cref="CurrentRow"/>.
@@ -128,7 +165,16 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         /// <param name="fieldNumber"></param>
         /// <returns></returns>
         public bool IsRowPresent(string rowId) => Helper.IsRowPresent(this, rowId);
-        
+
+        /// <summary>
+        /// Creates a return builder for the <see cref="FormObjectDecorator"/>.
+        /// </summary>
+        /// <returns></returns>
+        public FormObjectDecoratorReturnBuilder Return()
+        {
+            return new FormObjectDecoratorReturnBuilder(this);
+        }
+
         /// <summary>
         /// Sets the value of a <see cref="FieldObject"/> in the <see cref="CurrentRow"/> of a <see cref="FormObject"/>.
         /// </summary>
@@ -140,6 +186,7 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             CurrentRow = tempDecorator.CurrentRow;
             OtherRows = tempDecorator.OtherRows;
         }
+
         /// <summary>
         /// Sets the value of a <see cref="FieldObject"/> in a <see cref="FormObject"/>.
         /// </summary>
