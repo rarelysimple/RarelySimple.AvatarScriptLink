@@ -465,6 +465,8 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             {
                 if (optionObject == null)
                     throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (optionObject.Forms == null)
+                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
                 if (optionObject.Forms.Count == 0)
                     throw new ArgumentException(resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture), nameof(optionObject));
                 if (excludedFields == null)

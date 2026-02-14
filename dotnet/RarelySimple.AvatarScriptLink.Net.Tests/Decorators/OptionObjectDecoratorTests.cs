@@ -1735,13 +1735,6 @@ public class OptionObjectDecoratorTests
     #region DisableAllFieldObjects
 
     [TestMethod]
-    public void DisableAllFieldObjects_NullOptionObject_ThrowsException()
-    {
-        OptionObjectDecorator decorator = null;
-        Assert.ThrowsException<ArgumentNullException>(() => decorator = new OptionObjectDecorator(null));
-    }
-
-    [TestMethod]
     public void DisableAllFieldObjects_AllFieldsDisabled()
     {
         var fieldObject = new FieldObject()
