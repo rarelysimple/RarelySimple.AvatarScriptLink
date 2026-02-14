@@ -1389,6 +1389,45 @@ public class OptionObject2015DecoratorTests
 
     #endregion
 
+    #region DeleteRowObject
+
+    [TestMethod]
+    public void TestOptionObject2015Decorator_DeleteRowObject_CurrentRow()
+    {
+        var rowObject = new RowObject()
+        {
+            RowId = "456||1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "456",
+            CurrentRow = rowObject
+        };
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        decorator.DeleteRowObject("456", "456||1");
+        Assert.AreEqual(RowActions.Delete, decorator.Forms[0].CurrentRow.RowAction);
+    }
+
+    [TestMethod]
+    public void TestOptionObject2015Decorator_DeleteRowObject_Errors()
+    {
+        var optionObject = new OptionObject2015()
+        {
+            OptionId = "TEST123"
+        };
+        var decorator = new OptionObject2015Decorator(optionObject);
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.DeleteRowObject(null, "1||1"));
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.DeleteRowObject("456", null));
+        Assert.ThrowsException<ArgumentException>(() => decorator.DeleteRowObject("999", "1||1"));
+    }
+
+    #endregion
+
     #region IsRowPresent
 
     [TestMethod]

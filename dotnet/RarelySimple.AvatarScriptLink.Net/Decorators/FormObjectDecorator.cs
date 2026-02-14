@@ -72,6 +72,28 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         }
 
         /// <summary>
+        /// Flags a <see cref="RowObject"/> for deletion in a <see cref="FormObjectDecorator"/>.
+        /// </summary>
+        /// <param name="rowObject"></param>
+        public void DeleteRowObject(RowObject rowObject)
+        {
+            var tempDecorator = Helper.DeleteRowObject(this, rowObject);
+            CurrentRow = tempDecorator.CurrentRow;
+            OtherRows = tempDecorator.OtherRows;
+        }
+
+        /// <summary>
+        /// Flags a <see cref="RowObject"/> for deletion in a <see cref="FormObjectDecorator"/> by RowId.
+        /// </summary>
+        /// <param name="rowId"></param>
+        public void DeleteRowObject(string rowId)
+        {
+            var tempDecorator = Helper.DeleteRowObject(this, rowId);
+            CurrentRow = tempDecorator.CurrentRow;
+            OtherRows = tempDecorator.OtherRows;
+        }
+
+        /// <summary>
         /// Returns the RowId of the <see cref="CurrentRow"/>.
         /// </summary>
         /// <returns></returns>

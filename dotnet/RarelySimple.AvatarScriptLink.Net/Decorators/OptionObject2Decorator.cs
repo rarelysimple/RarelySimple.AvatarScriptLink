@@ -67,6 +67,13 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public void AddRowObject(string formId, RowObject rowObject) => Forms = Helper.AddRowObject(this, formId, rowObject).Forms;
 
         /// <summary>
+        /// Flags a <see cref="RowObject"/> for deletion in a specified <see cref="FormObjectDecorator"/> within the <see cref="OptionObject2Decorator"/> by RowId.
+        /// </summary>
+        /// <param name="formId"></param>
+        /// <param name="rowId"></param>
+        public void DeleteRowObject(string formId, string rowId) => Forms = Helper.DeleteRowObject(this, formId, rowId).Forms;
+
+        /// <summary>
         /// Returns the CurrentRow RowId of the form matching the FormId.
         /// </summary>
         /// <param name="formId"></param>

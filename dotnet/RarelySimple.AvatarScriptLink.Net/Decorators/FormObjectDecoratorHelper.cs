@@ -364,6 +364,49 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 };
                 return AddRowObject(formObject, rowObject);
             }
+            /// <summary>
+            /// Flags a <see cref="RowObject"/> for deletion in a <see cref="FormObjectDecorator"/>.
+            /// </summary>
+            /// <param name="formObject"></param>
+            /// <param name="rowObject"></param>
+            /// <returns></returns>
+            public static FormObjectDecorator DeleteRowObject(FormObjectDecorator formObject, RowObject rowObject)
+            {
+                if (rowObject == null)
+                    throw new ArgumentNullException(nameof(rowObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                return DeleteRowObject(formObject, rowObject.RowId);
+            }
+            /// <summary>
+            /// Flags a <see cref="RowObject"/> for deletion in a <see cref="FormObjectDecorator"/> by RowId.
+            /// </summary>
+            /// <param name="formObject"></param>
+            /// <param name="rowId"></param>
+            /// <returns></returns>
+            public static FormObjectDecorator DeleteRowObject(FormObjectDecorator formObject, string rowId)
+            {
+                if (formObject == null)
+                    throw new ArgumentNullException(nameof(formObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (string.IsNullOrEmpty(rowId))
+                    throw new ArgumentNullException(nameof(rowId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+
+                if (formObject.CurrentRow?.RowId == rowId)
+                {
+                    formObject.CurrentRow.RowAction = RowActions.Delete;
+                    return formObject;
+                }
+
+                if (formObject.MultipleIteration)
+                {
+                    int rowIndex = formObject.OtherRows.FindIndex(r => r.RowId == rowId);
+                    if (rowIndex >= 0)
+                    {
+                        formObject.OtherRows[rowIndex].RowAction = RowActions.Delete;
+                        return formObject;
+                    }
+                }
+
+                throw new ArgumentException(resourceManager.GetString("noRowObjectsFoundByRowId", CultureInfo.CurrentCulture), nameof(rowId));
+            }
         }
     }
 }

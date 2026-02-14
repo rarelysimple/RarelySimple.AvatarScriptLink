@@ -1036,6 +1036,67 @@ public class FormObjectDecoratorTests
 
     #endregion
 
+    #region DeleteRowObject
+
+    [TestMethod]
+    public void TestFormObjectDecorator_DeleteRowObject_CurrentRow()
+    {
+        var rowObject = new RowObject()
+        {
+            RowId = "1||1"
+        };
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            CurrentRow = rowObject
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        decorator.DeleteRowObject("1||1");
+        Assert.AreEqual(RowActions.Delete, decorator.CurrentRow.RowAction);
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_DeleteRowObject_OtherRow()
+    {
+        var row1 = new RowObject() { RowId = "1||1" };
+        var row2 = new RowObject() { RowId = "1||2" };
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            CurrentRow = row1,
+            MultipleIteration = true,
+            OtherRows = [row2]
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        decorator.DeleteRowObject("1||2");
+        Assert.AreEqual(RowActions.Delete, decorator.OtherRows[0].RowAction);
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_DeleteRowObject_NullRowId()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1"
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.DeleteRowObject((string)null));
+    }
+
+    [TestMethod]
+    public void TestFormObjectDecorator_DeleteRowObject_NotFound()
+    {
+        var formObject = new FormObject()
+        {
+            FormId = "1",
+            CurrentRow = new RowObject() { RowId = "1||1" }
+        };
+        var decorator = new FormObjectDecorator(formObject);
+        Assert.ThrowsException<ArgumentException>(() => decorator.DeleteRowObject("1||2"));
+    }
+
+    #endregion
+
     #region Edge Case Tests - Regression & Coverage
 
     [TestMethod]

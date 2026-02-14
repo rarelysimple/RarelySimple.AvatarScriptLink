@@ -414,6 +414,35 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                 }
                 return optionObject;
             }
+            /// <summary>
+            /// Flags a <see cref="RowObject"/> for deletion in a specified <see cref="FormObjectDecorator"/> within the <see cref="OptionObjectDecorator"/> by RowId.
+            /// </summary>
+            /// <param name="optionObject"></param>
+            /// <param name="formId"></param>
+            /// <param name="rowId"></param>
+            /// <returns></returns>
+            public static OptionObjectDecorator DeleteRowObject(OptionObjectDecorator optionObject, string formId, string rowId)
+            {
+                if (optionObject == null)
+                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (string.IsNullOrEmpty(formId))
+                    throw new ArgumentNullException(nameof(formId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (string.IsNullOrEmpty(rowId))
+                    throw new ArgumentNullException(nameof(rowId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (optionObject.Forms.Exists(f => f.FormId == formId))
+                {
+                    int formIndex = optionObject.Forms.FindIndex(f => f.FormId == formId);
+                    if (formIndex >= 0)
+                    {
+                        optionObject.Forms[formIndex].DeleteRowObject(rowId);
+                    }
+                }
+                else
+                {
+                    throw new ArgumentException(resourceManager.GetString("noFormObjectsFoundByFormId", CultureInfo.CurrentCulture), nameof(optionObject));
+                }
+                return optionObject;
+            }
         }
     }
 }
