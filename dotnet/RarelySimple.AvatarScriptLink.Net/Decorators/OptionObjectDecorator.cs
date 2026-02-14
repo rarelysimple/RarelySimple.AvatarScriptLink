@@ -74,6 +74,17 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         public void DeleteRowObject(string formId, string rowId) => Forms = Helper.DeleteRowObject(this, formId, rowId).Forms;
 
         /// <summary>
+        /// Disables all <see cref="FieldObject"/> in the <see cref="OptionObjectDecorator"/>.
+        /// </summary>
+        public void DisableAllFieldObjects() => Forms = Helper.DisableAllFieldObjects(this).Forms;
+
+        /// <summary>
+        /// Disables all <see cref="FieldObject"/> in the <see cref="OptionObjectDecorator"/>, except for the FieldNumbers specified in the list.
+        /// </summary>
+        /// <param name="excludedFields"></param>
+        public void DisableAllFieldObjects(List<string> excludedFields) => Forms = Helper.DisableAllFieldObjects(this, excludedFields).Forms;
+
+        /// <summary>
         /// Returns the CurrentRow RowId of the form matching the FormId.
         /// </summary>
         /// <param name="formId"></param>

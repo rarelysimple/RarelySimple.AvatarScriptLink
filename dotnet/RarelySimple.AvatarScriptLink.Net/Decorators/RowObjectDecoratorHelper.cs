@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Resources;
 using RarelySimple.AvatarScriptLink.Net.Exceptions;
@@ -188,6 +190,46 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
                     }
                 }
                 return decorator;
+            }
+            /// <summary>
+            /// Disables all <see cref="FieldObject"/> in the <see cref="RowObjectDecorator"/>.
+            /// </summary>
+            /// <param name="rowObject"></param>
+            /// <returns></returns>
+            public static RowObjectDecorator DisableAllFieldObjects(RowObjectDecorator rowObject)
+            {
+                if (rowObject == null)
+                    throw new ArgumentNullException(nameof(rowObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                return DisableAllFieldObjects(rowObject, new List<string>());
+            }
+            /// <summary>
+            /// Disables all <see cref="FieldObject"/> in the <see cref="RowObjectDecorator"/>, except for the FieldNumbers specified in the list.
+            /// </summary>
+            /// <param name="rowObject"></param>
+            /// <param name="excludedFields"></param>
+            /// <returns></returns>
+            public static RowObjectDecorator DisableAllFieldObjects(RowObjectDecorator rowObject, List<string> excludedFields)
+            {
+                if (rowObject == null)
+                    throw new ArgumentNullException(nameof(rowObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+                if (excludedFields == null)
+                    throw new ArgumentNullException(nameof(excludedFields), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+
+                foreach (var field in rowObject.Fields.Where(f => !excludedFields.Contains(f.FieldNumber)))
+                {
+                    field.Enabled = false;
+                }
+
+                // Only set RowAction to Edit if it's currently None (no action).
+                // This preserves existing RowActions like DELETE, ADD, or EDIT:
+                // - RowActions.None: No action pending (preserve the row; enable Edit mode)
+                // - RowActions.Add: Adding a new row to the form (don't override)
+                // - RowActions.Edit: Modifying an existing row (don't override)
+                // - RowActions.Delete: Removing the row (don't override)
+                if (rowObject.RowAction == RowActions.None)
+                    rowObject.RowAction = RowActions.Edit;
+
+                return rowObject;
             }
         }
     }

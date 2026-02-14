@@ -484,4 +484,184 @@ public class RowObjectDecoratorTests
     }
 
     #endregion
+
+    #region DisableAllFieldObjects
+
+    [TestMethod]
+    public void DisableAllFieldObjects_NullExclusionList_ThrowsException()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "1"
+        };
+        var decorator = new RowObjectDecorator(rowObject);
+        Assert.ThrowsException<ArgumentNullException>(() => decorator.DisableAllFieldObjects(null));
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_DisablesAllFields()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "1"
+        };
+        var decorator = new RowObjectDecorator(rowObject);
+        decorator.DisableAllFieldObjects(new List<string>());
+        Assert.IsFalse(decorator.Fields[0].Enabled);
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_ExcludedFieldsRemainEnabled()
+    {
+        var fieldObject1 = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var fieldObject2 = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "124",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject1, fieldObject2],
+            RowId = "1"
+        };
+        var decorator = new RowObjectDecorator(rowObject);
+        decorator.DisableAllFieldObjects(new List<string> { "123" });
+        Assert.IsTrue(decorator.Fields[0].Enabled);
+        Assert.IsFalse(decorator.Fields[1].Enabled);
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_MultipleFields()
+    {
+        var fieldObject1 = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var fieldObject2 = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "124",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var fieldObject3 = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "125",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject1, fieldObject2, fieldObject3],
+            RowId = "1"
+        };
+        var decorator = new RowObjectDecorator(rowObject);
+        decorator.DisableAllFieldObjects(new List<string> { "124" });
+        Assert.IsFalse(decorator.Fields[0].Enabled);
+        Assert.IsTrue(decorator.Fields[1].Enabled);
+        Assert.IsFalse(decorator.Fields[2].Enabled);
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_SetsRowActionToEdit()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "1",
+            RowAction = ""
+        };
+        var decorator = new RowObjectDecorator(rowObject);
+        decorator.DisableAllFieldObjects(new List<string>());
+        Assert.AreEqual(RowActions.Edit, decorator.RowAction);
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_PreservesExistingRowAction()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "1",
+            RowAction = "DELETE"
+        };
+        var decorator = new RowObjectDecorator(rowObject);
+        decorator.DisableAllFieldObjects(new List<string>());
+        Assert.AreEqual("DELETE", decorator.RowAction);
+    }
+
+    [TestMethod]
+    public void DisableAllFieldObjects_WithoutExclusionList()
+    {
+        var fieldObject = new FieldObject()
+        {
+            Enabled = "1",
+            FieldNumber = "123",
+            FieldValue = "test",
+            Lock = "0",
+            Required = "0"
+        };
+        var rowObject = new RowObject()
+        {
+            Fields = [fieldObject],
+            RowId = "1"
+        };
+        var decorator = new RowObjectDecorator(rowObject);
+        decorator.DisableAllFieldObjects();
+        Assert.IsFalse(decorator.Fields[0].Enabled);
+        Assert.AreEqual(RowActions.Edit, decorator.RowAction);
+    }
+
+    #endregion
 }

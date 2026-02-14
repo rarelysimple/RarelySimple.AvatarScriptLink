@@ -97,6 +97,27 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
         }
 
         /// <summary>
+        /// Disables all <see cref="FieldObject"/> in the <see cref="FormObjectDecorator"/>.
+        /// </summary>
+        public void DisableAllFieldObjects()
+        {
+            var tempDecorator = Helper.DisableAllFieldObjects(this);
+            CurrentRow = tempDecorator.CurrentRow;
+            OtherRows = tempDecorator.OtherRows;
+        }
+
+        /// <summary>
+        /// Disables all <see cref="FieldObject"/> in the <see cref="FormObjectDecorator"/>, except for the FieldNumbers specified in the list.
+        /// </summary>
+        /// <param name="excludedFields"></param>
+        public void DisableAllFieldObjects(List<string> excludedFields)
+        {
+            var tempDecorator = Helper.DisableAllFieldObjects(this, excludedFields);
+            CurrentRow = tempDecorator.CurrentRow;
+            OtherRows = tempDecorator.OtherRows;
+        }
+
+        /// <summary>
         /// Returns the RowId of the <see cref="CurrentRow"/>.
         /// </summary>
         /// <returns></returns>

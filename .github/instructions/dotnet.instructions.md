@@ -66,9 +66,22 @@ To provide the broadest compatiblity, the projects target .NET Standard 2.0, all
 - Avoid catching generic `Exception` types; catch specific exceptions
 - Log exceptions with sufficient context for troubleshooting
 
+### RowAction Semantics
+Understanding RowAction values is critical for proper row state management in ScriptLink operations. The RowAction determines which rows are included in the response payload sent back to myAvatar:
+- **RowActions.None** (`""` empty string or `null`): No action pending on the row. Both empty string and null are treated equivalently as None. Rows with RowAction.None are **excluded from the response payload** and not sent back to myAvatar, effectively preserving them as-is. When modifying fields in a row initially in None state, set it to RowActions.Edit to include it in the response payload.
+- **RowActions.Add** (`"ADD"`): A new row is being added to the form. This row **is included in the response payload** to instruct myAvatar to add it. Preserve this action when modifying the row; do not override with Edit.
+- **RowActions.Edit** (`"EDIT"`): An existing row is being modified. This row **is included in the response payload** to instruct myAvatar to update it. Set a row's RowAction to Edit when making field changes on a row that was previously in None state to ensure the modifications are sent to myAvatar.
+- **RowActions.Delete** (`"DELETE"`): The row is marked for removal from the form. This row **is included in the response payload** to instruct myAvatar to delete it. Do not change this action even if fields are modified; the row deletion takes precedence.
+
+When implementing helper methods that modify rows (e.g., `DisableAllFieldObjects`, `SetFieldValue`):
+- Only set RowAction to Edit if it's currently None (use `string.IsNullOrEmpty()` to check for None), so the modified row is included in the response payload
+- Preserve existing RowAction values (Add, Edit, Delete) to avoid overriding the intended operation
+- This ensures that a row marked for deletion remains marked for deletion, a row being added retains that intent, and rows with no changes are not unnecessarily included in the response
+
 ### Documentation
 - Include XML documentation for all public types and members
 - Document non-obvious logic with inline comments
+- Explain why certain decisions are made, especially regarding RowAction handling
 - Include examples in XML documentation for complex methods
 - Keep documentation up-to-date with code changes
 - Document breaking changes and migration paths in release notes
