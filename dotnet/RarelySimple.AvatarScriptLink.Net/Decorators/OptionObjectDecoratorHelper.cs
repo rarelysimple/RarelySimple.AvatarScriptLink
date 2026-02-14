@@ -394,8 +394,12 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             /// <returns></returns>
             private static OptionObjectDecorator ExecuteOnForm(OptionObjectDecorator optionObject, string formId, Action<FormObjectDecorator> action)
             {
+                if (optionObject == null)
+                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (optionObject.Forms == null)
                     throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
+                if (string.IsNullOrEmpty(formId))
+                    throw new ArgumentNullException(nameof(formId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (optionObject.Forms.Exists(f => f.FormId == formId))
                 {
                     int formIndex = optionObject.Forms.FindIndex(f => f.FormId == formId);
@@ -419,12 +423,6 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             /// <returns></returns>
             public static OptionObjectDecorator AddRowObject(OptionObjectDecorator optionObject, string formId, RowObject rowObject)
             {
-                if (optionObject == null)
-                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-                if (optionObject.Forms == null)
-                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
-                if (string.IsNullOrEmpty(formId))
-                    throw new ArgumentNullException(nameof(formId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (rowObject == null)
                     throw new ArgumentNullException(nameof(rowObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 return ExecuteOnForm(optionObject, formId, form => form.AddRowObject(rowObject));
@@ -438,12 +436,6 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             /// <returns></returns>
             public static OptionObjectDecorator DeleteRowObject(OptionObjectDecorator optionObject, string formId, string rowId)
             {
-                if (optionObject == null)
-                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
-                if (optionObject.Forms == null)
-                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(OptionObjectMissingForms, CultureInfo.CurrentCulture));
-                if (string.IsNullOrEmpty(formId))
-                    throw new ArgumentNullException(nameof(formId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(rowId))
                     throw new ArgumentNullException(nameof(rowId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 return ExecuteOnForm(optionObject, formId, form => form.DeleteRowObject(rowId));
