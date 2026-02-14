@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using RarelySimple.AvatarScriptLink.Objects;
 
@@ -12,6 +13,8 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
 
         public FormObjectDecorator(FormObject formObject)
         {
+            if (formObject == null)
+                throw new ArgumentNullException(nameof(formObject));
             _formObject = formObject;
             if (formObject.CurrentRow != null)
                 CurrentRow = new RowObjectDecorator(formObject.CurrentRow);

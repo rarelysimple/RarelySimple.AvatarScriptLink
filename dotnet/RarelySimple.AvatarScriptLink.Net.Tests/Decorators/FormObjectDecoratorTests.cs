@@ -8,6 +8,16 @@ namespace RarelySimple.AvatarScriptLink.Net.Tests.Decorators;
 [TestClass]
 public class FormObjectDecoratorTests
 {
+    #region Constructor
+
+    [TestMethod]
+    public void TestFormObjectDecorator_Constructor_NullFormObject()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => new FormObjectDecorator(null));
+    }
+
+    #endregion
+
     [TestMethod]
     public void TestFormObjectDecorator_ReturnsNoRows()
     {

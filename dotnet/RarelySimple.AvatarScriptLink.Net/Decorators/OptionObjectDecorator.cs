@@ -1,5 +1,6 @@
 ﻿using RarelySimple.AvatarScriptLink.Objects;
 using RarelySimple.AvatarScriptLink.Objects.Advanced.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace RarelySimple.AvatarScriptLink.Net.Decorators
@@ -14,6 +15,8 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
 
         public OptionObjectDecorator(OptionObject optionObject)
         {
+            if (optionObject == null)
+                throw new ArgumentNullException(nameof(optionObject));
             _optionObject = optionObject.Clone();
 
             Forms = new List<FormObjectDecorator>();

@@ -16,6 +16,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static IOptionObject DeleteRowObject(IOptionObject optionObject, IRowObject rowObject)
         {
+            if (rowObject == null)
+                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return DeleteRowObject(optionObject, rowObject.RowId);
         }
         /// <summary>
@@ -26,6 +28,10 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static IOptionObject DeleteRowObject(IOptionObject optionObject, string rowId)
         {
+            if (optionObject == null)
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+            if (optionObject.Forms == null)
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString("optionObjectMissingForms", CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(rowId))
                 throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             int formIndex = optionObject.Forms.FindIndex(f => IsRowPresent(f, rowId));
@@ -44,6 +50,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static IFormObject DeleteRowObject(IFormObject formObject, IRowObject rowObject)
         {
+            if (rowObject == null)
+                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             return DeleteRowObject(formObject, rowObject.RowId);
         }
         /// <summary>
@@ -54,6 +62,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <returns></returns>
         public static IFormObject DeleteRowObject(IFormObject formObject, string rowId)
         {
+            if (formObject == null)
+                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (string.IsNullOrEmpty(rowId))
                 throw new ArgumentNullException(nameof(rowId), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             if (formObject.CurrentRow?.RowId == rowId)

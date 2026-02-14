@@ -423,6 +423,8 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             /// <returns></returns>
             public static OptionObject2015Decorator AddRowObject(OptionObject2015Decorator optionObject, string formId, RowObject rowObject)
             {
+                if (optionObject == null)
+                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (rowObject == null)
                     throw new ArgumentNullException(nameof(rowObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 return ExecuteOnForm(optionObject, formId, form => form.AddRowObject(rowObject));
@@ -436,6 +438,8 @@ namespace RarelySimple.AvatarScriptLink.Net.Decorators
             /// <returns></returns>
             public static OptionObject2015Decorator DeleteRowObject(OptionObject2015Decorator optionObject, string formId, string rowId)
             {
+                if (optionObject == null)
+                    throw new ArgumentNullException(nameof(optionObject), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 if (string.IsNullOrEmpty(rowId))
                     throw new ArgumentNullException(nameof(rowId), resourceManager.GetString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
                 return ExecuteOnForm(optionObject, formId, form => form.DeleteRowObject(rowId));

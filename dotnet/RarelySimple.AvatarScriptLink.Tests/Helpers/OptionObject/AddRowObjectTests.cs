@@ -349,5 +349,18 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
 
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => formObject.AddRowObject(new RowObject()));
         }
+
+        [TestMethod]
+        public void AddRowObject_OptionObject_NullOptionObject()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddRowObject((OptionObject)null, "1", new RowObject()));
+        }
+
+        [TestMethod]
+        public void AddRowObject_OptionObject_NullForms()
+        {
+            OptionObject optionObject = new() { Forms = null };
+            Assert.ThrowsException<ArgumentNullException>(() => optionObject.AddRowObject("1", new RowObject()));
+        }
     }
 }

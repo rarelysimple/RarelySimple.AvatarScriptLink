@@ -8,6 +8,16 @@ namespace RarelySimple.AvatarScriptLink.Net.Tests.Decorators;
 [TestClass]
 public class OptionObject2DecoratorTests
 {
+    #region Constructor
+
+    [TestMethod]
+    public void TestOptionObject2Decorator_Constructor_NullOptionObject()
+    {
+        Assert.ThrowsException<ArgumentNullException>(() => new OptionObject2Decorator(null));
+    }
+
+    #endregion
+
     [TestMethod]
     public void TestOptionObject2Decorator_ReturnsNoForms()
     {
@@ -1443,6 +1453,28 @@ public class OptionObject2DecoratorTests
         Assert.ThrowsException<ArgumentException>(() => decorator.DeleteRowObject("999", "1||1"));
     }
 
+    [TestMethod]
+    public void TestOptionObject2Decorator_DeleteRowObject_OtherRow()
+    {
+        var row1 = new RowObject() { RowId = "456||1" };
+        var row2 = new RowObject() { RowId = "456||2" };
+        var formObject = new FormObject()
+        {
+            FormId = "456",
+            CurrentRow = row1,
+            MultipleIteration = true,
+            OtherRows = [row2]
+        };
+        var optionObject = new OptionObject2()
+        {
+            OptionId = "TEST123",
+            Forms = [formObject]
+        };
+        var decorator = new OptionObject2Decorator(optionObject);
+        decorator.DeleteRowObject("456", "456||2");
+        Assert.AreEqual(RowActions.Delete, decorator.Forms[0].OtherRows[0].RowAction);
+    }
+
     #endregion
 
     #region IsRowPresent
@@ -1695,16 +1727,6 @@ public class OptionObject2DecoratorTests
         var decorator = new OptionObject2Decorator(optionObject);
         Assert.IsNotNull(decorator.Forms);
         Assert.AreEqual(0, decorator.Forms.Count);
-    }
-
-    [TestMethod]
-    public void TestOptionObject2Decorator_AddRowObject_RegressionNullFormIdHandling()
-    {
-        var formObject = new FormObject() { FormId = "1", MultipleIteration = true };
-        var optionObject = new OptionObject2() { OptionId = "TEST123", Forms = [formObject] };
-        var decorator = new OptionObject2Decorator(optionObject);
-        var rowObject = new RowObject();
-        Assert.ThrowsException<ArgumentNullException>(() => decorator.AddRowObject(null, rowObject));
     }
 
     #endregion
