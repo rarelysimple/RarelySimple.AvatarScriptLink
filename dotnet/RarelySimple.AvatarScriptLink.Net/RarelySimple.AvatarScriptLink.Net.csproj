@@ -10,7 +10,7 @@
     <PackageProjectUrl>https://scriptlink.rarelysimple.com/</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
     <Copyright>Copyright © 2026 Scott Olson Jr</Copyright>
-    <Description>RarelySimple.AvatarScriptLink.Net provides helpers and utilities to accelerate your Netsmart myAvatar ScriptLink development.</Description>
+    <Description>RarelySimple.AvatarScriptLink.Net is a batteries-included meta-package that provides all the tools and utilities you need for Netsmart myAvatar ScriptLink development, including Objects, Builders, Converters, Helpers, and Validators.</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>../RarelySimple.AvatarScriptLink.snk</AssemblyOriginatorKeyFile>
@@ -33,6 +33,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RarelySimple.AvatarScriptLink.Objects\RarelySimple.AvatarScriptLink.Objects.csproj" />
+    <ProjectReference Include="..\RarelySimple.AvatarScriptLink.Objects.Builders\RarelySimple.AvatarScriptLink.Objects.Builders.csproj" />
+    <ProjectReference Include="..\RarelySimple.AvatarScriptLink.Objects.Converters\RarelySimple.AvatarScriptLink.Objects.Converters.csproj" />
+    <ProjectReference Include="..\RarelySimple.AvatarScriptLink.Objects.Helpers\RarelySimple.AvatarScriptLink.Objects.Helpers.csproj" />
+    <ProjectReference Include="..\RarelySimple.AvatarScriptLink.Objects.Validators\RarelySimple.AvatarScriptLink.Objects.Validators.csproj" />
   </ItemGroup>
   
   <ItemGroup>

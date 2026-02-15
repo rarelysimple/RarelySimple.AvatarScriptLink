@@ -1,4 +1,4 @@
-using RarelySimple.AvatarScriptLink.Objects.Advanced.Interfaces;
+using RarelySimple.AvatarScriptLink.Objects.Interfaces;
 
 namespace RarelySimple.AvatarScriptLink.Objects.Tests
 {
@@ -230,5 +230,49 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
             formObject2.MultipleIteration = false;
             Assert.AreNotEqual(formObject1.GetHashCode(), formObject2.GetHashCode());
         }
+
+        #region Collection Presence Helper Tests
+
+        [TestMethod]
+        public void TestFormObject_HasOtherRows_WhenEmpty()
+        {
+            var formObject = FormObject.Initialize();
+            Assert.IsFalse(formObject.HasOtherRows());
+        }
+
+        [TestMethod]
+        public void TestFormObject_HasOtherRows_WhenNotEmpty()
+        {
+            var formObject = FormObject.Initialize();
+            formObject.OtherRows.Add(RowObject.Initialize());
+            Assert.IsTrue(formObject.HasOtherRows());
+        }
+
+        [TestMethod]
+        public void TestFormObject_HasOtherRows_WhenMultipleRows()
+        {
+            var formObject = FormObject.Initialize();
+            formObject.OtherRows.Add(RowObject.Initialize());
+            formObject.OtherRows.Add(RowObject.Initialize());
+            Assert.IsTrue(formObject.HasOtherRows());
+        }
+
+        [TestMethod]
+        public void TestFormObject_HasCurrentRow_WhenNull()
+        {
+            var formObject = FormObject.Initialize();
+            formObject.CurrentRow = null;
+            Assert.IsFalse(formObject.HasCurrentRow());
+        }
+
+        [TestMethod]
+        public void TestFormObject_HasCurrentRow_WhenSet()
+        {
+            var formObject = FormObject.Initialize();
+            formObject.CurrentRow = RowObject.Initialize();
+            Assert.IsTrue(formObject.HasCurrentRow());
+        }
+
+        #endregion
     }
 }

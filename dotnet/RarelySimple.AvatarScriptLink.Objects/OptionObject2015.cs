@@ -1,4 +1,4 @@
-﻿using RarelySimple.AvatarScriptLink.Objects.Advanced.Abstracts;
+﻿using RarelySimple.AvatarScriptLink.Objects.Abstracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
