@@ -1,4 +1,4 @@
-using RarelySimple.AvatarScriptLink.Objects.Advanced.Interfaces;
+using RarelySimple.AvatarScriptLink.Objects.Interfaces;
 
 namespace RarelySimple.AvatarScriptLink.Objects.Tests
 {
@@ -311,5 +311,33 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
             optionObject2.ErrorMesg = "modified";
             Assert.AreNotEqual(optionObject1.GetHashCode(), optionObject2.GetHashCode());
         }
+
+        #region Collection Presence Helper Tests
+
+        [TestMethod]
+        public void TestOptionObject_HasForms_WhenEmpty()
+        {
+            var optionObject = OptionObject.Initialize();
+            Assert.IsFalse(optionObject.HasForms());
+        }
+
+        [TestMethod]
+        public void TestOptionObject_HasForms_WhenNotEmpty()
+        {
+            var optionObject = OptionObject.Initialize();
+            optionObject.Forms.Add(FormObject.Initialize());
+            Assert.IsTrue(optionObject.HasForms());
+        }
+
+        [TestMethod]
+        public void TestOptionObject_HasForms_WhenMultipleForms()
+        {
+            var optionObject = OptionObject.Initialize();
+            optionObject.Forms.Add(FormObject.Initialize());
+            optionObject.Forms.Add(FormObject.Initialize());
+            Assert.IsTrue(optionObject.HasForms());
+        }
+
+        #endregion
     }
 }

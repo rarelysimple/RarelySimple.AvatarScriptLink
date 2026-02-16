@@ -1,4 +1,4 @@
-﻿using RarelySimple.AvatarScriptLink.Objects.Advanced.Interfaces;
+﻿using RarelySimple.AvatarScriptLink.Objects.Interfaces;
 
 namespace RarelySimple.AvatarScriptLink.Objects.Tests
 {
@@ -161,11 +161,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
         {
             FieldObject fieldObject1 = new()
             {
-                Enabled = "1",
-                FieldNumber = "12345.0",
-                FieldValue = "abcdef",
-                Lock = "0",
-                Required = "1"
+                Enabled = string.Empty,
+                FieldNumber = string.Empty,
+                FieldValue = string.Empty,
+                Lock = string.Empty,
+                Required = string.Empty
             };
             FieldObject fieldObject2 = fieldObject1.Clone();
             Assert.IsTrue(fieldObject1.Equals(fieldObject2));
@@ -334,5 +334,159 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
         {
             Assert.IsNotNull(FieldObject.Initialize());
         }
+
+        #region Boolean Helper Tests
+
+        [TestMethod]
+        public void TestFieldObject_IsEnabled_WhenEnabledIs1()
+        {
+            var fieldObject = FieldObject.Initialize();
+            fieldObject.Enabled = "1";
+            Assert.IsTrue(fieldObject.IsEnabled());
+        }
+
+        [TestMethod]
+        public void TestFieldObject_IsEnabled_WhenEnabledIs0()
+        {
+            var fieldObject = FieldObject.Initialize();
+            fieldObject.Enabled = "0";
+            Assert.IsFalse(fieldObject.IsEnabled());
+        }
+
+        [TestMethod]
+        public void TestFieldObject_IsEnabled_WhenEnabledIsEmpty()
+        {
+            var fieldObject = FieldObject.Initialize();
+            fieldObject.Enabled = string.Empty;
+            Assert.IsFalse(fieldObject.IsEnabled());
+        }
+
+        [TestMethod]
+        public void TestFieldObject_IsLocked_WhenLockIs1()
+        {
+            var fieldObject = FieldObject.Initialize();
+            fieldObject.Lock = "1";
+            Assert.IsTrue(fieldObject.IsLocked());
+        }
+
+        [TestMethod]
+        public void TestFieldObject_IsLocked_WhenLockIs0()
+        {
+            var fieldObject = FieldObject.Initialize();
+            fieldObject.Lock = "0";
+            Assert.IsFalse(fieldObject.IsLocked());
+        }
+
+        [TestMethod]
+        public void TestFieldObject_IsLocked_WhenLockIsEmpty()
+        {
+            var fieldObject = FieldObject.Initialize();
+            fieldObject.Lock = string.Empty;
+            Assert.IsFalse(fieldObject.IsLocked());
+        }
+
+        [TestMethod]
+        public void TestFieldObject_IsRequired_WhenRequiredIs1()
+        {
+            var fieldObject = FieldObject.Initialize();
+            fieldObject.Required = "1";
+            Assert.IsTrue(fieldObject.IsRequired());
+        }
+
+        [TestMethod]
+        public void TestFieldObject_IsRequired_WhenRequiredIs0()
+        {
+            var fieldObject = FieldObject.Initialize();
+            fieldObject.Required = "0";
+            Assert.IsFalse(fieldObject.IsRequired());
+        }
+
+        [TestMethod]
+        public void TestFieldObject_IsRequired_WhenRequiredIsEmpty()
+        {
+            var fieldObject = FieldObject.Initialize();
+            fieldObject.Required = string.Empty;
+            Assert.IsFalse(fieldObject.IsRequired());
+        }
+
+        [TestMethod]
+        public void TestFieldObject_SetEnabled_WithTrue()
+        {
+            var fieldObject = FieldObject.Initialize();
+            fieldObject.SetEnabled(true);
+            Assert.AreEqual("1", fieldObject.Enabled);
+        }
+
+        [TestMethod]
+        public void TestFieldObject_SetEnabled_WithFalse()
+        {
+            var fieldObject = FieldObject.Initialize();
+            fieldObject.SetEnabled(false);
+            Assert.AreEqual("0", fieldObject.Enabled);
+        }
+
+        [TestMethod]
+        public void TestFieldObject_SetLocked_WithTrue()
+        {
+            var fieldObject = FieldObject.Initialize();
+            fieldObject.SetLocked(true);
+            Assert.AreEqual("1", fieldObject.Lock);
+        }
+
+        [TestMethod]
+        public void TestFieldObject_SetLocked_WithFalse()
+        {
+            var fieldObject = FieldObject.Initialize();
+            fieldObject.SetLocked(false);
+            Assert.AreEqual("0", fieldObject.Lock);
+        }
+
+        [TestMethod]
+        public void TestFieldObject_SetRequired_WithTrue()
+        {
+            var fieldObject = FieldObject.Initialize();
+            fieldObject.SetRequired(true);
+            Assert.AreEqual("1", fieldObject.Required);
+        }
+
+        [TestMethod]
+        public void TestFieldObject_SetRequired_WithFalse()
+        {
+            var fieldObject = FieldObject.Initialize();
+            fieldObject.SetRequired(false);
+            Assert.AreEqual("0", fieldObject.Required);
+        }
+
+        [TestMethod]
+        public void TestFieldObject_BooleanHelpersRoundTrip_Enabled()
+        {
+            var fieldObject = FieldObject.Initialize();
+            fieldObject.SetEnabled(true);
+            Assert.IsTrue(fieldObject.IsEnabled());
+            fieldObject.SetEnabled(false);
+            Assert.IsFalse(fieldObject.IsEnabled());
+        }
+
+        [TestMethod]
+        public void TestFieldObject_BooleanHelpersRoundTrip_Locked()
+        {
+            var fieldObject = FieldObject.Initialize();
+            fieldObject.SetLocked(true);
+            Assert.IsTrue(fieldObject.IsLocked());
+            fieldObject.SetLocked(false);
+            Assert.IsFalse(fieldObject.IsLocked());
+        }
+
+        [TestMethod]
+        public void TestFieldObject_BooleanHelpersRoundTrip_Required()
+        {
+            var fieldObject = FieldObject.Initialize();
+            fieldObject.SetRequired(true);
+            Assert.IsTrue(fieldObject.IsRequired());
+            fieldObject.SetRequired(false);
+            Assert.IsFalse(fieldObject.IsRequired());
+        }
+
+        #endregion
     }
 }

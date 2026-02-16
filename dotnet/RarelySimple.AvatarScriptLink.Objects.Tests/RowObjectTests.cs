@@ -1,4 +1,4 @@
-using RarelySimple.AvatarScriptLink.Objects.Advanced.Interfaces;
+using RarelySimple.AvatarScriptLink.Objects.Interfaces;
 
 namespace RarelySimple.AvatarScriptLink.Objects.Tests
 {
@@ -232,5 +232,33 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
             rowObject2.RowAction = "EDIT";
             Assert.AreNotEqual(rowObject1.GetHashCode(), rowObject2.GetHashCode());
         }
+
+        #region Collection Presence Helper Tests
+
+        [TestMethod]
+        public void TestRowObject_HasFields_WhenEmpty()
+        {
+            var rowObject = RowObject.Initialize();
+            Assert.IsFalse(rowObject.HasFields());
+        }
+
+        [TestMethod]
+        public void TestRowObject_HasFields_WhenNotEmpty()
+        {
+            var rowObject = RowObject.Initialize();
+            rowObject.Fields.Add(FieldObject.Initialize());
+            Assert.IsTrue(rowObject.HasFields());
+        }
+
+        [TestMethod]
+        public void TestRowObject_HasFields_WhenMultipleFields()
+        {
+            var rowObject = RowObject.Initialize();
+            rowObject.Fields.Add(FieldObject.Initialize());
+            rowObject.Fields.Add(FieldObject.Initialize());
+            Assert.IsTrue(rowObject.HasFields());
+        }
+
+        #endregion
     }
 }

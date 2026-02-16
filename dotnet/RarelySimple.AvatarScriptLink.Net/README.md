@@ -2,64 +2,81 @@
 
 [![NuGet Latest](https://img.shields.io/nuget/v/RarelySimple.AvatarScriptLink.Net)](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink.Net/) [![NuGet Downloads](https://img.shields.io/nuget/dt/RarelySimple.AvatarScriptLink.Net)](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink.Net/) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=rarelysimple_RarelySimple.AvatarScriptLink.Net&metric=alert_status)](https://sonarcloud.io/dashboard?id=rarelysimple_RarelySimple.AvatarScriptLink.Net) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=rarelysimple_RarelySimple.AvatarScriptLink.Net&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=rarelysimple_RarelySimple.AvatarScriptLink.Net) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=rarelysimple_RarelySimple.AvatarScriptLink.Net&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=rarelysimple_RarelySimple.AvatarScriptLink.Net) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=rarelysimple_RarelySimple.AvatarScriptLink.Net&metric=security_rating)](https://sonarcloud.io/dashboard?id=rarelysimple_RarelySimple.AvatarScriptLink.Net)
 
-RarelySimple.AvatarScriptLink.Net provides helpers and utilities to accelerate your [myAvatar](https://www.ntst.com/Solutions-and-Services/Offerings/myAvatar) ScriptLink development.
+**RarelySimple.AvatarScriptLink.Net** is a batteries-included meta-package that provides all the tools you need for [myAvatar](https://www.ntst.com/Solutions-and-Services/Offerings/myAvatar) ScriptLink development.
 
-# Example
+## What's Included
 
-Most ScriptLink-compatible APIs are working with the ScriptLink objects and are resposible for handling all aspects of reading, updating, and returning them. Here's what a "Hello, World!" response might look like in this scenario.
+This package includes:
 
-```c#
-// Uncomment annotation for .NET Framework *.asmx
-// [WebMethod]
+- **Objects** - Core ScriptLink data types and constants (OptionObject, FormObject, RowObject, FieldObject, ErrorCode)
+- **Builders** - Fluent builder pattern for creating ScriptLink objects
+- **Converters** - Deep-copy and cross-variant conversion utilities
+- **Helpers** - Extension methods for querying and manipulating objects
+- **Validators** - Response validation for ScriptLink SOAP requirements
+
+## Quick Start
+
+Install the package:
+
+```bash
+dotnet add package RarelySimple.AvatarScriptLink.Net
+```
+
+Build a simple ScriptLink response:
+
+```csharp
+using RarelySimple.AvatarScriptLink.Net;
+using RarelySimple.AvatarScriptLink.Objects;
+using RarelySimple.AvatarScriptLink.Objects.Builders;
+
 public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameter)
 {
-    // Create return OptionObject
-    OptionObject2015 returnOptionObject = new OptionObject2015();
-
-    // Do work
-
-    // Set Error Code and Message
-    returnOptionObject.ErrorCode = 3;
-    returnOptionObject.ErrorMesg = "Hello, World!";
-    
-    // Copy required OptionObject attributes
-    returnOptionObject.EntityID = optionObject.EntityID;
-    returnOptionObject.EpisodeNumber = optionObject.EpisodeNumber;
-    returnOptionObject.Facility = optionObject.Facility;
-    returnOptionObject.NamespaceName = optionObject.NamespaceName;
-    returnOptionObject.OptionId = optionObject.OptionId;
-    returnOptionObject.OptionStaffId = optionObject.OptionStaffId;
-    returnOptionObject.OptionUserId = optionObject.OptionUserId;
-    returnOptionObject.ParentNamespace = optionObject.ParentNamespace;
-    returnOptionObject.ServerName = optionObject.ServerName;
-    returnOptionObject.SessionToken = optionObject.SessionToken;
-    returnOptionObject.SystemCode = optionObject.SystemCode;
-
-    return returnOptionObject;
+    return OptionObject2015Builder
+        .FromOptionObject(optionObject)
+        .WithErrorCode(ErrorCode.Informational)
+        .WithErrorMessage("Hello, World!")
+        .Build();
 }
 ```
 
-With AvatarScriptLink.NET, this same code can be simplified to:
+Query and manipulate field values:
 
-```c#
-// Uncomment annotation for .NET Framework *.asmx
-// [WebMethod]
-public OptionObject2015 RunScript(OptionObject2015 optionObject, string parameter)
+```csharp
+using RarelySimple.AvatarScriptLink.Objects.Helpers;
+
+// Get a field value (searches all forms)
+string? patientName = optionObject.GetFieldValue("123");
+
+// Check if field is present
+if (optionObject.IsFieldPresent("456"))
 {
-    
-    var decorator = new OptionObject2015Decorator(optionObject);
+    // Set field value
+    optionObject.SetFieldValue("456", formId, rowId, "New Value");
+}
 
-    // Do work
+// Disable all fields in a row except specific ones
+row.DisableAllFieldObjects(excludedFieldNumbers: new List<string> { "789" });
+```
 
-    return decorator.Return()
-        .WithErrorCode(ErrorCode.Alert)
-        .WithErrorMesg("Hello World!")
-        .AsOptionObject2015();
+Validate responses:
+
+```csharp
+using RarelySimple.AvatarScriptLink.Objects.Validators;
+
+var result = optionObject.ValidateResponse();
+if (!result.IsValid)
+{
+    foreach (var error in result.Errors)
+    {
+        Console.WriteLine(error);
+    }
 }
 ```
+
+## Documentation
 
 Check out [the documentation](https://scriptlink.rarelysimple.com/) to learn more.
 
-## Licensing ##
+## Licensing
 
 AvatarScriptLink.NET is open source under the [MIT License](https://github.com/rarelysimple/RarelySimple.AvatarScriptLink/blob/master/LICENSE) and free for commercial use.

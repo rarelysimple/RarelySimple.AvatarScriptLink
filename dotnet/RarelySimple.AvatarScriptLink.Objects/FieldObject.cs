@@ -1,4 +1,4 @@
-﻿using RarelySimple.AvatarScriptLink.Objects.Advanced.Abstracts;
+﻿using RarelySimple.AvatarScriptLink.Objects.Abstracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -111,17 +111,29 @@ namespace RarelySimple.AvatarScriptLink.Objects
 
         #region Public Methods
 
-        public bool IsEnabled()
+        /// <summary>
+        /// Gets a value indicating whether the field is enabled.
+        /// </summary>
+        /// <returns>True if Enabled equals EnabledStatus.Enabled, false otherwise.</returns>
+        public new bool IsEnabled()
         {
             return Enabled == EnabledStatus.Enabled;
         }
 
-        public bool IsLocked()
+        /// <summary>
+        /// Gets a value indicating whether the field is locked.
+        /// </summary>
+        /// <returns>True if Lock equals LockStatus.Locked, false otherwise.</returns>
+        public new bool IsLocked()
         {
             return Lock == LockStatus.Locked;
         }
 
-        public bool IsRequired()
+        /// <summary>
+        /// Gets a value indicating whether the field is required.
+        /// </summary>
+        /// <returns>True if Required equals RequiredStatus.Required, false otherwise.</returns>
+        public new bool IsRequired()
         {
             return Required == RequiredStatus.Required;
         }
