@@ -2,7 +2,7 @@
 
 ## About Project
 
-This project provides a open-source libraries for building SOAP web services compatible with Netsmart Technologies' myAvatar CareRecord using ScriptLink. The libraries include the definition of the foundational data types, as well as the ScriptLink request and response structures needed to create custom SOAP web services that can interact with myAvatar. They also include helper methods formanaging and manipulating the data within these structures including creation of the SOAP response. This project aims to simplify the development of custom integrations with myAvatar by providing a robust and easy-to-use set of tools for working with ScriptLink and CareRecord data.
+This project provides open-source libraries for building SOAP web services compatible with Netsmart Technologies' myAvatar CareRecord using ScriptLink. The libraries include foundational data types, as well as the ScriptLink request and response structures needed to create custom SOAP web services that interact with myAvatar. They also include helper methods for managing and manipulating data within these structures, including creation of SOAP responses. This project aims to simplify custom myAvatar integrations by providing a robust, easy-to-use set of tools for working with ScriptLink and CareRecord data.
 
 The libraries are intended to be packaged and delivered as NuGet packages for easy integration into .NET projects.
 
@@ -59,13 +59,13 @@ This is the original version of the RarelySimple.AvatarScriptLink project, which
 
 This version introduces separation of concerns through modular Objects.* projects. The RarelySimple.AvatarScriptLink project continues to exist for backward compatibility, while the newer projects allow developers to consume only the layers they need.
 
-In version 2.x.x, RarelySimple.AvatarScriptLink.Objects provides core models, while RarelySimple.AvatarScriptLink.Objects.Helpers, .Builders, .Converters, and .Validators provide focused utility layers. RarelySimple.AvatarScriptLink.Net serves as a batteries-included meta-package over those modular projects. RarelySimple.AvatarScriptLink.Services contains service interfaces for SOAP implementations. These projects are incompatible with version 1.x.x due to the modularized structure.
+In version 2.x.x, RarelySimple.AvatarScriptLink.Objects provides core models, while RarelySimple.AvatarScriptLink.Objects.Helpers, RarelySimple.AvatarScriptLink.Objects.Builders, RarelySimple.AvatarScriptLink.Objects.Converters, and RarelySimple.AvatarScriptLink.Objects.Validators provide focused utility layers. RarelySimple.AvatarScriptLink.Net serves as a batteries-included meta-package over those modular projects. RarelySimple.AvatarScriptLink.Services contains service interfaces for SOAP implementations. These projects are incompatible with version 1.x.x due to the modularized structure.
 
 The RarelySimple.AvatarScriptLink project in version 2.x.x will be considered deprecated and receive minimal maintenance for security fixes only. Feature enhancements will be added to the new projects instead. This transition version is intended to give developers time to migrate their implementations to the new modular structure and validate parity between the old and new structures.
 
 ### Version 3.x.x and Beyond
 
-Future versions will continue to follow Semantic Versioning principles, with new features and improvements being added to the RarelySimple.AvatarScriptLink.Objects, RarelySimple.AvatarScriptLink.Net, and RarelySimple.AvatarScriptLink.Services projects as needed. Major version changes will be reserved for significant changes that may introduce incompatibilities or require substantial modifications to existing implementations. RarelySimple.AvatarScriptLink will be removed in version 3.0.0.
+Future versions will continue to follow Semantic Versioning principles, with new features and improvements added to the RarelySimple.AvatarScriptLink.Objects, RarelySimple.AvatarScriptLink.Net, and RarelySimple.AvatarScriptLink.Services projects as needed. Major version changes will be reserved for significant updates that may introduce incompatibilities or require substantial modifications to existing implementations. RarelySimple.AvatarScriptLink will be removed in version 3.0.0.
 
 ## Technology Stack & Dependencies
 
@@ -290,11 +290,11 @@ RarelySimple.AvatarScriptLink (legacy)
 
 ### Handling Breaking Changes
 1. **Planning**: Discuss breaking change scope and timing
-3. **Versioning**: Plan for next MAJOR version bump
-4. **Deprecation**: Add deprecation warnings in current version first (if possible)
-5. **Communication**: Announce in blog post well in advance
-6. **Transition Period**: Allow users time to migrate (typically 1-2 major versions)
-7. **Release**: Document breaking changes in release notes
+2. **Versioning**: Plan for next MAJOR version bump
+3. **Deprecation**: Add deprecation warnings in current version first (if possible)
+4. **Communication**: Announce in blog post well in advance
+5. **Transition Period**: Allow users time to migrate (typically 1-2 major versions)
+6. **Release**: Document breaking changes in release notes
 
 ### Setting Up Local Development Environment
 1. Clone repository and checkout `main` branch

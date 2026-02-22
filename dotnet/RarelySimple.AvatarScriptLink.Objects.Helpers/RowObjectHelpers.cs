@@ -46,7 +46,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>True if the row is marked for deletion, false otherwise.</returns>
         public static bool IsMarkedForDeletion(this RowObject rowObject)
         {
-            return rowObject?.RowAction == "DELETE";
+            return rowObject?.RowAction == RowObject.RowActions.Delete;
         }
 
         /// <summary>
@@ -157,8 +157,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (field != null)
             {
                 field.SetValue(fieldValue);
-                if (rowObject.RowAction == "")
-                    rowObject.RowAction = "EDIT";
+                if (string.IsNullOrEmpty(rowObject.RowAction))
+                    rowObject.RowAction = RowObject.RowActions.Edit;
             }
             return rowObject;
         }
@@ -171,6 +171,29 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         public static RowObject? DisableAllFieldObjects(this RowObject rowObject)
         {
             return DisableAllFieldObjects(rowObject, null);
+        }
+
+        /// <summary>
+        /// Disables all <see cref="FieldObject"/> instances in a <see cref="RowObject"/>, except for the field numbers specified in the exclusion list.
+        /// </summary>
+        /// <param name="rowObject">The RowObject to modify.</param>
+        /// <param name="excludedFieldNumbers">The field numbers to exclude from disabling.</param>
+        /// <returns>The modified RowObject.</returns>
+        public static RowObject? DisableAllFieldObjects(this RowObject rowObject, List<string>? excludedFieldNumbers)
+        {
+            if (rowObject == null || rowObject.Fields == null)
+                return rowObject;
+
+            var excluded = excludedFieldNumbers ?? new List<string>();
+            foreach (var field in rowObject.Fields.Where(f => !excluded.Contains(f.FieldNumber)))
+            {
+                field.Disable();
+            }
+
+            if (string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
+
+            return rowObject;
         }
 
         /// <summary>
@@ -190,8 +213,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             field.Disable();
 
-            if (rowObject.RowAction == "")
-                rowObject.RowAction = "EDIT";
+            if (string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
 
             return rowObject;
         }
@@ -214,8 +237,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 changed = true;
             }
 
-            if (changed && rowObject.RowAction == "")
-                rowObject.RowAction = "EDIT";
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
 
             return rowObject;
         }
@@ -237,8 +260,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             field.Enable();
 
-            if (rowObject.RowAction == "")
-                rowObject.RowAction = "EDIT";
+            if (string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
 
             return rowObject;
         }
@@ -261,31 +284,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 changed = true;
             }
 
-            if (changed && rowObject.RowAction == "")
-                rowObject.RowAction = "EDIT";
-
-            return rowObject;
-        }
-
-        /// <summary>
-        /// Disables all <see cref="FieldObject"/> instances in a <see cref="RowObject"/>, except for the field numbers specified in the exclusion list.
-        /// </summary>
-        /// <param name="rowObject">The RowObject to modify.</param>
-        /// <param name="excludedFieldNumbers">The field numbers to exclude from disabling.</param>
-        /// <returns>The modified RowObject.</returns>
-        public static RowObject? DisableAllFieldObjects(this RowObject rowObject, List<string>? excludedFieldNumbers)
-        {
-            if (rowObject == null || rowObject.Fields == null)
-                return rowObject;
-
-            var excluded = excludedFieldNumbers ?? new List<string>();
-            foreach (var field in rowObject.Fields.Where(f => !excluded.Contains(f.FieldNumber)))
-            {
-                field.Disable();
-            }
-
-            if (rowObject.RowAction == "")
-                rowObject.RowAction = "EDIT";
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
 
             return rowObject;
         }
@@ -317,8 +317,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 field.Enable();
             }
 
-            if (rowObject.RowAction == "")
-                rowObject.RowAction = "EDIT";
+            if (string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
 
             return rowObject;
         }
@@ -350,8 +350,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 field.Lock();
             }
 
-            if (rowObject.RowAction == "")
-                rowObject.RowAction = "EDIT";
+            if (string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
 
             return rowObject;
         }
@@ -383,8 +383,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 field.Unlock();
             }
 
-            if (rowObject.RowAction == "")
-                rowObject.RowAction = "EDIT";
+            if (string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
 
             return rowObject;
         }

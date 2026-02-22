@@ -18,9 +18,10 @@ This directory contains the .NET implementation of the RarelySimple.AvatarScript
 8. **RarelySimple.AvatarScriptLink.Services**: Interfaces for defining ScriptLink web services.
 9. **Unit Test Projects**: Each primary project has a corresponding unit test project (e.g., `RarelySimple.AvatarScriptLink.Objects.Helpers.Tests`, `RarelySimple.AvatarScriptLink.Objects.Builders.Tests`, `RarelySimple.AvatarScriptLink.Objects.Converters.Tests`, `RarelySimple.AvatarScriptLink.Objects.Validators.Tests`).
 
-## Compatibiltility
+## Compatibility
 
-To provide the broadest compatiblity, core libraries target .NET Standard 2.0, allowing them to be used in a wide range of .NET applications, including .NET Framework, .NET Core, and modern .NET. However, due to reliance on .NET 8+-specific features, RarelySimple.AvatarScriptLink.Services targets .NET 8.0.
+To provide the broadest compatibility, core libraries target .NET Standard 2.0, allowing them to be used in a wide range of .NET applications, including .NET Framework, .NET Core, and modern .NET. However, due to reliance on .NET 8+-specific features, RarelySimple.AvatarScriptLink.Services targets .NET 8.0.
+
 ## Best Practices
 
 ### Project Structure & Organization
