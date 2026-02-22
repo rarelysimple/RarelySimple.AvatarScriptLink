@@ -211,9 +211,10 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (field == null)
                 return rowObject;
 
+            var changed = field.IsEnabled();
             field.Disable();
 
-            if (string.IsNullOrEmpty(rowObject.RowAction))
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
                 rowObject.RowAction = RowObject.RowActions.Edit;
 
             return rowObject;
@@ -233,8 +234,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             var changed = false;
             foreach (var field in rowObject.Fields.Where(f => fieldNumbers.Contains(f.FieldNumber)))
             {
+                if (field.IsEnabled())
+                {
+                    changed = true;
+                }
                 field.Disable();
-                changed = true;
             }
 
             if (changed && string.IsNullOrEmpty(rowObject.RowAction))
@@ -258,9 +262,10 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (field == null)
                 return rowObject;
 
+            var changed = !field.IsEnabled();
             field.Enable();
 
-            if (string.IsNullOrEmpty(rowObject.RowAction))
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
                 rowObject.RowAction = RowObject.RowActions.Edit;
 
             return rowObject;
@@ -280,8 +285,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             var changed = false;
             foreach (var field in rowObject.Fields.Where(f => fieldNumbers.Contains(f.FieldNumber)))
             {
+                if (!field.IsEnabled())
+                {
+                    changed = true;
+                }
                 field.Enable();
-                changed = true;
             }
 
             if (changed && string.IsNullOrEmpty(rowObject.RowAction))
