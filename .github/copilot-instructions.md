@@ -147,7 +147,7 @@ RarelySimple.AvatarScriptLink.Objects
 ├── RarelySimple.AvatarScriptLink.Objects.Converters (depends on Objects)
 ├── RarelySimple.AvatarScriptLink.Objects.Validators (depends on Objects)
 ├── RarelySimple.AvatarScriptLink.Net (meta-package depends on Objects.* projects)
-└── RarelySimple.AvatarScriptLink.Services (depends on Objects/Net as needed)
+└── RarelySimple.AvatarScriptLink.Services (depends on Objects)
 
 RarelySimple.AvatarScriptLink (legacy)
 └── Contains both Objects and Net functionality for backward compatibility

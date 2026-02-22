@@ -312,12 +312,17 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 return rowObject;
 
             var excluded = excludedFieldNumbers ?? new List<string>();
+            var changed = false;
             foreach (var field in rowObject.Fields.Where(f => !excluded.Contains(f.FieldNumber)))
             {
+                if (!field.IsEnabled())
+                {
+                    changed = true;
+                }
                 field.Enable();
             }
 
-            if (string.IsNullOrEmpty(rowObject.RowAction))
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
                 rowObject.RowAction = RowObject.RowActions.Edit;
 
             return rowObject;
@@ -345,12 +350,17 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 return rowObject;
 
             var excluded = excludedFieldNumbers ?? new List<string>();
+            var changed = false;
             foreach (var field in rowObject.Fields.Where(f => !excluded.Contains(f.FieldNumber)))
             {
+                if (!field.IsLocked())
+                {
+                    changed = true;
+                }
                 field.Lock();
             }
 
-            if (string.IsNullOrEmpty(rowObject.RowAction))
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
                 rowObject.RowAction = RowObject.RowActions.Edit;
 
             return rowObject;
@@ -378,12 +388,17 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 return rowObject;
 
             var excluded = excludedFieldNumbers ?? new List<string>();
+            var changed = false;
             foreach (var field in rowObject.Fields.Where(f => !excluded.Contains(f.FieldNumber)))
             {
+                if (field.IsLocked())
+                {
+                    changed = true;
+                }
                 field.Unlock();
             }
 
-            if (string.IsNullOrEmpty(rowObject.RowAction))
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
                 rowObject.RowAction = RowObject.RowActions.Edit;
 
             return rowObject;
