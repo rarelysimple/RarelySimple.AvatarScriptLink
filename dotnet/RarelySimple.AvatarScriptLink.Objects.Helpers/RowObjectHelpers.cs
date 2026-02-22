@@ -174,6 +174,100 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         }
 
         /// <summary>
+        /// Disables a <see cref="FieldObject"/> in a <see cref="RowObject"/> by field number.
+        /// </summary>
+        /// <param name="rowObject">The RowObject to modify.</param>
+        /// <param name="fieldNumber">The field number to disable.</param>
+        /// <returns>The modified RowObject.</returns>
+        public static RowObject? SetDisabledField(this RowObject rowObject, string fieldNumber)
+        {
+            if (rowObject == null || rowObject.Fields == null || string.IsNullOrEmpty(fieldNumber))
+                return rowObject;
+
+            var field = rowObject.Fields.FirstOrDefault(f => f.FieldNumber == fieldNumber);
+            if (field == null)
+                return rowObject;
+
+            field.Disable();
+
+            if (rowObject.RowAction == "")
+                rowObject.RowAction = "EDIT";
+
+            return rowObject;
+        }
+
+        /// <summary>
+        /// Disables <see cref="FieldObject"/> instances in a <see cref="RowObject"/> by field numbers.
+        /// </summary>
+        /// <param name="rowObject">The RowObject to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to disable.</param>
+        /// <returns>The modified RowObject.</returns>
+        public static RowObject? SetDisabledFields(this RowObject rowObject, List<string>? fieldNumbers)
+        {
+            if (rowObject == null || rowObject.Fields == null || fieldNumbers == null || fieldNumbers.Count == 0)
+                return rowObject;
+
+            var changed = false;
+            foreach (var field in rowObject.Fields.Where(f => fieldNumbers.Contains(f.FieldNumber)))
+            {
+                field.Disable();
+                changed = true;
+            }
+
+            if (changed && rowObject.RowAction == "")
+                rowObject.RowAction = "EDIT";
+
+            return rowObject;
+        }
+
+        /// <summary>
+        /// Enables a <see cref="FieldObject"/> in a <see cref="RowObject"/> by field number.
+        /// </summary>
+        /// <param name="rowObject">The RowObject to modify.</param>
+        /// <param name="fieldNumber">The field number to enable.</param>
+        /// <returns>The modified RowObject.</returns>
+        public static RowObject? SetEnabledField(this RowObject rowObject, string fieldNumber)
+        {
+            if (rowObject == null || rowObject.Fields == null || string.IsNullOrEmpty(fieldNumber))
+                return rowObject;
+
+            var field = rowObject.Fields.FirstOrDefault(f => f.FieldNumber == fieldNumber);
+            if (field == null)
+                return rowObject;
+
+            field.Enable();
+
+            if (rowObject.RowAction == "")
+                rowObject.RowAction = "EDIT";
+
+            return rowObject;
+        }
+
+        /// <summary>
+        /// Enables <see cref="FieldObject"/> instances in a <see cref="RowObject"/> by field numbers.
+        /// </summary>
+        /// <param name="rowObject">The RowObject to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to enable.</param>
+        /// <returns>The modified RowObject.</returns>
+        public static RowObject? SetEnabledFields(this RowObject rowObject, List<string>? fieldNumbers)
+        {
+            if (rowObject == null || rowObject.Fields == null || fieldNumbers == null || fieldNumbers.Count == 0)
+                return rowObject;
+
+            var changed = false;
+            foreach (var field in rowObject.Fields.Where(f => fieldNumbers.Contains(f.FieldNumber)))
+            {
+                field.Enable();
+                changed = true;
+            }
+
+            if (changed && rowObject.RowAction == "")
+                rowObject.RowAction = "EDIT";
+
+            return rowObject;
+        }
+
+        /// <summary>
         /// Disables all <see cref="FieldObject"/> instances in a <see cref="RowObject"/>, except for the field numbers specified in the exclusion list.
         /// </summary>
         /// <param name="rowObject">The RowObject to modify.</param>

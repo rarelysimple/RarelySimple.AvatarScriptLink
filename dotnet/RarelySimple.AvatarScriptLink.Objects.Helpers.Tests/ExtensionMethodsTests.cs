@@ -410,6 +410,72 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
+        public void SetDisabledField_WithExistingField_DisablesTargetField()
+        {
+            // Arrange
+            var row = new RowObject { RowAction = "" };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1" });
+            row.Fields.Add(new FieldObject { FieldNumber = "101", Enabled = "1" });
+
+            // Act
+            row.SetDisabledField("101");
+
+            // Assert
+            Assert.AreEqual("1", row.Fields[0].Enabled);
+            Assert.AreEqual("0", row.Fields[1].Enabled);
+            Assert.AreEqual("EDIT", row.RowAction);
+        }
+
+        [TestMethod]
+        public void SetDisabledFields_WithFieldNumbers_DisablesMatchingFields()
+        {
+            // Arrange
+            var row = new RowObject();
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1" });
+            row.Fields.Add(new FieldObject { FieldNumber = "101", Enabled = "1" });
+
+            // Act
+            row.SetDisabledFields(["100"]);
+
+            // Assert
+            Assert.AreEqual("0", row.Fields[0].Enabled);
+            Assert.AreEqual("1", row.Fields[1].Enabled);
+        }
+
+        [TestMethod]
+        public void SetEnabledField_WithExistingField_EnablesTargetField()
+        {
+            // Arrange
+            var row = new RowObject { RowAction = "" };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "0" });
+            row.Fields.Add(new FieldObject { FieldNumber = "101", Enabled = "0" });
+
+            // Act
+            row.SetEnabledField("100");
+
+            // Assert
+            Assert.AreEqual("1", row.Fields[0].Enabled);
+            Assert.AreEqual("0", row.Fields[1].Enabled);
+            Assert.AreEqual("EDIT", row.RowAction);
+        }
+
+        [TestMethod]
+        public void SetEnabledFields_WithFieldNumbers_EnablesMatchingFields()
+        {
+            // Arrange
+            var row = new RowObject();
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "0" });
+            row.Fields.Add(new FieldObject { FieldNumber = "101", Enabled = "0" });
+
+            // Act
+            row.SetEnabledFields(["101"]);
+
+            // Assert
+            Assert.AreEqual("0", row.Fields[0].Enabled);
+            Assert.AreEqual("1", row.Fields[1].Enabled);
+        }
+
+        [TestMethod]
         public void EnableAllFieldObjects_WithoutExclusions_EnablesAll()
         {
             // Arrange
@@ -700,6 +766,44 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             Assert.AreEqual("Value1", form.CurrentRow.Fields[0].FieldValue);
             Assert.AreEqual("NewValue", otherRow.Fields[0].FieldValue);
         }
+
+        [TestMethod]
+        public void SetDisabledField_WithMultipleIteration_DisablesFieldInAllRows()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "1", RowAction = "" }, MultipleIteration = true };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1" });
+            var otherRow = new RowObject { RowId = "2", RowAction = "" };
+            otherRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1" });
+            form.OtherRows.Add(otherRow);
+
+            // Act
+            form.SetDisabledField("100");
+
+            // Assert
+            Assert.AreEqual("0", form.CurrentRow.Fields[0].Enabled);
+            Assert.AreEqual("0", otherRow.Fields[0].Enabled);
+            Assert.AreEqual("EDIT", form.CurrentRow.RowAction);
+            Assert.AreEqual("EDIT", otherRow.RowAction);
+        }
+
+        [TestMethod]
+        public void SetEnabledFields_WithMultipleIteration_EnablesMatchingFieldsInAllRows()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "1" }, MultipleIteration = true };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "0" });
+            var otherRow = new RowObject { RowId = "2" };
+            otherRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "0" });
+            form.OtherRows.Add(otherRow);
+
+            // Act
+            form.SetEnabledFields(new List<string> { "100" });
+
+            // Assert
+            Assert.AreEqual("1", form.CurrentRow.Fields[0].Enabled);
+            Assert.AreEqual("1", otherRow.Fields[0].Enabled);
+        }
     }
 
     /// <summary>
@@ -962,6 +1066,129 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
 
             // Assert
             Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void SetDisabledField_OptionObject_DisablesTargetField()
+        {
+            // Arrange
+            var optionObject = new OptionObject();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1", RowAction = "" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1" });
+            optionObject.Forms.Add(form);
+
+            // Act
+            optionObject.SetDisabledField("100");
+
+            // Assert
+            Assert.AreEqual("0", optionObject.Forms[0].CurrentRow.Fields[0].Enabled);
+            Assert.AreEqual("EDIT", optionObject.Forms[0].CurrentRow.RowAction);
+        }
+
+        [TestMethod]
+        public void SetEnabledFields_OptionObject_EnablesMatchingFields()
+        {
+            // Arrange
+            var optionObject = new OptionObject();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "0" });
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "101", Enabled = "0" });
+            optionObject.Forms.Add(form);
+
+            // Act
+            optionObject.SetEnabledFields(new List<string> { "101" });
+
+            // Assert
+            Assert.AreEqual("0", optionObject.Forms[0].CurrentRow.Fields[0].Enabled);
+            Assert.AreEqual("1", optionObject.Forms[0].CurrentRow.Fields[1].Enabled);
+        }
+
+        [TestMethod]
+        public void SetDisabledField_OptionObject2_DisablesTargetField()
+        {
+            // Arrange
+            var optionObject = new OptionObject2();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1" });
+            optionObject.Forms.Add(form);
+
+            // Act
+            optionObject.SetDisabledField("100");
+
+            // Assert
+            Assert.AreEqual("0", optionObject.Forms[0].CurrentRow.Fields[0].Enabled);
+        }
+
+        [TestMethod]
+        public void SetEnabledField_OptionObject2015_EnablesTargetField()
+        {
+            // Arrange
+            var optionObject = new OptionObject2015();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "0" });
+            optionObject.Forms.Add(form);
+
+            // Act
+            optionObject.SetEnabledField("100");
+
+            // Assert
+            Assert.AreEqual("1", optionObject.Forms[0].CurrentRow.Fields[0].Enabled);
+        }
+
+        [TestMethod]
+        public void SetDisabledFields_OptionObject_WithFieldObjects_DisablesMatchingFields()
+        {
+            // Arrange
+            var optionObject = new OptionObject();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1" });
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "101", Enabled = "1" });
+            optionObject.Forms.Add(form);
+
+            var fieldsToDisable = new List<FieldObject> { new FieldObject { FieldNumber = "101" } };
+
+            // Act
+            optionObject.SetDisabledFields(fieldsToDisable);
+
+            // Assert
+            Assert.AreEqual("1", optionObject.Forms[0].CurrentRow.Fields[0].Enabled);
+            Assert.AreEqual("0", optionObject.Forms[0].CurrentRow.Fields[1].Enabled);
+        }
+
+        [TestMethod]
+        public void SetEnabledFields_OptionObject2_WithFieldObjects_EnablesMatchingFields()
+        {
+            // Arrange
+            var optionObject = new OptionObject2();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "0" });
+            optionObject.Forms.Add(form);
+
+            var fieldsToEnable = new List<FieldObject> { new FieldObject { FieldNumber = "100" } };
+
+            // Act
+            optionObject.SetEnabledFields(fieldsToEnable);
+
+            // Assert
+            Assert.AreEqual("1", optionObject.Forms[0].CurrentRow.Fields[0].Enabled);
+        }
+
+        [TestMethod]
+        public void SetDisabledFields_OptionObject2015_WithFieldObjects_DisablesMatchingFields()
+        {
+            // Arrange
+            var optionObject = new OptionObject2015();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1" });
+            optionObject.Forms.Add(form);
+
+            var fieldsToDisable = new List<FieldObject> { new FieldObject { FieldNumber = "100" } };
+
+            // Act
+            optionObject.SetDisabledFields(fieldsToDisable);
+
+            // Assert
+            Assert.AreEqual("0", optionObject.Forms[0].CurrentRow.Fields[0].Enabled);
         }
     }
 }

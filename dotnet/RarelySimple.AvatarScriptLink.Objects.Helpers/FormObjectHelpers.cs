@@ -307,5 +307,101 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             return formObject;
         }
+
+        /// <summary>
+        /// Disables a <see cref="FieldObject"/> in a <see cref="FormObject"/> by field number.
+        /// </summary>
+        /// <param name="formObject">The FormObject to modify.</param>
+        /// <param name="fieldNumber">The field number to disable.</param>
+        /// <returns>The modified FormObject.</returns>
+        public static FormObject? SetDisabledField(this FormObject formObject, string fieldNumber)
+        {
+            if (formObject == null || formObject.CurrentRow == null || string.IsNullOrEmpty(fieldNumber))
+                return formObject;
+
+            formObject.CurrentRow.SetDisabledField(fieldNumber);
+
+            if (formObject.MultipleIteration && formObject.HasOtherRows())
+            {
+                foreach (var row in formObject.OtherRows)
+                {
+                    row.SetDisabledField(fieldNumber);
+                }
+            }
+
+            return formObject;
+        }
+
+        /// <summary>
+        /// Disables <see cref="FieldObject"/> instances in a <see cref="FormObject"/> by field numbers.
+        /// </summary>
+        /// <param name="formObject">The FormObject to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to disable.</param>
+        /// <returns>The modified FormObject.</returns>
+        public static FormObject? SetDisabledFields(this FormObject formObject, List<string>? fieldNumbers)
+        {
+            if (formObject == null || formObject.CurrentRow == null || fieldNumbers == null || fieldNumbers.Count == 0)
+                return formObject;
+
+            formObject.CurrentRow.SetDisabledFields(fieldNumbers);
+
+            if (formObject.MultipleIteration && formObject.HasOtherRows())
+            {
+                foreach (var row in formObject.OtherRows)
+                {
+                    row.SetDisabledFields(fieldNumbers);
+                }
+            }
+
+            return formObject;
+        }
+
+        /// <summary>
+        /// Enables a <see cref="FieldObject"/> in a <see cref="FormObject"/> by field number.
+        /// </summary>
+        /// <param name="formObject">The FormObject to modify.</param>
+        /// <param name="fieldNumber">The field number to enable.</param>
+        /// <returns>The modified FormObject.</returns>
+        public static FormObject? SetEnabledField(this FormObject formObject, string fieldNumber)
+        {
+            if (formObject == null || formObject.CurrentRow == null || string.IsNullOrEmpty(fieldNumber))
+                return formObject;
+
+            formObject.CurrentRow.SetEnabledField(fieldNumber);
+
+            if (formObject.MultipleIteration && formObject.HasOtherRows())
+            {
+                foreach (var row in formObject.OtherRows)
+                {
+                    row.SetEnabledField(fieldNumber);
+                }
+            }
+
+            return formObject;
+        }
+
+        /// <summary>
+        /// Enables <see cref="FieldObject"/> instances in a <see cref="FormObject"/> by field numbers.
+        /// </summary>
+        /// <param name="formObject">The FormObject to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to enable.</param>
+        /// <returns>The modified FormObject.</returns>
+        public static FormObject? SetEnabledFields(this FormObject formObject, List<string>? fieldNumbers)
+        {
+            if (formObject == null || formObject.CurrentRow == null || fieldNumbers == null || fieldNumbers.Count == 0)
+                return formObject;
+
+            formObject.CurrentRow.SetEnabledFields(fieldNumbers);
+
+            if (formObject.MultipleIteration && formObject.HasOtherRows())
+            {
+                foreach (var row in formObject.OtherRows)
+                {
+                    row.SetEnabledFields(fieldNumbers);
+                }
+            }
+
+            return formObject;
+        }
     }
 }
