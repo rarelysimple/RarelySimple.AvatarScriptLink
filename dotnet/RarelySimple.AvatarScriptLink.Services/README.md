@@ -2,9 +2,12 @@
 
 [![NuGet Latest](https://img.shields.io/nuget/v/RarelySimple.AvatarScriptLink.Services)](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink.Services/) [![NuGet Downloads](https://img.shields.io/nuget/dt/RarelySimple.AvatarScriptLink.Services)](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink.Services/) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=rarelysimple_RarelySimple.AvatarScriptLink.Services&metric=alert_status)](https://sonarcloud.io/dashboard?id=rarelysimple_RarelySimple.AvatarScriptLink.Services) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=rarelysimple_RarelySimple.AvatarScriptLink.Services&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=rarelysimple_RarelySimple.AvatarScriptLink.Services) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=rarelysimple_RarelySimple.AvatarScriptLink.Services&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=rarelysimple_RarelySimple.AvatarScriptLink.Services) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=rarelysimple_RarelySimple.AvatarScriptLink.Services&metric=security_rating)](https://sonarcloud.io/dashboard?id=rarelysimple_RarelySimple.AvatarScriptLink.Services)
 
-RarelySimple.AvatarScriptLink.Services provides the ScriptLink service definitions to help create Netsmart myAvatar-compatible ScriptLink APIs in .NET.
+RarelySimple.AvatarScriptLink.Services provides ScriptLink service interface definitions to help create Netsmart myAvatar-compatible ScriptLink APIs in .NET.
 
-For additional helpers and utilities to accelerate your ScriptLink development we recommend using the [RarelySimple.AvatarScriptLink.Net](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink.Net/) package.
+For additional helper utilities:
+
+- Use [RarelySimple.AvatarScriptLink.Objects.Helpers](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink.Objects.Helpers/) for just extension/helper operations.
+- Use [RarelySimple.AvatarScriptLink.Net](https://www.nuget.org/packages/RarelySimple.AvatarScriptLink.Net/) for the batteries-included meta-package.
 
 # Usage
 

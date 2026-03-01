@@ -228,5 +228,119 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 .Select(f => f.IsFieldRequired(fieldNumber))
                 .FirstOrDefault();
         }
+
+        /// <summary>
+        /// Disables a <see cref="FieldObject"/> in an <see cref="OptionObject"/> by field number.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject to modify.</param>
+        /// <param name="fieldNumber">The field number to disable.</param>
+        /// <returns>The modified OptionObject.</returns>
+        public static OptionObject? SetDisabledField(this OptionObject optionObject, string fieldNumber)
+        {
+            if (optionObject == null || optionObject.Forms == null || string.IsNullOrEmpty(fieldNumber))
+                return optionObject;
+
+            foreach (var form in optionObject.Forms)
+            {
+                form.SetDisabledField(fieldNumber);
+            }
+
+            return optionObject;
+        }
+
+        /// <summary>
+        /// Disables <see cref="FieldObject"/> instances in an <see cref="OptionObject"/>.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject to modify.</param>
+        /// <param name="fieldObjects">The field objects to disable.</param>
+        /// <returns>The modified OptionObject.</returns>
+        public static OptionObject? SetDisabledFields(this OptionObject optionObject, List<FieldObject>? fieldObjects)
+        {
+            if (fieldObjects == null || fieldObjects.Count == 0)
+                return optionObject;
+
+            var fieldNumbers = fieldObjects
+                .Where(f => !string.IsNullOrEmpty(f?.FieldNumber))
+                .Select(f => f.FieldNumber)
+                .ToList();
+
+            return optionObject.SetDisabledFields(fieldNumbers);
+        }
+
+        /// <summary>
+        /// Disables <see cref="FieldObject"/> instances in an <see cref="OptionObject"/> by field numbers.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to disable.</param>
+        /// <returns>The modified OptionObject.</returns>
+        public static OptionObject? SetDisabledFields(this OptionObject optionObject, List<string>? fieldNumbers)
+        {
+            if (optionObject == null || optionObject.Forms == null || fieldNumbers == null || fieldNumbers.Count == 0)
+                return optionObject;
+
+            foreach (var form in optionObject.Forms)
+            {
+                form.SetDisabledFields(fieldNumbers);
+            }
+
+            return optionObject;
+        }
+
+        /// <summary>
+        /// Enables a <see cref="FieldObject"/> in an <see cref="OptionObject"/> by field number.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject to modify.</param>
+        /// <param name="fieldNumber">The field number to enable.</param>
+        /// <returns>The modified OptionObject.</returns>
+        public static OptionObject? SetEnabledField(this OptionObject optionObject, string fieldNumber)
+        {
+            if (optionObject == null || optionObject.Forms == null || string.IsNullOrEmpty(fieldNumber))
+                return optionObject;
+
+            foreach (var form in optionObject.Forms)
+            {
+                form.SetEnabledField(fieldNumber);
+            }
+
+            return optionObject;
+        }
+
+        /// <summary>
+        /// Enables <see cref="FieldObject"/> instances in an <see cref="OptionObject"/>.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject to modify.</param>
+        /// <param name="fieldObjects">The field objects to enable.</param>
+        /// <returns>The modified OptionObject.</returns>
+        public static OptionObject? SetEnabledFields(this OptionObject optionObject, List<FieldObject>? fieldObjects)
+        {
+            if (fieldObjects == null || fieldObjects.Count == 0)
+                return optionObject;
+
+            var fieldNumbers = fieldObjects
+                .Where(f => !string.IsNullOrEmpty(f?.FieldNumber))
+                .Select(f => f.FieldNumber)
+                .ToList();
+
+            return optionObject.SetEnabledFields(fieldNumbers);
+        }
+
+        /// <summary>
+        /// Enables <see cref="FieldObject"/> instances in an <see cref="OptionObject"/> by field numbers.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to enable.</param>
+        /// <returns>The modified OptionObject.</returns>
+        public static OptionObject? SetEnabledFields(this OptionObject optionObject, List<string>? fieldNumbers)
+        {
+            if (optionObject == null || optionObject.Forms == null || fieldNumbers == null || fieldNumbers.Count == 0)
+                return optionObject;
+
+            foreach (var form in optionObject.Forms)
+            {
+                form.SetEnabledFields(fieldNumbers);
+            }
+
+            return optionObject;
+        }
     }
 }

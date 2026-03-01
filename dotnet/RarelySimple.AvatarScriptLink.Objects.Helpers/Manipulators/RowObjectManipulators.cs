@@ -16,7 +16,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Manipulators
         {
             if (rowObject != null)
             {
-                rowObject.RowAction = "ADD";
+                rowObject.RowAction = RowObject.RowActions.Add;
             }
             return rowObject;
         }
@@ -30,7 +30,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Manipulators
         {
             if (rowObject != null)
             {
-                rowObject.RowAction = "EDIT";
+                rowObject.RowAction = RowObject.RowActions.Edit;
             }
             return rowObject;
         }
@@ -44,7 +44,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Manipulators
         {
             if (rowObject != null)
             {
-                rowObject.RowAction = "DELETE";
+                rowObject.RowAction = RowObject.RowActions.Delete;
             }
             return rowObject;
         }

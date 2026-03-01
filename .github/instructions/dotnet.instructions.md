@@ -9,14 +9,19 @@ This directory contains the .NET implementation of the RarelySimple.AvatarScript
 ## Projects
 
 1. **RarelySimple.AvatarScriptLink**: The original project that includes both the foundational data types and helper methods. This project is maintained for backward compatibility but is considered deprecated in favor of the new modular projects.
-2. **RarelySimple.AvatarScriptLink.Objects**: This project provides the foundational data types required for working with ScriptLink and CareRecord data. It does not include any helper methods, allowing developers to use just the data structures if they prefer to implement their own logic.
-3. **RarelySimple.AvatarScriptLink.Net**: This project provides the helper methods for managing and manipulating the data within the ScriptLink structures. It depends on the RarelySimple.AvatarScriptLink.Objects project for the data types, allowing developers to leverage the helper methods without being tied to a specific implementation of the data structures.
-4. **RarelySimple.AvatarScriptLink.Services**: This project contains the interface for defining the ScriptLink web services, allowing developers to create custom SOAP web services that can interact with myAvatar.
-5. **Unit Test Projects**: Each of the main projects has a corresponding unit test project (e.g., `RarelySimple.AvatarScriptLink.Tests`, `RarelySimple.AvatarScriptLink.Objects.Tests`, `RarelySimple.AvatarScriptLink.Net.Tests`) to ensure code quality and reliability.
+2. **RarelySimple.AvatarScriptLink.Objects**: Foundational data types required for working with ScriptLink and CareRecord data.
+3. **RarelySimple.AvatarScriptLink.Objects.Helpers**: Extension methods and helper operations for querying and manipulating ScriptLink objects.
+4. **RarelySimple.AvatarScriptLink.Objects.Builders**: Fluent builders for constructing ScriptLink objects.
+5. **RarelySimple.AvatarScriptLink.Objects.Converters**: Conversion helpers between object representations.
+6. **RarelySimple.AvatarScriptLink.Objects.Validators**: Validation helpers and rules for ScriptLink objects.
+7. **RarelySimple.AvatarScriptLink.Net**: Batteries-included meta-package that references Objects, Builders, Converters, Helpers, and Validators.
+8. **RarelySimple.AvatarScriptLink.Services**: Interfaces for defining ScriptLink web services.
+9. **Unit Test Projects**: Each primary project has a corresponding unit test project (e.g., `RarelySimple.AvatarScriptLink.Objects.Helpers.Tests`, `RarelySimple.AvatarScriptLink.Objects.Builders.Tests`, `RarelySimple.AvatarScriptLink.Objects.Converters.Tests`, `RarelySimple.AvatarScriptLink.Objects.Validators.Tests`).
 
-## Compatibiltility
+## Compatibility
 
-To provide the broadest compatiblity, the projects target .NET Standard 2.0, allowing them to be used in a wide range of .NET applications, including .NET Framework, .NET Core, and .NET 5/6/7+. However, due to the reliance on .NET 8+-specific features, RarelySimple.AvatarScriptLink.Services targets .NET 8.0.
+To provide the broadest compatibility, core libraries target .NET Standard 2.0, allowing them to be used in a wide range of .NET applications, including .NET Framework, .NET Core, and modern .NET. However, due to reliance on .NET 8+-specific features, RarelySimple.AvatarScriptLink.Services targets .NET 8.0.
+
 ## Best Practices
 
 ### Project Structure & Organization

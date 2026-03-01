@@ -46,7 +46,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>True if the row is marked for deletion, false otherwise.</returns>
         public static bool IsMarkedForDeletion(this RowObject rowObject)
         {
-            return rowObject?.RowAction == "DELETE";
+            return rowObject?.RowAction == RowObject.RowActions.Delete;
         }
 
         /// <summary>
@@ -157,8 +157,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (field != null)
             {
                 field.SetValue(fieldValue);
-                if (rowObject.RowAction == "")
-                    rowObject.RowAction = "EDIT";
+                if (string.IsNullOrEmpty(rowObject.RowAction))
+                    rowObject.RowAction = RowObject.RowActions.Edit;
             }
             return rowObject;
         }
@@ -190,8 +190,110 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 field.Disable();
             }
 
-            if (rowObject.RowAction == "")
-                rowObject.RowAction = "EDIT";
+            if (string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
+
+            return rowObject;
+        }
+
+        /// <summary>
+        /// Disables a <see cref="FieldObject"/> in a <see cref="RowObject"/> by field number.
+        /// </summary>
+        /// <param name="rowObject">The RowObject to modify.</param>
+        /// <param name="fieldNumber">The field number to disable.</param>
+        /// <returns>The modified RowObject.</returns>
+        public static RowObject? SetDisabledField(this RowObject rowObject, string fieldNumber)
+        {
+            if (rowObject == null || rowObject.Fields == null || string.IsNullOrEmpty(fieldNumber))
+                return rowObject;
+
+            var field = rowObject.Fields.FirstOrDefault(f => f.FieldNumber == fieldNumber);
+            if (field == null)
+                return rowObject;
+
+            var changed = field.IsEnabled();
+            field.Disable();
+
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
+
+            return rowObject;
+        }
+
+        /// <summary>
+        /// Disables <see cref="FieldObject"/> instances in a <see cref="RowObject"/> by field numbers.
+        /// </summary>
+        /// <param name="rowObject">The RowObject to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to disable.</param>
+        /// <returns>The modified RowObject.</returns>
+        public static RowObject? SetDisabledFields(this RowObject rowObject, List<string>? fieldNumbers)
+        {
+            if (rowObject == null || rowObject.Fields == null || fieldNumbers == null || fieldNumbers.Count == 0)
+                return rowObject;
+
+            var changed = false;
+            foreach (var field in rowObject.Fields.Where(f => fieldNumbers.Contains(f.FieldNumber)))
+            {
+                if (field.IsEnabled())
+                {
+                    changed = true;
+                }
+                field.Disable();
+            }
+
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
+
+            return rowObject;
+        }
+
+        /// <summary>
+        /// Enables a <see cref="FieldObject"/> in a <see cref="RowObject"/> by field number.
+        /// </summary>
+        /// <param name="rowObject">The RowObject to modify.</param>
+        /// <param name="fieldNumber">The field number to enable.</param>
+        /// <returns>The modified RowObject.</returns>
+        public static RowObject? SetEnabledField(this RowObject rowObject, string fieldNumber)
+        {
+            if (rowObject == null || rowObject.Fields == null || string.IsNullOrEmpty(fieldNumber))
+                return rowObject;
+
+            var field = rowObject.Fields.FirstOrDefault(f => f.FieldNumber == fieldNumber);
+            if (field == null)
+                return rowObject;
+
+            var changed = !field.IsEnabled();
+            field.Enable();
+
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
+
+            return rowObject;
+        }
+
+        /// <summary>
+        /// Enables <see cref="FieldObject"/> instances in a <see cref="RowObject"/> by field numbers.
+        /// </summary>
+        /// <param name="rowObject">The RowObject to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to enable.</param>
+        /// <returns>The modified RowObject.</returns>
+        public static RowObject? SetEnabledFields(this RowObject rowObject, List<string>? fieldNumbers)
+        {
+            if (rowObject == null || rowObject.Fields == null || fieldNumbers == null || fieldNumbers.Count == 0)
+                return rowObject;
+
+            var changed = false;
+            foreach (var field in rowObject.Fields.Where(f => fieldNumbers.Contains(f.FieldNumber)))
+            {
+                if (!field.IsEnabled())
+                {
+                    changed = true;
+                }
+                field.Enable();
+            }
+
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
 
             return rowObject;
         }
@@ -218,13 +320,18 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 return rowObject;
 
             var excluded = excludedFieldNumbers ?? new List<string>();
+            var changed = false;
             foreach (var field in rowObject.Fields.Where(f => !excluded.Contains(f.FieldNumber)))
             {
+                if (!field.IsEnabled())
+                {
+                    changed = true;
+                }
                 field.Enable();
             }
 
-            if (rowObject.RowAction == "")
-                rowObject.RowAction = "EDIT";
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
 
             return rowObject;
         }
@@ -251,13 +358,18 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 return rowObject;
 
             var excluded = excludedFieldNumbers ?? new List<string>();
+            var changed = false;
             foreach (var field in rowObject.Fields.Where(f => !excluded.Contains(f.FieldNumber)))
             {
+                if (!field.IsLocked())
+                {
+                    changed = true;
+                }
                 field.Lock();
             }
 
-            if (rowObject.RowAction == "")
-                rowObject.RowAction = "EDIT";
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
 
             return rowObject;
         }
@@ -284,13 +396,18 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 return rowObject;
 
             var excluded = excludedFieldNumbers ?? new List<string>();
+            var changed = false;
             foreach (var field in rowObject.Fields.Where(f => !excluded.Contains(f.FieldNumber)))
             {
+                if (field.IsLocked())
+                {
+                    changed = true;
+                }
                 field.Unlock();
             }
 
-            if (rowObject.RowAction == "")
-                rowObject.RowAction = "EDIT";
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
 
             return rowObject;
         }

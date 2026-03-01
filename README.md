@@ -9,6 +9,18 @@
 
 AvatarScriptLink.NET is a library for accelerating Netsmart myAvatar ScriptLink API development.
 
+## Package Structure ##
+
+Version 2.x is modularized into focused packages:
+
+- `RarelySimple.AvatarScriptLink.Objects` - Core ScriptLink object models
+- `RarelySimple.AvatarScriptLink.Objects.Helpers` - Extension methods for querying/manipulating models
+- `RarelySimple.AvatarScriptLink.Objects.Builders` - Fluent builders
+- `RarelySimple.AvatarScriptLink.Objects.Converters` - Object conversion helpers
+- `RarelySimple.AvatarScriptLink.Objects.Validators` - Validation helpers
+- `RarelySimple.AvatarScriptLink.Net` - Batteries-included meta-package that references all Objects.* layers
+- `RarelySimple.AvatarScriptLink.Services` - ScriptLink service interfaces
+
 ## Documentation ##
 
 Check out [the documentation](https://scriptlink.rarelysimple.com/) to learn more.
