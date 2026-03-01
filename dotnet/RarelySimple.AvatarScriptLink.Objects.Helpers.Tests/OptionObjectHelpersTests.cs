@@ -8,7 +8,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
     public class OptionObjectHelpersTests
     {
         [TestMethod]
-        public void GetCurrentRowId_ReturnsCurrrentRowId()
+        public void GetCurrentRowId_ReturnsCurrentRowId()
         {
             // Arrange
             var optionObject = new OptionObject();
