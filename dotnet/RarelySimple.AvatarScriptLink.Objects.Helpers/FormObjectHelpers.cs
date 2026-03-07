@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,6 +9,10 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
     /// </summary>
     public static class FormObjectHelpers
     {
+        private const string NoMatchingFieldObjectsMessage = "No matching field objects were found.";
+        private const string NoFieldNumbersProvidedMessage = "No field numbers were provided.";
+        private const string FieldNumberCannotBeEmptyMessage = "Field number cannot be empty.";
+
         /// <summary>
         /// Gets the form ID of a <see cref="FormObject"/>.
         /// </summary>
@@ -316,8 +321,20 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetDisabledField(this FormObject formObject, string fieldNumber)
         {
-            if (formObject == null || formObject.CurrentRow == null || string.IsNullOrEmpty(fieldNumber))
+            if (fieldNumber == null)
+                throw new ArgumentNullException(nameof(fieldNumber));
+
+            if (fieldNumber.Length == 0)
+                throw new ArgumentException(FieldNumberCannotBeEmptyMessage, nameof(fieldNumber));
+
+            if (formObject == null || formObject.CurrentRow == null)
                 return formObject;
+
+            var hasFieldInForm = formObject.CurrentRow.IsFieldPresent(fieldNumber)
+                || (formObject.MultipleIteration && formObject.HasOtherRows() && formObject.OtherRows.Any(r => r.IsFieldPresent(fieldNumber)));
+
+            if (!hasFieldInForm)
+                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             formObject.CurrentRow.SetDisabledField(fieldNumber);
 
@@ -340,16 +357,36 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetDisabledFields(this FormObject formObject, List<string>? fieldNumbers)
         {
-            if (formObject == null || formObject.CurrentRow == null || fieldNumbers == null || fieldNumbers.Count == 0)
+            if (fieldNumbers == null)
+                throw new ArgumentNullException(nameof(fieldNumbers));
+
+            if (fieldNumbers.Count == 0)
+                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+
+            if (formObject == null || formObject.CurrentRow == null)
                 return formObject;
 
-            formObject.CurrentRow.SetDisabledFields(fieldNumbers);
+            var fieldsToSet = fieldNumbers
+                .Where(f => !string.IsNullOrEmpty(f))
+                .Distinct()
+                .ToList();
+
+            if (fieldsToSet.Count == 0)
+                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+
+            var hasAnyField = fieldsToSet.Any(f => formObject.CurrentRow.IsFieldPresent(f))
+                || (formObject.MultipleIteration && formObject.HasOtherRows() && fieldsToSet.Any(f => formObject.OtherRows.Any(r => r.IsFieldPresent(f))));
+
+            if (!hasAnyField)
+                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+
+            formObject.CurrentRow.SetDisabledFields(fieldsToSet);
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
                 foreach (var row in formObject.OtherRows)
                 {
-                    row.SetDisabledFields(fieldNumbers);
+                    row.SetDisabledFields(fieldsToSet);
                 }
             }
 
@@ -364,8 +401,20 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetEnabledField(this FormObject formObject, string fieldNumber)
         {
-            if (formObject == null || formObject.CurrentRow == null || string.IsNullOrEmpty(fieldNumber))
+            if (fieldNumber == null)
+                throw new ArgumentNullException(nameof(fieldNumber));
+
+            if (fieldNumber.Length == 0)
+                throw new ArgumentException(FieldNumberCannotBeEmptyMessage, nameof(fieldNumber));
+
+            if (formObject == null || formObject.CurrentRow == null)
                 return formObject;
+
+            var hasFieldInForm = formObject.CurrentRow.IsFieldPresent(fieldNumber)
+                || (formObject.MultipleIteration && formObject.HasOtherRows() && formObject.OtherRows.Any(r => r.IsFieldPresent(fieldNumber)));
+
+            if (!hasFieldInForm)
+                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             formObject.CurrentRow.SetEnabledField(fieldNumber);
 
@@ -388,16 +437,196 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetEnabledFields(this FormObject formObject, List<string>? fieldNumbers)
         {
-            if (formObject == null || formObject.CurrentRow == null || fieldNumbers == null || fieldNumbers.Count == 0)
+            if (fieldNumbers == null)
+                throw new ArgumentNullException(nameof(fieldNumbers));
+
+            if (fieldNumbers.Count == 0)
+                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+
+            if (formObject == null || formObject.CurrentRow == null)
                 return formObject;
 
-            formObject.CurrentRow.SetEnabledFields(fieldNumbers);
+            var fieldsToSet = fieldNumbers
+                .Where(f => !string.IsNullOrEmpty(f))
+                .Distinct()
+                .ToList();
+
+            if (fieldsToSet.Count == 0)
+                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+
+            var hasAnyField = fieldsToSet.Any(f => formObject.CurrentRow.IsFieldPresent(f))
+                || (formObject.MultipleIteration && formObject.HasOtherRows() && fieldsToSet.Any(f => formObject.OtherRows.Any(r => r.IsFieldPresent(f))));
+
+            if (!hasAnyField)
+                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+
+            formObject.CurrentRow.SetEnabledFields(fieldsToSet);
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
                 foreach (var row in formObject.OtherRows)
                 {
-                    row.SetEnabledFields(fieldNumbers);
+                    row.SetEnabledFields(fieldsToSet);
+                }
+            }
+
+            return formObject;
+        }
+
+        /// <summary>
+        /// Locks a <see cref="FieldObject"/> in a <see cref="FormObject"/> by field number.
+        /// </summary>
+        /// <param name="formObject">The FormObject to modify.</param>
+        /// <param name="fieldNumber">The field number to lock.</param>
+        /// <returns>The modified FormObject.</returns>
+        public static FormObject? SetLockedField(this FormObject formObject, string fieldNumber)
+        {
+            if (fieldNumber == null)
+                throw new ArgumentNullException(nameof(fieldNumber));
+
+            if (fieldNumber.Length == 0)
+                throw new ArgumentException(FieldNumberCannotBeEmptyMessage, nameof(fieldNumber));
+
+            if (formObject == null || formObject.CurrentRow == null)
+                return formObject;
+
+            var hasFieldInForm = formObject.CurrentRow.IsFieldPresent(fieldNumber)
+                || (formObject.MultipleIteration && formObject.HasOtherRows() && formObject.OtherRows.Any(r => r.IsFieldPresent(fieldNumber)));
+
+            if (!hasFieldInForm)
+                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+
+            formObject.CurrentRow.SetLockedField(fieldNumber);
+
+            if (formObject.MultipleIteration && formObject.HasOtherRows())
+            {
+                foreach (var row in formObject.OtherRows)
+                {
+                    row.SetLockedField(fieldNumber);
+                }
+            }
+
+            return formObject;
+        }
+
+        /// <summary>
+        /// Locks <see cref="FieldObject"/> instances in a <see cref="FormObject"/> by field numbers.
+        /// </summary>
+        /// <param name="formObject">The FormObject to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to lock.</param>
+        /// <returns>The modified FormObject.</returns>
+        public static FormObject? SetLockedFields(this FormObject formObject, List<string>? fieldNumbers)
+        {
+            if (fieldNumbers == null)
+                throw new ArgumentNullException(nameof(fieldNumbers));
+
+            if (fieldNumbers.Count == 0)
+                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+
+            if (formObject == null || formObject.CurrentRow == null)
+                return formObject;
+
+            var fieldsToSet = fieldNumbers
+                .Where(f => !string.IsNullOrEmpty(f))
+                .Distinct()
+                .ToList();
+
+            if (fieldsToSet.Count == 0)
+                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+
+            var hasAnyField = fieldsToSet.Any(f => formObject.CurrentRow.IsFieldPresent(f))
+                || (formObject.MultipleIteration && formObject.HasOtherRows() && fieldsToSet.Any(f => formObject.OtherRows.Any(r => r.IsFieldPresent(f))));
+
+            if (!hasAnyField)
+                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+
+            formObject.CurrentRow.SetLockedFields(fieldsToSet);
+
+            if (formObject.MultipleIteration && formObject.HasOtherRows())
+            {
+                foreach (var row in formObject.OtherRows)
+                {
+                    row.SetLockedFields(fieldsToSet);
+                }
+            }
+
+            return formObject;
+        }
+
+        /// <summary>
+        /// Unlocks a <see cref="FieldObject"/> in a <see cref="FormObject"/> by field number.
+        /// </summary>
+        /// <param name="formObject">The FormObject to modify.</param>
+        /// <param name="fieldNumber">The field number to unlock.</param>
+        /// <returns>The modified FormObject.</returns>
+        public static FormObject? SetUnlockedField(this FormObject formObject, string fieldNumber)
+        {
+            if (fieldNumber == null)
+                throw new ArgumentNullException(nameof(fieldNumber));
+
+            if (fieldNumber.Length == 0)
+                throw new ArgumentException(FieldNumberCannotBeEmptyMessage, nameof(fieldNumber));
+
+            if (formObject == null || formObject.CurrentRow == null)
+                return formObject;
+
+            var hasFieldInForm = formObject.CurrentRow.IsFieldPresent(fieldNumber)
+                || (formObject.MultipleIteration && formObject.HasOtherRows() && formObject.OtherRows.Any(r => r.IsFieldPresent(fieldNumber)));
+
+            if (!hasFieldInForm)
+                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+
+            formObject.CurrentRow.SetUnlockedField(fieldNumber);
+
+            if (formObject.MultipleIteration && formObject.HasOtherRows())
+            {
+                foreach (var row in formObject.OtherRows)
+                {
+                    row.SetUnlockedField(fieldNumber);
+                }
+            }
+
+            return formObject;
+        }
+
+        /// <summary>
+        /// Unlocks <see cref="FieldObject"/> instances in a <see cref="FormObject"/> by field numbers.
+        /// </summary>
+        /// <param name="formObject">The FormObject to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to unlock.</param>
+        /// <returns>The modified FormObject.</returns>
+        public static FormObject? SetUnlockedFields(this FormObject formObject, List<string>? fieldNumbers)
+        {
+            if (fieldNumbers == null)
+                throw new ArgumentNullException(nameof(fieldNumbers));
+
+            if (fieldNumbers.Count == 0)
+                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+
+            if (formObject == null || formObject.CurrentRow == null)
+                return formObject;
+
+            var fieldsToSet = fieldNumbers
+                .Where(f => !string.IsNullOrEmpty(f))
+                .Distinct()
+                .ToList();
+
+            if (fieldsToSet.Count == 0)
+                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+
+            var hasAnyField = fieldsToSet.Any(f => formObject.CurrentRow.IsFieldPresent(f))
+                || (formObject.MultipleIteration && formObject.HasOtherRows() && fieldsToSet.Any(f => formObject.OtherRows.Any(r => r.IsFieldPresent(f))));
+
+            if (!hasAnyField)
+                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+
+            formObject.CurrentRow.SetUnlockedFields(fieldsToSet);
+
+            if (formObject.MultipleIteration && formObject.HasOtherRows())
+            {
+                foreach (var row in formObject.OtherRows)
+                {
+                    row.SetUnlockedFields(fieldsToSet);
                 }
             }
 

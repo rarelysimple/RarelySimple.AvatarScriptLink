@@ -9,6 +9,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
     /// </summary>
     public static class OptionObject2015Helpers
     {
+        private const string NoMatchingFieldObjectsMessage = "No matching field objects were found.";
+        private const string NoFieldObjectsProvidedMessage = "No field objects were provided.";
+        private const string NoFieldNumbersProvidedMessage = "No field numbers were provided.";
+        private const string FieldNumberCannotBeEmptyMessage = "Field number cannot be empty.";
+
         /// <summary>
         /// Gets the entity ID of an <see cref="OptionObject2015"/>.
         /// </summary>
@@ -87,8 +92,17 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetDisabledField(this OptionObject2015 optionObject, string fieldNumber)
         {
-            if (optionObject == null || optionObject.Forms == null || string.IsNullOrEmpty(fieldNumber))
+            if (fieldNumber == null)
+                throw new ArgumentNullException(nameof(fieldNumber));
+
+            if (fieldNumber.Length == 0)
+                throw new ArgumentException(FieldNumberCannotBeEmptyMessage, nameof(fieldNumber));
+
+            if (optionObject == null || optionObject.Forms == null)
                 return optionObject;
+
+            if (!optionObject.Forms.Any(f => f.IsFieldPresent(fieldNumber)))
+                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             foreach (var form in optionObject.Forms)
             {
@@ -106,13 +120,20 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetDisabledFields(this OptionObject2015 optionObject, List<FieldObject>? fieldObjects)
         {
-            if (fieldObjects == null || fieldObjects.Count == 0)
-                return optionObject;
+            if (fieldObjects == null)
+                throw new ArgumentNullException(nameof(fieldObjects));
+
+            if (fieldObjects.Count == 0)
+                throw new ArgumentException(NoFieldObjectsProvidedMessage, nameof(fieldObjects));
 
             var fieldNumbers = fieldObjects
                 .Where(f => !string.IsNullOrEmpty(f?.FieldNumber))
                 .Select(f => f.FieldNumber)
+                .Distinct()
                 .ToList();
+
+            if (fieldNumbers.Count == 0)
+                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldObjects));
 
             return optionObject.SetDisabledFields(fieldNumbers);
         }
@@ -125,12 +146,33 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetDisabledFields(this OptionObject2015 optionObject, List<string>? fieldNumbers)
         {
-            if (optionObject == null || optionObject.Forms == null || fieldNumbers == null || fieldNumbers.Count == 0)
+            if (fieldNumbers == null)
+                throw new ArgumentNullException(nameof(fieldNumbers));
+
+            if (fieldNumbers.Count == 0)
+                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+
+            if (optionObject == null || optionObject.Forms == null)
                 return optionObject;
+
+            var fieldsToSet = fieldNumbers
+                .Where(f => !string.IsNullOrEmpty(f))
+                .Distinct()
+                .ToList();
+
+            if (fieldsToSet.Count == 0)
+                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+
+            fieldsToSet = fieldsToSet
+                .Where(f => optionObject.Forms.Any(form => form.IsFieldPresent(f)))
+                .ToList();
+
+            if (fieldsToSet.Count == 0)
+                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             foreach (var form in optionObject.Forms)
             {
-                form.SetDisabledFields(fieldNumbers);
+                form.SetDisabledFields(fieldsToSet);
             }
 
             return optionObject;
@@ -144,8 +186,17 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetEnabledField(this OptionObject2015 optionObject, string fieldNumber)
         {
-            if (optionObject == null || optionObject.Forms == null || string.IsNullOrEmpty(fieldNumber))
+            if (fieldNumber == null)
+                throw new ArgumentNullException(nameof(fieldNumber));
+
+            if (fieldNumber.Length == 0)
+                throw new ArgumentException(FieldNumberCannotBeEmptyMessage, nameof(fieldNumber));
+
+            if (optionObject == null || optionObject.Forms == null)
                 return optionObject;
+
+            if (!optionObject.Forms.Any(f => f.IsFieldPresent(fieldNumber)))
+                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             foreach (var form in optionObject.Forms)
             {
@@ -163,13 +214,20 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetEnabledFields(this OptionObject2015 optionObject, List<FieldObject>? fieldObjects)
         {
-            if (fieldObjects == null || fieldObjects.Count == 0)
-                return optionObject;
+            if (fieldObjects == null)
+                throw new ArgumentNullException(nameof(fieldObjects));
+
+            if (fieldObjects.Count == 0)
+                throw new ArgumentException(NoFieldObjectsProvidedMessage, nameof(fieldObjects));
 
             var fieldNumbers = fieldObjects
                 .Where(f => !string.IsNullOrEmpty(f?.FieldNumber))
                 .Select(f => f.FieldNumber)
+                .Distinct()
                 .ToList();
+
+            if (fieldNumbers.Count == 0)
+                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldObjects));
 
             return optionObject.SetEnabledFields(fieldNumbers);
         }
@@ -182,12 +240,221 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetEnabledFields(this OptionObject2015 optionObject, List<string>? fieldNumbers)
         {
-            if (optionObject == null || optionObject.Forms == null || fieldNumbers == null || fieldNumbers.Count == 0)
+            if (fieldNumbers == null)
+                throw new ArgumentNullException(nameof(fieldNumbers));
+
+            if (fieldNumbers.Count == 0)
+                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+
+            if (optionObject == null || optionObject.Forms == null)
                 return optionObject;
+
+            var fieldsToSet = fieldNumbers
+                .Where(f => !string.IsNullOrEmpty(f))
+                .Distinct()
+                .ToList();
+
+            if (fieldsToSet.Count == 0)
+                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+
+            fieldsToSet = fieldsToSet
+                .Where(f => optionObject.Forms.Any(form => form.IsFieldPresent(f)))
+                .ToList();
+
+            if (fieldsToSet.Count == 0)
+                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             foreach (var form in optionObject.Forms)
             {
-                form.SetEnabledFields(fieldNumbers);
+                form.SetEnabledFields(fieldsToSet);
+            }
+
+            return optionObject;
+        }
+
+        /// <summary>
+        /// Locks a <see cref="FieldObject"/> in an <see cref="OptionObject2015"/> by field number.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject2015 to modify.</param>
+        /// <param name="fieldNumber">The field number to lock.</param>
+        /// <returns>The modified OptionObject2015.</returns>
+        public static OptionObject2015? SetLockedField(this OptionObject2015 optionObject, string fieldNumber)
+        {
+            if (fieldNumber == null)
+                throw new ArgumentNullException(nameof(fieldNumber));
+
+            if (fieldNumber.Length == 0)
+                throw new ArgumentException(FieldNumberCannotBeEmptyMessage, nameof(fieldNumber));
+
+            if (optionObject == null || optionObject.Forms == null)
+                return optionObject;
+
+            if (!optionObject.Forms.Any(f => f.IsFieldPresent(fieldNumber)))
+                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+
+            foreach (var form in optionObject.Forms)
+            {
+                form.SetLockedField(fieldNumber);
+            }
+
+            return optionObject;
+        }
+
+        /// <summary>
+        /// Locks <see cref="FieldObject"/> instances in an <see cref="OptionObject2015"/>.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject2015 to modify.</param>
+        /// <param name="fieldObjects">The field objects to lock.</param>
+        /// <returns>The modified OptionObject2015.</returns>
+        public static OptionObject2015? SetLockedFields(this OptionObject2015 optionObject, List<FieldObject>? fieldObjects)
+        {
+            if (fieldObjects == null)
+                throw new ArgumentNullException(nameof(fieldObjects));
+
+            if (fieldObjects.Count == 0)
+                throw new ArgumentException(NoFieldObjectsProvidedMessage, nameof(fieldObjects));
+
+            var fieldNumbers = fieldObjects
+                .Where(f => !string.IsNullOrEmpty(f?.FieldNumber))
+                .Select(f => f.FieldNumber)
+                .Distinct()
+                .ToList();
+
+            if (fieldNumbers.Count == 0)
+                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldObjects));
+
+            return optionObject.SetLockedFields(fieldNumbers);
+        }
+
+        /// <summary>
+        /// Locks <see cref="FieldObject"/> instances in an <see cref="OptionObject2015"/> by field numbers.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject2015 to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to lock.</param>
+        /// <returns>The modified OptionObject2015.</returns>
+        public static OptionObject2015? SetLockedFields(this OptionObject2015 optionObject, List<string>? fieldNumbers)
+        {
+            if (fieldNumbers == null)
+                throw new ArgumentNullException(nameof(fieldNumbers));
+
+            if (fieldNumbers.Count == 0)
+                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+
+            if (optionObject == null || optionObject.Forms == null)
+                return optionObject;
+
+            var fieldsToSet = fieldNumbers
+                .Where(f => !string.IsNullOrEmpty(f))
+                .Distinct()
+                .ToList();
+
+            if (fieldsToSet.Count == 0)
+                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+
+            fieldsToSet = fieldsToSet
+                .Where(f => optionObject.Forms.Any(form => form.IsFieldPresent(f)))
+                .ToList();
+
+            if (fieldsToSet.Count == 0)
+                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+
+            foreach (var form in optionObject.Forms)
+            {
+                form.SetLockedFields(fieldsToSet);
+            }
+
+            return optionObject;
+        }
+
+        /// <summary>
+        /// Unlocks a <see cref="FieldObject"/> in an <see cref="OptionObject2015"/> by field number.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject2015 to modify.</param>
+        /// <param name="fieldNumber">The field number to unlock.</param>
+        /// <returns>The modified OptionObject2015.</returns>
+        public static OptionObject2015? SetUnlockedField(this OptionObject2015 optionObject, string fieldNumber)
+        {
+            if (fieldNumber == null)
+                throw new ArgumentNullException(nameof(fieldNumber));
+
+            if (fieldNumber.Length == 0)
+                throw new ArgumentException(FieldNumberCannotBeEmptyMessage, nameof(fieldNumber));
+
+            if (optionObject == null || optionObject.Forms == null)
+                return optionObject;
+
+            if (!optionObject.Forms.Any(f => f.IsFieldPresent(fieldNumber)))
+                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+
+            foreach (var form in optionObject.Forms)
+            {
+                form.SetUnlockedField(fieldNumber);
+            }
+
+            return optionObject;
+        }
+
+        /// <summary>
+        /// Unlocks <see cref="FieldObject"/> instances in an <see cref="OptionObject2015"/>.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject2015 to modify.</param>
+        /// <param name="fieldObjects">The field objects to unlock.</param>
+        /// <returns>The modified OptionObject2015.</returns>
+        public static OptionObject2015? SetUnlockedFields(this OptionObject2015 optionObject, List<FieldObject>? fieldObjects)
+        {
+            if (fieldObjects == null)
+                throw new ArgumentNullException(nameof(fieldObjects));
+
+            if (fieldObjects.Count == 0)
+                throw new ArgumentException(NoFieldObjectsProvidedMessage, nameof(fieldObjects));
+
+            var fieldNumbers = fieldObjects
+                .Where(f => !string.IsNullOrEmpty(f?.FieldNumber))
+                .Select(f => f.FieldNumber)
+                .Distinct()
+                .ToList();
+
+            if (fieldNumbers.Count == 0)
+                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldObjects));
+
+            return optionObject.SetUnlockedFields(fieldNumbers);
+        }
+
+        /// <summary>
+        /// Unlocks <see cref="FieldObject"/> instances in an <see cref="OptionObject2015"/> by field numbers.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject2015 to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to unlock.</param>
+        /// <returns>The modified OptionObject2015.</returns>
+        public static OptionObject2015? SetUnlockedFields(this OptionObject2015 optionObject, List<string>? fieldNumbers)
+        {
+            if (fieldNumbers == null)
+                throw new ArgumentNullException(nameof(fieldNumbers));
+
+            if (fieldNumbers.Count == 0)
+                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+
+            if (optionObject == null || optionObject.Forms == null)
+                return optionObject;
+
+            var fieldsToSet = fieldNumbers
+                .Where(f => !string.IsNullOrEmpty(f))
+                .Distinct()
+                .ToList();
+
+            if (fieldsToSet.Count == 0)
+                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+
+            fieldsToSet = fieldsToSet
+                .Where(f => optionObject.Forms.Any(form => form.IsFieldPresent(f)))
+                .ToList();
+
+            if (fieldsToSet.Count == 0)
+                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+
+            foreach (var form in optionObject.Forms)
+            {
+                form.SetUnlockedFields(fieldsToSet);
             }
 
             return optionObject;

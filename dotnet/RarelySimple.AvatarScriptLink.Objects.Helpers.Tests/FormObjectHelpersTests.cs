@@ -8,7 +8,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
     public class FormObjectHelpersTests
     {
         [TestMethod]
-        public void IsRowPresent_WithCurrentRow_ReturnsTrue()
+        public void IsRowPresent_FormObject_WithCurrentRow_ReturnsTrue()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject { RowId = "1" } };
@@ -21,7 +21,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void IsRowPresent_WithOtherRow_ReturnsTrue()
+        public void IsRowPresent_FormObject_WithOtherRow_ReturnsTrue()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject { RowId = "1" }, MultipleIteration = true };
@@ -35,7 +35,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void IsRowPresent_WithAbsentRow_ReturnsFalse()
+        public void IsRowPresent_FormObject_WithAbsentRow_ReturnsFalse()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject { RowId = "1" } };
@@ -48,7 +48,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void IsRowMarkedForDeletion_WithDeletedRow_ReturnsTrue()
+        public void IsRowMarkedForDeletion_FormObject_WithDeletedRow_ReturnsTrue()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject { RowId = "1", RowAction = "DELETE" } };
@@ -61,7 +61,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void IsRowMarkedForDeletion_WithNormalRow_ReturnsFalse()
+        public void IsRowMarkedForDeletion_FormObject_WithNormalRow_ReturnsFalse()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject { RowId = "1", RowAction = "EDIT" } };
@@ -74,7 +74,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void IsFieldPresent_InCurrentRow_ReturnsTrue()
+        public void IsFieldPresent_FormObject_InCurrentRow_ReturnsTrue()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject() };
@@ -88,7 +88,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void IsFieldEnabled_WithEnabledField_ReturnsTrue()
+        public void IsFieldEnabled_FormObject_WithEnabledField_ReturnsTrue()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject() };
@@ -102,7 +102,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void IsFieldLocked_WithLockedField_ReturnsTrue()
+        public void IsFieldLocked_FormObject_WithLockedField_ReturnsTrue()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject() };
@@ -116,7 +116,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void IsFieldRequired_WithRequiredField_ReturnsTrue()
+        public void IsFieldRequired_FormObject_WithRequiredField_ReturnsTrue()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject() };
@@ -130,7 +130,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void GetFieldValue_FromCurrentRow_ReturnsValue()
+        public void GetFieldValue_FormObject_FromCurrentRow_ReturnsValue()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject() };
@@ -144,7 +144,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void GetFieldValue_WithRowIdAndFieldNumber_ReturnsValue()
+        public void GetFieldValue_FormObject_WithRowIdAndFieldNumber_ReturnsValue()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject { RowId = "1" } };
@@ -158,7 +158,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void GetFieldValueFromOtherRows_WithRowIdAndFieldNumber_ReturnsValue()
+        public void GetFieldValueFromOtherRows_FormObject_WithRowIdAndFieldNumber_ReturnsValue()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject { RowId = "1" }, MultipleIteration = true };
@@ -174,7 +174,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void GetFieldValues_ReturnsAllValues()
+        public void GetFieldValues_FormObject_ReturnsAllValues()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject { RowId = "1" }, MultipleIteration = true };
@@ -194,7 +194,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetFieldValue_InCurrentRow_UpdatesValue()
+        public void SetFieldValue_FormObject_InCurrentRow_UpdatesValue()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject { RowId = "1" } };
@@ -208,7 +208,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetFieldValue_WithRowId_UpdatesValueInSpecificRow()
+        public void SetFieldValue_FormObject_WithRowId_UpdatesValueInSpecificRow()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject { RowId = "1" }, MultipleIteration = true };
@@ -227,7 +227,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetDisabledField_WithMultipleIteration_DisablesFieldInAllRows()
+        public void SetDisabledField_FormObject_WithMultipleIteration_DisablesFieldInAllRows()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject { RowId = "1", RowAction = "" }, MultipleIteration = true };
@@ -247,7 +247,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetEnabledFields_WithMultipleIteration_EnablesMatchingFieldsInAllRows()
+        public void SetEnabledFields_FormObject_WithMultipleIteration_EnablesMatchingFieldsInAllRows()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject { RowId = "1" }, MultipleIteration = true };
@@ -265,37 +265,29 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetDisabledField_WithEmptyFieldNumber_DoesNotChangeForm()
+        public void SetDisabledField_FormObject_WithEmptyFieldNumber_ThrowsArgumentException()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject { RowId = "1", RowAction = "" } };
             form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1" });
 
-            // Act
-            form.SetDisabledField(string.Empty);
-
-            // Assert
-            Assert.AreEqual("1", form.CurrentRow.Fields[0].Enabled);
-            Assert.AreEqual("", form.CurrentRow.RowAction);
+            // Act/Assert
+            Assert.ThrowsException<ArgumentException>(() => form.SetDisabledField(string.Empty));
         }
 
         [TestMethod]
-        public void SetEnabledFields_WithNullFieldNumbers_DoesNotChangeForm()
+        public void SetEnabledFields_FormObject_WithNullFieldNumbers_ThrowsArgumentNullException()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject { RowId = "1", RowAction = "" } };
             form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "0" });
 
-            // Act
-            form.SetEnabledFields(null);
-
-            // Assert
-            Assert.AreEqual("0", form.CurrentRow.Fields[0].Enabled);
-            Assert.AreEqual("", form.CurrentRow.RowAction);
+            // Act/Assert
+            Assert.ThrowsException<ArgumentNullException>(() => form.SetEnabledFields(null));
         }
 
         [TestMethod]
-        public void SetDisabledField_WithNullCurrentRow_ReturnsOriginalForm()
+        public void SetDisabledField_FormObject_WithNullCurrentRow_ReturnsOriginalForm()
         {
             // Arrange
             var form = new FormObject { CurrentRow = null! };
@@ -308,22 +300,18 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetEnabledField_WithEmptyFieldNumber_DoesNotChangeForm()
+        public void SetEnabledField_FormObject_WithEmptyFieldNumber_ThrowsArgumentException()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject { RowId = "1", RowAction = "" } };
             form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "0" });
 
-            // Act
-            form.SetEnabledField(string.Empty);
-
-            // Assert
-            Assert.AreEqual("0", form.CurrentRow.Fields[0].Enabled);
-            Assert.AreEqual("", form.CurrentRow.RowAction);
+            // Act/Assert
+            Assert.ThrowsException<ArgumentException>(() => form.SetEnabledField(string.Empty));
         }
 
         [TestMethod]
-        public void SetDisabledFields_WithMultipleIterationFalse_DoesNotModifyOtherRows()
+        public void SetDisabledFields_FormObject_WithMultipleIterationFalse_DoesNotModifyOtherRows()
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject { RowId = "1" }, MultipleIteration = false };
@@ -339,6 +327,122 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             // Assert
             Assert.AreEqual("0", form.CurrentRow.Fields[0].Enabled);
             Assert.AreEqual("1", otherRow.Fields[0].Enabled);
+        }
+
+        [TestMethod]
+        public void SetLockedField_FormObject_WithMultipleIteration_LocksFieldInAllRows()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "1", RowAction = "" }, MultipleIteration = true };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
+            var otherRow = new RowObject { RowId = "2", RowAction = "" };
+            otherRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
+            form.OtherRows.Add(otherRow);
+
+            // Act
+            form.SetLockedField("100");
+
+            // Assert
+            Assert.AreEqual("1", form.CurrentRow.Fields[0].Lock);
+            Assert.AreEqual("1", otherRow.Fields[0].Lock);
+            Assert.AreEqual("EDIT", form.CurrentRow.RowAction);
+            Assert.AreEqual("EDIT", otherRow.RowAction);
+        }
+
+        [TestMethod]
+        public void SetUnlockedFields_FormObject_WithMultipleIteration_UnlocksMatchingFieldsInAllRows()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "1" }, MultipleIteration = true };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "1" });
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "101", Lock = "1" });
+            var otherRow = new RowObject { RowId = "2" };
+            otherRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "1" });
+            otherRow.Fields.Add(new FieldObject { FieldNumber = "101", Lock = "1" });
+            form.OtherRows.Add(otherRow);
+
+            // Act
+            form.SetUnlockedFields(["101"]);
+
+            // Assert
+            Assert.AreEqual("1", form.CurrentRow.Fields[0].Lock);
+            Assert.AreEqual("0", form.CurrentRow.Fields[1].Lock);
+            Assert.AreEqual("1", otherRow.Fields[0].Lock);
+            Assert.AreEqual("0", otherRow.Fields[1].Lock);
+        }
+
+        [TestMethod]
+        public void SetLockedField_FormObject_WithEmptyFieldNumber_ThrowsArgumentException()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "1", RowAction = "" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
+
+            // Act / Assert
+            Assert.ThrowsException<ArgumentException>(() => form.SetLockedField(string.Empty));
+        }
+
+        [TestMethod]
+        public void SetUnlockedField_FormObject_WithNullCurrentRow_ReturnsOriginalForm()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = null! };
+
+            // Act
+            var result = form.SetUnlockedField("100");
+
+            // Assert
+            Assert.AreSame(form, result);
+        }
+
+        [TestMethod]
+        public void SetLockedFields_FormObject_WithNullFieldNumbers_ThrowsArgumentNullException()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "1", RowAction = "" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
+
+            // Act / Assert
+            Assert.ThrowsException<ArgumentNullException>(() => form.SetLockedFields(null));
+        }
+
+        [TestMethod]
+        public void SetUnlockedFields_FormObject_WithMultipleIterationFalse_DoesNotModifyOtherRows()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "1" }, MultipleIteration = false };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "1" });
+
+            var otherRow = new RowObject { RowId = "2" };
+            otherRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "1" });
+            form.OtherRows.Add(otherRow);
+
+            // Act
+            form.SetUnlockedFields(["100"]);
+
+            // Assert
+            Assert.AreEqual("0", form.CurrentRow.Fields[0].Lock);
+            Assert.AreEqual("1", otherRow.Fields[0].Lock);
+        }
+
+        [TestMethod]
+        public void SetLockedFields_FormObject_WithDuplicateFieldNumbers_LocksFieldInCurrentAndOtherRows()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "1", RowAction = "" }, MultipleIteration = true };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
+            var otherRow = new RowObject { RowId = "2", RowAction = "" };
+            otherRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
+            form.OtherRows.Add(otherRow);
+
+            // Act
+            form.SetLockedFields(["100", "100"]);
+
+            // Assert
+            Assert.AreEqual("1", form.CurrentRow.Fields[0].Lock);
+            Assert.AreEqual("1", otherRow.Fields[0].Lock);
+            Assert.AreEqual(RowObject.RowActions.Edit, form.CurrentRow.RowAction);
+            Assert.AreEqual(RowObject.RowActions.Edit, otherRow.RowAction);
         }
     }
 

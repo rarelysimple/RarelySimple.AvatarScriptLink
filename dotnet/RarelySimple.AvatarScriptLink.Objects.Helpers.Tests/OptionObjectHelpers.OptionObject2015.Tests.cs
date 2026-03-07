@@ -1,0 +1,227 @@
+namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
+{
+    /// <summary>
+    /// Tests for OptionObject2015 helper extension methods.
+    /// </summary>
+    [TestClass]
+    public class OptionObjectHelpersOptionObject2015Tests
+    {
+        [TestMethod]
+        public void GetEntityId_OptionObject2015_ReturnsEntityId()
+        {
+            var optionObject = new OptionObject2015 { EntityID = "E-2015" };
+
+            var result = optionObject.GetEntityId();
+
+            Assert.AreEqual("E-2015", result);
+        }
+
+        [TestMethod]
+        public void GetSessionToken_OptionObject2015_ReturnsSessionToken()
+        {
+            var optionObject = new OptionObject2015 { SessionToken = "token-123" };
+
+            var result = optionObject.GetSessionToken();
+
+            Assert.AreEqual("token-123", result);
+        }
+
+        [TestMethod]
+        public void GetOptionUserId_OptionObject2015_ReturnsOptionUserId()
+        {
+            var optionObject = new OptionObject2015 { OptionUserId = "user-01" };
+
+            var result = optionObject.GetOptionUserId();
+
+            Assert.AreEqual("user-01", result);
+        }
+
+        [TestMethod]
+        public void HasError_OptionObject2015_WithNonZeroErrorCode_ReturnsTrue()
+        {
+            var optionObject = new OptionObject2015 { ErrorCode = 1 };
+
+            var result = optionObject.HasError();
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void SetEnabledField_OptionObject2015_EnablesTargetField()
+        {
+            var optionObject = new OptionObject2015();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "0" });
+            optionObject.Forms.Add(form);
+
+            optionObject.SetEnabledField("100");
+
+            Assert.AreEqual("1", optionObject.Forms[0].CurrentRow.Fields[0].Enabled);
+        }
+
+        [TestMethod]
+        public void SetDisabledFields_OptionObject2015_WithFieldObjects_DisablesMatchingFields()
+        {
+            var optionObject = new OptionObject2015();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1" });
+            optionObject.Forms.Add(form);
+
+            var fieldsToDisable = new List<FieldObject> { new FieldObject { FieldNumber = "100" } };
+
+            optionObject.SetDisabledFields(fieldsToDisable);
+
+            Assert.AreEqual("0", optionObject.Forms[0].CurrentRow.Fields[0].Enabled);
+        }
+
+        [TestMethod]
+        public void SetEnabledFields_OptionObject2015_WithFieldNumbers_EnablesMatchingFields()
+        {
+            var optionObject = new OptionObject2015();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "0" });
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "101", Enabled = "0" });
+            optionObject.Forms.Add(form);
+
+            optionObject.SetEnabledFields(new List<string> { "100" });
+
+            Assert.AreEqual("1", optionObject.Forms[0].CurrentRow.Fields[0].Enabled);
+            Assert.AreEqual("0", optionObject.Forms[0].CurrentRow.Fields[1].Enabled);
+        }
+
+        [TestMethod]
+        public void SetDisabledField_OptionObject2015_WithEmptyFieldNumber_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2015();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1", RowAction = "" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1" });
+            optionObject.Forms.Add(form);
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.SetDisabledField(string.Empty));
+        }
+
+        [TestMethod]
+        public void SetEnabledFields_OptionObject2015_WithNullFieldObjects_ThrowsArgumentNullException()
+        {
+            var optionObject = new OptionObject2015();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "0" });
+            optionObject.Forms.Add(form);
+
+            Assert.ThrowsException<ArgumentNullException>(() => optionObject.SetEnabledFields((List<FieldObject>?)null));
+        }
+
+        [TestMethod]
+        public void SetDisabledFields_OptionObject2015_WithEmptyFieldObjects_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2015();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1" });
+            optionObject.Forms.Add(form);
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.SetDisabledFields(new List<FieldObject>()));
+        }
+
+        [TestMethod]
+        public void SetEnabledFields_OptionObject2015_WithEmptyFieldObjects_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2015();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "0" });
+            optionObject.Forms.Add(form);
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.SetEnabledFields(new List<FieldObject>()));
+        }
+
+        [TestMethod]
+        public void SetDisabledField_OptionObject2015_WithNullForms_ReturnsOriginalObject()
+        {
+            var optionObject = new OptionObject2015 { Forms = null! };
+
+            var result = optionObject.SetDisabledField("100");
+
+            Assert.AreSame(optionObject, result);
+        }
+
+        [TestMethod]
+        public void SetEnabledFields_OptionObject2015_WithNullOptionObject_ReturnsNull()
+        {
+            var result = OptionObject2015Helpers.SetEnabledFields(null!, new List<string> { "100" });
+
+            Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        public void SetLockedField_OptionObject2015_LocksTargetField()
+        {
+            var optionObject = new OptionObject2015();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1", RowAction = "" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
+            optionObject.Forms.Add(form);
+
+            optionObject.SetLockedField("100");
+
+            Assert.AreEqual("1", optionObject.Forms[0].CurrentRow.Fields[0].Lock);
+            Assert.AreEqual("EDIT", optionObject.Forms[0].CurrentRow.RowAction);
+        }
+
+        [TestMethod]
+        public void SetUnlockedFields_OptionObject2015_WithFieldObjects_UnlocksMatchingFields()
+        {
+            var optionObject = new OptionObject2015();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "1" });
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "101", Lock = "1" });
+            optionObject.Forms.Add(form);
+            var fieldsToUnlock = new List<FieldObject> { new FieldObject { FieldNumber = "100" } };
+
+            optionObject.SetUnlockedFields(fieldsToUnlock);
+
+            Assert.AreEqual("0", optionObject.Forms[0].CurrentRow.Fields[0].Lock);
+            Assert.AreEqual("1", optionObject.Forms[0].CurrentRow.Fields[1].Lock);
+        }
+
+        [TestMethod]
+        public void SetLockedField_OptionObject2015_WithEmptyFieldNumber_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2015();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1", RowAction = "" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
+            optionObject.Forms.Add(form);
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.SetLockedField(string.Empty));
+        }
+
+        [TestMethod]
+        public void SetUnlockedFields_OptionObject2015_WithNullOptionObject_ReturnsNull()
+        {
+            var result = OptionObject2015Helpers.SetUnlockedFields(null!, new List<string> { "100" });
+
+            Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        public void SetLockedField_OptionObject2015_WithNullForms_ReturnsOriginalObject()
+        {
+            var optionObject = new OptionObject2015 { Forms = null! };
+
+            var result = optionObject.SetLockedField("100");
+
+            Assert.AreSame(optionObject, result);
+        }
+
+        [TestMethod]
+        public void SetLockedFields_OptionObject2015_WithDuplicateFieldNumbers_LocksTargetField()
+        {
+            var optionObject = new OptionObject2015();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1", RowAction = "" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
+            optionObject.Forms.Add(form);
+
+            optionObject.SetLockedFields(new List<string> { "100", "100" });
+
+            Assert.AreEqual("1", optionObject.Forms[0].CurrentRow.Fields[0].Lock);
+            Assert.AreEqual(RowObject.RowActions.Edit, optionObject.Forms[0].CurrentRow.RowAction);
+        }
+    }
+}
