@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using RarelySimple.AvatarScriptLink.Objects.Helpers.Validators;
 
 namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 {
@@ -9,10 +10,6 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
     /// </summary>
     public static class FormObjectHelpers
     {
-        private const string NoMatchingFieldObjectsMessage = "No matching field objects were found.";
-        private const string NoFieldNumbersProvidedMessage = "No field numbers were provided.";
-        private const string FieldNumberCannotBeEmptyMessage = "Field number cannot be empty.";
-
         /// <summary>
         /// Gets the form ID of a <see cref="FormObject"/>.
         /// </summary>
@@ -321,11 +318,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetDisabledField(this FormObject formObject, string fieldNumber)
         {
-            if (fieldNumber == null)
-                throw new ArgumentNullException(nameof(fieldNumber));
-
-            if (fieldNumber.Length == 0)
-                throw new ArgumentException(FieldNumberCannotBeEmptyMessage, nameof(fieldNumber));
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
 
             if (formObject == null || formObject.CurrentRow == null)
                 return formObject;
@@ -334,7 +327,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 || (formObject.MultipleIteration && formObject.HasOtherRows() && formObject.OtherRows.Any(r => r.IsFieldPresent(fieldNumber)));
 
             if (!hasFieldInForm)
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             formObject.CurrentRow.SetDisabledField(fieldNumber);
 
@@ -357,28 +350,16 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetDisabledFields(this FormObject formObject, List<string>? fieldNumbers)
         {
-            if (fieldNumbers == null)
-                throw new ArgumentNullException(nameof(fieldNumbers));
-
-            if (fieldNumbers.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
 
             if (formObject == null || formObject.CurrentRow == null)
                 return formObject;
-
-            var fieldsToSet = fieldNumbers
-                .Where(f => !string.IsNullOrEmpty(f))
-                .Distinct()
-                .ToList();
-
-            if (fieldsToSet.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
 
             var hasAnyField = fieldsToSet.Any(f => formObject.CurrentRow.IsFieldPresent(f))
                 || (formObject.MultipleIteration && formObject.HasOtherRows() && fieldsToSet.Any(f => formObject.OtherRows.Any(r => r.IsFieldPresent(f))));
 
             if (!hasAnyField)
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             formObject.CurrentRow.SetDisabledFields(fieldsToSet);
 
@@ -401,11 +382,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetEnabledField(this FormObject formObject, string fieldNumber)
         {
-            if (fieldNumber == null)
-                throw new ArgumentNullException(nameof(fieldNumber));
-
-            if (fieldNumber.Length == 0)
-                throw new ArgumentException(FieldNumberCannotBeEmptyMessage, nameof(fieldNumber));
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
 
             if (formObject == null || formObject.CurrentRow == null)
                 return formObject;
@@ -414,7 +391,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 || (formObject.MultipleIteration && formObject.HasOtherRows() && formObject.OtherRows.Any(r => r.IsFieldPresent(fieldNumber)));
 
             if (!hasFieldInForm)
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             formObject.CurrentRow.SetEnabledField(fieldNumber);
 
@@ -437,28 +414,16 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetEnabledFields(this FormObject formObject, List<string>? fieldNumbers)
         {
-            if (fieldNumbers == null)
-                throw new ArgumentNullException(nameof(fieldNumbers));
-
-            if (fieldNumbers.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
 
             if (formObject == null || formObject.CurrentRow == null)
                 return formObject;
-
-            var fieldsToSet = fieldNumbers
-                .Where(f => !string.IsNullOrEmpty(f))
-                .Distinct()
-                .ToList();
-
-            if (fieldsToSet.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
 
             var hasAnyField = fieldsToSet.Any(f => formObject.CurrentRow.IsFieldPresent(f))
                 || (formObject.MultipleIteration && formObject.HasOtherRows() && fieldsToSet.Any(f => formObject.OtherRows.Any(r => r.IsFieldPresent(f))));
 
             if (!hasAnyField)
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             formObject.CurrentRow.SetEnabledFields(fieldsToSet);
 
@@ -481,11 +446,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetLockedField(this FormObject formObject, string fieldNumber)
         {
-            if (fieldNumber == null)
-                throw new ArgumentNullException(nameof(fieldNumber));
-
-            if (fieldNumber.Length == 0)
-                throw new ArgumentException(FieldNumberCannotBeEmptyMessage, nameof(fieldNumber));
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
 
             if (formObject == null || formObject.CurrentRow == null)
                 return formObject;
@@ -494,7 +455,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 || (formObject.MultipleIteration && formObject.HasOtherRows() && formObject.OtherRows.Any(r => r.IsFieldPresent(fieldNumber)));
 
             if (!hasFieldInForm)
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             formObject.CurrentRow.SetLockedField(fieldNumber);
 
@@ -517,28 +478,16 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetLockedFields(this FormObject formObject, List<string>? fieldNumbers)
         {
-            if (fieldNumbers == null)
-                throw new ArgumentNullException(nameof(fieldNumbers));
-
-            if (fieldNumbers.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
 
             if (formObject == null || formObject.CurrentRow == null)
                 return formObject;
-
-            var fieldsToSet = fieldNumbers
-                .Where(f => !string.IsNullOrEmpty(f))
-                .Distinct()
-                .ToList();
-
-            if (fieldsToSet.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
 
             var hasAnyField = fieldsToSet.Any(f => formObject.CurrentRow.IsFieldPresent(f))
                 || (formObject.MultipleIteration && formObject.HasOtherRows() && fieldsToSet.Any(f => formObject.OtherRows.Any(r => r.IsFieldPresent(f))));
 
             if (!hasAnyField)
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             formObject.CurrentRow.SetLockedFields(fieldsToSet);
 
@@ -561,11 +510,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetUnlockedField(this FormObject formObject, string fieldNumber)
         {
-            if (fieldNumber == null)
-                throw new ArgumentNullException(nameof(fieldNumber));
-
-            if (fieldNumber.Length == 0)
-                throw new ArgumentException(FieldNumberCannotBeEmptyMessage, nameof(fieldNumber));
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
 
             if (formObject == null || formObject.CurrentRow == null)
                 return formObject;
@@ -574,7 +519,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 || (formObject.MultipleIteration && formObject.HasOtherRows() && formObject.OtherRows.Any(r => r.IsFieldPresent(fieldNumber)));
 
             if (!hasFieldInForm)
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             formObject.CurrentRow.SetUnlockedField(fieldNumber);
 
@@ -597,28 +542,16 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetUnlockedFields(this FormObject formObject, List<string>? fieldNumbers)
         {
-            if (fieldNumbers == null)
-                throw new ArgumentNullException(nameof(fieldNumbers));
-
-            if (fieldNumbers.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
 
             if (formObject == null || formObject.CurrentRow == null)
                 return formObject;
-
-            var fieldsToSet = fieldNumbers
-                .Where(f => !string.IsNullOrEmpty(f))
-                .Distinct()
-                .ToList();
-
-            if (fieldsToSet.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
 
             var hasAnyField = fieldsToSet.Any(f => formObject.CurrentRow.IsFieldPresent(f))
                 || (formObject.MultipleIteration && formObject.HasOtherRows() && fieldsToSet.Any(f => formObject.OtherRows.Any(r => r.IsFieldPresent(f))));
 
             if (!hasAnyField)
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             formObject.CurrentRow.SetUnlockedFields(fieldsToSet);
 

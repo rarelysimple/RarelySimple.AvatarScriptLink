@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using RarelySimple.AvatarScriptLink.Objects.Helpers.Manipulators;
+using RarelySimple.AvatarScriptLink.Objects.Helpers.Validators;
 
 namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 {
@@ -10,10 +11,6 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
     /// </summary>
     public static class RowObjectHelpers
     {
-        private const string NoMatchingFieldObjectsMessage = "No matching field objects were found.";
-        private const string NoFieldNumbersProvidedMessage = "No field numbers were provided.";
-        private const string FieldNumberCannotBeEmptyMessage = "Field number cannot be empty.";
-
         /// <summary>
         /// Gets the row ID of a <see cref="RowObject"/>.
         /// </summary>
@@ -209,18 +206,14 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetDisabledField(this RowObject rowObject, string fieldNumber)
         {
-            if (fieldNumber == null)
-                throw new ArgumentNullException(nameof(fieldNumber));
-
-            if (fieldNumber.Length == 0)
-                throw new ArgumentException(FieldNumberCannotBeEmptyMessage, nameof(fieldNumber));
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
 
             if (rowObject == null || rowObject.Fields == null)
                 return rowObject;
 
             var field = rowObject.Fields.FirstOrDefault(f => f.FieldNumber == fieldNumber);
             if (field == null)
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             var changed = field.IsEnabled();
             field.Disable();
@@ -239,25 +232,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetDisabledFields(this RowObject rowObject, List<string>? fieldNumbers)
         {
-            if (fieldNumbers == null)
-                throw new ArgumentNullException(nameof(fieldNumbers));
-
-            if (fieldNumbers.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
 
             if (rowObject == null || rowObject.Fields == null)
                 return rowObject;
 
-            var fieldsToSet = fieldNumbers
-                .Where(f => !string.IsNullOrEmpty(f))
-                .Distinct()
-                .ToList();
-
-            if (fieldsToSet.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
-
             if (!rowObject.Fields.Any(f => fieldsToSet.Contains(f.FieldNumber)))
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             var changed = false;
             foreach (var field in rowObject.Fields.Where(f => fieldsToSet.Contains(f.FieldNumber)))
@@ -283,18 +264,14 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetEnabledField(this RowObject rowObject, string fieldNumber)
         {
-            if (fieldNumber == null)
-                throw new ArgumentNullException(nameof(fieldNumber));
-
-            if (fieldNumber.Length == 0)
-                throw new ArgumentException(FieldNumberCannotBeEmptyMessage, nameof(fieldNumber));
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
 
             if (rowObject == null || rowObject.Fields == null)
                 return rowObject;
 
             var field = rowObject.Fields.FirstOrDefault(f => f.FieldNumber == fieldNumber);
             if (field == null)
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             var changed = !field.IsEnabled();
             field.Enable();
@@ -313,25 +290,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetEnabledFields(this RowObject rowObject, List<string>? fieldNumbers)
         {
-            if (fieldNumbers == null)
-                throw new ArgumentNullException(nameof(fieldNumbers));
-
-            if (fieldNumbers.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
 
             if (rowObject == null || rowObject.Fields == null)
                 return rowObject;
 
-            var fieldsToSet = fieldNumbers
-                .Where(f => !string.IsNullOrEmpty(f))
-                .Distinct()
-                .ToList();
-
-            if (fieldsToSet.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
-
             if (!rowObject.Fields.Any(f => fieldsToSet.Contains(f.FieldNumber)))
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             var changed = false;
             foreach (var field in rowObject.Fields.Where(f => fieldsToSet.Contains(f.FieldNumber)))
@@ -357,18 +322,14 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetLockedField(this RowObject rowObject, string fieldNumber)
         {
-            if (fieldNumber == null)
-                throw new ArgumentNullException(nameof(fieldNumber));
-
-            if (fieldNumber.Length == 0)
-                throw new ArgumentException(FieldNumberCannotBeEmptyMessage, nameof(fieldNumber));
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
 
             if (rowObject == null || rowObject.Fields == null)
                 return rowObject;
 
             var field = rowObject.Fields.FirstOrDefault(f => f.FieldNumber == fieldNumber);
             if (field == null)
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             var changed = !field.IsLocked();
             field.Lock();
@@ -387,25 +348,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetLockedFields(this RowObject rowObject, List<string>? fieldNumbers)
         {
-            if (fieldNumbers == null)
-                throw new ArgumentNullException(nameof(fieldNumbers));
-
-            if (fieldNumbers.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
 
             if (rowObject == null || rowObject.Fields == null)
                 return rowObject;
 
-            var fieldsToSet = fieldNumbers
-                .Where(f => !string.IsNullOrEmpty(f))
-                .Distinct()
-                .ToList();
-
-            if (fieldsToSet.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
-
             if (!rowObject.Fields.Any(f => fieldsToSet.Contains(f.FieldNumber)))
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             var changed = false;
             foreach (var field in rowObject.Fields.Where(f => fieldsToSet.Contains(f.FieldNumber)))
@@ -432,18 +381,14 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetUnlockedField(this RowObject rowObject, string fieldNumber)
         {
-            if (fieldNumber == null)
-                throw new ArgumentNullException(nameof(fieldNumber));
-
-            if (fieldNumber.Length == 0)
-                throw new ArgumentException(FieldNumberCannotBeEmptyMessage, nameof(fieldNumber));
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
 
             if (rowObject == null || rowObject.Fields == null)
                 return rowObject;
 
             var field = rowObject.Fields.FirstOrDefault(f => f.FieldNumber == fieldNumber);
             if (field == null)
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             var changed = field.IsLocked();
             field.Unlock();
@@ -462,25 +407,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetUnlockedFields(this RowObject rowObject, List<string>? fieldNumbers)
         {
-            if (fieldNumbers == null)
-                throw new ArgumentNullException(nameof(fieldNumbers));
-
-            if (fieldNumbers.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
 
             if (rowObject == null || rowObject.Fields == null)
                 return rowObject;
 
-            var fieldsToSet = fieldNumbers
-                .Where(f => !string.IsNullOrEmpty(f))
-                .Distinct()
-                .ToList();
-
-            if (fieldsToSet.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
-
             if (!rowObject.Fields.Any(f => fieldsToSet.Contains(f.FieldNumber)))
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             var changed = false;
             foreach (var field in rowObject.Fields.Where(f => fieldsToSet.Contains(f.FieldNumber)))

@@ -7,6 +7,56 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
     [TestClass]
     public class FormObjectHelpersTests
     {
+        [DataTestMethod]
+        [DataRow("Disabled")]
+        [DataRow("Enabled")]
+        [DataRow("Locked")]
+        [DataRow("Unlocked")]
+        public void SetField_FormObject_WithNullFieldNumber_ThrowsArgumentNullException(string operation)
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "1", RowAction = string.Empty } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1", Lock = "0" });
+
+            // Act
+            Action act = operation switch
+            {
+                "Disabled" => () => form.SetDisabledField(null!),
+                "Enabled" => () => form.SetEnabledField(null!),
+                "Locked" => () => form.SetLockedField(null!),
+                "Unlocked" => () => form.SetUnlockedField(null!),
+                _ => throw new ArgumentOutOfRangeException(nameof(operation))
+            };
+
+            // Assert
+            Assert.ThrowsException<ArgumentNullException>(act);
+        }
+
+        [DataTestMethod]
+        [DataRow("Disabled")]
+        [DataRow("Enabled")]
+        [DataRow("Locked")]
+        [DataRow("Unlocked")]
+        public void SetField_FormObject_WithEmptyFieldNumber_ThrowsArgumentException(string operation)
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "1", RowAction = string.Empty } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1", Lock = "0" });
+
+            // Act
+            Action act = operation switch
+            {
+                "Disabled" => () => form.SetDisabledField(string.Empty),
+                "Enabled" => () => form.SetEnabledField(string.Empty),
+                "Locked" => () => form.SetLockedField(string.Empty),
+                "Unlocked" => () => form.SetUnlockedField(string.Empty),
+                _ => throw new ArgumentOutOfRangeException(nameof(operation))
+            };
+
+            // Assert
+            Assert.ThrowsException<ArgumentException>(act);
+        }
+
         [TestMethod]
         public void IsRowPresent_FormObject_WithCurrentRow_ReturnsTrue()
         {

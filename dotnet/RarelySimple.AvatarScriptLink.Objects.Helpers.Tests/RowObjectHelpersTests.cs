@@ -7,6 +7,56 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
     [TestClass]
     public class RowObjectHelpersTests
     {
+        [DataTestMethod]
+        [DataRow("Disabled")]
+        [DataRow("Enabled")]
+        [DataRow("Locked")]
+        [DataRow("Unlocked")]
+        public void SetField_RowObject_WithNullFieldNumber_ThrowsArgumentNullException(string operation)
+        {
+            // Arrange
+            var row = new RowObject { RowAction = string.Empty };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1", Lock = "0" });
+
+            // Act
+            Action act = operation switch
+            {
+                "Disabled" => () => row.SetDisabledField(null!),
+                "Enabled" => () => row.SetEnabledField(null!),
+                "Locked" => () => row.SetLockedField(null!),
+                "Unlocked" => () => row.SetUnlockedField(null!),
+                _ => throw new ArgumentOutOfRangeException(nameof(operation))
+            };
+
+            // Assert
+            Assert.ThrowsException<ArgumentNullException>(act);
+        }
+
+        [DataTestMethod]
+        [DataRow("Disabled")]
+        [DataRow("Enabled")]
+        [DataRow("Locked")]
+        [DataRow("Unlocked")]
+        public void SetField_RowObject_WithEmptyFieldNumber_ThrowsArgumentException(string operation)
+        {
+            // Arrange
+            var row = new RowObject { RowAction = string.Empty };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1", Lock = "0" });
+
+            // Act
+            Action act = operation switch
+            {
+                "Disabled" => () => row.SetDisabledField(string.Empty),
+                "Enabled" => () => row.SetEnabledField(string.Empty),
+                "Locked" => () => row.SetLockedField(string.Empty),
+                "Unlocked" => () => row.SetUnlockedField(string.Empty),
+                _ => throw new ArgumentOutOfRangeException(nameof(operation))
+            };
+
+            // Assert
+            Assert.ThrowsException<ArgumentException>(act);
+        }
+
         [TestMethod]
         public void GetRowId_RowObject_WithRowId_ReturnsRowId()
         {

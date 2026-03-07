@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using RarelySimple.AvatarScriptLink.Objects.Helpers.Validators;
 
 namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 {
@@ -9,11 +10,6 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
     /// </summary>
     public static class OptionObject2Helpers
     {
-        private const string NoMatchingFieldObjectsMessage = "No matching field objects were found.";
-        private const string NoFieldObjectsProvidedMessage = "No field objects were provided.";
-        private const string NoFieldNumbersProvidedMessage = "No field numbers were provided.";
-        private const string FieldNumberCannotBeEmptyMessage = "Field number cannot be empty.";
-
         /// <summary>
         /// Gets the entity ID of an <see cref="OptionObject2"/>.
         /// </summary>
@@ -72,17 +68,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject2.</returns>
         public static OptionObject2? SetDisabledField(this OptionObject2 optionObject, string fieldNumber)
         {
-            if (fieldNumber == null)
-                throw new ArgumentNullException(nameof(fieldNumber));
-
-            if (fieldNumber.Length == 0)
-                throw new ArgumentException(FieldNumberCannotBeEmptyMessage, nameof(fieldNumber));
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
 
             if (optionObject == null || optionObject.Forms == null)
                 return optionObject;
 
             if (!optionObject.Forms.Any(f => f.IsFieldPresent(fieldNumber)))
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             foreach (var form in optionObject.Forms)
             {
@@ -100,20 +92,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject2.</returns>
         public static OptionObject2? SetDisabledFields(this OptionObject2 optionObject, List<FieldObject>? fieldObjects)
         {
-            if (fieldObjects == null)
-                throw new ArgumentNullException(nameof(fieldObjects));
-
-            if (fieldObjects.Count == 0)
-                throw new ArgumentException(NoFieldObjectsProvidedMessage, nameof(fieldObjects));
-
-            var fieldNumbers = fieldObjects
-                .Where(f => !string.IsNullOrEmpty(f?.FieldNumber))
-                .Select(f => f.FieldNumber)
-                .Distinct()
-                .ToList();
-
-            if (fieldNumbers.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldObjects));
+            var fieldNumbers = ArgumentGuards.ValidateAndGetFieldNumbers(fieldObjects, nameof(fieldObjects));
 
             return optionObject.SetDisabledFields(fieldNumbers);
         }
@@ -126,29 +105,17 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject2.</returns>
         public static OptionObject2? SetDisabledFields(this OptionObject2 optionObject, List<string>? fieldNumbers)
         {
-            if (fieldNumbers == null)
-                throw new ArgumentNullException(nameof(fieldNumbers));
-
-            if (fieldNumbers.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
 
             if (optionObject == null || optionObject.Forms == null)
                 return optionObject;
-
-            var fieldsToSet = fieldNumbers
-                .Where(f => !string.IsNullOrEmpty(f))
-                .Distinct()
-                .ToList();
-
-            if (fieldsToSet.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
 
             fieldsToSet = fieldsToSet
                 .Where(f => optionObject.Forms.Any(form => form.IsFieldPresent(f)))
                 .ToList();
 
             if (fieldsToSet.Count == 0)
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             foreach (var form in optionObject.Forms)
             {
@@ -166,17 +133,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject2.</returns>
         public static OptionObject2? SetEnabledField(this OptionObject2 optionObject, string fieldNumber)
         {
-            if (fieldNumber == null)
-                throw new ArgumentNullException(nameof(fieldNumber));
-
-            if (fieldNumber.Length == 0)
-                throw new ArgumentException(FieldNumberCannotBeEmptyMessage, nameof(fieldNumber));
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
 
             if (optionObject == null || optionObject.Forms == null)
                 return optionObject;
 
             if (!optionObject.Forms.Any(f => f.IsFieldPresent(fieldNumber)))
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             foreach (var form in optionObject.Forms)
             {
@@ -194,20 +157,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject2.</returns>
         public static OptionObject2? SetEnabledFields(this OptionObject2 optionObject, List<FieldObject>? fieldObjects)
         {
-            if (fieldObjects == null)
-                throw new ArgumentNullException(nameof(fieldObjects));
-
-            if (fieldObjects.Count == 0)
-                throw new ArgumentException(NoFieldObjectsProvidedMessage, nameof(fieldObjects));
-
-            var fieldNumbers = fieldObjects
-                .Where(f => !string.IsNullOrEmpty(f?.FieldNumber))
-                .Select(f => f.FieldNumber)
-                .Distinct()
-                .ToList();
-
-            if (fieldNumbers.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldObjects));
+            var fieldNumbers = ArgumentGuards.ValidateAndGetFieldNumbers(fieldObjects, nameof(fieldObjects));
 
             return optionObject.SetEnabledFields(fieldNumbers);
         }
@@ -220,29 +170,17 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject2.</returns>
         public static OptionObject2? SetEnabledFields(this OptionObject2 optionObject, List<string>? fieldNumbers)
         {
-            if (fieldNumbers == null)
-                throw new ArgumentNullException(nameof(fieldNumbers));
-
-            if (fieldNumbers.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
 
             if (optionObject == null || optionObject.Forms == null)
                 return optionObject;
-
-            var fieldsToSet = fieldNumbers
-                .Where(f => !string.IsNullOrEmpty(f))
-                .Distinct()
-                .ToList();
-
-            if (fieldsToSet.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
 
             fieldsToSet = fieldsToSet
                 .Where(f => optionObject.Forms.Any(form => form.IsFieldPresent(f)))
                 .ToList();
 
             if (fieldsToSet.Count == 0)
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             foreach (var form in optionObject.Forms)
             {
@@ -260,17 +198,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject2.</returns>
         public static OptionObject2? SetLockedField(this OptionObject2 optionObject, string fieldNumber)
         {
-            if (fieldNumber == null)
-                throw new ArgumentNullException(nameof(fieldNumber));
-
-            if (fieldNumber.Length == 0)
-                throw new ArgumentException(FieldNumberCannotBeEmptyMessage, nameof(fieldNumber));
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
 
             if (optionObject == null || optionObject.Forms == null)
                 return optionObject;
 
             if (!optionObject.Forms.Any(f => f.IsFieldPresent(fieldNumber)))
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             foreach (var form in optionObject.Forms)
             {
@@ -288,20 +222,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject2.</returns>
         public static OptionObject2? SetLockedFields(this OptionObject2 optionObject, List<FieldObject>? fieldObjects)
         {
-            if (fieldObjects == null)
-                throw new ArgumentNullException(nameof(fieldObjects));
-
-            if (fieldObjects.Count == 0)
-                throw new ArgumentException(NoFieldObjectsProvidedMessage, nameof(fieldObjects));
-
-            var fieldNumbers = fieldObjects
-                .Where(f => !string.IsNullOrEmpty(f?.FieldNumber))
-                .Select(f => f.FieldNumber)
-                .Distinct()
-                .ToList();
-
-            if (fieldNumbers.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldObjects));
+            var fieldNumbers = ArgumentGuards.ValidateAndGetFieldNumbers(fieldObjects, nameof(fieldObjects));
 
             return optionObject.SetLockedFields(fieldNumbers);
         }
@@ -314,29 +235,17 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject2.</returns>
         public static OptionObject2? SetLockedFields(this OptionObject2 optionObject, List<string>? fieldNumbers)
         {
-            if (fieldNumbers == null)
-                throw new ArgumentNullException(nameof(fieldNumbers));
-
-            if (fieldNumbers.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
 
             if (optionObject == null || optionObject.Forms == null)
                 return optionObject;
-
-            var fieldsToSet = fieldNumbers
-                .Where(f => !string.IsNullOrEmpty(f))
-                .Distinct()
-                .ToList();
-
-            if (fieldsToSet.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
 
             fieldsToSet = fieldsToSet
                 .Where(f => optionObject.Forms.Any(form => form.IsFieldPresent(f)))
                 .ToList();
 
             if (fieldsToSet.Count == 0)
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             foreach (var form in optionObject.Forms)
             {
@@ -354,17 +263,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject2.</returns>
         public static OptionObject2? SetUnlockedField(this OptionObject2 optionObject, string fieldNumber)
         {
-            if (fieldNumber == null)
-                throw new ArgumentNullException(nameof(fieldNumber));
-
-            if (fieldNumber.Length == 0)
-                throw new ArgumentException(FieldNumberCannotBeEmptyMessage, nameof(fieldNumber));
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
 
             if (optionObject == null || optionObject.Forms == null)
                 return optionObject;
 
             if (!optionObject.Forms.Any(f => f.IsFieldPresent(fieldNumber)))
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             foreach (var form in optionObject.Forms)
             {
@@ -382,20 +287,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject2.</returns>
         public static OptionObject2? SetUnlockedFields(this OptionObject2 optionObject, List<FieldObject>? fieldObjects)
         {
-            if (fieldObjects == null)
-                throw new ArgumentNullException(nameof(fieldObjects));
-
-            if (fieldObjects.Count == 0)
-                throw new ArgumentException(NoFieldObjectsProvidedMessage, nameof(fieldObjects));
-
-            var fieldNumbers = fieldObjects
-                .Where(f => !string.IsNullOrEmpty(f?.FieldNumber))
-                .Select(f => f.FieldNumber)
-                .Distinct()
-                .ToList();
-
-            if (fieldNumbers.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldObjects));
+            var fieldNumbers = ArgumentGuards.ValidateAndGetFieldNumbers(fieldObjects, nameof(fieldObjects));
 
             return optionObject.SetUnlockedFields(fieldNumbers);
         }
@@ -408,29 +300,17 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject2.</returns>
         public static OptionObject2? SetUnlockedFields(this OptionObject2 optionObject, List<string>? fieldNumbers)
         {
-            if (fieldNumbers == null)
-                throw new ArgumentNullException(nameof(fieldNumbers));
-
-            if (fieldNumbers.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
 
             if (optionObject == null || optionObject.Forms == null)
                 return optionObject;
-
-            var fieldsToSet = fieldNumbers
-                .Where(f => !string.IsNullOrEmpty(f))
-                .Distinct()
-                .ToList();
-
-            if (fieldsToSet.Count == 0)
-                throw new ArgumentException(NoFieldNumbersProvidedMessage, nameof(fieldNumbers));
 
             fieldsToSet = fieldsToSet
                 .Where(f => optionObject.Forms.Any(form => form.IsFieldPresent(f)))
                 .ToList();
 
             if (fieldsToSet.Count == 0)
-                throw new ArgumentException(NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             foreach (var form in optionObject.Forms)
             {

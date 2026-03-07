@@ -6,6 +6,54 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
     [TestClass]
     public class OptionObjectHelpersOptionObject2015Tests
     {
+        [DataTestMethod]
+        [DataRow("Disabled")]
+        [DataRow("Enabled")]
+        [DataRow("Locked")]
+        [DataRow("Unlocked")]
+        public void SetField_OptionObject2015_WithNullFieldNumber_ThrowsArgumentNullException(string operation)
+        {
+            var optionObject = new OptionObject2015();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1", Lock = "0" });
+            optionObject.Forms.Add(form);
+
+            Action act = operation switch
+            {
+                "Disabled" => () => optionObject.SetDisabledField(null!),
+                "Enabled" => () => optionObject.SetEnabledField(null!),
+                "Locked" => () => optionObject.SetLockedField(null!),
+                "Unlocked" => () => optionObject.SetUnlockedField(null!),
+                _ => throw new ArgumentOutOfRangeException(nameof(operation))
+            };
+
+            Assert.ThrowsException<ArgumentNullException>(act);
+        }
+
+        [DataTestMethod]
+        [DataRow("Disabled")]
+        [DataRow("Enabled")]
+        [DataRow("Locked")]
+        [DataRow("Unlocked")]
+        public void SetField_OptionObject2015_WithEmptyFieldNumber_ThrowsArgumentException(string operation)
+        {
+            var optionObject = new OptionObject2015();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1", Lock = "0" });
+            optionObject.Forms.Add(form);
+
+            Action act = operation switch
+            {
+                "Disabled" => () => optionObject.SetDisabledField(string.Empty),
+                "Enabled" => () => optionObject.SetEnabledField(string.Empty),
+                "Locked" => () => optionObject.SetLockedField(string.Empty),
+                "Unlocked" => () => optionObject.SetUnlockedField(string.Empty),
+                _ => throw new ArgumentOutOfRangeException(nameof(operation))
+            };
+
+            Assert.ThrowsException<ArgumentException>(act);
+        }
+
         [TestMethod]
         public void GetEntityId_OptionObject2015_ReturnsEntityId()
         {
