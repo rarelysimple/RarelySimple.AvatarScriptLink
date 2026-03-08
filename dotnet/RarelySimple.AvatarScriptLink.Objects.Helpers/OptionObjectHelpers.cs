@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using RarelySimple.AvatarScriptLink.Objects.Helpers.Validators;
 
 namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 {
@@ -237,8 +238,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject.</returns>
         public static OptionObject? SetDisabledField(this OptionObject optionObject, string fieldNumber)
         {
-            if (optionObject == null || optionObject.Forms == null || string.IsNullOrEmpty(fieldNumber))
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
+
+            if (optionObject == null || optionObject.Forms == null)
                 return optionObject;
+
+            if (!optionObject.Forms.Any(f => f.IsFieldPresent(fieldNumber)))
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             foreach (var form in optionObject.Forms)
             {
@@ -256,13 +262,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject.</returns>
         public static OptionObject? SetDisabledFields(this OptionObject optionObject, List<FieldObject>? fieldObjects)
         {
-            if (fieldObjects == null || fieldObjects.Count == 0)
-                return optionObject;
-
-            var fieldNumbers = fieldObjects
-                .Where(f => !string.IsNullOrEmpty(f?.FieldNumber))
-                .Select(f => f.FieldNumber)
-                .ToList();
+            var fieldNumbers = ArgumentGuards.ValidateAndGetFieldNumbers(fieldObjects, nameof(fieldObjects));
 
             return optionObject.SetDisabledFields(fieldNumbers);
         }
@@ -275,12 +275,25 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject.</returns>
         public static OptionObject? SetDisabledFields(this OptionObject optionObject, List<string>? fieldNumbers)
         {
-            if (optionObject == null || optionObject.Forms == null || fieldNumbers == null || fieldNumbers.Count == 0)
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
+
+            if (optionObject == null || optionObject.Forms == null)
                 return optionObject;
+
+            fieldsToSet = fieldsToSet
+                .Where(f => optionObject.Forms.Any(form => form.IsFieldPresent(f)))
+                .ToList();
+
+            if (fieldsToSet.Count == 0)
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             foreach (var form in optionObject.Forms)
             {
-                form.SetDisabledFields(fieldNumbers);
+                var formFieldNumbers = fieldsToSet.Where(form.IsFieldPresent).ToList();
+                if (formFieldNumbers.Count == 0)
+                    continue;
+
+                form.SetDisabledFields(formFieldNumbers);
             }
 
             return optionObject;
@@ -294,8 +307,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject.</returns>
         public static OptionObject? SetEnabledField(this OptionObject optionObject, string fieldNumber)
         {
-            if (optionObject == null || optionObject.Forms == null || string.IsNullOrEmpty(fieldNumber))
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
+
+            if (optionObject == null || optionObject.Forms == null)
                 return optionObject;
+
+            if (!optionObject.Forms.Any(f => f.IsFieldPresent(fieldNumber)))
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             foreach (var form in optionObject.Forms)
             {
@@ -313,13 +331,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject.</returns>
         public static OptionObject? SetEnabledFields(this OptionObject optionObject, List<FieldObject>? fieldObjects)
         {
-            if (fieldObjects == null || fieldObjects.Count == 0)
-                return optionObject;
-
-            var fieldNumbers = fieldObjects
-                .Where(f => !string.IsNullOrEmpty(f?.FieldNumber))
-                .Select(f => f.FieldNumber)
-                .ToList();
+            var fieldNumbers = ArgumentGuards.ValidateAndGetFieldNumbers(fieldObjects, nameof(fieldObjects));
 
             return optionObject.SetEnabledFields(fieldNumbers);
         }
@@ -332,12 +344,163 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified OptionObject.</returns>
         public static OptionObject? SetEnabledFields(this OptionObject optionObject, List<string>? fieldNumbers)
         {
-            if (optionObject == null || optionObject.Forms == null || fieldNumbers == null || fieldNumbers.Count == 0)
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
+
+            if (optionObject == null || optionObject.Forms == null)
                 return optionObject;
+
+            fieldsToSet = fieldsToSet
+                .Where(f => optionObject.Forms.Any(form => form.IsFieldPresent(f)))
+                .ToList();
+
+            if (fieldsToSet.Count == 0)
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             foreach (var form in optionObject.Forms)
             {
-                form.SetEnabledFields(fieldNumbers);
+                var formFieldNumbers = fieldsToSet.Where(form.IsFieldPresent).ToList();
+                if (formFieldNumbers.Count == 0)
+                    continue;
+
+                form.SetEnabledFields(formFieldNumbers);
+            }
+
+            return optionObject;
+        }
+
+        /// <summary>
+        /// Locks a <see cref="FieldObject"/> in an <see cref="OptionObject"/> by field number.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject to modify.</param>
+        /// <param name="fieldNumber">The field number to lock.</param>
+        /// <returns>The modified OptionObject.</returns>
+        public static OptionObject? SetLockedField(this OptionObject optionObject, string fieldNumber)
+        {
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
+
+            if (optionObject == null || optionObject.Forms == null)
+                return optionObject;
+
+            if (!optionObject.Forms.Any(f => f.IsFieldPresent(fieldNumber)))
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+
+            foreach (var form in optionObject.Forms)
+            {
+                form.SetLockedField(fieldNumber);
+            }
+
+            return optionObject;
+        }
+
+        /// <summary>
+        /// Locks <see cref="FieldObject"/> instances in an <see cref="OptionObject"/>.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject to modify.</param>
+        /// <param name="fieldObjects">The field objects to lock.</param>
+        /// <returns>The modified OptionObject.</returns>
+        public static OptionObject? SetLockedFields(this OptionObject optionObject, List<FieldObject>? fieldObjects)
+        {
+            var fieldNumbers = ArgumentGuards.ValidateAndGetFieldNumbers(fieldObjects, nameof(fieldObjects));
+
+            return optionObject.SetLockedFields(fieldNumbers);
+        }
+
+        /// <summary>
+        /// Locks <see cref="FieldObject"/> instances in an <see cref="OptionObject"/> by field numbers.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to lock.</param>
+        /// <returns>The modified OptionObject.</returns>
+        public static OptionObject? SetLockedFields(this OptionObject optionObject, List<string>? fieldNumbers)
+        {
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
+
+            if (optionObject == null || optionObject.Forms == null)
+                return optionObject;
+
+            fieldsToSet = fieldsToSet
+                .Where(f => optionObject.Forms.Any(form => form.IsFieldPresent(f)))
+                .ToList();
+
+            if (fieldsToSet.Count == 0)
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+
+            foreach (var form in optionObject.Forms)
+            {
+                var formFieldNumbers = fieldsToSet.Where(form.IsFieldPresent).ToList();
+                if (formFieldNumbers.Count == 0)
+                    continue;
+
+                form.SetLockedFields(formFieldNumbers);
+            }
+
+            return optionObject;
+        }
+
+        /// <summary>
+        /// Unlocks a <see cref="FieldObject"/> in an <see cref="OptionObject"/> by field number.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject to modify.</param>
+        /// <param name="fieldNumber">The field number to unlock.</param>
+        /// <returns>The modified OptionObject.</returns>
+        public static OptionObject? SetUnlockedField(this OptionObject optionObject, string fieldNumber)
+        {
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
+
+            if (optionObject == null || optionObject.Forms == null)
+                return optionObject;
+
+            if (!optionObject.Forms.Any(f => f.IsFieldPresent(fieldNumber)))
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+
+            foreach (var form in optionObject.Forms)
+            {
+                form.SetUnlockedField(fieldNumber);
+            }
+
+            return optionObject;
+        }
+
+        /// <summary>
+        /// Unlocks <see cref="FieldObject"/> instances in an <see cref="OptionObject"/>.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject to modify.</param>
+        /// <param name="fieldObjects">The field objects to unlock.</param>
+        /// <returns>The modified OptionObject.</returns>
+        public static OptionObject? SetUnlockedFields(this OptionObject optionObject, List<FieldObject>? fieldObjects)
+        {
+            var fieldNumbers = ArgumentGuards.ValidateAndGetFieldNumbers(fieldObjects, nameof(fieldObjects));
+
+            return optionObject.SetUnlockedFields(fieldNumbers);
+        }
+
+        /// <summary>
+        /// Unlocks <see cref="FieldObject"/> instances in an <see cref="OptionObject"/> by field numbers.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to unlock.</param>
+        /// <returns>The modified OptionObject.</returns>
+        public static OptionObject? SetUnlockedFields(this OptionObject optionObject, List<string>? fieldNumbers)
+        {
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
+
+            if (optionObject == null || optionObject.Forms == null)
+                return optionObject;
+
+            fieldsToSet = fieldsToSet
+                .Where(f => optionObject.Forms.Any(form => form.IsFieldPresent(f)))
+                .ToList();
+
+            if (fieldsToSet.Count == 0)
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+
+            foreach (var form in optionObject.Forms)
+            {
+                var formFieldNumbers = fieldsToSet.Where(form.IsFieldPresent).ToList();
+                if (formFieldNumbers.Count == 0)
+                    continue;
+
+                form.SetUnlockedFields(formFieldNumbers);
             }
 
             return optionObject;

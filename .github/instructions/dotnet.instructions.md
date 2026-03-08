@@ -57,6 +57,8 @@ To provide the broadest compatibility, core libraries target .NET Standard 2.0, 
 ### Testing
 - Write unit tests for all public methods and critical logic
 - Use descriptive test names that explain what is being tested and expected outcome
+- Use helper test method naming pattern: `MethodName_Type_Scenario_ExpectedResult` (example: `SetLockedField_OptionObject2015_WithEmptyFieldNumber_ThrowsArgumentException`)
+- For OptionObject helper tests, keep one test file per type (`OptionObject`, `OptionObject2`, `OptionObject2015`) instead of combining all three in a single file
 - Follow the Arrange-Act-Assert (AAA) pattern in test methods
 - Test both success and failure scenarios
 - Aim for high code coverage on critical paths

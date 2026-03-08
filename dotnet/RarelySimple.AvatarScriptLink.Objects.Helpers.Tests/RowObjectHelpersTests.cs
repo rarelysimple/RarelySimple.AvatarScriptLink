@@ -7,8 +7,58 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
     [TestClass]
     public class RowObjectHelpersTests
     {
+        [DataTestMethod]
+        [DataRow("Disabled")]
+        [DataRow("Enabled")]
+        [DataRow("Locked")]
+        [DataRow("Unlocked")]
+        public void SetField_RowObject_WithNullFieldNumber_ThrowsArgumentNullException(string operation)
+        {
+            // Arrange
+            var row = new RowObject { RowAction = string.Empty };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1", Lock = "0" });
+
+            // Act
+            Action act = operation switch
+            {
+                "Disabled" => () => row.SetDisabledField(null!),
+                "Enabled" => () => row.SetEnabledField(null!),
+                "Locked" => () => row.SetLockedField(null!),
+                "Unlocked" => () => row.SetUnlockedField(null!),
+                _ => throw new ArgumentOutOfRangeException(nameof(operation))
+            };
+
+            // Assert
+            Assert.ThrowsException<ArgumentNullException>(act);
+        }
+
+        [DataTestMethod]
+        [DataRow("Disabled")]
+        [DataRow("Enabled")]
+        [DataRow("Locked")]
+        [DataRow("Unlocked")]
+        public void SetField_RowObject_WithEmptyFieldNumber_ThrowsArgumentException(string operation)
+        {
+            // Arrange
+            var row = new RowObject { RowAction = string.Empty };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1", Lock = "0" });
+
+            // Act
+            Action act = operation switch
+            {
+                "Disabled" => () => row.SetDisabledField(string.Empty),
+                "Enabled" => () => row.SetEnabledField(string.Empty),
+                "Locked" => () => row.SetLockedField(string.Empty),
+                "Unlocked" => () => row.SetUnlockedField(string.Empty),
+                _ => throw new ArgumentOutOfRangeException(nameof(operation))
+            };
+
+            // Assert
+            Assert.ThrowsException<ArgumentException>(act);
+        }
+
         [TestMethod]
-        public void GetRowId_WithRowId_ReturnsRowId()
+        public void GetRowId_RowObject_WithRowId_ReturnsRowId()
         {
             // Arrange
             var row = new RowObject { RowId = "123" };
@@ -21,7 +71,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void GetRowId_WithNull_ReturnsNull()
+        public void GetRowId_RowObject_WithNull_ReturnsNull()
         {
             // Arrange
             RowObject? row = null;
@@ -34,7 +84,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void GetParentRowId_WithParentRowId_ReturnsParentRowId()
+        public void GetParentRowId_RowObject_WithParentRowId_ReturnsParentRowId()
         {
             // Arrange
             var row = new RowObject { ParentRowId = "456" };
@@ -47,7 +97,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void GetRowAction_WithRowAction_ReturnsRowAction()
+        public void GetRowAction_RowObject_WithRowAction_ReturnsRowAction()
         {
             // Arrange
             var row = new RowObject { RowAction = "EDIT" };
@@ -60,7 +110,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void IsMarkedForDeletion_WithDeleteAction_ReturnsTrue()
+        public void IsMarkedForDeletion_RowObject_WithDeleteAction_ReturnsTrue()
         {
             // Arrange
             var row = new RowObject { RowAction = "DELETE" };
@@ -73,7 +123,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void IsMarkedForDeletion_WithEditAction_ReturnsFalse()
+        public void IsMarkedForDeletion_RowObject_WithEditAction_ReturnsFalse()
         {
             // Arrange
             var row = new RowObject { RowAction = "EDIT" };
@@ -86,7 +136,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void GetFieldCount_WithFields_ReturnsCount()
+        public void GetFieldCount_RowObject_WithFields_ReturnsCount()
         {
             // Arrange
             var row = new RowObject();
@@ -101,7 +151,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void GetFieldCount_WithNull_ReturnsZero()
+        public void GetFieldCount_RowObject_WithNull_ReturnsZero()
         {
             // Arrange
             RowObject? row = null;
@@ -114,7 +164,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void GetFieldValue_WithExistingField_ReturnsValue()
+        public void GetFieldValue_RowObject_WithExistingField_ReturnsValue()
         {
             // Arrange
             var row = new RowObject();
@@ -128,7 +178,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void GetFieldValue_WithNonExistentField_ReturnsNull()
+        public void GetFieldValue_RowObject_WithNonExistentField_ReturnsNull()
         {
             // Arrange
             var row = new RowObject();
@@ -142,7 +192,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void GetFieldValue_WithNullRow_ReturnsNull()
+        public void GetFieldValue_RowObject_WithNullRow_ReturnsNull()
         {
             // Arrange
             RowObject? row = null;
@@ -155,7 +205,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void IsFieldPresent_WithField_ReturnsTrue()
+        public void IsFieldPresent_RowObject_WithField_ReturnsTrue()
         {
             // Arrange
             var row = new RowObject();
@@ -169,7 +219,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void IsFieldPresent_WithoutField_ReturnsFalse()
+        public void IsFieldPresent_RowObject_WithoutField_ReturnsFalse()
         {
             // Arrange
             var row = new RowObject();
@@ -182,7 +232,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void IsFieldEnabled_WithEnabledField_ReturnsTrue()
+        public void IsFieldEnabled_RowObject_WithEnabledField_ReturnsTrue()
         {
             // Arrange
             var row = new RowObject();
@@ -196,7 +246,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void IsFieldEnabled_WithDisabledField_ReturnsFalse()
+        public void IsFieldEnabled_RowObject_WithDisabledField_ReturnsFalse()
         {
             // Arrange
             var row = new RowObject();
@@ -210,7 +260,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void IsFieldLocked_WithLockedField_ReturnsTrue()
+        public void IsFieldLocked_RowObject_WithLockedField_ReturnsTrue()
         {
             // Arrange
             var row = new RowObject();
@@ -224,7 +274,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void IsFieldRequired_WithRequiredField_ReturnsTrue()
+        public void IsFieldRequired_RowObject_WithRequiredField_ReturnsTrue()
         {
             // Arrange
             var row = new RowObject();
@@ -238,7 +288,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetFieldValue_WithExistingField_UpdatesValue()
+        public void SetFieldValue_RowObject_WithExistingField_UpdatesValue()
         {
             // Arrange
             var row = new RowObject { RowAction = "" };
@@ -254,7 +304,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetFieldValue_WithNonExistentField_DoesNothing()
+        public void SetFieldValue_RowObject_WithNonExistentField_DoesNothing()
         {
             // Arrange
             var row = new RowObject();
@@ -267,7 +317,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetFieldValue_WithNullRow_ReturnsNull()
+        public void SetFieldValue_RowObject_WithNullRow_ReturnsNull()
         {
             // Arrange
             RowObject? row = null;
@@ -280,7 +330,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void DisableAllFieldObjects_WithoutExclusions_DisablesAll()
+        public void DisableAllFieldObjects_RowObject_WithoutExclusions_DisablesAll()
         {
             // Arrange
             var row = new RowObject();
@@ -299,7 +349,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void DisableAllFieldObjects_WithNullRowAction_SetsRowActionToEdit()
+        public void DisableAllFieldObjects_RowObject_WithNullRowAction_SetsRowActionToEdit()
         {
             // Arrange
             var row = new RowObject { RowAction = null! };
@@ -315,7 +365,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void DisableAllFieldObjects_WithExclusions_DisablesOnlyNonExcluded()
+        public void DisableAllFieldObjects_RowObject_WithExclusions_DisablesOnlyNonExcluded()
         {
             // Arrange
             var row = new RowObject();
@@ -333,7 +383,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetDisabledField_WithExistingField_DisablesTargetField()
+        public void SetDisabledField_RowObject_WithExistingField_DisablesTargetField()
         {
             // Arrange
             var row = new RowObject { RowAction = "" };
@@ -350,7 +400,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetDisabledField_WithNullRowAction_SetsRowActionToEdit()
+        public void SetDisabledField_RowObject_WithNullRowAction_SetsRowActionToEdit()
         {
             // Arrange
             var row = new RowObject { RowAction = null! };
@@ -365,7 +415,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetDisabledFields_WithFieldNumbers_DisablesMatchingFields()
+        public void SetDisabledFields_RowObject_WithFieldNumbers_DisablesMatchingFields()
         {
             // Arrange
             var row = new RowObject();
@@ -381,7 +431,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetEnabledField_WithExistingField_EnablesTargetField()
+        public void SetEnabledField_RowObject_WithExistingField_EnablesTargetField()
         {
             // Arrange
             var row = new RowObject { RowAction = "" };
@@ -398,7 +448,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetEnabledField_WithNullRowAction_SetsRowActionToEdit()
+        public void SetEnabledField_RowObject_WithNullRowAction_SetsRowActionToEdit()
         {
             // Arrange
             var row = new RowObject { RowAction = null! };
@@ -413,7 +463,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetDisabledField_WithAddRowAction_PreservesAdd()
+        public void SetDisabledField_RowObject_WithAddRowAction_PreservesAdd()
         {
             // Arrange
             var row = new RowObject { RowAction = RowObject.RowActions.Add };
@@ -428,7 +478,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetDisabledField_WithDeleteRowAction_PreservesDelete()
+        public void SetDisabledField_RowObject_WithDeleteRowAction_PreservesDelete()
         {
             // Arrange
             var row = new RowObject { RowAction = RowObject.RowActions.Delete };
@@ -443,7 +493,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetEnabledFields_WithFieldNumbers_EnablesMatchingFields()
+        public void SetEnabledFields_RowObject_WithFieldNumbers_EnablesMatchingFields()
         {
             // Arrange
             var row = new RowObject();
@@ -459,7 +509,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetEnabledFields_WithDeleteRowAction_PreservesDelete()
+        public void SetEnabledFields_RowObject_WithDeleteRowAction_PreservesDelete()
         {
             // Arrange
             var row = new RowObject { RowAction = RowObject.RowActions.Delete };
@@ -474,7 +524,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetEnabledFields_WithAddRowAction_PreservesAdd()
+        public void SetEnabledFields_RowObject_WithAddRowAction_PreservesAdd()
         {
             // Arrange
             var row = new RowObject { RowAction = RowObject.RowActions.Add };
@@ -489,22 +539,18 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetDisabledField_WithMissingField_DoesNotChangeRow()
+        public void SetDisabledField_RowObject_WithMissingField_ThrowsArgumentException()
         {
             // Arrange
             var row = new RowObject { RowAction = "" };
             row.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1" });
 
-            // Act
-            row.SetDisabledField("999");
-
-            // Assert
-            Assert.AreEqual("1", row.Fields[0].Enabled);
-            Assert.AreEqual("", row.RowAction);
+            // Act/Assert
+            Assert.ThrowsException<ArgumentException>(() => row.SetDisabledField("999"));
         }
 
         [TestMethod]
-        public void SetDisabledField_WhenAlreadyDisabled_DoesNotSetRowAction()
+        public void SetDisabledField_RowObject_WhenAlreadyDisabled_DoesNotSetRowAction()
         {
             // Arrange
             var row = new RowObject { RowAction = "" };
@@ -519,7 +565,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetDisabledFields_WhenAllAlreadyDisabled_DoesNotSetRowAction()
+        public void SetDisabledFields_RowObject_WhenAllAlreadyDisabled_DoesNotSetRowAction()
         {
             // Arrange
             var row = new RowObject { RowAction = "" };
@@ -536,22 +582,18 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetEnabledFields_WithEmptyFieldNumbers_DoesNotChangeRow()
+        public void SetEnabledFields_RowObject_WithEmptyFieldNumbers_ThrowsArgumentException()
         {
             // Arrange
             var row = new RowObject { RowAction = "" };
             row.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "0" });
 
-            // Act
-            row.SetEnabledFields(new List<string>());
-
-            // Assert
-            Assert.AreEqual("0", row.Fields[0].Enabled);
-            Assert.AreEqual("", row.RowAction);
+            // Act/Assert
+            Assert.ThrowsException<ArgumentException>(() => row.SetEnabledFields(new List<string>()));
         }
 
         [TestMethod]
-        public void SetEnabledField_WhenAlreadyEnabled_DoesNotSetRowAction()
+        public void SetEnabledField_RowObject_WhenAlreadyEnabled_DoesNotSetRowAction()
         {
             // Arrange
             var row = new RowObject { RowAction = "" };
@@ -566,7 +608,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void SetEnabledFields_WhenAllAlreadyEnabled_DoesNotSetRowAction()
+        public void SetEnabledFields_RowObject_WhenAllAlreadyEnabled_DoesNotSetRowAction()
         {
             // Arrange
             var row = new RowObject { RowAction = "" };
@@ -583,7 +625,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void EnableAllFieldObjects_WithoutExclusions_EnablesAll()
+        public void EnableAllFieldObjects_RowObject_WithoutExclusions_EnablesAll()
         {
             // Arrange
             var row = new RowObject();
@@ -602,7 +644,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void EnableAllFieldObjects_WithExclusions_EnablesOnlyNonExcluded()
+        public void EnableAllFieldObjects_RowObject_WithExclusions_EnablesOnlyNonExcluded()
         {
             // Arrange
             var row = new RowObject();
@@ -621,7 +663,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void EnableAllFieldObjects_WithNoFields_DoesNotSetRowAction()
+        public void EnableAllFieldObjects_RowObject_WithNoFields_DoesNotSetRowAction()
         {
             // Arrange
             var row = new RowObject { RowAction = "" };
@@ -634,7 +676,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void EnableAllFieldObjects_WithAllExcluded_DoesNotSetRowAction()
+        public void EnableAllFieldObjects_RowObject_WithAllExcluded_DoesNotSetRowAction()
         {
             // Arrange
             var row = new RowObject { RowAction = "" };
@@ -649,7 +691,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void EnableAllFieldObjects_WhenAlreadyEnabled_DoesNotSetRowAction()
+        public void EnableAllFieldObjects_RowObject_WhenAlreadyEnabled_DoesNotSetRowAction()
         {
             // Arrange
             var row = new RowObject { RowAction = "" };
@@ -664,7 +706,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void EnableAllFieldObjects_WithNullRowAction_AndChanges_SetsRowActionToEdit()
+        public void EnableAllFieldObjects_RowObject_WithNullRowAction_AndChanges_SetsRowActionToEdit()
         {
             // Arrange
             var row = new RowObject { RowAction = null! };
@@ -679,7 +721,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void LockAllFieldObjects_LocksAllFields()
+        public void LockAllFieldObjects_RowObject_LocksAllFields()
         {
             // Arrange
             var row = new RowObject();
@@ -695,7 +737,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void LockAllFieldObjects_WithNoFields_DoesNotSetRowAction()
+        public void LockAllFieldObjects_RowObject_WithNoFields_DoesNotSetRowAction()
         {
             // Arrange
             var row = new RowObject { RowAction = "" };
@@ -708,7 +750,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void LockAllFieldObjects_WithAllExcluded_DoesNotSetRowAction()
+        public void LockAllFieldObjects_RowObject_WithAllExcluded_DoesNotSetRowAction()
         {
             // Arrange
             var row = new RowObject { RowAction = "" };
@@ -723,7 +765,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void LockAllFieldObjects_WhenAlreadyLocked_DoesNotSetRowAction()
+        public void LockAllFieldObjects_RowObject_WhenAlreadyLocked_DoesNotSetRowAction()
         {
             // Arrange
             var row = new RowObject { RowAction = "" };
@@ -738,7 +780,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void LockAllFieldObjects_WithNullRowAction_AndChanges_SetsRowActionToEdit()
+        public void LockAllFieldObjects_RowObject_WithNullRowAction_AndChanges_SetsRowActionToEdit()
         {
             // Arrange
             var row = new RowObject { RowAction = null! };
@@ -753,7 +795,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void UnlockAllFieldObjects_UnlocksAllFields()
+        public void UnlockAllFieldObjects_RowObject_UnlocksAllFields()
         {
             // Arrange
             var row = new RowObject();
@@ -769,7 +811,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void UnlockAllFieldObjects_WithNoFields_DoesNotSetRowAction()
+        public void UnlockAllFieldObjects_RowObject_WithNoFields_DoesNotSetRowAction()
         {
             // Arrange
             var row = new RowObject { RowAction = "" };
@@ -782,7 +824,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void UnlockAllFieldObjects_WithAllExcluded_DoesNotSetRowAction()
+        public void UnlockAllFieldObjects_RowObject_WithAllExcluded_DoesNotSetRowAction()
         {
             // Arrange
             var row = new RowObject { RowAction = "" };
@@ -797,7 +839,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void UnlockAllFieldObjects_WhenAlreadyUnlocked_DoesNotSetRowAction()
+        public void UnlockAllFieldObjects_RowObject_WhenAlreadyUnlocked_DoesNotSetRowAction()
         {
             // Arrange
             var row = new RowObject { RowAction = "" };
@@ -812,7 +854,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void UnlockAllFieldObjects_WithNullRowAction_AndChanges_SetsRowActionToEdit()
+        public void UnlockAllFieldObjects_RowObject_WithNullRowAction_AndChanges_SetsRowActionToEdit()
         {
             // Arrange
             var row = new RowObject { RowAction = null! };
@@ -820,6 +862,184 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
 
             // Act
             row.UnlockAllFieldObjects();
+
+            // Assert
+            Assert.AreEqual("0", row.Fields[0].Lock);
+            Assert.AreEqual(RowObject.RowActions.Edit, row.RowAction);
+        }
+
+        [TestMethod]
+        public void SetLockedField_RowObject_WithExistingField_LocksTargetField()
+        {
+            // Arrange
+            var row = new RowObject { RowAction = "" };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
+            row.Fields.Add(new FieldObject { FieldNumber = "101", Lock = "0" });
+
+            // Act
+            row.SetLockedField("101");
+
+            // Assert
+            Assert.AreEqual("0", row.Fields[0].Lock);
+            Assert.AreEqual("1", row.Fields[1].Lock);
+            Assert.AreEqual("EDIT", row.RowAction);
+        }
+
+        [TestMethod]
+        public void SetLockedField_RowObject_WhenAlreadyLocked_DoesNotSetRowAction()
+        {
+            // Arrange
+            var row = new RowObject { RowAction = "" };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "1" });
+
+            // Act
+            row.SetLockedField("100");
+
+            // Assert
+            Assert.AreEqual("1", row.Fields[0].Lock);
+            Assert.AreEqual("", row.RowAction);
+        }
+
+        [TestMethod]
+        public void SetLockedFields_RowObject_WithFieldNumbers_LocksMatchingFields()
+        {
+            // Arrange
+            var row = new RowObject();
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
+            row.Fields.Add(new FieldObject { FieldNumber = "101", Lock = "0" });
+
+            // Act
+            row.SetLockedFields(["100"]);
+
+            // Assert
+            Assert.AreEqual("1", row.Fields[0].Lock);
+            Assert.AreEqual("0", row.Fields[1].Lock);
+        }
+
+        [TestMethod]
+        public void SetUnlockedField_RowObject_WithExistingField_UnlocksTargetField()
+        {
+            // Arrange
+            var row = new RowObject { RowAction = "" };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "1" });
+            row.Fields.Add(new FieldObject { FieldNumber = "101", Lock = "1" });
+
+            // Act
+            row.SetUnlockedField("100");
+
+            // Assert
+            Assert.AreEqual("0", row.Fields[0].Lock);
+            Assert.AreEqual("1", row.Fields[1].Lock);
+            Assert.AreEqual("EDIT", row.RowAction);
+        }
+
+        [TestMethod]
+        public void SetUnlockedField_RowObject_WhenAlreadyUnlocked_DoesNotSetRowAction()
+        {
+            // Arrange
+            var row = new RowObject { RowAction = "" };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
+
+            // Act
+            row.SetUnlockedField("100");
+
+            // Assert
+            Assert.AreEqual("0", row.Fields[0].Lock);
+            Assert.AreEqual("", row.RowAction);
+        }
+
+        [TestMethod]
+        public void SetUnlockedFields_RowObject_WithFieldNumbers_UnlocksMatchingFields()
+        {
+            // Arrange
+            var row = new RowObject();
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "1" });
+            row.Fields.Add(new FieldObject { FieldNumber = "101", Lock = "1" });
+
+            // Act
+            row.SetUnlockedFields(["101"]);
+
+            // Assert
+            Assert.AreEqual("1", row.Fields[0].Lock);
+            Assert.AreEqual("0", row.Fields[1].Lock);
+        }
+
+        [TestMethod]
+        public void SetLockedField_RowObject_WithAddRowAction_PreservesAdd()
+        {
+            // Arrange
+            var row = new RowObject { RowAction = RowObject.RowActions.Add };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
+
+            // Act
+            row.SetLockedField("100");
+
+            // Assert
+            Assert.AreEqual("1", row.Fields[0].Lock);
+            Assert.AreEqual(RowObject.RowActions.Add, row.RowAction);
+        }
+
+        [TestMethod]
+        public void SetUnlockedField_RowObject_WithDeleteRowAction_PreservesDelete()
+        {
+            // Arrange
+            var row = new RowObject { RowAction = RowObject.RowActions.Delete };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "1" });
+
+            // Act
+            row.SetUnlockedField("100");
+
+            // Assert
+            Assert.AreEqual("0", row.Fields[0].Lock);
+            Assert.AreEqual(RowObject.RowActions.Delete, row.RowAction);
+        }
+
+        [TestMethod]
+        public void SetLockedField_RowObject_WithMissingField_ThrowsArgumentException()
+        {
+            // Arrange
+            var row = new RowObject { RowAction = "" };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
+
+            // Act / Assert
+            Assert.ThrowsException<ArgumentException>(() => row.SetLockedField("999"));
+        }
+
+        [TestMethod]
+        public void SetUnlockedFields_RowObject_WithEmptyFieldNumbers_ThrowsArgumentException()
+        {
+            // Arrange
+            var row = new RowObject { RowAction = "" };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "1" });
+
+            // Act / Assert
+            Assert.ThrowsException<ArgumentException>(() => row.SetUnlockedFields(new List<string>()));
+        }
+
+        [TestMethod]
+        public void SetLockedFields_RowObject_WithDuplicateFieldNumbers_LocksFieldAndSetsRowActionOnce()
+        {
+            // Arrange
+            var row = new RowObject { RowAction = "" };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
+
+            // Act
+            row.SetLockedFields(["100", "100"]);
+
+            // Assert
+            Assert.AreEqual("1", row.Fields[0].Lock);
+            Assert.AreEqual(RowObject.RowActions.Edit, row.RowAction);
+        }
+
+        [TestMethod]
+        public void SetUnlockedFields_RowObject_WithDuplicateFieldNumbers_UnlocksFieldAndSetsRowActionOnce()
+        {
+            // Arrange
+            var row = new RowObject { RowAction = "" };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "1" });
+
+            // Act
+            row.SetUnlockedFields(["100", "100"]);
 
             // Assert
             Assert.AreEqual("0", row.Fields[0].Lock);

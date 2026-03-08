@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using RarelySimple.AvatarScriptLink.Objects.Helpers.Manipulators;
+using RarelySimple.AvatarScriptLink.Objects.Helpers.Validators;
 
 namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 {
@@ -204,12 +206,14 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetDisabledField(this RowObject rowObject, string fieldNumber)
         {
-            if (rowObject == null || rowObject.Fields == null || string.IsNullOrEmpty(fieldNumber))
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
+
+            if (rowObject == null || rowObject.Fields == null)
                 return rowObject;
 
             var field = rowObject.Fields.FirstOrDefault(f => f.FieldNumber == fieldNumber);
             if (field == null)
-                return rowObject;
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             var changed = field.IsEnabled();
             field.Disable();
@@ -228,11 +232,16 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetDisabledFields(this RowObject rowObject, List<string>? fieldNumbers)
         {
-            if (rowObject == null || rowObject.Fields == null || fieldNumbers == null || fieldNumbers.Count == 0)
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
+
+            if (rowObject == null || rowObject.Fields == null)
                 return rowObject;
 
+            if (!rowObject.Fields.Any(f => fieldsToSet.Contains(f.FieldNumber)))
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+
             var changed = false;
-            foreach (var field in rowObject.Fields.Where(f => fieldNumbers.Contains(f.FieldNumber)))
+            foreach (var field in rowObject.Fields.Where(f => fieldsToSet.Contains(f.FieldNumber)))
             {
                 if (field.IsEnabled())
                 {
@@ -255,12 +264,14 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetEnabledField(this RowObject rowObject, string fieldNumber)
         {
-            if (rowObject == null || rowObject.Fields == null || string.IsNullOrEmpty(fieldNumber))
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
+
+            if (rowObject == null || rowObject.Fields == null)
                 return rowObject;
 
             var field = rowObject.Fields.FirstOrDefault(f => f.FieldNumber == fieldNumber);
             if (field == null)
-                return rowObject;
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             var changed = !field.IsEnabled();
             field.Enable();
@@ -279,17 +290,140 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetEnabledFields(this RowObject rowObject, List<string>? fieldNumbers)
         {
-            if (rowObject == null || rowObject.Fields == null || fieldNumbers == null || fieldNumbers.Count == 0)
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
+
+            if (rowObject == null || rowObject.Fields == null)
                 return rowObject;
 
+            if (!rowObject.Fields.Any(f => fieldsToSet.Contains(f.FieldNumber)))
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+
             var changed = false;
-            foreach (var field in rowObject.Fields.Where(f => fieldNumbers.Contains(f.FieldNumber)))
+            foreach (var field in rowObject.Fields.Where(f => fieldsToSet.Contains(f.FieldNumber)))
             {
                 if (!field.IsEnabled())
                 {
                     changed = true;
                 }
                 field.Enable();
+            }
+
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
+
+            return rowObject;
+        }
+
+        /// <summary>
+        /// Locks a <see cref="FieldObject"/> in a <see cref="RowObject"/> by field number.
+        /// </summary>
+        /// <param name="rowObject">The RowObject to modify.</param>
+        /// <param name="fieldNumber">The field number to lock.</param>
+        /// <returns>The modified RowObject.</returns>
+        public static RowObject? SetLockedField(this RowObject rowObject, string fieldNumber)
+        {
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
+
+            if (rowObject == null || rowObject.Fields == null)
+                return rowObject;
+
+            var field = rowObject.Fields.FirstOrDefault(f => f.FieldNumber == fieldNumber);
+            if (field == null)
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+
+            var changed = !field.IsLocked();
+            field.Lock();
+
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
+
+            return rowObject;
+        }
+
+        /// <summary>
+        /// Locks <see cref="FieldObject"/> instances in a <see cref="RowObject"/> by field numbers.
+        /// </summary>
+        /// <param name="rowObject">The RowObject to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to lock.</param>
+        /// <returns>The modified RowObject.</returns>
+        public static RowObject? SetLockedFields(this RowObject rowObject, List<string>? fieldNumbers)
+        {
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
+
+            if (rowObject == null || rowObject.Fields == null)
+                return rowObject;
+
+            if (!rowObject.Fields.Any(f => fieldsToSet.Contains(f.FieldNumber)))
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+
+            var changed = false;
+            foreach (var field in rowObject.Fields.Where(f => fieldsToSet.Contains(f.FieldNumber)))
+            {
+                if (!field.IsLocked())
+                {
+                    changed = true;
+                }
+
+                field.Lock();
+            }
+
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
+
+            return rowObject;
+        }
+
+        /// <summary>
+        /// Unlocks a <see cref="FieldObject"/> in a <see cref="RowObject"/> by field number.
+        /// </summary>
+        /// <param name="rowObject">The RowObject to modify.</param>
+        /// <param name="fieldNumber">The field number to unlock.</param>
+        /// <returns>The modified RowObject.</returns>
+        public static RowObject? SetUnlockedField(this RowObject rowObject, string fieldNumber)
+        {
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
+
+            if (rowObject == null || rowObject.Fields == null)
+                return rowObject;
+
+            var field = rowObject.Fields.FirstOrDefault(f => f.FieldNumber == fieldNumber);
+            if (field == null)
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+
+            var changed = field.IsLocked();
+            field.Unlock();
+
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
+
+            return rowObject;
+        }
+
+        /// <summary>
+        /// Unlocks <see cref="FieldObject"/> instances in a <see cref="RowObject"/> by field numbers.
+        /// </summary>
+        /// <param name="rowObject">The RowObject to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to unlock.</param>
+        /// <returns>The modified RowObject.</returns>
+        public static RowObject? SetUnlockedFields(this RowObject rowObject, List<string>? fieldNumbers)
+        {
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
+
+            if (rowObject == null || rowObject.Fields == null)
+                return rowObject;
+
+            if (!rowObject.Fields.Any(f => fieldsToSet.Contains(f.FieldNumber)))
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+
+            var changed = false;
+            foreach (var field in rowObject.Fields.Where(f => fieldsToSet.Contains(f.FieldNumber)))
+            {
+                if (field.IsLocked())
+                {
+                    changed = true;
+                }
+
+                field.Unlock();
             }
 
             if (changed && string.IsNullOrEmpty(rowObject.RowAction))
