@@ -11,6 +11,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         [DataRow("Enabled")]
         [DataRow("Locked")]
         [DataRow("Unlocked")]
+        [DataRow("Required")]
+        [DataRow("Optional")]
         public void SetField_OptionObject_WithNullFieldNumber_ThrowsArgumentNullException(string operation)
         {
             var optionObject = new OptionObject();
@@ -24,6 +26,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
                 "Enabled" => () => optionObject.SetEnabledField(null!),
                 "Locked" => () => optionObject.SetLockedField(null!),
                 "Unlocked" => () => optionObject.SetUnlockedField(null!),
+                "Required" => () => optionObject.SetRequiredField(null!),
+                "Optional" => () => optionObject.SetOptionalField(null!),
                 _ => throw new ArgumentOutOfRangeException(nameof(operation))
             };
 
@@ -35,6 +39,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         [DataRow("Enabled")]
         [DataRow("Locked")]
         [DataRow("Unlocked")]
+        [DataRow("Required")]
+        [DataRow("Optional")]
         public void SetField_OptionObject_WithEmptyFieldNumber_ThrowsArgumentException(string operation)
         {
             var optionObject = new OptionObject();
@@ -48,6 +54,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
                 "Enabled" => () => optionObject.SetEnabledField(string.Empty),
                 "Locked" => () => optionObject.SetLockedField(string.Empty),
                 "Unlocked" => () => optionObject.SetUnlockedField(string.Empty),
+                "Required" => () => optionObject.SetRequiredField(string.Empty),
+                "Optional" => () => optionObject.SetOptionalField(string.Empty),
                 _ => throw new ArgumentOutOfRangeException(nameof(operation))
             };
 
@@ -59,6 +67,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         [DataRow("Enabled")]
         [DataRow("Locked")]
         [DataRow("Unlocked")]
+        [DataRow("Required")]
+        [DataRow("Optional")]
         public void SetFields_OptionObject_WithMixedFormMatches_OnlyAppliesToMatchingForms(string operation)
         {
             var optionObject = new OptionObject();
@@ -110,6 +120,28 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
 
                     Assert.AreEqual("0", matchingForm.CurrentRow.Fields[0].Lock);
                     Assert.AreEqual("1", nonMatchingForm.CurrentRow.Fields[0].Lock);
+                    break;
+                case "Required":
+                    matchingForm.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "0" });
+                    nonMatchingForm.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Required = "0" });
+                    optionObject.Forms.Add(matchingForm);
+                    optionObject.Forms.Add(nonMatchingForm);
+
+                    optionObject.SetRequiredFields(new List<string> { "100" });
+
+                    Assert.AreEqual("1", matchingForm.CurrentRow.Fields[0].Required);
+                    Assert.AreEqual("0", nonMatchingForm.CurrentRow.Fields[0].Required);
+                    break;
+                case "Optional":
+                    matchingForm.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "1" });
+                    nonMatchingForm.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Required = "1" });
+                    optionObject.Forms.Add(matchingForm);
+                    optionObject.Forms.Add(nonMatchingForm);
+
+                    optionObject.SetOptionalFields(new List<string> { "100" });
+
+                    Assert.AreEqual("0", matchingForm.CurrentRow.Fields[0].Required);
+                    Assert.AreEqual("1", nonMatchingForm.CurrentRow.Fields[0].Required);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(operation));
@@ -512,6 +544,28 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             optionObject.Forms.Add(form);
 
             Assert.ThrowsException<ArgumentException>(() => optionObject.SetUnlockedField("100"));
+        }
+
+        [TestMethod]
+        public void SetRequiredField_OptionObject_WithNoMatchingField_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Required = "0" });
+            optionObject.Forms.Add(form);
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.SetRequiredField("100"));
+        }
+
+        [TestMethod]
+        public void SetOptionalField_OptionObject_WithNoMatchingField_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Required = "1" });
+            optionObject.Forms.Add(form);
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.SetOptionalField("100"));
         }
 
         [TestMethod]

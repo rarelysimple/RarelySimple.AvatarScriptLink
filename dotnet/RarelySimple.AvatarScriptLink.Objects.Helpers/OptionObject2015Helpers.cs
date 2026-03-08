@@ -355,5 +355,143 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             return optionObject;
         }
+
+        /// <summary>
+        /// Marks a <see cref="FieldObject"/> in an <see cref="OptionObject2015"/> as required by field number.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject2015 to modify.</param>
+        /// <param name="fieldNumber">The field number to mark as required.</param>
+        /// <returns>The modified OptionObject2015.</returns>
+        public static OptionObject2015? SetRequiredField(this OptionObject2015 optionObject, string fieldNumber)
+        {
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
+
+            if (optionObject == null || optionObject.Forms == null)
+                return optionObject;
+
+            if (!optionObject.Forms.Any(f => f.IsFieldPresent(fieldNumber)))
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+
+            foreach (var form in optionObject.Forms)
+            {
+                form.SetRequiredField(fieldNumber);
+            }
+
+            return optionObject;
+        }
+
+        /// <summary>
+        /// Marks <see cref="FieldObject"/> instances in an <see cref="OptionObject2015"/> as required.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject2015 to modify.</param>
+        /// <param name="fieldObjects">The field objects to mark as required.</param>
+        /// <returns>The modified OptionObject2015.</returns>
+        public static OptionObject2015? SetRequiredFields(this OptionObject2015 optionObject, List<FieldObject>? fieldObjects)
+        {
+            var fieldNumbers = ArgumentGuards.ValidateAndGetFieldNumbers(fieldObjects, nameof(fieldObjects));
+
+            return optionObject.SetRequiredFields(fieldNumbers);
+        }
+
+        /// <summary>
+        /// Marks <see cref="FieldObject"/> instances in an <see cref="OptionObject2015"/> as required by field numbers.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject2015 to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to mark as required.</param>
+        /// <returns>The modified OptionObject2015.</returns>
+        public static OptionObject2015? SetRequiredFields(this OptionObject2015 optionObject, List<string>? fieldNumbers)
+        {
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
+
+            if (optionObject == null || optionObject.Forms == null)
+                return optionObject;
+
+            fieldsToSet = fieldsToSet
+                .Where(f => optionObject.Forms.Any(form => form.IsFieldPresent(f)))
+                .ToList();
+
+            if (fieldsToSet.Count == 0)
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+
+            foreach (var form in optionObject.Forms)
+            {
+                var formFieldNumbers = fieldsToSet.Where(form.IsFieldPresent).ToList();
+                if (formFieldNumbers.Count == 0)
+                    continue;
+
+                form.SetRequiredFields(formFieldNumbers);
+            }
+
+            return optionObject;
+        }
+
+        /// <summary>
+        /// Marks a <see cref="FieldObject"/> in an <see cref="OptionObject2015"/> as optional by field number.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject2015 to modify.</param>
+        /// <param name="fieldNumber">The field number to mark as optional.</param>
+        /// <returns>The modified OptionObject2015.</returns>
+        public static OptionObject2015? SetOptionalField(this OptionObject2015 optionObject, string fieldNumber)
+        {
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
+
+            if (optionObject == null || optionObject.Forms == null)
+                return optionObject;
+
+            if (!optionObject.Forms.Any(f => f.IsFieldPresent(fieldNumber)))
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+
+            foreach (var form in optionObject.Forms)
+            {
+                form.SetOptionalField(fieldNumber);
+            }
+
+            return optionObject;
+        }
+
+        /// <summary>
+        /// Marks <see cref="FieldObject"/> instances in an <see cref="OptionObject2015"/> as optional.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject2015 to modify.</param>
+        /// <param name="fieldObjects">The field objects to mark as optional.</param>
+        /// <returns>The modified OptionObject2015.</returns>
+        public static OptionObject2015? SetOptionalFields(this OptionObject2015 optionObject, List<FieldObject>? fieldObjects)
+        {
+            var fieldNumbers = ArgumentGuards.ValidateAndGetFieldNumbers(fieldObjects, nameof(fieldObjects));
+
+            return optionObject.SetOptionalFields(fieldNumbers);
+        }
+
+        /// <summary>
+        /// Marks <see cref="FieldObject"/> instances in an <see cref="OptionObject2015"/> as optional by field numbers.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject2015 to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to mark as optional.</param>
+        /// <returns>The modified OptionObject2015.</returns>
+        public static OptionObject2015? SetOptionalFields(this OptionObject2015 optionObject, List<string>? fieldNumbers)
+        {
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
+
+            if (optionObject == null || optionObject.Forms == null)
+                return optionObject;
+
+            fieldsToSet = fieldsToSet
+                .Where(f => optionObject.Forms.Any(form => form.IsFieldPresent(f)))
+                .ToList();
+
+            if (fieldsToSet.Count == 0)
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+
+            foreach (var form in optionObject.Forms)
+            {
+                var formFieldNumbers = fieldsToSet.Where(form.IsFieldPresent).ToList();
+                if (formFieldNumbers.Count == 0)
+                    continue;
+
+                form.SetOptionalFields(formFieldNumbers);
+            }
+
+            return optionObject;
+        }
     }
 }
