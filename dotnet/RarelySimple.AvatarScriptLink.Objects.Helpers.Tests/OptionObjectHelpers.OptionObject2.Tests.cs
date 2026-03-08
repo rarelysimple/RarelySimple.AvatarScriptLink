@@ -54,6 +54,71 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             Assert.ThrowsException<ArgumentException>(act);
         }
 
+        [DataTestMethod]
+        [DataRow("Disabled")]
+        [DataRow("Enabled")]
+        [DataRow("Locked")]
+        [DataRow("Unlocked")]
+        public void SetFields_OptionObject2_WithMixedFormMatches_OnlyAppliesToMatchingForms(string operation)
+        {
+            var optionObject = new OptionObject2();
+            var matchingForm = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1", RowAction = string.Empty } };
+            var nonMatchingForm = new FormObject { FormId = "2", CurrentRow = new RowObject { RowId = "1", RowAction = string.Empty } };
+
+            switch (operation)
+            {
+                case "Disabled":
+                    matchingForm.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1" });
+                    nonMatchingForm.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Enabled = "1" });
+                    optionObject.Forms.Add(matchingForm);
+                    optionObject.Forms.Add(nonMatchingForm);
+
+                    optionObject.SetDisabledFields(new List<string> { "100" });
+
+                    Assert.AreEqual("0", matchingForm.CurrentRow.Fields[0].Enabled);
+                    Assert.AreEqual("1", nonMatchingForm.CurrentRow.Fields[0].Enabled);
+                    break;
+                case "Enabled":
+                    matchingForm.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "0" });
+                    nonMatchingForm.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Enabled = "0" });
+                    optionObject.Forms.Add(matchingForm);
+                    optionObject.Forms.Add(nonMatchingForm);
+
+                    optionObject.SetEnabledFields(new List<string> { "100" });
+
+                    Assert.AreEqual("1", matchingForm.CurrentRow.Fields[0].Enabled);
+                    Assert.AreEqual("0", nonMatchingForm.CurrentRow.Fields[0].Enabled);
+                    break;
+                case "Locked":
+                    matchingForm.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
+                    nonMatchingForm.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Lock = "0" });
+                    optionObject.Forms.Add(matchingForm);
+                    optionObject.Forms.Add(nonMatchingForm);
+
+                    optionObject.SetLockedFields(new List<string> { "100" });
+
+                    Assert.AreEqual("1", matchingForm.CurrentRow.Fields[0].Lock);
+                    Assert.AreEqual("0", nonMatchingForm.CurrentRow.Fields[0].Lock);
+                    break;
+                case "Unlocked":
+                    matchingForm.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "1" });
+                    nonMatchingForm.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Lock = "1" });
+                    optionObject.Forms.Add(matchingForm);
+                    optionObject.Forms.Add(nonMatchingForm);
+
+                    optionObject.SetUnlockedFields(new List<string> { "100" });
+
+                    Assert.AreEqual("0", matchingForm.CurrentRow.Fields[0].Lock);
+                    Assert.AreEqual("1", nonMatchingForm.CurrentRow.Fields[0].Lock);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(operation));
+            }
+
+            Assert.AreEqual(RowObject.RowActions.Edit, matchingForm.CurrentRow.RowAction);
+            Assert.AreEqual(string.Empty, nonMatchingForm.CurrentRow.RowAction);
+        }
+
         [TestMethod]
         public void GetEntityId_OptionObject2_ReturnsEntityId()
         {
@@ -62,6 +127,26 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             var result = optionObject.GetEntityId();
 
             Assert.AreEqual("E-2", result);
+        }
+
+        [TestMethod]
+        public void GetErrorCode_OptionObject2_ReturnsErrorCode()
+        {
+            var optionObject = new OptionObject2 { ErrorCode = 2.5 };
+
+            var result = optionObject.GetErrorCode();
+
+            Assert.AreEqual(2.5, result);
+        }
+
+        [TestMethod]
+        public void GetErrorMessage_OptionObject2_ReturnsErrorMessage()
+        {
+            var optionObject = new OptionObject2 { ErrorMesg = "Error 2" };
+
+            var result = optionObject.GetErrorMessage();
+
+            Assert.AreEqual("Error 2", result);
         }
 
         [TestMethod]
@@ -149,6 +234,17 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             optionObject.Forms.Add(form);
 
             Assert.ThrowsException<ArgumentException>(() => optionObject.SetEnabledField(string.Empty));
+        }
+
+        [TestMethod]
+        public void SetEnabledField_OptionObject2_WithNoMatchingField_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Enabled = "0" });
+            optionObject.Forms.Add(form);
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.SetEnabledField("100"));
         }
 
         [TestMethod]
@@ -252,6 +348,17 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
 
             Assert.AreEqual("1", optionObject.Forms[0].CurrentRow.Fields[0].Lock);
             Assert.AreEqual(RowObject.RowActions.Edit, optionObject.Forms[0].CurrentRow.RowAction);
+        }
+
+        [TestMethod]
+        public void SetLockedField_OptionObject2_WithNoMatchingField_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Lock = "0" });
+            optionObject.Forms.Add(form);
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.SetLockedField("100"));
         }
     }
 }

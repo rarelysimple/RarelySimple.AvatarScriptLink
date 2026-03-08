@@ -58,6 +58,51 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
+        public void GetFormId_FormObject_ReturnsFormId()
+        {
+            // Arrange
+            var form = new FormObject { FormId = "42" };
+
+            // Act
+            var result = form.GetFormId();
+
+            // Assert
+            Assert.AreEqual("42", result);
+        }
+
+        [TestMethod]
+        public void GetRowCount_FormObject_WithCurrentAndOtherRows_ReturnsCount()
+        {
+            // Arrange
+            var form = new FormObject
+            {
+                CurrentRow = new RowObject { RowId = "1" },
+                MultipleIteration = true
+            };
+            form.OtherRows.Add(new RowObject { RowId = "2" });
+            form.OtherRows.Add(new RowObject { RowId = "3" });
+
+            // Act
+            var result = form.GetRowCount();
+
+            // Assert
+            Assert.AreEqual(3, result);
+        }
+
+        [TestMethod]
+        public void GetRowCount_FormObject_WithNoRows_ReturnsZero()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = null!, OtherRows = null!, MultipleIteration = true };
+
+            // Act
+            var result = form.GetRowCount();
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [TestMethod]
         public void IsRowPresent_FormObject_WithCurrentRow_ReturnsTrue()
         {
             // Arrange

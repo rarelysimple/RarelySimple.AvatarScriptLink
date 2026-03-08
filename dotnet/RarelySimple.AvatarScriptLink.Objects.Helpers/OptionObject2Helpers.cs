@@ -119,7 +119,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             foreach (var form in optionObject.Forms)
             {
-                form.SetDisabledFields(fieldsToSet);
+                var formFieldNumbers = fieldsToSet.Where(form.IsFieldPresent).ToList();
+                if (formFieldNumbers.Count == 0)
+                    continue;
+
+                form.SetDisabledFields(formFieldNumbers);
             }
 
             return optionObject;
@@ -184,7 +188,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             foreach (var form in optionObject.Forms)
             {
-                form.SetEnabledFields(fieldsToSet);
+                var formFieldNumbers = fieldsToSet.Where(form.IsFieldPresent).ToList();
+                if (formFieldNumbers.Count == 0)
+                    continue;
+
+                form.SetEnabledFields(formFieldNumbers);
             }
 
             return optionObject;
@@ -249,7 +257,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             foreach (var form in optionObject.Forms)
             {
-                form.SetLockedFields(fieldsToSet);
+                var formFieldNumbers = fieldsToSet.Where(form.IsFieldPresent).ToList();
+                if (formFieldNumbers.Count == 0)
+                    continue;
+
+                form.SetLockedFields(formFieldNumbers);
             }
 
             return optionObject;
@@ -314,7 +326,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             foreach (var form in optionObject.Forms)
             {
-                form.SetUnlockedFields(fieldsToSet);
+                var formFieldNumbers = fieldsToSet.Where(form.IsFieldPresent).ToList();
+                if (formFieldNumbers.Count == 0)
+                    continue;
+
+                form.SetUnlockedFields(formFieldNumbers);
             }
 
             return optionObject;
