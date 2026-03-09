@@ -569,6 +569,58 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
+        public void SetRequiredField_OptionObject_WithMatchingField_SetsRequired()
+        {
+            var optionObject = new OptionObject();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "0" });
+            optionObject.Forms.Add(form);
+
+            optionObject.SetRequiredField("100");
+
+            Assert.AreEqual("1", form.CurrentRow.Fields[0].Required);
+        }
+
+        [TestMethod]
+        public void SetOptionalField_OptionObject_WithMatchingField_SetsOptional()
+        {
+            var optionObject = new OptionObject();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "1" });
+            optionObject.Forms.Add(form);
+
+            optionObject.SetOptionalField("100");
+
+            Assert.AreEqual("0", form.CurrentRow.Fields[0].Required);
+        }
+
+        [TestMethod]
+        public void SetRequiredFields_OptionObject_WithFieldObjects_SetsRequired()
+        {
+            var optionObject = new OptionObject();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "0" });
+            optionObject.Forms.Add(form);
+
+            optionObject.SetRequiredFields(new List<FieldObject> { new FieldObject { FieldNumber = "100" } });
+
+            Assert.AreEqual("1", form.CurrentRow.Fields[0].Required);
+        }
+
+        [TestMethod]
+        public void SetOptionalFields_OptionObject_WithFieldObjects_SetsOptional()
+        {
+            var optionObject = new OptionObject();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "1" });
+            optionObject.Forms.Add(form);
+
+            optionObject.SetOptionalFields(new List<FieldObject> { new FieldObject { FieldNumber = "100" } });
+
+            Assert.AreEqual("0", form.CurrentRow.Fields[0].Required);
+        }
+
+        [TestMethod]
         public void SetLockedFields_OptionObject_WithDuplicateFieldNumbers_LocksTargetField()
         {
             var optionObject = new OptionObject();

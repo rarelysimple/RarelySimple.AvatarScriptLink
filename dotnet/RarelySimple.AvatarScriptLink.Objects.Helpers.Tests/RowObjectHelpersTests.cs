@@ -548,6 +548,21 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
+        public void SetOptionalField_RowObject_WithExistingRequiredField_SetsOptionalAndRowAction()
+        {
+            // Arrange
+            var row = new RowObject { RowAction = string.Empty };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Required = "1" });
+
+            // Act
+            row.SetOptionalField("100");
+
+            // Assert
+            Assert.AreEqual("0", row.Fields[0].Required);
+            Assert.AreEqual(RowObject.RowActions.Edit, row.RowAction);
+        }
+
+        [TestMethod]
         public void SetEnabledFields_RowObject_WithDeleteRowAction_PreservesDelete()
         {
             // Arrange
