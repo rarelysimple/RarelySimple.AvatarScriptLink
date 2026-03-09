@@ -1,5 +1,7 @@
 name: dotnet-check-build
 run-name: Check .NET Build by ${{ github.actor }}
+permissions:
+  contents: read
 
 on:
   pull_request:
