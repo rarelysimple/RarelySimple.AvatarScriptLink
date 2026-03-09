@@ -336,12 +336,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
-                foreach (var row in formObject.OtherRows)
+                foreach (var row in formObject.OtherRows.Where(r => r.IsFieldPresent(fieldNumber)))
                 {
-                    if (row.IsFieldPresent(fieldNumber))
-                    {
-                        row.SetDisabledField(fieldNumber);
-                    }
+                    row.SetDisabledField(fieldNumber);
                 }
             }
 
@@ -414,12 +411,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
-                foreach (var row in formObject.OtherRows)
+                foreach (var row in formObject.OtherRows.Where(r => r.IsFieldPresent(fieldNumber)))
                 {
-                    if (row.IsFieldPresent(fieldNumber))
-                    {
-                        row.SetEnabledField(fieldNumber);
-                    }
+                    row.SetEnabledField(fieldNumber);
                 }
             }
 
@@ -492,12 +486,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
-                foreach (var row in formObject.OtherRows)
+                foreach (var row in formObject.OtherRows.Where(r => r.IsFieldPresent(fieldNumber)))
                 {
-                    if (row.IsFieldPresent(fieldNumber))
-                    {
-                        row.SetLockedField(fieldNumber);
-                    }
+                    row.SetLockedField(fieldNumber);
                 }
             }
 
@@ -570,12 +561,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
-                foreach (var row in formObject.OtherRows)
+                foreach (var row in formObject.OtherRows.Where(r => r.IsFieldPresent(fieldNumber)))
                 {
-                    if (row.IsFieldPresent(fieldNumber))
-                    {
-                        row.SetUnlockedField(fieldNumber);
-                    }
+                    row.SetUnlockedField(fieldNumber);
                 }
             }
 
@@ -648,12 +636,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
-                foreach (var row in formObject.OtherRows)
+                foreach (var row in formObject.OtherRows.Where(r => r.IsFieldPresent(fieldNumber)))
                 {
-                    if (row.IsFieldPresent(fieldNumber))
-                    {
-                        row.SetRequiredField(fieldNumber);
-                    }
+                    row.SetRequiredField(fieldNumber);
                 }
             }
 
@@ -726,12 +711,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
-                foreach (var row in formObject.OtherRows)
+                foreach (var row in formObject.OtherRows.Where(r => r.IsFieldPresent(fieldNumber)))
                 {
-                    if (row.IsFieldPresent(fieldNumber))
-                    {
-                        row.SetOptionalField(fieldNumber);
-                    }
+                    row.SetOptionalField(fieldNumber);
                 }
             }
 
