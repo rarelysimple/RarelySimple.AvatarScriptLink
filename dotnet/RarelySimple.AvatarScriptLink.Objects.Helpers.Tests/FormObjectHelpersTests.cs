@@ -12,6 +12,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         [DataRow("Enabled")]
         [DataRow("Locked")]
         [DataRow("Unlocked")]
+        [DataRow("Required")]
+        [DataRow("Optional")]
         public void SetField_FormObject_WithNullFieldNumber_ThrowsArgumentNullException(string operation)
         {
             // Arrange
@@ -25,6 +27,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
                 "Enabled" => () => form.SetEnabledField(null!),
                 "Locked" => () => form.SetLockedField(null!),
                 "Unlocked" => () => form.SetUnlockedField(null!),
+                "Required" => () => form.SetRequiredField(null!),
+                "Optional" => () => form.SetOptionalField(null!),
                 _ => throw new ArgumentOutOfRangeException(nameof(operation))
             };
 
@@ -37,6 +41,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         [DataRow("Enabled")]
         [DataRow("Locked")]
         [DataRow("Unlocked")]
+        [DataRow("Required")]
+        [DataRow("Optional")]
         public void SetField_FormObject_WithEmptyFieldNumber_ThrowsArgumentException(string operation)
         {
             // Arrange
@@ -50,11 +56,179 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
                 "Enabled" => () => form.SetEnabledField(string.Empty),
                 "Locked" => () => form.SetLockedField(string.Empty),
                 "Unlocked" => () => form.SetUnlockedField(string.Empty),
+                "Required" => () => form.SetRequiredField(string.Empty),
+                "Optional" => () => form.SetOptionalField(string.Empty),
                 _ => throw new ArgumentOutOfRangeException(nameof(operation))
             };
 
             // Assert
             Assert.ThrowsException<ArgumentException>(act);
+        }
+
+        [DataTestMethod]
+        [DataRow("Disabled")]
+        [DataRow("Enabled")]
+        [DataRow("Locked")]
+        [DataRow("Unlocked")]
+        [DataRow("Required")]
+        [DataRow("Optional")]
+        public void SetField_FormObject_WithFieldOnlyInOtherRow_OnlyAppliesToMatchingRow(string operation)
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "1", RowAction = string.Empty }, MultipleIteration = true };
+            var otherRow = new RowObject { RowId = "2", RowAction = string.Empty };
+
+            switch (operation)
+            {
+                case "Disabled":
+                    form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Enabled = "1" });
+                    otherRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1" });
+                    form.OtherRows.Add(otherRow);
+
+                    form.SetDisabledField("100");
+
+                    Assert.AreEqual("1", form.CurrentRow.Fields[0].Enabled);
+                    Assert.AreEqual("0", otherRow.Fields[0].Enabled);
+                    break;
+                case "Enabled":
+                    form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Enabled = "0" });
+                    otherRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "0" });
+                    form.OtherRows.Add(otherRow);
+
+                    form.SetEnabledField("100");
+
+                    Assert.AreEqual("0", form.CurrentRow.Fields[0].Enabled);
+                    Assert.AreEqual("1", otherRow.Fields[0].Enabled);
+                    break;
+                case "Locked":
+                    form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Lock = "0" });
+                    otherRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
+                    form.OtherRows.Add(otherRow);
+
+                    form.SetLockedField("100");
+
+                    Assert.AreEqual("0", form.CurrentRow.Fields[0].Lock);
+                    Assert.AreEqual("1", otherRow.Fields[0].Lock);
+                    break;
+                case "Unlocked":
+                    form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Lock = "1" });
+                    otherRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "1" });
+                    form.OtherRows.Add(otherRow);
+
+                    form.SetUnlockedField("100");
+
+                    Assert.AreEqual("1", form.CurrentRow.Fields[0].Lock);
+                    Assert.AreEqual("0", otherRow.Fields[0].Lock);
+                    break;
+                case "Required":
+                    form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Required = "0" });
+                    otherRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "0" });
+                    form.OtherRows.Add(otherRow);
+
+                    form.SetRequiredField("100");
+
+                    Assert.AreEqual("0", form.CurrentRow.Fields[0].Required);
+                    Assert.AreEqual("1", otherRow.Fields[0].Required);
+                    break;
+                case "Optional":
+                    form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Required = "1" });
+                    otherRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "1" });
+                    form.OtherRows.Add(otherRow);
+
+                    form.SetOptionalField("100");
+
+                    Assert.AreEqual("1", form.CurrentRow.Fields[0].Required);
+                    Assert.AreEqual("0", otherRow.Fields[0].Required);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(operation));
+            }
+
+            Assert.AreEqual(string.Empty, form.CurrentRow.RowAction);
+            Assert.AreEqual(RowObject.RowActions.Edit, otherRow.RowAction);
+        }
+
+        [DataTestMethod]
+        [DataRow("Disabled")]
+        [DataRow("Enabled")]
+        [DataRow("Locked")]
+        [DataRow("Unlocked")]
+        [DataRow("Required")]
+        [DataRow("Optional")]
+        public void SetFields_FormObject_WithMixedRowMatches_OnlyAppliesToMatchingRows(string operation)
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "1", RowAction = string.Empty }, MultipleIteration = true };
+            var otherRow = new RowObject { RowId = "2", RowAction = string.Empty };
+
+            switch (operation)
+            {
+                case "Disabled":
+                    form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1" });
+                    otherRow.Fields.Add(new FieldObject { FieldNumber = "200", Enabled = "1" });
+                    form.OtherRows.Add(otherRow);
+
+                    form.SetDisabledFields(["100"]);
+
+                    Assert.AreEqual("0", form.CurrentRow.Fields[0].Enabled);
+                    Assert.AreEqual("1", otherRow.Fields[0].Enabled);
+                    break;
+                case "Enabled":
+                    form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "0" });
+                    otherRow.Fields.Add(new FieldObject { FieldNumber = "200", Enabled = "0" });
+                    form.OtherRows.Add(otherRow);
+
+                    form.SetEnabledFields(["100"]);
+
+                    Assert.AreEqual("1", form.CurrentRow.Fields[0].Enabled);
+                    Assert.AreEqual("0", otherRow.Fields[0].Enabled);
+                    break;
+                case "Locked":
+                    form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
+                    otherRow.Fields.Add(new FieldObject { FieldNumber = "200", Lock = "0" });
+                    form.OtherRows.Add(otherRow);
+
+                    form.SetLockedFields(["100"]);
+
+                    Assert.AreEqual("1", form.CurrentRow.Fields[0].Lock);
+                    Assert.AreEqual("0", otherRow.Fields[0].Lock);
+                    break;
+                case "Unlocked":
+                    form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "1" });
+                    otherRow.Fields.Add(new FieldObject { FieldNumber = "200", Lock = "1" });
+                    form.OtherRows.Add(otherRow);
+
+                    form.SetUnlockedFields(["100"]);
+
+                    Assert.AreEqual("0", form.CurrentRow.Fields[0].Lock);
+                    Assert.AreEqual("1", otherRow.Fields[0].Lock);
+                    break;
+                case "Required":
+                    form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "0" });
+                    otherRow.Fields.Add(new FieldObject { FieldNumber = "200", Required = "0" });
+                    form.OtherRows.Add(otherRow);
+
+                    form.SetRequiredFields(["100"]);
+
+                    Assert.AreEqual("1", form.CurrentRow.Fields[0].Required);
+                    Assert.AreEqual("0", otherRow.Fields[0].Required);
+                    break;
+                case "Optional":
+                    form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "1" });
+                    otherRow.Fields.Add(new FieldObject { FieldNumber = "200", Required = "1" });
+                    form.OtherRows.Add(otherRow);
+
+                    form.SetOptionalFields(["100"]);
+
+                    Assert.AreEqual("0", form.CurrentRow.Fields[0].Required);
+                    Assert.AreEqual("1", otherRow.Fields[0].Required);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(operation));
+            }
+
+            Assert.AreEqual(RowObject.RowActions.Edit, form.CurrentRow.RowAction);
+            Assert.AreEqual(string.Empty, otherRow.RowAction);
         }
 
         [TestMethod]
@@ -464,6 +638,134 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             Assert.AreEqual("0", form.CurrentRow.Fields[1].Lock);
             Assert.AreEqual("1", otherRow.Fields[0].Lock);
             Assert.AreEqual("0", otherRow.Fields[1].Lock);
+        }
+
+        [TestMethod]
+        public void SetRequiredField_FormObject_WithMultipleIteration_SetsFieldRequiredInAllRows()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "1", RowAction = string.Empty }, MultipleIteration = true };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "0" });
+            var otherRow = new RowObject { RowId = "2", RowAction = string.Empty };
+            otherRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "0" });
+            form.OtherRows.Add(otherRow);
+
+            // Act
+            form.SetRequiredField("100");
+
+            // Assert
+            Assert.AreEqual("1", form.CurrentRow.Fields[0].Required);
+            Assert.AreEqual("1", otherRow.Fields[0].Required);
+            Assert.AreEqual(RowObject.RowActions.Edit, form.CurrentRow.RowAction);
+            Assert.AreEqual(RowObject.RowActions.Edit, otherRow.RowAction);
+        }
+
+        [TestMethod]
+        public void SetRequiredFields_FormObject_WithMultipleIteration_SetsMatchingFieldsInAllRows()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "1" }, MultipleIteration = true };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "0" });
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "101", Required = "0" });
+
+            var otherRow = new RowObject { RowId = "2" };
+            otherRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "0" });
+            otherRow.Fields.Add(new FieldObject { FieldNumber = "101", Required = "0" });
+            form.OtherRows.Add(otherRow);
+
+            // Act
+            form.SetRequiredFields(["101"]);
+
+            // Assert
+            Assert.AreEqual("0", form.CurrentRow.Fields[0].Required);
+            Assert.AreEqual("1", form.CurrentRow.Fields[1].Required);
+            Assert.AreEqual("0", otherRow.Fields[0].Required);
+            Assert.AreEqual("1", otherRow.Fields[1].Required);
+        }
+
+        [TestMethod]
+        public void SetRequiredFields_FormObject_WithNoMatchingFields_ThrowsArgumentException()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Required = "0" });
+
+            // Act / Assert
+            Assert.ThrowsException<ArgumentException>(() => form.SetRequiredFields(["100"]));
+        }
+
+        [TestMethod]
+        public void SetRequiredFields_FormObject_WithNullCurrentRow_ReturnsOriginalForm()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = null! };
+
+            // Act
+            var result = form.SetRequiredFields(["100"]);
+
+            // Assert
+            Assert.AreSame(form, result);
+        }
+
+        [TestMethod]
+        public void SetRequiredFields_FormObject_WithMultipleIterationFalse_DoesNotModifyOtherRows()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "1" }, MultipleIteration = false };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "0" });
+
+            var otherRow = new RowObject { RowId = "2" };
+            otherRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "0" });
+            form.OtherRows.Add(otherRow);
+
+            // Act
+            form.SetRequiredFields(["100"]);
+
+            // Assert
+            Assert.AreEqual("1", form.CurrentRow.Fields[0].Required);
+            Assert.AreEqual("0", otherRow.Fields[0].Required);
+        }
+
+        [TestMethod]
+        public void SetOptionalFields_FormObject_WithMultipleIteration_SetsMatchingFieldsOptionalInAllRows()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "1" }, MultipleIteration = true };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "1" });
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "101", Required = "1" });
+            var otherRow = new RowObject { RowId = "2" };
+            otherRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "1" });
+            otherRow.Fields.Add(new FieldObject { FieldNumber = "101", Required = "1" });
+            form.OtherRows.Add(otherRow);
+
+            // Act
+            form.SetOptionalFields(["101"]);
+
+            // Assert
+            Assert.AreEqual("1", form.CurrentRow.Fields[0].Required);
+            Assert.AreEqual("0", form.CurrentRow.Fields[1].Required);
+            Assert.AreEqual("1", otherRow.Fields[0].Required);
+            Assert.AreEqual("0", otherRow.Fields[1].Required);
+        }
+
+        [TestMethod]
+        public void SetOptionalField_FormObject_WithMultipleIteration_SetsOptionalInAllRows()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "1", RowAction = string.Empty }, MultipleIteration = true };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "1" });
+            var otherRow = new RowObject { RowId = "2", RowAction = string.Empty };
+            otherRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "1" });
+            form.OtherRows.Add(otherRow);
+
+            // Act
+            form.SetOptionalField("100");
+
+            // Assert
+            Assert.AreEqual("0", form.CurrentRow.Fields[0].Required);
+            Assert.AreEqual("0", otherRow.Fields[0].Required);
+            Assert.AreEqual(RowObject.RowActions.Edit, form.CurrentRow.RowAction);
+            Assert.AreEqual(RowObject.RowActions.Edit, otherRow.RowAction);
         }
 
         [TestMethod]

@@ -12,6 +12,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         [DataRow("Enabled")]
         [DataRow("Locked")]
         [DataRow("Unlocked")]
+        [DataRow("Required")]
+        [DataRow("Optional")]
         public void SetField_RowObject_WithNullFieldNumber_ThrowsArgumentNullException(string operation)
         {
             // Arrange
@@ -25,6 +27,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
                 "Enabled" => () => row.SetEnabledField(null!),
                 "Locked" => () => row.SetLockedField(null!),
                 "Unlocked" => () => row.SetUnlockedField(null!),
+                "Required" => () => row.SetRequiredField(null!),
+                "Optional" => () => row.SetOptionalField(null!),
                 _ => throw new ArgumentOutOfRangeException(nameof(operation))
             };
 
@@ -37,6 +41,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         [DataRow("Enabled")]
         [DataRow("Locked")]
         [DataRow("Unlocked")]
+        [DataRow("Required")]
+        [DataRow("Optional")]
         public void SetField_RowObject_WithEmptyFieldNumber_ThrowsArgumentException(string operation)
         {
             // Arrange
@@ -50,6 +56,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
                 "Enabled" => () => row.SetEnabledField(string.Empty),
                 "Locked" => () => row.SetLockedField(string.Empty),
                 "Unlocked" => () => row.SetUnlockedField(string.Empty),
+                "Required" => () => row.SetRequiredField(string.Empty),
+                "Optional" => () => row.SetOptionalField(string.Empty),
                 _ => throw new ArgumentOutOfRangeException(nameof(operation))
             };
 
@@ -506,6 +514,124 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             // Assert
             Assert.AreEqual("0", row.Fields[0].Enabled);
             Assert.AreEqual("1", row.Fields[1].Enabled);
+        }
+
+        [TestMethod]
+        public void SetRequiredField_RowObject_WithExistingField_SetsRequiredAndRowAction()
+        {
+            // Arrange
+            var row = new RowObject { RowAction = string.Empty };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Required = "0" });
+
+            // Act
+            row.SetRequiredField("100");
+
+            // Assert
+            Assert.AreEqual("1", row.Fields[0].Required);
+            Assert.AreEqual(RowObject.RowActions.Edit, row.RowAction);
+        }
+
+        [DataTestMethod]
+        [DataRow("", RowObject.RowActions.Edit)]
+        [DataRow(RowObject.RowActions.Add, RowObject.RowActions.Add)]
+        [DataRow(RowObject.RowActions.Delete, RowObject.RowActions.Delete)]
+        [DataRow(RowObject.RowActions.Edit, RowObject.RowActions.Edit)]
+        public void SetRequiredField_RowObject_WithDifferentInitialRowActions_AppliesExpectedRowAction(
+            string initialRowAction,
+            string expectedRowAction)
+        {
+            // Arrange
+            var row = new RowObject { RowAction = initialRowAction };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Required = "0" });
+
+            // Act
+            row.SetRequiredField("100");
+
+            // Assert
+            Assert.AreEqual("1", row.Fields[0].Required);
+            Assert.AreEqual(expectedRowAction, row.RowAction);
+        }
+
+        [TestMethod]
+        public void SetRequiredField_RowObject_WhenAlreadyRequired_DoesNotSetRowAction()
+        {
+            // Arrange
+            var row = new RowObject { RowAction = "" };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Required = "1" });
+
+            // Act
+            row.SetRequiredField("100");
+
+            // Assert
+            Assert.AreEqual("1", row.Fields[0].Required);
+            Assert.AreEqual("", row.RowAction);
+        }
+
+        [TestMethod]
+        public void SetOptionalFields_RowObject_WithFieldNumbers_SetsMatchingFieldsOptional()
+        {
+            // Arrange
+            var row = new RowObject();
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Required = "1" });
+            row.Fields.Add(new FieldObject { FieldNumber = "101", Required = "1" });
+
+            // Act
+            row.SetOptionalFields(["101"]);
+
+            // Assert
+            Assert.AreEqual("1", row.Fields[0].Required);
+            Assert.AreEqual("0", row.Fields[1].Required);
+        }
+
+        [TestMethod]
+        public void SetOptionalField_RowObject_WithExistingRequiredField_SetsOptionalAndRowAction()
+        {
+            // Arrange
+            var row = new RowObject { RowAction = string.Empty };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Required = "1" });
+
+            // Act
+            row.SetOptionalField("100");
+
+            // Assert
+            Assert.AreEqual("0", row.Fields[0].Required);
+            Assert.AreEqual(RowObject.RowActions.Edit, row.RowAction);
+        }
+
+        [DataTestMethod]
+        [DataRow("", RowObject.RowActions.Edit)]
+        [DataRow(RowObject.RowActions.Add, RowObject.RowActions.Add)]
+        [DataRow(RowObject.RowActions.Delete, RowObject.RowActions.Delete)]
+        [DataRow(RowObject.RowActions.Edit, RowObject.RowActions.Edit)]
+        public void SetOptionalField_RowObject_WithDifferentInitialRowActions_AppliesExpectedRowAction(
+            string initialRowAction,
+            string expectedRowAction)
+        {
+            // Arrange
+            var row = new RowObject { RowAction = initialRowAction };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Required = "1" });
+
+            // Act
+            row.SetOptionalField("100");
+
+            // Assert
+            Assert.AreEqual("0", row.Fields[0].Required);
+            Assert.AreEqual(expectedRowAction, row.RowAction);
+        }
+
+        [TestMethod]
+        public void SetOptionalField_RowObject_WhenAlreadyOptional_DoesNotSetRowAction()
+        {
+            // Arrange
+            var row = new RowObject { RowAction = "" };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Required = "0" });
+
+            // Act
+            row.SetOptionalField("100");
+
+            // Assert
+            Assert.AreEqual("0", row.Fields[0].Required);
+            Assert.AreEqual("", row.RowAction);
         }
 
         [TestMethod]

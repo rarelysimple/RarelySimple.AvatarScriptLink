@@ -11,6 +11,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         [DataRow("Enabled")]
         [DataRow("Locked")]
         [DataRow("Unlocked")]
+        [DataRow("Required")]
+        [DataRow("Optional")]
         public void SetField_OptionObject2_WithNullFieldNumber_ThrowsArgumentNullException(string operation)
         {
             var optionObject = new OptionObject2();
@@ -24,6 +26,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
                 "Enabled" => () => optionObject.SetEnabledField(null!),
                 "Locked" => () => optionObject.SetLockedField(null!),
                 "Unlocked" => () => optionObject.SetUnlockedField(null!),
+                "Required" => () => optionObject.SetRequiredField(null!),
+                "Optional" => () => optionObject.SetOptionalField(null!),
                 _ => throw new ArgumentOutOfRangeException(nameof(operation))
             };
 
@@ -35,6 +39,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         [DataRow("Enabled")]
         [DataRow("Locked")]
         [DataRow("Unlocked")]
+        [DataRow("Required")]
+        [DataRow("Optional")]
         public void SetField_OptionObject2_WithEmptyFieldNumber_ThrowsArgumentException(string operation)
         {
             var optionObject = new OptionObject2();
@@ -48,6 +54,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
                 "Enabled" => () => optionObject.SetEnabledField(string.Empty),
                 "Locked" => () => optionObject.SetLockedField(string.Empty),
                 "Unlocked" => () => optionObject.SetUnlockedField(string.Empty),
+                "Required" => () => optionObject.SetRequiredField(string.Empty),
+                "Optional" => () => optionObject.SetOptionalField(string.Empty),
                 _ => throw new ArgumentOutOfRangeException(nameof(operation))
             };
 
@@ -59,6 +67,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         [DataRow("Enabled")]
         [DataRow("Locked")]
         [DataRow("Unlocked")]
+        [DataRow("Required")]
+        [DataRow("Optional")]
         public void SetFields_OptionObject2_WithMixedFormMatches_OnlyAppliesToMatchingForms(string operation)
         {
             var optionObject = new OptionObject2();
@@ -110,6 +120,28 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
 
                     Assert.AreEqual("0", matchingForm.CurrentRow.Fields[0].Lock);
                     Assert.AreEqual("1", nonMatchingForm.CurrentRow.Fields[0].Lock);
+                    break;
+                case "Required":
+                    matchingForm.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "0" });
+                    nonMatchingForm.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Required = "0" });
+                    optionObject.Forms.Add(matchingForm);
+                    optionObject.Forms.Add(nonMatchingForm);
+
+                    optionObject.SetRequiredFields(new List<string> { "100" });
+
+                    Assert.AreEqual("1", matchingForm.CurrentRow.Fields[0].Required);
+                    Assert.AreEqual("0", nonMatchingForm.CurrentRow.Fields[0].Required);
+                    break;
+                case "Optional":
+                    matchingForm.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "1" });
+                    nonMatchingForm.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Required = "1" });
+                    optionObject.Forms.Add(matchingForm);
+                    optionObject.Forms.Add(nonMatchingForm);
+
+                    optionObject.SetOptionalFields(new List<string> { "100" });
+
+                    Assert.AreEqual("0", matchingForm.CurrentRow.Fields[0].Required);
+                    Assert.AreEqual("1", nonMatchingForm.CurrentRow.Fields[0].Required);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(operation));
@@ -359,6 +391,117 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             optionObject.Forms.Add(form);
 
             Assert.ThrowsException<ArgumentException>(() => optionObject.SetLockedField("100"));
+        }
+
+        [TestMethod]
+        public void SetRequiredField_OptionObject2_WithNoMatchingField_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Required = "0" });
+            optionObject.Forms.Add(form);
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.SetRequiredField("100"));
+        }
+
+        [TestMethod]
+        public void SetOptionalField_OptionObject2_WithNoMatchingField_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Required = "1" });
+            optionObject.Forms.Add(form);
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.SetOptionalField("100"));
+        }
+
+        [TestMethod]
+        public void SetRequiredField_OptionObject2_WithMatchingField_SetsRequired()
+        {
+            var optionObject = new OptionObject2();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "0" });
+            optionObject.Forms.Add(form);
+
+            optionObject.SetRequiredField("100");
+
+            Assert.AreEqual("1", form.CurrentRow.Fields[0].Required);
+        }
+
+        [TestMethod]
+        public void SetOptionalField_OptionObject2_WithMatchingField_SetsOptional()
+        {
+            var optionObject = new OptionObject2();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "1" });
+            optionObject.Forms.Add(form);
+
+            optionObject.SetOptionalField("100");
+
+            Assert.AreEqual("0", form.CurrentRow.Fields[0].Required);
+        }
+
+        [DataTestMethod]
+        [DataRow("Required", "0", "0", "1", "0")]
+        [DataRow("Optional", "1", "1", "0", "1")]
+        public void SetSingleRequiredOptionalField_OptionObject2_WithMixedFormMatches_OnlyMutatesMatchingForm(
+            string operation,
+            string initialTarget,
+            string initialNonTarget,
+            string expectedTarget,
+            string expectedNonTarget)
+        {
+            var optionObject = new OptionObject2();
+            var targetForm = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            targetForm.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = initialTarget });
+
+            var nonTargetForm = new FormObject { FormId = "2", CurrentRow = new RowObject { RowId = "1" } };
+            nonTargetForm.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Required = initialNonTarget });
+
+            optionObject.Forms.Add(targetForm);
+            optionObject.Forms.Add(nonTargetForm);
+
+            switch (operation)
+            {
+                case "Required":
+                    optionObject.SetRequiredField("100");
+                    break;
+                case "Optional":
+                    optionObject.SetOptionalField("100");
+                    break;
+                default:
+                    Assert.Fail($"Unsupported operation '{operation}'");
+                    break;
+            }
+
+            Assert.AreEqual(expectedTarget, targetForm.CurrentRow.Fields[0].Required);
+            Assert.AreEqual(expectedNonTarget, nonTargetForm.CurrentRow.Fields[0].Required);
+        }
+
+        [TestMethod]
+        public void SetRequiredFields_OptionObject2_WithFieldObjects_SetsRequired()
+        {
+            var optionObject = new OptionObject2();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "0" });
+            optionObject.Forms.Add(form);
+
+            optionObject.SetRequiredFields(new List<FieldObject> { new FieldObject { FieldNumber = "100" } });
+
+            Assert.AreEqual("1", form.CurrentRow.Fields[0].Required);
+        }
+
+        [TestMethod]
+        public void SetOptionalFields_OptionObject2_WithFieldObjects_SetsOptional()
+        {
+            var optionObject = new OptionObject2();
+            var form = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = "1" });
+            optionObject.Forms.Add(form);
+
+            optionObject.SetOptionalFields(new List<FieldObject> { new FieldObject { FieldNumber = "100" } });
+
+            Assert.AreEqual("0", form.CurrentRow.Fields[0].Required);
         }
     }
 }

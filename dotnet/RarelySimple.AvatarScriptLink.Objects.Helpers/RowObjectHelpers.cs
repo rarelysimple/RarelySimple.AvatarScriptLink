@@ -433,6 +433,124 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         }
 
         /// <summary>
+        /// Marks a <see cref="FieldObject"/> in a <see cref="RowObject"/> as required by field number.
+        /// </summary>
+        /// <param name="rowObject">The RowObject to modify.</param>
+        /// <param name="fieldNumber">The field number to mark as required.</param>
+        /// <returns>The modified RowObject.</returns>
+        public static RowObject? SetRequiredField(this RowObject rowObject, string fieldNumber)
+        {
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
+
+            if (rowObject == null || rowObject.Fields == null)
+                return rowObject;
+
+            var field = rowObject.Fields.FirstOrDefault(f => f.FieldNumber == fieldNumber);
+            if (field == null)
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+
+            var changed = !field.IsRequired();
+            field.MarkRequired();
+
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
+
+            return rowObject;
+        }
+
+        /// <summary>
+        /// Marks <see cref="FieldObject"/> instances in a <see cref="RowObject"/> as required by field numbers.
+        /// </summary>
+        /// <param name="rowObject">The RowObject to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to mark as required.</param>
+        /// <returns>The modified RowObject.</returns>
+        public static RowObject? SetRequiredFields(this RowObject rowObject, List<string>? fieldNumbers)
+        {
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
+
+            if (rowObject == null || rowObject.Fields == null)
+                return rowObject;
+
+            if (!rowObject.Fields.Any(f => fieldsToSet.Contains(f.FieldNumber)))
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+
+            var changed = false;
+            foreach (var field in rowObject.Fields.Where(f => fieldsToSet.Contains(f.FieldNumber)))
+            {
+                if (!field.IsRequired())
+                {
+                    changed = true;
+                }
+
+                field.MarkRequired();
+            }
+
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
+
+            return rowObject;
+        }
+
+        /// <summary>
+        /// Marks a <see cref="FieldObject"/> in a <see cref="RowObject"/> as optional by field number.
+        /// </summary>
+        /// <param name="rowObject">The RowObject to modify.</param>
+        /// <param name="fieldNumber">The field number to mark as optional.</param>
+        /// <returns>The modified RowObject.</returns>
+        public static RowObject? SetOptionalField(this RowObject rowObject, string fieldNumber)
+        {
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
+
+            if (rowObject == null || rowObject.Fields == null)
+                return rowObject;
+
+            var field = rowObject.Fields.FirstOrDefault(f => f.FieldNumber == fieldNumber);
+            if (field == null)
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+
+            var changed = field.IsRequired();
+            field.MarkOptional();
+
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
+
+            return rowObject;
+        }
+
+        /// <summary>
+        /// Marks <see cref="FieldObject"/> instances in a <see cref="RowObject"/> as optional by field numbers.
+        /// </summary>
+        /// <param name="rowObject">The RowObject to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to mark as optional.</param>
+        /// <returns>The modified RowObject.</returns>
+        public static RowObject? SetOptionalFields(this RowObject rowObject, List<string>? fieldNumbers)
+        {
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
+
+            if (rowObject == null || rowObject.Fields == null)
+                return rowObject;
+
+            if (!rowObject.Fields.Any(f => fieldsToSet.Contains(f.FieldNumber)))
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+
+            var changed = false;
+            foreach (var field in rowObject.Fields.Where(f => fieldsToSet.Contains(f.FieldNumber)))
+            {
+                if (field.IsRequired())
+                {
+                    changed = true;
+                }
+
+                field.MarkOptional();
+            }
+
+            if (changed && string.IsNullOrEmpty(rowObject.RowAction))
+                rowObject.RowAction = RowObject.RowActions.Edit;
+
+            return rowObject;
+        }
+
+        /// <summary>
         /// Enables all <see cref="FieldObject"/> instances in a <see cref="RowObject"/>.
         /// </summary>
         /// <param name="rowObject">The RowObject to modify.</param>

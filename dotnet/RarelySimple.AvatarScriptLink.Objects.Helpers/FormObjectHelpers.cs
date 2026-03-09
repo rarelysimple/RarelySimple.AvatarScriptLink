@@ -329,11 +329,14 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (!hasFieldInForm)
                 throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
-            formObject.CurrentRow.SetDisabledField(fieldNumber);
+            if (formObject.CurrentRow.IsFieldPresent(fieldNumber))
+            {
+                formObject.CurrentRow.SetDisabledField(fieldNumber);
+            }
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
-                foreach (var row in formObject.OtherRows)
+                foreach (var row in formObject.OtherRows.Where(r => r.IsFieldPresent(fieldNumber)))
                 {
                     row.SetDisabledField(fieldNumber);
                 }
@@ -361,13 +364,21 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (!hasAnyField)
                 throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
-            formObject.CurrentRow.SetDisabledFields(fieldsToSet);
+            var currentRowFieldNumbers = fieldsToSet.Where(formObject.CurrentRow.IsFieldPresent).ToList();
+            if (currentRowFieldNumbers.Count > 0)
+            {
+                formObject.CurrentRow.SetDisabledFields(currentRowFieldNumbers);
+            }
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
                 foreach (var row in formObject.OtherRows)
                 {
-                    row.SetDisabledFields(fieldsToSet);
+                    var rowFieldNumbers = fieldsToSet.Where(row.IsFieldPresent).ToList();
+                    if (rowFieldNumbers.Count > 0)
+                    {
+                        row.SetDisabledFields(rowFieldNumbers);
+                    }
                 }
             }
 
@@ -393,11 +404,14 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (!hasFieldInForm)
                 throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
-            formObject.CurrentRow.SetEnabledField(fieldNumber);
+            if (formObject.CurrentRow.IsFieldPresent(fieldNumber))
+            {
+                formObject.CurrentRow.SetEnabledField(fieldNumber);
+            }
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
-                foreach (var row in formObject.OtherRows)
+                foreach (var row in formObject.OtherRows.Where(r => r.IsFieldPresent(fieldNumber)))
                 {
                     row.SetEnabledField(fieldNumber);
                 }
@@ -425,13 +439,21 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (!hasAnyField)
                 throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
-            formObject.CurrentRow.SetEnabledFields(fieldsToSet);
+            var currentRowFieldNumbers = fieldsToSet.Where(formObject.CurrentRow.IsFieldPresent).ToList();
+            if (currentRowFieldNumbers.Count > 0)
+            {
+                formObject.CurrentRow.SetEnabledFields(currentRowFieldNumbers);
+            }
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
                 foreach (var row in formObject.OtherRows)
                 {
-                    row.SetEnabledFields(fieldsToSet);
+                    var rowFieldNumbers = fieldsToSet.Where(row.IsFieldPresent).ToList();
+                    if (rowFieldNumbers.Count > 0)
+                    {
+                        row.SetEnabledFields(rowFieldNumbers);
+                    }
                 }
             }
 
@@ -457,11 +479,14 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (!hasFieldInForm)
                 throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
-            formObject.CurrentRow.SetLockedField(fieldNumber);
+            if (formObject.CurrentRow.IsFieldPresent(fieldNumber))
+            {
+                formObject.CurrentRow.SetLockedField(fieldNumber);
+            }
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
-                foreach (var row in formObject.OtherRows)
+                foreach (var row in formObject.OtherRows.Where(r => r.IsFieldPresent(fieldNumber)))
                 {
                     row.SetLockedField(fieldNumber);
                 }
@@ -489,13 +514,21 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (!hasAnyField)
                 throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
-            formObject.CurrentRow.SetLockedFields(fieldsToSet);
+            var currentRowFieldNumbers = fieldsToSet.Where(formObject.CurrentRow.IsFieldPresent).ToList();
+            if (currentRowFieldNumbers.Count > 0)
+            {
+                formObject.CurrentRow.SetLockedFields(currentRowFieldNumbers);
+            }
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
                 foreach (var row in formObject.OtherRows)
                 {
-                    row.SetLockedFields(fieldsToSet);
+                    var rowFieldNumbers = fieldsToSet.Where(row.IsFieldPresent).ToList();
+                    if (rowFieldNumbers.Count > 0)
+                    {
+                        row.SetLockedFields(rowFieldNumbers);
+                    }
                 }
             }
 
@@ -521,11 +554,14 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (!hasFieldInForm)
                 throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
-            formObject.CurrentRow.SetUnlockedField(fieldNumber);
+            if (formObject.CurrentRow.IsFieldPresent(fieldNumber))
+            {
+                formObject.CurrentRow.SetUnlockedField(fieldNumber);
+            }
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
-                foreach (var row in formObject.OtherRows)
+                foreach (var row in formObject.OtherRows.Where(r => r.IsFieldPresent(fieldNumber)))
                 {
                     row.SetUnlockedField(fieldNumber);
                 }
@@ -553,13 +589,171 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (!hasAnyField)
                 throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
-            formObject.CurrentRow.SetUnlockedFields(fieldsToSet);
+            var currentRowFieldNumbers = fieldsToSet.Where(formObject.CurrentRow.IsFieldPresent).ToList();
+            if (currentRowFieldNumbers.Count > 0)
+            {
+                formObject.CurrentRow.SetUnlockedFields(currentRowFieldNumbers);
+            }
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
                 foreach (var row in formObject.OtherRows)
                 {
-                    row.SetUnlockedFields(fieldsToSet);
+                    var rowFieldNumbers = fieldsToSet.Where(row.IsFieldPresent).ToList();
+                    if (rowFieldNumbers.Count > 0)
+                    {
+                        row.SetUnlockedFields(rowFieldNumbers);
+                    }
+                }
+            }
+
+            return formObject;
+        }
+
+        /// <summary>
+        /// Marks a <see cref="FieldObject"/> in a <see cref="FormObject"/> as required by field number.
+        /// </summary>
+        /// <param name="formObject">The FormObject to modify.</param>
+        /// <param name="fieldNumber">The field number to mark as required.</param>
+        /// <returns>The modified FormObject.</returns>
+        public static FormObject? SetRequiredField(this FormObject formObject, string fieldNumber)
+        {
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
+
+            if (formObject == null || formObject.CurrentRow == null)
+                return formObject;
+
+            var hasFieldInForm = formObject.CurrentRow.IsFieldPresent(fieldNumber)
+                || (formObject.MultipleIteration && formObject.HasOtherRows() && formObject.OtherRows.Any(r => r.IsFieldPresent(fieldNumber)));
+
+            if (!hasFieldInForm)
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+
+            if (formObject.CurrentRow.IsFieldPresent(fieldNumber))
+            {
+                formObject.CurrentRow.SetRequiredField(fieldNumber);
+            }
+
+            if (formObject.MultipleIteration && formObject.HasOtherRows())
+            {
+                foreach (var row in formObject.OtherRows.Where(r => r.IsFieldPresent(fieldNumber)))
+                {
+                    row.SetRequiredField(fieldNumber);
+                }
+            }
+
+            return formObject;
+        }
+
+        /// <summary>
+        /// Marks <see cref="FieldObject"/> instances in a <see cref="FormObject"/> as required by field numbers.
+        /// </summary>
+        /// <param name="formObject">The FormObject to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to mark as required.</param>
+        /// <returns>The modified FormObject.</returns>
+        public static FormObject? SetRequiredFields(this FormObject formObject, List<string>? fieldNumbers)
+        {
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
+
+            if (formObject == null || formObject.CurrentRow == null)
+                return formObject;
+
+            var hasAnyField = fieldsToSet.Any(f => formObject.CurrentRow.IsFieldPresent(f))
+                || (formObject.MultipleIteration && formObject.HasOtherRows() && fieldsToSet.Any(f => formObject.OtherRows.Any(r => r.IsFieldPresent(f))));
+
+            if (!hasAnyField)
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+
+            var currentRowFieldNumbers = fieldsToSet.Where(formObject.CurrentRow.IsFieldPresent).ToList();
+            if (currentRowFieldNumbers.Count > 0)
+            {
+                formObject.CurrentRow.SetRequiredFields(currentRowFieldNumbers);
+            }
+
+            if (formObject.MultipleIteration && formObject.HasOtherRows())
+            {
+                foreach (var row in formObject.OtherRows)
+                {
+                    var rowFieldNumbers = fieldsToSet.Where(row.IsFieldPresent).ToList();
+                    if (rowFieldNumbers.Count > 0)
+                    {
+                        row.SetRequiredFields(rowFieldNumbers);
+                    }
+                }
+            }
+
+            return formObject;
+        }
+
+        /// <summary>
+        /// Marks a <see cref="FieldObject"/> in a <see cref="FormObject"/> as optional by field number.
+        /// </summary>
+        /// <param name="formObject">The FormObject to modify.</param>
+        /// <param name="fieldNumber">The field number to mark as optional.</param>
+        /// <returns>The modified FormObject.</returns>
+        public static FormObject? SetOptionalField(this FormObject formObject, string fieldNumber)
+        {
+            ArgumentGuards.ValidateFieldNumber(fieldNumber, nameof(fieldNumber));
+
+            if (formObject == null || formObject.CurrentRow == null)
+                return formObject;
+
+            var hasFieldInForm = formObject.CurrentRow.IsFieldPresent(fieldNumber)
+                || (formObject.MultipleIteration && formObject.HasOtherRows() && formObject.OtherRows.Any(r => r.IsFieldPresent(fieldNumber)));
+
+            if (!hasFieldInForm)
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+
+            if (formObject.CurrentRow.IsFieldPresent(fieldNumber))
+            {
+                formObject.CurrentRow.SetOptionalField(fieldNumber);
+            }
+
+            if (formObject.MultipleIteration && formObject.HasOtherRows())
+            {
+                foreach (var row in formObject.OtherRows.Where(r => r.IsFieldPresent(fieldNumber)))
+                {
+                    row.SetOptionalField(fieldNumber);
+                }
+            }
+
+            return formObject;
+        }
+
+        /// <summary>
+        /// Marks <see cref="FieldObject"/> instances in a <see cref="FormObject"/> as optional by field numbers.
+        /// </summary>
+        /// <param name="formObject">The FormObject to modify.</param>
+        /// <param name="fieldNumbers">The field numbers to mark as optional.</param>
+        /// <returns>The modified FormObject.</returns>
+        public static FormObject? SetOptionalFields(this FormObject formObject, List<string>? fieldNumbers)
+        {
+            var fieldsToSet = ArgumentGuards.ValidateAndNormalizeFieldNumbers(fieldNumbers, nameof(fieldNumbers));
+
+            if (formObject == null || formObject.CurrentRow == null)
+                return formObject;
+
+            var hasAnyField = fieldsToSet.Any(f => formObject.CurrentRow.IsFieldPresent(f))
+                || (formObject.MultipleIteration && formObject.HasOtherRows() && fieldsToSet.Any(f => formObject.OtherRows.Any(r => r.IsFieldPresent(f))));
+
+            if (!hasAnyField)
+                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+
+            var currentRowFieldNumbers = fieldsToSet.Where(formObject.CurrentRow.IsFieldPresent).ToList();
+            if (currentRowFieldNumbers.Count > 0)
+            {
+                formObject.CurrentRow.SetOptionalFields(currentRowFieldNumbers);
+            }
+
+            if (formObject.MultipleIteration && formObject.HasOtherRows())
+            {
+                foreach (var row in formObject.OtherRows)
+                {
+                    var rowFieldNumbers = fieldsToSet.Where(row.IsFieldPresent).ToList();
+                    if (rowFieldNumbers.Count > 0)
+                    {
+                        row.SetOptionalFields(rowFieldNumbers);
+                    }
                 }
             }
 
