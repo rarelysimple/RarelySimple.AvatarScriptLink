@@ -12,6 +12,8 @@ on:
 jobs:
   build:
     name: Build
+    permissions:
+      contents: read
     uses: ./.github/workflows/dotnet-build.yml
     with:
       working-directory: ./dotnet
