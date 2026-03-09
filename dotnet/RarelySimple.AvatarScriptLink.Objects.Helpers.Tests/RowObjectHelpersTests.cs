@@ -531,6 +531,42 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             Assert.AreEqual(RowObject.RowActions.Edit, row.RowAction);
         }
 
+        [DataTestMethod]
+        [DataRow("", RowObject.RowActions.Edit)]
+        [DataRow(RowObject.RowActions.Add, RowObject.RowActions.Add)]
+        [DataRow(RowObject.RowActions.Delete, RowObject.RowActions.Delete)]
+        [DataRow(RowObject.RowActions.Edit, RowObject.RowActions.Edit)]
+        public void SetRequiredField_RowObject_WithDifferentInitialRowActions_AppliesExpectedRowAction(
+            string initialRowAction,
+            string expectedRowAction)
+        {
+            // Arrange
+            var row = new RowObject { RowAction = initialRowAction };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Required = "0" });
+
+            // Act
+            row.SetRequiredField("100");
+
+            // Assert
+            Assert.AreEqual("1", row.Fields[0].Required);
+            Assert.AreEqual(expectedRowAction, row.RowAction);
+        }
+
+        [TestMethod]
+        public void SetRequiredField_RowObject_WhenAlreadyRequired_DoesNotSetRowAction()
+        {
+            // Arrange
+            var row = new RowObject { RowAction = "" };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Required = "1" });
+
+            // Act
+            row.SetRequiredField("100");
+
+            // Assert
+            Assert.AreEqual("1", row.Fields[0].Required);
+            Assert.AreEqual("", row.RowAction);
+        }
+
         [TestMethod]
         public void SetOptionalFields_RowObject_WithFieldNumbers_SetsMatchingFieldsOptional()
         {
@@ -560,6 +596,42 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             // Assert
             Assert.AreEqual("0", row.Fields[0].Required);
             Assert.AreEqual(RowObject.RowActions.Edit, row.RowAction);
+        }
+
+        [DataTestMethod]
+        [DataRow("", RowObject.RowActions.Edit)]
+        [DataRow(RowObject.RowActions.Add, RowObject.RowActions.Add)]
+        [DataRow(RowObject.RowActions.Delete, RowObject.RowActions.Delete)]
+        [DataRow(RowObject.RowActions.Edit, RowObject.RowActions.Edit)]
+        public void SetOptionalField_RowObject_WithDifferentInitialRowActions_AppliesExpectedRowAction(
+            string initialRowAction,
+            string expectedRowAction)
+        {
+            // Arrange
+            var row = new RowObject { RowAction = initialRowAction };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Required = "1" });
+
+            // Act
+            row.SetOptionalField("100");
+
+            // Assert
+            Assert.AreEqual("0", row.Fields[0].Required);
+            Assert.AreEqual(expectedRowAction, row.RowAction);
+        }
+
+        [TestMethod]
+        public void SetOptionalField_RowObject_WhenAlreadyOptional_DoesNotSetRowAction()
+        {
+            // Arrange
+            var row = new RowObject { RowAction = "" };
+            row.Fields.Add(new FieldObject { FieldNumber = "100", Required = "0" });
+
+            // Act
+            row.SetOptionalField("100");
+
+            // Assert
+            Assert.AreEqual("0", row.Fields[0].Required);
+            Assert.AreEqual("", row.RowAction);
         }
 
         [TestMethod]

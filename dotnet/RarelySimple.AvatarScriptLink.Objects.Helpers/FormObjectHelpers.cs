@@ -329,13 +329,19 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (!hasFieldInForm)
                 throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
-            formObject.CurrentRow.SetDisabledField(fieldNumber);
+            if (formObject.CurrentRow.IsFieldPresent(fieldNumber))
+            {
+                formObject.CurrentRow.SetDisabledField(fieldNumber);
+            }
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
                 foreach (var row in formObject.OtherRows)
                 {
-                    row.SetDisabledField(fieldNumber);
+                    if (row.IsFieldPresent(fieldNumber))
+                    {
+                        row.SetDisabledField(fieldNumber);
+                    }
                 }
             }
 
@@ -361,13 +367,21 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (!hasAnyField)
                 throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
-            formObject.CurrentRow.SetDisabledFields(fieldsToSet);
+            var currentRowFieldNumbers = fieldsToSet.Where(formObject.CurrentRow.IsFieldPresent).ToList();
+            if (currentRowFieldNumbers.Count > 0)
+            {
+                formObject.CurrentRow.SetDisabledFields(currentRowFieldNumbers);
+            }
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
                 foreach (var row in formObject.OtherRows)
                 {
-                    row.SetDisabledFields(fieldsToSet);
+                    var rowFieldNumbers = fieldsToSet.Where(row.IsFieldPresent).ToList();
+                    if (rowFieldNumbers.Count > 0)
+                    {
+                        row.SetDisabledFields(rowFieldNumbers);
+                    }
                 }
             }
 
@@ -393,13 +407,19 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (!hasFieldInForm)
                 throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
-            formObject.CurrentRow.SetEnabledField(fieldNumber);
+            if (formObject.CurrentRow.IsFieldPresent(fieldNumber))
+            {
+                formObject.CurrentRow.SetEnabledField(fieldNumber);
+            }
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
                 foreach (var row in formObject.OtherRows)
                 {
-                    row.SetEnabledField(fieldNumber);
+                    if (row.IsFieldPresent(fieldNumber))
+                    {
+                        row.SetEnabledField(fieldNumber);
+                    }
                 }
             }
 
@@ -425,13 +445,21 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (!hasAnyField)
                 throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
-            formObject.CurrentRow.SetEnabledFields(fieldsToSet);
+            var currentRowFieldNumbers = fieldsToSet.Where(formObject.CurrentRow.IsFieldPresent).ToList();
+            if (currentRowFieldNumbers.Count > 0)
+            {
+                formObject.CurrentRow.SetEnabledFields(currentRowFieldNumbers);
+            }
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
                 foreach (var row in formObject.OtherRows)
                 {
-                    row.SetEnabledFields(fieldsToSet);
+                    var rowFieldNumbers = fieldsToSet.Where(row.IsFieldPresent).ToList();
+                    if (rowFieldNumbers.Count > 0)
+                    {
+                        row.SetEnabledFields(rowFieldNumbers);
+                    }
                 }
             }
 
@@ -457,13 +485,19 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (!hasFieldInForm)
                 throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
-            formObject.CurrentRow.SetLockedField(fieldNumber);
+            if (formObject.CurrentRow.IsFieldPresent(fieldNumber))
+            {
+                formObject.CurrentRow.SetLockedField(fieldNumber);
+            }
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
                 foreach (var row in formObject.OtherRows)
                 {
-                    row.SetLockedField(fieldNumber);
+                    if (row.IsFieldPresent(fieldNumber))
+                    {
+                        row.SetLockedField(fieldNumber);
+                    }
                 }
             }
 
@@ -489,13 +523,21 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (!hasAnyField)
                 throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
-            formObject.CurrentRow.SetLockedFields(fieldsToSet);
+            var currentRowFieldNumbers = fieldsToSet.Where(formObject.CurrentRow.IsFieldPresent).ToList();
+            if (currentRowFieldNumbers.Count > 0)
+            {
+                formObject.CurrentRow.SetLockedFields(currentRowFieldNumbers);
+            }
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
                 foreach (var row in formObject.OtherRows)
                 {
-                    row.SetLockedFields(fieldsToSet);
+                    var rowFieldNumbers = fieldsToSet.Where(row.IsFieldPresent).ToList();
+                    if (rowFieldNumbers.Count > 0)
+                    {
+                        row.SetLockedFields(rowFieldNumbers);
+                    }
                 }
             }
 
@@ -521,13 +563,19 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (!hasFieldInForm)
                 throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
-            formObject.CurrentRow.SetUnlockedField(fieldNumber);
+            if (formObject.CurrentRow.IsFieldPresent(fieldNumber))
+            {
+                formObject.CurrentRow.SetUnlockedField(fieldNumber);
+            }
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
                 foreach (var row in formObject.OtherRows)
                 {
-                    row.SetUnlockedField(fieldNumber);
+                    if (row.IsFieldPresent(fieldNumber))
+                    {
+                        row.SetUnlockedField(fieldNumber);
+                    }
                 }
             }
 
@@ -553,13 +601,21 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (!hasAnyField)
                 throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
-            formObject.CurrentRow.SetUnlockedFields(fieldsToSet);
+            var currentRowFieldNumbers = fieldsToSet.Where(formObject.CurrentRow.IsFieldPresent).ToList();
+            if (currentRowFieldNumbers.Count > 0)
+            {
+                formObject.CurrentRow.SetUnlockedFields(currentRowFieldNumbers);
+            }
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
                 foreach (var row in formObject.OtherRows)
                 {
-                    row.SetUnlockedFields(fieldsToSet);
+                    var rowFieldNumbers = fieldsToSet.Where(row.IsFieldPresent).ToList();
+                    if (rowFieldNumbers.Count > 0)
+                    {
+                        row.SetUnlockedFields(rowFieldNumbers);
+                    }
                 }
             }
 
@@ -585,13 +641,19 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (!hasFieldInForm)
                 throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
-            formObject.CurrentRow.SetRequiredField(fieldNumber);
+            if (formObject.CurrentRow.IsFieldPresent(fieldNumber))
+            {
+                formObject.CurrentRow.SetRequiredField(fieldNumber);
+            }
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
                 foreach (var row in formObject.OtherRows)
                 {
-                    row.SetRequiredField(fieldNumber);
+                    if (row.IsFieldPresent(fieldNumber))
+                    {
+                        row.SetRequiredField(fieldNumber);
+                    }
                 }
             }
 
@@ -617,13 +679,21 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (!hasAnyField)
                 throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
-            formObject.CurrentRow.SetRequiredFields(fieldsToSet);
+            var currentRowFieldNumbers = fieldsToSet.Where(formObject.CurrentRow.IsFieldPresent).ToList();
+            if (currentRowFieldNumbers.Count > 0)
+            {
+                formObject.CurrentRow.SetRequiredFields(currentRowFieldNumbers);
+            }
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
                 foreach (var row in formObject.OtherRows)
                 {
-                    row.SetRequiredFields(fieldsToSet);
+                    var rowFieldNumbers = fieldsToSet.Where(row.IsFieldPresent).ToList();
+                    if (rowFieldNumbers.Count > 0)
+                    {
+                        row.SetRequiredFields(rowFieldNumbers);
+                    }
                 }
             }
 
@@ -649,13 +719,19 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (!hasFieldInForm)
                 throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
-            formObject.CurrentRow.SetOptionalField(fieldNumber);
+            if (formObject.CurrentRow.IsFieldPresent(fieldNumber))
+            {
+                formObject.CurrentRow.SetOptionalField(fieldNumber);
+            }
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
                 foreach (var row in formObject.OtherRows)
                 {
-                    row.SetOptionalField(fieldNumber);
+                    if (row.IsFieldPresent(fieldNumber))
+                    {
+                        row.SetOptionalField(fieldNumber);
+                    }
                 }
             }
 
@@ -681,13 +757,21 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (!hasAnyField)
                 throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
-            formObject.CurrentRow.SetOptionalFields(fieldsToSet);
+            var currentRowFieldNumbers = fieldsToSet.Where(formObject.CurrentRow.IsFieldPresent).ToList();
+            if (currentRowFieldNumbers.Count > 0)
+            {
+                formObject.CurrentRow.SetOptionalFields(currentRowFieldNumbers);
+            }
 
             if (formObject.MultipleIteration && formObject.HasOtherRows())
             {
                 foreach (var row in formObject.OtherRows)
                 {
-                    row.SetOptionalFields(fieldsToSet);
+                    var rowFieldNumbers = fieldsToSet.Where(row.IsFieldPresent).ToList();
+                    if (rowFieldNumbers.Count > 0)
+                    {
+                        row.SetOptionalFields(rowFieldNumbers);
+                    }
                 }
             }
 

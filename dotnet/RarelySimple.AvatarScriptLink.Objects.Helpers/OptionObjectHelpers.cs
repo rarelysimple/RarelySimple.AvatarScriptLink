@@ -524,6 +524,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             foreach (var form in optionObject.Forms)
             {
+                if (!form.IsFieldPresent(fieldNumber))
+                    continue;
+
                 form.SetRequiredField(fieldNumber);
             }
 
@@ -593,6 +596,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             foreach (var form in optionObject.Forms)
             {
+                if (!form.IsFieldPresent(fieldNumber))
+                    continue;
+
                 form.SetOptionalField(fieldNumber);
             }
 

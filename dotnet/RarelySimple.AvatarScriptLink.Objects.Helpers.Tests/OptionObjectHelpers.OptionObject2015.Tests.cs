@@ -487,6 +487,43 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             Assert.AreEqual("0", form.CurrentRow.Fields[0].Required);
         }
 
+        [DataTestMethod]
+        [DataRow("Required", "0", "0", "1", "0")]
+        [DataRow("Optional", "1", "1", "0", "1")]
+        public void SetSingleRequiredOptionalField_OptionObject2015_WithMixedFormMatches_OnlyMutatesMatchingForm(
+            string operation,
+            string initialTarget,
+            string initialNonTarget,
+            string expectedTarget,
+            string expectedNonTarget)
+        {
+            var optionObject = new OptionObject2015();
+            var targetForm = new FormObject { FormId = "1", CurrentRow = new RowObject { RowId = "1" } };
+            targetForm.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Required = initialTarget });
+
+            var nonTargetForm = new FormObject { FormId = "2", CurrentRow = new RowObject { RowId = "1" } };
+            nonTargetForm.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Required = initialNonTarget });
+
+            optionObject.Forms.Add(targetForm);
+            optionObject.Forms.Add(nonTargetForm);
+
+            switch (operation)
+            {
+                case "Required":
+                    optionObject.SetRequiredField("100");
+                    break;
+                case "Optional":
+                    optionObject.SetOptionalField("100");
+                    break;
+                default:
+                    Assert.Fail($"Unsupported operation '{operation}'");
+                    break;
+            }
+
+            Assert.AreEqual(expectedTarget, targetForm.CurrentRow.Fields[0].Required);
+            Assert.AreEqual(expectedNonTarget, nonTargetForm.CurrentRow.Fields[0].Required);
+        }
+
         [TestMethod]
         public void SetRequiredFields_OptionObject2015_WithFieldObjects_SetsRequired()
         {
