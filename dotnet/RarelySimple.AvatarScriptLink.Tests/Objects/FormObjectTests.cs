@@ -82,7 +82,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
                 .FormId("1")
                 .Build();
 
-            formObject.AddRowObject(parentRowId);
+            formObject.AddRowObjectWithParentRowId(parentRowId);
 
             Assert.IsNotNull(formObject.CurrentRow);
             Assert.AreEqual("1||1", formObject.CurrentRow.RowId);

@@ -70,7 +70,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 FormId = formId
             };
 
-            formObject = (FormObject)OptionObjectHelpers.AddRowObject(formObject, expectedParentRowId);
+            formObject = (FormObject)OptionObjectHelpers.AddRowObjectWithParentRowId(formObject, expectedParentRowId);
 
             Assert.AreEqual(expectedRowId, formObject.CurrentRow.RowId);
             Assert.AreEqual(expectedParentRowId, formObject.CurrentRow.ParentRowId);
