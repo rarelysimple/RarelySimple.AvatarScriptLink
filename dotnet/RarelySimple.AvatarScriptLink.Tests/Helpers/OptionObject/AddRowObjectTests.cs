@@ -353,7 +353,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestMethod]
         public void AddRowObject_OptionObject_NullOptionObject()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddRowObject((OptionObject)null, "1", new RowObject()));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddRowObject((OptionObject)null!, "1", new RowObject()));
         }
 
         [TestMethod]

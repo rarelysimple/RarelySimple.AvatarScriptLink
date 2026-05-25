@@ -11,8 +11,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="optionObject"></param>
         /// <param name="fieldObjects"></param>
-        /// <exception cref="ArgumentNullException">Thrown when delegated field action arguments are null.</exception>
-        /// <exception cref="ArgumentException">Thrown when delegated field action validation fails or no matching fields are updated.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldObjects"/> contains one or more null or empty field numbers.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching fields are found or no fields are updated.</exception>
         /// <returns></returns>
         public static IOptionObject SetLockedFields(IOptionObject optionObject, List<FieldObject> fieldObjects)
         {
@@ -23,8 +23,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="optionObject"></param>
         /// <param name="fieldNumbers"></param>
-        /// <exception cref="ArgumentNullException">Thrown when delegated field action arguments are null.</exception>
-        /// <exception cref="ArgumentException">Thrown when delegated field action validation fails or no matching fields are updated.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null or contains one or more null or empty field numbers.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching fields are found or no fields are updated.</exception>
         /// <returns></returns>
         public static IOptionObject SetLockedFields(IOptionObject optionObject, List<string> fieldNumbers)
         {
@@ -35,8 +35,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="formObject"></param>
         /// <param name="fieldNumbers"></param>
-        /// <exception cref="ArgumentNullException">Thrown when delegated field action arguments are null.</exception>
-        /// <exception cref="ArgumentException">Thrown when delegated field action validation fails or no matching fields are found.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null or contains one or more null or empty field numbers.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching fields are found.</exception>
         /// <returns></returns>
         public static IFormObject SetLockedFields(IFormObject formObject, List<string> fieldNumbers)
         {
@@ -47,8 +47,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="rowObject"></param>
         /// <param name="fieldNumbers"></param>
-        /// <exception cref="ArgumentNullException">Thrown when delegated field action arguments are null.</exception>
-        /// <exception cref="ArgumentException">Thrown when delegated field action validation fails or no matching fields are found.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null or contains one or more null or empty field numbers.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching fields are found.</exception>
         /// <returns></returns>
         public static IRowObject SetLockedFields(IRowObject rowObject, List<string> fieldNumbers)
         {

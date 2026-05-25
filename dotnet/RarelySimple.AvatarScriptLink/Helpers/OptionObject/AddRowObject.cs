@@ -13,7 +13,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="optionObject"></param>
         /// <param name="formId"></param>
         /// <param name="rowObject"></param>
-        /// <exception cref="ArgumentNullException">Thrown when required arguments are null or empty, or when the option object has no forms.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> or <paramref name="rowObject"/> is null, when <paramref name="formId"/> is null or empty, or when <paramref name="optionObject"/> has no forms.</exception>
         /// <returns></returns>
         public static IOptionObject AddRowObject(IOptionObject optionObject, string formId, IRowObject rowObject)
         {

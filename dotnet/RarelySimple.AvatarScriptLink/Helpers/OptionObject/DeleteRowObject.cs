@@ -27,7 +27,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="optionObject"></param>
         /// <param name="rowId"></param>
-        /// <exception cref="ArgumentNullException">Thrown when required arguments are null or empty, or when the option object has no forms.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null, when <paramref name="rowId"/> is null or empty, or when <paramref name="optionObject"/> has no forms.</exception>
         /// <exception cref="ArgumentException">Thrown when a matching row cannot be found for deletion.</exception>
         /// <returns></returns>
         public static IOptionObject DeleteRowObject(IOptionObject optionObject, string rowId)

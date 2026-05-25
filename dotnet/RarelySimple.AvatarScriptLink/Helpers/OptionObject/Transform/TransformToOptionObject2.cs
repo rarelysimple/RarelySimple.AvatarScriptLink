@@ -12,10 +12,14 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// Transforms an <see cref="IOptionObject"/> to <see cref="IOptionObject2"/>.
         /// </summary>
         /// <param name="optionObject"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null.</exception>
         /// <exception cref="ArgumentException">Thrown when the source object contains an invalid error code.</exception>
         /// <returns></returns>
         public static IOptionObject2 TransformToOptionObject2(IOptionObject optionObject)
         {
+            if (optionObject == null)
+                throw new ArgumentNullException(nameof(optionObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+
             if (!IsValidErrorCode(optionObject.ErrorCode))
                 throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("errorCodeIsNotValid", CultureInfo.CurrentCulture));
             var optionObject2 = new OptionObject2
@@ -37,10 +41,14 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// Transforms an <see cref="IOptionObject2015"/> to <see cref="IOptionObject2"/>.
         /// </summary>
         /// <param name="optionObject2015"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject2015"/> is null.</exception>
         /// <exception cref="ArgumentException">Thrown when the source object contains an invalid error code.</exception>
         /// <returns></returns>
         public static IOptionObject2 TransformToOptionObject2(IOptionObject2015 optionObject2015)
         {
+            if (optionObject2015 == null)
+                throw new ArgumentNullException(nameof(optionObject2015), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+
             if (!IsValidErrorCode(optionObject2015.ErrorCode))
                 throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("errorCodeIsNotValid", CultureInfo.CurrentCulture));
             var optionObject2 = new OptionObject2

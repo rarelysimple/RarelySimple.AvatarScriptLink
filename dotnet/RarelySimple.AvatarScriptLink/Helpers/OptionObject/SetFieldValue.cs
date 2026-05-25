@@ -41,7 +41,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="rowId"></param>
         /// <param name="fieldNumber"></param>
         /// <param name="fieldValue"></param>
-        /// <exception cref="ArgumentNullException">Thrown when required arguments are null or empty, or when the option object has no forms.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null, when <paramref name="formId"/>, <paramref name="rowId"/>, or <paramref name="fieldNumber"/> is null or empty, or when <paramref name="optionObject"/> has no forms.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching form, row, or field is found for the provided identifiers.</exception>
         /// <returns></returns>
         public static IOptionObject SetFieldValue(IOptionObject optionObject, string formId, string rowId, string fieldNumber, string fieldValue)
         {
@@ -88,7 +89,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="rowId"></param>
         /// <param name="fieldNumber"></param>
         /// <param name="fieldValue"></param>
-        /// <exception cref="ArgumentNullException">Thrown when required arguments are null or empty, or when <paramref name="formObject"/> has no current row.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> is null or has no current row, or when <paramref name="rowId"/> or <paramref name="fieldNumber"/> is null or empty.</exception>
         /// <exception cref="ArgumentException">Thrown when no matching field can be found for the provided identifiers.</exception>
         /// <returns></returns>
         public static IFormObject SetFieldValue(IFormObject formObject, string rowId, string fieldNumber, string fieldValue)
