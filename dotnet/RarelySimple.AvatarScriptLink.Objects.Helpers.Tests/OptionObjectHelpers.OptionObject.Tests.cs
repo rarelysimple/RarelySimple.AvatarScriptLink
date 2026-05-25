@@ -164,6 +164,42 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
+        public void GetFormObject_OptionObject_ReturnsMatchingFormObject()
+        {
+            var optionObject = new OptionObject();
+            var form = new FormObject { FormId = "123", CurrentRow = new RowObject { RowId = "100" } };
+            optionObject.Forms.Add(form);
+
+            var result = optionObject.GetFormObject("123");
+
+            Assert.AreSame(form, result);
+        }
+
+        [TestMethod]
+        public void GetFormObject_OptionObject_WithNonExistentForm_ReturnsNull()
+        {
+            var optionObject = new OptionObject();
+            optionObject.Forms.Add(new FormObject { FormId = "123", CurrentRow = new RowObject { RowId = "100" } });
+
+            var result = optionObject.GetFormObject("999");
+
+            Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        public void GetFormObject_OptionObject_WithNullOrEmptyFormId_ReturnsNull()
+        {
+            var optionObject = new OptionObject();
+            optionObject.Forms.Add(new FormObject { FormId = "123", CurrentRow = new RowObject { RowId = "100" } });
+
+            var nullResult = optionObject.GetFormObject(null!);
+            var emptyResult = optionObject.GetFormObject(string.Empty);
+
+            Assert.IsNull(nullResult);
+            Assert.IsNull(emptyResult);
+        }
+
+        [TestMethod]
         public void GetCurrentRowId_OptionObject_WithNonExistentForm_ReturnsNull()
         {
             var optionObject = new OptionObject();

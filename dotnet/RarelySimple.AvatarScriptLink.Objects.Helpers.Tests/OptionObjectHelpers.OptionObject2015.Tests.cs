@@ -194,6 +194,42 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
+        public void GetFormObject_OptionObject2015_ReturnsMatchingFormObject()
+        {
+            var optionObject = new OptionObject2015();
+            var form = new FormObject { FormId = "123", CurrentRow = new RowObject { RowId = "100" } };
+            optionObject.Forms.Add(form);
+
+            var result = optionObject.GetFormObject("123");
+
+            Assert.AreSame(form, result);
+        }
+
+        [TestMethod]
+        public void GetFormObject_OptionObject2015_WithNonExistentForm_ReturnsNull()
+        {
+            var optionObject = new OptionObject2015();
+            optionObject.Forms.Add(new FormObject { FormId = "123", CurrentRow = new RowObject { RowId = "100" } });
+
+            var result = optionObject.GetFormObject("999");
+
+            Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        public void GetFormObject_OptionObject2015_WithNullOrEmptyFormId_ReturnsNull()
+        {
+            var optionObject = new OptionObject2015();
+            optionObject.Forms.Add(new FormObject { FormId = "123", CurrentRow = new RowObject { RowId = "100" } });
+
+            var nullResult = optionObject.GetFormObject(null!);
+            var emptyResult = optionObject.GetFormObject(string.Empty);
+
+            Assert.IsNull(nullResult);
+            Assert.IsNull(emptyResult);
+        }
+
+        [TestMethod]
         public void GetSessionToken_OptionObject2015_ReturnsSessionToken()
         {
             var optionObject = new OptionObject2015 { SessionToken = "token-123" };
