@@ -12,6 +12,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="optionObject"></param>
         /// <param name="fieldAction"></param>
         /// <param name="fieldNumber"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldAction"/> or <paramref name="fieldNumber"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching fields are found or no fields are updated.</exception>
         /// <returns></returns>
         public static IOptionObject SetFieldObject(IOptionObject optionObject, string fieldAction, string fieldNumber)
         {
@@ -24,6 +26,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="formObject"></param>
         /// <param name="fieldAction"></param>
         /// <param name="fieldNumber"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldAction"/> or <paramref name="fieldNumber"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching fields are found.</exception>
         /// <returns></returns>
         public static IFormObject SetFieldObject(IFormObject formObject, string fieldAction, string fieldNumber)
         {
@@ -36,6 +40,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="rowObject"></param>
         /// <param name="fieldAction"></param>
         /// <param name="fieldNumber"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldAction"/> or <paramref name="fieldNumber"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching fields are found.</exception>
         /// <returns></returns>
         public static IRowObject SetFieldObject(IRowObject rowObject, string fieldAction, string fieldNumber)
         {

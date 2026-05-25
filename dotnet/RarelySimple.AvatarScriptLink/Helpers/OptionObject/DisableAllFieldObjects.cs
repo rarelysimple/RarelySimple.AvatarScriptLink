@@ -12,6 +12,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// Sets all <see cref="IFieldObject"/> in the <see cref="IOptionObject"/> to disabled.
         /// </summary>
         /// <param name="optionObject"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the option object contains no forms.</exception>
         /// <returns></returns>
         public static IOptionObject DisableAllFieldObjects(IOptionObject optionObject)
         {
@@ -24,6 +26,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="optionObject"></param>
         /// <param name="excludedFields"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> or <paramref name="excludedFields"/> is null, or when the option object has no forms collection.</exception>
+        /// <exception cref="ArgumentException">Thrown when the option object contains no forms.</exception>
         /// <returns></returns>
         public static IOptionObject DisableAllFieldObjects(IOptionObject optionObject, List<string> excludedFields)
         {

@@ -50,7 +50,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             string fieldNumber = "123";
             RowObject rowObject = new("1||1");
 
-            Assert.ThrowsException<ArgumentNullException>(() => rowObject.RemoveFieldObject(fieldNumber));
+            Assert.ThrowsException<ArgumentException>(() => rowObject.RemoveFieldObject(fieldNumber));
         }
 
         [TestMethod]
@@ -97,7 +97,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             string fieldNumber = "123";
             RowObject rowObject = new("1||1");
 
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.RemoveFieldObject(rowObject, fieldNumber));
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.RemoveFieldObject(rowObject, fieldNumber));
         }
     }
 }

@@ -12,6 +12,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="optionObject"></param>
         /// <param name="formObject"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> or <paramref name="formObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the form cannot be added due to validation constraints.</exception>
         /// <returns></returns>
         public static IOptionObject AddFormObject(IOptionObject optionObject, IFormObject formObject)
         {
@@ -32,6 +34,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="optionObject"></param>
         /// <param name="formId"></param>
         /// <param name="multipleIteration"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the created form cannot be added due to validation constraints.</exception>
         /// <returns></returns>
         public static IOptionObject AddFormObject(IOptionObject optionObject, string formId, bool multipleIteration)
         {

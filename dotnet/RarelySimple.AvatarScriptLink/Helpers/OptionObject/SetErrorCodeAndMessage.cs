@@ -13,6 +13,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="optionObject"></param>
         /// <param name="errorCode"></param>
         /// <param name="errorMessage"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="errorCode"/> or <paramref name="errorMessage"/> is not valid for the requested operation.</exception>
         /// <returns></returns>
         public static IOptionObject SetErrorCodeAndMessage(IOptionObject optionObject, double errorCode = 0, string errorMessage = "")
         {

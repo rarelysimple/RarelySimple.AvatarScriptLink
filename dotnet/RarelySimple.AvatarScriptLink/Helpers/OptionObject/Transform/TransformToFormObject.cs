@@ -11,6 +11,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// Transforms an Xml- or Json-formatted <see cref="String"/> to <see cref="FormObject"/>.
         /// </summary>
         /// <param name="serializedString">An Xml- or Json-formatted <see cref="System.String"/>.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="serializedString"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="serializedString"/> is not a compatible serialized form object.</exception>
         /// <returns>A <see cref="FormObject"/>.</returns>
         public static IFormObject TransformToFormObject(string serializedString)
         {

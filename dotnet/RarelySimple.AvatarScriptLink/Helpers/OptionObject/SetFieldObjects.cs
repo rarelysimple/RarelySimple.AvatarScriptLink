@@ -15,9 +15,14 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="optionObject"></param>
         /// <param name="fieldAction"></param>
         /// <param name="fieldObjects"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldAction"/> is null or empty, or when <paramref name="fieldObjects"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching fields are found or no fields are updated.</exception>
         /// <returns></returns>
         public static IOptionObject SetFieldObjects(IOptionObject optionObject, string fieldAction, List<FieldObject> fieldObjects)
         {
+            if (fieldObjects == null)
+                throw new ArgumentNullException(nameof(fieldObjects), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+
             List<string> fieldNumbers = GetFieldNumbersToSet(fieldObjects);
             return SetFieldObjects(optionObject, fieldAction, fieldNumbers);
         }
@@ -27,11 +32,16 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="optionObject"></param>
         /// <param name="fieldAction"></param>
         /// <param name="fieldNumbers"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldAction"/> is null or empty, or when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching fields are found or no fields are updated.</exception>
         /// <returns></returns>
         public static IOptionObject SetFieldObjects(IOptionObject optionObject, string fieldAction, List<string> fieldNumbers)
         {
             if (string.IsNullOrEmpty(fieldAction))
                 throw new ArgumentNullException(nameof(fieldAction), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+            ValidateFieldAction(fieldAction);
+            if (fieldNumbers == null)
+                throw new ArgumentNullException(nameof(fieldNumbers), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
 
             List<string> fieldsToSet = new List<string>();
             foreach (string fieldNumber in fieldNumbers.Where(f => IsFieldPresent(optionObject, f)))
@@ -65,11 +75,16 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="formObject"></param>
         /// <param name="fieldAction"></param>
         /// <param name="fieldNumbers"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldAction"/> is null or empty, or when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching fields are found or no fields are updated.</exception>
         /// <returns></returns>
         public static IFormObject SetFieldObjects(IFormObject formObject, string fieldAction, List<string> fieldNumbers)
         {
             if (string.IsNullOrEmpty(fieldAction))
                 throw new ArgumentNullException(nameof(fieldAction), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+            ValidateFieldAction(fieldAction);
+            if (fieldNumbers == null)
+                throw new ArgumentNullException(nameof(fieldNumbers), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
 
             List<string> fieldsToSet = new List<string>();
             foreach (string fieldNumber in fieldNumbers.Where(f => IsFieldPresent(formObject, f)))
@@ -96,11 +111,16 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="rowObject"></param>
         /// <param name="fieldAction"></param>
         /// <param name="fieldNumbers"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldAction"/> is null or empty, or when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching fields are found or no fields are updated.</exception>
         /// <returns></returns>
         public static IRowObject SetFieldObjects(IRowObject rowObject, string fieldAction, List<string> fieldNumbers)
         {
             if (string.IsNullOrEmpty(fieldAction))
                 throw new ArgumentNullException(nameof(fieldAction), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+            ValidateFieldAction(fieldAction);
+            if (fieldNumbers == null)
+                throw new ArgumentNullException(nameof(fieldNumbers), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
 
             List<string> fieldsToSet = new List<string>();
             foreach (string fieldNumber in fieldNumbers.Where(f => IsFieldPresent(rowObject, f)))
@@ -150,6 +170,20 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         }
 
         #region HelperMethods
+        private static void ValidateFieldAction(string fieldAction)
+        {
+            if (fieldAction != FieldAction.Disable &&
+                fieldAction != FieldAction.Enable &&
+                fieldAction != FieldAction.Lock &&
+                fieldAction != FieldAction.Modify &&
+                fieldAction != FieldAction.Optional &&
+                fieldAction != FieldAction.Require &&
+                fieldAction != FieldAction.Unlock)
+            {
+                throw new ArgumentException($"Unsupported fieldAction value: {fieldAction}", nameof(fieldAction));
+            }
+        }
+
         private static List<string> GetFieldNumbersToSet(List<FieldObject> fieldObjects)
         {
             List<string> fieldNumbers = new List<string>();

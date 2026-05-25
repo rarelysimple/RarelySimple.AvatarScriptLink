@@ -12,6 +12,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="optionObject"></param>
         /// <param name="rowId"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="rowId"/> is null or empty.</exception>
         /// <returns></returns>
         public static bool IsRowMarkedForDeletion(IOptionObject optionObject, string rowId)
         {
@@ -24,6 +25,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="formObject"></param>
         /// <param name="rowId"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> has no current row, or when <paramref name="rowId"/> is null or empty.</exception>
         /// <returns></returns>
         public static bool IsRowMarkedForDeletion(IFormObject formObject, string rowId)
         {

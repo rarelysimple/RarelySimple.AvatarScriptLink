@@ -13,6 +13,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="optionObject"></param>
         /// <param name="rowObject"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="rowObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when a matching row cannot be found for deletion.</exception>
         /// <returns></returns>
         public static IOptionObject DeleteRowObject(IOptionObject optionObject, IRowObject rowObject)
         {
@@ -25,6 +27,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="optionObject"></param>
         /// <param name="rowId"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null, when <paramref name="rowId"/> is null or empty, or when <paramref name="optionObject"/> has no forms.</exception>
+        /// <exception cref="ArgumentException">Thrown when a matching row cannot be found for deletion.</exception>
         /// <returns></returns>
         public static IOptionObject DeleteRowObject(IOptionObject optionObject, string rowId)
         {
@@ -47,6 +51,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="formObject"></param>
         /// <param name="rowObject"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="rowObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when a matching row cannot be found for deletion.</exception>
         /// <returns></returns>
         public static IFormObject DeleteRowObject(IFormObject formObject, IRowObject rowObject)
         {
@@ -59,6 +65,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="formObject"></param>
         /// <param name="rowId"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> is null, or when <paramref name="rowId"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when a matching row cannot be found for deletion.</exception>
         /// <returns></returns>
         public static IFormObject DeleteRowObject(IFormObject formObject, string rowId)
         {

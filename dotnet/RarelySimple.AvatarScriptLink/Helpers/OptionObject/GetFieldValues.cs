@@ -12,6 +12,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="optionObject"></param>
         /// <param name="fieldNumber"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null or empty.</exception>
         /// <returns></returns>
         public static List<string> GetFieldValues(IOptionObject optionObject, string fieldNumber)
         {
@@ -29,6 +30,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="formObject"></param>
         /// <param name="fieldNumber"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null or empty.</exception>
         /// <returns></returns>
         public static List<string> GetFieldValues(IFormObject formObject, string fieldNumber)
         {

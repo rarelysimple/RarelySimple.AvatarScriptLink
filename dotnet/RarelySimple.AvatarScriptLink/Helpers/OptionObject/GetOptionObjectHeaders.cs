@@ -46,6 +46,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// Returns a List of the <see cref="IOptionObject2015"/> properties and values.
         /// </summary>
         /// <param name="optionObject"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null.</exception>
         /// <returns></returns>
         public static List<string> GetOptionObjectHeaders(IOptionObject2015 optionObject)
         {

@@ -43,6 +43,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
+        public void SetFieldObjects_OptionObject_NullFieldObjects_ThrowsArgumentNullException()
+        {
+            OptionObject optionObject = new();
+
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, FieldAction.Disable, (List<FieldObject>)null!));
+        }
+
+        [TestMethod]
         public void SetFieldObjects_OptionObject_Disabled_FieldObjects()
         {
             string fieldNumber = "123";
@@ -118,6 +126,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
+        public void SetFieldObjects_OptionObject_NullFieldNumbers_ThrowsArgumentNullException()
+        {
+            OptionObject optionObject = new();
+
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, FieldAction.Disable, (List<string>)null!));
+        }
+
+        [TestMethod]
         public void SetFieldObjects_OptionObject_Disabled_FieldNumbers()
         {
             string fieldNumber = "123";
@@ -152,6 +168,43 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(rowObject);
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
+
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, FieldAction.Disable, fieldNumbers));
+        }
+
+        [TestMethod]
+        public void SetFieldObjects_OptionObject_AllFormsFail_ThrowsArgumentException()
+        {
+            string fieldNumber = "123";
+            List<string> fieldNumbers =
+            [
+                fieldNumber
+            ];
+
+            RowObject rowObject1 = new();
+            rowObject1.AddFieldObject(new FieldObject(fieldNumber));
+            FormObject formObject1 = new("1")
+            {
+                MultipleIteration = true,
+                CurrentRow = rowObject1,
+                OtherRows = null
+            };
+
+            RowObject rowObject2 = new();
+            rowObject2.AddFieldObject(new FieldObject(fieldNumber));
+            FormObject formObject2 = new("2")
+            {
+                MultipleIteration = true,
+                CurrentRow = rowObject2,
+                OtherRows = null
+            };
+
+            OptionObject optionObject = new();
+            optionObject.Forms =
+            [
+                formObject1,
+                formObject2
+            ];
 
             Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObjects(optionObject, FieldAction.Disable, fieldNumbers));
         }
@@ -489,6 +542,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
+        public void SetFieldObjects_FormObject_NullFieldNumbers_ThrowsArgumentNullException()
+        {
+            FormObject formObject = new("1");
+
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(formObject, FieldAction.Disable, (List<string>)null!));
+        }
+
+        [TestMethod]
         public void SetFieldObjects_FormObject_Disabled_FieldNumbers()
         {
             string fieldNumber = "123";
@@ -523,6 +584,37 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObjects(formObject, FieldAction.Disable, fieldNumbers));
         }
 
+        [TestMethod]
+        public void SetFieldObjects_FormObject_Disabled_FieldNumbers_MultipleIterationWithOtherRows_CoversLoop()
+        {
+            string fieldNumber = "123";
+            List<string> fieldNumbers =
+            [
+                fieldNumber
+            ];
+
+            RowObject currentRow = new();
+            currentRow.AddFieldObject(new FieldObject(fieldNumber));
+
+            RowObject otherRow = new();
+            otherRow.AddFieldObject(new FieldObject(fieldNumber));
+
+            FormObject formObject = new("1")
+            {
+                MultipleIteration = true,
+                CurrentRow = currentRow,
+                OtherRows =
+                [
+                    otherRow
+                ]
+            };
+
+            OptionObjectHelpers.SetFieldObjects(formObject, FieldAction.Disable, fieldNumbers);
+
+            Assert.IsFalse(formObject.CurrentRow.IsFieldEnabled(fieldNumber));
+            Assert.IsFalse(formObject.OtherRows[0].IsFieldEnabled(fieldNumber));
+        }
+
 
         [TestMethod]
         public void SetFieldObjects_RowObject_NullAction_FieldNumbers()
@@ -550,6 +642,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             rowObject.AddFieldObject(new FieldObject(fieldNumber));
 
             Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(rowObject, "", fieldNumbers));
+        }
+
+        [TestMethod]
+        public void SetFieldObjects_RowObject_NullFieldNumbers_ThrowsArgumentNullException()
+        {
+            RowObject rowObject = new();
+
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObjects(rowObject, FieldAction.Disable, (List<string>)null!));
         }
 
         [TestMethod]
@@ -581,6 +681,37 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             rowObject.AddFieldObject(new FieldObject(fieldNumber));
 
             Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObjects(rowObject, FieldAction.Disable, fieldNumbers));
+        }
+
+        [TestMethod]
+        public void SetFieldObjects_RowObject_Modify_FieldNumbers_MarksRowModified()
+        {
+            string fieldNumber = "123";
+            List<string> fieldNumbers =
+            [
+                fieldNumber
+            ];
+            RowObject rowObject = new();
+            rowObject.AddFieldObject(new FieldObject(fieldNumber));
+
+            OptionObjectHelpers.SetFieldObjects(rowObject, FieldAction.Modify, fieldNumbers);
+
+            Assert.IsTrue(rowObject.IsFieldModified(fieldNumber));
+            Assert.AreEqual(RowAction.Edit, rowObject.RowAction);
+        }
+
+        [TestMethod]
+        public void SetFieldObjects_RowObject_UnknownAction_FieldNumbers_ThrowsArgumentException()
+        {
+            string fieldNumber = "123";
+            List<string> fieldNumbers =
+            [
+                fieldNumber
+            ];
+            RowObject rowObject = new();
+            rowObject.AddFieldObject(new FieldObject(fieldNumber));
+
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObjects(rowObject, "UNKNOWN", fieldNumbers));
         }
     }
 }

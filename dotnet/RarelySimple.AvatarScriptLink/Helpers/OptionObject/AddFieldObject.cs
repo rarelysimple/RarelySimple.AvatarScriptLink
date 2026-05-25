@@ -11,6 +11,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="rowObject"></param>
         /// <param name="fieldObject"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="rowObject"/> or <paramref name="fieldObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the field object already exists in the row.</exception>
         /// <returns></returns>
         public static IRowObject AddFieldObject(IRowObject rowObject, IFieldObject fieldObject)
         {
@@ -31,6 +33,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="rowObject"></param>
         /// <param name="fieldNumber"></param>
         /// <param name="fieldValue"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="rowObject"/> is null, or when <paramref name="fieldNumber"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when the field object already exists in the row.</exception>
         /// <returns></returns>
         public static IRowObject AddFieldObject(IRowObject rowObject, string fieldNumber, string fieldValue)
         {
@@ -49,6 +53,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="enabledValue"></param>
         /// <param name="lockedValue"></param>
         /// <param name="requiredValue"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="rowObject"/> is null, or when <paramref name="fieldNumber"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when the field object already exists in the row.</exception>
         /// <returns></returns>
         public static IRowObject AddFieldObject(IRowObject rowObject, string fieldNumber, string fieldValue, string enabledValue, string lockedValue, string requiredValue)
         {
@@ -70,6 +76,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="enabled"></param>
         /// <param name="locked"></param>
         /// <param name="required"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="rowObject"/> is null, or when <paramref name="fieldNumber"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when the field object already exists in the row.</exception>
         /// <returns></returns>
         public static IRowObject AddFieldObject(IRowObject rowObject, string fieldNumber, string fieldValue, bool enabled, bool locked, bool required)
         {

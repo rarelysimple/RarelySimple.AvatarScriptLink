@@ -9,6 +9,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <summary>
         /// Used to create the <see cref="IOptionObject"/> for return to myAvatar.
         /// </summary>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null.</exception>
         /// <returns></returns>
         public static IOptionObject GetReturnOptionObject(IOptionObject optionObject)
         {
@@ -24,6 +25,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="optionObject"></param>
         /// <param name="errorCode"></param>
         /// <param name="errorMessage"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="errorCode"/> or <paramref name="errorMessage"/> is invalid.</exception>
         /// <returns></returns>
         public static IOptionObject GetReturnOptionObject(IOptionObject optionObject, double errorCode, string errorMessage)
         {
@@ -37,6 +40,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <summary>
         /// Used to create the <see cref="IOptionObject2"/> for return to myAvatar.
         /// </summary>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null.</exception>
         /// <returns></returns>
         public static IOptionObject2 GetReturnOptionObject(IOptionObject2 optionObject)
         {
@@ -52,6 +56,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="optionObject"></param>
         /// <param name="errorCode"></param>
         /// <param name="errorMessage"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="errorCode"/> or <paramref name="errorMessage"/> is invalid.</exception>
         /// <returns></returns>
         public static IOptionObject2 GetReturnOptionObject(IOptionObject2 optionObject, double errorCode, string errorMessage)
         {
@@ -66,6 +72,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <summary>
         /// Used to create the <see cref="IOptionObject2015"/> for return to myAvatar.
         /// </summary>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null.</exception>
         /// <returns></returns>
         public static IOptionObject2015 GetReturnOptionObject(IOptionObject2015 optionObject)
         {
@@ -81,6 +88,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="optionObject"></param>
         /// <param name="errorCode"></param>
         /// <param name="errorMessage"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="errorCode"/> or <paramref name="errorMessage"/> is invalid.</exception>
         /// <returns></returns>
         public static IOptionObject2015 GetReturnOptionObject(IOptionObject2015 optionObject, double errorCode, string errorMessage)
         {
