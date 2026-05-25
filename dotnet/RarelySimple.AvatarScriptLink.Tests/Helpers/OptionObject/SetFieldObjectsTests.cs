@@ -701,7 +701,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         }
 
         [TestMethod]
-        public void SetFieldObjects_RowObject_UnknownAction_FieldNumbers_NoChangesApplied()
+        public void SetFieldObjects_RowObject_UnknownAction_FieldNumbers_ThrowsArgumentException()
         {
             string fieldNumber = "123";
             List<string> fieldNumbers =
@@ -711,14 +711,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber));
 
-            bool initialIsEnabled = rowObject.IsFieldEnabled(fieldNumber);
-            bool initialIsModified = rowObject.IsFieldModified(fieldNumber);
-
-            OptionObjectHelpers.SetFieldObjects(rowObject, "UNKNOWN", fieldNumbers);
-
-            Assert.AreEqual(initialIsEnabled, rowObject.IsFieldEnabled(fieldNumber));
-            Assert.AreEqual(initialIsModified, rowObject.IsFieldModified(fieldNumber));
-            Assert.IsNull(rowObject.RowAction);
+            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObjects(rowObject, "UNKNOWN", fieldNumbers));
         }
     }
 }
