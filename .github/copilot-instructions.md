@@ -180,6 +180,7 @@ RarelySimple.AvatarScriptLink (legacy)
 - [ ] SonarQube issues addressed (if integrated)
 - [ ] Code follows established style guidelines
 - [ ] XML documentation added for public members
+- [ ] XML documentation includes all expected exception paths for public methods and overloads
 - [ ] Tests added or updated for changes
 - [ ] Documentation updated if behavior changed
 

@@ -70,6 +70,24 @@ namespace RarelySimple.AvatarScriptLink.Helpers
             return formObject;
         }
         /// <summary>
+        /// Adds an empty <see cref="RowObject"/> to a provided <see cref="IFormObject"/>.
+        /// The <see cref="RowObject.RowId"/> is assigned automatically and the row is marked for addition.
+        /// </summary>
+        /// <param name="formObject"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the row cannot be added due to form constraints or duplicate row IDs.</exception>
+        /// <returns></returns>
+        public static IFormObject AddRowObject(IFormObject formObject)
+        {
+            if (formObject == null)
+                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+
+            return AddRowObject(formObject, new RowObject
+            {
+                RowAction = RowAction.Add
+            });
+        }
+        /// <summary>
         /// Adds a <see cref="RowObject"/> to a provided <see cref="IFormObject"/> using provided RowId and ParentRowId.
         /// </summary>
         /// <param name="formObject"></param>
@@ -105,6 +123,26 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 RowId = rowId
             };
             return AddRowObject(formObject, rowObject);
+        }
+        /// <summary>
+        /// Adds an empty <see cref="RowObject"/> to a provided <see cref="IFormObject"/> and sets the <see cref="RowObject.ParentRowId"/>.
+        /// The <see cref="RowObject.RowId"/> is assigned automatically and the row is marked for addition.
+        /// </summary>
+        /// <param name="formObject"></param>
+        /// <param name="parentRowId"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the row cannot be added due to form constraints or duplicate row IDs.</exception>
+        /// <returns></returns>
+        public static IFormObject AddRowObjectWithParentRowId(IFormObject formObject, string parentRowId)
+        {
+            if (formObject == null)
+                throw new ArgumentNullException(nameof(formObject), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
+
+            return AddRowObject(formObject, new RowObject
+            {
+                ParentRowId = parentRowId,
+                RowAction = RowAction.Add
+            });
         }
     }
 }

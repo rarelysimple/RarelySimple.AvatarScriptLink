@@ -103,6 +103,16 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
             OtherRows = tempFormObject.OtherRows;
         }
         /// <summary>
+        /// Adds an empty <see cref="RowObject"/> to a <see cref="FormObject"/>.
+        /// The <see cref="RowObject.RowId"/> is assigned automatically and the row is marked for addition.
+        /// </summary>
+        public void AddRowObject()
+        {
+            IFormObject tempFormObject = OptionObjectHelpers.AddRowObject(this);
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
+        }
+        /// <summary>
         /// Adds a <see cref="RowObject"/> to the <see cref="CurrentRow"/> of a <see cref="FormObject"/>.
         /// </summary>
         /// <param name="rowId"></param>
@@ -122,6 +132,17 @@ namespace RarelySimple.AvatarScriptLink.Objects.Advanced
         public void AddRowObject(string rowId, string parentRowId, string rowAction)
         {
             IFormObject tempFormObject = OptionObjectHelpers.AddRowObject(this, rowId, parentRowId, rowAction);
+            CurrentRow = tempFormObject.CurrentRow;
+            OtherRows = tempFormObject.OtherRows;
+        }
+        /// <summary>
+        /// Adds an empty <see cref="RowObject"/> to a <see cref="FormObject"/> and sets the <see cref="RowObject.ParentRowId"/>.
+        /// The <see cref="RowObject.RowId"/> is assigned automatically and the row is marked for addition.
+        /// </summary>
+        /// <param name="parentRowId"></param>
+        public void AddRowObjectWithParentRowId(string parentRowId)
+        {
+            IFormObject tempFormObject = OptionObjectHelpers.AddRowObjectWithParentRowId(this, parentRowId);
             CurrentRow = tempFormObject.CurrentRow;
             OtherRows = tempFormObject.OtherRows;
         }
