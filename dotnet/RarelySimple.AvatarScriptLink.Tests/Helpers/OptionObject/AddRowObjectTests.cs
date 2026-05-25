@@ -1,5 +1,6 @@
 ﻿using RarelySimple.AvatarScriptLink.Helpers;
 using RarelySimple.AvatarScriptLink.Objects;
+using RarelySimple.AvatarScriptLink.Objects.Advanced;
 
 namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
 {
@@ -19,7 +20,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void AddRowObject_ToFormObject_NullRowObject()
         {
             FormObject formObject = new();
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddRowObject(formObject, null));
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddRowObject(formObject, (IRowObject)null!));
         }
 
         [TestMethod]
@@ -38,6 +39,42 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             };
             formObject = (FormObject)OptionObjectHelpers.AddRowObject(formObject, rowObject);
             Assert.AreEqual(expected, formObject.CurrentRow.RowId);
+        }
+
+        [TestMethod]
+        [TestCategory("AddRowObject")]
+        public void AddRowObject_ToFormObject_EmptyRow_Success()
+        {
+            string formId = "1";
+            string expected = "1||1";
+            FormObject formObject = new()
+            {
+                FormId = formId
+            };
+
+            formObject = (FormObject)OptionObjectHelpers.AddRowObject(formObject);
+
+            Assert.AreEqual(expected, formObject.CurrentRow.RowId);
+            Assert.AreEqual(RowAction.Add, formObject.CurrentRow.RowAction);
+        }
+
+        [TestMethod]
+        [TestCategory("AddRowObject")]
+        public void AddRowObject_ToFormObject_EmptyRowWithParentRowId_Success()
+        {
+            string formId = "1";
+            string expectedRowId = "1||1";
+            string expectedParentRowId = "1||0";
+            FormObject formObject = new()
+            {
+                FormId = formId
+            };
+
+            formObject = (FormObject)OptionObjectHelpers.AddRowObject(formObject, expectedParentRowId);
+
+            Assert.AreEqual(expectedRowId, formObject.CurrentRow.RowId);
+            Assert.AreEqual(expectedParentRowId, formObject.CurrentRow.ParentRowId);
+            Assert.AreEqual(RowAction.Add, formObject.CurrentRow.RowAction);
         }
 
         [TestMethod]

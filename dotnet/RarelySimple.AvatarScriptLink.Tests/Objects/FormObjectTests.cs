@@ -60,6 +60,38 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
 
         [TestMethod]
         [TestCategory("FormObject")]
+        public void FormObject_AddRowObject_NoMI_EmptyRowObject()
+        {
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .Build();
+
+            formObject.AddRowObject();
+
+            Assert.IsNotNull(formObject.CurrentRow);
+            Assert.AreEqual("1||1", formObject.CurrentRow.RowId);
+            Assert.AreEqual(RowAction.Add, formObject.CurrentRow.RowAction);
+        }
+
+        [TestMethod]
+        [TestCategory("FormObject")]
+        public void FormObject_AddRowObject_NoMI_EmptyRowObject_WithParentRowId()
+        {
+            string parentRowId = "1||0";
+            FormObject formObject = FormObject.Builder()
+                .FormId("1")
+                .Build();
+
+            formObject.AddRowObject(parentRowId);
+
+            Assert.IsNotNull(formObject.CurrentRow);
+            Assert.AreEqual("1||1", formObject.CurrentRow.RowId);
+            Assert.AreEqual(parentRowId, formObject.CurrentRow.ParentRowId);
+            Assert.AreEqual(RowAction.Add, formObject.CurrentRow.RowAction);
+        }
+
+        [TestMethod]
+        [TestCategory("FormObject")]
         public void FormObject_AddRowObject_NoMI_RowObject_Exception()
         {
             RowObject rowObject1 = RowObject.Builder()
