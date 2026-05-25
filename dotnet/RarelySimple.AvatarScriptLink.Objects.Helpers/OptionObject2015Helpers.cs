@@ -99,6 +99,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="optionObject">The OptionObject2015 to modify.</param>
         /// <param name="fieldNumber">The field number to disable.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumber"/> is empty or when no matching field exists.</exception>
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetDisabledField(this OptionObject2015 optionObject, string fieldNumber)
         {
@@ -123,6 +125,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="optionObject">The OptionObject2015 to modify.</param>
         /// <param name="fieldObjects">The field objects to disable.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldObjects"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldObjects"/> is empty, contains invalid field numbers, or no matching fields exist.</exception>
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetDisabledFields(this OptionObject2015 optionObject, List<FieldObject>? fieldObjects)
         {
@@ -136,6 +140,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="optionObject">The OptionObject2015 to modify.</param>
         /// <param name="fieldNumbers">The field numbers to disable.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumbers"/> is empty, contains invalid values, or no matching fields exist.</exception>
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetDisabledFields(this OptionObject2015 optionObject, List<string>? fieldNumbers)
         {
@@ -168,6 +174,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="optionObject">The OptionObject2015 to modify.</param>
         /// <param name="fieldNumber">The field number to enable.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumber"/> is empty or when no matching field exists.</exception>
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetEnabledField(this OptionObject2015 optionObject, string fieldNumber)
         {
@@ -192,6 +200,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="optionObject">The OptionObject2015 to modify.</param>
         /// <param name="fieldObjects">The field objects to enable.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldObjects"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldObjects"/> is empty, contains invalid field numbers, or no matching fields exist.</exception>
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetEnabledFields(this OptionObject2015 optionObject, List<FieldObject>? fieldObjects)
         {
@@ -205,6 +215,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="optionObject">The OptionObject2015 to modify.</param>
         /// <param name="fieldNumbers">The field numbers to enable.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumbers"/> is empty, contains invalid values, or no matching fields exist.</exception>
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetEnabledFields(this OptionObject2015 optionObject, List<string>? fieldNumbers)
         {
@@ -237,6 +249,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="optionObject">The OptionObject2015 to modify.</param>
         /// <param name="fieldNumber">The field number to lock.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumber"/> is empty or when no matching field exists.</exception>
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetLockedField(this OptionObject2015 optionObject, string fieldNumber)
         {
@@ -261,6 +275,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="optionObject">The OptionObject2015 to modify.</param>
         /// <param name="fieldObjects">The field objects to lock.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldObjects"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldObjects"/> is empty, contains invalid field numbers, or no matching fields exist.</exception>
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetLockedFields(this OptionObject2015 optionObject, List<FieldObject>? fieldObjects)
         {
@@ -274,6 +290,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="optionObject">The OptionObject2015 to modify.</param>
         /// <param name="fieldNumbers">The field numbers to lock.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumbers"/> is empty, contains invalid values, or no matching fields exist.</exception>
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetLockedFields(this OptionObject2015 optionObject, List<string>? fieldNumbers)
         {
@@ -306,6 +324,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="optionObject">The OptionObject2015 to modify.</param>
         /// <param name="fieldNumber">The field number to unlock.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumber"/> is empty or when no matching field exists.</exception>
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetUnlockedField(this OptionObject2015 optionObject, string fieldNumber)
         {
@@ -330,6 +350,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="optionObject">The OptionObject2015 to modify.</param>
         /// <param name="fieldObjects">The field objects to unlock.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldObjects"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldObjects"/> is empty, contains invalid field numbers, or no matching fields exist.</exception>
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetUnlockedFields(this OptionObject2015 optionObject, List<FieldObject>? fieldObjects)
         {
@@ -343,6 +365,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="optionObject">The OptionObject2015 to modify.</param>
         /// <param name="fieldNumbers">The field numbers to unlock.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumbers"/> is empty, contains invalid values, or no matching fields exist.</exception>
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetUnlockedFields(this OptionObject2015 optionObject, List<string>? fieldNumbers)
         {
@@ -375,6 +399,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="optionObject">The OptionObject2015 to modify.</param>
         /// <param name="fieldNumber">The field number to mark as required.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumber"/> is empty or when no matching field exists.</exception>
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetRequiredField(this OptionObject2015 optionObject, string fieldNumber)
         {
@@ -402,6 +428,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="optionObject">The OptionObject2015 to modify.</param>
         /// <param name="fieldObjects">The field objects to mark as required.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldObjects"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldObjects"/> is empty, contains invalid field numbers, or no matching fields exist.</exception>
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetRequiredFields(this OptionObject2015 optionObject, List<FieldObject>? fieldObjects)
         {
@@ -415,6 +443,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="optionObject">The OptionObject2015 to modify.</param>
         /// <param name="fieldNumbers">The field numbers to mark as required.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumbers"/> is empty, contains invalid values, or no matching fields exist.</exception>
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetRequiredFields(this OptionObject2015 optionObject, List<string>? fieldNumbers)
         {
@@ -447,6 +477,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="optionObject">The OptionObject2015 to modify.</param>
         /// <param name="fieldNumber">The field number to mark as optional.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumber"/> is empty or when no matching field exists.</exception>
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetOptionalField(this OptionObject2015 optionObject, string fieldNumber)
         {
@@ -474,6 +506,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="optionObject">The OptionObject2015 to modify.</param>
         /// <param name="fieldObjects">The field objects to mark as optional.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldObjects"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldObjects"/> is empty, contains invalid field numbers, or no matching fields exist.</exception>
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetOptionalFields(this OptionObject2015 optionObject, List<FieldObject>? fieldObjects)
         {
@@ -487,6 +521,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="optionObject">The OptionObject2015 to modify.</param>
         /// <param name="fieldNumbers">The field numbers to mark as optional.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumbers"/> is empty, contains invalid values, or no matching fields exist.</exception>
         /// <returns>The modified OptionObject2015.</returns>
         public static OptionObject2015? SetOptionalFields(this OptionObject2015 optionObject, List<string>? fieldNumbers)
         {

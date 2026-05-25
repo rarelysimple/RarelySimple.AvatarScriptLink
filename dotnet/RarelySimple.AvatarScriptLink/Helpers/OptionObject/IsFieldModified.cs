@@ -12,6 +12,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="optionObject"></param>
         /// <param name="fieldNumber"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching field can be found for <paramref name="fieldNumber"/>.</exception>
         /// <returns></returns>
         public static bool IsFieldModified(IOptionObject optionObject, string fieldNumber)
         {
@@ -29,6 +31,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="formObject"></param>
         /// <param name="fieldNumber"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> has no current row, or when <paramref name="fieldNumber"/> is null or empty.</exception>
         /// <returns></returns>
         public static bool IsFieldModified(IFormObject formObject, string fieldNumber)
         {
@@ -43,6 +46,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="rowObject"></param>
         /// <param name="fieldNumber"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="rowObject"/> has no fields, or when <paramref name="fieldNumber"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching field can be found for <paramref name="fieldNumber"/>.</exception>
         /// <returns></returns>
         public static bool IsFieldModified(IRowObject rowObject, string fieldNumber)
         {

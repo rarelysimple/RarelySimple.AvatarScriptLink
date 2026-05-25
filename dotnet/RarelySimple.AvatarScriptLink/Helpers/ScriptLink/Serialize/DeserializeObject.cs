@@ -32,6 +32,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="json">The Json <see cref="string"/> to deserialize.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="json"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="json"/> cannot be deserialized to the requested type.</exception>
         /// <returns></returns>
         public static T DeserializeObjectFromJsonString<T>(string json)
         {
@@ -52,6 +54,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="xml">The Xml <see cref="string"/> to deserialize.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="xml"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="xml"/> cannot be deserialized to the requested type.</exception>
         /// <returns></returns>
         public static T DeserializeObjectFromXmlString<T>(string xml)
         {

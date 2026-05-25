@@ -15,6 +15,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="optionObject"></param>
         /// <param name="fieldAction"></param>
         /// <param name="fieldObjects"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldAction"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching fields are found or no fields are updated.</exception>
         /// <returns></returns>
         public static IOptionObject SetFieldObjects(IOptionObject optionObject, string fieldAction, List<FieldObject> fieldObjects)
         {
@@ -27,6 +29,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="optionObject"></param>
         /// <param name="fieldAction"></param>
         /// <param name="fieldNumbers"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldAction"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching fields are found or no fields are updated.</exception>
         /// <returns></returns>
         public static IOptionObject SetFieldObjects(IOptionObject optionObject, string fieldAction, List<string> fieldNumbers)
         {
@@ -65,6 +69,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="formObject"></param>
         /// <param name="fieldAction"></param>
         /// <param name="fieldNumbers"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldAction"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching fields are found.</exception>
         /// <returns></returns>
         public static IFormObject SetFieldObjects(IFormObject formObject, string fieldAction, List<string> fieldNumbers)
         {
@@ -96,6 +102,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="rowObject"></param>
         /// <param name="fieldAction"></param>
         /// <param name="fieldNumbers"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldAction"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching fields are found.</exception>
         /// <returns></returns>
         public static IRowObject SetFieldObjects(IRowObject rowObject, string fieldAction, List<string> fieldNumbers)
         {

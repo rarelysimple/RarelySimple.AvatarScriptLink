@@ -14,6 +14,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Validators
         private const string NoFieldNumbersProvidedMessage = "No field numbers were provided.";
         private const string FieldNumberCannotBeEmptyMessage = "Field number cannot be empty.";
 
+        /// <summary>
+        /// Validates a single field number argument.
+        /// </summary>
+        /// <param name="fieldNumber">The field number value to validate.</param>
+        /// <param name="paramName">The parameter name to include in thrown exceptions.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumber"/> is empty.</exception>
         public static void ValidateFieldNumber(string fieldNumber, string paramName)
         {
             if (fieldNumber == null)
@@ -23,6 +30,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Validators
                 throw new ArgumentException(FieldNumberCannotBeEmptyMessage, paramName);
         }
 
+        /// <summary>
+        /// Validates and normalizes a list of field numbers.
+        /// </summary>
+        /// <param name="fieldNumbers">The field numbers to validate and normalize.</param>
+        /// <param name="paramName">The parameter name to include in thrown exceptions.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumbers"/> is empty or contains no valid values after normalization.</exception>
         public static List<string> ValidateAndNormalizeFieldNumbers(List<string>? fieldNumbers, string paramName)
         {
             if (fieldNumbers == null)
@@ -42,6 +56,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Validators
             return normalized;
         }
 
+        /// <summary>
+        /// Validates a list of field objects and returns distinct field numbers.
+        /// </summary>
+        /// <param name="fieldObjects">The field objects to validate.</param>
+        /// <param name="paramName">The parameter name to include in thrown exceptions.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldObjects"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldObjects"/> is empty or contains no valid field numbers.</exception>
         public static List<string> ValidateAndGetFieldNumbers(List<FieldObject>? fieldObjects, string paramName)
         {
             if (fieldObjects == null)

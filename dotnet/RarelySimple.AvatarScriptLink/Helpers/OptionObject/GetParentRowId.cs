@@ -11,6 +11,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="optionObject"></param>
         /// <param name="formId"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null, or when <paramref name="formId"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when a matching form cannot be found for <paramref name="formId"/>.</exception>
         /// <returns></returns>
         public static string GetParentRowId(IOptionObject optionObject, string formId)
         {
@@ -31,6 +33,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// Returns the ParentRowId of a <see cref="IFormObject"/>.
         /// </summary>
         /// <param name="formObject"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> is null, or when it has no current row.</exception>
         /// <returns></returns>
         public static string GetParentRowId(IFormObject formObject)
         {

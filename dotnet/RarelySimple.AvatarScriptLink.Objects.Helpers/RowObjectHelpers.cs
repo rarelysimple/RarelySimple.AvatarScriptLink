@@ -203,6 +203,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="rowObject">The RowObject to modify.</param>
         /// <param name="fieldNumber">The field number to disable.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumber"/> is empty or when no matching field exists.</exception>
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetDisabledField(this RowObject rowObject, string fieldNumber)
         {
@@ -229,6 +231,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="rowObject">The RowObject to modify.</param>
         /// <param name="fieldNumbers">The field numbers to disable.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumbers"/> is empty, contains invalid values, or no matching fields exist.</exception>
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetDisabledFields(this RowObject rowObject, List<string>? fieldNumbers)
         {
@@ -261,6 +265,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="rowObject">The RowObject to modify.</param>
         /// <param name="fieldNumber">The field number to enable.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumber"/> is empty or when no matching field exists.</exception>
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetEnabledField(this RowObject rowObject, string fieldNumber)
         {
@@ -287,6 +293,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="rowObject">The RowObject to modify.</param>
         /// <param name="fieldNumbers">The field numbers to enable.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumbers"/> is empty, contains invalid values, or no matching fields exist.</exception>
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetEnabledFields(this RowObject rowObject, List<string>? fieldNumbers)
         {
@@ -319,6 +327,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="rowObject">The RowObject to modify.</param>
         /// <param name="fieldNumber">The field number to lock.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumber"/> is empty or when no matching field exists.</exception>
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetLockedField(this RowObject rowObject, string fieldNumber)
         {
@@ -345,6 +355,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="rowObject">The RowObject to modify.</param>
         /// <param name="fieldNumbers">The field numbers to lock.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumbers"/> is empty, contains invalid values, or no matching fields exist.</exception>
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetLockedFields(this RowObject rowObject, List<string>? fieldNumbers)
         {
@@ -378,6 +390,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="rowObject">The RowObject to modify.</param>
         /// <param name="fieldNumber">The field number to unlock.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumber"/> is empty or when no matching field exists.</exception>
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetUnlockedField(this RowObject rowObject, string fieldNumber)
         {
@@ -404,6 +418,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="rowObject">The RowObject to modify.</param>
         /// <param name="fieldNumbers">The field numbers to unlock.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumbers"/> is empty, contains invalid values, or no matching fields exist.</exception>
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetUnlockedFields(this RowObject rowObject, List<string>? fieldNumbers)
         {
@@ -437,6 +453,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="rowObject">The RowObject to modify.</param>
         /// <param name="fieldNumber">The field number to mark as required.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumber"/> is empty or when no matching field exists.</exception>
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetRequiredField(this RowObject rowObject, string fieldNumber)
         {
@@ -463,6 +481,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="rowObject">The RowObject to modify.</param>
         /// <param name="fieldNumbers">The field numbers to mark as required.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumbers"/> is empty, contains invalid values, or no matching fields exist.</exception>
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetRequiredFields(this RowObject rowObject, List<string>? fieldNumbers)
         {
@@ -496,6 +516,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="rowObject">The RowObject to modify.</param>
         /// <param name="fieldNumber">The field number to mark as optional.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumber"/> is empty or when no matching field exists.</exception>
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetOptionalField(this RowObject rowObject, string fieldNumber)
         {
@@ -522,6 +544,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="rowObject">The RowObject to modify.</param>
         /// <param name="fieldNumbers">The field numbers to mark as optional.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumbers"/> is empty, contains invalid values, or no matching fields exist.</exception>
         /// <returns>The modified RowObject.</returns>
         public static RowObject? SetOptionalFields(this RowObject rowObject, List<string>? fieldNumbers)
         {

@@ -12,6 +12,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="optionObject"></param>
         /// <param name="formId"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null, or when <paramref name="formId"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching <see cref="FormObject"/> exists for the provided <paramref name="formId"/>.</exception>
         /// <returns></returns>
         public static FormObject GetFormObject(IOptionObject optionObject, string formId)
         {

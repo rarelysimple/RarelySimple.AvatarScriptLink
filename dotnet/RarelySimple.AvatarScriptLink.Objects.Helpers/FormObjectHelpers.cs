@@ -315,6 +315,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="formObject">The FormObject to modify.</param>
         /// <param name="fieldNumber">The field number to disable.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumber"/> is empty or when no matching field exists.</exception>
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetDisabledField(this FormObject formObject, string fieldNumber)
         {
@@ -350,6 +352,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="formObject">The FormObject to modify.</param>
         /// <param name="fieldNumbers">The field numbers to disable.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumbers"/> is empty, contains invalid values, or no matching fields exist.</exception>
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetDisabledFields(this FormObject formObject, List<string>? fieldNumbers)
         {
@@ -390,6 +394,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="formObject">The FormObject to modify.</param>
         /// <param name="fieldNumber">The field number to enable.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumber"/> is empty or when no matching field exists.</exception>
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetEnabledField(this FormObject formObject, string fieldNumber)
         {
@@ -425,6 +431,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="formObject">The FormObject to modify.</param>
         /// <param name="fieldNumbers">The field numbers to enable.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumbers"/> is empty, contains invalid values, or no matching fields exist.</exception>
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetEnabledFields(this FormObject formObject, List<string>? fieldNumbers)
         {
@@ -465,6 +473,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="formObject">The FormObject to modify.</param>
         /// <param name="fieldNumber">The field number to lock.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumber"/> is empty or when no matching field exists.</exception>
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetLockedField(this FormObject formObject, string fieldNumber)
         {
@@ -500,6 +510,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="formObject">The FormObject to modify.</param>
         /// <param name="fieldNumbers">The field numbers to lock.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumbers"/> is empty, contains invalid values, or no matching fields exist.</exception>
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetLockedFields(this FormObject formObject, List<string>? fieldNumbers)
         {
@@ -540,6 +552,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="formObject">The FormObject to modify.</param>
         /// <param name="fieldNumber">The field number to unlock.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumber"/> is empty or when no matching field exists.</exception>
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetUnlockedField(this FormObject formObject, string fieldNumber)
         {
@@ -575,6 +589,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="formObject">The FormObject to modify.</param>
         /// <param name="fieldNumbers">The field numbers to unlock.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumbers"/> is empty, contains invalid values, or no matching fields exist.</exception>
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetUnlockedFields(this FormObject formObject, List<string>? fieldNumbers)
         {
@@ -615,6 +631,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="formObject">The FormObject to modify.</param>
         /// <param name="fieldNumber">The field number to mark as required.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumber"/> is empty or when no matching field exists.</exception>
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetRequiredField(this FormObject formObject, string fieldNumber)
         {
@@ -650,6 +668,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="formObject">The FormObject to modify.</param>
         /// <param name="fieldNumbers">The field numbers to mark as required.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumbers"/> is empty, contains invalid values, or no matching fields exist.</exception>
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetRequiredFields(this FormObject formObject, List<string>? fieldNumbers)
         {
@@ -690,6 +710,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="formObject">The FormObject to modify.</param>
         /// <param name="fieldNumber">The field number to mark as optional.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumber"/> is empty or when no matching field exists.</exception>
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetOptionalField(this FormObject formObject, string fieldNumber)
         {
@@ -725,6 +747,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="formObject">The FormObject to modify.</param>
         /// <param name="fieldNumbers">The field numbers to mark as optional.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumbers"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="fieldNumbers"/> is empty, contains invalid values, or no matching fields exist.</exception>
         /// <returns>The modified FormObject.</returns>
         public static FormObject? SetOptionalFields(this FormObject formObject, List<string>? fieldNumbers)
         {

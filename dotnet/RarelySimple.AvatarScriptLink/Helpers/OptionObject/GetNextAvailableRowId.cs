@@ -10,6 +10,9 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// Returns the next available RowId for an <see cref="IFormObject"/>.
         /// </summary>
         /// <param name="formObject"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when another row cannot be added due to form constraints.</exception>
+        /// <exception cref="ArgumentException">Thrown when a next available row ID cannot be determined.</exception>
         /// <returns></returns>
         public static string GetNextAvailableRowId(IFormObject formObject)
         {

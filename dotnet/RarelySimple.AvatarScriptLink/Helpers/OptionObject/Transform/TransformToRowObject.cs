@@ -11,6 +11,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// Transforms an Xml- or Json-formatted <see cref="System.String"/> to <see cref="RowObject"/>.
         /// </summary>
         /// <param name="serializedString">An Xml- or Json-formatted <see cref="System.String"/>.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="serializedString"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="serializedString"/> is not a compatible serialized row object.</exception>
         /// <returns>A <see cref="RowObject"/>.</returns>
         public static IRowObject TransformToRowObject(string serializedString)
         {

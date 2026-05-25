@@ -15,6 +15,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="optionObject"></param>
         /// <param name="fieldNumber"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching field can be found for <paramref name="fieldNumber"/>.</exception>
         /// <returns></returns>
         public static string GetFieldValue(IOptionObject optionObject, string fieldNumber)
         {
@@ -34,6 +36,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="formId"></param>
         /// <param name="rowId"></param>
         /// <param name="fieldNumber"></param>
+        /// <exception cref="ArgumentNullException">Thrown when any required argument is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching field can be found for the provided identifiers.</exception>
         /// <returns></returns>
         public static string GetFieldValue(IOptionObject optionObject, string formId, string rowId, string fieldNumber)
         {
@@ -57,6 +61,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="formObject"></param>
         /// <param name="fieldNumber"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> is null, or when <paramref name="fieldNumber"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching field can be found for the provided identifiers.</exception>
         /// <returns></returns>
         public static string GetFieldValue(IFormObject formObject, string fieldNumber)
         {
@@ -68,6 +74,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="formObject"></param>
         /// <param name="rowId"></param>
         /// <param name="fieldNumber"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> is null, or when <paramref name="rowId"/> or <paramref name="fieldNumber"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching field can be found for the provided identifiers.</exception>
         /// <returns></returns>
         public static string GetFieldValue(IFormObject formObject, string rowId, string fieldNumber)
         {
@@ -91,6 +99,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="rowObject"></param>
         /// <param name="fieldNumber"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="rowObject"/> is null, or when <paramref name="fieldNumber"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching field can be found for <paramref name="fieldNumber"/>.</exception>
         /// <returns></returns>
         public static string GetFieldValue(IRowObject rowObject, string fieldNumber)
         {
@@ -109,6 +119,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// Returns the FieldValue of a <see cref="IFieldObject"/>.
         /// </summary>
         /// <param name="fieldObject"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldObject"/> is null.</exception>
         /// <returns></returns>
         public static string GetFieldValue(IFieldObject fieldObject)
         {

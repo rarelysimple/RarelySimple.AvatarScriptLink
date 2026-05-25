@@ -12,6 +12,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="rowObject"></param>
         /// <param name="fieldObject"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="rowObject"/> or <paramref name="fieldObject"/> is null.</exception>
         /// <returns></returns>
         public static IRowObject RemoveFieldObject(IRowObject rowObject, IFieldObject fieldObject)
         {
@@ -27,6 +28,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="rowObject"></param>
         /// <param name="fieldNumber"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="rowObject"/> is null, when <paramref name="fieldNumber"/> is null or empty, or when no matching field exists.</exception>
         /// <returns></returns>
         public static IRowObject RemoveFieldObject(IRowObject rowObject, string fieldNumber)
         {

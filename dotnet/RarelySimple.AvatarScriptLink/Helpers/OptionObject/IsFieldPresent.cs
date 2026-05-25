@@ -12,6 +12,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="optionObject"></param>
         /// <param name="fieldNumber"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null or empty.</exception>
         /// <returns></returns>
         public static bool IsFieldPresent(IOptionObject optionObject, string fieldNumber)
         {
@@ -24,6 +25,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="formObject"></param>
         /// <param name="fieldNumber"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null or empty.</exception>
         /// <returns></returns>
         public static bool IsFieldPresent(IFormObject formObject, string fieldNumber)
         {
@@ -38,6 +40,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="rowObject"></param>
         /// <param name="fieldNumber"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldNumber"/> is null or empty.</exception>
         /// <returns></returns>
         public static bool IsFieldPresent(IRowObject rowObject, string fieldNumber)
         {

@@ -12,6 +12,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// Transforms an <see cref="IOptionObject"/> to <see cref="IOptionObject2015"/>.
         /// </summary>
         /// <param name="optionObject"></param>
+        /// <exception cref="ArgumentException">Thrown when the source object contains an invalid error code.</exception>
         /// <returns></returns>
         public static IOptionObject2015 TransformToOptionObject2015(IOptionObject optionObject)
         {
@@ -36,6 +37,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// Transforms an <see cref="IOptionObject2"/> to <see cref="IOptionObject2015"/>.
         /// </summary>
         /// <param name="optionObject2"></param>
+        /// <exception cref="ArgumentException">Thrown when the source object contains an invalid error code.</exception>
         /// <returns></returns>
         public static IOptionObject2015 TransformToOptionObject2015(IOptionObject2 optionObject2)
         {
@@ -63,6 +65,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// Transforms a serialized string to <see cref="IOptionObject2015"/>.
         /// </summary>
         /// <param name="serializedString"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="serializedString"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="serializedString"/> is not a compatible serialized option object.</exception>
         /// <returns></returns>
         public static IOptionObject2015 TransformToOptionObject2015(string serializedString)
         {

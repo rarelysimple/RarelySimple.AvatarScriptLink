@@ -13,6 +13,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="optionObject"></param>
         /// <param name="formId"></param>
         /// <param name="rowObject"></param>
+        /// <exception cref="ArgumentNullException">Thrown when required arguments are null or empty, or when the option object has no forms.</exception>
         /// <returns></returns>
         public static IOptionObject AddRowObject(IOptionObject optionObject, string formId, IRowObject rowObject)
         {
@@ -39,6 +40,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="formObject"></param>
         /// <param name="rowObject"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> or <paramref name="rowObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the row cannot be added due to form constraints or duplicate row IDs.</exception>
         /// <returns></returns>
         public static IFormObject AddRowObject(IFormObject formObject, IRowObject rowObject)
         {
@@ -72,6 +75,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="formObject"></param>
         /// <param name="rowId"></param>
         /// <param name="parentRowId"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the row cannot be added due to form constraints or duplicate row IDs.</exception>
         /// <returns></returns>
         public static IFormObject AddRowObject(IFormObject formObject, string rowId, string parentRowId)
         {
@@ -86,6 +91,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// <param name="rowId"></param>
         /// <param name="parentRowId"></param>
         /// <param name="rowAction"></param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the row cannot be added due to form constraints or duplicate row IDs.</exception>
         /// <returns></returns>
         public static IFormObject AddRowObject(IFormObject formObject, string rowId, string parentRowId, string rowAction)
         {

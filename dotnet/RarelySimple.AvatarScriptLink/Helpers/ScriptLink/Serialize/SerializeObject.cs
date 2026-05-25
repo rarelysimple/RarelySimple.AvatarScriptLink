@@ -14,6 +14,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="objectToSerialize">The object to be serialized.</param>
+        /// <exception cref="ArgumentException">Thrown when the object cannot be serialized.</exception>
         /// <returns></returns>
         public static string SerializeObject<T>(T objectToSerialize)
         {
@@ -31,6 +32,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="objectToSerialize">The object to be serialized.</param>
+        /// <exception cref="ArgumentException">Thrown when the object cannot be serialized to JSON.</exception>
         /// <returns></returns>
         public static string SerializeObjectToJsonString<T>(T objectToSerialize)
         {
@@ -48,6 +50,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="objectToSerialize">The object to be serialized.</param>
+        /// <exception cref="ArgumentException">Thrown when the object cannot be serialized to XML.</exception>
         /// <returns></returns>
         public static string SerializeObjectToXmlString<T>(T objectToSerialize)
         {
