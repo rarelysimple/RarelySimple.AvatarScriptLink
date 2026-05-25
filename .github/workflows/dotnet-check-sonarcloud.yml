@@ -20,14 +20,17 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Set up JDK 17
+        # actions/setup-java v5 (v5.2.0), pinned to full commit SHA for supply-chain security.
         uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654
         with:
           java-version: 17
           distribution: 'zulu' # Alternative distribution options are available.
+      # actions/checkout v6 (v6.0.2), pinned to full commit SHA for supply-chain security.
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: Cache SonarCloud packages
+        # actions/cache v5 (v5.0.5), pinned to full commit SHA for supply-chain security.
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae
         with:
           path: ~\sonar\cache
@@ -35,6 +38,7 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar
       - name: Cache SonarCloud scanner
         id: cache-sonar-scanner
+        # actions/cache v5 (v5.0.5), pinned to full commit SHA for supply-chain security.
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae
         with:
           path: ${{ runner.temp }}\scanner

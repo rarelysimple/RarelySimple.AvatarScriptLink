@@ -33,12 +33,14 @@ jobs:
 
     steps:
       - name: Download Build Artifacts
+        # actions/download-artifact v8 (v8.0.1), pinned to full commit SHA for supply-chain security.
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
         with:
           name: dotnet-artifacts
           path: ./artifacts
       
       - name: Setup .NET
+        # actions/setup-dotnet v5 (v5.2.0), pinned to full commit SHA for supply-chain security.
         uses: actions/setup-dotnet@c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7
         with:
           dotnet-version: '8.0.x'
@@ -64,20 +66,24 @@ jobs:
 
     steps:
       - name: Checkout repository
+        # actions/checkout v6 (v6.0.2), pinned to full commit SHA for supply-chain security.
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
       - name: Download Build Artifacts
+        # actions/download-artifact v8 (v8.0.1), pinned to full commit SHA for supply-chain security.
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
         with:
           name: dotnet-artifacts
           path: ./artifacts
       
       - name: Setup .NET
+        # actions/setup-dotnet v5 (v5.2.0), pinned to full commit SHA for supply-chain security.
         uses: actions/setup-dotnet@c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7
         with:
           dotnet-version: '8.0.x'
 
       - name: NuGet Login
+        # NuGet/login v1 (v1.2.0), pinned to full commit SHA for supply-chain security.
         uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841
         id: login
         with:
@@ -91,6 +97,7 @@ jobs:
             --skip-duplicate
 
       - name: Create Release
+        # softprops/action-gh-release v3 (v3.0.0), pinned to full commit SHA for supply-chain security.
         uses: softprops/action-gh-release@b4309332981a82ec1c5618f44dd2e27cc8bfbfda
         with:
           files: |
