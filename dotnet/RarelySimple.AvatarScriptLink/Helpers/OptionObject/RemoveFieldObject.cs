@@ -28,7 +28,8 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="rowObject"></param>
         /// <param name="fieldNumber"></param>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="rowObject"/> is null, when <paramref name="fieldNumber"/> is null or empty, or when no matching field exists.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="rowObject"/> is null, or when <paramref name="fieldNumber"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when no matching field exists for <paramref name="fieldNumber"/>.</exception>
         /// <returns></returns>
         public static IRowObject RemoveFieldObject(IRowObject rowObject, string fieldNumber)
         {
@@ -38,7 +39,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
                 throw new ArgumentNullException(nameof(fieldNumber), ScriptLinkHelpers.GetLocalizedString(ParameterCannotBeNull, CultureInfo.CurrentCulture));
             FieldObject fieldObject = rowObject.Fields.Find(f => f.FieldNumber == fieldNumber);
             if (fieldObject == null)
-                throw new ArgumentNullException(nameof(rowObject), ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber);
+                throw new ArgumentException(ScriptLinkHelpers.GetLocalizedString("noFieldObjectsFoundByFieldNumber", CultureInfo.CurrentCulture) + fieldNumber, nameof(fieldNumber));
             return RemoveFieldObject(rowObject, fieldObject);
         }
     }

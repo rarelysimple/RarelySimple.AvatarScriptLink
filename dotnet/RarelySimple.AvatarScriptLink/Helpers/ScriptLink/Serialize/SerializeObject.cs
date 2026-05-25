@@ -42,7 +42,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
             }
             catch (Exception ex)
             {
-                throw new ArgumentException(GetLocalizedString("objectCannotBeSerializedJson", CultureInfo.CurrentCulture), ex.InnerException);
+                throw new ArgumentException(GetLocalizedString("objectCannotBeSerializedJson", CultureInfo.CurrentCulture), ex);
             }
         }
         /// <summary>
@@ -65,7 +65,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
             }
             catch (Exception ex)
             {
-                throw new ArgumentException(GetLocalizedString("objectCannotBeSerializedXmlOrJson", CultureInfo.CurrentCulture), ex.InnerException);
+                throw new ArgumentException(GetLocalizedString("objectCannotBeSerializedXmlOrJson", CultureInfo.CurrentCulture), ex);
             }
         }
     }

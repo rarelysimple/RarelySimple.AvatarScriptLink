@@ -11,7 +11,7 @@ namespace RarelySimple.AvatarScriptLink.Helpers
         /// </summary>
         /// <param name="optionObject"></param>
         /// <param name="fieldObjects"></param>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldObjects"/> contains one or more null or empty field numbers.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="fieldObjects"/> is null or contains one or more null or empty field numbers.</exception>
         /// <exception cref="ArgumentException">Thrown when no matching fields are found or no fields are updated.</exception>
         /// <returns></returns>
         public static IOptionObject SetUnlockedFields(IOptionObject optionObject, List<FieldObject> fieldObjects)
