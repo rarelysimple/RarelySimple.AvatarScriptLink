@@ -51,6 +51,20 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         }
 
         /// <summary>
+        /// Gets a <see cref="FormObject"/> in an <see cref="OptionObject2015"/> by form ID.
+        /// </summary>
+        /// <param name="optionObject">The OptionObject2015 to query.</param>
+        /// <param name="formId">The form ID to search for.</param>
+        /// <returns>The matching form object, or null if not found.</returns>
+        public static FormObject? GetFormObject(this OptionObject2015 optionObject, string formId)
+        {
+            if (optionObject == null || optionObject.Forms == null || string.IsNullOrEmpty(formId))
+                return null;
+
+            return optionObject.Forms.FirstOrDefault(f => f.FormId == formId);
+        }
+
+        /// <summary>
         /// Gets the session token of an <see cref="OptionObject2015"/>.
         /// </summary>
         /// <param name="optionObject">The OptionObject2015 to query.</param>
