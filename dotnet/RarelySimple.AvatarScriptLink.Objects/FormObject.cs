@@ -25,7 +25,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             var formObject = (FormObject) MemberwiseClone();
             formObject.CurrentRow = CurrentRow?.Clone();
             formObject.OtherRows = new List<RowObject>();
-            foreach (var row in OtherRows)
+            foreach (var row in OtherRows.Where(r => r != null))
             {
                 formObject.OtherRows.Add(row.Clone());
             }

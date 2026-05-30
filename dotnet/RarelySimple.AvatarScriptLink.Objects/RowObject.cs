@@ -21,7 +21,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
         {
             var rowObject = (RowObject) MemberwiseClone();
             rowObject.Fields = new List<FieldObject>();
-            foreach (var field in Fields)
+            foreach (var field in Fields.Where(f => f != null))
             {
                 rowObject.Fields.Add(field.Clone());
             }
