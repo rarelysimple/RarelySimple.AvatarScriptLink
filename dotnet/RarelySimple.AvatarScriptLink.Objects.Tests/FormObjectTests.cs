@@ -17,6 +17,21 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
         }
 
         [TestMethod]
+        public void FormObjectClone_WhenOtherRowsAreNull_TreatsOtherRowsAsEmptyCollection()
+        {
+            FormObject formObject1 = new()
+            {
+                FormId = "1",
+                OtherRows = null
+            };
+
+            FormObject formObject2 = formObject1.Clone();
+
+            Assert.IsNotNull(formObject2.OtherRows);
+            Assert.AreEqual(0, formObject2.OtherRows.Count);
+        }
+
+        [TestMethod]
         public void FormObjectEqualsMethodIsTrue()
         {
             FormObject formObject1 = new()

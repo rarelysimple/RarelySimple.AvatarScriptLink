@@ -30,7 +30,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
         {
             var optionObject = (OptionObject) MemberwiseClone();
             optionObject.Forms = new List<FormObject>();
-            foreach (var form in Forms.Where(f => f != null))
+            foreach (var form in Forms?.Where(f => f != null) ?? Enumerable.Empty<FormObject>())
             {
                 optionObject.Forms.Add(form.Clone());
             }

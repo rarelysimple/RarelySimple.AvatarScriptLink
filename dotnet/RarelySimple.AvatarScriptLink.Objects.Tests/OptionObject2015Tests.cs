@@ -17,6 +17,21 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
         }
 
         [TestMethod]
+        public void OptionObject2015Clone_WhenFormsAreNull_TreatsFormsAsEmptyCollection()
+        {
+            OptionObject2015 optionObject1 = new()
+            {
+                EntityID = "1",
+                Forms = null
+            };
+
+            OptionObject2015 optionObject2 = optionObject1.Clone();
+
+            Assert.IsNotNull(optionObject2.Forms);
+            Assert.AreEqual(0, optionObject2.Forms.Count);
+        }
+
+        [TestMethod]
         public void OptionObject2015EqualsMethodIsTrue()
         {
             OptionObject2015 optionObject1 = new()
