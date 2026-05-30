@@ -17,6 +17,21 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
         }
 
         [TestMethod]
+        public void RowObjectClone_WhenFieldsAreNull_TreatsFieldsAsEmptyCollection()
+        {
+            RowObject rowObject1 = new()
+            {
+                RowId = "1",
+                Fields = null
+            };
+
+            RowObject rowObject2 = rowObject1.Clone();
+
+            Assert.IsNotNull(rowObject2.Fields);
+            Assert.AreEqual(0, rowObject2.Fields.Count);
+        }
+
+        [TestMethod]
         public void RowObjectEqualsMethodIsTrue()
         {
             RowObject rowObject1 = new()
