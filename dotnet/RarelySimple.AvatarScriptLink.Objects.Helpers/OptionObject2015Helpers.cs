@@ -95,6 +95,129 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         }
 
         /// <summary>
+        /// Gets the next available row ID for a form in an <see cref="OptionObject2015"/>.
+        /// </summary>
+        /// <param name="optionObject">The option object to query.</param>
+        /// <param name="formId">The target form ID.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="formId"/> is null/empty or the form is not found.</exception>
+        /// <returns>The next available row ID.</returns>
+        public static string GetNextAvailableRowId(this OptionObject2015 optionObject, string formId)
+        {
+            if (optionObject == null)
+            {
+                throw new ArgumentNullException(nameof(optionObject));
+            }
+
+            if (string.IsNullOrEmpty(formId))
+            {
+                throw new ArgumentException("FormId cannot be null or empty.", nameof(formId));
+            }
+
+            var formObject = optionObject.Forms?.FirstOrDefault(f => f != null && f.FormId == formId);
+            if (formObject == null)
+            {
+                throw new ArgumentException("No matching form was found for the provided formId.", nameof(formId));
+            }
+
+            return formObject.GetNextAvailableRowId();
+        }
+
+        /// <summary>
+        /// Adds a row to a form in an <see cref="OptionObject2015"/>.
+        /// </summary>
+        /// <param name="optionObject">The option object to modify.</param>
+        /// <param name="formId">The target form ID.</param>
+        /// <param name="rowObject">The row to add.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> or <paramref name="rowObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="formId"/> is null/empty.</exception>
+        /// <returns>The modified option object.</returns>
+        public static OptionObject2015 AddRowObject(this OptionObject2015 optionObject, string formId, RowObject rowObject)
+        {
+            if (optionObject == null)
+            {
+                throw new ArgumentNullException(nameof(optionObject));
+            }
+
+            if (string.IsNullOrEmpty(formId))
+            {
+                throw new ArgumentException("FormId cannot be null or empty.", nameof(formId));
+            }
+
+            if (rowObject == null)
+            {
+                throw new ArgumentNullException(nameof(rowObject));
+            }
+
+            var forms = optionObject.Forms;
+            if (forms == null)
+            {
+                return optionObject;
+            }
+
+            var formIndex = forms.FindIndex(f => f != null && f.FormId == formId);
+            if (formIndex >= 0)
+            {
+                forms[formIndex].AddRowObject(rowObject);
+            }
+
+            return optionObject;
+        }
+
+        /// <summary>
+        /// Marks a row for deletion in an <see cref="OptionObject2015"/>.
+        /// </summary>
+        /// <param name="optionObject">The option object to modify.</param>
+        /// <param name="rowObject">The row to mark for deletion.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="rowObject"/> is null.</exception>
+        /// <returns>The modified option object.</returns>
+        public static OptionObject2015 DeleteRowObject(this OptionObject2015 optionObject, RowObject rowObject)
+        {
+            if (rowObject == null)
+            {
+                throw new ArgumentNullException(nameof(rowObject));
+            }
+
+            return optionObject.DeleteRowObject(rowObject.RowId);
+        }
+
+        /// <summary>
+        /// Marks a row for deletion in an <see cref="OptionObject2015"/> by row ID.
+        /// </summary>
+        /// <param name="optionObject">The option object to modify.</param>
+        /// <param name="rowId">The row ID to mark for deletion.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="rowId"/> is null/empty or no matching row is found.</exception>
+        /// <returns>The modified option object.</returns>
+        public static OptionObject2015 DeleteRowObject(this OptionObject2015 optionObject, string rowId)
+        {
+            if (optionObject == null)
+            {
+                throw new ArgumentNullException(nameof(optionObject));
+            }
+
+            if (string.IsNullOrEmpty(rowId))
+            {
+                throw new ArgumentException("RowId cannot be null or empty.", nameof(rowId));
+            }
+
+            var forms = optionObject.Forms;
+            if (forms == null)
+            {
+                throw new ArgumentException("No matching row was found for the provided rowId.", nameof(rowId));
+            }
+
+            var formIndex = forms.FindIndex(f => f != null && f.IsRowPresent(rowId));
+            if (formIndex >= 0)
+            {
+                forms[formIndex].DeleteRowObject(rowId);
+                return optionObject;
+            }
+
+            throw new ArgumentException("No matching row was found for the provided rowId.", nameof(rowId));
+        }
+
+        /// <summary>
         /// Disables a <see cref="FieldObject"/> in an <see cref="OptionObject2015"/> by field number.
         /// </summary>
         /// <param name="optionObject">The OptionObject2015 to modify.</param>

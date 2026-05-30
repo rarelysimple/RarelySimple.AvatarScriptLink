@@ -230,6 +230,85 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
+        public void GetNextAvailableRowId_OptionObject2_ReturnsNextRowIdFromMatchingForm()
+        {
+            var optionObject = new OptionObject2();
+            var form = new FormObject
+            {
+                FormId = "FORM2",
+                MultipleIteration = true,
+                CurrentRow = new RowObject { RowId = "FORM2||1" }
+            };
+            form.OtherRows.Add(new RowObject { RowId = "FORM2||3" });
+            optionObject.Forms.Add(form);
+
+            var result = optionObject.GetNextAvailableRowId("FORM2");
+
+            Assert.AreEqual("FORM2||2", result);
+        }
+
+        [TestMethod]
+        public void GetNextAvailableRowId_OptionObject2_WithNonExistentForm_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2();
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.GetNextAvailableRowId("MISSING"));
+        }
+
+        [TestMethod]
+        public void AddRowObject_OptionObject2_WithMatchingForm_AddsRowToForm()
+        {
+            var optionObject = new OptionObject2();
+            optionObject.Forms.Add(new FormObject
+            {
+                FormId = "FORM2",
+                MultipleIteration = true,
+                CurrentRow = new RowObject { RowId = "FORM2||1" }
+            });
+
+            optionObject.AddRowObject("FORM2", new RowObject { RowAction = RowObject.RowActions.Add });
+
+            Assert.AreEqual(1, optionObject.Forms[0].OtherRows.Count);
+            Assert.AreEqual("FORM2||2", optionObject.Forms[0].OtherRows[0].RowId);
+        }
+
+        [TestMethod]
+        public void AddRowObject_OptionObject2_WithMissingForm_DoesNotAddRow()
+        {
+            var optionObject = new OptionObject2();
+            optionObject.Forms.Add(new FormObject
+            {
+                FormId = "FORM2",
+                MultipleIteration = true,
+                CurrentRow = new RowObject { RowId = "FORM2||1" }
+            });
+
+            optionObject.AddRowObject("MISSING", new RowObject { RowAction = RowObject.RowActions.Add });
+
+            Assert.AreEqual(0, optionObject.Forms[0].OtherRows.Count);
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_OptionObject2_WithRowObject_MarksDelete()
+        {
+            var optionObject = new OptionObject2();
+            optionObject.Forms.Add(new FormObject { FormId = "FORM2", CurrentRow = new RowObject { RowId = "FORM2||1", RowAction = RowObject.RowActions.None } });
+
+            optionObject.DeleteRowObject(new RowObject { RowId = "FORM2||1" });
+
+            Assert.AreEqual(RowObject.RowActions.Delete, optionObject.Forms[0].CurrentRow.RowAction);
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_OptionObject2_WithMissingRow_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2();
+            optionObject.Forms.Add(new FormObject { FormId = "FORM2", CurrentRow = new RowObject { RowId = "FORM2||1" } });
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject("MISSING"));
+        }
+
+        [TestMethod]
         public void HasError_OptionObject2_WithZeroErrorCode_ReturnsFalse()
         {
             var optionObject = new OptionObject2 { ErrorCode = 0 };

@@ -277,6 +277,150 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
+        public void GetNextAvailableRowId_FormObject_WithGaps_ReturnsFirstAvailableRowId()
+        {
+            // Arrange
+            var form = new FormObject
+            {
+                FormId = "FORM1",
+                MultipleIteration = true,
+                CurrentRow = new RowObject { RowId = "FORM1||1" }
+            };
+            form.OtherRows.Add(new RowObject { RowId = "FORM1||3" });
+
+            // Act
+            var result = form.GetNextAvailableRowId();
+
+            // Assert
+            Assert.AreEqual("FORM1||2", result);
+        }
+
+        [TestMethod]
+        public void GetNextAvailableRowId_FormObject_NonMultipleIterationWithCurrentRow_ThrowsArgumentOutOfRangeException()
+        {
+            // Arrange
+            var form = new FormObject
+            {
+                FormId = "FORM1",
+                MultipleIteration = false,
+                CurrentRow = new RowObject { RowId = "FORM1||1" }
+            };
+
+            // Act / Assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => form.GetNextAvailableRowId());
+        }
+
+        [TestMethod]
+        public void AddRowObject_FormObject_WithCurrentRow_AddsOtherRowWithGeneratedId()
+        {
+            // Arrange
+            var form = new FormObject
+            {
+                FormId = "FORM1",
+                MultipleIteration = true,
+                CurrentRow = new RowObject { RowId = "FORM1||1" }
+            };
+
+            // Act
+            form.AddRowObject(new RowObject { RowAction = RowObject.RowActions.Add });
+
+            // Assert
+            Assert.AreEqual(1, form.OtherRows.Count);
+            Assert.AreEqual("FORM1||2", form.OtherRows[0].RowId);
+            Assert.AreEqual(RowObject.RowActions.Add, form.OtherRows[0].RowAction);
+        }
+
+        [TestMethod]
+        public void AddRowObject_FormObject_WithNoCurrentRow_SetsCurrentRowAndGeneratedId()
+        {
+            // Arrange
+            var form = new FormObject { FormId = "FORM2", MultipleIteration = true };
+
+            // Act
+            form.AddRowObject(new RowObject { RowAction = RowObject.RowActions.Add });
+
+            // Assert
+            Assert.IsNotNull(form.CurrentRow);
+            Assert.AreEqual("FORM2||1", form.CurrentRow.RowId);
+            Assert.AreEqual(RowObject.RowActions.Add, form.CurrentRow.RowAction);
+        }
+
+        [TestMethod]
+        public void AddRowObject_FormObject_WithDuplicateRowId_ThrowsArgumentException()
+        {
+            // Arrange
+            var form = new FormObject
+            {
+                FormId = "FORM1",
+                MultipleIteration = true,
+                CurrentRow = new RowObject { RowId = "FORM1||1" }
+            };
+
+            // Act / Assert
+            Assert.ThrowsException<ArgumentException>(() => form.AddRowObject(new RowObject { RowId = "FORM1||1" }));
+        }
+
+        [TestMethod]
+        public void AddRowObject_FormObject_NonMultipleIterationWithCurrentRow_ThrowsArgumentException()
+        {
+            // Arrange
+            var form = new FormObject
+            {
+                FormId = "FORM1",
+                MultipleIteration = false,
+                CurrentRow = new RowObject { RowId = "FORM1||1" }
+            };
+
+            // Act / Assert
+            Assert.ThrowsException<ArgumentException>(() => form.AddRowObject());
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_FormObject_WithCurrentRow_MarksDelete()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "FORM1||1", RowAction = RowObject.RowActions.None } };
+
+            // Act
+            form.DeleteRowObject("FORM1||1");
+
+            // Assert
+            Assert.AreEqual(RowObject.RowActions.Delete, form.CurrentRow.RowAction);
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_FormObject_WithOtherRow_MarksDelete()
+        {
+            // Arrange
+            var form = new FormObject
+            {
+                MultipleIteration = true,
+                CurrentRow = new RowObject { RowId = "FORM1||1" }
+            };
+            form.OtherRows.Add(new RowObject { RowId = "FORM1||2", RowAction = RowObject.RowActions.None });
+
+            // Act
+            form.DeleteRowObject("FORM1||2");
+
+            // Assert
+            Assert.AreEqual(RowObject.RowActions.Delete, form.OtherRows[0].RowAction);
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_FormObject_WithMissingRow_ThrowsArgumentException()
+        {
+            // Arrange
+            var form = new FormObject
+            {
+                MultipleIteration = true,
+                CurrentRow = new RowObject { RowId = "FORM1||1" }
+            };
+
+            // Act / Assert
+            Assert.ThrowsException<ArgumentException>(() => form.DeleteRowObject("MISSING"));
+        }
+
+        [TestMethod]
         public void IsRowPresent_FormObject_WithCurrentRow_ReturnsTrue()
         {
             // Arrange
