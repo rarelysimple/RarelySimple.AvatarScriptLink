@@ -287,13 +287,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void AddRowObject_OptionObject_WithNullForms_ReturnsUnchangedOptionObject()
+        public void AddRowObject_OptionObject_WithNullForms_ThrowsArgumentException()
         {
             var optionObject = new OptionObject { Forms = null! };
 
-            var result = optionObject.AddRowObject("FORM1", new RowObject { RowAction = RowObject.RowActions.Add });
-
-            Assert.AreSame(optionObject, result);
+            Assert.ThrowsException<ArgumentException>(() => optionObject.AddRowObject("FORM1", new RowObject { RowAction = RowObject.RowActions.Add }));
         }
 
         [TestMethod]

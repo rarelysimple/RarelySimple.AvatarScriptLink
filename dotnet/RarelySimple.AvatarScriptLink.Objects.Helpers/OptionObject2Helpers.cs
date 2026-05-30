@@ -91,14 +91,10 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             if (string.IsNullOrEmpty(formId))
             {
-                throw new ArgumentException("FormId cannot be null or empty.", nameof(formId));
+                throw new ArgumentException(StructuralMutationMessages.FormIdCannotBeNullOrEmpty, nameof(formId));
             }
 
-            var formObject = optionObject.Forms?.FirstOrDefault(f => f != null && f.FormId == formId);
-            if (formObject == null)
-            {
-                throw new ArgumentException("No matching form was found for the provided formId.", nameof(formId));
-            }
+            var formObject = StructuralMutationCore.GetFormObjectOrThrow(optionObject.Forms, formId);
 
             return formObject.GetNextAvailableRowId();
         }
@@ -121,7 +117,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             if (string.IsNullOrEmpty(formId))
             {
-                throw new ArgumentException("FormId cannot be null or empty.", nameof(formId));
+                throw new ArgumentException(StructuralMutationMessages.FormIdCannotBeNullOrEmpty, nameof(formId));
             }
 
             if (rowObject == null)
@@ -129,20 +125,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 throw new ArgumentNullException(nameof(rowObject));
             }
 
-            var forms = optionObject.Forms;
-            if (forms == null)
-            {
-                return optionObject;
-            }
-
-            var formIndex = forms.FindIndex(f => f != null && f.FormId == formId);
-            if (formIndex >= 0)
-            {
-                forms[formIndex].AddRowObject(rowObject);
-                return optionObject;
-            }
-
-            throw new ArgumentException("No matching form was found for the provided formId.", nameof(formId));
+            StructuralMutationCore.AddRowObject(optionObject.Forms, formId, rowObject);
+            return optionObject;
         }
 
         /// <summary>
@@ -179,23 +163,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             if (string.IsNullOrEmpty(rowId))
             {
-                throw new ArgumentException("RowId cannot be null or empty.", nameof(rowId));
+                throw new ArgumentException(StructuralMutationMessages.RowIdCannotBeNullOrEmpty, nameof(rowId));
             }
 
-            var forms = optionObject.Forms;
-            if (forms == null)
-            {
-                throw new ArgumentException("No matching row was found for the provided rowId.", nameof(rowId));
-            }
-
-            var formIndex = forms.FindIndex(f => f != null && f.IsRowPresent(rowId));
-            if (formIndex >= 0)
-            {
-                forms[formIndex].DeleteRowObject(rowId);
-                return optionObject;
-            }
-
-            throw new ArgumentException("No matching row was found for the provided rowId.", nameof(rowId));
+            StructuralMutationCore.DeleteRowObject(optionObject.Forms, rowId);
+            return optionObject;
         }
 
         /// <summary>

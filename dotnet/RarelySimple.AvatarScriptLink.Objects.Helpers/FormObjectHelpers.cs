@@ -115,7 +115,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 }
             }
 
-            throw new ArgumentException("Could not determine next available row ID.", nameof(formObject));
+            throw new ArgumentOutOfRangeException(nameof(formObject), "Could not determine next available row ID because no allocatable row IDs remain.");
         }
 
         /// <summary>
@@ -177,6 +177,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// Adds a new row to a <see cref="FormObject"/> with row action set to <see cref="RowObject.RowActions.Add"/>.
         /// </summary>
         /// <param name="formObject">The form to modify.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when constraints prevent adding the row, such as non-multiple-iteration forms with an existing current row or duplicate row IDs.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when another row cannot be added due to form constraints.</exception>
         /// <returns>The modified form.</returns>
         public static FormObject AddRowObject(this FormObject formObject)
         {
@@ -192,6 +195,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <param name="formObject">The form to modify.</param>
         /// <param name="rowId">The row ID to assign.</param>
         /// <param name="parentRowId">The parent row ID to assign.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when constraints prevent adding the row, such as non-multiple-iteration forms with an existing current row or duplicate row IDs.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when another row cannot be added due to form constraints.</exception>
         /// <returns>The modified form.</returns>
         public static FormObject AddRowObject(this FormObject formObject, string rowId, string parentRowId)
         {
@@ -205,6 +211,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <param name="rowId">The row ID to assign.</param>
         /// <param name="parentRowId">The parent row ID to assign.</param>
         /// <param name="rowAction">The row action to assign.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when constraints prevent adding the row, such as non-multiple-iteration forms with an existing current row or duplicate row IDs.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when another row cannot be added due to form constraints.</exception>
         /// <returns>The modified form.</returns>
         public static FormObject AddRowObject(this FormObject formObject, string rowId, string parentRowId, string rowAction)
         {
@@ -221,6 +230,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="formObject">The form to modify.</param>
         /// <param name="parentRowId">The parent row ID to assign.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when constraints prevent adding the row, such as non-multiple-iteration forms with an existing current row or duplicate row IDs.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when another row cannot be added due to form constraints.</exception>
         /// <returns>The modified form.</returns>
         public static FormObject AddRowObjectWithParentRowId(this FormObject formObject, string parentRowId)
         {
@@ -458,18 +470,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>True if the row is present, false otherwise.</returns>
         public static bool IsRowPresent(this FormObject formObject, string rowId)
         {
-            if (formObject == null || formObject.CurrentRow == null || string.IsNullOrEmpty(rowId))
+            if (formObject == null || string.IsNullOrEmpty(rowId))
                 return false;
 
-            if (formObject.CurrentRow.RowId == rowId)
+            if (formObject.CurrentRow?.RowId == rowId)
                 return true;
 
-            if (formObject.MultipleIteration && formObject.HasOtherRows())
-            {
-                return formObject.OtherRows.Any(r => r.RowId == rowId);
-            }
-
-            return false;
+            return formObject.OtherRows?.Any(r => r != null && r.RowId == rowId) ?? false;
         }
 
         /// <summary>

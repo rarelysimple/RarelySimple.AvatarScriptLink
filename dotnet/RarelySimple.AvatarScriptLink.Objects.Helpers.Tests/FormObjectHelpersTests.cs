@@ -342,7 +342,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void GetNextAvailableRowId_FormObject_WithAllInRangeIdsUsed_ThrowsArgumentException()
+        public void GetNextAvailableRowId_FormObject_WithAllInRangeIdsUsed_ThrowsArgumentOutOfRangeException()
         {
             // Arrange
             var form = new FormObject
@@ -358,7 +358,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             }
 
             // Act / Assert
-            Assert.ThrowsException<ArgumentException>(() => form.GetNextAvailableRowId());
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => form.GetNextAvailableRowId());
         }
 
         [TestMethod]
@@ -481,6 +481,22 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             Assert.IsNotNull(form.CurrentRow);
             Assert.AreEqual("FORM2||1", form.CurrentRow.RowId);
             Assert.AreEqual(RowObject.RowActions.Add, form.CurrentRow.RowAction);
+        }
+
+        [TestMethod]
+        public void AddRowObject_FormObject_WithNoCurrentRowAndDuplicateOtherRowId_ThrowsArgumentException()
+        {
+            // Arrange
+            var form = new FormObject
+            {
+                FormId = "FORM2",
+                MultipleIteration = true,
+                CurrentRow = null!
+            };
+            form.OtherRows.Add(new RowObject { RowId = "FORM2||5" });
+
+            // Act / Assert
+            Assert.ThrowsException<ArgumentException>(() => form.AddRowObject(new RowObject { RowId = "FORM2||5", RowAction = RowObject.RowActions.Add }));
         }
 
         [TestMethod]
@@ -619,6 +635,20 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             // Arrange
             var form = new FormObject { CurrentRow = new RowObject { RowId = "1" }, MultipleIteration = true };
+            form.OtherRows.Add(new RowObject { RowId = "2" });
+
+            // Act
+            var result = form.IsRowPresent("2");
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsRowPresent_FormObject_WithOtherRowAndNoCurrentRow_ReturnsTrue()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = null!, MultipleIteration = true };
             form.OtherRows.Add(new RowObject { RowId = "2" });
 
             // Act
