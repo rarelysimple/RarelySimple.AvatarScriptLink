@@ -287,7 +287,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 return formObject;
             }
 
-            if (formObject.MultipleIteration && formObject.OtherRows != null)
+            if (formObject.OtherRows != null)
             {
                 var rowIndex = formObject.OtherRows.FindIndex(r => r != null && r.RowId == rowId);
                 if (rowIndex >= 0)

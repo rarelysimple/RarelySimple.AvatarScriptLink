@@ -561,6 +561,24 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
+        public void DeleteRowObject_FormObject_WithOtherRowAndNonMultipleIteration_MarksDelete()
+        {
+            // Arrange
+            var form = new FormObject
+            {
+                MultipleIteration = false,
+                CurrentRow = new RowObject { RowId = "FORM1||1" }
+            };
+            form.OtherRows.Add(new RowObject { RowId = "FORM1||2", RowAction = RowObject.RowActions.None });
+
+            // Act
+            form.DeleteRowObject("FORM1||2");
+
+            // Assert
+            Assert.AreEqual(RowObject.RowActions.Delete, form.OtherRows[0].RowAction);
+        }
+
+        [TestMethod]
         public void DeleteRowObject_FormObject_WithMissingRow_ThrowsArgumentException()
         {
             // Arrange
