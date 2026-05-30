@@ -66,7 +66,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             hash = hash * 23 + (ParentRowId != null ? ParentRowId.GetHashCode() : 0);
             hash = hash * 23 + (RowAction != null ? RowAction.GetHashCode() : 0);
             hash = hash * 23 + (RowId != null ? RowId.GetHashCode() : 0);
-            foreach (FieldObject fieldObject in Fields)
+            foreach (FieldObject fieldObject in Fields ?? Enumerable.Empty<FieldObject>())
             {
                 hash = hash * 23 + (fieldObject != null ? fieldObject.GetHashCode() : 0);
             }
@@ -75,21 +75,24 @@ namespace RarelySimple.AvatarScriptLink.Objects
 
         public static bool AreRowsEqual(List<RowObject> list1, List<RowObject> list2)
         {
-            if (!AreBothNull(list1, list2) && AreBothEmpty(list1, list2))
-                return true;
-            if (list1.Count != list2.Count)
+            var count1 = list1?.Count ?? 0;
+            var count2 = list2?.Count ?? 0;
+
+            if (count1 != count2)
                 return false;
-            for (int i = 0; i < list1.Count; i++)
+
+            for (int i = 0; i < count1; i++)
             {
-                if (!list1[i].Equals(list2[i]))
+                if (!Equals(list1[i], list2[i]))
                 {
                     return false;
                 }
             }
+
             return true;
         }
 
-        public static bool AreBothEmpty(List<RowObject> list1, List<RowObject> list2) => !list1.Any() && !list2.Any();
+        public static bool AreBothEmpty(List<RowObject> list1, List<RowObject> list2) => (list1?.Count ?? 0) == 0 && (list2?.Count ?? 0) == 0;
 
         public static bool AreBothNull(List<RowObject> list1, List<RowObject> list2) => list1 == null && list2 == null;
 

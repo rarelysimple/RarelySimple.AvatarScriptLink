@@ -91,7 +91,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             hash = hash * 23 + (OptionStaffId != null ? OptionStaffId.GetHashCode() : 0);
             hash = hash * 23 + (OptionUserId != null ? OptionUserId.GetHashCode() : 0);
             hash = hash * 23 + (SystemCode != null ? SystemCode.GetHashCode() : 0);
-            foreach (FormObject formObject in Forms)
+            foreach (FormObject formObject in Forms ?? Enumerable.Empty<FormObject>())
             {
                 hash = hash * 23 + (formObject != null ? formObject.GetHashCode() : 0);
             }

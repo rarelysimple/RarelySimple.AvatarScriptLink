@@ -32,6 +32,39 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
         }
 
         [TestMethod]
+        public void OptionObjectEquals_WhenFormsNullAndEmpty_AreEqual()
+        {
+            OptionObject optionObject1 = new()
+            {
+                EntityID = "1",
+                EpisodeNumber = 2,
+                ErrorCode = 3,
+                ErrorMesg = "Test response",
+                Facility = "4",
+                Forms = null,
+                OptionId = "OPTION001",
+                OptionStaffId = "5",
+                OptionUserId = "USER",
+                SystemCode = "TEST"
+            };
+            OptionObject optionObject2 = new()
+            {
+                EntityID = "1",
+                EpisodeNumber = 2,
+                ErrorCode = 3,
+                ErrorMesg = "Test response",
+                Facility = "4",
+                Forms = [],
+                OptionId = "OPTION001",
+                OptionStaffId = "5",
+                OptionUserId = "USER",
+                SystemCode = "TEST"
+            };
+
+            Assert.IsTrue(optionObject1.Equals(optionObject2));
+        }
+
+        [TestMethod]
         public void OptionObjectEqualsMethodIsTrue()
         {
             OptionObject optionObject1 = new()
@@ -304,6 +337,39 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
                 SystemCode = "TEST"
             };
             OptionObject optionObject2 = optionObject1.Clone();
+            Assert.AreEqual(optionObject1.GetHashCode(), optionObject2.GetHashCode());
+        }
+
+        [TestMethod]
+        public void OptionObjectGetHashCode_WhenFormsNullAndEmpty_AreEqual()
+        {
+            OptionObject optionObject1 = new()
+            {
+                EntityID = "1",
+                EpisodeNumber = 2,
+                ErrorCode = 3,
+                ErrorMesg = "Test response",
+                Facility = "4",
+                Forms = null,
+                OptionId = "OPTION001",
+                OptionStaffId = "5",
+                OptionUserId = "USER",
+                SystemCode = "TEST"
+            };
+            OptionObject optionObject2 = new()
+            {
+                EntityID = "1",
+                EpisodeNumber = 2,
+                ErrorCode = 3,
+                ErrorMesg = "Test response",
+                Facility = "4",
+                Forms = [],
+                OptionId = "OPTION001",
+                OptionStaffId = "5",
+                OptionUserId = "USER",
+                SystemCode = "TEST"
+            };
+
             Assert.AreEqual(optionObject1.GetHashCode(), optionObject2.GetHashCode());
         }
 

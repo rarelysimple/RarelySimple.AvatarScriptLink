@@ -32,6 +32,47 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
         }
 
         [TestMethod]
+        public void OptionObject2015Equals_WhenFormsNullAndEmpty_AreEqual()
+        {
+            OptionObject2015 optionObject1 = new()
+            {
+                EntityID = "1",
+                EpisodeNumber = 2,
+                ErrorCode = 3,
+                ErrorMesg = "Test response",
+                Facility = "4",
+                Forms = null,
+                NamespaceName = "Namespace",
+                OptionId = "OPTION001",
+                OptionStaffId = "5",
+                OptionUserId = "USER",
+                ParentNamespace = "Parent",
+                ServerName = "Server",
+                SessionToken = "6",
+                SystemCode = "TEST"
+            };
+            OptionObject2015 optionObject2 = new()
+            {
+                EntityID = "1",
+                EpisodeNumber = 2,
+                ErrorCode = 3,
+                ErrorMesg = "Test response",
+                Facility = "4",
+                Forms = [],
+                NamespaceName = "Namespace",
+                OptionId = "OPTION001",
+                OptionStaffId = "5",
+                OptionUserId = "USER",
+                ParentNamespace = "Parent",
+                ServerName = "Server",
+                SessionToken = "6",
+                SystemCode = "TEST"
+            };
+
+            Assert.IsTrue(optionObject1.Equals(optionObject2));
+        }
+
+        [TestMethod]
         public void OptionObject2015EqualsMethodIsTrue()
         {
             OptionObject2015 optionObject1 = new()
@@ -360,6 +401,47 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
                 SystemCode = "TEST"
             };
             OptionObject2015 optionObject2 = optionObject1.Clone();
+            Assert.AreEqual(optionObject1.GetHashCode(), optionObject2.GetHashCode());
+        }
+
+        [TestMethod]
+        public void OptionObject2015GetHashCode_WhenFormsNullAndEmpty_AreEqual()
+        {
+            OptionObject2015 optionObject1 = new()
+            {
+                EntityID = "1",
+                EpisodeNumber = 2,
+                ErrorCode = 3,
+                ErrorMesg = "Test response",
+                Facility = "4",
+                Forms = null,
+                NamespaceName = "Namespace",
+                OptionId = "OPTION001",
+                OptionStaffId = "5",
+                OptionUserId = "USER",
+                ParentNamespace = "Parent",
+                ServerName = "Server",
+                SessionToken = "6",
+                SystemCode = "TEST"
+            };
+            OptionObject2015 optionObject2 = new()
+            {
+                EntityID = "1",
+                EpisodeNumber = 2,
+                ErrorCode = 3,
+                ErrorMesg = "Test response",
+                Facility = "4",
+                Forms = [],
+                NamespaceName = "Namespace",
+                OptionId = "OPTION001",
+                OptionStaffId = "5",
+                OptionUserId = "USER",
+                ParentNamespace = "Parent",
+                ServerName = "Server",
+                SessionToken = "6",
+                SystemCode = "TEST"
+            };
+
             Assert.AreEqual(optionObject1.GetHashCode(), optionObject2.GetHashCode());
         }
 

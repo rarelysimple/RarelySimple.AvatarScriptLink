@@ -32,6 +32,27 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
         }
 
         [TestMethod]
+        public void RowObjectEquals_WhenFieldsNullAndEmpty_AreEqual()
+        {
+            RowObject rowObject1 = new()
+            {
+                RowId = "2",
+                RowAction = string.Empty,
+                ParentRowId = "1",
+                Fields = null
+            };
+            RowObject rowObject2 = new()
+            {
+                RowId = "2",
+                RowAction = string.Empty,
+                ParentRowId = "1",
+                Fields = []
+            };
+
+            Assert.IsTrue(rowObject1.Equals(rowObject2));
+        }
+
+        [TestMethod]
         public void RowObjectEqualsMethodIsTrue()
         {
             RowObject rowObject1 = new()
@@ -230,6 +251,27 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
                 Fields = []
             };
             RowObject rowObject2 = rowObject1.Clone();
+            Assert.AreEqual(rowObject1.GetHashCode(), rowObject2.GetHashCode());
+        }
+
+        [TestMethod]
+        public void RowObjectGetHashCode_WhenFieldsNullAndEmpty_AreEqual()
+        {
+            RowObject rowObject1 = new()
+            {
+                RowId = "2",
+                RowAction = string.Empty,
+                ParentRowId = "1",
+                Fields = null
+            };
+            RowObject rowObject2 = new()
+            {
+                RowId = "2",
+                RowAction = string.Empty,
+                ParentRowId = "1",
+                Fields = []
+            };
+
             Assert.AreEqual(rowObject1.GetHashCode(), rowObject2.GetHashCode());
         }
 

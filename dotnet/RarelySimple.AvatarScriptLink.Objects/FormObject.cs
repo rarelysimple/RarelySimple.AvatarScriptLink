@@ -72,35 +72,33 @@ namespace RarelySimple.AvatarScriptLink.Objects
             hash = hash * 23 + (FormId != null ? FormId.GetHashCode() : 0);
             hash = hash * 23 + MultipleIteration.GetHashCode();
             hash = hash * 23 + (CurrentRow != null ? CurrentRow.GetHashCode() : 0);
-            if (OtherRows != null)
+            foreach (RowObject rowObject in OtherRows ?? Enumerable.Empty<RowObject>())
             {
-                foreach (RowObject rowObject in OtherRows)
-                {
-                    hash = hash * 23 + (rowObject != null ? rowObject.GetHashCode() : 0);
-                }
+                hash = hash * 23 + (rowObject != null ? rowObject.GetHashCode() : 0);
             }
             return hash;
         }
 
         public static bool AreFormsEqual(List<FormObject> list1, List<FormObject> list2)
         {
-            if (!AreBothNull(list1, list2) && AreBothEmpty(list1, list2))
-                return true;
+            var count1 = list1?.Count ?? 0;
+            var count2 = list2?.Count ?? 0;
 
-            if (list1.Count != list2.Count)
+            if (count1 != count2)
                 return false;
 
-            for (int i = 0; i < list1.Count; i++)
+            for (int i = 0; i < count1; i++)
             {
-                if (!list1[i].Equals(list2[i]))
+                if (!Equals(list1[i], list2[i]))
                 {
                     return false;
                 }
             }
+
             return true;
         }
 
-        public static bool AreBothEmpty(List<FormObject> list1, List<FormObject> list2) => !list1.Any() && !list2.Any();
+        public static bool AreBothEmpty(List<FormObject> list1, List<FormObject> list2) => (list1?.Count ?? 0) == 0 && (list2?.Count ?? 0) == 0;
 
         public static bool AreBothNull(List<FormObject> list1, List<FormObject> list2) => list1 == null && list2 == null;
 
