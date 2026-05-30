@@ -110,7 +110,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <param name="formId">The target form ID.</param>
         /// <param name="rowObject">The row to add.</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> or <paramref name="rowObject"/> is null.</exception>
-        /// <exception cref="ArgumentException">Thrown when <paramref name="formId"/> is null/empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="formId"/> is null/empty or the form is not found.</exception>
         /// <returns>The modified option object.</returns>
         public static OptionObject2 AddRowObject(this OptionObject2 optionObject, string formId, RowObject rowObject)
         {
@@ -139,9 +139,10 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             if (formIndex >= 0)
             {
                 forms[formIndex].AddRowObject(rowObject);
+                return optionObject;
             }
 
-            return optionObject;
+            throw new ArgumentException("No matching form was found for the provided formId.", nameof(formId));
         }
 
         /// <summary>

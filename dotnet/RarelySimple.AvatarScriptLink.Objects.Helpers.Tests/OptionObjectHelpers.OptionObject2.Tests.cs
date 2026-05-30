@@ -273,7 +273,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void AddRowObject_OptionObject2_WithMissingForm_DoesNotAddRow()
+        public void AddRowObject_OptionObject2_WithMissingForm_ThrowsArgumentException()
         {
             var optionObject = new OptionObject2();
             optionObject.Forms.Add(new FormObject
@@ -283,9 +283,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
                 CurrentRow = new RowObject { RowId = "FORM2||1" }
             });
 
-            optionObject.AddRowObject("MISSING", new RowObject { RowAction = RowObject.RowActions.Add });
-
-            Assert.AreEqual(0, optionObject.Forms[0].OtherRows.Count);
+            Assert.ThrowsException<ArgumentException>(() => optionObject.AddRowObject("MISSING", new RowObject { RowAction = RowObject.RowActions.Add }));
         }
 
         [TestMethod]
@@ -306,6 +304,72 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             optionObject.Forms.Add(new FormObject { FormId = "FORM2", CurrentRow = new RowObject { RowId = "FORM2||1" } });
 
             Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject("MISSING"));
+        }
+
+        [TestMethod]
+        public void AddRowObject_OptionObject2_WithNullForms_ReturnsUnchangedOptionObject()
+        {
+            var optionObject = new OptionObject2 { Forms = null! };
+
+            var result = optionObject.AddRowObject("FORM2", new RowObject { RowAction = RowObject.RowActions.Add });
+
+            Assert.AreSame(optionObject, result);
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_OptionObject2_WithNullForms_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2 { Forms = null! };
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject("FORM2||1"));
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_OptionObject2_WithNullRowObject_ThrowsArgumentNullException()
+        {
+            var optionObject = new OptionObject2();
+
+            Assert.ThrowsException<ArgumentNullException>(() => optionObject.DeleteRowObject((RowObject)null!));
+        }
+
+        [TestMethod]
+        public void AddRowObject_OptionObject2_WithNullOptionObject_ThrowsArgumentNullException()
+        {
+            OptionObject2 optionObject = null!;
+
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObject2Helpers.AddRowObject(optionObject, "FORM2", new RowObject()));
+        }
+
+        [TestMethod]
+        public void AddRowObject_OptionObject2_WithEmptyFormId_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2();
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.AddRowObject(string.Empty, new RowObject()));
+        }
+
+        [TestMethod]
+        public void AddRowObject_OptionObject2_WithNullRowObject_ThrowsArgumentNullException()
+        {
+            var optionObject = new OptionObject2();
+
+            Assert.ThrowsException<ArgumentNullException>(() => optionObject.AddRowObject("FORM2", null!));
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_OptionObject2_WithNullOptionObject_ThrowsArgumentNullException()
+        {
+            OptionObject2 optionObject = null!;
+
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObject2Helpers.DeleteRowObject(optionObject, "FORM2||1"));
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_OptionObject2_WithEmptyRowId_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2();
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject(string.Empty));
         }
 
         [TestMethod]

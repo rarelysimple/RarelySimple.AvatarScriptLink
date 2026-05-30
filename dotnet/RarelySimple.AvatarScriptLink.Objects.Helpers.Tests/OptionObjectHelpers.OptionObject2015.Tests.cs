@@ -273,7 +273,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void AddRowObject_OptionObject2015_WithMissingForm_DoesNotAddRow()
+        public void AddRowObject_OptionObject2015_WithMissingForm_ThrowsArgumentException()
         {
             var optionObject = new OptionObject2015();
             optionObject.Forms.Add(new FormObject
@@ -283,9 +283,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
                 CurrentRow = new RowObject { RowId = "FORM2015||1" }
             });
 
-            optionObject.AddRowObject("MISSING", new RowObject { RowAction = RowObject.RowActions.Add });
-
-            Assert.AreEqual(0, optionObject.Forms[0].OtherRows.Count);
+            Assert.ThrowsException<ArgumentException>(() => optionObject.AddRowObject("MISSING", new RowObject { RowAction = RowObject.RowActions.Add }));
         }
 
         [TestMethod]
@@ -306,6 +304,72 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             optionObject.Forms.Add(new FormObject { FormId = "FORM2015", CurrentRow = new RowObject { RowId = "FORM2015||1" } });
 
             Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject("MISSING"));
+        }
+
+        [TestMethod]
+        public void AddRowObject_OptionObject2015_WithNullForms_ReturnsUnchangedOptionObject()
+        {
+            var optionObject = new OptionObject2015 { Forms = null! };
+
+            var result = optionObject.AddRowObject("FORM2015", new RowObject { RowAction = RowObject.RowActions.Add });
+
+            Assert.AreSame(optionObject, result);
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_OptionObject2015_WithNullForms_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2015 { Forms = null! };
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject("FORM2015||1"));
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_OptionObject2015_WithNullRowObject_ThrowsArgumentNullException()
+        {
+            var optionObject = new OptionObject2015();
+
+            Assert.ThrowsException<ArgumentNullException>(() => optionObject.DeleteRowObject((RowObject)null!));
+        }
+
+        [TestMethod]
+        public void AddRowObject_OptionObject2015_WithNullOptionObject_ThrowsArgumentNullException()
+        {
+            OptionObject2015 optionObject = null!;
+
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObject2015Helpers.AddRowObject(optionObject, "FORM2015", new RowObject()));
+        }
+
+        [TestMethod]
+        public void AddRowObject_OptionObject2015_WithEmptyFormId_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2015();
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.AddRowObject(string.Empty, new RowObject()));
+        }
+
+        [TestMethod]
+        public void AddRowObject_OptionObject2015_WithNullRowObject_ThrowsArgumentNullException()
+        {
+            var optionObject = new OptionObject2015();
+
+            Assert.ThrowsException<ArgumentNullException>(() => optionObject.AddRowObject("FORM2015", null!));
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_OptionObject2015_WithNullOptionObject_ThrowsArgumentNullException()
+        {
+            OptionObject2015 optionObject = null!;
+
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObject2015Helpers.DeleteRowObject(optionObject, "FORM2015||1"));
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_OptionObject2015_WithEmptyRowId_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2015();
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject(string.Empty));
         }
 
         [TestMethod]

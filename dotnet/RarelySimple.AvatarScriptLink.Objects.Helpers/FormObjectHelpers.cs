@@ -104,11 +104,6 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 throw new ArgumentOutOfRangeException(nameof(formObject), "Cannot add another row to a non-multiple-iteration form.");
             }
 
-            if (currentRow != null && otherRows.Count + 1 >= MaximumNumberOfMultipleIterationRows)
-            {
-                throw new ArgumentOutOfRangeException(nameof(formObject), "Cannot add another row because the maximum row count was reached.");
-            }
-
             for (int i = 1; i <= MaximumNumberOfMultipleIterationRows; i++)
             {
                 var candidateRowId = string.Concat(formObject.FormId, "||", i.ToString());

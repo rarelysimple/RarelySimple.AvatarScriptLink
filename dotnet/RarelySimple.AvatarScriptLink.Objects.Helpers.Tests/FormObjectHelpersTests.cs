@@ -311,6 +311,144 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
+        public void GetNextAvailableRowId_FormObject_WithSparseIdsNearMaximum_ReturnsMissingInRangeId()
+        {
+            // Arrange
+            var form = new FormObject
+            {
+                FormId = "FORM1",
+                MultipleIteration = true,
+                CurrentRow = new RowObject { RowId = "FORM1||1" }
+            };
+
+            for (int i = 2; i <= 9999; i++)
+            {
+                if (i == 5000)
+                {
+                    continue;
+                }
+
+                form.OtherRows.Add(new RowObject { RowId = $"FORM1||{i}" });
+            }
+
+            // Keeps row count at previous guard threshold without occupying the missing in-range candidate.
+            form.OtherRows.Add(new RowObject { RowId = "FORM1||10000" });
+
+            // Act
+            var result = form.GetNextAvailableRowId();
+
+            // Assert
+            Assert.AreEqual("FORM1||5000", result);
+        }
+
+        [TestMethod]
+        public void GetNextAvailableRowId_FormObject_WithAllInRangeIdsUsed_ThrowsArgumentException()
+        {
+            // Arrange
+            var form = new FormObject
+            {
+                FormId = "FORM1",
+                MultipleIteration = true,
+                CurrentRow = new RowObject { RowId = "FORM1||1" }
+            };
+
+            for (int i = 2; i <= 9999; i++)
+            {
+                form.OtherRows.Add(new RowObject { RowId = $"FORM1||{i}" });
+            }
+
+            // Act / Assert
+            Assert.ThrowsException<ArgumentException>(() => form.GetNextAvailableRowId());
+        }
+
+        [TestMethod]
+        public void AddRowObject_FormObject_DefaultOverload_SetsAddAction()
+        {
+            // Arrange
+            var form = new FormObject { FormId = "FORM2", MultipleIteration = true };
+
+            // Act
+            form.AddRowObject();
+
+            // Assert
+            Assert.IsNotNull(form.CurrentRow);
+            Assert.AreEqual("FORM2||1", form.CurrentRow.RowId);
+            Assert.AreEqual(RowObject.RowActions.Add, form.CurrentRow.RowAction);
+        }
+
+        [TestMethod]
+        public void AddRowObject_FormObject_WithRowIdParentRowIdOverload_AssignsProvidedValues()
+        {
+            // Arrange
+            var form = new FormObject { FormId = "FORM3", MultipleIteration = true };
+
+            // Act
+            form.AddRowObject("FORM3||10", "PARENT1");
+
+            // Assert
+            Assert.IsNotNull(form.CurrentRow);
+            Assert.AreEqual("FORM3||10", form.CurrentRow.RowId);
+            Assert.AreEqual("PARENT1", form.CurrentRow.ParentRowId);
+            Assert.AreEqual(RowObject.RowActions.Add, form.CurrentRow.RowAction);
+        }
+
+        [TestMethod]
+        public void AddRowObjectWithParentRowId_FormObject_AssignsParentAndAddAction()
+        {
+            // Arrange
+            var form = new FormObject { FormId = "FORM4", MultipleIteration = true };
+
+            // Act
+            form.AddRowObjectWithParentRowId("PARENT2");
+
+            // Assert
+            Assert.IsNotNull(form.CurrentRow);
+            Assert.AreEqual("PARENT2", form.CurrentRow.ParentRowId);
+            Assert.AreEqual(RowObject.RowActions.Add, form.CurrentRow.RowAction);
+        }
+
+        [TestMethod]
+        public void AddRowObject_FormObject_WithNullFormObject_ThrowsArgumentNullException()
+        {
+            // Arrange
+            FormObject form = null!;
+
+            // Act / Assert
+            Assert.ThrowsException<ArgumentNullException>(() => FormObjectHelpers.AddRowObject(form, new RowObject()));
+        }
+
+        [TestMethod]
+        public void AddRowObject_FormObject_WithNullRowObject_ThrowsArgumentNullException()
+        {
+            // Arrange
+            var form = new FormObject { FormId = "FORM5", MultipleIteration = true };
+
+            // Act / Assert
+            Assert.ThrowsException<ArgumentNullException>(() => form.AddRowObject((RowObject)null!));
+        }
+
+        [TestMethod]
+        public void AddRowObject_FormObject_WithNullOtherRows_InitializesAndAddsRow()
+        {
+            // Arrange
+            var form = new FormObject
+            {
+                FormId = "FORM6",
+                MultipleIteration = true,
+                CurrentRow = new RowObject { RowId = "FORM6||1" },
+                OtherRows = null!
+            };
+
+            // Act
+            form.AddRowObject(new RowObject { RowAction = RowObject.RowActions.Add });
+
+            // Assert
+            Assert.IsNotNull(form.OtherRows);
+            Assert.AreEqual(1, form.OtherRows.Count);
+            Assert.AreEqual("FORM6||2", form.OtherRows[0].RowId);
+        }
+
+        [TestMethod]
         public void AddRowObject_FormObject_WithCurrentRow_AddsOtherRowWithGeneratedId()
         {
             // Arrange
@@ -418,6 +556,49 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
 
             // Act / Assert
             Assert.ThrowsException<ArgumentException>(() => form.DeleteRowObject("MISSING"));
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_FormObject_WithNullRowObject_ThrowsArgumentNullException()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "FORM1||1" } };
+
+            // Act / Assert
+            Assert.ThrowsException<ArgumentNullException>(() => form.DeleteRowObject((RowObject)null!));
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_FormObject_WithEmptyRowId_ThrowsArgumentException()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "FORM1||1" } };
+
+            // Act / Assert
+            Assert.ThrowsException<ArgumentException>(() => form.DeleteRowObject(string.Empty));
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_FormObject_WithNullFormObject_ThrowsArgumentNullException()
+        {
+            // Arrange
+            FormObject form = null!;
+
+            // Act / Assert
+            Assert.ThrowsException<ArgumentNullException>(() => FormObjectHelpers.DeleteRowObject(form, "FORM1||1"));
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_FormObject_WithRowObject_DelegatesToRowIdDelete()
+        {
+            // Arrange
+            var form = new FormObject { CurrentRow = new RowObject { RowId = "FORM1||1", RowAction = RowObject.RowActions.None } };
+
+            // Act
+            form.DeleteRowObject(new RowObject { RowId = "FORM1||1" });
+
+            // Assert
+            Assert.AreEqual(RowObject.RowActions.Delete, form.CurrentRow.RowAction);
         }
 
         [TestMethod]
