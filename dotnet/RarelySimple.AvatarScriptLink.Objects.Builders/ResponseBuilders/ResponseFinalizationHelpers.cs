@@ -142,7 +142,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.ResponseBuilders
                     continue;
                 }
 
-                var key = CreateFieldKey(formId, rowObject.RowId, field.FieldNumber);
+                if (!TryCreateFieldKey(formId, rowObject.RowId, field.FieldNumber, out var key))
+                {
+                    continue;
+                }
+
                 if (!baselineFieldMap.TryGetValue(key, out var baselineSnapshot))
                 {
                     continue;
@@ -187,14 +191,25 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.ResponseBuilders
 
             foreach (var field in row.Fields.Where(f => f != null))
             {
-                var key = CreateFieldKey(formId, row.RowId, field.FieldNumber);
+                if (!TryCreateFieldKey(formId, row.RowId, field.FieldNumber, out var key))
+                {
+                    continue;
+                }
+
                 map[key] = new BaselineFieldSnapshot(field.FieldValue, field.Enabled, field.Lock, field.Required);
             }
         }
 
-        private static string CreateFieldKey(string formId, string rowId, string fieldNumber)
+        private static bool TryCreateFieldKey(string formId, string rowId, string fieldNumber, out string key)
         {
-            return string.Concat(formId ?? string.Empty, "|", rowId ?? string.Empty, "|", fieldNumber ?? string.Empty);
+            if (string.IsNullOrEmpty(formId) || string.IsNullOrEmpty(rowId) || string.IsNullOrEmpty(fieldNumber))
+            {
+                key = string.Empty;
+                return false;
+            }
+
+            key = string.Concat(formId, "|", rowId, "|", fieldNumber);
+            return true;
         }
 
         private static bool IsUnchanged(FieldObject field, BaselineFieldSnapshot baselineSnapshot)

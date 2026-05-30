@@ -510,6 +510,32 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
         }
 
         [TestMethod]
+        public void ToReturnOptionObject_WithBaseline_MissingIdentifiers_DoesNotPruneFields()
+        {
+            // Arrange
+            var baseline = OptionObjectBuilders.CreateOptionObject("Patient123");
+            var baselineForm = FormObjectBuilders.CreateFormObject("FORM1");
+            baselineForm.AddRow(
+                RowObjectBuilders.CreateRowObject("FORM1||1")
+                    .WithRowAction(RowObject.RowActions.Edit)
+                    .AddField(FieldObjectBuilders.CreateFieldObject("100").WithFieldValue("A")));
+            baselineForm.FormId = null;
+            baselineForm.OtherRows[0].RowId = null;
+            baseline.AddForm(baselineForm);
+
+            var working = baseline.Clone();
+
+            // Act
+            OptionObject finalized = working.ToReturnOptionObject(baseline);
+
+            // Assert
+            Assert.AreEqual(1, finalized.Forms.Count);
+            Assert.AreEqual(1, finalized.Forms[0].OtherRows.Count);
+            Assert.AreEqual(1, finalized.Forms[0].OtherRows[0].Fields.Count);
+            Assert.AreEqual("100", finalized.Forms[0].OtherRows[0].Fields[0].FieldNumber);
+        }
+
+        [TestMethod]
         public void ToReturnOptionObject2_WithBaseline_PrunesUnchangedEditFields()
         {
             // Arrange
