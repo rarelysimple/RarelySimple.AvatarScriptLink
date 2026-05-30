@@ -230,6 +230,147 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
+        public void GetNextAvailableRowId_OptionObject2015_ReturnsNextRowIdFromMatchingForm()
+        {
+            var optionObject = new OptionObject2015();
+            var form = new FormObject
+            {
+                FormId = "FORM2015",
+                MultipleIteration = true,
+                CurrentRow = new RowObject { RowId = "FORM2015||1" }
+            };
+            form.OtherRows.Add(new RowObject { RowId = "FORM2015||2" });
+            optionObject.Forms.Add(form);
+
+            var result = optionObject.GetNextAvailableRowId("FORM2015");
+
+            Assert.AreEqual("FORM2015||3", result);
+        }
+
+        [TestMethod]
+        public void GetNextAvailableRowId_OptionObject2015_WithNonExistentForm_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2015();
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.GetNextAvailableRowId("MISSING"));
+        }
+
+        [TestMethod]
+        public void AddRowObject_OptionObject2015_WithMatchingForm_AddsRowToForm()
+        {
+            var optionObject = new OptionObject2015();
+            optionObject.Forms.Add(new FormObject
+            {
+                FormId = "FORM2015",
+                MultipleIteration = true,
+                CurrentRow = new RowObject { RowId = "FORM2015||1" }
+            });
+
+            optionObject.AddRowObject("FORM2015", new RowObject { RowAction = RowObject.RowActions.Add });
+
+            Assert.AreEqual(1, optionObject.Forms[0].OtherRows.Count);
+            Assert.AreEqual("FORM2015||2", optionObject.Forms[0].OtherRows[0].RowId);
+        }
+
+        [TestMethod]
+        public void AddRowObject_OptionObject2015_WithMissingForm_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2015();
+            optionObject.Forms.Add(new FormObject
+            {
+                FormId = "FORM2015",
+                MultipleIteration = true,
+                CurrentRow = new RowObject { RowId = "FORM2015||1" }
+            });
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.AddRowObject("MISSING", new RowObject { RowAction = RowObject.RowActions.Add }));
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_OptionObject2015_WithRowObject_MarksDelete()
+        {
+            var optionObject = new OptionObject2015();
+            optionObject.Forms.Add(new FormObject { FormId = "FORM2015", CurrentRow = new RowObject { RowId = "FORM2015||1", RowAction = RowObject.RowActions.None } });
+
+            optionObject.DeleteRowObject(new RowObject { RowId = "FORM2015||1" });
+
+            Assert.AreEqual(RowObject.RowActions.Delete, optionObject.Forms[0].CurrentRow.RowAction);
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_OptionObject2015_WithMissingRow_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2015();
+            optionObject.Forms.Add(new FormObject { FormId = "FORM2015", CurrentRow = new RowObject { RowId = "FORM2015||1" } });
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject("MISSING"));
+        }
+
+        [TestMethod]
+        public void AddRowObject_OptionObject2015_WithNullForms_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2015 { Forms = null! };
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.AddRowObject("FORM2015", new RowObject { RowAction = RowObject.RowActions.Add }));
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_OptionObject2015_WithNullForms_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2015 { Forms = null! };
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject("FORM2015||1"));
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_OptionObject2015_WithNullRowObject_ThrowsArgumentNullException()
+        {
+            var optionObject = new OptionObject2015();
+
+            Assert.ThrowsException<ArgumentNullException>(() => optionObject.DeleteRowObject((RowObject)null!));
+        }
+
+        [TestMethod]
+        public void AddRowObject_OptionObject2015_WithNullOptionObject_ThrowsArgumentNullException()
+        {
+            OptionObject2015 optionObject = null!;
+
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObject2015Helpers.AddRowObject(optionObject, "FORM2015", new RowObject()));
+        }
+
+        [TestMethod]
+        public void AddRowObject_OptionObject2015_WithEmptyFormId_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2015();
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.AddRowObject(string.Empty, new RowObject()));
+        }
+
+        [TestMethod]
+        public void AddRowObject_OptionObject2015_WithNullRowObject_ThrowsArgumentNullException()
+        {
+            var optionObject = new OptionObject2015();
+
+            Assert.ThrowsException<ArgumentNullException>(() => optionObject.AddRowObject("FORM2015", null!));
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_OptionObject2015_WithNullOptionObject_ThrowsArgumentNullException()
+        {
+            OptionObject2015 optionObject = null!;
+
+            Assert.ThrowsException<ArgumentNullException>(() => OptionObject2015Helpers.DeleteRowObject(optionObject, "FORM2015||1"));
+        }
+
+        [TestMethod]
+        public void DeleteRowObject_OptionObject2015_WithEmptyRowId_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2015();
+
+            Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject(string.Empty));
+        }
+
+        [TestMethod]
         public void GetSessionToken_OptionObject2015_ReturnsSessionToken()
         {
             var optionObject = new OptionObject2015 { SessionToken = "token-123" };

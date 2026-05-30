@@ -75,6 +75,102 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         }
 
         /// <summary>
+        /// Gets the next available row ID for a form in an <see cref="OptionObject2"/>.
+        /// </summary>
+        /// <param name="optionObject">The option object to query.</param>
+        /// <param name="formId">The target form ID.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="formId"/> is null/empty or the form is not found.</exception>
+        /// <returns>The next available row ID.</returns>
+        public static string GetNextAvailableRowId(this OptionObject2 optionObject, string formId)
+        {
+            if (optionObject == null)
+            {
+                throw new ArgumentNullException(nameof(optionObject));
+            }
+
+            if (string.IsNullOrEmpty(formId))
+            {
+                throw new ArgumentException(StructuralMutationMessages.FormIdCannotBeNullOrEmpty, nameof(formId));
+            }
+
+            var formObject = StructuralMutationCore.GetFormObjectOrThrow(optionObject.Forms, formId);
+
+            return formObject.GetNextAvailableRowId();
+        }
+
+        /// <summary>
+        /// Adds a row to a form in an <see cref="OptionObject2"/>.
+        /// </summary>
+        /// <param name="optionObject">The option object to modify.</param>
+        /// <param name="formId">The target form ID.</param>
+        /// <param name="rowObject">The row to add.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> or <paramref name="rowObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="formId"/> is null/empty or the form is not found.</exception>
+        /// <returns>The modified option object.</returns>
+        public static OptionObject2 AddRowObject(this OptionObject2 optionObject, string formId, RowObject rowObject)
+        {
+            if (optionObject == null)
+            {
+                throw new ArgumentNullException(nameof(optionObject));
+            }
+
+            if (string.IsNullOrEmpty(formId))
+            {
+                throw new ArgumentException(StructuralMutationMessages.FormIdCannotBeNullOrEmpty, nameof(formId));
+            }
+
+            if (rowObject == null)
+            {
+                throw new ArgumentNullException(nameof(rowObject));
+            }
+
+            StructuralMutationCore.AddRowObject(optionObject.Forms, formId, rowObject);
+            return optionObject;
+        }
+
+        /// <summary>
+        /// Marks a row for deletion in an <see cref="OptionObject2"/>.
+        /// </summary>
+        /// <param name="optionObject">The option object to modify.</param>
+        /// <param name="rowObject">The row to mark for deletion.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="rowObject"/> is null.</exception>
+        /// <returns>The modified option object.</returns>
+        public static OptionObject2 DeleteRowObject(this OptionObject2 optionObject, RowObject rowObject)
+        {
+            if (rowObject == null)
+            {
+                throw new ArgumentNullException(nameof(rowObject));
+            }
+
+            return optionObject.DeleteRowObject(rowObject.RowId);
+        }
+
+        /// <summary>
+        /// Marks a row for deletion in an <see cref="OptionObject2"/> by row ID.
+        /// </summary>
+        /// <param name="optionObject">The option object to modify.</param>
+        /// <param name="rowId">The row ID to mark for deletion.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="rowId"/> is null/empty or no matching row is found.</exception>
+        /// <returns>The modified option object.</returns>
+        public static OptionObject2 DeleteRowObject(this OptionObject2 optionObject, string rowId)
+        {
+            if (optionObject == null)
+            {
+                throw new ArgumentNullException(nameof(optionObject));
+            }
+
+            if (string.IsNullOrEmpty(rowId))
+            {
+                throw new ArgumentException(StructuralMutationMessages.RowIdCannotBeNullOrEmpty, nameof(rowId));
+            }
+
+            StructuralMutationCore.DeleteRowObject(optionObject.Forms, rowId);
+            return optionObject;
+        }
+
+        /// <summary>
         /// Disables a <see cref="FieldObject"/> in an <see cref="OptionObject2"/> by field number.
         /// </summary>
         /// <param name="optionObject">The OptionObject2 to modify.</param>

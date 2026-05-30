@@ -10,6 +10,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
     /// </summary>
     public static class FormObjectHelpers
     {
+        private const int MaximumNumberOfMultipleIterationRows = 9999;
+
         /// <summary>
         /// Gets the form ID of a <see cref="FormObject"/>.
         /// </summary>
@@ -72,6 +74,230 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         public static string? GetParentRowId(this FormObject formObject)
         {
             return formObject?.CurrentRow?.ParentRowId;
+        }
+
+        /// <summary>
+        /// Gets the next available row ID for a <see cref="FormObject"/> using the pattern <c>formId||n</c>.
+        /// </summary>
+        /// <param name="formObject">The form object to evaluate.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the form ID is missing or a row ID cannot be determined.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when another row cannot be added due to form constraints.</exception>
+        /// <returns>The next available row ID.</returns>
+        public static string GetNextAvailableRowId(this FormObject formObject)
+        {
+            if (formObject == null)
+            {
+                throw new ArgumentNullException(nameof(formObject));
+            }
+
+            if (string.IsNullOrEmpty(formObject.FormId))
+            {
+                throw new ArgumentException("FormId cannot be null or empty.", nameof(formObject));
+            }
+
+            var currentRow = formObject.CurrentRow;
+            var otherRows = formObject.OtherRows ?? new List<RowObject>();
+
+            if (currentRow != null && !formObject.MultipleIteration)
+            {
+                throw new ArgumentOutOfRangeException(nameof(formObject), "Cannot add another row to a non-multiple-iteration form.");
+            }
+
+            for (int i = 1; i <= MaximumNumberOfMultipleIterationRows; i++)
+            {
+                var candidateRowId = string.Concat(formObject.FormId, "||", i.ToString());
+                var isCurrentMatch = currentRow != null && currentRow.RowId == candidateRowId;
+                var isOtherMatch = otherRows.Any(r => r != null && r.RowId == candidateRowId);
+                if (!isCurrentMatch && !isOtherMatch)
+                {
+                    return candidateRowId;
+                }
+            }
+
+            throw new ArgumentOutOfRangeException(nameof(formObject), "Could not determine next available row ID because no allocatable row IDs remain.");
+        }
+
+        /// <summary>
+        /// Adds a row to a <see cref="FormObject"/>.
+        /// </summary>
+        /// <param name="formObject">The form to modify.</param>
+        /// <param name="rowObject">The row to add.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> or <paramref name="rowObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when constraints prevent adding the row.</exception>
+        /// <returns>The modified form.</returns>
+        public static FormObject AddRowObject(this FormObject formObject, RowObject rowObject)
+        {
+            if (formObject == null)
+            {
+                throw new ArgumentNullException(nameof(formObject));
+            }
+
+            if (rowObject == null)
+            {
+                throw new ArgumentNullException(nameof(rowObject));
+            }
+
+            if (!formObject.MultipleIteration && formObject.CurrentRow != null)
+            {
+                throw new ArgumentException("Cannot add another row to a non-multiple-iteration form.", nameof(formObject));
+            }
+
+            if (!string.IsNullOrEmpty(rowObject.RowId) && formObject.IsRowPresent(rowObject.RowId))
+            {
+                throw new ArgumentException("A row with the provided RowId already exists.", nameof(rowObject));
+            }
+
+            if (formObject.CurrentRow == null)
+            {
+                if (string.IsNullOrEmpty(rowObject.RowId))
+                {
+                    rowObject.RowId = formObject.GetNextAvailableRowId();
+                }
+
+                formObject.CurrentRow = rowObject;
+                return formObject;
+            }
+
+            if (string.IsNullOrEmpty(rowObject.RowId))
+            {
+                rowObject.RowId = formObject.GetNextAvailableRowId();
+            }
+
+            if (formObject.OtherRows == null)
+            {
+                formObject.OtherRows = new List<RowObject>();
+            }
+
+            formObject.OtherRows.Add(rowObject);
+            return formObject;
+        }
+
+        /// <summary>
+        /// Adds a new row to a <see cref="FormObject"/> with row action set to <see cref="RowObject.RowActions.Add"/>.
+        /// </summary>
+        /// <param name="formObject">The form to modify.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when constraints prevent adding the row, such as non-multiple-iteration forms with an existing current row or duplicate row IDs.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when another row cannot be added due to form constraints.</exception>
+        /// <returns>The modified form.</returns>
+        public static FormObject AddRowObject(this FormObject formObject)
+        {
+            return formObject.AddRowObject(new RowObject
+            {
+                RowAction = RowObject.RowActions.Add
+            });
+        }
+
+        /// <summary>
+        /// Adds a new row to a <see cref="FormObject"/> with a specific row ID and parent row ID.
+        /// </summary>
+        /// <param name="formObject">The form to modify.</param>
+        /// <param name="rowId">The row ID to assign.</param>
+        /// <param name="parentRowId">The parent row ID to assign.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when constraints prevent adding the row, such as non-multiple-iteration forms with an existing current row or duplicate row IDs.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when another row cannot be added due to form constraints.</exception>
+        /// <returns>The modified form.</returns>
+        public static FormObject AddRowObject(this FormObject formObject, string rowId, string parentRowId)
+        {
+            return formObject.AddRowObject(rowId, parentRowId, RowObject.RowActions.Add);
+        }
+
+        /// <summary>
+        /// Adds a new row to a <see cref="FormObject"/> with specific row and parent identifiers and row action.
+        /// </summary>
+        /// <param name="formObject">The form to modify.</param>
+        /// <param name="rowId">The row ID to assign.</param>
+        /// <param name="parentRowId">The parent row ID to assign.</param>
+        /// <param name="rowAction">The row action to assign.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when constraints prevent adding the row, such as non-multiple-iteration forms with an existing current row or duplicate row IDs.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when another row cannot be added due to form constraints.</exception>
+        /// <returns>The modified form.</returns>
+        public static FormObject AddRowObject(this FormObject formObject, string rowId, string parentRowId, string rowAction)
+        {
+            return formObject.AddRowObject(new RowObject
+            {
+                RowId = rowId,
+                ParentRowId = parentRowId,
+                RowAction = rowAction
+            });
+        }
+
+        /// <summary>
+        /// Adds a new row to a <see cref="FormObject"/> with row action set to <see cref="RowObject.RowActions.Add"/> and the specified parent row ID.
+        /// </summary>
+        /// <param name="formObject">The form to modify.</param>
+        /// <param name="parentRowId">The parent row ID to assign.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when constraints prevent adding the row, such as non-multiple-iteration forms with an existing current row or duplicate row IDs.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when another row cannot be added due to form constraints.</exception>
+        /// <returns>The modified form.</returns>
+        public static FormObject AddRowObjectWithParentRowId(this FormObject formObject, string parentRowId)
+        {
+            return formObject.AddRowObject(new RowObject
+            {
+                ParentRowId = parentRowId,
+                RowAction = RowObject.RowActions.Add
+            });
+        }
+
+        /// <summary>
+        /// Marks a row for deletion in a <see cref="FormObject"/>.
+        /// </summary>
+        /// <param name="formObject">The form to modify.</param>
+        /// <param name="rowObject">The row to mark for deletion.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="rowObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the row ID is missing or no matching row is found.</exception>
+        /// <returns>The modified form.</returns>
+        public static FormObject DeleteRowObject(this FormObject formObject, RowObject rowObject)
+        {
+            if (rowObject == null)
+            {
+                throw new ArgumentNullException(nameof(rowObject));
+            }
+
+            return formObject.DeleteRowObject(rowObject.RowId);
+        }
+
+        /// <summary>
+        /// Marks a row for deletion in a <see cref="FormObject"/> by row ID.
+        /// </summary>
+        /// <param name="formObject">The form to modify.</param>
+        /// <param name="rowId">The row ID to mark for deletion.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="formObject"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="rowId"/> is null/empty or no matching row is found.</exception>
+        /// <returns>The modified form.</returns>
+        public static FormObject DeleteRowObject(this FormObject formObject, string rowId)
+        {
+            if (formObject == null)
+            {
+                throw new ArgumentNullException(nameof(formObject));
+            }
+
+            if (string.IsNullOrEmpty(rowId))
+            {
+                throw new ArgumentException("RowId cannot be null or empty.", nameof(rowId));
+            }
+
+            if (formObject.CurrentRow?.RowId == rowId)
+            {
+                formObject.CurrentRow.RowAction = RowObject.RowActions.Delete;
+                return formObject;
+            }
+
+            if (formObject.OtherRows != null)
+            {
+                var rowIndex = formObject.OtherRows.FindIndex(r => r != null && r.RowId == rowId);
+                if (rowIndex >= 0)
+                {
+                    formObject.OtherRows[rowIndex].RowAction = RowObject.RowActions.Delete;
+                    return formObject;
+                }
+            }
+
+            throw new ArgumentException("No matching row was found for the provided rowId.", nameof(rowId));
         }
 
         /// <summary>
@@ -244,18 +470,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <returns>True if the row is present, false otherwise.</returns>
         public static bool IsRowPresent(this FormObject formObject, string rowId)
         {
-            if (formObject == null || formObject.CurrentRow == null || string.IsNullOrEmpty(rowId))
+            if (formObject == null || string.IsNullOrEmpty(rowId))
                 return false;
 
-            if (formObject.CurrentRow.RowId == rowId)
+            if (formObject.CurrentRow?.RowId == rowId)
                 return true;
 
-            if (formObject.MultipleIteration && formObject.HasOtherRows())
-            {
-                return formObject.OtherRows.Any(r => r.RowId == rowId);
-            }
-
-            return false;
+            return formObject.OtherRows?.Any(r => r != null && r.RowId == rowId) ?? false;
         }
 
         /// <summary>
