@@ -26,7 +26,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
         {
             var optionObject = (OptionObject2015) MemberwiseClone();
             optionObject.Forms = new List<FormObject>();
-            foreach (var form in Forms)
+            foreach (var form in Forms?.Where(f => f != null) ?? Enumerable.Empty<FormObject>())
             {
                 optionObject.Forms.Add(form.Clone());
             }
@@ -94,7 +94,7 @@ namespace RarelySimple.AvatarScriptLink.Objects
             hash = hash * 23 + (ServerName != null ? ServerName.GetHashCode() : 0);
             hash = hash * 23 + (SessionToken != null ? SessionToken.GetHashCode() : 0);
             hash = hash * 23 + (SystemCode != null ? SystemCode.GetHashCode() : 0);
-            foreach (FormObject formObject in Forms)
+            foreach (FormObject formObject in Forms ?? Enumerable.Empty<FormObject>())
             {
                 hash = hash * 23 + (formObject != null ? formObject.GetHashCode() : 0);
             }

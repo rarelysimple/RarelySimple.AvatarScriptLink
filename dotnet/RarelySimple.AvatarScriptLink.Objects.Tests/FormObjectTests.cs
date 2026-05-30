@@ -17,6 +17,40 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
         }
 
         [TestMethod]
+        public void FormObjectClone_WhenOtherRowsAreNull_TreatsOtherRowsAsEmptyCollection()
+        {
+            FormObject formObject1 = new()
+            {
+                FormId = "1",
+                OtherRows = null
+            };
+
+            FormObject formObject2 = formObject1.Clone();
+
+            Assert.IsNotNull(formObject2.OtherRows);
+            Assert.AreEqual(0, formObject2.OtherRows.Count);
+        }
+
+        [TestMethod]
+        public void FormObjectEquals_WhenOtherRowsNullAndEmpty_AreEqual()
+        {
+            FormObject formObject1 = new()
+            {
+                FormId = "1",
+                MultipleIteration = false,
+                OtherRows = null
+            };
+            FormObject formObject2 = new()
+            {
+                FormId = "1",
+                MultipleIteration = false,
+                OtherRows = []
+            };
+
+            Assert.IsTrue(formObject1.Equals(formObject2));
+        }
+
+        [TestMethod]
         public void FormObjectEqualsMethodIsTrue()
         {
             FormObject formObject1 = new()
@@ -213,6 +247,27 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
                 OtherRows = []
             };
             FormObject formObject2 = formObject1.Clone();
+            Assert.AreEqual(formObject1.GetHashCode(), formObject2.GetHashCode());
+        }
+
+        [TestMethod]
+        public void FormObjectGetHashCode_WhenOtherRowsNullAndEmpty_AreEqual()
+        {
+            FormObject formObject1 = new()
+            {
+                FormId = "1",
+                MultipleIteration = true,
+                CurrentRow = new RowObject(),
+                OtherRows = null
+            };
+            FormObject formObject2 = new()
+            {
+                FormId = "1",
+                MultipleIteration = true,
+                CurrentRow = new RowObject(),
+                OtherRows = []
+            };
+
             Assert.AreEqual(formObject1.GetHashCode(), formObject2.GetHashCode());
         }
 

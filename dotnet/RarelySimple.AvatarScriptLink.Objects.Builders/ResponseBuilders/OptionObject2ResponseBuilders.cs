@@ -1,3 +1,5 @@
+using System;
+
 namespace RarelySimple.AvatarScriptLink.Objects.Builders.ResponseBuilders
 {
     /// <summary>
@@ -5,6 +7,123 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.ResponseBuilders
     /// </summary>
     public static class OptionObject2ResponseBuilders
     {
+        /// <summary>
+        /// Creates a return payload from the source <see cref="OptionObject2"/> by cloning and removing unedited rows.
+        /// </summary>
+        /// <param name="optionObject">The source option object.</param>
+        /// <returns>A finalized return payload.</returns>
+        public static OptionObject2 ToReturnOptionObject(this OptionObject2 optionObject)
+        {
+            if (optionObject == null)
+            {
+                throw new ArgumentNullException(nameof(optionObject));
+            }
+
+            var returnOptionObject = optionObject.Clone();
+            ResponseFinalizationHelpers.RemoveUneditedRows(returnOptionObject.Forms);
+            return returnOptionObject;
+        }
+
+        /// <summary>
+        /// Creates a return payload from the source <see cref="OptionObject2"/> by cloning, removing unedited rows, and setting error details.
+        /// </summary>
+        /// <param name="optionObject">The source option object.</param>
+        /// <param name="errorCode">The error code to set on the return payload.</param>
+        /// <param name="errorMessage">The error message to set on the return payload.</param>
+        /// <returns>A finalized return payload.</returns>
+        public static OptionObject2 ToReturnOptionObject(this OptionObject2 optionObject, double errorCode, string errorMessage)
+        {
+            var returnOptionObject = optionObject.ToReturnOptionObject();
+            returnOptionObject.ErrorCode = errorCode;
+            returnOptionObject.ErrorMesg = errorMessage ?? string.Empty;
+            return returnOptionObject;
+        }
+
+        /// <summary>
+        /// Creates a return payload by cloning and pruning against a baseline request object.
+        /// </summary>
+        /// <param name="optionObject">The working option object.</param>
+        /// <param name="baselineOptionObject">The original request option object used as baseline.</param>
+        /// <returns>A finalized return payload.</returns>
+        public static OptionObject2 ToReturnOptionObject(this OptionObject2 optionObject, OptionObject2 baselineOptionObject)
+        {
+            if (optionObject == null)
+            {
+                throw new ArgumentNullException(nameof(optionObject));
+            }
+
+            if (baselineOptionObject == null)
+            {
+                return optionObject.ToReturnOptionObject();
+            }
+
+            var returnOptionObject = optionObject.Clone();
+            ResponseFinalizationHelpers.RemoveUneditedRows(returnOptionObject.Forms, baselineOptionObject.Forms);
+            return returnOptionObject;
+        }
+
+        /// <summary>
+        /// Creates a return payload by cloning and pruning against a baseline request object, then applies error details.
+        /// </summary>
+        /// <param name="optionObject">The working option object.</param>
+        /// <param name="baselineOptionObject">The original request option object used as baseline.</param>
+        /// <param name="errorCode">The error code to set on the return payload.</param>
+        /// <param name="errorMessage">The error message to set on the return payload.</param>
+        /// <returns>A finalized return payload.</returns>
+        public static OptionObject2 ToReturnOptionObject(this OptionObject2 optionObject, OptionObject2 baselineOptionObject, double errorCode, string errorMessage)
+        {
+            var returnOptionObject = optionObject.ToReturnOptionObject(baselineOptionObject);
+            returnOptionObject.ErrorCode = errorCode;
+            returnOptionObject.ErrorMesg = errorMessage ?? string.Empty;
+            return returnOptionObject;
+        }
+
+        /// <summary>
+        /// Creates a return payload from the source <see cref="OptionObject2"/> by cloning and removing unedited rows.
+        /// </summary>
+        /// <param name="optionObject">The source option object.</param>
+        /// <returns>A finalized return payload.</returns>
+        public static OptionObject2 GetReturnOptionObject(this OptionObject2 optionObject)
+        {
+            return optionObject.ToReturnOptionObject();
+        }
+
+        /// <summary>
+        /// Creates a return payload from the source <see cref="OptionObject2"/> by cloning, removing unedited rows, and setting error details.
+        /// </summary>
+        /// <param name="optionObject">The source option object.</param>
+        /// <param name="errorCode">The error code to set on the return payload.</param>
+        /// <param name="errorMessage">The error message to set on the return payload.</param>
+        /// <returns>A finalized return payload.</returns>
+        public static OptionObject2 GetReturnOptionObject(this OptionObject2 optionObject, double errorCode, string errorMessage)
+        {
+            return optionObject.ToReturnOptionObject(errorCode, errorMessage);
+        }
+
+        /// <summary>
+        /// Creates a return payload by cloning and pruning against a baseline request object.
+        /// </summary>
+        /// <param name="optionObject">The working option object.</param>
+        /// <param name="baselineOptionObject">The original request option object used as baseline.</param>
+        /// <returns>A finalized return payload.</returns>
+        public static OptionObject2 GetReturnOptionObject(this OptionObject2 optionObject, OptionObject2 baselineOptionObject)
+        {
+            return optionObject.ToReturnOptionObject(baselineOptionObject);
+        }
+
+        /// <summary>
+        /// Creates a return payload by cloning and pruning against a baseline request object, then applies error details.
+        /// </summary>
+        /// <param name="optionObject">The working option object.</param>
+        /// <param name="baselineOptionObject">The original request option object used as baseline.</param>
+        /// <param name="errorCode">The error code to set on the return payload.</param>
+        /// <param name="errorMessage">The error message to set on the return payload.</param>
+        /// <returns>A finalized return payload.</returns>
+        public static OptionObject2 GetReturnOptionObject(this OptionObject2 optionObject, OptionObject2 baselineOptionObject, double errorCode, string errorMessage)
+        {
+            return optionObject.ToReturnOptionObject(baselineOptionObject, errorCode, errorMessage);
+        }
+
         /// <summary>
         /// Creates a success response <see cref="OptionObject2"/> with the specified entity ID.
         /// </summary>
