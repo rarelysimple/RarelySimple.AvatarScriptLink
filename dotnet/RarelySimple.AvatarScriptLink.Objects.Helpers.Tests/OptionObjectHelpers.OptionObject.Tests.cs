@@ -236,12 +236,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void GetNextAvailableRowId_OptionObject_WithNullForms_ThrowsArgumentNullException()
+        public void GetNextAvailableRowId_OptionObject_WithNullForms_ThrowsArgumentException()
         {
             var optionObject = new OptionObject { Forms = null! };
 
-            var ex = Assert.ThrowsException<ArgumentNullException>(() => optionObject.GetNextAvailableRowId("FORM1"));
+            var ex = Assert.ThrowsException<ArgumentException>(() => optionObject.GetNextAvailableRowId("FORM1"));
             Assert.AreEqual("optionObject", ex.ParamName);
+            StringAssert.Contains(ex.Message, "Forms");
         }
 
         [TestMethod]
@@ -314,21 +315,23 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void AddRowObject_OptionObject_WithNullForms_ThrowsArgumentNullException()
+        public void AddRowObject_OptionObject_WithNullForms_ThrowsArgumentException()
         {
             var optionObject = new OptionObject { Forms = null! };
 
-            var ex = Assert.ThrowsException<ArgumentNullException>(() => optionObject.AddRowObject("FORM1", new RowObject { RowAction = RowObject.RowActions.Add }));
+            var ex = Assert.ThrowsException<ArgumentException>(() => optionObject.AddRowObject("FORM1", new RowObject { RowAction = RowObject.RowActions.Add }));
             Assert.AreEqual("optionObject", ex.ParamName);
+            StringAssert.Contains(ex.Message, "Forms");
         }
 
         [TestMethod]
-        public void DeleteRowObject_OptionObject_WithNullForms_ThrowsArgumentNullException()
+        public void DeleteRowObject_OptionObject_WithNullForms_ThrowsArgumentException()
         {
             var optionObject = new OptionObject { Forms = null! };
 
-            var ex = Assert.ThrowsException<ArgumentNullException>(() => optionObject.DeleteRowObject("FORM1||1"));
+            var ex = Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject("FORM1||1"));
             Assert.AreEqual("optionObject", ex.ParamName);
+            StringAssert.Contains(ex.Message, "Forms");
         }
 
         [TestMethod]
