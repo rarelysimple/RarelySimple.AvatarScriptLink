@@ -99,12 +99,12 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="optionObject">The option object to query.</param>
         /// <param name="formId">The target form ID.</param>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> or <paramref name="optionObject"/>.<see cref="OptionObject2015.Forms"/> is null.</exception>
         /// <exception cref="ArgumentException">Thrown when <paramref name="formId"/> is null/empty or the form is not found.</exception>
         /// <returns>The next available row ID.</returns>
         public static string GetNextAvailableRowId(this OptionObject2015 optionObject, string formId)
         {
-            if (optionObject == null)
+            if (optionObject == null || optionObject.Forms == null)
             {
                 throw new ArgumentNullException(nameof(optionObject));
             }
@@ -125,12 +125,12 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <param name="optionObject">The option object to modify.</param>
         /// <param name="formId">The target form ID.</param>
         /// <param name="rowObject">The row to add.</param>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> or <paramref name="rowObject"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/>, <paramref name="optionObject"/>.<see cref="OptionObject2015.Forms"/>, or <paramref name="rowObject"/> is null.</exception>
         /// <exception cref="ArgumentException">Thrown when <paramref name="formId"/> is null/empty or the form is not found.</exception>
         /// <returns>The modified option object.</returns>
         public static OptionObject2015 AddRowObject(this OptionObject2015 optionObject, string formId, RowObject rowObject)
         {
-            if (optionObject == null)
+            if (optionObject == null || optionObject.Forms == null)
             {
                 throw new ArgumentNullException(nameof(optionObject));
             }
@@ -171,12 +171,12 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// </summary>
         /// <param name="optionObject">The option object to modify.</param>
         /// <param name="rowId">The row ID to mark for deletion.</param>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> or <paramref name="optionObject"/>.<see cref="OptionObject2015.Forms"/> is null.</exception>
         /// <exception cref="ArgumentException">Thrown when <paramref name="rowId"/> is null/empty or no matching row is found.</exception>
         /// <returns>The modified option object.</returns>
         public static OptionObject2015 DeleteRowObject(this OptionObject2015 optionObject, string rowId)
         {
-            if (optionObject == null)
+            if (optionObject == null || optionObject.Forms == null)
             {
                 throw new ArgumentNullException(nameof(optionObject));
             }

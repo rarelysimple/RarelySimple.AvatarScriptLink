@@ -310,7 +310,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             var optionObject = new OptionObject { Forms = null! };
 
             var ex = Assert.ThrowsException<ArgumentNullException>(() => optionObject.AddRowObject("FORM1", new RowObject { RowAction = RowObject.RowActions.Add }));
-            Assert.AreEqual("forms", ex.ParamName);
+            Assert.AreEqual("optionObject", ex.ParamName);
         }
 
         [TestMethod]
@@ -319,7 +319,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             var optionObject = new OptionObject { Forms = null! };
 
             var ex = Assert.ThrowsException<ArgumentNullException>(() => optionObject.DeleteRowObject("FORM1||1"));
-            Assert.AreEqual("forms", ex.ParamName);
+            Assert.AreEqual("optionObject", ex.ParamName);
         }
 
         [TestMethod]

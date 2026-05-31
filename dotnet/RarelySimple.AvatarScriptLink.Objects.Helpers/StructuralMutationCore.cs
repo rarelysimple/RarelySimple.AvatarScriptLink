@@ -15,12 +15,12 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
     {
         internal static FormObject GetFormObjectOrThrow(List<FormObject> forms, string formId)
         {
-            var formObject = forms?.Find(f => f != null && f.FormId == formId);
-            if (formObject == null)
+            if (forms == null)
             {
-                throw new ArgumentException(StructuralMutationMessages.NoMatchingFormForFormId, nameof(formId));
+                throw new ArgumentNullException(nameof(forms));
             }
 
+            var formObject = (forms?.Find(f => f != null && f.FormId == formId)) ?? throw new ArgumentException(StructuralMutationMessages.NoMatchingFormForFormId, nameof(formId));
             return formObject;
         }
 
