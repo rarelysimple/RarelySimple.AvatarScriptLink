@@ -20,7 +20,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 throw new ArgumentNullException(nameof(forms));
             }
 
-            var formObject = (forms?.Find(f => f != null && f.FormId == formId)) ?? throw new ArgumentException(StructuralMutationMessages.NoMatchingFormForFormId, nameof(formId));
+            var formObject = forms.Find(f => f != null && f.FormId == formId) ?? throw new ArgumentException(StructuralMutationMessages.NoMatchingFormForFormId, nameof(formId));
             return formObject;
         }
 
