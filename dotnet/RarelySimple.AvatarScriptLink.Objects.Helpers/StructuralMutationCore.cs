@@ -28,7 +28,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         {
             if (forms == null)
             {
-                throw new ArgumentException(StructuralMutationMessages.NoMatchingFormForFormId, nameof(formId));
+                throw new ArgumentNullException(nameof(forms), "Forms collection cannot be null.");
             }
 
             var formIndex = forms.FindIndex(f => f != null && f.FormId == formId);
@@ -45,7 +45,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         {
             if (forms == null)
             {
-                throw new ArgumentException(StructuralMutationMessages.NoMatchingRowForRowId, nameof(rowId));
+                throw new ArgumentNullException(nameof(forms), "Forms collection cannot be null.");
             }
 
             var formIndex = forms.FindIndex(f => f != null && f.IsRowPresent(rowId));

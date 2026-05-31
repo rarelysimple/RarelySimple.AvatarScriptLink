@@ -305,19 +305,21 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
-        public void AddRowObject_OptionObject_WithNullForms_ThrowsArgumentException()
+        public void AddRowObject_OptionObject_WithNullForms_ThrowsArgumentNullException()
         {
             var optionObject = new OptionObject { Forms = null! };
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.AddRowObject("FORM1", new RowObject { RowAction = RowObject.RowActions.Add }));
+            var ex = Assert.ThrowsException<ArgumentNullException>(() => optionObject.AddRowObject("FORM1", new RowObject { RowAction = RowObject.RowActions.Add }));
+            Assert.AreEqual("forms", ex.ParamName);
         }
 
         [TestMethod]
-        public void DeleteRowObject_OptionObject_WithNullForms_ThrowsArgumentException()
+        public void DeleteRowObject_OptionObject_WithNullForms_ThrowsArgumentNullException()
         {
             var optionObject = new OptionObject { Forms = null! };
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject("FORM1||1"));
+            var ex = Assert.ThrowsException<ArgumentNullException>(() => optionObject.DeleteRowObject("FORM1||1"));
+            Assert.AreEqual("forms", ex.ParamName);
         }
 
         [TestMethod]
