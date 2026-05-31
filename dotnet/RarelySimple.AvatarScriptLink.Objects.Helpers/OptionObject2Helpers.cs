@@ -81,6 +81,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <param name="formId">The target form ID.</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> is null.</exception>
         /// <exception cref="ArgumentException">Thrown when <paramref name="optionObject"/>.<see cref="OptionObject2.Forms"/> is null, when <paramref name="formId"/> is null/empty, or when the form is not found.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the target form is not configured for multiple iteration or when no allocatable row IDs remain.</exception>
         /// <returns>The next available row ID.</returns>
         public static string GetNextAvailableRowId(this OptionObject2 optionObject, string formId)
         {
