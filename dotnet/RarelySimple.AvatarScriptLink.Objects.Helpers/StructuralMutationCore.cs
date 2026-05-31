@@ -7,7 +7,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
     {
         internal const string FormIdCannotBeNullOrEmpty = "FormId cannot be null or empty.";
         internal const string RowIdCannotBeNullOrEmpty = "RowId cannot be null or empty.";
-        internal const string OptionObjectFormsCannotBeNull = "Forms collection cannot be null.";
+        internal const string FormsCollectionCannotBeNull = "Forms collection cannot be null.";
         internal const string NoMatchingFormForFormId = "No matching form was found for the provided formId.";
         internal const string NoMatchingRowForRowId = "No matching row was found for the provided rowId.";
     }

@@ -112,7 +112,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             if (optionObject.Forms == null)
             {
-                throw new ArgumentException(StructuralMutationMessages.OptionObjectFormsCannotBeNull, nameof(optionObject));
+                throw new ArgumentException(StructuralMutationMessages.FormsCollectionCannotBeNull, nameof(optionObject));
             }
 
             if (string.IsNullOrEmpty(formId))
@@ -132,7 +132,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         /// <param name="formId">The target form ID.</param>
         /// <param name="rowObject">The row to add.</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="optionObject"/> or <paramref name="rowObject"/> is null.</exception>
-        /// <exception cref="ArgumentException">Thrown when <paramref name="optionObject"/>.<see cref="OptionObject2015.Forms"/> is null, when <paramref name="formId"/> is null/empty, or when the form is not found.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="optionObject"/>.<see cref="OptionObject2015.Forms"/> is null, when <paramref name="formId"/> is null/empty, when the form is not found, or when the target form rejects the row due to form constraints (for example, a non-multiple-iteration form already has a current row or the row ID is a duplicate).</exception>
         /// <returns>The modified option object.</returns>
         public static OptionObject2015 AddRowObject(this OptionObject2015 optionObject, string formId, RowObject rowObject)
         {
@@ -143,7 +143,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             if (optionObject.Forms == null)
             {
-                throw new ArgumentException(StructuralMutationMessages.OptionObjectFormsCannotBeNull, nameof(optionObject));
+                throw new ArgumentException(StructuralMutationMessages.FormsCollectionCannotBeNull, nameof(optionObject));
             }
 
             if (string.IsNullOrEmpty(formId))
@@ -194,7 +194,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             if (optionObject.Forms == null)
             {
-                throw new ArgumentException(StructuralMutationMessages.OptionObjectFormsCannotBeNull, nameof(optionObject));
+                throw new ArgumentException(StructuralMutationMessages.FormsCollectionCannotBeNull, nameof(optionObject));
             }
 
             if (string.IsNullOrEmpty(rowId))
