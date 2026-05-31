@@ -99,6 +99,22 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             var currentRow = formObject.CurrentRow;
             var otherRows = formObject.OtherRows ?? new List<RowObject>();
+            var existingRowIds = new HashSet<string>(StringComparer.Ordinal);
+
+            var currentRowId = currentRow?.RowId;
+            if (!string.IsNullOrEmpty(currentRowId))
+            {
+                existingRowIds.Add(currentRowId!);
+            }
+
+            foreach (var row in otherRows)
+            {
+                var rowId = row?.RowId;
+                if (!string.IsNullOrEmpty(rowId))
+                {
+                    existingRowIds.Add(rowId!);
+                }
+            }
 
             if (currentRow != null && !formObject.MultipleIteration)
             {
@@ -108,9 +124,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             for (int i = 1; i <= MaximumNumberOfMultipleIterationRows; i++)
             {
                 var candidateRowId = string.Concat(formObject.FormId, "||", i.ToString(CultureInfo.InvariantCulture));
-                var isCurrentMatch = currentRow != null && currentRow.RowId == candidateRowId;
-                var isOtherMatch = otherRows.Any(r => r != null && r.RowId == candidateRowId);
-                if (!isCurrentMatch && !isOtherMatch)
+                if (!existingRowIds.Contains(candidateRowId))
                 {
                     return candidateRowId;
                 }
