@@ -7,6 +7,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
     {
         internal const string FormIdCannotBeNullOrEmpty = "FormId cannot be null or empty.";
         internal const string RowIdCannotBeNullOrEmpty = "RowId cannot be null or empty.";
+        internal const string FormsCollectionCannotBeNull = "Forms collection cannot be null.";
         internal const string NoMatchingFormForFormId = "No matching form was found for the provided formId.";
         internal const string NoMatchingRowForRowId = "No matching row was found for the provided rowId.";
     }
@@ -15,12 +16,12 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
     {
         internal static FormObject GetFormObjectOrThrow(List<FormObject> forms, string formId)
         {
-            var formObject = forms?.Find(f => f != null && f.FormId == formId);
-            if (formObject == null)
+            if (forms == null)
             {
-                throw new ArgumentException(StructuralMutationMessages.NoMatchingFormForFormId, nameof(formId));
+                throw new ArgumentNullException(nameof(forms));
             }
 
+            var formObject = forms.Find(f => f != null && f.FormId == formId) ?? throw new ArgumentException(StructuralMutationMessages.NoMatchingFormForFormId, nameof(formId));
             return formObject;
         }
 
@@ -28,7 +29,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         {
             if (forms == null)
             {
-                throw new ArgumentException(StructuralMutationMessages.NoMatchingFormForFormId, nameof(formId));
+                throw new ArgumentNullException(nameof(forms));
             }
 
             var formIndex = forms.FindIndex(f => f != null && f.FormId == formId);
@@ -45,7 +46,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         {
             if (forms == null)
             {
-                throw new ArgumentException(StructuralMutationMessages.NoMatchingRowForRowId, nameof(rowId));
+                throw new ArgumentNullException(nameof(forms));
             }
 
             var formIndex = forms.FindIndex(f => f != null && f.IsRowPresent(rowId));

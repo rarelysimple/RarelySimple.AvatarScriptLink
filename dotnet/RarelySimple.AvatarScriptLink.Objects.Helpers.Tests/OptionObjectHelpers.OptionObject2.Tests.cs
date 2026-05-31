@@ -256,6 +256,16 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
+        public void GetNextAvailableRowId_OptionObject2_WithNullForms_ThrowsArgumentException()
+        {
+            var optionObject = new OptionObject2 { Forms = null! };
+
+            var ex = Assert.ThrowsException<ArgumentException>(() => optionObject.GetNextAvailableRowId("FORM2"));
+            Assert.AreEqual("optionObject", ex.ParamName);
+            StringAssert.Contains(ex.Message, "Forms");
+        }
+
+        [TestMethod]
         public void AddRowObject_OptionObject2_WithMatchingForm_AddsRowToForm()
         {
             var optionObject = new OptionObject2();
@@ -311,7 +321,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             var optionObject = new OptionObject2 { Forms = null! };
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.AddRowObject("FORM2", new RowObject { RowAction = RowObject.RowActions.Add }));
+            var ex = Assert.ThrowsException<ArgumentException>(() => optionObject.AddRowObject("FORM2", new RowObject { RowAction = RowObject.RowActions.Add }));
+            Assert.AreEqual("optionObject", ex.ParamName);
+            StringAssert.Contains(ex.Message, "Forms");
         }
 
         [TestMethod]
@@ -319,7 +331,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             var optionObject = new OptionObject2 { Forms = null! };
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject("FORM2||1"));
+            var ex = Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject("FORM2||1"));
+            Assert.AreEqual("optionObject", ex.ParamName);
+            StringAssert.Contains(ex.Message, "Forms");
         }
 
         [TestMethod]

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using RarelySimple.AvatarScriptLink.Objects.Helpers.Validators;
 
@@ -93,11 +94,27 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             if (string.IsNullOrEmpty(formObject.FormId))
             {
-                throw new ArgumentException("FormId cannot be null or empty.", nameof(formObject));
+                throw new ArgumentException(StructuralMutationMessages.FormIdCannotBeNullOrEmpty, nameof(formObject));
             }
 
             var currentRow = formObject.CurrentRow;
             var otherRows = formObject.OtherRows ?? new List<RowObject>();
+            var existingRowIds = new HashSet<string>(StringComparer.Ordinal);
+
+            var currentRowId = currentRow?.RowId;
+            if (!string.IsNullOrEmpty(currentRowId))
+            {
+                existingRowIds.Add(currentRowId!);
+            }
+
+            foreach (var row in otherRows)
+            {
+                var rowId = row?.RowId;
+                if (!string.IsNullOrEmpty(rowId))
+                {
+                    existingRowIds.Add(rowId!);
+                }
+            }
 
             if (currentRow != null && !formObject.MultipleIteration)
             {
@@ -106,10 +123,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             for (int i = 1; i <= MaximumNumberOfMultipleIterationRows; i++)
             {
-                var candidateRowId = string.Concat(formObject.FormId, "||", i.ToString());
-                var isCurrentMatch = currentRow != null && currentRow.RowId == candidateRowId;
-                var isOtherMatch = otherRows.Any(r => r != null && r.RowId == candidateRowId);
-                if (!isCurrentMatch && !isOtherMatch)
+                var candidateRowId = string.Concat(formObject.FormId, "||", i.ToString(CultureInfo.InvariantCulture));
+                if (!existingRowIds.Contains(candidateRowId))
                 {
                     return candidateRowId;
                 }
@@ -278,7 +293,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             if (string.IsNullOrEmpty(rowId))
             {
-                throw new ArgumentException("RowId cannot be null or empty.", nameof(rowId));
+                throw new ArgumentException(StructuralMutationMessages.RowIdCannotBeNullOrEmpty, nameof(rowId));
             }
 
             if (formObject.CurrentRow?.RowId == rowId)
@@ -297,7 +312,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 }
             }
 
-            throw new ArgumentException("No matching row was found for the provided rowId.", nameof(rowId));
+            throw new ArgumentException(StructuralMutationMessages.NoMatchingRowForRowId, nameof(rowId));
         }
 
         /// <summary>
