@@ -236,6 +236,15 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         }
 
         [TestMethod]
+        public void GetNextAvailableRowId_OptionObject_WithNullForms_ThrowsArgumentNullException()
+        {
+            var optionObject = new OptionObject { Forms = null! };
+
+            var ex = Assert.ThrowsException<ArgumentNullException>(() => optionObject.GetNextAvailableRowId("FORM1"));
+            Assert.AreEqual("optionObject", ex.ParamName);
+        }
+
+        [TestMethod]
         public void AddRowObject_OptionObject_WithMatchingForm_AddsRowToForm()
         {
             var optionObject = new OptionObject();
