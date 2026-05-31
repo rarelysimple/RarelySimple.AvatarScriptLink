@@ -28,7 +28,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         {
             if (forms == null)
             {
-                throw new ArgumentNullException(nameof(forms), "Forms collection cannot be null.");
+                throw new ArgumentNullException(nameof(forms));
             }
 
             var formIndex = forms.FindIndex(f => f != null && f.FormId == formId);
@@ -45,7 +45,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         {
             if (forms == null)
             {
-                throw new ArgumentNullException(nameof(forms), "Forms collection cannot be null.");
+                throw new ArgumentNullException(nameof(forms));
             }
 
             var formIndex = forms.FindIndex(f => f != null && f.IsRowPresent(rowId));
