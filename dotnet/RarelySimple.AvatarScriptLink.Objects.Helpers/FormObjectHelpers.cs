@@ -155,12 +155,12 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
 
             if (!formObject.MultipleIteration && formObject.CurrentRow != null)
             {
-                throw new ArgumentException("Cannot add another row to a non-multiple-iteration form.", nameof(formObject));
+                throw new ArgumentException(StructuralMutationMessages.CannotAddAnotherRowToNonMultipleIterationForm, nameof(formObject));
             }
 
             if (!string.IsNullOrEmpty(rowObject.RowId) && formObject.IsRowPresent(rowObject.RowId))
             {
-                throw new ArgumentException("A row with the provided RowId already exists.", nameof(rowObject));
+                throw new ArgumentException(StructuralMutationMessages.RowObjectAlreadyExists, nameof(rowObject));
             }
 
             if (formObject.CurrentRow == null)
@@ -565,7 +565,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 || (formObject.MultipleIteration && formObject.HasOtherRows() && formObject.OtherRows.Any(r => r.IsFieldPresent(fieldNumber)));
 
             if (!hasFieldInForm)
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             if (formObject.CurrentRow.IsFieldPresent(fieldNumber))
             {
@@ -602,7 +602,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 || (formObject.MultipleIteration && formObject.HasOtherRows() && fieldsToSet.Any(f => formObject.OtherRows.Any(r => r.IsFieldPresent(f))));
 
             if (!hasAnyField)
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             var currentRowFieldNumbers = fieldsToSet.Where(formObject.CurrentRow.IsFieldPresent).ToList();
             if (currentRowFieldNumbers.Count > 0)
@@ -644,7 +644,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 || (formObject.MultipleIteration && formObject.HasOtherRows() && formObject.OtherRows.Any(r => r.IsFieldPresent(fieldNumber)));
 
             if (!hasFieldInForm)
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             if (formObject.CurrentRow.IsFieldPresent(fieldNumber))
             {
@@ -681,7 +681,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 || (formObject.MultipleIteration && formObject.HasOtherRows() && fieldsToSet.Any(f => formObject.OtherRows.Any(r => r.IsFieldPresent(f))));
 
             if (!hasAnyField)
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             var currentRowFieldNumbers = fieldsToSet.Where(formObject.CurrentRow.IsFieldPresent).ToList();
             if (currentRowFieldNumbers.Count > 0)
@@ -723,7 +723,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 || (formObject.MultipleIteration && formObject.HasOtherRows() && formObject.OtherRows.Any(r => r.IsFieldPresent(fieldNumber)));
 
             if (!hasFieldInForm)
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             if (formObject.CurrentRow.IsFieldPresent(fieldNumber))
             {
@@ -760,7 +760,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 || (formObject.MultipleIteration && formObject.HasOtherRows() && fieldsToSet.Any(f => formObject.OtherRows.Any(r => r.IsFieldPresent(f))));
 
             if (!hasAnyField)
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             var currentRowFieldNumbers = fieldsToSet.Where(formObject.CurrentRow.IsFieldPresent).ToList();
             if (currentRowFieldNumbers.Count > 0)
@@ -802,7 +802,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 || (formObject.MultipleIteration && formObject.HasOtherRows() && formObject.OtherRows.Any(r => r.IsFieldPresent(fieldNumber)));
 
             if (!hasFieldInForm)
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             if (formObject.CurrentRow.IsFieldPresent(fieldNumber))
             {
@@ -839,7 +839,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 || (formObject.MultipleIteration && formObject.HasOtherRows() && fieldsToSet.Any(f => formObject.OtherRows.Any(r => r.IsFieldPresent(f))));
 
             if (!hasAnyField)
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             var currentRowFieldNumbers = fieldsToSet.Where(formObject.CurrentRow.IsFieldPresent).ToList();
             if (currentRowFieldNumbers.Count > 0)
@@ -881,7 +881,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 || (formObject.MultipleIteration && formObject.HasOtherRows() && formObject.OtherRows.Any(r => r.IsFieldPresent(fieldNumber)));
 
             if (!hasFieldInForm)
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             if (formObject.CurrentRow.IsFieldPresent(fieldNumber))
             {
@@ -918,7 +918,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 || (formObject.MultipleIteration && formObject.HasOtherRows() && fieldsToSet.Any(f => formObject.OtherRows.Any(r => r.IsFieldPresent(f))));
 
             if (!hasAnyField)
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             var currentRowFieldNumbers = fieldsToSet.Where(formObject.CurrentRow.IsFieldPresent).ToList();
             if (currentRowFieldNumbers.Count > 0)

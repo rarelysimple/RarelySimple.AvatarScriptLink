@@ -32,6 +32,34 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
         }
 
         [TestMethod]
+        public void ValidateResponse_ReturnsError_WhenErrorCodeIsNaN()
+        {
+            // Arrange
+            var optionObject = new OptionObject { EntityID = "PATID", ErrorCode = double.NaN, ErrorMesg = string.Empty };
+
+            // Act
+            ResponseValidationResult result = optionObject.ValidateResponse();
+
+            // Assert
+            Assert.IsFalse(result.IsValid);
+            CollectionAssert.Contains(result.Errors.ToList(), "ErrorCode must be a finite number between 0 and 6.");
+        }
+
+        [TestMethod]
+        public void ValidateResponse_ReturnsError_WhenErrorCodeIsInfinity()
+        {
+            // Arrange
+            var optionObject = new OptionObject { EntityID = "PATID", ErrorCode = double.PositiveInfinity, ErrorMesg = string.Empty };
+
+            // Act
+            ResponseValidationResult result = optionObject.ValidateResponse();
+
+            // Assert
+            Assert.IsFalse(result.IsValid);
+            CollectionAssert.Contains(result.Errors.ToList(), "ErrorCode must be a finite number between 0 and 6.");
+        }
+
+        [TestMethod]
         public void ValidateResponse_ReturnsError_WhenErrorCodeIsInvalid()
         {
             // Arrange
@@ -162,6 +190,34 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
     public class FormObjectResponseValidatorsTests
     {
         [TestMethod]
+        public void ValidateResponse_ReturnsError_WhenFormObjectIsNull()
+        {
+            // Arrange
+            FormObject? form = null;
+
+            // Act
+            ResponseValidationResult result = form.ValidateResponse();
+
+            // Assert
+            Assert.IsFalse(result.IsValid);
+            CollectionAssert.Contains(result.Errors.ToList(), "FormObject is null.");
+        }
+
+        [TestMethod]
+        public void ValidateResponse_ReturnsError_WhenFormIdIsMissing()
+        {
+            // Arrange
+            var form = new FormObject { FormId = string.Empty };
+
+            // Act
+            ResponseValidationResult result = form.ValidateResponse();
+
+            // Assert
+            Assert.IsFalse(result.IsValid);
+            CollectionAssert.Contains(result.Errors.ToList(), "FormId is required.");
+        }
+
+        [TestMethod]
         public void ValidateResponse_ReturnsError_WhenMultipleIterationFalseAndOtherRowsPresent()
         {
             // Arrange
@@ -175,11 +231,65 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
             Assert.IsFalse(result.IsValid);
             CollectionAssert.Contains(result.Errors.ToList(), "OtherRows must be empty when MultipleIteration is false.");
         }
+
+        [TestMethod]
+        public void ValidateResponse_ReturnsSuccess_WhenFormIsValid()
+        {
+            // Arrange
+            var form = new FormObject { FormId = "FORM1", MultipleIteration = false };
+
+            // Act
+            ResponseValidationResult result = form.ValidateResponse();
+
+            // Assert
+            Assert.IsTrue(result.IsValid);
+        }
+
+        [TestMethod]
+        public void ValidateResponse_ReturnsInvalid_WhenFormIdIsMissing()
+        {
+            // Arrange
+            var form = new FormObject { FormId = string.Empty };
+
+            // Act
+            bool result = form.ValidateResponse().IsValid;
+
+            // Assert
+            Assert.IsFalse(result);
+        }
     }
 
     [TestClass]
     public class RowObjectResponseValidatorsTests
     {
+        [TestMethod]
+        public void ValidateResponse_ReturnsError_WhenRowObjectIsNull()
+        {
+            // Arrange
+            RowObject? row = null;
+
+            // Act
+            ResponseValidationResult result = row.ValidateResponse();
+
+            // Assert
+            Assert.IsFalse(result.IsValid);
+            CollectionAssert.Contains(result.Errors.ToList(), "RowObject is null.");
+        }
+
+        [TestMethod]
+        public void ValidateResponse_ReturnsError_WhenRowIdIsMissing()
+        {
+            // Arrange
+            var row = new RowObject { RowId = string.Empty };
+
+            // Act
+            ResponseValidationResult result = row.ValidateResponse();
+
+            // Assert
+            Assert.IsFalse(result.IsValid);
+            CollectionAssert.Contains(result.Errors.ToList(), "RowId is required.");
+        }
+
         [TestMethod]
         public void ValidateResponse_ReturnsError_WhenRowActionMissingWithFields()
         {
@@ -208,11 +318,51 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
             Assert.IsFalse(result.IsValid);
             CollectionAssert.Contains(result.Errors.ToList(), "RowAction must be ADD, EDIT, DELETE, or empty.");
         }
+
+        [TestMethod]
+        public void ValidateResponse_ReturnsSuccess_WhenRowIsValid()
+        {
+            // Arrange
+            var row = new RowObject { RowId = "1", RowAction = RowObject.RowActions.Edit };
+
+            // Act
+            ResponseValidationResult result = row.ValidateResponse();
+
+            // Assert
+            Assert.IsTrue(result.IsValid);
+        }
+
+        [TestMethod]
+        public void ValidateResponse_ReturnsInvalid_WhenRowIdIsMissing()
+        {
+            // Arrange
+            var row = new RowObject { RowId = string.Empty };
+
+            // Act
+            bool result = row.ValidateResponse().IsValid;
+
+            // Assert
+            Assert.IsFalse(result);
+        }
     }
 
     [TestClass]
     public class FieldObjectResponseValidatorsTests
     {
+        [TestMethod]
+        public void ValidateResponse_ReturnsError_WhenFieldObjectIsNull()
+        {
+            // Arrange
+            FieldObject? field = null;
+
+            // Act
+            ResponseValidationResult result = field.ValidateResponse();
+
+            // Assert
+            Assert.IsFalse(result.IsValid);
+            CollectionAssert.Contains(result.Errors.ToList(), "FieldObject is null.");
+        }
+
         [TestMethod]
         public void ValidateResponse_ReturnsError_WhenFieldNumberMissing()
         {
@@ -239,6 +389,60 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
             // Assert
             Assert.IsFalse(result.IsValid);
             CollectionAssert.Contains(result.Errors.ToList(), "Enabled must be \"0\" or \"1\" when set.");
+        }
+
+        [TestMethod]
+        public void ValidateResponse_ReturnsError_WhenLockFlagIsInvalid()
+        {
+            // Arrange
+            var field = new FieldObject { FieldNumber = "100", Lock = "X" };
+
+            // Act
+            ResponseValidationResult result = field.ValidateResponse();
+
+            // Assert
+            Assert.IsFalse(result.IsValid);
+            CollectionAssert.Contains(result.Errors.ToList(), "Lock must be \"0\" or \"1\" when set.");
+        }
+
+        [TestMethod]
+        public void ValidateResponse_ReturnsError_WhenRequiredFlagIsInvalid()
+        {
+            // Arrange
+            var field = new FieldObject { FieldNumber = "100", Required = "X" };
+
+            // Act
+            ResponseValidationResult result = field.ValidateResponse();
+
+            // Assert
+            Assert.IsFalse(result.IsValid);
+            CollectionAssert.Contains(result.Errors.ToList(), "Required must be \"0\" or \"1\" when set.");
+        }
+
+        [TestMethod]
+        public void ValidateResponse_ReturnsSuccess_WhenFieldIsValid()
+        {
+            // Arrange
+            var field = new FieldObject { FieldNumber = "100", Enabled = "1", Lock = "0", Required = "0" };
+
+            // Act
+            ResponseValidationResult result = field.ValidateResponse();
+
+            // Assert
+            Assert.IsTrue(result.IsValid);
+        }
+
+        [TestMethod]
+        public void ValidateResponse_ReturnsInvalid_WhenFieldNumberMissing()
+        {
+            // Arrange
+            var field = new FieldObject { FieldNumber = string.Empty };
+
+            // Act
+            bool result = field.ValidateResponse().IsValid;
+
+            // Assert
+            Assert.IsFalse(result);
         }
     }
 }

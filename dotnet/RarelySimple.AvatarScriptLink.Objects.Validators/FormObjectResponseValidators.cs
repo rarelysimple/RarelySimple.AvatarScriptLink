@@ -18,24 +18,24 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators
 
             if (formObject == null)
             {
-                errors.Add("FormObject is null.");
+                errors.Add(ResponseValidationMessages.FormObjectIsNull);
                 return new ResponseValidationResult(errors);
             }
 
             if (string.IsNullOrWhiteSpace(formObject.FormId))
             {
-                errors.Add("FormId is required.");
+                errors.Add(ResponseValidationMessages.FormIdIsRequired);
             }
 
             if (formObject.OtherRows == null)
             {
-                errors.Add("OtherRows collection must not be null.");
+                errors.Add(ResponseValidationMessages.OtherRowsCollectionMustNotBeNull);
                 return new ResponseValidationResult(errors);
             }
 
             if (!formObject.MultipleIteration && formObject.OtherRows.Count > 0)
             {
-                errors.Add("OtherRows must be empty when MultipleIteration is false.");
+                errors.Add(ResponseValidationMessages.OtherRowsMustBeEmptyWhenMultipleIterationIsFalse);
             }
 
             if (formObject.CurrentRow != null)
