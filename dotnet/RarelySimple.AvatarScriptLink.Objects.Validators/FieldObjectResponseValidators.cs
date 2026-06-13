@@ -18,13 +18,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators
 
             if (fieldObject == null)
             {
-                errors.Add("FieldObject is null.");
+                errors.Add(ResponseValidationMessages.FieldObjectIsNull);
                 return new ResponseValidationResult(errors);
             }
 
             if (string.IsNullOrWhiteSpace(fieldObject.FieldNumber))
             {
-                errors.Add("FieldNumber is required.");
+                errors.Add(ResponseValidationMessages.FieldNumberIsRequired);
             }
 
             ValidateFlag(fieldObject.Enabled, "Enabled", errors);
@@ -38,7 +38,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators
         {
             if (!string.IsNullOrEmpty(value) && value != "0" && value != "1")
             {
-                errors.Add($"{name} must be \"0\" or \"1\" when set.");
+                errors.Add(string.Format(ResponseValidationMessages.FieldFlagMustBeZeroOrOne, name));
             }
         }
     }

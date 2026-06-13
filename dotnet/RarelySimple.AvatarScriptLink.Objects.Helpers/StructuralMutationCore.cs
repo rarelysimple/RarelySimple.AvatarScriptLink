@@ -10,6 +10,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
         internal const string FormsCollectionCannotBeNull = "Forms collection cannot be null.";
         internal const string NoMatchingFormForFormId = "No matching form was found for the provided formId.";
         internal const string NoMatchingRowForRowId = "No matching row was found for the provided rowId.";
+        internal const string NoMatchingFieldObjectsMessage = "No matching field objects were found.";
+        internal const string CannotAddAnotherRowToNonMultipleIterationForm = "Cannot add another row to a non-multiple-iteration form.";
+        internal const string RowObjectAlreadyExists = "A row with the provided RowId already exists.";
     }
 
     internal static class StructuralMutationCore

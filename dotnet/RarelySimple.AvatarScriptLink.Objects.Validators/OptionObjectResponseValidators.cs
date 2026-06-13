@@ -21,13 +21,13 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators
 
             if (optionObject == null)
             {
-                errors.Add("OptionObject is null.");
+                errors.Add(ResponseValidationMessages.OptionObjectIsNull);
                 return new ResponseValidationResult(errors);
             }
 
             if (string.IsNullOrWhiteSpace(optionObject.EntityID))
             {
-                errors.Add("EntityID is required.");
+                errors.Add(ResponseValidationMessages.EntityIdIsRequired);
             }
 
             ValidateErrorCode(optionObject.ErrorCode, errors);
@@ -101,20 +101,20 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators
         {
             if (double.IsNaN(errorCode) || double.IsInfinity(errorCode))
             {
-                errors.Add("ErrorCode must be a finite number between 0 and 6.");
+                errors.Add(ResponseValidationMessages.ErrorCodeMustBeFiniteBetween0And6);
                 return;
             }
 
             if (errorCode < 0 || errorCode > 6)
             {
-                errors.Add("ErrorCode must be between 0 and 6.");
+                errors.Add(ResponseValidationMessages.ErrorCodeMustBeBetween0And6);
                 return;
             }
 
             double rounded = Math.Round(errorCode, 0, MidpointRounding.AwayFromZero);
             if (Math.Abs(errorCode - rounded) > 1e-9)
             {
-                errors.Add("ErrorCode must be an integer between 0 and 6.");
+                errors.Add(ResponseValidationMessages.ErrorCodeMustBeIntegerBetween0And6);
             }
         }
 
@@ -128,25 +128,25 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators
 
             if (normalizedCode == 0 && !string.IsNullOrEmpty(errorMessage))
             {
-                errors.Add("ErrorMesg must be empty when ErrorCode is 0.");
+                errors.Add(ResponseValidationMessages.ErrorMesgMustBeEmptyWhenErrorCodeIs0);
                 return;
             }
 
             if (normalizedCode >= 1 && normalizedCode <= 4 && string.IsNullOrWhiteSpace(errorMessage))
             {
-                errors.Add("ErrorMesg is required when ErrorCode is between 1 and 4.");
+                errors.Add(ResponseValidationMessages.ErrorMesgIsRequiredWhenErrorCodeIsBetween1And4);
                 return;
             }
 
             if (normalizedCode == 5 && !IsValidUrl(errorMessage))
             {
-                errors.Add("ErrorMesg must be a valid absolute URL when ErrorCode is 5.");
+                errors.Add(ResponseValidationMessages.ErrorMesgMustBeValidAbsoluteUrlWhenErrorCodeIs5);
                 return;
             }
 
             if (normalizedCode == 6 && !IsValidOpenFormString(errorMessage))
             {
-                errors.Add("ErrorMesg must be a valid OpenForm string when ErrorCode is 6.");
+                errors.Add(ResponseValidationMessages.ErrorMesgMustBeValidOpenFormStringWhenErrorCodeIs6);
             }
         }
 

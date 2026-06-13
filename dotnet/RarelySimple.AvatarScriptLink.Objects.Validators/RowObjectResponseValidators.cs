@@ -18,29 +18,29 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators
 
             if (rowObject == null)
             {
-                errors.Add("RowObject is null.");
+                errors.Add(ResponseValidationMessages.RowObjectIsNull);
                 return new ResponseValidationResult(errors);
             }
 
             if (string.IsNullOrWhiteSpace(rowObject.RowId))
             {
-                errors.Add("RowId is required.");
+                errors.Add(ResponseValidationMessages.RowIdIsRequired);
             }
 
             if (!IsValidRowAction(rowObject.RowAction))
             {
-                errors.Add("RowAction must be ADD, EDIT, DELETE, or empty.");
+                errors.Add(ResponseValidationMessages.RowActionMustBeAddEditDeleteOrEmpty);
             }
 
             if (rowObject.Fields == null)
             {
-                errors.Add("Fields collection must not be null.");
+                errors.Add(ResponseValidationMessages.FieldsCollectionMustNotBeNull);
                 return new ResponseValidationResult(errors);
             }
 
             if (rowObject.Fields.Count > 0 && string.IsNullOrEmpty(rowObject.RowAction))
             {
-                errors.Add("RowAction is required when row contains fields.");
+                errors.Add(ResponseValidationMessages.RowActionIsRequiredWhenRowContainsFields);
             }
 
             for (int i = 0; i < rowObject.Fields.Count; i++)

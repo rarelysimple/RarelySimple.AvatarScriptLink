@@ -372,7 +372,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 return optionObject;
 
             if (!optionObject.Forms.Any(f => f.IsFieldPresent(fieldNumber)))
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             foreach (var form in optionObject.Forms)
             {
@@ -417,7 +417,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 .ToList();
 
             if (fieldsToSet.Count == 0)
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             foreach (var form in optionObject.Forms)
             {
@@ -447,7 +447,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 return optionObject;
 
             if (!optionObject.Forms.Any(f => f.IsFieldPresent(fieldNumber)))
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             foreach (var form in optionObject.Forms)
             {
@@ -492,7 +492,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 .ToList();
 
             if (fieldsToSet.Count == 0)
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             foreach (var form in optionObject.Forms)
             {
@@ -522,7 +522,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 return optionObject;
 
             if (!optionObject.Forms.Any(f => f.IsFieldPresent(fieldNumber)))
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             foreach (var form in optionObject.Forms)
             {
@@ -567,7 +567,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 .ToList();
 
             if (fieldsToSet.Count == 0)
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             foreach (var form in optionObject.Forms)
             {
@@ -597,7 +597,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 return optionObject;
 
             if (!optionObject.Forms.Any(f => f.IsFieldPresent(fieldNumber)))
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             foreach (var form in optionObject.Forms)
             {
@@ -642,7 +642,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 .ToList();
 
             if (fieldsToSet.Count == 0)
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             foreach (var form in optionObject.Forms)
             {
@@ -672,7 +672,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 return optionObject;
 
             if (!optionObject.Forms.Any(f => f.IsFieldPresent(fieldNumber)))
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             foreach (var form in optionObject.Forms)
             {
@@ -720,7 +720,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 .ToList();
 
             if (fieldsToSet.Count == 0)
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             foreach (var form in optionObject.Forms)
             {
@@ -750,7 +750,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 return optionObject;
 
             if (!optionObject.Forms.Any(f => f.IsFieldPresent(fieldNumber)))
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumber));
 
             foreach (var form in optionObject.Forms)
             {
@@ -798,7 +798,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
                 .ToList();
 
             if (fieldsToSet.Count == 0)
-                throw new ArgumentException(ArgumentGuards.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
+                throw new ArgumentException(StructuralMutationMessages.NoMatchingFieldObjectsMessage, nameof(fieldNumbers));
 
             foreach (var form in optionObject.Forms)
             {

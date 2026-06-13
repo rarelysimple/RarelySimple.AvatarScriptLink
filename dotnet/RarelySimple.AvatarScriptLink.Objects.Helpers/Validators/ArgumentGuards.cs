@@ -7,12 +7,12 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Validators
     /// <summary>
     /// Shared guard helpers for argument validation and normalization used by helper extension methods.
     /// </summary>
-    public static class ArgumentGuards
+    internal static class ArgumentGuards
     {
-        internal const string NoMatchingFieldObjectsMessage = "No matching field objects were found.";
-        private const string NoFieldObjectsProvidedMessage = "No field objects were provided.";
-        private const string NoFieldNumbersProvidedMessage = "No field numbers were provided.";
-        private const string FieldNumberCannotBeEmptyMessage = "Field number cannot be empty.";
+        internal const string NoMatchingFieldObjectsMessage = StructuralMutationMessages.NoMatchingFieldObjectsMessage;
+        internal const string NoFieldObjectsProvidedMessage = "No field objects were provided.";
+        internal const string NoFieldNumbersProvidedMessage = "No field numbers were provided.";
+        internal const string FieldNumberCannotBeEmptyMessage = "Field number cannot be empty.";
 
         /// <summary>
         /// Validates a single field number argument.
