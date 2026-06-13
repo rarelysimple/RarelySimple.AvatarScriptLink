@@ -161,6 +161,48 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             Assert.IsTrue(result);
         }
 
+        [TestMethod]
+        [TestCategory("ScriptLinkValidation-IsValidUrl")]
+        public void IsValidUrl_ValidUrlWithFragment_ReturnsTrue()
+        {
+            // Arrange
+            string url = "https://example.com/page#section";
+
+            // Act
+            bool result = ScriptLinkValidation.IsValidUrl(url);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        [TestCategory("ScriptLinkValidation-IsValidUrl")]
+        public void IsValidUrl_ValidUrlWithPort_ReturnsTrue()
+        {
+            // Arrange
+            string url = "https://example.com:8443/path";
+
+            // Act
+            bool result = ScriptLinkValidation.IsValidUrl(url);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        [TestCategory("ScriptLinkValidation-IsValidUrl")]
+        public void IsValidUrl_ValidFtpUrl_ReturnsTrue()
+        {
+            // Arrange
+            string url = "ftp://files.example.com/report.csv";
+
+            // Act
+            bool result = ScriptLinkValidation.IsValidUrl(url);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
         #endregion
 
         #region IsValidUrl(Uri) Tests
@@ -413,6 +455,62 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             // Arrange
             string openForm = "   ";
+
+            // Act
+            bool result = ScriptLinkValidation.IsValidOpenFormString(openForm);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        [TestCategory("ScriptLinkValidation-IsValidOpenFormString")]
+        public void IsValidOpenFormString_LowercaseFormName_ReturnsFalse()
+        {
+            // Arrange
+            string openForm = "pr0001";
+
+            // Act
+            bool result = ScriptLinkValidation.IsValidOpenFormString(openForm);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        [TestCategory("ScriptLinkValidation-IsValidOpenFormString")]
+        public void IsValidOpenFormString_NumbersOnlyFormName_ReturnsFalse()
+        {
+            // Arrange
+            string openForm = "0001";
+
+            // Act
+            bool result = ScriptLinkValidation.IsValidOpenFormString(openForm);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        [TestCategory("ScriptLinkValidation-IsValidOpenFormString")]
+        public void IsValidOpenFormString_MultipleFormsWithSpacesAroundAmpersand_ReturnsTrue()
+        {
+            // Arrange
+            string openForm = "PR0001 & PR0002";
+
+            // Act
+            bool result = ScriptLinkValidation.IsValidOpenFormString(openForm);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        [TestCategory("ScriptLinkValidation-IsValidOpenFormString")]
+        public void IsValidOpenFormString_TabInMessage_ReturnsFalse()
+        {
+            // Arrange
+            string openForm = "PR0001|Error\there";
 
             // Act
             bool result = ScriptLinkValidation.IsValidOpenFormString(openForm);

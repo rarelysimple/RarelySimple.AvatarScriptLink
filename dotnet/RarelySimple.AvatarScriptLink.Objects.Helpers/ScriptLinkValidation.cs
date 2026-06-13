@@ -77,7 +77,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers
             {
                 return Regex.IsMatch(value, RegexPatterns.FullPattern, RegexOptions.None, TimeSpan.FromMilliseconds(100));
             }
-            catch
+            catch (RegexMatchTimeoutException)
             {
                 return false;
             }

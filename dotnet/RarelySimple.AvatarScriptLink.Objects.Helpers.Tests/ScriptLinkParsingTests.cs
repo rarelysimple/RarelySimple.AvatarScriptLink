@@ -140,6 +140,36 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        [TestCategory("ScriptLinkParsing-SafeGetInt")]
+        public void SafeGetInt_WhitespaceString_ReturnsZero()
+        {
+            // Arrange
+            string intString = "   ";
+            int expected = 0;
+
+            // Act
+            int actual = ScriptLinkParsing.SafeGetInt(intString);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [TestCategory("ScriptLinkParsing-SafeGetInt")]
+        public void SafeGetInt_OverflowValue_ReturnsZero()
+        {
+            // Arrange
+            string intString = "2147483648"; // int.MaxValue + 1
+            int expected = 0;
+
+            // Act
+            int actual = ScriptLinkParsing.SafeGetInt(intString);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
         #endregion
 
         #region SafeGetBool Tests
@@ -396,6 +426,20 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             Assert.IsFalse(actual);
         }
 
+        [TestMethod]
+        [TestCategory("ScriptLinkParsing-SafeGetBool")]
+        public void SafeGetBool_WhitespaceString_ReturnsFalse()
+        {
+            // Arrange
+            string boolString = "   ";
+
+            // Act
+            bool actual = ScriptLinkParsing.SafeGetBool(boolString);
+
+            // Assert
+            Assert.IsFalse(actual);
+        }
+
         #endregion
 
         #region SafeGetDateTime Tests
@@ -406,7 +450,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             // Arrange
             string dateTimeString = "10/10/2010";
-            DateTime expected = new(2010, 10, 10);
+            DateTime expected = new(2010, 10, 10, 0, 0, 0, DateTimeKind.Unspecified);
 
             // Act
             DateTime actual = ScriptLinkParsing.SafeGetDateTime(dateTimeString);
@@ -421,7 +465,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             // Arrange
             string dateTimeString = "10-10-2010";
-            DateTime expected = new(2010, 10, 10);
+            DateTime expected = new(2010, 10, 10, 0, 0, 0, DateTimeKind.Unspecified);
 
             // Act
             DateTime actual = ScriptLinkParsing.SafeGetDateTime(dateTimeString);
@@ -436,7 +480,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             // Arrange
             string dateTimeString = "10-10-10";
-            DateTime expected = new(2010, 10, 10);
+            DateTime expected = new(2010, 10, 10, 0, 0, 0, DateTimeKind.Unspecified);
 
             // Act
             DateTime actual = ScriptLinkParsing.SafeGetDateTime(dateTimeString);
@@ -451,13 +495,23 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             // Arrange
             string dateTimeString = "October 10, 2010";
-            DateTime expected = new(2010, 10, 10);
+            DateTime expected = new(2010, 10, 10, 0, 0, 0, DateTimeKind.Unspecified);
+            var originalCulture = Thread.CurrentThread.CurrentCulture;
 
-            // Act
-            DateTime actual = ScriptLinkParsing.SafeGetDateTime(dateTimeString);
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.GetCultureInfo("en-US");
 
-            // Assert
-            Assert.AreEqual(expected, actual);
+                // Act
+                DateTime actual = ScriptLinkParsing.SafeGetDateTime(dateTimeString);
+
+                // Assert
+                Assert.AreEqual(expected, actual);
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentCulture = originalCulture;
+            }
         }
 
         [TestMethod]
@@ -466,7 +520,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             // Arrange
             string dateTimeString = "not a date";
-            DateTime expected = new();
+            DateTime expected = new(1, 1, 1, 0, 0, 0, DateTimeKind.Unspecified);
 
             // Act
             DateTime actual = ScriptLinkParsing.SafeGetDateTime(dateTimeString);
@@ -481,7 +535,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             // Arrange
             string? dateTimeString = null;
-            DateTime expected = new();
+            DateTime expected = new(1, 1, 1, 0, 0, 0, DateTimeKind.Unspecified);
 
             // Act
             DateTime actual = ScriptLinkParsing.SafeGetDateTime(dateTimeString);
@@ -496,7 +550,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             // Arrange
             string dateTimeString = "";
-            DateTime expected = new();
+            DateTime expected = new(1, 1, 1, 0, 0, 0, DateTimeKind.Unspecified);
 
             // Act
             DateTime actual = ScriptLinkParsing.SafeGetDateTime(dateTimeString);
@@ -511,7 +565,37 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             // Arrange
             string dateTimeString = "10/10/2010 14:30:00";
-            DateTime expected = new(2010, 10, 10, 14, 30, 0);
+            DateTime expected = new(2010, 10, 10, 14, 30, 0, DateTimeKind.Unspecified);
+
+            // Act
+            DateTime actual = ScriptLinkParsing.SafeGetDateTime(dateTimeString);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [TestCategory("ScriptLinkParsing-SafeGetDateTime")]
+        public void SafeGetDateTime_WhitespaceString_ReturnsMinDate()
+        {
+            // Arrange
+            string dateTimeString = "   ";
+            DateTime expected = new(1, 1, 1, 0, 0, 0, DateTimeKind.Unspecified);
+
+            // Act
+            DateTime actual = ScriptLinkParsing.SafeGetDateTime(dateTimeString);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [TestCategory("ScriptLinkParsing-SafeGetDateTime")]
+        public void SafeGetDateTime_ValidIso8601Format_ReturnsDate()
+        {
+            // Arrange
+            string dateTimeString = "2010-10-10";
+            DateTime expected = new(2010, 10, 10, 0, 0, 0, DateTimeKind.Unspecified);
 
             // Act
             DateTime actual = ScriptLinkParsing.SafeGetDateTime(dateTimeString);
