@@ -18,7 +18,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 Required = "0",
                 Lock = "0"
             };
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddFieldObject(null, fieldObject));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.AddFieldObject(null, fieldObject));
         }
 
         [TestMethod]
@@ -26,7 +26,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void AddFieldObject_ToRowObject_NullFieldObject()
         {
             RowObject rowObject = new();
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddFieldObject(rowObject, null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.AddFieldObject(rowObject, null));
         }
 
         [TestMethod]
@@ -43,7 +43,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             };
             RowObject rowObject = new();
             rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, fieldObject);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.AddFieldObject(rowObject, fieldObject));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.AddFieldObject(rowObject, fieldObject));
         }
 
         [TestMethod]
@@ -68,7 +68,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             };
             RowObject rowObject = new();
             rowObject = (RowObject)OptionObjectHelpers.AddFieldObject(rowObject, fieldObject1);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.AddFieldObject(rowObject, fieldObject2));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.AddFieldObject(rowObject, fieldObject2));
         }
 
         [TestMethod]
@@ -106,7 +106,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         {
             string expectedValue = "Test";
             RowObject rowObject = new();
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddFieldObject(rowObject, null, expectedValue));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.AddFieldObject(rowObject, null, expectedValue));
         }
 
         [TestMethod]
@@ -116,7 +116,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             string expectedNumber = "";
             string expectedValue = "Test";
             RowObject rowObject = new();
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddFieldObject(rowObject, expectedNumber, expectedValue));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.AddFieldObject(rowObject, expectedNumber, expectedValue));
         }
 
         [TestMethod]

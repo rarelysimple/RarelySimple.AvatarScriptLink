@@ -54,7 +54,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             {
                 Forms = null
             };
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsRowPresent(rowId));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.IsRowPresent(rowId));
         }
 
         [TestMethod]
@@ -67,7 +67,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             var optionObject = new OptionObject();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsRowPresent(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.IsRowPresent(null));
         }
 
         [TestMethod]
@@ -81,7 +81,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             var optionObject = new OptionObject();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsRowPresent(rowId));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.IsRowPresent(rowId));
         }
 
         [TestMethod]
@@ -132,7 +132,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             {
                 Forms = null
             };
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsRowPresent(rowId));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.IsRowPresent(rowId));
         }
 
         [TestMethod]
@@ -145,7 +145,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             var optionObject = new OptionObject2();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsRowPresent(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.IsRowPresent(null));
         }
 
         [TestMethod]
@@ -159,7 +159,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             var optionObject = new OptionObject2();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsRowPresent(rowId));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.IsRowPresent(rowId));
         }
 
         [TestMethod]
@@ -210,7 +210,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             {
                 Forms = null
             };
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsRowPresent(rowId));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.IsRowPresent(rowId));
         }
 
         [TestMethod]
@@ -223,7 +223,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             var optionObject = new OptionObject2015();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsRowPresent(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.IsRowPresent(null));
         }
 
         [TestMethod]
@@ -237,7 +237,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             var optionObject = new OptionObject2015();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsRowPresent(rowId));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.IsRowPresent(rowId));
         }
 
 
@@ -285,7 +285,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             {
                 CurrentRow = rowObject
             };
-            Assert.ThrowsException<ArgumentNullException>(() => formObject.IsRowPresent(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => formObject.IsRowPresent(null));
         }
 
         [TestMethod]
@@ -297,7 +297,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             {
                 CurrentRow = rowObject
             };
-            Assert.ThrowsException<ArgumentNullException>(() => formObject.IsRowPresent(rowId));
+            Assert.ThrowsExactly<ArgumentNullException>(() => formObject.IsRowPresent(rowId));
         }
 
         [TestMethod]
@@ -348,7 +348,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             {
                 Forms = null
             };
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(optionObject, rowId));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(optionObject, rowId));
         }
 
         [TestMethod]
@@ -361,7 +361,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             var optionObject = new OptionObject();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(optionObject, null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(optionObject, null));
         }
 
         [TestMethod]
@@ -375,7 +375,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             var optionObject = new OptionObject();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(optionObject, rowId));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(optionObject, rowId));
         }
 
         [TestMethod]
@@ -429,7 +429,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
 
             // Act
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(optionObject, rowId));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(optionObject, rowId));
         }
 
         [TestMethod]
@@ -442,7 +442,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             var optionObject = new OptionObject2();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(optionObject, null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(optionObject, null));
         }
 
         [TestMethod]
@@ -456,7 +456,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             var optionObject = new OptionObject2();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(optionObject, rowId));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(optionObject, rowId));
         }
 
         [TestMethod]
@@ -507,7 +507,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             {
                 Forms = null
             };
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(optionObject, rowId));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(optionObject, rowId));
         }
 
         [TestMethod]
@@ -520,7 +520,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             var optionObject = new OptionObject2015();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(optionObject, null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(optionObject, null));
         }
 
         [TestMethod]
@@ -534,7 +534,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             var optionObject = new OptionObject2015();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(optionObject, rowId));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(optionObject, rowId));
         }
 
 
@@ -582,7 +582,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             {
                 CurrentRow = rowObject
             };
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(formObject, null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(formObject, null));
         }
 
         [TestMethod]
@@ -594,7 +594,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             {
                 CurrentRow = rowObject
             };
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(formObject, rowId));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.IsRowPresent(formObject, rowId));
         }
     }
 }

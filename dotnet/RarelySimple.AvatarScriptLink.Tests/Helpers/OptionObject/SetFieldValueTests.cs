@@ -23,7 +23,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestCategory("ScriptLinkHelpers")]
         public void SetFieldValue_FieldObject_Null()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => (FieldObject)OptionObjectHelpers.SetFieldValue(null, "Test"));
+            Assert.ThrowsExactly<ArgumentNullException>(() => (FieldObject)OptionObjectHelpers.SetFieldValue(null, "Test"));
         }
 
         [TestMethod]
@@ -156,7 +156,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.OtherRows.Add(rowObject02);
             formObject.OtherRows.Add(rowObject03);
 
-            Assert.ThrowsException<ArgumentException>(() => (FormObject)OptionObjectHelpers.SetFieldValue(formObject, "123", "Test"));
+            Assert.ThrowsExactly<ArgumentException>(() => (FormObject)OptionObjectHelpers.SetFieldValue(formObject, "123", "Test"));
         }
 
         [TestMethod]

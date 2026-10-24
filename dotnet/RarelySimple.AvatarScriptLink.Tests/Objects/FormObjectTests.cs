@@ -103,7 +103,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
             FormObject formObject = FormObject.Initialize();
 
             formObject.AddRowObject(rowObject1);
-            Assert.ThrowsException<ArgumentException>(() => formObject.AddRowObject(rowObject2));
+            Assert.ThrowsExactly<ArgumentException>(() => formObject.AddRowObject(rowObject2));
         }
 
         [TestMethod]
@@ -177,7 +177,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         public void FormObject_GetCurrentRowId_IsError()
         {
             FormObject formObject = FormObject.Initialize();
-            Assert.ThrowsException<ArgumentNullException>(() => formObject.GetCurrentRowId());
+            Assert.ThrowsExactly<ArgumentNullException>(() => formObject.GetCurrentRowId());
         }
 
         [TestMethod]
@@ -200,7 +200,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         public void FormObject_GetParentRowId_IsError()
         {
             FormObject formObject = FormObject.Initialize();
-            Assert.ThrowsException<ArgumentNullException>(() => formObject.GetParentRowId());
+            Assert.ThrowsExactly<ArgumentNullException>(() => formObject.GetParentRowId());
         }
 
         [TestMethod]
@@ -274,7 +274,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
                     .Field(fieldObject)
                     .AddRow()
                 .Build();
-            Assert.ThrowsException<ArgumentException>(() => formObject.IsFieldEnabled("124"));
+            Assert.ThrowsExactly<ArgumentException>(() => formObject.IsFieldEnabled("124"));
         }
 
         [TestMethod]
@@ -332,7 +332,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
                     .Field(fieldObject)
                     .AddRow()
                 .Build();
-            Assert.ThrowsException<ArgumentException>(() => formObject.IsFieldLocked("124"));
+            Assert.ThrowsExactly<ArgumentException>(() => formObject.IsFieldLocked("124"));
         }
 
         [TestMethod]
@@ -428,7 +428,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
                     .Field(fieldObject)
                     .AddRow()
                 .Build();
-            Assert.ThrowsException<ArgumentException>(() => formObject.IsFieldRequired("124"));
+            Assert.ThrowsExactly<ArgumentException>(() => formObject.IsFieldRequired("124"));
         }
 
         [TestMethod]
@@ -498,7 +498,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
                 .OtherRow().RowId("1||2").Field(fieldObject2).AddRow()
                 .Build();
 
-            Assert.ThrowsException<ArgumentException>(() => formObject.SetFieldValue("123", "MODIFIED"));
+            Assert.ThrowsExactly<ArgumentException>(() => formObject.SetFieldValue("123", "MODIFIED"));
         }
 
         [TestMethod]
@@ -517,7 +517,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         [TestCategory("FormObject")]
         public void FormObject_Constructor_1Parameter_Error()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => new FormObject(""));
+            Assert.ThrowsExactly<ArgumentNullException>(() => new FormObject(""));
         }
 
         [TestMethod]
@@ -539,7 +539,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         {
             string formId = "";
             RowObject currentRow = new();
-            Assert.ThrowsException<ArgumentNullException>(() => new FormObject(formId, currentRow));
+            Assert.ThrowsExactly<ArgumentNullException>(() => new FormObject(formId, currentRow));
         }
 
         [TestMethod]
@@ -563,7 +563,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
             string formId = "";
             RowObject currentRow = new();
             bool multipleIteration = true;
-            Assert.ThrowsException<ArgumentNullException>(() => new FormObject(formId, currentRow, multipleIteration));
+            Assert.ThrowsExactly<ArgumentNullException>(() => new FormObject(formId, currentRow, multipleIteration));
         }
 
         [TestMethod]
@@ -597,7 +597,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
             [
                 otherRow
             ];
-            Assert.ThrowsException<ArgumentNullException>(() => new FormObject(formId, currentRow, multipleIteration, otherRows));
+            Assert.ThrowsExactly<ArgumentNullException>(() => new FormObject(formId, currentRow, multipleIteration, otherRows));
         }
 
         [TestMethod]
@@ -644,22 +644,22 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
 
         [TestMethod]
         public void FormObject_Builder_FormIdIsNull() {
-            Assert.ThrowsException<ArgumentNullException>(() => FormObject.Builder().FormId(null).Build());
+            Assert.ThrowsExactly<ArgumentNullException>(() => FormObject.Builder().FormId(null).Build());
         }
 
         [TestMethod]
         public void FormObject_Builder_CurrentRowIdIsNull() {
-            Assert.ThrowsException<ArgumentNullException>(() => FormObject.Builder().FormId("1").CurrentRow().RowId(null).AddRow().Build());
+            Assert.ThrowsExactly<ArgumentNullException>(() => FormObject.Builder().FormId("1").CurrentRow().RowId(null).AddRow().Build());
         }
 
         [TestMethod]
         public void FormObject_Builder_OtherRowIsNull() {
-            Assert.ThrowsException<ArgumentNullException>(() => FormObject.Builder().FormId("1").MultipleIteration().OtherRow(null).Build());
+            Assert.ThrowsExactly<ArgumentNullException>(() => FormObject.Builder().FormId("1").MultipleIteration().OtherRow(null).Build());
         }
 
         [TestMethod]
         public void FormObject_Builder_OtherRowIdIsNull() {
-            Assert.ThrowsException<ArgumentNullException>(() => FormObject.Builder().FormId("1").MultipleIteration().OtherRow().RowId(null).AddRow().Build());
+            Assert.ThrowsExactly<ArgumentNullException>(() => FormObject.Builder().FormId("1").MultipleIteration().OtherRow().RowId(null).AddRow().Build());
         }
     }
 }

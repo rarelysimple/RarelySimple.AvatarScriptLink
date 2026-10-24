@@ -33,7 +33,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             };
 
             // Assert
-            Assert.ThrowsException<ArgumentNullException>(act);
+            Assert.ThrowsExactly<ArgumentNullException>(act);
         }
 
         [DataTestMethod]
@@ -62,7 +62,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             };
 
             // Assert
-            Assert.ThrowsException<ArgumentException>(act);
+            Assert.ThrowsExactly<ArgumentException>(act);
         }
 
         [DataTestMethod]
@@ -307,7 +307,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             };
 
             // Act / Assert
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => form.GetNextAvailableRowId());
+            Assert.ThrowsExactly<ArgumentOutOfRangeException>(() => form.GetNextAvailableRowId());
         }
 
         [TestMethod]
@@ -358,7 +358,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             }
 
             // Act / Assert
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => form.GetNextAvailableRowId());
+            Assert.ThrowsExactly<ArgumentOutOfRangeException>(() => form.GetNextAvailableRowId());
         }
 
         [TestMethod]
@@ -414,7 +414,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             FormObject form = null!;
 
             // Act / Assert
-            Assert.ThrowsException<ArgumentNullException>(() => FormObjectHelpers.AddRowObject(form, new RowObject()));
+            Assert.ThrowsExactly<ArgumentNullException>(() => FormObjectHelpers.AddRowObject(form, new RowObject()));
         }
 
         [TestMethod]
@@ -424,7 +424,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             var form = new FormObject { FormId = "FORM5", MultipleIteration = true };
 
             // Act / Assert
-            Assert.ThrowsException<ArgumentNullException>(() => form.AddRowObject((RowObject)null!));
+            Assert.ThrowsExactly<ArgumentNullException>(() => form.AddRowObject((RowObject)null!));
         }
 
         [TestMethod]
@@ -496,7 +496,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             form.OtherRows.Add(new RowObject { RowId = "FORM2||5" });
 
             // Act / Assert
-            Assert.ThrowsException<ArgumentException>(() => form.AddRowObject(new RowObject { RowId = "FORM2||5", RowAction = RowObject.RowActions.Add }));
+            Assert.ThrowsExactly<ArgumentException>(() => form.AddRowObject(new RowObject { RowId = "FORM2||5", RowAction = RowObject.RowActions.Add }));
         }
 
         [TestMethod]
@@ -511,7 +511,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             };
 
             // Act / Assert
-            Assert.ThrowsException<ArgumentException>(() => form.AddRowObject(new RowObject { RowId = "FORM1||1" }));
+            Assert.ThrowsExactly<ArgumentException>(() => form.AddRowObject(new RowObject { RowId = "FORM1||1" }));
         }
 
         [TestMethod]
@@ -526,7 +526,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             };
 
             // Act / Assert
-            Assert.ThrowsException<ArgumentException>(() => form.AddRowObject());
+            Assert.ThrowsExactly<ArgumentException>(() => form.AddRowObject());
         }
 
         [TestMethod]
@@ -589,7 +589,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             };
 
             // Act / Assert
-            Assert.ThrowsException<ArgumentException>(() => form.DeleteRowObject("MISSING"));
+            Assert.ThrowsExactly<ArgumentException>(() => form.DeleteRowObject("MISSING"));
         }
 
         [TestMethod]
@@ -599,7 +599,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             var form = new FormObject { CurrentRow = new RowObject { RowId = "FORM1||1" } };
 
             // Act / Assert
-            Assert.ThrowsException<ArgumentNullException>(() => form.DeleteRowObject((RowObject)null!));
+            Assert.ThrowsExactly<ArgumentNullException>(() => form.DeleteRowObject((RowObject)null!));
         }
 
         [TestMethod]
@@ -609,7 +609,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             var form = new FormObject { CurrentRow = new RowObject { RowId = "FORM1||1" } };
 
             // Act / Assert
-            Assert.ThrowsException<ArgumentException>(() => form.DeleteRowObject(string.Empty));
+            Assert.ThrowsExactly<ArgumentException>(() => form.DeleteRowObject(string.Empty));
         }
 
         [TestMethod]
@@ -619,7 +619,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             FormObject form = null!;
 
             // Act / Assert
-            Assert.ThrowsException<ArgumentNullException>(() => FormObjectHelpers.DeleteRowObject(form, "FORM1||1"));
+            Assert.ThrowsExactly<ArgumentNullException>(() => FormObjectHelpers.DeleteRowObject(form, "FORM1||1"));
         }
 
         [TestMethod]
@@ -914,7 +914,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1" });
 
             // Act/Assert
-            Assert.ThrowsException<ArgumentException>(() => form.SetDisabledField(string.Empty));
+            Assert.ThrowsExactly<ArgumentException>(() => form.SetDisabledField(string.Empty));
         }
 
         [TestMethod]
@@ -925,7 +925,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "0" });
 
             // Act/Assert
-            Assert.ThrowsException<ArgumentNullException>(() => form.SetEnabledFields(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => form.SetEnabledFields(null));
         }
 
         [TestMethod]
@@ -949,7 +949,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "0" });
 
             // Act/Assert
-            Assert.ThrowsException<ArgumentException>(() => form.SetEnabledField(string.Empty));
+            Assert.ThrowsExactly<ArgumentException>(() => form.SetEnabledField(string.Empty));
         }
 
         [TestMethod]
@@ -1064,7 +1064,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Required = "0" });
 
             // Act / Assert
-            Assert.ThrowsException<ArgumentException>(() => form.SetRequiredFields(["100"]));
+            Assert.ThrowsExactly<ArgumentException>(() => form.SetRequiredFields(["100"]));
         }
 
         [TestMethod]
@@ -1149,7 +1149,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
 
             // Act / Assert
-            Assert.ThrowsException<ArgumentException>(() => form.SetLockedField(string.Empty));
+            Assert.ThrowsExactly<ArgumentException>(() => form.SetLockedField(string.Empty));
         }
 
         [TestMethod]
@@ -1173,7 +1173,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
 
             // Act / Assert
-            Assert.ThrowsException<ArgumentNullException>(() => form.SetLockedFields(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => form.SetLockedFields(null));
         }
 
         [TestMethod]
