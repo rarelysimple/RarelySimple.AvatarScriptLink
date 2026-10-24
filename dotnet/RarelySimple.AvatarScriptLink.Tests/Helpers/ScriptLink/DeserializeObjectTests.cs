@@ -39,7 +39,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_Double_Error()
         {
             string objectToDeserialize = "<Not XML or Json>";
-            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObject<double>(objectToDeserialize));
+            Assert.ThrowsExactly<ArgumentException>(() => ScriptLinkHelpers.DeserializeObject<double>(objectToDeserialize));
         }
 
         [TestMethod]
@@ -75,7 +75,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_Int_Error()
         {
             string objectToDeserialize = "<Not XML or Json>";
-            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObject<int>(objectToDeserialize));
+            Assert.ThrowsExactly<ArgumentException>(() => ScriptLinkHelpers.DeserializeObject<int>(objectToDeserialize));
         }
 
         [TestMethod]
@@ -111,7 +111,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_DateTime_Error()
         {
             string objectToSerialize = "<Not XML or Json>";
-            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObject<DateTime>(objectToSerialize));
+            Assert.ThrowsExactly<ArgumentException>(() => ScriptLinkHelpers.DeserializeObject<DateTime>(objectToSerialize));
         }
 
         [TestMethod]
@@ -151,7 +151,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_OptionObject_Error()
         {
             string objectToSerialize = "<Not XML or Json>";
-            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObject<OptionObject>(objectToSerialize));
+            Assert.ThrowsExactly<ArgumentException>(() => ScriptLinkHelpers.DeserializeObject<OptionObject>(objectToSerialize));
         }
 
         [TestMethod]
@@ -191,7 +191,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_OptionObject2_Error()
         {
             string objectToSerialize = "<Not XML or Json>";
-            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObject<OptionObject2>(objectToSerialize));
+            Assert.ThrowsExactly<ArgumentException>(() => ScriptLinkHelpers.DeserializeObject<OptionObject2>(objectToSerialize));
         }
 
         [TestMethod]
@@ -231,7 +231,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_OptionObject2015_Error()
         {
             string objectToSerialize = "<Not XML or Json>";
-            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObject<OptionObject2015>(objectToSerialize));
+            Assert.ThrowsExactly<ArgumentException>(() => ScriptLinkHelpers.DeserializeObject<OptionObject2015>(objectToSerialize));
         }
 
         [TestMethod]
@@ -270,7 +270,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_FormObject_Error()
         {
             string objectToSerialize = "<Not XML or Json>";
-            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObject<FormObject>(objectToSerialize));
+            Assert.ThrowsExactly<ArgumentException>(() => ScriptLinkHelpers.DeserializeObject<FormObject>(objectToSerialize));
         }
 
         [TestMethod]
@@ -308,7 +308,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_RowObject_Error()
         {
             string objectToSerialize = "<Not XML or Json>";
-            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObject<RowObject>(objectToSerialize));
+            Assert.ThrowsExactly<ArgumentException>(() => ScriptLinkHelpers.DeserializeObject<RowObject>(objectToSerialize));
         }
 
         [TestMethod]
@@ -350,7 +350,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_FieldObject_Error()
         {
             string objectToSerialize = "<Not XML or Json>";
-            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObject<FieldObject>(objectToSerialize));
+            Assert.ThrowsExactly<ArgumentException>(() => ScriptLinkHelpers.DeserializeObject<FieldObject>(objectToSerialize));
         }
     }
 }

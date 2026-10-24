@@ -49,7 +49,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestCategory("GetFormObject")]
         public void GetFormObject_FromOptionObject_NullOptionObject_ThrowsArgumentNullException()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetFormObject(null, "1"));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetFormObject(null, "1"));
         }
 
         [TestMethod]
@@ -59,7 +59,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject optionObject = new();
             optionObject.AddFormObject(new FormObject("1"));
 
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetFormObject(optionObject, null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetFormObject(optionObject, null));
         }
 
         [TestMethod]
@@ -69,7 +69,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject optionObject = new();
             optionObject.AddFormObject(new FormObject("1"));
 
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetFormObject(optionObject, string.Empty));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetFormObject(optionObject, string.Empty));
         }
 
         [TestMethod]
@@ -79,7 +79,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject optionObject = new();
             optionObject.AddFormObject(new FormObject("1"));
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetFormObject(optionObject, "2"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetFormObject(optionObject, "2"));
         }
 
         [TestMethod]
@@ -88,7 +88,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             OptionObject optionObject = new();
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetFormObject(optionObject, "1"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetFormObject(optionObject, "1"));
         }
     }
 }

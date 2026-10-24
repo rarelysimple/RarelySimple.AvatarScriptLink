@@ -31,7 +31,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
                 _ => throw new ArgumentOutOfRangeException(nameof(operation))
             };
 
-            Assert.ThrowsException<ArgumentNullException>(act);
+            Assert.ThrowsExactly<ArgumentNullException>(act);
         }
 
         [DataTestMethod]
@@ -59,7 +59,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
                 _ => throw new ArgumentOutOfRangeException(nameof(operation))
             };
 
-            Assert.ThrowsException<ArgumentException>(act);
+            Assert.ThrowsExactly<ArgumentException>(act);
         }
 
         [DataTestMethod]
@@ -232,7 +232,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             var optionObject = new OptionObject();
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.GetNextAvailableRowId("MISSING"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.GetNextAvailableRowId("MISSING"));
         }
 
         [TestMethod]
@@ -240,7 +240,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             var optionObject = new OptionObject { Forms = null! };
 
-            var ex = Assert.ThrowsException<ArgumentException>(() => optionObject.GetNextAvailableRowId("FORM1"));
+            var ex = Assert.ThrowsExactly<ArgumentException>(() => optionObject.GetNextAvailableRowId("FORM1"));
             Assert.AreEqual("optionObject", ex.ParamName);
             StringAssert.Contains(ex.Message, "Forms");
         }
@@ -273,7 +273,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
                 CurrentRow = new RowObject { RowId = "FORM1||1" }
             });
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.AddRowObject("MISSING", new RowObject { RowAction = RowObject.RowActions.Add }));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.AddRowObject("MISSING", new RowObject { RowAction = RowObject.RowActions.Add }));
         }
 
         [TestMethod]
@@ -293,7 +293,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             var optionObject = new OptionObject();
             optionObject.Forms.Add(new FormObject { FormId = "FORM1", CurrentRow = new RowObject { RowId = "FORM1||1" } });
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject("MISSING"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.DeleteRowObject("MISSING"));
         }
 
         [TestMethod]
@@ -319,7 +319,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             var optionObject = new OptionObject { Forms = null! };
 
-            var ex = Assert.ThrowsException<ArgumentException>(() => optionObject.AddRowObject("FORM1", new RowObject { RowAction = RowObject.RowActions.Add }));
+            var ex = Assert.ThrowsExactly<ArgumentException>(() => optionObject.AddRowObject("FORM1", new RowObject { RowAction = RowObject.RowActions.Add }));
             Assert.AreEqual("optionObject", ex.ParamName);
             StringAssert.Contains(ex.Message, "Forms");
         }
@@ -329,7 +329,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             var optionObject = new OptionObject { Forms = null! };
 
-            var ex = Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject("FORM1||1"));
+            var ex = Assert.ThrowsExactly<ArgumentException>(() => optionObject.DeleteRowObject("FORM1||1"));
             Assert.AreEqual("optionObject", ex.ParamName);
             StringAssert.Contains(ex.Message, "Forms");
         }
@@ -339,7 +339,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             var optionObject = new OptionObject();
 
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.DeleteRowObject((RowObject)null!));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.DeleteRowObject((RowObject)null!));
         }
 
         [TestMethod]
@@ -347,7 +347,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             OptionObject optionObject = null!;
 
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddRowObject(optionObject, "FORM1", new RowObject()));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.AddRowObject(optionObject, "FORM1", new RowObject()));
         }
 
         [TestMethod]
@@ -355,7 +355,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             var optionObject = new OptionObject();
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.AddRowObject(string.Empty, new RowObject()));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.AddRowObject(string.Empty, new RowObject()));
         }
 
         [TestMethod]
@@ -363,7 +363,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             var optionObject = new OptionObject();
 
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.AddRowObject("FORM1", null!));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.AddRowObject("FORM1", null!));
         }
 
         [TestMethod]
@@ -371,7 +371,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             OptionObject optionObject = null!;
 
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.DeleteRowObject(optionObject, "FORM1||1"));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.DeleteRowObject(optionObject, "FORM1||1"));
         }
 
         [TestMethod]
@@ -379,7 +379,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
         {
             var optionObject = new OptionObject();
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject(string.Empty));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.DeleteRowObject(string.Empty));
         }
 
         [TestMethod]
@@ -619,7 +619,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1" });
             optionObject.Forms.Add(form);
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.SetDisabledField(string.Empty));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.SetDisabledField(string.Empty));
         }
 
         [TestMethod]
@@ -630,7 +630,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Enabled = "0" });
             optionObject.Forms.Add(form);
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.SetEnabledField("100"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.SetEnabledField("100"));
         }
 
         [TestMethod]
@@ -641,7 +641,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1" });
             optionObject.Forms.Add(form);
 
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.SetDisabledFields((List<FieldObject>?)null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.SetDisabledFields((List<FieldObject>?)null));
         }
 
         [TestMethod]
@@ -731,7 +731,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
             optionObject.Forms.Add(form);
 
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.SetLockedFields((List<FieldObject>?)null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.SetLockedFields((List<FieldObject>?)null));
         }
 
         [TestMethod]
@@ -752,7 +752,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Lock = "1" });
             optionObject.Forms.Add(form);
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.SetUnlockedField("100"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.SetUnlockedField("100"));
         }
 
         [TestMethod]
@@ -763,7 +763,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Required = "0" });
             optionObject.Forms.Add(form);
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.SetRequiredField("100"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.SetRequiredField("100"));
         }
 
         [TestMethod]
@@ -774,7 +774,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             form.CurrentRow.Fields.Add(new FieldObject { FieldNumber = "200", Required = "1" });
             optionObject.Forms.Add(form);
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.SetOptionalField("100"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.SetOptionalField("100"));
         }
 
         [TestMethod]

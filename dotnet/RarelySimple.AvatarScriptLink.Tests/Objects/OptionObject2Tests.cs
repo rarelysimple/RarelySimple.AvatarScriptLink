@@ -119,7 +119,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
             FormObject formObject1 = FormObject.Builder().FormId("1").Build();
             OptionObject2 optionObject = OptionObject2.Initialize();
             optionObject.AddFormObject(formObject1);
-            Assert.ThrowsException<ArgumentException>(() => optionObject.AddFormObject(formObject1));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.AddFormObject(formObject1));
         }
 
         [TestMethod]
@@ -139,7 +139,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         {
             OptionObject2 optionObject = OptionObject2.Initialize();
             optionObject.AddFormObject("1", false);
-            Assert.ThrowsException<ArgumentException>(() => optionObject.AddFormObject("1", false));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.AddFormObject("1", false));
         }
 
         [TestMethod]
@@ -147,7 +147,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         public void OptionObject2_GetCurrentRowId_Error()
         {
             OptionObject2 optionObject = OptionObject2.Initialize();
-            Assert.ThrowsException<ArgumentException>(() => optionObject.GetCurrentRowId("1"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.GetCurrentRowId("1"));
         }
 
         [TestMethod]
@@ -182,7 +182,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         public void OptionObject2_GetFieldValue_AreNotEqual()
         {
             OptionObject2 optionObject = OptionObject2.Initialize();
-            Assert.ThrowsException<ArgumentException>(() => optionObject.GetFieldValue("123"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.GetFieldValue("123"));
         }
 
         [TestMethod]
@@ -198,7 +198,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         [TestCategory("OptionObject2")]
         public void OptionObject2_GetFieldValue_MI_AreNotEqual()
         {
-            Assert.ThrowsException<ArgumentException>(() => configuredOptionObject2.GetFieldValue("456"));
+            Assert.ThrowsExactly<ArgumentException>(() => configuredOptionObject2.GetFieldValue("456"));
         }
 
         [TestMethod]
@@ -251,7 +251,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         public void OptionObject2_GetMultipleIterationStatus_IsNotFound()
         {
             OptionObject2 optionObject = OptionObject2.Initialize();
-            Assert.ThrowsException<ArgumentException>(() => optionObject.GetMultipleIterationStatus("1"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.GetMultipleIterationStatus("1"));
         }
 
         [TestMethod]
@@ -267,7 +267,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         public void OptionObject2_GetParentRowId_Error()
         {
             OptionObject2 optionObject = OptionObject2.Initialize();
-            Assert.ThrowsException<ArgumentException>(() => optionObject.GetParentRowId("1"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.GetParentRowId("1"));
         }
 
         [TestMethod]
@@ -322,7 +322,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         [TestCategory("OptionObject2")]
         public void OptionObject2_IsFieldEnabled_Error()
         {
-            Assert.ThrowsException<ArgumentException>(() => configuredOptionObject2.IsFieldEnabled("456"));
+            Assert.ThrowsExactly<ArgumentException>(() => configuredOptionObject2.IsFieldEnabled("456"));
         }
 
         [TestMethod]
@@ -354,7 +354,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         [TestCategory("OptionObject2")]
         public void OptionObject2_IsFieldLocked_Error()
         {
-            Assert.ThrowsException<ArgumentException>(() => configuredOptionObject2.IsFieldLocked("456"));
+            Assert.ThrowsExactly<ArgumentException>(() => configuredOptionObject2.IsFieldLocked("456"));
         }
 
         [TestMethod]
@@ -395,7 +395,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         [TestCategory("OptionObject2")]
         public void OptionObject2_IsFieldRequired_Error()
         {
-            Assert.ThrowsException<ArgumentException>(() => configuredOptionObject2.IsFieldRequired("456"));
+            Assert.ThrowsExactly<ArgumentException>(() => configuredOptionObject2.IsFieldRequired("456"));
         }
 
         [TestMethod]
@@ -590,52 +590,52 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
 
         [TestMethod]
         public void OptionObject2_Builder_OptionIdIsNull() {
-            Assert.ThrowsException<ArgumentNullException>(() => _ = OptionObject2.Builder().OptionId(null).Build());
+            Assert.ThrowsExactly<ArgumentNullException>(() => _ = OptionObject2.Builder().OptionId(null).Build());
         }
 
         [TestMethod]
         public void OptionObject2_Builder_EntityIdIsNull() {
-            Assert.ThrowsException<ArgumentNullException>(() => _ = OptionObject2.Builder().OptionId("USER123").EntityId(null).Build());
+            Assert.ThrowsExactly<ArgumentNullException>(() => _ = OptionObject2.Builder().OptionId("USER123").EntityId(null).Build());
         }
 
         [TestMethod]
         public void OptionObject2_Builder_FacilityIsNull() {
-            Assert.ThrowsException<ArgumentNullException>(() => _ = OptionObject2.Builder().OptionId("USER123").Facility(null).Build());
+            Assert.ThrowsExactly<ArgumentNullException>(() => _ = OptionObject2.Builder().OptionId("USER123").Facility(null).Build());
         }
 
         [TestMethod]
         public void OptionObject2_Builder_NamespaceNameIsNull() {
-            Assert.ThrowsException<ArgumentNullException>(() => _ = OptionObject2.Builder().OptionId("USER123").NamespaceName(null).Build());
+            Assert.ThrowsExactly<ArgumentNullException>(() => _ = OptionObject2.Builder().OptionId("USER123").NamespaceName(null).Build());
         }
 
         [TestMethod]
         public void OptionObject2_Builder_OptionStaffIdIsNull() {
-            Assert.ThrowsException<ArgumentNullException>(() => _ = OptionObject2.Builder().OptionId("USER123").OptionStaffId(null).Build());
+            Assert.ThrowsExactly<ArgumentNullException>(() => _ = OptionObject2.Builder().OptionId("USER123").OptionStaffId(null).Build());
         }
 
         [TestMethod]
         public void OptionObject2_Builder_OptionUserIdIsNull() {
-            Assert.ThrowsException<ArgumentNullException>(() => _ = OptionObject2.Builder().OptionId("USER123").OptionUserId(null).Build());
+            Assert.ThrowsExactly<ArgumentNullException>(() => _ = OptionObject2.Builder().OptionId("USER123").OptionUserId(null).Build());
         }
 
         [TestMethod]
         public void OptionObject2_Builder_ParentNamespaceIsNull() {
-            Assert.ThrowsException<ArgumentNullException>(() => _ = OptionObject2.Builder().OptionId("USER123").ParentNamespace(null).Build());
+            Assert.ThrowsExactly<ArgumentNullException>(() => _ = OptionObject2.Builder().OptionId("USER123").ParentNamespace(null).Build());
         }
 
         [TestMethod]
         public void OptionObject2_Builder_ServerNameIsNull() {
-            Assert.ThrowsException<ArgumentNullException>(() => _ = OptionObject2.Builder().OptionId("USER123").ServerName(null).Build());
+            Assert.ThrowsExactly<ArgumentNullException>(() => _ = OptionObject2.Builder().OptionId("USER123").ServerName(null).Build());
         }
 
         [TestMethod]
         public void OptionObject2_Builder_SessionTokenIsNull() {
-            Assert.ThrowsException<ArgumentNullException>(() => _ = OptionObject2.Builder().OptionId("USER123").SessionToken(null).Build());
+            Assert.ThrowsExactly<ArgumentNullException>(() => _ = OptionObject2.Builder().OptionId("USER123").SessionToken(null).Build());
         }
 
         [TestMethod]
         public void OptionObject2_Builder_SystemCodeIsNull() {
-            Assert.ThrowsException<ArgumentNullException>(() => _ = OptionObject2.Builder().OptionId("USER123").SystemCode(null).Build());
+            Assert.ThrowsExactly<ArgumentNullException>(() => _ = OptionObject2.Builder().OptionId("USER123").SystemCode(null).Build());
         }
     }
 }

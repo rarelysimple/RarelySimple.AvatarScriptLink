@@ -178,7 +178,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void GetReturnOptionObject_ErrorCode_5_InvalidURL()
         {
             int expected = 5;
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetReturnOptionObject((IOptionObject)optionObject, expected, "test"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetReturnOptionObject((IOptionObject)optionObject, expected, "test"));
         }
 
         [TestMethod]
@@ -204,7 +204,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void GetReturnOptionObject_ErrorCode_6_InvalidOpenFormString()
         {
             int expected = 6;
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetReturnOptionObject((IOptionObject)optionObject, expected, "test"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetReturnOptionObject((IOptionObject)optionObject, expected, "test"));
         }
 
         [TestMethod]
@@ -212,7 +212,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void GetReturnOptionObject_ErrorCode_7_Error()
         {
             int expected = 7;
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetReturnOptionObject((IOptionObject)optionObject, expected, "test"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetReturnOptionObject((IOptionObject)optionObject, expected, "test"));
         }
 
         [TestMethod]
@@ -220,14 +220,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void GetReturnOptionObject_ErrorCode_Negative1_Error()
         {
             int expected = -1;
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetReturnOptionObject((IOptionObject)optionObject, expected, "test"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetReturnOptionObject((IOptionObject)optionObject, expected, "test"));
         }
 
         [TestMethod]
         [TestCategory("ScriptLinkHelpers")]
         public void GetReturnOptionObject_OptionObject_Null()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => _ = OptionObjectHelpers.GetReturnOptionObject(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => _ = OptionObjectHelpers.GetReturnOptionObject(null));
         }
 
         [TestMethod]

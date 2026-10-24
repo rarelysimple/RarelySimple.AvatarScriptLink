@@ -13,7 +13,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(new RowObject(rowId, rowId, RowAction.Delete));
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsRowMarkedForDeletion(""));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.IsRowMarkedForDeletion(""));
         }
 
         [TestMethod]
@@ -24,7 +24,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(new RowObject(rowId, rowId, RowAction.Delete));
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsRowMarkedForDeletion(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.IsRowMarkedForDeletion(null));
         }
 
         [TestMethod]

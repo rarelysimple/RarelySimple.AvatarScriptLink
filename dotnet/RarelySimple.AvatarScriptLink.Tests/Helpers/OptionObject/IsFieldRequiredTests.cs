@@ -74,7 +74,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject1);
             optionObject.AddFormObject(formObject2);
-            Assert.ThrowsException<ArgumentException>(() => optionObject.IsFieldRequired("234"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.IsFieldRequired("234"));
         }
 
         [TestMethod]
@@ -87,7 +87,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(rowObject);
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsFieldRequired(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.IsFieldRequired(null));
         }
 
         [TestMethod]
@@ -158,7 +158,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject1);
             optionObject.AddFormObject(formObject2);
-            Assert.ThrowsException<ArgumentException>(() => optionObject.IsFieldRequired("234"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.IsFieldRequired("234"));
         }
 
         [TestMethod]
@@ -229,7 +229,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject1);
             optionObject.AddFormObject(formObject2);
-            Assert.ThrowsException<ArgumentException>(() => optionObject.IsFieldRequired("234"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.IsFieldRequired("234"));
         }
 
         [TestMethod]
@@ -262,7 +262,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, false, false));
             FormObject formObject = new("1");
             formObject.AddRowObject(rowObject);
-            Assert.ThrowsException<ArgumentException>(() => formObject.IsFieldRequired("234"));
+            Assert.ThrowsExactly<ArgumentException>(() => formObject.IsFieldRequired("234"));
         }
 
         [TestMethod]
@@ -273,7 +273,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, true, false));
             FormObject formObject = new("1");
             formObject.AddRowObject(rowObject);
-            Assert.ThrowsException<ArgumentNullException>(() => formObject.IsFieldRequired(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => formObject.IsFieldRequired(null));
         }
 
         [TestMethod]
@@ -300,7 +300,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             string fieldNumber = "123";
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, false, false));
-            Assert.ThrowsException<ArgumentException>(() => rowObject.IsFieldRequired("234"));
+            Assert.ThrowsExactly<ArgumentException>(() => rowObject.IsFieldRequired("234"));
         }
 
         [TestMethod]
@@ -309,13 +309,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             string fieldNumber = "123";
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, true, false));
-            Assert.ThrowsException<ArgumentNullException>(() => rowObject.IsFieldRequired(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => rowObject.IsFieldRequired(null));
         }
 
         [TestMethod]
         public void IsFieldRequired_FieldObject_IsRequired_NullFieldNumber()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.IsFieldRequired(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.IsFieldRequired(null));
         }
     }
 }

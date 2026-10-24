@@ -10,7 +10,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestCategory("FieldObject")]
         public void FieldObjectFromJson_NullString()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.TransformToFieldObject(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.TransformToFieldObject(null));
         }
 
         [TestMethod]
