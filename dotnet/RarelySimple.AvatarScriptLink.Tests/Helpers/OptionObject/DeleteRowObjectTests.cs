@@ -21,7 +21,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             OptionObject optionObject = new();
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.DeleteRowObject(""));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.DeleteRowObject(""));
         }
 
         [TestMethod]
@@ -66,7 +66,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject optionObject = new();
             optionObject.Forms.Add(formObject);
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject(rowObject2));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.DeleteRowObject(rowObject2));
         }
 
         [TestMethod]
@@ -111,7 +111,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject optionObject = new();
             optionObject.Forms.Add(formObject);
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject(rowObject2.RowId));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.DeleteRowObject(rowObject2.RowId));
         }
         
         [TestMethod]
@@ -156,7 +156,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject);
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject(rowObject2));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.DeleteRowObject(rowObject2));
         }
 
         [TestMethod]
@@ -201,7 +201,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject);
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject(rowObject2.RowId));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.DeleteRowObject(rowObject2.RowId));
         }
 
         [TestMethod]
@@ -217,7 +217,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 MultipleIteration = false,
                 CurrentRow = rowObject
             };
-            Assert.ThrowsException<ArgumentNullException>(() => formObject.DeleteRowObject(""));
+            Assert.ThrowsExactly<ArgumentNullException>(() => formObject.DeleteRowObject(""));
         }
 
         [TestMethod]
@@ -258,7 +258,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 CurrentRow = rowObject
             };
 
-            Assert.ThrowsException<ArgumentException>(() => formObject.DeleteRowObject(rowObject2));
+            Assert.ThrowsExactly<ArgumentException>(() => formObject.DeleteRowObject(rowObject2));
         }
 
         [TestMethod]
@@ -299,7 +299,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 CurrentRow = rowObject
             };
 
-            Assert.ThrowsException<ArgumentException>(() => formObject.DeleteRowObject(rowObject2.RowId));
+            Assert.ThrowsExactly<ArgumentException>(() => formObject.DeleteRowObject(rowObject2.RowId));
         }
 
         [TestMethod]
@@ -380,7 +380,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 RowId = "2||4"
             };
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject(rowObject4));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.DeleteRowObject(rowObject4));
         }
 
         [TestMethod]
@@ -461,7 +461,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 RowId = "2||4"
             };
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject(rowObject4.RowId));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.DeleteRowObject(rowObject4.RowId));
         }
         [TestMethod]
         public void DeleteRowObject_OptionObject2_MI_RowObject_IsFound()
@@ -541,7 +541,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 RowId = "2||4"
             };
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject(rowObject4));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.DeleteRowObject(rowObject4));
         }
 
         [TestMethod]
@@ -623,7 +623,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 RowId = "2||4"
             };
 
-            Assert.ThrowsException<ArgumentException>(() => optionObject.DeleteRowObject(rowObject4.RowId));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.DeleteRowObject(rowObject4.RowId));
         }
 
         [TestMethod]
@@ -672,7 +672,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 CurrentRow = rowObject
             };
 
-            Assert.ThrowsException<ArgumentException>(() => formObject.DeleteRowObject(rowObject2));
+            Assert.ThrowsExactly<ArgumentException>(() => formObject.DeleteRowObject(rowObject2));
         }
 
         [TestMethod]
@@ -721,40 +721,40 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 CurrentRow = rowObject
             };
 
-            Assert.ThrowsException<ArgumentException>(() => formObject.DeleteRowObject(rowObject2.RowId));
+            Assert.ThrowsExactly<ArgumentException>(() => formObject.DeleteRowObject(rowObject2.RowId));
         }
 
         [TestMethod]
         public void DeleteRowObject_OptionObject_RowObject_NullRowObject()
         {
             OptionObject optionObject = new();
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.DeleteRowObject((RowObject)null!));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.DeleteRowObject((RowObject)null!));
         }
 
         [TestMethod]
         public void DeleteRowObject_OptionObject_RowId_NullOptionObject()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.DeleteRowObject((OptionObject)null!, "1||1"));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.DeleteRowObject((OptionObject)null!, "1||1"));
         }
 
         [TestMethod]
         public void DeleteRowObject_OptionObject_RowId_NullForms()
         {
             OptionObject optionObject = new() { Forms = null };
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.DeleteRowObject("1||1"));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.DeleteRowObject("1||1"));
         }
 
         [TestMethod]
         public void DeleteRowObject_FormObject_RowObject_NullRowObject()
         {
             FormObject formObject = new() { FormId = "1" };
-            Assert.ThrowsException<ArgumentNullException>(() => formObject.DeleteRowObject((RowObject)null!));
+            Assert.ThrowsExactly<ArgumentNullException>(() => formObject.DeleteRowObject((RowObject)null!));
         }
 
         [TestMethod]
         public void DeleteRowObject_FormObject_RowId_NullFormObject()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.DeleteRowObject((FormObject)null!, "1||1"));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.DeleteRowObject((FormObject)null!, "1||1"));
         }
     }
 }

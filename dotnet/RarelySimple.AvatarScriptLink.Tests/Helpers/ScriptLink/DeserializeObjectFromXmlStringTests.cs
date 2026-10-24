@@ -25,7 +25,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_Double_Error()
         {
             string objectToDeserialize = "<Not XML or Json>";
-            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromXmlString<double>(objectToDeserialize));
+            Assert.ThrowsExactly<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromXmlString<double>(objectToDeserialize));
         }
 
         [TestMethod]
@@ -47,7 +47,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_Int_Error()
         {
             string objectToDeserialize = "<Not XML or Json>";
-            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromXmlString<int>(objectToDeserialize));
+            Assert.ThrowsExactly<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromXmlString<int>(objectToDeserialize));
         }
 
         [TestMethod]
@@ -69,7 +69,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_DateTime_Error()
         {
             string objectToSerialize = "<Not XML or Json>";
-            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromXmlString<DateTime>(objectToSerialize));
+            Assert.ThrowsExactly<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromXmlString<DateTime>(objectToSerialize));
         }
 
         [TestMethod]
@@ -95,7 +95,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_OptionObject_Error()
         {
             string objectToSerialize = "<Not XML or Json>";
-            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromXmlString<OptionObject>(objectToSerialize));
+            Assert.ThrowsExactly<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromXmlString<OptionObject>(objectToSerialize));
         }
 
         [TestMethod]
@@ -121,7 +121,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_OptionObject2_Error()
         {
             string objectToSerialize = "<Not XML or Json>";
-            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromXmlString<OptionObject2>(objectToSerialize));
+            Assert.ThrowsExactly<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromXmlString<OptionObject2>(objectToSerialize));
         }
 
         [TestMethod]
@@ -147,7 +147,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_OptionObject2015_Error()
         {
             string objectToSerialize = "<Not XML or Json>";
-            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromXmlString<OptionObject2015>(objectToSerialize));
+            Assert.ThrowsExactly<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromXmlString<OptionObject2015>(objectToSerialize));
         }
 
         [TestMethod]
@@ -172,7 +172,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_FormObject_Error()
         {
             string objectToSerialize = "<Not XML or Json>";
-            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromXmlString<FormObject>(objectToSerialize));
+            Assert.ThrowsExactly<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromXmlString<FormObject>(objectToSerialize));
         }
 
         [TestMethod]
@@ -196,7 +196,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_RowObject_Error()
         {
             string objectToSerialize = "<Not XML or Json>";
-            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromXmlString<RowObject>(objectToSerialize));
+            Assert.ThrowsExactly<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromXmlString<RowObject>(objectToSerialize));
         }
 
         [TestMethod]
@@ -224,7 +224,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DeserializeObject_FieldObject_Error()
         {
             string objectToSerialize = "<Not XML or Json>";
-            Assert.ThrowsException<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromXmlString<FieldObject>(objectToSerialize));
+            Assert.ThrowsExactly<ArgumentException>(() => ScriptLinkHelpers.DeserializeObjectFromXmlString<FieldObject>(objectToSerialize));
         }
     }
 }

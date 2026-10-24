@@ -211,7 +211,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             OptionObject? response = null;
 
             // Act / Assert
-            Assert.ThrowsException<ArgumentNullException>(() => response.ToReturnOptionObject());
+            Assert.ThrowsExactly<ArgumentNullException>(() => response.ToReturnOptionObject());
         }
 
         [TestMethod]
@@ -221,7 +221,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             OptionObject2? response = null;
 
             // Act / Assert
-            Assert.ThrowsException<ArgumentNullException>(() => response.ToReturnOptionObject());
+            Assert.ThrowsExactly<ArgumentNullException>(() => response.ToReturnOptionObject());
         }
 
         [TestMethod]
@@ -231,7 +231,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             OptionObject2015? response = null;
 
             // Act / Assert
-            Assert.ThrowsException<ArgumentNullException>(() => response.ToReturnOptionObject());
+            Assert.ThrowsExactly<ArgumentNullException>(() => response.ToReturnOptionObject());
         }
 
         [TestMethod]

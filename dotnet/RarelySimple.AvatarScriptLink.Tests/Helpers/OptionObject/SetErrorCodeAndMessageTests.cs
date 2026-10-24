@@ -11,7 +11,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             double errorCode = 0;
             string message = "Test Message";
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(null, errorCode, message));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(null, errorCode, message));
         }
 
         [TestMethod]
@@ -100,7 +100,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             var optionObject = new OptionObject();
             double errorCode = 5;
             string message = "Test Message";
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
@@ -125,7 +125,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             var optionObject = new OptionObject();
             double errorCode = 6;
             string message = "Test Message";
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
@@ -150,7 +150,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             var optionObject = new OptionObject();
             double errorCode = 7;
             string message = "Test Message";
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
@@ -159,7 +159,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             var optionObject = new OptionObject();
             double errorCode = -1;
             string message = "Test Message";
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
@@ -167,7 +167,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             double errorCode = 0;
             string message = "Test Message";
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(null, errorCode, message));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(null, errorCode, message));
         }
 
         [TestMethod]
@@ -256,7 +256,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             var optionObject = new OptionObject2();
             double errorCode = 5;
             string message = "Test Message";
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
@@ -281,7 +281,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             var optionObject = new OptionObject2();
             double errorCode = 6;
             string message = "Test Message";
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
@@ -306,7 +306,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             var optionObject = new OptionObject2();
             double errorCode = 7;
             string message = "Test Message";
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
@@ -315,7 +315,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             var optionObject = new OptionObject2();
             double errorCode = -1;
             string message = "Test Message";
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
@@ -323,7 +323,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         {
             double errorCode = 0;
             string message = "Test Message";
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(null, errorCode, message));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(null, errorCode, message));
         }
 
         [TestMethod]
@@ -412,7 +412,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             var optionObject = new OptionObject2015();
             double errorCode = 5;
             string message = "Test Message";
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
@@ -437,7 +437,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             var optionObject = new OptionObject2015();
             double errorCode = 6;
             string message = "Test Message";
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
@@ -462,7 +462,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             var optionObject = new OptionObject2015();
             double errorCode = 7;
             string message = "Test Message";
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
 
         [TestMethod]
@@ -471,7 +471,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             var optionObject = new OptionObject2015();
             double errorCode = -1;
             string message = "Test Message";
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetErrorCodeAndMessage(optionObject, errorCode, message));
         }
     }
 }

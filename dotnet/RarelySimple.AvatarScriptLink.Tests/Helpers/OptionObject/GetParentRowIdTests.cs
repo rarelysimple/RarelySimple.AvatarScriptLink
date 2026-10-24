@@ -155,7 +155,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 SystemCode = "UAT"
             };
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "2"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "2"));
         }
 
         [TestMethod]
@@ -172,7 +172,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 SystemCode = "UAT"
             };
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "1"));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "1"));
         }
 
         [TestMethod]
@@ -183,7 +183,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 EntityID = "1",
                 SystemCode = "UAT"
             };
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "1"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "1"));
         }
 
         [TestMethod]
@@ -334,7 +334,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 SystemCode = "UAT"
             };
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "2"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "2"));
         }
 
         [TestMethod]
@@ -351,7 +351,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 SystemCode = "UAT"
             };
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "1"));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "1"));
         }
 
         [TestMethod]
@@ -362,7 +362,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 EntityID = "1",
                 SystemCode = "UAT"
             };
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "1"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "1"));
         }
 
 
@@ -514,7 +514,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 SystemCode = "UAT"
             };
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "2"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "2"));
         }
 
         [TestMethod]
@@ -531,7 +531,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 SystemCode = "UAT"
             };
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "1"));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "1"));
         }
 
         [TestMethod]
@@ -542,13 +542,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 EntityID = "1",
                 SystemCode = "UAT"
             };
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "1"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetParentRowId(optionObject, "1"));
         }
 
         [TestMethod]
         public void GetParentRowIdHelperNullReturnsExpected()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(null, "1"));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(null, "1"));
         }
 
         [TestMethod]
@@ -577,7 +577,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 SystemCode = "UAT"
             };
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(optionObject, ""));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(optionObject, ""));
         }
 
         [TestMethod]
@@ -606,13 +606,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 SystemCode = "UAT"
             };
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(optionObject, null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(optionObject, null));
         }
 
         [TestMethod]
         public void GetParentRowIdHelperNullFormObjectReturnsExpected()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetParentRowId(null));
         }
     }
 }

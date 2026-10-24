@@ -61,8 +61,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.OtherRows.Add(rowObject2);
             OptionObject optionObject = new();
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentException>(() => optionObject.GetFieldValue("124"));
-            Assert.ThrowsException<ArgumentException>(() => optionObject.GetFieldValue("124"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.GetFieldValue("124"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.GetFieldValue("124"));
         }
 
         [TestMethod]
@@ -120,8 +120,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.OtherRows.Add(rowObject2);
             OptionObject optionObject = new();
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetFieldValue(optionObject, "124"));
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetFieldValue(optionObject, "124"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetFieldValue(optionObject, "124"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetFieldValue(optionObject, "124"));
         }
 
         [TestMethod]
@@ -179,8 +179,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.OtherRows.Add(rowObject2);
             OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentException>(() => optionObject.GetFieldValue("124"));
-            Assert.ThrowsException<ArgumentException>(() => optionObject.GetFieldValue("124"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.GetFieldValue("124"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.GetFieldValue("124"));
         }
 
         [TestMethod]
@@ -238,8 +238,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.OtherRows.Add(rowObject2);
             OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetFieldValue(optionObject, "124"));
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetFieldValue(optionObject, "124"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetFieldValue(optionObject, "124"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetFieldValue(optionObject, "124"));
         }
 
         [TestMethod]
@@ -297,8 +297,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.OtherRows.Add(rowObject2);
             OptionObject2015 optionObject = new();
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentException>(() => optionObject.GetFieldValue("124"));
-            Assert.ThrowsException<ArgumentException>(() => optionObject.GetFieldValue("124"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.GetFieldValue("124"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.GetFieldValue("124"));
         }
 
         [TestMethod]
@@ -356,8 +356,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.OtherRows.Add(rowObject2);
             OptionObject2015 optionObject = new();
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetFieldValue(optionObject, "124"));
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetFieldValue(optionObject, "124"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetFieldValue(optionObject, "124"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetFieldValue(optionObject, "124"));
         }
 
         [TestMethod]
@@ -409,8 +409,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             rowObject2.Fields.Add(fieldObject2);
             FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
-            Assert.ThrowsException<ArgumentException>(() => formObject.GetFieldValue("124"));
-            Assert.ThrowsException<ArgumentException>(() => formObject.GetFieldValue("124"));
+            Assert.ThrowsExactly<ArgumentException>(() => formObject.GetFieldValue("124"));
+            Assert.ThrowsExactly<ArgumentException>(() => formObject.GetFieldValue("124"));
         }
 
         [TestMethod]
@@ -462,8 +462,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             rowObject2.Fields.Add(fieldObject2);
             FormObject formObject = new("1", rowObject1);
             formObject.OtherRows.Add(rowObject2);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetFieldValue(formObject, "124"));
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetFieldValue(formObject, "124"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetFieldValue(formObject, "124"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetFieldValue(formObject, "124"));
         }
 
         [TestMethod]
@@ -505,8 +505,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            Assert.ThrowsException<ArgumentException>(() => rowObject1.GetFieldValue("124"));
-            Assert.ThrowsException<ArgumentException>(() => rowObject2.GetFieldValue("124"));
+            Assert.ThrowsExactly<ArgumentException>(() => rowObject1.GetFieldValue("124"));
+            Assert.ThrowsExactly<ArgumentException>(() => rowObject2.GetFieldValue("124"));
         }
 
         [TestMethod]
@@ -548,8 +548,8 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             RowObject rowObject2 = new("1||2");
             rowObject1.Fields.Add(fieldObject1);
             rowObject2.Fields.Add(fieldObject2);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetFieldValue(rowObject1, "124"));
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetFieldValue(rowObject2, "124"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetFieldValue(rowObject1, "124"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetFieldValue(rowObject2, "124"));
         }
 
         [TestMethod]
@@ -577,7 +577,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void GetFieldValueHelperFieldObjectNullReturnsError()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetFieldValue(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetFieldValue(null));
         }
     }
 }

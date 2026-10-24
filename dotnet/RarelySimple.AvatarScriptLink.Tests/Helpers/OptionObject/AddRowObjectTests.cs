@@ -12,7 +12,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void AddRowObject_ToFormObject_NullFormObject()
         {
             RowObject rowObject = new();
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddRowObject(null, rowObject));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.AddRowObject(null, rowObject));
         }
 
         [TestMethod]
@@ -20,7 +20,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void AddRowObject_ToFormObject_NullRowObject()
         {
             FormObject formObject = new();
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddRowObject(formObject, (IRowObject)null!));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.AddRowObject(formObject, (IRowObject)null!));
         }
 
         [TestMethod]
@@ -122,7 +122,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 FormId = formId
             };
             formObject = (FormObject)OptionObjectHelpers.AddRowObject(formObject, rowObject1);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.AddRowObject(formObject, rowObject2));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.AddRowObject(formObject, rowObject2));
         }
 
         [TestMethod]
@@ -145,7 +145,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 MultipleIteration = true
             };
             formObject = (FormObject)OptionObjectHelpers.AddRowObject(formObject, rowObject1);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.AddRowObject(formObject, rowObject2));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.AddRowObject(formObject, rowObject2));
         }
 
         [TestMethod]
@@ -182,7 +182,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             };
             OptionObject optionObject = new();
             optionObject = (OptionObject)OptionObjectHelpers.AddFormObject(optionObject, formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddRowObject(optionObject, null, rowObject1));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.AddRowObject(optionObject, null, rowObject1));
         }
 
         [TestMethod]
@@ -197,7 +197,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             };
             OptionObject2 optionObject = new();
             optionObject = (OptionObject2)OptionObjectHelpers.AddFormObject(optionObject, formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddRowObject(optionObject, null, rowObject1));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.AddRowObject(optionObject, null, rowObject1));
         }
 
         [TestMethod]
@@ -212,7 +212,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             };
             OptionObject2015 optionObject = new();
             optionObject = (OptionObject2015)OptionObjectHelpers.AddFormObject(optionObject, formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddRowObject(optionObject, null, rowObject1));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.AddRowObject(optionObject, null, rowObject1));
         }
 
         [TestMethod]
@@ -384,20 +384,20 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             formObject.AddRowObject(new RowObject());           // Add last row. Should succeed.
             Assert.IsTrue(formObject.IsRowPresent("1||9999"));  // Last of series
 
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => formObject.AddRowObject(new RowObject()));
+            Assert.ThrowsExactly<ArgumentOutOfRangeException>(() => formObject.AddRowObject(new RowObject()));
         }
 
         [TestMethod]
         public void AddRowObject_OptionObject_NullOptionObject()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddRowObject((OptionObject)null!, "1", new RowObject()));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.AddRowObject((OptionObject)null!, "1", new RowObject()));
         }
 
         [TestMethod]
         public void AddRowObject_OptionObject_NullForms()
         {
             OptionObject optionObject = new() { Forms = null };
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.AddRowObject("1", new RowObject()));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.AddRowObject("1", new RowObject()));
         }
     }
 }

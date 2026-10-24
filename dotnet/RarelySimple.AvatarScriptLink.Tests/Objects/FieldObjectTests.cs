@@ -335,7 +335,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         public void FieldObject_Constructor_1Parameter_Error()
         {
             string expected = "";
-            Assert.ThrowsException<ArgumentNullException>(() => new FieldObject(expected));
+            Assert.ThrowsExactly<ArgumentNullException>(() => new FieldObject(expected));
         }
 
         [TestMethod]
@@ -358,7 +358,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         {
             string fieldNumber = "";
             string fieldValue = "TEST";
-            Assert.ThrowsException<ArgumentNullException>(() => new FieldObject(fieldNumber, fieldValue));
+            Assert.ThrowsExactly<ArgumentNullException>(() => new FieldObject(fieldNumber, fieldValue));
         }
 
         [TestMethod]
@@ -381,7 +381,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         {
             string fieldNumber = "";
             string fieldValue = "TEST";
-            Assert.ThrowsException<ArgumentNullException>(() => new FieldObject(fieldNumber, fieldValue, true, true, true));
+            Assert.ThrowsExactly<ArgumentNullException>(() => new FieldObject(fieldNumber, fieldValue, true, true, true));
         }
 
         [TestMethod]
@@ -414,13 +414,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         [TestMethod]
         public void FieldObject_Builder_FieldNumberNull()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => FieldObject.Builder().FieldNumber(null).Build());
+            Assert.ThrowsExactly<ArgumentNullException>(() => FieldObject.Builder().FieldNumber(null).Build());
         }
 
         [TestMethod]
         public void FieldObject_Builder_FieldNumberEmpty()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => FieldObject.Builder().FieldNumber("").Build());
+            Assert.ThrowsExactly<ArgumentNullException>(() => FieldObject.Builder().FieldNumber("").Build());
         }
     }
 }

@@ -10,7 +10,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         [TestCategory("RowObject")]
         public void RowObjectFromJson_NullString()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => _ = (RowObject)OptionObjectHelpers.TransformToRowObject(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => _ = (RowObject)OptionObjectHelpers.TransformToRowObject(null));
         }
 
         [TestMethod]
