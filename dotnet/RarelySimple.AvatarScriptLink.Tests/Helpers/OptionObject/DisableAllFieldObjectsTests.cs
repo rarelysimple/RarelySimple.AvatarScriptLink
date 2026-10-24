@@ -100,7 +100,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestCategory("ScriptLinkHelpers")]
         public void DisableAllFieldObjects_OptionObject_Null()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => (OptionObject)OptionObjectHelpers.DisableAllFieldObjects(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => (OptionObject)OptionObjectHelpers.DisableAllFieldObjects(null));
         }
 
         [TestMethod]
@@ -114,7 +114,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 OptionId = "USER00",
                 Forms = null
             };
-            Assert.ThrowsException<ArgumentNullException>(() => (OptionObject)OptionObjectHelpers.DisableAllFieldObjects(invalidOptionObject));
+            Assert.ThrowsExactly<ArgumentNullException>(() => (OptionObject)OptionObjectHelpers.DisableAllFieldObjects(invalidOptionObject));
         }
 
         [TestMethod]
@@ -128,7 +128,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 OptionId = "USER00",
                 Forms = null
             };
-            Assert.ThrowsException<ArgumentNullException>(() => (OptionObject)OptionObjectHelpers.DisableAllFieldObjects(invalidOptionObject, new List<string>()));
+            Assert.ThrowsExactly<ArgumentNullException>(() => (OptionObject)OptionObjectHelpers.DisableAllFieldObjects(invalidOptionObject, new List<string>()));
         }
 
         [TestMethod]
@@ -412,7 +412,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 "2",
                 "4"
             ];
-            Assert.ThrowsException<ArgumentNullException>(() => (OptionObject2015)OptionObjectHelpers.DisableAllFieldObjects(null, excludedFields));
+            Assert.ThrowsExactly<ArgumentNullException>(() => (OptionObject2015)OptionObjectHelpers.DisableAllFieldObjects(null, excludedFields));
         }
 
         [TestMethod]
@@ -443,7 +443,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 Forms = formObjects
             };
 
-            Assert.ThrowsException<ArgumentNullException>(() => (OptionObject2015)OptionObjectHelpers.DisableAllFieldObjects(optionObject2015, null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => (OptionObject2015)OptionObjectHelpers.DisableAllFieldObjects(optionObject2015, null));
         }
 
         [TestMethod]
@@ -457,7 +457,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 "2",
                 "4"
             ];
-            Assert.ThrowsException<ArgumentException>(() => (OptionObject2015)OptionObjectHelpers.DisableAllFieldObjects(optionObject2015, excludedFields));
+            Assert.ThrowsExactly<ArgumentException>(() => (OptionObject2015)OptionObjectHelpers.DisableAllFieldObjects(optionObject2015, excludedFields));
         }
     }
 }

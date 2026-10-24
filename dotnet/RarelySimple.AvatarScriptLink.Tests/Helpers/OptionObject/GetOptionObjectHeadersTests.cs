@@ -71,7 +71,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestCategory("ScriptLinkHelpers")]
         public void GetOptionObjectHeaders_OptionObject2015_Null()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetOptionObjectHeaders(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetOptionObjectHeaders(null));
         }
     }
 }

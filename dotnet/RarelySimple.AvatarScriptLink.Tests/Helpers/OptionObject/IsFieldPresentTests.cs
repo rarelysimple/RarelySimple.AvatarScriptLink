@@ -60,7 +60,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject1);
             optionObject.AddFormObject(formObject2);
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsFieldPresent(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.IsFieldPresent(null));
         }
 
         [TestMethod]
@@ -178,7 +178,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, false, false));
             FormObject formObject1 = new("1");
-            Assert.ThrowsException<ArgumentNullException>(() => formObject1.IsFieldPresent(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => formObject1.IsFieldPresent(null));
         }
 
         [TestMethod]
@@ -205,7 +205,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             string fieldNumber = "123";
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, false, false));
-            Assert.ThrowsException<ArgumentNullException>(() => rowObject.IsFieldPresent(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => rowObject.IsFieldPresent(null));
         }
     }
 }

@@ -148,7 +148,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
             string fieldNumber = "123";
             RowObject rowObject = RowObject.Builder().RowId("1||1").Build();
             rowObject.AddFieldObject(fieldNumber, "TEST", "1", "0", "0");
-            Assert.ThrowsException<ArgumentException>(() => rowObject.AddFieldObject(fieldNumber, "TEST", "1", "0", "0"));
+            Assert.ThrowsExactly<ArgumentException>(() => rowObject.AddFieldObject(fieldNumber, "TEST", "1", "0", "0"));
         }
 
         [TestMethod]
@@ -342,7 +342,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         public void RowObject_Constructor_1Parameter_Error()
         {
             string rowId = "";
-            Assert.ThrowsException<ArgumentNullException>(() => new RowObject(rowId));
+            Assert.ThrowsExactly<ArgumentNullException>(() => new RowObject(rowId));
         }
 
         [TestMethod]
@@ -364,7 +364,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         {
             string rowId = "";
             string parentRowId = "2||1";
-            Assert.ThrowsException<ArgumentNullException>(() => new RowObject(rowId, parentRowId));
+            Assert.ThrowsExactly<ArgumentNullException>(() => new RowObject(rowId, parentRowId));
         }
 
         [TestMethod]
@@ -388,7 +388,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
             string rowId = "1||1";
             string parentRowId = "2||1";
             string rowAction = "NONE";
-            Assert.ThrowsException<ArgumentException>(() => new RowObject(rowId, parentRowId, rowAction));
+            Assert.ThrowsExactly<ArgumentException>(() => new RowObject(rowId, parentRowId, rowAction));
         }
 
         [TestMethod]
@@ -422,7 +422,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
                 fieldObject1,
                 fieldObject2
             ];
-            Assert.ThrowsException<ArgumentNullException>(() => new RowObject(rowId, fieldObjects));
+            Assert.ThrowsExactly<ArgumentNullException>(() => new RowObject(rowId, fieldObjects));
         }
 
         [TestMethod]
@@ -458,7 +458,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
                 fieldObject1,
                 fieldObject2
             ];
-            Assert.ThrowsException<ArgumentNullException>(() => new RowObject(rowId, fieldObjects, parentRowId));
+            Assert.ThrowsExactly<ArgumentNullException>(() => new RowObject(rowId, fieldObjects, parentRowId));
         }
 
         [TestMethod]
@@ -496,7 +496,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
                 fieldObject1,
                 fieldObject2
             ];
-            Assert.ThrowsException<ArgumentException>(() => new RowObject(rowId, fieldObjects, parentRowId, rowAction));
+            Assert.ThrowsExactly<ArgumentException>(() => new RowObject(rowId, fieldObjects, parentRowId, rowAction));
         }
 
         [TestMethod]
@@ -576,13 +576,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         [TestMethod]
         public void RowObject_Builder_RowIdNull()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => _ = RowObject.Builder().RowId(null).Build());
+            Assert.ThrowsExactly<ArgumentNullException>(() => _ = RowObject.Builder().RowId(null).Build());
         }
 
         [TestMethod]
         public void RowObject_Builder_FieldNumberNull()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => _ = RowObject.Builder().RowId("1||1").Field().FieldNumber(null).AddField().Build());
+            Assert.ThrowsExactly<ArgumentNullException>(() => _ = RowObject.Builder().RowId("1||1").Field().FieldNumber(null).AddField().Build());
         }
         [TestMethod]
         public void RowObject_Builder_FieldIsModified()
