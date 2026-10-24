@@ -103,7 +103,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
-            Assert.AreEqual(optionObject.Forms.Count, transformedOptionObject.Forms.Count);
+            Assert.HasCount(optionObject.Forms.Count, transformedOptionObject.Forms);
         }
 
         [TestMethod]
@@ -115,7 +115,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
-            Assert.AreEqual(optionObject.Forms.Count, transformedOptionObject.Forms.Count);
+            Assert.HasCount(optionObject.Forms.Count, transformedOptionObject.Forms);
         }
 
         [TestMethod]
@@ -215,7 +215,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
-            Assert.AreEqual(optionObject.Forms.Count, transformedOptionObject.Forms.Count);
+            Assert.HasCount(optionObject.Forms.Count, transformedOptionObject.Forms);
         }
 
         [TestMethod]
@@ -227,7 +227,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
             OptionObject2015 transformedOptionObject = optionObject.ToOptionObject2015();
 
-            Assert.AreEqual(optionObject.Forms.Count, transformedOptionObject.Forms.Count);
+            Assert.HasCount(optionObject.Forms.Count, transformedOptionObject.Forms);
         }
 
         [TestMethod]
@@ -327,7 +327,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
-            Assert.AreEqual(optionObject.Forms.Count, transformedOptionObject.Forms.Count);
+            Assert.HasCount(optionObject.Forms.Count, transformedOptionObject.Forms);
         }
 
         [TestMethod]
@@ -339,7 +339,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
-            Assert.AreEqual(optionObject.Forms.Count, transformedOptionObject.Forms.Count);
+            Assert.HasCount(optionObject.Forms.Count, transformedOptionObject.Forms);
         }
 
         [TestMethod]
@@ -439,7 +439,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
-            Assert.AreEqual(optionObject.Forms.Count, transformedOptionObject.Forms.Count);
+            Assert.HasCount(optionObject.Forms.Count, transformedOptionObject.Forms);
         }
 
         [TestMethod]
@@ -451,7 +451,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
 
             OptionObject2015 transformedOptionObject = (OptionObject2015)OptionObjectHelpers.TransformToOptionObject2015(optionObject);
 
-            Assert.AreEqual(optionObject.Forms.Count, transformedOptionObject.Forms.Count);
+            Assert.HasCount(optionObject.Forms.Count, transformedOptionObject.Forms);
         }
 
         [TestMethod]

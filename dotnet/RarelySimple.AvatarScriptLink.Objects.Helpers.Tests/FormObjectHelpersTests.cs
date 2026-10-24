@@ -7,7 +7,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
     [TestClass]
     public class FormObjectHelpersTests
     {
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Disabled")]
         [DataRow("Enabled")]
         [DataRow("Locked")]
@@ -36,7 +36,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             Assert.ThrowsExactly<ArgumentNullException>(act);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Disabled")]
         [DataRow("Enabled")]
         [DataRow("Locked")]
@@ -65,7 +65,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             Assert.ThrowsExactly<ArgumentException>(act);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Disabled")]
         [DataRow("Enabled")]
         [DataRow("Locked")]
@@ -148,7 +148,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             Assert.AreEqual(RowObject.RowActions.Edit, otherRow.RowAction);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Disabled")]
         [DataRow("Enabled")]
         [DataRow("Locked")]
@@ -444,7 +444,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
 
             // Assert
             Assert.IsNotNull(form.OtherRows);
-            Assert.AreEqual(1, form.OtherRows.Count);
+            Assert.HasCount(1, form.OtherRows);
             Assert.AreEqual("FORM6||2", form.OtherRows[0].RowId);
         }
 
@@ -463,7 +463,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             form.AddRowObject(new RowObject { RowAction = RowObject.RowActions.Add });
 
             // Assert
-            Assert.AreEqual(1, form.OtherRows.Count);
+            Assert.HasCount(1, form.OtherRows);
             Assert.AreEqual("FORM1||2", form.OtherRows[0].RowId);
             Assert.AreEqual(RowObject.RowActions.Add, form.OtherRows[0].RowAction);
         }
@@ -830,9 +830,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             var result = form.GetFieldValues("100");
 
             // Assert
-            Assert.AreEqual(2, result.Count);
-            CollectionAssert.Contains(result, "Value1");
-            CollectionAssert.Contains(result, "Value2");
+            Assert.HasCount(2, result);
+            Assert.Contains("Value1", result);
+            Assert.Contains("Value2", result);
         }
 
         [TestMethod]

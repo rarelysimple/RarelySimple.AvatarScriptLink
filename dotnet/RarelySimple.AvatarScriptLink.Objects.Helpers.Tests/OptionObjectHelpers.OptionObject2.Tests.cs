@@ -6,7 +6,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
     [TestClass]
     public class OptionObjectHelpersOptionObject2Tests
     {
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Disabled")]
         [DataRow("Enabled")]
         [DataRow("Locked")]
@@ -34,7 +34,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             Assert.ThrowsExactly<ArgumentNullException>(act);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Disabled")]
         [DataRow("Enabled")]
         [DataRow("Locked")]
@@ -62,7 +62,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             Assert.ThrowsExactly<ArgumentException>(act);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Disabled")]
         [DataRow("Enabled")]
         [DataRow("Locked")]
@@ -262,7 +262,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
 
             var ex = Assert.ThrowsExactly<ArgumentException>(() => optionObject.GetNextAvailableRowId("FORM2"));
             Assert.AreEqual("optionObject", ex.ParamName);
-            StringAssert.Contains(ex.Message, "Forms");
+            Assert.Contains("Forms", ex.Message);
         }
 
         [TestMethod]
@@ -278,7 +278,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
 
             optionObject.AddRowObject("FORM2", new RowObject { RowAction = RowObject.RowActions.Add });
 
-            Assert.AreEqual(1, optionObject.Forms[0].OtherRows.Count);
+            Assert.HasCount(1, optionObject.Forms[0].OtherRows);
             Assert.AreEqual("FORM2||2", optionObject.Forms[0].OtherRows[0].RowId);
         }
 
@@ -323,7 +323,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
 
             var ex = Assert.ThrowsExactly<ArgumentException>(() => optionObject.AddRowObject("FORM2", new RowObject { RowAction = RowObject.RowActions.Add }));
             Assert.AreEqual("optionObject", ex.ParamName);
-            StringAssert.Contains(ex.Message, "Forms");
+            Assert.Contains("Forms", ex.Message);
         }
 
         [TestMethod]
@@ -333,7 +333,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
 
             var ex = Assert.ThrowsExactly<ArgumentException>(() => optionObject.DeleteRowObject("FORM2||1"));
             Assert.AreEqual("optionObject", ex.ParamName);
-            StringAssert.Contains(ex.Message, "Forms");
+            Assert.Contains("Forms", ex.Message);
         }
 
         [TestMethod]
@@ -632,7 +632,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             Assert.AreEqual("0", form.CurrentRow.Fields[0].Required);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Required", "0", "0", "1", "0")]
         [DataRow("Optional", "1", "1", "0", "1")]
         public void SetSingleRequiredOptionalField_OptionObject2_WithMixedFormMatches_OnlyMutatesMatchingForm(

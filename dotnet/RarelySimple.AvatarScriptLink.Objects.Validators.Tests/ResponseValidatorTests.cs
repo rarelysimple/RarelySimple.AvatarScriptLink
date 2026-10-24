@@ -14,7 +14,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "OptionObject is null.");
+            Assert.Contains("OptionObject is null.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -28,7 +28,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "EntityID is required.");
+            Assert.Contains("EntityID is required.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -42,7 +42,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "ErrorCode must be a finite number between 0 and 6.");
+            Assert.Contains("ErrorCode must be a finite number between 0 and 6.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -56,7 +56,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "ErrorCode must be a finite number between 0 and 6.");
+            Assert.Contains("ErrorCode must be a finite number between 0 and 6.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -70,7 +70,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "ErrorCode must be between 0 and 6.");
+            Assert.Contains("ErrorCode must be between 0 and 6.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -84,7 +84,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "ErrorCode must be an integer between 0 and 6.");
+            Assert.Contains("ErrorCode must be an integer between 0 and 6.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -98,7 +98,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "ErrorMesg must be empty when ErrorCode is 0.");
+            Assert.Contains("ErrorMesg must be empty when ErrorCode is 0.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -112,7 +112,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "ErrorMesg is required when ErrorCode is between 1 and 4.");
+            Assert.Contains("ErrorMesg is required when ErrorCode is between 1 and 4.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -126,7 +126,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "ErrorMesg must be a valid absolute URL when ErrorCode is 5.");
+            Assert.Contains("ErrorMesg must be a valid absolute URL when ErrorCode is 5.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -140,7 +140,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "ErrorMesg must be a valid OpenForm string when ErrorCode is 6.");
+            Assert.Contains("ErrorMesg must be a valid OpenForm string when ErrorCode is 6.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -154,7 +154,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsTrue(result.IsValid);
-            Assert.AreEqual(0, result.Errors.Count);
+            Assert.IsEmpty(result.Errors);
         }
 
         [TestMethod]
@@ -200,7 +200,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "FormObject is null.");
+            Assert.Contains("FormObject is null.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -214,7 +214,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "FormId is required.");
+            Assert.Contains("FormId is required.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -229,7 +229,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "OtherRows must be empty when MultipleIteration is false.");
+            Assert.Contains("OtherRows must be empty when MultipleIteration is false.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -273,7 +273,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "RowObject is null.");
+            Assert.Contains("RowObject is null.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -287,7 +287,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "RowId is required.");
+            Assert.Contains("RowId is required.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -302,7 +302,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "RowAction is required when row contains fields.");
+            Assert.Contains("RowAction is required when row contains fields.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -316,7 +316,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "RowAction must be ADD, EDIT, DELETE, or empty.");
+            Assert.Contains("RowAction must be ADD, EDIT, DELETE, or empty.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -360,7 +360,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "FieldObject is null.");
+            Assert.Contains("FieldObject is null.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -374,7 +374,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "FieldNumber is required.");
+            Assert.Contains("FieldNumber is required.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -388,7 +388,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "Enabled must be \"0\" or \"1\" when set.");
+            Assert.Contains("Enabled must be \"0\" or \"1\" when set.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -402,7 +402,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "Lock must be \"0\" or \"1\" when set.");
+            Assert.Contains("Lock must be \"0\" or \"1\" when set.", result.Errors.ToList());
         }
 
         [TestMethod]
@@ -416,7 +416,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            CollectionAssert.Contains(result.Errors.ToList(), "Required must be \"0\" or \"1\" when set.");
+            Assert.Contains("Required must be \"0\" or \"1\" when set.", result.Errors.ToList());
         }
 
         [TestMethod]

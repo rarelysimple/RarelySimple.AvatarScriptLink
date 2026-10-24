@@ -194,7 +194,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
 
             // Assert
             Assert.AreSame(form, result);
-            Assert.AreEqual(1, form.OtherRows.Count);
+            Assert.HasCount(1, form.OtherRows);
             Assert.AreSame(row, form.OtherRows[0]);
         }
 
@@ -209,7 +209,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
 
             // Assert
             Assert.AreSame(form, result);
-            Assert.AreEqual(0, form.OtherRows.Count);
+            Assert.IsEmpty(form.OtherRows);
         }
 
         [TestMethod]
@@ -229,7 +229,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             Assert.AreEqual("TestForm", result.FormId);
             Assert.IsTrue(result.MultipleIteration);
             Assert.AreSame(row1, result.CurrentRow);
-            Assert.AreEqual(1, result.OtherRows.Count);
+            Assert.HasCount(1, result.OtherRows);
         }
     }
 
@@ -306,7 +306,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
 
             // Assert
             Assert.AreSame(row, result);
-            Assert.AreEqual(1, row.Fields.Count);
+            Assert.HasCount(1, row.Fields);
             Assert.AreSame(field, row.Fields[0]);
         }
 
@@ -321,7 +321,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
 
             // Assert
             Assert.AreSame(row, result);
-            Assert.AreEqual(0, row.Fields.Count);
+            Assert.IsEmpty(row.Fields);
         }
     }
 
@@ -399,7 +399,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
 
             // Assert
             Assert.AreSame(option, result);
-            Assert.AreEqual(1, option.Forms.Count);
+            Assert.HasCount(1, option.Forms);
             Assert.AreSame(form, option.Forms[0]);
         }
 
@@ -414,7 +414,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
 
             // Assert
             Assert.AreSame(option, result);
-            Assert.AreEqual(0, option.Forms.Count);
+            Assert.IsEmpty(option.Forms);
         }
     }
 }

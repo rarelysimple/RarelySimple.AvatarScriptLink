@@ -115,7 +115,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             FormObject form = response.AddResponseForm("FORM1", true);
 
             // Assert
-            Assert.AreEqual(1, response.Forms.Count);
+            Assert.HasCount(1, response.Forms);
             Assert.AreSame(form, response.Forms[0]);
             Assert.IsTrue(form.MultipleIteration);
         }
@@ -134,9 +134,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             OptionObject finalized = response.ToReturnOptionObject();
 
             // Assert
-            Assert.AreEqual(1, finalized.Forms.Count);
+            Assert.HasCount(1, finalized.Forms);
             Assert.IsNull(finalized.Forms[0].CurrentRow);
-            Assert.AreEqual(1, finalized.Forms[0].OtherRows.Count);
+            Assert.HasCount(1, finalized.Forms[0].OtherRows);
             Assert.AreEqual(RowObject.RowActions.Edit, finalized.Forms[0].OtherRows[0].RowAction);
         }
 
@@ -154,7 +154,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
 
             // Assert
             Assert.IsNotNull(response.Forms[0].CurrentRow);
-            Assert.AreEqual(0, finalized.Forms.Count);
+            Assert.IsEmpty(finalized.Forms);
         }
 
         [TestMethod]
@@ -184,8 +184,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             OptionObject2 finalized = response.ToReturnOptionObject();
 
             // Assert
-            Assert.AreEqual(0, finalized.Forms.Count);
-            Assert.AreEqual(1, response.Forms.Count);
+            Assert.IsEmpty(finalized.Forms);
+            Assert.HasCount(1, response.Forms);
         }
 
         [TestMethod]
@@ -249,8 +249,8 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             OptionObject finalizedByPrimary = response.ToReturnOptionObject();
 
             // Assert
-            Assert.AreEqual(finalizedByPrimary.Forms.Count, finalizedByAlias.Forms.Count);
-            Assert.AreEqual(finalizedByPrimary.Forms[0].OtherRows.Count, finalizedByAlias.Forms[0].OtherRows.Count);
+            Assert.HasCount(finalizedByPrimary.Forms.Count, finalizedByAlias.Forms);
+            Assert.HasCount(finalizedByPrimary.Forms[0].OtherRows.Count, finalizedByAlias.Forms[0].OtherRows);
             Assert.AreEqual(finalizedByPrimary.Forms[0].OtherRows[0].RowAction, finalizedByAlias.Forms[0].OtherRows[0].RowAction);
         }
 
@@ -287,10 +287,10 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             OptionObject finalized = response.ToReturnOptionObject();
 
             // Assert
-            Assert.AreEqual(1, finalized.Forms.Count);
+            Assert.HasCount(1, finalized.Forms);
             Assert.IsNotNull(finalized.Forms[0]);
             Assert.IsNull(finalized.Forms[0].CurrentRow);
-            Assert.AreEqual(1, finalized.Forms[0].OtherRows.Count);
+            Assert.HasCount(1, finalized.Forms[0].OtherRows);
             Assert.AreEqual(RowObject.RowActions.Add, finalized.Forms[0].OtherRows[0].RowAction);
         }
 
@@ -311,10 +311,10 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             OptionObject finalized = response.ToReturnOptionObject();
 
             // Assert
-            Assert.AreEqual(1, finalized.Forms.Count);
+            Assert.HasCount(1, finalized.Forms);
             Assert.IsNull(finalized.Forms[0].CurrentRow);
-            Assert.AreEqual(3, finalized.Forms[0].OtherRows.Count);
-            CollectionAssert.AreEquivalent(
+            Assert.HasCount(3, finalized.Forms[0].OtherRows);
+            Assert.AreSequenceEqual(
                 new[] { RowObject.RowActions.Add, RowObject.RowActions.Edit, RowObject.RowActions.Delete },
                 new[]
                 {
@@ -368,10 +368,10 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             OptionObject2 finalized = response.ToReturnOptionObject();
 
             // Assert
-            Assert.AreEqual(1, finalized.Forms.Count);
+            Assert.HasCount(1, finalized.Forms);
             Assert.IsNotNull(finalized.Forms[0].CurrentRow);
             Assert.AreEqual(RowObject.RowActions.Edit, finalized.Forms[0].CurrentRow.RowAction);
-            Assert.AreEqual(1, finalized.Forms[0].OtherRows.Count);
+            Assert.HasCount(1, finalized.Forms[0].OtherRows);
             Assert.AreEqual(RowObject.RowActions.Delete, finalized.Forms[0].OtherRows[0].RowAction);
         }
 
@@ -400,7 +400,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             Assert.AreEqual("NS", finalized.NamespaceName);
             Assert.AreEqual("PNS", finalized.ParentNamespace);
             Assert.AreEqual("SRV", finalized.ServerName);
-            Assert.AreEqual(1, finalized.Forms.Count);
+            Assert.HasCount(1, finalized.Forms);
         }
 
         [TestMethod]
@@ -423,9 +423,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             OptionObject finalized = working.ToReturnOptionObject(baseline);
 
             // Assert
-            Assert.AreEqual(1, finalized.Forms.Count);
-            Assert.AreEqual(1, finalized.Forms[0].OtherRows.Count);
-            Assert.AreEqual(1, finalized.Forms[0].OtherRows[0].Fields.Count);
+            Assert.HasCount(1, finalized.Forms);
+            Assert.HasCount(1, finalized.Forms[0].OtherRows);
+            Assert.HasCount(1, finalized.Forms[0].OtherRows[0].Fields);
             Assert.AreEqual("200", finalized.Forms[0].OtherRows[0].Fields[0].FieldNumber);
             Assert.AreEqual("B-CHANGED", finalized.Forms[0].OtherRows[0].Fields[0].FieldValue);
         }
@@ -447,9 +447,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             OptionObject finalized = working.ToReturnOptionObject();
 
             // Assert
-            Assert.AreEqual(1, finalized.Forms.Count);
-            Assert.AreEqual(1, finalized.Forms[0].OtherRows.Count);
-            Assert.AreEqual(2, finalized.Forms[0].OtherRows[0].Fields.Count);
+            Assert.HasCount(1, finalized.Forms);
+            Assert.HasCount(1, finalized.Forms[0].OtherRows);
+            Assert.HasCount(2, finalized.Forms[0].OtherRows[0].Fields);
         }
 
         [TestMethod]
@@ -470,7 +470,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             OptionObject finalized = working.ToReturnOptionObject(baseline);
 
             // Assert
-            Assert.AreEqual(2, finalized.Forms[0].OtherRows[0].Fields.Count);
+            Assert.HasCount(2, finalized.Forms[0].OtherRows[0].Fields);
         }
 
         [TestMethod]
@@ -502,11 +502,11 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             OptionObject finalized = working.ToReturnOptionObject(baseline);
 
             // Assert
-            Assert.AreEqual(2, finalized.Forms[0].OtherRows.Count);
+            Assert.HasCount(2, finalized.Forms[0].OtherRows);
             Assert.AreEqual(RowObject.RowActions.Add, finalized.Forms[0].OtherRows[0].RowAction);
-            Assert.AreEqual(2, finalized.Forms[0].OtherRows[0].Fields.Count);
+            Assert.HasCount(2, finalized.Forms[0].OtherRows[0].Fields);
             Assert.AreEqual(RowObject.RowActions.Delete, finalized.Forms[0].OtherRows[1].RowAction);
-            Assert.AreEqual(1, finalized.Forms[0].OtherRows[1].Fields.Count);
+            Assert.HasCount(1, finalized.Forms[0].OtherRows[1].Fields);
         }
 
         [TestMethod]
@@ -529,9 +529,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             OptionObject finalized = working.ToReturnOptionObject(baseline);
 
             // Assert
-            Assert.AreEqual(1, finalized.Forms.Count);
-            Assert.AreEqual(1, finalized.Forms[0].OtherRows.Count);
-            Assert.AreEqual(1, finalized.Forms[0].OtherRows[0].Fields.Count);
+            Assert.HasCount(1, finalized.Forms);
+            Assert.HasCount(1, finalized.Forms[0].OtherRows);
+            Assert.HasCount(1, finalized.Forms[0].OtherRows[0].Fields);
             Assert.AreEqual("100", finalized.Forms[0].OtherRows[0].Fields[0].FieldNumber);
         }
 
@@ -555,7 +555,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             OptionObject2 finalized = working.ToReturnOptionObject(baseline);
 
             // Assert
-            Assert.AreEqual(1, finalized.Forms[0].OtherRows[0].Fields.Count);
+            Assert.HasCount(1, finalized.Forms[0].OtherRows[0].Fields);
             Assert.AreEqual("100", finalized.Forms[0].OtherRows[0].Fields[0].FieldNumber);
         }
 
@@ -580,7 +580,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             OptionObject2015 finalized = working.ToReturnOptionObject(baseline);
 
             // Assert
-            Assert.AreEqual(1, finalized.Forms[0].OtherRows[0].Fields.Count);
+            Assert.HasCount(1, finalized.Forms[0].OtherRows[0].Fields);
             Assert.AreEqual("200", finalized.Forms[0].OtherRows[0].Fields[0].FieldNumber);
             Assert.AreEqual(FieldObject.RequiredStatus.Required, finalized.Forms[0].OtherRows[0].Fields[0].Required);
         }
@@ -606,12 +606,12 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             OptionObject second = working.ToReturnOptionObject(baseline);
 
             // Assert
-            Assert.AreEqual(1, first.Forms.Count);
-            Assert.AreEqual(1, second.Forms.Count);
-            Assert.AreEqual(1, first.Forms[0].OtherRows.Count);
-            Assert.AreEqual(1, second.Forms[0].OtherRows.Count);
-            Assert.AreEqual(1, first.Forms[0].OtherRows[0].Fields.Count);
-            Assert.AreEqual(1, second.Forms[0].OtherRows[0].Fields.Count);
+            Assert.HasCount(1, first.Forms);
+            Assert.HasCount(1, second.Forms);
+            Assert.HasCount(1, first.Forms[0].OtherRows);
+            Assert.HasCount(1, second.Forms[0].OtherRows);
+            Assert.HasCount(1, first.Forms[0].OtherRows[0].Fields);
+            Assert.HasCount(1, second.Forms[0].OtherRows[0].Fields);
             Assert.AreEqual(first.Forms[0].OtherRows[0].Fields[0].FieldNumber, second.Forms[0].OtherRows[0].Fields[0].FieldNumber);
             Assert.AreEqual(first.Forms[0].OtherRows[0].Fields[0].FieldValue, second.Forms[0].OtherRows[0].Fields[0].FieldValue);
         }
@@ -638,12 +638,12 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             OptionObject fromWorkingClone = workingClone.ToReturnOptionObject(baseline);
 
             // Assert
-            Assert.AreEqual(1, fromWorking.Forms.Count);
-            Assert.AreEqual(1, fromWorkingClone.Forms.Count);
-            Assert.AreEqual(1, fromWorking.Forms[0].OtherRows.Count);
-            Assert.AreEqual(1, fromWorkingClone.Forms[0].OtherRows.Count);
-            Assert.AreEqual(1, fromWorking.Forms[0].OtherRows[0].Fields.Count);
-            Assert.AreEqual(1, fromWorkingClone.Forms[0].OtherRows[0].Fields.Count);
+            Assert.HasCount(1, fromWorking.Forms);
+            Assert.HasCount(1, fromWorkingClone.Forms);
+            Assert.HasCount(1, fromWorking.Forms[0].OtherRows);
+            Assert.HasCount(1, fromWorkingClone.Forms[0].OtherRows);
+            Assert.HasCount(1, fromWorking.Forms[0].OtherRows[0].Fields);
+            Assert.HasCount(1, fromWorkingClone.Forms[0].OtherRows[0].Fields);
             Assert.AreEqual(fromWorking.Forms[0].OtherRows[0].Fields[0].FieldNumber, fromWorkingClone.Forms[0].OtherRows[0].Fields[0].FieldNumber);
             Assert.AreEqual(fromWorking.Forms[0].OtherRows[0].Fields[0].Enabled, fromWorkingClone.Forms[0].OtherRows[0].Fields[0].Enabled);
         }
@@ -684,12 +684,12 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             OptionObject finalizedB = workingB.ToReturnOptionObject(baseline);
 
             // Assert
-            Assert.AreEqual(1, finalizedA.Forms.Count);
-            Assert.AreEqual(1, finalizedB.Forms.Count);
-            Assert.AreEqual(1, finalizedA.Forms[0].OtherRows.Count);
-            Assert.AreEqual(1, finalizedB.Forms[0].OtherRows.Count);
-            Assert.AreEqual(1, finalizedA.Forms[0].OtherRows[0].Fields.Count);
-            Assert.AreEqual(1, finalizedB.Forms[0].OtherRows[0].Fields.Count);
+            Assert.HasCount(1, finalizedA.Forms);
+            Assert.HasCount(1, finalizedB.Forms);
+            Assert.HasCount(1, finalizedA.Forms[0].OtherRows);
+            Assert.HasCount(1, finalizedB.Forms[0].OtherRows);
+            Assert.HasCount(1, finalizedA.Forms[0].OtherRows[0].Fields);
+            Assert.HasCount(1, finalizedB.Forms[0].OtherRows[0].Fields);
             Assert.AreEqual(finalizedA.Forms[0].OtherRows[0].Fields[0].FieldNumber, finalizedB.Forms[0].OtherRows[0].Fields[0].FieldNumber);
             Assert.AreEqual(finalizedA.Forms[0].OtherRows[0].Fields[0].FieldValue, finalizedB.Forms[0].OtherRows[0].Fields[0].FieldValue);
         }
@@ -723,7 +723,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
 
             // Assert
             Assert.AreEqual(RowObject.RowActions.Edit, row.RowAction);
-            Assert.AreEqual(1, form.OtherRows.Count);
+            Assert.HasCount(1, form.OtherRows);
         }
 
         [TestMethod]
@@ -754,7 +754,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
 
             // Assert
             Assert.AreEqual(RowObject.RowActions.Edit, row.RowAction);
-            Assert.AreEqual(1, row.Fields.Count);
+            Assert.HasCount(1, row.Fields);
             Assert.AreSame(field, row.Fields[0]);
         }
 

@@ -107,9 +107,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
                                                .Build();
             OptionObject2015 optionObject = OptionObject2015.Initialize();
             optionObject.AddFormObject(formObject1);
-            Assert.AreEqual(1, optionObject.Forms.Count);
+            Assert.HasCount(1, optionObject.Forms);
             optionObject.AddFormObject(formObject2);
-            Assert.AreEqual(2, optionObject.Forms.Count);
+            Assert.HasCount(2, optionObject.Forms);
         }
 
         [TestMethod]
@@ -119,7 +119,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
             FormObject formObject1 = FormObject.Builder().FormId("1").Build();
             OptionObject2015 optionObject = OptionObject2015.Initialize();
             optionObject.AddFormObject(formObject1);
-            Assert.AreEqual(1, optionObject.Forms.Count);
+            Assert.HasCount(1, optionObject.Forms);
             Assert.ThrowsExactly<ArgumentException>(() => optionObject.AddFormObject(formObject1));
         }
 
@@ -129,9 +129,9 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         {
             OptionObject2015 optionObject = OptionObject2015.Initialize();
             optionObject.AddFormObject("1", false);
-            Assert.AreEqual(1, optionObject.Forms.Count);
+            Assert.HasCount(1, optionObject.Forms);
             optionObject.AddFormObject("2", true);
-            Assert.AreEqual(2, optionObject.Forms.Count);
+            Assert.HasCount(2, optionObject.Forms);
         }
 
         [TestMethod]
@@ -140,7 +140,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
         {
             OptionObject2015 optionObject = OptionObject2015.Initialize();
             optionObject.AddFormObject("1", false);
-            Assert.AreEqual(1, optionObject.Forms.Count);
+            Assert.HasCount(1, optionObject.Forms);
             Assert.ThrowsExactly<ArgumentException>(() => optionObject.AddFormObject("1", false));
         }
 
@@ -452,7 +452,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
             Assert.AreEqual(serverName, optionObject.ServerName);
             Assert.AreEqual(sessionToken, optionObject.SessionToken);
             Assert.AreEqual(systemCode, optionObject.SystemCode);
-            Assert.AreEqual(formCount, optionObject.Forms.Count);
+            Assert.HasCount(formCount, optionObject.Forms);
         }
 
         [TestMethod]
@@ -493,7 +493,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
             Assert.AreEqual(serverName, optionObject.ServerName);
             Assert.AreEqual(sessionToken, optionObject.SessionToken);
             Assert.AreEqual(systemCode, optionObject.SystemCode);
-            Assert.AreEqual(formCount, optionObject.Forms.Count);
+            Assert.HasCount(formCount, optionObject.Forms);
         }
 
         [TestMethod]
