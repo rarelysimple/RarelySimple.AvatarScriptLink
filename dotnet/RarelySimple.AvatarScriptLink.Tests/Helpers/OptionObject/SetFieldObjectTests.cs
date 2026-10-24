@@ -17,7 +17,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObject(optionObject, null, fieldNumber));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObject(optionObject, null, fieldNumber));
         }
 
         [TestMethod]
@@ -31,7 +31,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObject(optionObject, "", fieldNumber));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObject(optionObject, "", fieldNumber));
         }
 
         [TestMethod]
@@ -62,7 +62,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Disable, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Disable, "234"));
         }
 
         [TestMethod]
@@ -92,7 +92,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Lock, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Lock, "234"));
         }
 
         [TestMethod]
@@ -122,7 +122,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Optional, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Optional, "234"));
         }
 
         [TestMethod]
@@ -152,7 +152,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Require, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Require, "234"));
         }
 
         [TestMethod]
@@ -182,7 +182,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Unlock, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Unlock, "234"));
         }
 
         [TestMethod]
@@ -196,7 +196,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObject(optionObject, null, fieldNumber));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObject(optionObject, null, fieldNumber));
         }
 
         [TestMethod]
@@ -210,7 +210,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObject(optionObject, "", fieldNumber));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObject(optionObject, "", fieldNumber));
         }
 
         [TestMethod]
@@ -241,7 +241,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Disable, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Disable, "234"));
         }
 
         [TestMethod]
@@ -271,7 +271,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Lock, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Lock, "234"));
         }
 
         [TestMethod]
@@ -301,7 +301,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Optional, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Optional, "234"));
         }
 
         [TestMethod]
@@ -331,7 +331,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Require, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Require, "234"));
         }
 
         [TestMethod]
@@ -361,7 +361,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Unlock, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Unlock, "234"));
         }
 
         [TestMethod]
@@ -375,7 +375,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObject(optionObject, null, fieldNumber));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObject(optionObject, null, fieldNumber));
         }
 
         [TestMethod]
@@ -389,7 +389,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObject(optionObject, "", fieldNumber));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObject(optionObject, "", fieldNumber));
         }
 
         [TestMethod]
@@ -420,7 +420,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Disable, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Disable, "234"));
         }
 
         [TestMethod]
@@ -450,7 +450,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Lock, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Lock, "234"));
         }
 
         [TestMethod]
@@ -480,7 +480,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Optional, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Optional, "234"));
         }
 
         [TestMethod]
@@ -510,7 +510,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Require, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Require, "234"));
         }
 
         [TestMethod]
@@ -540,7 +540,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject);
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Unlock, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(optionObject, FieldAction.Unlock, "234"));
         }
 
         [TestMethod]
@@ -552,7 +552,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             FormObject formObject = new("1");
             formObject.AddRowObject(rowObject);
 
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObject(formObject, null, fieldNumber));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObject(formObject, null, fieldNumber));
         }
 
         [TestMethod]
@@ -564,7 +564,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             FormObject formObject = new("1");
             formObject.AddRowObject(rowObject);
 
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObject(formObject, "", fieldNumber));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObject(formObject, "", fieldNumber));
         }
 
         [TestMethod]
@@ -591,7 +591,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             FormObject formObject = new("1");
             formObject.AddRowObject(rowObject);
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(formObject, FieldAction.Disable, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(formObject, FieldAction.Disable, "234"));
         }
 
         [TestMethod]
@@ -617,7 +617,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             FormObject formObject = new("1");
             formObject.AddRowObject(rowObject);
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(formObject, FieldAction.Lock, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(formObject, FieldAction.Lock, "234"));
         }
 
         [TestMethod]
@@ -643,7 +643,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             FormObject formObject = new("1");
             formObject.AddRowObject(rowObject);
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(formObject, FieldAction.Optional, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(formObject, FieldAction.Optional, "234"));
         }
 
         [TestMethod]
@@ -669,7 +669,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             FormObject formObject = new("1");
             formObject.AddRowObject(rowObject);
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(formObject, FieldAction.Require, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(formObject, FieldAction.Require, "234"));
         }
 
         [TestMethod]
@@ -695,7 +695,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             FormObject formObject = new("1");
             formObject.AddRowObject(rowObject);
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(formObject, FieldAction.Unlock, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(formObject, FieldAction.Unlock, "234"));
         }
 
         [TestMethod]
@@ -705,7 +705,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber));
 
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObject(rowObject, null, fieldNumber));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObject(rowObject, null, fieldNumber));
         }
 
         [TestMethod]
@@ -715,7 +715,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber));
 
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObject(rowObject, "", fieldNumber));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.SetFieldObject(rowObject, "", fieldNumber));
         }
 
         [TestMethod]
@@ -739,7 +739,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber));
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(rowObject, FieldAction.Disable, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(rowObject, FieldAction.Disable, "234"));
         }
 
         [TestMethod]
@@ -762,7 +762,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber));
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(rowObject, FieldAction.Lock, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(rowObject, FieldAction.Lock, "234"));
         }
 
         [TestMethod]
@@ -785,7 +785,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber));
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(rowObject, FieldAction.Optional, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(rowObject, FieldAction.Optional, "234"));
         }
 
         [TestMethod]
@@ -808,7 +808,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber));
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(rowObject, FieldAction.Require, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(rowObject, FieldAction.Require, "234"));
         }
 
         [TestMethod]
@@ -831,7 +831,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber));
 
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(rowObject, FieldAction.Unlock, "234"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.SetFieldObject(rowObject, FieldAction.Unlock, "234"));
         }
     }
 }

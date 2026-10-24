@@ -15,7 +15,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
                 FormId = "1",
                 MultipleIteration = false
             };
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddFormObject(null, formObject));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.AddFormObject(null, formObject));
         }
 
         [TestMethod]
@@ -23,21 +23,21 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void AddFormObject_ToOptionObject_NullFormObject()
         {
             OptionObject optionObject = new();
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddFormObject(optionObject, null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.AddFormObject(optionObject, null));
         }
         [TestMethod]
         [TestCategory("AddFormObject")]
         public void AddFormObject_ToOptionObject2_NullFormObject()
         {
             OptionObject2 optionObject = new();
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddFormObject(optionObject, null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.AddFormObject(optionObject, null));
         }
         [TestMethod]
         [TestCategory("AddFormObject")]
         public void AddFormObject_ToOptionObject2015_NullFormObject()
         {
             OptionObject2015 optionObject = new();
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.AddFormObject(optionObject, null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.AddFormObject(optionObject, null));
         }
 
         [TestMethod]
@@ -56,7 +56,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             };
             OptionObject optionObject = new();
             optionObject = (OptionObject)OptionObjectHelpers.AddFormObject(optionObject, formObject1);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.AddFormObject(optionObject, formObject2));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.AddFormObject(optionObject, formObject2));
         }
 
         [TestMethod]
@@ -75,7 +75,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             };
             OptionObject2 optionObject = new();
             optionObject = (OptionObject2)OptionObjectHelpers.AddFormObject(optionObject, formObject1);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.AddFormObject(optionObject, formObject2));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.AddFormObject(optionObject, formObject2));
         }
 
         [TestMethod]
@@ -94,7 +94,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             };
             OptionObject2015 optionObject = new();
             optionObject = (OptionObject2015)OptionObjectHelpers.AddFormObject(optionObject, formObject1);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.AddFormObject(optionObject, formObject2));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.AddFormObject(optionObject, formObject2));
         }
 
         [TestMethod]
@@ -171,7 +171,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void AddFormObject_ToOptionObject_MIFirstForm()
         {
             OptionObject optionObject = new();
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.AddFormObject(optionObject, "1", true));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.AddFormObject(optionObject, "1", true));
         }
 
         [TestMethod]
@@ -179,7 +179,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void AddFormObject_ToOptionObject2_MIFirstForm()
         {
             OptionObject2 optionObject = new();
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.AddFormObject(optionObject, "1", true));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.AddFormObject(optionObject, "1", true));
         }
 
         [TestMethod]
@@ -187,7 +187,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void AddFormObject_ToOptionObject2015_MIFirstForm()
         {
             OptionObject2015 optionObject = new();
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.AddFormObject(optionObject, "1", true));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.AddFormObject(optionObject, "1", true));
         }
 
         [TestMethod]

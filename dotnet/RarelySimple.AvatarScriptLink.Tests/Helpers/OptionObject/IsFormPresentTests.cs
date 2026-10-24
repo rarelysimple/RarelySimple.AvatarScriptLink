@@ -45,7 +45,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
             FormObject formObject = new(formNumber);
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsFormPresent(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.IsFormPresent(null));
         }
 
         [TestMethod]
@@ -60,7 +60,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.HelpersTests
         public void IsFormPresent_OptionObject_Helper_Null()
         {
             string formNumber = "1";
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.IsFormPresent(null, formNumber));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.IsFormPresent(null, formNumber));
         }
 
         [TestMethod]

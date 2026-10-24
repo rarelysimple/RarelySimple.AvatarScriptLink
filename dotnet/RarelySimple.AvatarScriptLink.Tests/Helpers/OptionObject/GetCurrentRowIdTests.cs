@@ -10,7 +10,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestCategory("GetCurrentRowId")]
         public void GetCurrentRowId_FromFormObject_NullFormObject()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(null));
         }
 
         [TestMethod]
@@ -18,7 +18,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void GetCurrentRowId_FromFormObject_NoCurrentRow()
         {
             FormObject formObject = new();
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(formObject));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(formObject));
         }
 
         [TestMethod]
@@ -41,21 +41,21 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestCategory("GetCurrentRowId")]
         public void GetCurrentRowId_FromOptionObject_NullOptionObject()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(null, "1"));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(null, "1"));
         }
         
         [TestMethod]
         [TestCategory("GetCurrentRowId")]
         public void GetCurrentRowId_FromOptionObject2_NullOptionObject()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(null, "1"));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(null, "1"));
         }
         
         [TestMethod]
         [TestCategory("GetCurrentRowId")]
         public void GetCurrentRowId_FromOptionObject2015_NullOptionObject()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(null, "1"));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(null, "1"));
         }
 
         [TestMethod]
@@ -67,7 +67,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(rowObject);
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
         }
         
         [TestMethod]
@@ -79,7 +79,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(rowObject);
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
         }
         
         [TestMethod]
@@ -91,7 +91,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(rowObject);
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
         }
 
         [TestMethod]
@@ -99,7 +99,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void GetCurrentRowId_FromOptionObject_NoForms()
         {
             OptionObject optionObject = new();
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
         }
 
         [TestMethod]
@@ -107,7 +107,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void GetCurrentRowId_FromOptionObject2_NoForms()
         {
             OptionObject2 optionObject = new();
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
         }
         
         [TestMethod]
@@ -115,7 +115,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void GetCurrentRowId_FromOptionObject2015_NoForms()
         {
             OptionObject2015 optionObject = new();
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
         }
 
         [TestMethod]
@@ -131,7 +131,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(rowObject);
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "2"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "2"));
         }
         
         [TestMethod]
@@ -147,7 +147,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(rowObject);
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "2"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "2"));
         }
         
         [TestMethod]
@@ -163,7 +163,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(rowObject);
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "2"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "2"));
         }
 
         [TestMethod]
@@ -189,7 +189,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void GetCurrentRowId_FromOptionObject_FormsNull()
         {
             OptionObject optionObject = new();
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, "1"));
         }
 
         [TestMethod]
@@ -205,7 +205,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(rowObject);
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, ""));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, ""));
         }
 
         [TestMethod]
@@ -221,7 +221,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(rowObject);
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetCurrentRowId(optionObject, null));
         }
 
         [TestMethod]

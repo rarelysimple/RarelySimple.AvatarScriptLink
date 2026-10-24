@@ -15,7 +15,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 MultipleIteration = false
             };
             formObject.AddRowObject(new RowObject());
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => formObject.GetNextAvailableRowId());
+            Assert.ThrowsExactly<ArgumentOutOfRangeException>(() => formObject.GetNextAvailableRowId());
         }
 
         [TestMethod]
@@ -74,13 +74,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 formObject.OtherRows.Add(new RowObject(tempRowId));
             }
 
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => formObject.GetNextAvailableRowId());
+            Assert.ThrowsExactly<ArgumentOutOfRangeException>(() => formObject.GetNextAvailableRowId());
         }
 
         [TestMethod]
         public void GetNextRowId_OptionObjectHelpers_FormObjectNull()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetNextAvailableRowId(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetNextAvailableRowId(null));
         }
 
         [TestMethod]
@@ -92,7 +92,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 MultipleIteration = false
             };
             formObject.AddRowObject(new RowObject());
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => OptionObjectHelpers.GetNextAvailableRowId(formObject));
+            Assert.ThrowsExactly<ArgumentOutOfRangeException>(() => OptionObjectHelpers.GetNextAvailableRowId(formObject));
         }
 
         [TestMethod]
@@ -151,7 +151,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
                 formObject.OtherRows.Add(new RowObject(tempRowId));
             }
 
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => OptionObjectHelpers.GetNextAvailableRowId(formObject));
+            Assert.ThrowsExactly<ArgumentOutOfRangeException>(() => OptionObjectHelpers.GetNextAvailableRowId(formObject));
         }
     }
 }

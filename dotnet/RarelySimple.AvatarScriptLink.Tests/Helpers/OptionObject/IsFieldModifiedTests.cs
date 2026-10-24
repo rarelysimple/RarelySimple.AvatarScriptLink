@@ -73,7 +73,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             optionObject.SetFieldValue("123", "MODIFIED");
 
             // Assert
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsFieldModified(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.IsFieldModified(null));
         }
 
         [TestMethod]
@@ -217,7 +217,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.SetFieldValue("123", "MODIFIED");
 
             // Assert
-            Assert.ThrowsException<ArgumentNullException>(() => formObject.IsFieldModified(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => formObject.IsFieldModified(null));
         }
 
         [TestMethod]
@@ -264,7 +264,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             rowObject01.SetFieldValue("123", "MODIFIED");
 
             // Assert
-            Assert.ThrowsException<ArgumentNullException>(() => rowObject01.IsFieldModified(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => rowObject01.IsFieldModified(null));
         }
     }
 }

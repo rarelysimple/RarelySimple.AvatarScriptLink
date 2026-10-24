@@ -533,13 +533,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject_WithNullInput_ThrowsArgumentNullException()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.TransformToOptionObject2015((OptionObject)null!));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.TransformToOptionObject2015((OptionObject)null!));
         }
 
         [TestMethod]
         public void TransformToOptionObject2015_OptionObject2_WithNullInput_ThrowsArgumentNullException()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.TransformToOptionObject2015((OptionObject2)null!));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.TransformToOptionObject2015((OptionObject2)null!));
         }
     }
 }
