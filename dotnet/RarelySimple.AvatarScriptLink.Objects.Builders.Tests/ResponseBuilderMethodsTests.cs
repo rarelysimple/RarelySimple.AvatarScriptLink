@@ -154,7 +154,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
 
             // Assert
             Assert.IsNotNull(response.Forms[0].CurrentRow);
-            Assert.HasCount(0, finalized.Forms);
+            Assert.IsEmpty(finalized.Forms);
         }
 
         [TestMethod]
@@ -184,7 +184,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
             OptionObject2 finalized = response.ToReturnOptionObject();
 
             // Assert
-            Assert.HasCount(0, finalized.Forms);
+            Assert.IsEmpty(finalized.Forms);
             Assert.HasCount(1, response.Forms);
         }
 

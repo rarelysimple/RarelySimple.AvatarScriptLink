@@ -334,7 +334,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual("", rowObject.ParentRowId);
             Assert.AreEqual("", rowObject.RowAction);
-            Assert.HasCount(0, rowObject.Fields);
+            Assert.IsEmpty(rowObject.Fields);
         }
 
         [TestMethod]
@@ -355,7 +355,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual(parentRowId, rowObject.ParentRowId);
             Assert.AreEqual("", rowObject.RowAction);
-            Assert.HasCount(0, rowObject.Fields);
+            Assert.IsEmpty(rowObject.Fields);
         }
 
         [TestMethod]
@@ -378,7 +378,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual(parentRowId, rowObject.ParentRowId);
             Assert.AreEqual(rowAction, rowObject.RowAction);
-            Assert.HasCount(0, rowObject.Fields);
+            Assert.IsEmpty(rowObject.Fields);
         }
 
         [TestMethod]

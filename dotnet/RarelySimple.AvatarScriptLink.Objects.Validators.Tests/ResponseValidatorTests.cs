@@ -154,7 +154,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Validators.Tests
 
             // Assert
             Assert.IsTrue(result.IsValid);
-            Assert.HasCount(0, result.Errors);
+            Assert.IsEmpty(result.Errors);
         }
 
         [TestMethod]

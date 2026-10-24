@@ -28,7 +28,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
             FormObject formObject2 = formObject1.Clone();
 
             Assert.IsNotNull(formObject2.OtherRows);
-            Assert.HasCount(0, formObject2.OtherRows);
+            Assert.IsEmpty(formObject2.OtherRows);
         }
 
         [TestMethod]

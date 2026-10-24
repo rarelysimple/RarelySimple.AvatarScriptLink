@@ -64,7 +64,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Converters.Tests
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.HasCount(0, result.Fields);
+            Assert.IsEmpty(result.Fields);
         }
     }
 
@@ -104,7 +104,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Converters.Tests
             // Assert
             Assert.IsNotNull(result);
             Assert.IsNull(result.CurrentRow);
-            Assert.HasCount(0, result.OtherRows);
+            Assert.IsEmpty(result.OtherRows);
         }
     }
 
@@ -149,7 +149,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Converters.Tests
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.HasCount(0, result.Forms);
+            Assert.IsEmpty(result.Forms);
         }
 
         [TestMethod]

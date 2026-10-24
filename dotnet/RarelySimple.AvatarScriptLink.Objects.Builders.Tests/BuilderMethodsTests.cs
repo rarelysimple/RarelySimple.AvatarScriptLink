@@ -209,7 +209,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
 
             // Assert
             Assert.AreSame(form, result);
-            Assert.HasCount(0, form.OtherRows);
+            Assert.IsEmpty(form.OtherRows);
         }
 
         [TestMethod]
@@ -321,7 +321,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
 
             // Assert
             Assert.AreSame(row, result);
-            Assert.HasCount(0, row.Fields);
+            Assert.IsEmpty(row.Fields);
         }
     }
 
@@ -414,7 +414,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Builders.Tests
 
             // Assert
             Assert.AreSame(option, result);
-            Assert.HasCount(0, option.Forms);
+            Assert.IsEmpty(option.Forms);
         }
     }
 }
