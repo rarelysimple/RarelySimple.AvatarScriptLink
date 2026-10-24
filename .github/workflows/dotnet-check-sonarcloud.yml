@@ -17,6 +17,8 @@ on:
 jobs:
   build:
     name: Build and analyze
+    # Dependabot runs cannot access repository secrets such as SONAR_TOKEN.
+    if: ${{ github.actor != 'dependabot[bot]' }}
     runs-on: windows-latest
     steps:
       - name: Set up JDK 17
