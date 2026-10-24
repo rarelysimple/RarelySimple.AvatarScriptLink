@@ -48,7 +48,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Converters.Tests
             Assert.AreEqual(source.RowId, result.RowId);
             Assert.AreEqual(source.ParentRowId, result.ParentRowId);
             Assert.AreEqual(source.RowAction, result.RowAction);
-            Assert.AreEqual(1, result.Fields.Count);
+            Assert.HasCount(1, result.Fields);
             Assert.AreNotSame(source.Fields[0], result.Fields[0]);
         }
 
@@ -64,7 +64,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Converters.Tests
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(0, result.Fields.Count);
+            Assert.HasCount(0, result.Fields);
         }
     }
 
@@ -87,7 +87,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Converters.Tests
             Assert.AreEqual(source.FormId, result.FormId);
             Assert.IsTrue(result.MultipleIteration);
             Assert.IsNotNull(result.CurrentRow);
-            Assert.AreEqual(1, result.OtherRows.Count);
+            Assert.HasCount(1, result.OtherRows);
         }
 
         [TestMethod]
@@ -104,7 +104,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Converters.Tests
             // Assert
             Assert.IsNotNull(result);
             Assert.IsNull(result.CurrentRow);
-            Assert.AreEqual(0, result.OtherRows.Count);
+            Assert.HasCount(0, result.OtherRows);
         }
     }
 
@@ -134,7 +134,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Converters.Tests
             Assert.AreEqual(source.EntityID, result.EntityID);
             Assert.AreEqual(source.ErrorCode, result.ErrorCode);
             Assert.AreEqual(source.ErrorMesg, result.ErrorMesg);
-            Assert.AreEqual(1, result.Forms.Count);
+            Assert.HasCount(1, result.Forms);
         }
 
         [TestMethod]
@@ -149,7 +149,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Converters.Tests
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(0, result.Forms.Count);
+            Assert.HasCount(0, result.Forms);
         }
 
         [TestMethod]
@@ -165,7 +165,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Converters.Tests
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(1, result.Forms.Count);
+            Assert.HasCount(1, result.Forms);
             Assert.AreNotSame(form, result.Forms[0]);
             Assert.AreEqual(form.FormId, result.Forms[0].FormId);
         }

@@ -28,7 +28,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
             OptionObject optionObject2 = optionObject1.Clone();
 
             Assert.IsNotNull(optionObject2.Forms);
-            Assert.AreEqual(0, optionObject2.Forms.Count);
+            Assert.HasCount(0, optionObject2.Forms);
         }
 
         [TestMethod]

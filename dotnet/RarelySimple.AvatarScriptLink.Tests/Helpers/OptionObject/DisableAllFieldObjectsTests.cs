@@ -275,7 +275,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DisableAllFieldObjects_OptionObject_FormCount_AreEqual()
         {
             OptionObject returnOptionObject = (OptionObject)OptionObjectHelpers.DisableAllFieldObjects(optionObject);
-            Assert.AreEqual(optionObject.Forms.Count, returnOptionObject.Forms.Count);
+            Assert.HasCount(optionObject.Forms.Count, returnOptionObject.Forms);
         }
 
         [TestMethod]
@@ -283,7 +283,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
         public void DisableAllFieldObjects_OptionObject2_FormCount_AreEqual()
         {
             OptionObject2 returnOptionObject = (OptionObject2)OptionObjectHelpers.DisableAllFieldObjects(optionObject2);
-            Assert.AreEqual(optionObject2.Forms.Count, returnOptionObject.Forms.Count);
+            Assert.HasCount(optionObject2.Forms.Count, returnOptionObject.Forms);
         }
 
         [TestMethod]

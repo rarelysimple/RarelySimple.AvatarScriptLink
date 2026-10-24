@@ -281,7 +281,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
             
             rowObject1.RemoveFieldObject(fieldObject2);
 
-            Assert.AreEqual(2, rowObject1.Fields.Count);
+            Assert.HasCount(2, rowObject1.Fields);
             Assert.IsFalse(rowObject1.Fields.Contains(fieldObject2));
         }
 
@@ -303,7 +303,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
 
             rowObject1.RemoveFieldObject(fieldObject2.FieldNumber);
 
-            Assert.AreEqual(2, rowObject1.Fields.Count);
+            Assert.HasCount(2, rowObject1.Fields);
             Assert.IsFalse(rowObject1.Fields.Contains(fieldObject2));
         }
 
@@ -334,7 +334,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual("", rowObject.ParentRowId);
             Assert.AreEqual("", rowObject.RowAction);
-            Assert.AreEqual(0, rowObject.Fields.Count);
+            Assert.HasCount(0, rowObject.Fields);
         }
 
         [TestMethod]
@@ -355,7 +355,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual(parentRowId, rowObject.ParentRowId);
             Assert.AreEqual("", rowObject.RowAction);
-            Assert.AreEqual(0, rowObject.Fields.Count);
+            Assert.HasCount(0, rowObject.Fields);
         }
 
         [TestMethod]
@@ -378,7 +378,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual(parentRowId, rowObject.ParentRowId);
             Assert.AreEqual(rowAction, rowObject.RowAction);
-            Assert.AreEqual(0, rowObject.Fields.Count);
+            Assert.HasCount(0, rowObject.Fields);
         }
 
         [TestMethod]
@@ -407,7 +407,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual("", rowObject.ParentRowId);
             Assert.AreEqual("", rowObject.RowAction);
-            Assert.AreEqual(2, rowObject.Fields.Count);
+            Assert.HasCount(2, rowObject.Fields);
         }
 
         [TestMethod]
@@ -442,7 +442,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual(parentRowId, rowObject.ParentRowId);
             Assert.AreEqual("", rowObject.RowAction);
-            Assert.AreEqual(2, rowObject.Fields.Count);
+            Assert.HasCount(2, rowObject.Fields);
         }
 
         [TestMethod]
@@ -479,7 +479,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Objects
             Assert.AreEqual(rowId, rowObject.RowId);
             Assert.AreEqual(parentRowId, rowObject.ParentRowId);
             Assert.AreEqual(rowAction, rowObject.RowAction);
-            Assert.AreEqual(2, rowObject.Fields.Count);
+            Assert.HasCount(2, rowObject.Fields);
         }
 
         [TestMethod]

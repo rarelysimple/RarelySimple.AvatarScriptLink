@@ -7,7 +7,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
     [TestClass]
     public class RowObjectHelpersTests
     {
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Disabled")]
         [DataRow("Enabled")]
         [DataRow("Locked")]
@@ -36,7 +36,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             Assert.ThrowsExactly<ArgumentNullException>(act);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Disabled")]
         [DataRow("Enabled")]
         [DataRow("Locked")]
@@ -531,7 +531,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             Assert.AreEqual(RowObject.RowActions.Edit, row.RowAction);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("", RowObject.RowActions.Edit)]
         [DataRow(RowObject.RowActions.Add, RowObject.RowActions.Add)]
         [DataRow(RowObject.RowActions.Delete, RowObject.RowActions.Delete)]
@@ -598,7 +598,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             Assert.AreEqual(RowObject.RowActions.Edit, row.RowAction);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("", RowObject.RowActions.Edit)]
         [DataRow(RowObject.RowActions.Add, RowObject.RowActions.Add)]
         [DataRow(RowObject.RowActions.Delete, RowObject.RowActions.Delete)]

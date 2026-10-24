@@ -28,7 +28,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Tests
             RowObject rowObject2 = rowObject1.Clone();
 
             Assert.IsNotNull(rowObject2.Fields);
-            Assert.AreEqual(0, rowObject2.Fields.Count);
+            Assert.HasCount(0, rowObject2.Fields);
         }
 
         [TestMethod]

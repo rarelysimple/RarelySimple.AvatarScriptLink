@@ -66,7 +66,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
 
             // Act - calling extension method on null should not throw
             field?.SetValue("Value");
-            // If we reach here, no exception was thrown - test passes
+
+            // Assert
+            Assert.IsNull(field);
         }
 
         [TestMethod]
@@ -90,7 +92,9 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
 
             // Act - calling extension method on null should not throw
             field?.ClearValue();
-            // If we reach here, no exception was thrown - test passes
+
+            // Assert
+            Assert.IsNull(field);
         }
     }
 
