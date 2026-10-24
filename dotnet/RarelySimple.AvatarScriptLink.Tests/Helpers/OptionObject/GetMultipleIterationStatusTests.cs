@@ -58,14 +58,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             OptionObject optionObject = new();
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentException>(() => optionObject.GetMultipleIterationStatus("2"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.GetMultipleIterationStatus("2"));
         }
 
         [TestMethod]
         public void GetMultipleIterationStatusOptionObjectNoFormsReturnsError()
         {
             OptionObject optionObject = new();
-            Assert.ThrowsException<ArgumentException>(() => optionObject.GetMultipleIterationStatus("1"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.GetMultipleIterationStatus("1"));
         }
 
         [TestMethod]
@@ -120,20 +120,20 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             OptionObject optionObject = new();
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "2"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "2"));
         }
 
         [TestMethod]
         public void GetMultipleIterationStatusHelperOptionObjectNoFormsReturnsError()
         {
             OptionObject optionObject = new();
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "1"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "1"));
         }
 
         [TestMethod]
         public void GetMultipleIterationStatusHelperOptionObjectNullReturnsError()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetMultipleIterationStatus(null, "1"));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetMultipleIterationStatus(null, "1"));
         }
 
         [TestMethod]
@@ -188,14 +188,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentException>(() => optionObject.GetMultipleIterationStatus("2"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.GetMultipleIterationStatus("2"));
         }
 
         [TestMethod]
         public void GetMultipleIterationStatusOptionObject2NoFormsReturnsError()
         {
             OptionObject2 optionObject = new();
-            Assert.ThrowsException<ArgumentException>(() => optionObject.GetMultipleIterationStatus("1"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.GetMultipleIterationStatus("1"));
         }
 
         [TestMethod]
@@ -250,20 +250,20 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             OptionObject2 optionObject = new();
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "2"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "2"));
         }
 
         [TestMethod]
         public void GetMultipleIterationStatusHelperOptionObject2NoFormsReturnsError()
         {
             OptionObject2 optionObject = new();
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "1"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "1"));
         }
 
         [TestMethod]
         public void GetMultipleIterationStatusHelperOptionObject2NullReturnsError()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetMultipleIterationStatus(null, "1"));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetMultipleIterationStatus(null, "1"));
         }
 
         [TestMethod]
@@ -318,14 +318,14 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             OptionObject2015 optionObject = new();
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentException>(() => optionObject.GetMultipleIterationStatus("2"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.GetMultipleIterationStatus("2"));
         }
 
         [TestMethod]
         public void GetMultipleIterationStatusOptionObject2015NoFormsReturnsError()
         {
             OptionObject2015 optionObject = new();
-            Assert.ThrowsException<ArgumentException>(() => optionObject.GetMultipleIterationStatus("1"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.GetMultipleIterationStatus("1"));
         }
 
         [TestMethod]
@@ -380,20 +380,20 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             };
             OptionObject2015 optionObject = new();
             optionObject.Forms.Add(formObject);
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "2"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "2"));
         }
 
         [TestMethod]
         public void GetMultipleIterationStatusHelperOptionObject2015NoFormsReturnsError()
         {
             OptionObject2015 optionObject = new();
-            Assert.ThrowsException<ArgumentException>(() => OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "1"));
+            Assert.ThrowsExactly<ArgumentException>(() => OptionObjectHelpers.GetMultipleIterationStatus(optionObject, "1"));
         }
 
         [TestMethod]
         public void GetMultipleIterationStatusHelperOptionObject2015NullReturnsError()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.GetMultipleIterationStatus(null, "1"));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.GetMultipleIterationStatus(null, "1"));
         }
     }
 }

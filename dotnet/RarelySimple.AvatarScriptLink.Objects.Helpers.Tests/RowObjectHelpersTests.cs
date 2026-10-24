@@ -33,7 +33,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             };
 
             // Assert
-            Assert.ThrowsException<ArgumentNullException>(act);
+            Assert.ThrowsExactly<ArgumentNullException>(act);
         }
 
         [DataTestMethod]
@@ -62,7 +62,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             };
 
             // Assert
-            Assert.ThrowsException<ArgumentException>(act);
+            Assert.ThrowsExactly<ArgumentException>(act);
         }
 
         [TestMethod]
@@ -672,7 +672,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             row.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "1" });
 
             // Act/Assert
-            Assert.ThrowsException<ArgumentException>(() => row.SetDisabledField("999"));
+            Assert.ThrowsExactly<ArgumentException>(() => row.SetDisabledField("999"));
         }
 
         [TestMethod]
@@ -715,7 +715,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             row.Fields.Add(new FieldObject { FieldNumber = "100", Enabled = "0" });
 
             // Act/Assert
-            Assert.ThrowsException<ArgumentException>(() => row.SetEnabledFields(new List<string>()));
+            Assert.ThrowsExactly<ArgumentException>(() => row.SetEnabledFields(new List<string>()));
         }
 
         [TestMethod]
@@ -1128,7 +1128,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             row.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "0" });
 
             // Act / Assert
-            Assert.ThrowsException<ArgumentException>(() => row.SetLockedField("999"));
+            Assert.ThrowsExactly<ArgumentException>(() => row.SetLockedField("999"));
         }
 
         [TestMethod]
@@ -1139,7 +1139,7 @@ namespace RarelySimple.AvatarScriptLink.Objects.Helpers.Tests
             row.Fields.Add(new FieldObject { FieldNumber = "100", Lock = "1" });
 
             // Act / Assert
-            Assert.ThrowsException<ArgumentException>(() => row.SetUnlockedFields(new List<string>()));
+            Assert.ThrowsExactly<ArgumentException>(() => row.SetUnlockedFields(new List<string>()));
         }
 
         [TestMethod]

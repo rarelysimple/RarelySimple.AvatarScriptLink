@@ -74,7 +74,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject1);
             optionObject.AddFormObject(formObject2);
-            Assert.ThrowsException<ArgumentException>(() => optionObject.IsFieldLocked("234"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.IsFieldLocked("234"));
         }
 
         [TestMethod]
@@ -87,7 +87,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             formObject.AddRowObject(rowObject);
             OptionObject optionObject = new();
             optionObject.AddFormObject(formObject);
-            Assert.ThrowsException<ArgumentNullException>(() => optionObject.IsFieldLocked(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => optionObject.IsFieldLocked(null));
         }
 
         [TestMethod]
@@ -158,7 +158,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2 optionObject = new();
             optionObject.AddFormObject(formObject1);
             optionObject.AddFormObject(formObject2);
-            Assert.ThrowsException<ArgumentException>(() => optionObject.IsFieldLocked("234"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.IsFieldLocked("234"));
         }
 
         [TestMethod]
@@ -229,7 +229,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             OptionObject2015 optionObject = new();
             optionObject.AddFormObject(formObject1);
             optionObject.AddFormObject(formObject2);
-            Assert.ThrowsException<ArgumentException>(() => optionObject.IsFieldLocked("234"));
+            Assert.ThrowsExactly<ArgumentException>(() => optionObject.IsFieldLocked("234"));
         }
 
         [TestMethod]
@@ -262,7 +262,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, false, false));
             FormObject formObject = new("1");
             formObject.AddRowObject(rowObject);
-            Assert.ThrowsException<ArgumentException>(() => formObject.IsFieldLocked("234"));
+            Assert.ThrowsExactly<ArgumentException>(() => formObject.IsFieldLocked("234"));
         }
 
         [TestMethod]
@@ -273,7 +273,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, true, false));
             FormObject formObject = new("1");
             formObject.AddRowObject(rowObject);
-            Assert.ThrowsException<ArgumentNullException>(() => formObject.IsFieldLocked(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => formObject.IsFieldLocked(null));
         }
 
         [TestMethod]
@@ -300,7 +300,7 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             string fieldNumber = "123";
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, false, false));
-            Assert.ThrowsException<ArgumentException>(() => rowObject.IsFieldLocked("234"));
+            Assert.ThrowsExactly<ArgumentException>(() => rowObject.IsFieldLocked("234"));
         }
 
         [TestMethod]
@@ -309,13 +309,13 @@ namespace RarelySimple.AvatarScriptLink.Tests.Helpers
             string fieldNumber = "123";
             RowObject rowObject = new();
             rowObject.AddFieldObject(new FieldObject(fieldNumber, "", false, true, false));
-            Assert.ThrowsException<ArgumentNullException>(() => rowObject.IsFieldLocked(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => rowObject.IsFieldLocked(null));
         }
 
         [TestMethod]
         public void IsFieldLocked_FieldObject_IsLocked_NullFieldNumber()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => OptionObjectHelpers.IsFieldLocked(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => OptionObjectHelpers.IsFieldLocked(null));
         }
     }
 }
